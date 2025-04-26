@@ -347,6 +347,11 @@
   word-break: break-word;
 }
 
+.banner__text p {
+  font-size: 4rem;
+  font-weight: 600;
+}
+
 @media screen and (max-width: 749px) {
   .banner--content-align-mobile-right .banner__buttons--multiple {
     justify-content: flex-end;
