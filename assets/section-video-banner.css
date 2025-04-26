@@ -368,7 +368,8 @@
     flex-grow: 1;
     min-width: 19rem;
     font-size: 2.3rem;
-    font-weight: 600
+    font-weight: 600;
+    text-decoration: underline;
   }
 
   .banner--content-align-right .banner__buttons--multiple {
