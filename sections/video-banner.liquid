@@ -46,7 +46,7 @@
   {% else %}
     href="{{ block.settings.button_link_1 }}"
   {% endif %}
-  class="button{% if block.settings.button_style_secondary_1 %}{% else %} button--primary{% endif %}"
+  class="{% if block.settings.button_style_secondary_1 %}{% else %} button--primary{% endif %}"
 >
   {{- block.settings.button_label_1 | escape -}}
   <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="button-icon">
