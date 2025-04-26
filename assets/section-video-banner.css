@@ -366,7 +366,7 @@
 @media screen and (min-width: 750px) {
   .banner--content-align-center .banner__buttons--multiple > * {
     flex-grow: 1;
-    min-width: 15rem;
+    min-width: 19rem;
     font-size: 2.3rem;
     font-weight: 600
   }
