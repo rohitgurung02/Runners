@@ -360,8 +360,6 @@
   .banner--content-align-mobile-center .banner__buttons--multiple > * {
     flex-grow: 1;
     min-width: 22rem;
-    font-size: 2.3rem;
-    font-weight: 600
   }
 }
 
@@ -369,6 +367,8 @@
   .banner--content-align-center .banner__buttons--multiple > * {
     flex-grow: 1;
     min-width: 15rem;
+    font-size: 2.3rem;
+    font-weight: 600
   }
 
   .banner--content-align-right .banner__buttons--multiple {
