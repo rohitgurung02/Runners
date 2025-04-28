@@ -61,10 +61,8 @@
       "settings": {
         "collection": "all",
         "products_to_show": 8,
-        "title": "Featured products",
+        "title": "<strong>Featured products</strong>",
         "description_first": "<p>dfdf</p>",
-        "show_description_first": false,
-        "description_style_first": "body",
         "description": "<p>here is the description</p>",
         "show_description": false,
         "description_style": "body",
