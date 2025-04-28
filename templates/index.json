@@ -9,48 +9,50 @@
  */
 {
   "sections": {
-    "video_banner_DMQrzh": {
-      "type": "video-banner",
+    "image_banner": {
+      "type": "image-banner",
       "blocks": {
-        "heading_rPiYrf": {
+        "heading": {
           "type": "heading",
           "settings": {
-            "heading": "SPRING SALE",
-            "heading_size": "h1"
+            "heading": "Image banner",
+            "heading_size": "h0"
           }
         },
-        "text_XUniQd": {
+        "text": {
           "type": "text",
           "settings": {
-            "text": "20% SITEWIDE - UP TO 60%",
+            "text": "Give customers details about the banner image(s) or content on the template.",
             "text_style": "body"
           }
         },
-        "buttons_DFRGRf": {
+        "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "SHOP MEN’S",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "SHOP WOMEN’S",
+            "button_label_1": "Shop all",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
             "button_link_2": "",
-            "button_style_secondary_2": true
+            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
-        "heading_rPiYrf",
-        "text_XUniQd",
-        "buttons_DFRGRf"
+        "heading",
+        "text",
+        "button"
       ],
-      "name": "Video Banner",
       "settings": {
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/a6cc51260b324888b676e57ab24f3524.mp4",
-        "desktop_content_position": "middle-center",
-        "show_text_box": true,
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "desktop_content_position": "bottom-center",
+        "show_text_box": false,
         "desktop_content_alignment": "center",
-        "color_scheme": "scheme-51c6741a-e9aa-4001-9d00-a6168fa7e7dd",
-        "mobile_content_alignment": "right"
+        "color_scheme": "scheme-3",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
       }
     },
     "rich_text": {
@@ -66,7 +68,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
           }
         }
       },
@@ -75,8 +77,6 @@
         "text"
       ],
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
         "color_scheme": "scheme-1",
         "full_width": true,
         "padding_top": 40,
@@ -86,27 +86,19 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "all",
-        "products_to_show": 8,
         "title": "Featured products",
         "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
         "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": false,
-        "view_all_style": "solid",
         "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "swipe_on_mobile": false,
         "image_ratio": "adapt",
-        "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
-        "quick_add": "none",
         "columns_mobile": "2",
-        "swipe_on_mobile": false,
         "padding_top": 28,
         "padding_bottom": 36
       }
@@ -144,7 +136,6 @@
         "heading_size": "h2",
         "desktop_layout": "left",
         "mobile_layout": "collage",
-        "card_styles": "product-card-wrapper",
         "color_scheme": "scheme-1",
         "padding_top": 36,
         "padding_bottom": 36
@@ -154,9 +145,8 @@
       "type": "video",
       "settings": {
         "heading": "",
-        "heading_size": "h1",
-        "enable_video_looping": false,
         "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "heading_size": "h1",
         "description": "",
         "full_width": false,
         "color_scheme": "scheme-1",
@@ -171,7 +161,7 @@
           "type": "column",
           "settings": {
             "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -180,7 +170,7 @@
           "type": "column",
           "settings": {
             "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -189,7 +179,7 @@
           "type": "column",
           "settings": {
             "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -205,70 +195,25 @@
         "heading_size": "h1",
         "image_width": "third",
         "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
         "columns_desktop": 3,
         "column_alignment": "center",
         "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "swipe_on_mobile": false,
         "color_scheme": "scheme-1",
         "columns_mobile": "1",
-        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
-      }
-    },
-    "video_banner_HQRtY3": {
-      "type": "video-banner",
-      "blocks": {
-        "heading_Cxba9A": {
-          "type": "heading",
-          "settings": {
-            "heading": "Image banner",
-            "heading_size": "h1"
-          }
-        },
-        "text_fqBHmi": {
-          "type": "text",
-          "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
-          }
-        },
-        "buttons_MkA8qz": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Button label",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "Button label",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_Cxba9A",
-        "text_fqBHmi",
-        "buttons_MkA8qz"
-      ],
-      "name": "Video Banner",
-      "settings": {
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/a6cc51260b324888b676e57ab24f3524.mp4",
-        "desktop_content_position": "middle-center",
-        "show_text_box": true,
-        "desktop_content_alignment": "center",
-        "color_scheme": "",
-        "mobile_content_alignment": "center"
       }
     }
   },
   "order": [
-    "video_banner_DMQrzh",
+    "image_banner",
     "rich_text",
     "featured_collection",
     "collage",
     "video",
-    "multicolumn",
-    "video_banner_HQRtY3"
+    "multicolumn"
   ]
 }
