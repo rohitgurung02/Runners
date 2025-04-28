@@ -74,7 +74,7 @@
   >
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <h2 class="title inline-richtext {{ section.settings.description_first }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {{ section.settings.title }}
         </h2>
       {%- endif -%}
@@ -247,33 +247,36 @@
       "default": "t:sections.featured-collection.settings.title.default",
       "label": "t:sections.featured-collection.settings.title.label"
     },
+   {
+      "type": "richtext",
+      "id": "description_first",
+      "label": "t:sections.featured-collection.settings.description.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description_first",
+      "label": "t:sections.featured-collection.settings.show_description.label",
+      "default": false   
+    },
     {
       "type": "select",
-      "id": "heading_size",
+      "id": "description_style_first",
+      "label": "t:sections.featured-collection.settings.description_style.label",
       "options": [
         {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
+          "value": "body",
+          "label": "t:sections.featured-collection.settings.description_style.options__1.label"
         },
         {
-          "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
+          "value": "subtitle",
+          "label": "t:sections.featured-collection.settings.description_style.options__2.label"
         },
         {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
-        },
-        {
-          "value": "hxl",
-          "label": "t:sections.all.heading_size.options__4.label"
-        },
-        {
-          "value": "hxxl",
-          "label": "t:sections.all.heading_size.options__5.label"
+          "value": "uppercase",
+          "label": "t:sections.featured-collection.settings.description_style.options__3.label"
         }
       ],
-      "default": "h1",
-      "label": "t:sections.all.heading_size.label"
+      "default": "body"
     },
     {
       "type": "richtext",
