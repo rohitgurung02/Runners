@@ -368,7 +368,7 @@
     text-decoration: underline;
   }
 
-  .banner--content-align-right .banner__buttons--multiple {
+.banner--content-align-right .banner__buttons--multiple {
     justify-content: flex-end;
   }
 }
@@ -376,6 +376,10 @@
 /* .banner__box > * + .banner__buttons {
   margin-top: 2rem;
 } */
+
+.banner__text {
+    margin: 0 !important;
+}
 
 @media screen and (max-width: 749px) {
   .banner:not(.slideshow) .rte a,
