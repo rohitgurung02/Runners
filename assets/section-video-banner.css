@@ -381,6 +381,10 @@
     margin: 0 !important;
 }
 
+.banner__buttons a .button-icon {
+    margin-right: 12px !important;
+}
+
 @media screen and (max-width: 749px) {
   .banner:not(.slideshow) .rte a,
   .banner:not(.slideshow) .inline-richtext a:hover,
