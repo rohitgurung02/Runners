@@ -312,14 +312,6 @@
   .banner__box > *:first-child {
     margin-top: 0;
   }
-
-.banner__box {
-  color: #fff;
-}
-
-.banner__box h2 {
-    color: #fff;
-}
   
   @media screen and (min-width: 750px) {
     .banner__box {
