@@ -143,7 +143,7 @@
           "text": "#ffffff",
           "button": "#ffffff",
           "button_label": "#ffffff",
-          "secondary_button_label": "rgba(0,0,0,0)",
+          "secondary_button_label": "#ffffff",
           "shadow": "#ffffff"
         }
       },
