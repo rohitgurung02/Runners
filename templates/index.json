@@ -110,45 +110,45 @@
         "padding_bottom": 36
       }
     },
-    "image_banner_yWMrq6": {
-      "type": "image-banner",
+    "image_banner_clone_Janc4K": {
+      "type": "image-banner-clone",
       "blocks": {
-        "text_E7gG7E": {
-          "type": "text",
-          "settings": {
-            "text": "The x365 shades",
-            "text_style": "caption-with-letter-spacing"
-          }
-        },
-        "heading_D4tfPJ": {
+        "heading_EMdaDn": {
           "type": "heading",
           "settings": {
-            "heading": "the x365 shades",
-            "heading_size": "h0"
+            "heading": "Image banner",
+            "heading_size": "h1"
           }
         },
-        "buttons_X8AYXf": {
+        "text_wjmMEJ": {
+          "type": "text",
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_LJXAjG": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "",
+            "button_label_1": "Button label",
             "button_link_1": "",
             "button_style_secondary_1": false,
-            "button_label_2": "",
+            "button_label_2": "Button label",
             "button_link_2": "",
             "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
-        "text_E7gG7E",
-        "heading_D4tfPJ",
-        "buttons_X8AYXf"
+        "heading_EMdaDn",
+        "text_wjmMEJ",
+        "buttons_LJXAjG"
       ],
-      "name": "t:sections.image-banner.presets.name",
+      "name": "Image Banner Clone",
       "settings": {
         "image": "shopify://shop_images/X365_Banner.webp",
         "image_overlay_opacity": 0,
-        "image_height": "medium",
+        "image_height": "small",
         "image_behavior": "none",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
@@ -164,6 +164,6 @@
     "video_banner_7h73im",
     "featured_collection",
     "featured_collection_iFxBn4",
-    "image_banner_yWMrq6"
+    "image_banner_clone_Janc4K"
   ]
 }
