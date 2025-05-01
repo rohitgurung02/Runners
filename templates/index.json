@@ -113,18 +113,18 @@
     "image_banner_yWMrq6": {
       "type": "image-banner",
       "blocks": {
-        "heading_D4tfPJ": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>NEW DROP</strong>",
-            "heading_size": "h2"
-          }
-        },
         "text_E7gG7E": {
           "type": "text",
           "settings": {
             "text": "the x365 shades",
             "text_style": "body"
+          }
+        },
+        "heading_D4tfPJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "the x365 shades",
+            "heading_size": "h1"
           }
         },
         "buttons_X8AYXf": {
@@ -140,8 +140,8 @@
         }
       },
       "block_order": [
-        "heading_D4tfPJ",
         "text_E7gG7E",
+        "heading_D4tfPJ",
         "buttons_X8AYXf"
       ],
       "name": "t:sections.image-banner.presets.name",
