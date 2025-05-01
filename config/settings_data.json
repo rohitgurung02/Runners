@@ -141,10 +141,10 @@
           "background": "rgba(0,0,0,0)",
           "background_gradient": "",
           "text": "#ffffff",
-          "button": "#121212",
+          "button": "#ffffff",
           "button_label": "#ffffff",
-          "secondary_button_label": "#121212",
-          "shadow": "#121212"
+          "secondary_button_label": "rgba(0,0,0,0)",
+          "shadow": "#ffffff"
         }
       },
       "scheme-2": {
