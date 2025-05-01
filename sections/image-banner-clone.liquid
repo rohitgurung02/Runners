@@ -127,7 +127,7 @@
               {{ block.settings.heading }}
             </h2>
           {%- when 'heading_first' -%}
-            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+            <div class="banner__text rte {{ block.settings.heading_size_first }}" {{ block.shopify_attributes }}>
               <p>{{ block.settings.heading_first }}</p>
             </div>
           {%- when 'buttons' -%}
@@ -415,7 +415,7 @@
         },
         {
           "type": "select",
-          "id": "heading_size",
+          "id": "heading_size_first",
           "options": [
             {
               "value": "h2",
