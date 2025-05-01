@@ -123,8 +123,8 @@
         "text_wjmMEJ": {
           "type": "text",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
+            "text": "Here is the code.",
+            "heading_size_first": "h1"
           }
         },
         "buttons_LJXAjG": {
