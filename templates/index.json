@@ -117,14 +117,7 @@
           "type": "heading",
           "settings": {
             "heading": "<strong>NEW DROP</strong>",
-            "heading_size": "h1"
-          }
-        },
-        "text_wjmMEJ": {
-          "type": "text",
-          "settings": {
-            "text": "Here is the code.",
-            "heading_size_first": "h1"
+            "heading_size": "h2"
           }
         },
         "buttons_LJXAjG": {
@@ -141,7 +134,6 @@
       },
       "block_order": [
         "heading_EMdaDn",
-        "text_wjmMEJ",
         "buttons_LJXAjG"
       ],
       "name": "Image Banner Clone",
