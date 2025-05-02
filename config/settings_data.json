@@ -149,13 +149,13 @@
       },
       "scheme-2": {
         "settings": {
-          "background": "#f3f3f3",
+          "background": "rgba(0,0,0,0)",
           "background_gradient": "",
-          "text": "#121212",
-          "button": "#121212",
-          "button_label": "#f3f3f3",
-          "secondary_button_label": "#121212",
-          "shadow": "#121212"
+          "text": "#ffffff",
+          "button": "rgba(0,0,0,0)",
+          "button_label": "rgba(0,0,0,0)",
+          "secondary_button_label": "rgba(0,0,0,0)",
+          "shadow": "#e34d4d"
         }
       },
       "scheme-3": {
