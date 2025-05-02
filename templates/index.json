@@ -150,12 +150,69 @@
         "mobile_content_alignment": "center",
         "show_text_below": true
       }
+    },
+    "image_banner_clone_9mxAep": {
+      "type": "image-banner-clone",
+      "blocks": {
+        "heading_kVEzbm": {
+          "type": "heading",
+          "settings": {
+            "heading": "hi rohit",
+            "heading_size": "h1"
+          }
+        },
+        "heading_first_9KbR89": {
+          "type": "heading_first",
+          "settings": {
+            "heading_first": "Image banner",
+            "heading_size_first": "h1"
+          }
+        },
+        "text_BhpFRh": {
+          "type": "text",
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_BCcekY": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_kVEzbm",
+        "heading_first_9KbR89",
+        "text_BhpFRh",
+        "buttons_BCcekY"
+      ],
+      "name": "Image Banner Clone",
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
     }
   },
   "order": [
     "video_banner_7h73im",
     "featured_collection",
     "featured_collection_iFxBn4",
-    "image_banner_clone_Janc4K"
+    "image_banner_clone_Janc4K",
+    "image_banner_clone_9mxAep"
   ]
 }
