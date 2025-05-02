@@ -165,7 +165,7 @@
           "type": "heading_first",
           "settings": {
             "heading_first": "this is a text style",
-            "heading_size_first": "h2"
+            "heading_size_first": "h1"
           }
         },
         "text_BhpFRh": {
@@ -195,6 +195,7 @@
       ],
       "name": "Image Banner Clone",
       "settings": {
+        "image": "shopify://shop_images/X365_Banner.webp",
         "image_overlay_opacity": 0,
         "image_height": "medium",
         "image_behavior": "none",
