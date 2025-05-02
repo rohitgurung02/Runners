@@ -491,3 +491,8 @@
     color: currentColor;
   }
 }
+
+.banner__buttons {
+    font-size: 22px;
+    font-weight: 600;
+}
