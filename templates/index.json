@@ -170,14 +170,13 @@
     "collage_jVUgzH": {
       "type": "collage",
       "blocks": {
-        "product_7B4UmB": {
-          "type": "product",
+        "collection_hF7bPY": {
+          "type": "collection",
           "settings": {
-            "product": "",
-            "second_image": false
+            "collection": ""
           }
         },
-        "collection_hF7bPY": {
+        "collection_JXYFDc": {
           "type": "collection",
           "settings": {
             "collection": ""
@@ -185,8 +184,8 @@
         }
       },
       "block_order": [
-        "product_7B4UmB",
-        "collection_hF7bPY"
+        "collection_hF7bPY",
+        "collection_JXYFDc"
       ],
       "name": "t:sections.collage.presets.name",
       "settings": {
