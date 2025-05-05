@@ -231,3 +231,32 @@
     display: list-item;
   }
 }
+
+/* Star-Rating */
+
+.media--transparent.media--adapt img {
+  width: 106px !important;
+  height: 92px !important;
+  margin-top: 28px;
+  border-radius: 50%;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+}
+
+.rating span {
+  width: 25px;
+  height: 27px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.multicolumn-card__info {
+  margin-top: 52px;
+}
+
