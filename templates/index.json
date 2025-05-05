@@ -214,12 +214,28 @@
             "link_label": "",
             "link": ""
           }
+        },
+        "column_7HVBD9": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/7-03_RunnersAthletics_Look30111_533x_c25adeb2-2078-4e7c-9842-86292e1527fc.webp",
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "num_stars": 5,
+            "filled_star_color": "#ffd700",
+            "empty_star_color": "#cccccc",
+            "bg_star_color": "rgba(0,0,0,0)",
+            "color_scheme": "scheme-3",
+            "link_label": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
         "column_PjJVDy",
         "column_tfzDza",
-        "column_4izy4Y"
+        "column_4izy4Y",
+        "column_7HVBD9"
       ],
       "name": "multicolumn-star-column",
       "settings": {
@@ -229,7 +245,7 @@
         "image_ratio": "adapt",
         "button_label": "Button label",
         "button_link": "",
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "scheme-1",
