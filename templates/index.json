@@ -174,7 +174,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/3-2-05_RunnersAthletics_Look50040_533x_e3a5ee7a-598e-4dd9-a2ae-5e108f5f5c3e.webp",
-            "title": "Column",
+            "title": "here is the header",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "num_stars": 5,
             "filled_star_color": "#ffd700",
