@@ -234,29 +234,20 @@
 
 /* Star-Rating */
 
-.media--transparent.media--adapt img {
-  width: 106px !important;
-  height: 92px !important;
-  margin-top: 28px;
-  border-radius: 50%;
-}
-
 .rating {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
+  unicode-bidi: bidi-override;
+  direction: ltr;
+  margin: 10px 0;
 }
 
-.rating span {
-  width: 25px;
-  height: 27px;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
+.star {
+  font-size: 20px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  margin-right: 2px;
 }
 
-.multicolumn-card__info {
-  margin-top: 52px;
+.star.filled {
+  color: #ffcc00; /* default gold color if settings aren't working */
 }
 
