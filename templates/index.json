@@ -269,18 +269,11 @@
           "settings": {
             "collection": ""
           }
-        },
-        "featured_collection_JDXfDd": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
         }
       },
       "block_order": [
         "featured_collection_M6wJ4p",
-        "featured_collection_dhitaH",
-        "featured_collection_JDXfDd"
+        "featured_collection_dhitaH"
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
