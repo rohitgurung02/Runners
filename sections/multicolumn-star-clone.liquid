@@ -120,7 +120,9 @@
               {%- endif -%}
               
               <div class="multicolumn-card__info">
-                 <div class="rating">
+                {%- if block.settings.text != blank -%}
+                   <h3 class="inline-richtext">{{ block.settings.title }}</h3>
+                <div class="rating">
                     {% assign num_stars = block.settings.num_stars %}
                     {% assign filled_star_color = block.settings.filled_star_color %}
                     {% assign empty_star_color = block.settings.filled_star_color %}
@@ -135,9 +137,6 @@
                       </span>
                     {% endfor %}
                   </div>
-           
-                {%- if block.settings.text != blank -%}
-                   <h3 class="inline-richtext">{{ block.settings.title }}</h3>
                   <div class="rte">{{ block.settings.text }}</div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
