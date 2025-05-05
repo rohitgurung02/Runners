@@ -191,10 +191,11 @@
         "slide_mr3jFL": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/bbb_533x_dcefeac7-8bb2-41c0-8e81-fa64239fd5c9.webp",
             "image_overlay_opacity": 0,
-            "heading": "Image slide",
+            "heading": "",
             "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
+            "subheading": "",
             "button_label": "Button label",
             "link": "",
             "button_style_secondary": false,
