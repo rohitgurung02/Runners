@@ -60,6 +60,10 @@
   margin-top: 2rem;
 }
 
+.card__inner.ratio {
+    position: relative;
+}
+
 .card__content {
     position: absolute;
     bottom: 22px;
