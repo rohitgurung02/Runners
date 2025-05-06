@@ -79,6 +79,8 @@
       {%- if card_collection == blank -%}
         <div class="card__media">
           {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {%- else -%}
         <div class="card__content">
           <div class="card__information">
             <h3 class="card__heading">
@@ -112,10 +114,7 @@
             {%- endif -%}
           </div>
         </div>
-        </div>
-      
-      {%- else -%}
-        
+        hsjsj
       {%- endif -%}
     </div>
     {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
