@@ -256,3 +256,7 @@
     border-radius: 12px !important;
 }
 
+.media img {
+    border-radius: 5px;
+}
+
