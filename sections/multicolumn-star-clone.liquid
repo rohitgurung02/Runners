@@ -122,7 +122,7 @@
               <div class="multicolumn-card__info">
                 {%- if block.settings.text != blank -%}
                    <h3 class="inline-richtext {{ block.settings.content_alignment }}">{{ block.settings.title }}</h3>
-                <div class="rating {{ block.settings.content_alignment }}">
+                <div class="rating {{ block.settings.content_alignment_stars }}">
                     {% assign num_stars = block.settings.num_stars %}
                     {% assign filled_star_color = block.settings.filled_star_color %}
                     {% assign empty_star_color = block.settings.filled_star_color %}
@@ -455,6 +455,26 @@
           "default": "t:sections.multicolumn.blocks.column.settings.text.default",
           "label": "t:sections.multicolumn.blocks.column.settings.text.label"
         },
+         {
+      "type": "select",
+      "id": "content_alignment_paragraph",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.rich-text.settings.content_alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.rich-text.settings.content_alignment.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.rich-text.settings.content_alignment.options__3.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.rich-text.settings.content_alignment.label"
+    },
         {
           "type": "number",
           "id": "num_stars",
@@ -485,6 +505,26 @@
           "label": "My BG Color",
           "default": "scheme-6"
         },
+         {
+      "type": "select",
+      "id": "content_alignment_stars",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.rich-text.settings.content_alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.rich-text.settings.content_alignment.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.rich-text.settings.content_alignment.options__3.label"
+        }
+      ],
+      "default": "right",
+      "label": "t:sections.rich-text.settings.content_alignment.label"
+    },
         {
           "type": "text",
           "id": "link_label",
