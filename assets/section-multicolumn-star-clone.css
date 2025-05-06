@@ -251,3 +251,9 @@
   color: #ffcc00; /* default gold color if settings aren't working */
 }
 
+.multicolumn-card {
+    box-shadow: 0 0 6.8px #00000026;
+    border-radius: 12px !important;
+    padding: 12px;
+}
+
