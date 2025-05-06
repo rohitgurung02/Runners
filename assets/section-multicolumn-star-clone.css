@@ -193,12 +193,12 @@
     margin-right: 1.5rem;
   }
 
-  /* .background-none .multicolumn-list .multicolumn-card__info,
+  .background-none .multicolumn-list .multicolumn-card__info,
   .background-none .multicolumn-list:not(.slider) .center .multicolumn-card__info {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
-} */
+}
 
 .multicolumn-card {
   position: relative;
