@@ -59,3 +59,8 @@
 .collection-list-view-all {
   margin-top: 2rem;
 }
+
+.card__content {
+    position: absolute;
+    bottom: 22px;
+}
