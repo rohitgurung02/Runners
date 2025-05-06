@@ -263,40 +263,6 @@
         "padding_bottom": 36
       }
     },
-    "collection_list_K6pptk": {
-      "type": "collection-list",
-      "blocks": {
-        "featured_collection_M6wJ4p": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "best-selling-products"
-          }
-        },
-        "featured_collection_dhitaH": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "for-the-men"
-          }
-        }
-      },
-      "block_order": [
-        "featured_collection_M6wJ4p",
-        "featured_collection_dhitaH"
-      ],
-      "name": "t:sections.collection-list.presets.name",
-      "settings": {
-        "title": "Collections",
-        "heading_size": "h1",
-        "image_ratio": "square",
-        "columns_desktop": 2,
-        "color_scheme": "scheme-4d80e460-62c3-438e-bbba-43df88b47e6a",
-        "show_view_all": false,
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "collection_list_clone_hhWcBi": {
       "type": "collection-list-clone",
       "blocks": {
@@ -338,7 +304,6 @@
     "featured_collection_iFxBn4",
     "image_banner_clone_9mxAep",
     "multicolumn_star_clone_Bjwix8",
-    "collection_list_K6pptk",
     "collection_list_clone_hhWcBi"
   ]
 }
