@@ -207,7 +207,7 @@
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "num_stars": 5,
-            "filled_star_color": "#ffd700",
+            "filled_star_color": "#429d25",
             "empty_star_color": "#cccccc",
             "bg_star_color": "rgba(0,0,0,0)",
             "color_scheme": "",
