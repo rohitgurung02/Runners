@@ -142,7 +142,10 @@
               {%- endif %}
             </a>
           </h3>
-        
+
+      <{{ block.settings.heading_size }} class="heading">
+  {{ block.settings.heading }}
+</{{ block.settings.heading_size }}>
          
           
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
