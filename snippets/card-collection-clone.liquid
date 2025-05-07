@@ -143,9 +143,9 @@
             </a>
           </h3>
 
-      <{{ block.settings.heading_size }} class="heading">
+      <div class="heading" {{ block.settings.heading_size }} >
   {{ block.settings.heading }}
-</{{ block.settings.heading_size }}>
+</div>
          
           
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
