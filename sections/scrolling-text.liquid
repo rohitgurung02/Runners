@@ -1,5 +1,19 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
+{%- liquid
+  assign main_text = section.settings.main_text
+  assign emoji = section.settings.emoji 
+  assign secondary_text =  section.settings.secondary_text
+  assign speed = section.settings.speed
+  
+ 
+  assign wave_height_mobile = section.settings.wave_height_mobile
+  assign wave_height = section.settings.wave_height
+  assign wave_color = section.settings.wave_color
+  assign wave_animation = section.settings.wave_animation
+  assign wave_rotate = section.settings.wave_rotate
+-%}
+
 <style>
   {{ sec_id }} .pc-marquee-horizontal {
     overflow: hidden;
@@ -65,19 +79,19 @@
     {% for i in (1..5) %}
       <div class="pc-marquee-element pc-marquee-text">
         <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
-          {{ section.settings.main_text }}
+          {{ main_text }}
         </span>
       </div>
       
       <div class="pc-marquee-element pc-marquee-text">
          <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
-          {{ section.settings.emoji }}
+          {{ emoji }}
         </span>
       </div>
       
       <div class="pc-marquee-element pc-marquee-text-block">
          <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
-          {{ section.settings.secondary_text }}
+          {{ secondary_text }}
         </span>
       </div>
     {% endfor %}
