@@ -67,6 +67,60 @@
   </div>
 </div>
 
+{% javascript %}
+document.addEventListener('DOMContentLoaded', function() {
+  // JavaScript for marquee functionality if needed
+});
+{% endjavascript %}
+
+{% style %}
+.marquee-horizontal {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.track-horizontal-alt {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: scroll-horizontal {{ section.settings.speed }}s linear infinite;
+}
+
+.marquee-element {
+  margin-right: 40px;
+}
+
+@keyframes scroll-horizontal {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+{% endstyle %}
+
+
+<style>
+  .marquee-horizontal {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .track-horizontal-alt {
+    animation: scroll-horizontal 20s linear infinite;
+    display: flex;
+    align-items: center;
+  }
+  
+  .marquee-element {
+    margin-right: 40px; /* Adjust spacing between elements */
+  }
+  
+  @keyframes scroll-horizontal {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+
 {% schema %}
 {
   "name": "Marquee Scroller",
