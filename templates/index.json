@@ -278,7 +278,7 @@
           "type": "featured_collection",
           "settings": {
             "collection": "box-logo-tee",
-            "heading_collection": "Talk about your brand",
+            "heading_collection": "",
             "heading_size_collection": "h1"
           }
         }
