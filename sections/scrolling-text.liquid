@@ -10,10 +10,7 @@
 <style>
   
   
-  @keyframes scroll-horizontal {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+  
 </style>
 
 {% style %}
@@ -67,6 +64,11 @@
     white-space: nowrap;
     will-change: transform;
     animation: scroll-horizontal {{ speed }}s linear infinite;
+  }
+
+  @keyframes scroll-horizontal {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
   @keyframes scroll-horizontal {
