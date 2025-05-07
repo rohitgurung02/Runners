@@ -7,7 +7,7 @@
   assign speed = section.settings.speed
 -%}
 
-{% style %}
+<style>
   {{ sec_id }} .pc-marquee-horizontal {
     overflow: hidden;
     position: relative;
@@ -15,27 +15,16 @@
   }
   
   {{ sec_id }} .pc-track-horizontal-alt {
-    height: 64px;
-  }
-  
-  {{ sec_id }} .pc-track-horizontal-alt {
-    animation: scroll-horizontal 8s linear infinite;
+    height: 100px;
     display: flex;
     align-items: center;
+    width: fit-content; /* Important for smooth animation */
+    will-change: transform;
   }
   
   {{ sec_id }} .pc-marquee-element {
-    margin-right: 40px; /* Adjust spacing between elements */
-  }
-  
-  {{ sec_id }} .pc-marquee_text {
-    font-size: 42px;
-    line-height: 50px;
-  }
-
-  {{ sec_id }} .pc-marquee-element span {
-    margin-top: 12px;
-    display: inline-block;
+    margin-right: 40px;
+    flex-shrink: 0; /* Prevent elements from shrinking */
   }
 
   {{ sec_id }} .pc-marquee-element span {
@@ -44,55 +33,39 @@
     line-height: 50px;
   }
   
-  {{ sec_id }} .pc-marquee-element p {
-    margin: 0;
-    font-size: 42px;
-    font-weight: 600;
+  @keyframes smooth-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
   
-  {{ sec_id }} .pc-marquee-horizontal {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-  }
-
   {{ sec_id }} .pc-track-horizontal-alt {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    will-change: transform;
-    animation: scroll-horizontal {{ speed }}s linear infinite;
+    animation: smooth-scroll {{ section.settings.speed }}s linear infinite;
   }
-
-  @keyframes scroll-horizontal {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  @keyframes scroll-horizontal {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-{% endstyle %}
+</style>
 
 <div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
   <div class="pc-track-horizontal-alt">
-    {% for i in (1..5) %}
+    <!-- Double the content for seamless looping -->
+    {% for i in (1..10) %}
       <div class="pc-marquee-element pc-marquee-text">
-        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-          {{ main_text }}
+        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
+          {{ section.settings.main_text }}
         </span>
       </div>
       
       <div class="pc-marquee-element pc-marquee-text">
-         <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-          {{ emoji }}
+        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
+          {{ section.settings.emoji }}
         </span>
       </div>
       
       <div class="pc-marquee-element pc-marquee-text-block">
-         <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-          {{ secondary_text }}
+        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
+          {{ section.settings.secondary_text }}
         </span>
       </div>
     {% endfor %}
