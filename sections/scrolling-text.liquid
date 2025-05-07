@@ -31,6 +31,42 @@
   </div>
 </div>
 
+<div class="marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
+  <div class="track-horizontal-alt">
+    {% for i in (1..5) %}
+      <div class="marquee-element marquee-text">
+        <span class="marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 74px;line-height: 74px">
+          {{ section.settings.main_text }}
+        </span>
+      </div>
+      
+      <div class="marquee-element marquee-text">
+        <span class="marquee_text tw-align-super" style="font-size: 74px;line-height: 74px">
+          {{ section.settings.emoji }}
+        </span>
+      </div>
+      
+      <div class="marquee-element marquee-text-block">
+        <div class="marquee_text-block tw-font-transducer" style="font-size: 16px; line-height: 16px;">
+          {{ section.settings.secondary_text }}
+        </div>
+      </div>
+      
+      {% if section.settings.image != blank %}
+        <div class="marquee-element marquee-image">
+          <div class="marquee_image tw-content-center" style="min-height: 85px; min-width: 85px;">
+            <img src="{{ section.settings.image | img_url: '85x85' }}" 
+                 alt="{{ section.settings.main_text | escape }}" 
+                 width="85" height="85" 
+                 loading="lazy" 
+                 class="tw-object-cover tw-min-w-full">
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
 {% schema %}
 {
   "name": "Marquee Scroller",
