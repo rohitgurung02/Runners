@@ -8,6 +8,16 @@
 -%}
 
 <style>
+  
+  
+  @keyframes scroll-horizontal {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+
+{% style %}
+
   {{ sec_id }} .pc-marquee-horizontal {
     overflow: hidden;
     position: relative;
@@ -45,13 +55,6 @@
     font-weight: 600;
   }
   
-  @keyframes scroll-horizontal {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-</style>
-
-{% style %}
   {{ sec_id }} .pc-marquee-horizontal {
     overflow: hidden;
     position: relative;
