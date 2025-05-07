@@ -270,7 +270,7 @@
           "type": "featured_collection",
           "settings": {
             "collection": "for-the-men",
-            "heading": "Hello Rohit",
+            "heading_first": "hello everyone",
             "heading_size": "h1"
           }
         },
@@ -278,7 +278,7 @@
           "type": "featured_collection",
           "settings": {
             "collection": "box-logo-tee",
-            "heading": "Talk about your brand",
+            "heading_first": "Talk about your brand",
             "heading_size": "h1"
           }
         }
