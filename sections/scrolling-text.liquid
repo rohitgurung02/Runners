@@ -1,31 +1,31 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
 <style>
- {{ sec_id }} .marquee-horizontal {
+ {{ sec_id }} pc.marquee-horizontal {
     overflow: hidden;
     position: relative;
     border: 1px solid black;
   }
-  {{ sec_id }} .track-horizontal-alt {
+  {{ sec_id }} pc.track-horizontal-alt {
     height:  100px;
 }
   
- {{ sec_id }} .track-horizontal-alt {
+ {{ sec_id }} pc.track-horizontal-alt {
     animation: scroll-horizontal 8s linear infinite;
     display: flex;
     align-items: center;
   }
   
-  {{ sec_id }} .marquee-element {
+  {{ sec_id }} pc.marquee-element {
     margin-right: 40px; /* Adjust spacing between elements */
   }
 
-  {{ sec_id }}.marquee-element span {
+  {{ sec_id }} pc.marquee-element span {
     font-size: 42px;
     font-weight: 600;
     line-height: 50px;
 }
-  {{ sec_id }}.marquee-element p {
+  {{ sec_id }} pc.marquee-element p {
     margin: 0;
     font-size: 42px;
     font-weight: 600;
@@ -38,13 +38,13 @@
 </style>
 
 {% style %}
-{{ sec_id }}.marquee-horizontal {
+{{ sec_id }} pc.marquee-horizontal {
   overflow: hidden;
   position: relative;
   width: 100%;
 }
 
-{{ sec_id }}.track-horizontal-alt {
+{{ sec_id }} pc.track-horizontal-alt {
   display: flex;
   align-items: center;
   white-space: nowrap;
