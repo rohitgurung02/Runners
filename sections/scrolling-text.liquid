@@ -27,6 +27,11 @@
     flex-shrink: 0; /* Prevent elements from shrinking */
     margin-top: 10px;
   }
+  
+  {{ sec_id }} .pc-marquee_text {
+    font-size: 42px;
+    line-height: 50px
+  }
 
   {{ sec_id }} .pc-marquee-element span {
     font-size: 42px;
@@ -53,19 +58,19 @@
     <!-- Double the content for seamless looping -->
     {% for i in (1..10) %}
       <div class="pc-marquee-element pc-marquee-text">
-        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
+        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
           {{ main_text }}
         </span>
       </div>
       
       <div class="pc-marquee-element pc-marquee-text">
-        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
+        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
           {{ emoji }}
         </span>
       </div>
       
       <div class="pc-marquee-element pc-marquee-text-block">
-        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
+        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
           {{ secondary_text }}
         </span>
       </div>
