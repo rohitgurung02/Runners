@@ -142,9 +142,7 @@
             </a>
           </h3>
           ljfdfddsfki
-      <div class="heading {{ block.settings.heading_size }}" >
-        {{ block.settings.heading }}
-      </div>
+     
          
           
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
@@ -163,6 +161,9 @@
       <div class="card__content">
         <div class="card__information">
           <h3 class="card__heading card__heading--placeholder">
+             <div class="heading {{ block.settings.heading_size }}" >
+        {{ block.settings.heading }}
+      </div>
             <a role="link" aria-disabled="true" class="full-unstyled-link">
               {{ 'onboarding.collection_title' | t }}
               <span class="icon-wrap">
