@@ -120,7 +120,7 @@
     {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
       <div class="card__content">
         <div class="card__information">
-          <h1 class="{{ block.settings.heading_size }}"> {{ block.settings.heading }}</h1>
+          <h1 {{ block.settings.heading_size }}> {{ block.settings.heading }}</h1>
           <h3 class="card__heading">
             <a
               {% if card_collection == blank %}
