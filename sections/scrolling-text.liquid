@@ -5,13 +5,6 @@
   assign emoji = section.settings.emoji 
   assign secondary_text =  section.settings.secondary_text
   assign speed = section.settings.speed
-  
- 
-  assign wave_height_mobile = section.settings.wave_height_mobile
-  assign wave_height = section.settings.wave_height
-  assign wave_color = section.settings.wave_color
-  assign wave_animation = section.settings.wave_animation
-  assign wave_rotate = section.settings.wave_rotate
 -%}
 
 <style>
@@ -65,7 +58,7 @@
     align-items: center;
     white-space: nowrap;
     will-change: transform;
-    animation: scroll-horizontal {{ section.settings.speed }}s linear infinite;
+    animation: scroll-horizontal {{ speed }}s linear infinite;
   }
 
   @keyframes scroll-horizontal {
