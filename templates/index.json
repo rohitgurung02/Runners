@@ -269,7 +269,7 @@
       "settings": {
         "main_text": "this is our service",
         "emoji": "🚀",
-        "secondary_text": "<p><strong>Collection</strong></p>",
+        "secondary_text": "<p>Collection</p>",
         "image": "shopify://shop_images/7-03_RunnersAthletics_Look30111_533x_c25adeb2-2078-4e7c-9842-86292e1527fc.webp",
         "speed": 5
       }
