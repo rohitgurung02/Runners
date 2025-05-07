@@ -142,7 +142,7 @@
             </a>
           </h3>
         
-          <h1> {{ block.settings.heading }}</h1>
+         
           
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
             <p class="card__caption">
@@ -151,6 +151,7 @@
                 {{- 'icon-arrow.svg' | inline_asset_content -}}
               </span>
             </p>
+           <h1> {{ block.settings.heading }}</h1>
           {%- endif -%}
         </div>
       </div>
