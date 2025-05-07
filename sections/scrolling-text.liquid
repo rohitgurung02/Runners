@@ -1,31 +1,31 @@
-{%- assign sid = '#shopify-section-' | append: section.id -%}
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
 <style>
-  .marquee-horizontal {
+ {{ sec_id }} .marquee-horizontal {
     overflow: hidden;
     position: relative;
     border: 1px solid black;
   }
-  .track-horizontal-alt {
-    height: 100px;
+  {{ sec_id }} .track-horizontal-alt {
+    height:  100px;
 }
   
-  .track-horizontal-alt {
+ {{ sec_id }} .track-horizontal-alt {
     animation: scroll-horizontal 8s linear infinite;
     display: flex;
     align-items: center;
   }
   
-  .marquee-element {
+  {{ sec_id }} .marquee-element {
     margin-right: 40px; /* Adjust spacing between elements */
   }
 
-  .marquee-element span {
+  {{ sec_id }}.marquee-element span {
     font-size: 42px;
     font-weight: 600;
     line-height: 50px;
 }
-  .marquee-element p {
+  {{ sec_id }}.marquee-element p {
     margin: 0;
     font-size: 42px;
     font-weight: 600;
@@ -38,13 +38,13 @@
 </style>
 
 {% style %}
-.marquee-horizontal {
+{{ sec_id }}.marquee-horizontal {
   overflow: hidden;
   position: relative;
   width: 100%;
 }
 
-.track-horizontal-alt {
+{{ sec_id }}.track-horizontal-alt {
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -58,28 +58,26 @@
 }
 {% endstyle %}
 
-<div class="marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
-  <div class="track-horizontal-alt">
+<div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
+  <div class="pc-track-horizontal-alt">
     {% for i in (1..5) %}
-      <div class="marquee-element marquee-text">
-        <span class="marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
+      <div class="pc-marquee-element pc-marquee-text">
+        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
           {{ section.settings.main_text }}
         </span>
       </div>
       
-      <div class="marquee-element marquee-text">
-         <span class="marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
+      <div class="pc-marquee-element pc-marquee-text">
+         <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
           {{ section.settings.emoji }}
         </span>
       </div>
       
-      <div class="marquee-element marquee-text-block">
-         <span class="marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
+      <div class="pc-marquee-element pc-marquee-text-block">
+         <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
           {{ section.settings.secondary_text }}
         </span>
       </div>
-      
-     
     {% endfor %}
   </div>
 </div>
