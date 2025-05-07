@@ -43,7 +43,7 @@
   }
   
   {{ sec_id }} .pc-track-horizontal-alt {
-    animation: smooth-scroll {{ section.settings.speed }}s linear infinite;
+    animation: smooth-scroll {{ speed }}s linear infinite;
   }
 </style>
 
@@ -53,19 +53,19 @@
     {% for i in (1..10) %}
       <div class="pc-marquee-element pc-marquee-text">
         <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
-          {{ section.settings.main_text }}
+          {{ main_text }}
         </span>
       </div>
       
       <div class="pc-marquee-element pc-marquee-text">
         <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
-          {{ section.settings.emoji }}
+          {{ emoji }}
         </span>
       </div>
       
       <div class="pc-marquee-element pc-marquee-text-block">
         <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 42px;line-height: 50px">
-          {{ section.settings.secondary_text }}
+          {{ secondary_text }}
         </span>
       </div>
     {% endfor %}
