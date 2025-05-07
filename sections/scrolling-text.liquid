@@ -20,17 +20,7 @@
         </div>
       </div>
       
-      {% if section.settings.image != blank %}
-        <div class="marquee-element marquee-image">
-          <div class="marquee_image tw-content-center" style="min-height: 85px; min-width: 85px;">
-            <img src="{{ section.settings.image | img_url: '85x85' }}" 
-                 alt="{{ section.settings.main_text | escape }}" 
-                 width="85" height="85" 
-                 loading="lazy" 
-                 class="tw-object-cover tw-min-w-full">
-          </div>
-        </div>
-      {% endif %}
+     
     {% endfor %}
   </div>
 </div>
