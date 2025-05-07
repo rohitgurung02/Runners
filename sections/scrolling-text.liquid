@@ -49,7 +49,7 @@
   }
   
   {{ sec_id }} .pc-track-horizontal-alt {
-    /* animation: smooth-scroll {{ speed }}s linear infinite; */
+    animation: smooth-scroll {{ speed }}s linear infinite;
   }
 </style>
 
@@ -57,7 +57,7 @@
   <div class="pc-track-horizontal-alt">
     <!-- Double the content for seamless looping -->
     {% for i in (1..10) %}
-      <div class="pc-marquee-element pc-marquee-text-first">
+      <div class="pc-marquee-element pc-marquee-text">
         <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
           {{ main_text }}
         </span>
