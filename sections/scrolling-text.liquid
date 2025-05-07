@@ -1,6 +1,79 @@
+<div class="marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
+  <div class="track-horizontal-alt tw-absolute tw-flex tw-justify-start tw-items-center tw-whitespace-nowrap tw-will-change-transform">
+    <!-- Repeat your content multiple times for seamless looping -->
+    {% for i in (1..5) %}
+      <div class="marquee-element marquee-text">
+        <span class="marquee_text tw-font-transducer-extended tw-font-black tw-align-super" style="font-size: 74px;line-height: 74px">
+          TEES
+        </span>
+      </div>
+      
+      <div class="marquee-element marquee-text">
+        <span class="marquee_text tw-align-super" style="font-size: 74px;line-height: 74px">
+          🚀
+        </span>
+      </div>
+      
+      <div class="marquee-element marquee-text-block">
+        <div class="marquee_text-block tw-font-transducer" style="font-size: 16px; line-height: 16px;">
+          MAKE YOUR<br>
+          MARK WITH<br>
+          MRBEAST
+        </div>
+      </div>
+      
+      <div class="marquee-element marquee-image">
+        <div class="marquee_image tw-content-center" style="min-height: 85px; min-width: 85px;">
+          <img src="{{ 'your-image.jpg' | asset_img_url: '85x85' }}" alt="TEES 🚀 MAKE YOUR MARK WITH MRBEAST" width="85" height="85" loading="lazy" class="tw-object-cover tw-min-w-full">
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Marquee Scroller",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_text",
+      "label": "Main Text",
+      "default": "TEES"
+    },
+    {
+      "type": "text",
+      "id": "emoji",
+      "label": "Emoji/Symbol",
+      "default": "🚀"
+    },
+    {
+      "type": "richtext",
+      "id": "secondary_text",
+      "label": "Secondary Text",
+      "default": "<p>MAKE YOUR<br>MARK WITH<br>MRBEAST</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "s",
+      "label": "Animation Speed",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Scroller",
+      "category": "Custom"
+    }
+  ]
+}
 {% endschema %}
