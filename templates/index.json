@@ -278,13 +278,32 @@
     },
     "scrolling_text_9DEJ88": {
       "type": "scrolling-text",
+      "blocks": {
+        "marquee_item_CmDjkP": {
+          "type": "marquee_item",
+          "settings": {
+            "main_text": "its not done",
+            "emoji": "🚀",
+            "secondary_text": "<p>here is the seconday text</p>",
+            "speed": 12
+          }
+        },
+        "marquee_item_BeaaTt": {
+          "type": "marquee_item",
+          "settings": {
+            "main_text": "Main Text",
+            "emoji": "🚀",
+            "secondary_text": "<p>Secondary Text</p>",
+            "speed": 12
+          }
+        }
+      },
+      "block_order": [
+        "marquee_item_CmDjkP",
+        "marquee_item_BeaaTt"
+      ],
       "name": "Marquee Scroller",
-      "settings": {
-        "main_text": "GET FEATURES ON",
-        "emoji": "🚀",
-        "secondary_text": "<p>INSTAGRAM</p>",
-        "speed": 19
-      }
+      "settings": {}
     }
   },
   "order": [
