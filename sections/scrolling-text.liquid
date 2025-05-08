@@ -59,17 +59,16 @@
   <div class="pc-track-horizontal-alt" style="--marquee-speed: {{ block.settings.speed }}s;">
     <!-- Render blocks content twice for seamless looping -->
     
-      {% for block in section.blocks %}
-        {% unless block.settings.main_text == blank %}
-          {% if block.settings.main_text != blank %}
-            <div class="pc-marquee-element pc-marquee-text">
-              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-                {{ block.settings.main_text }}
-              </span>
-            </div>
-          {% endif %}
-        {% endunless %}
-      {% endfor %}
+      {%- for block in section.blocks -%}
+          {%- assign empty_column = '' -%}
+          {%- if block.settings.image == blank
+            and block.settings.title == blank
+            and block.settings.text == blank
+            and block.settings.link_label == blank
+          -%}
+            {%- assign empty_column = ' multicolumn-list__item--empty' -%}
+          {%- endif -%}
+         {%- endfor -%}
  
   </div>
 </div>
