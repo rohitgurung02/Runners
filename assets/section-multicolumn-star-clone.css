@@ -259,3 +259,8 @@
     border-radius: 5px;
 }
 
+.pc-rating .pc-star {
+    font-size: 27px;
+    text-shadow: 2px 2px 4px #af9191;
+}
+
