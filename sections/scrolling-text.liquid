@@ -66,6 +66,15 @@
     }
   }
 
+  @keyframes marqueeLoop {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
   /* Apply animation based on direction */
   {{ sec_id }} .pc-track-horizontal-alt {
     animation: {% if direction == 'left' %} scroll-left {% else %} scroll-right {% endif %} {{ speed }}s linear infinite;
