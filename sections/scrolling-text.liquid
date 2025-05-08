@@ -79,8 +79,13 @@
 
 </style>
  
-<div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center {{ section.settings.padding_top }}">
-  <div class="pc-track-horizontal-alt">
+<div 
+  class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center" 
+  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background-color: {{ section.settings.background_color }}">
+  <div 
+    class="pc-track-horizontal-alt" 
+    style="animation-duration: {{ section.settings.speed }}s; animation-direction: {{ section.settings.direction }}">
+    
     {% for i in (1..2) %}  <!-- Doubled for smooth looping -->
       {% for block in section.blocks %}
         <div class="pc-marquee-element" {{ block.shopify_attributes }}>
@@ -104,6 +109,7 @@
     {% endfor %}
   </div>
 </div>
+
 
 
 {% schema %}
