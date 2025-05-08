@@ -51,7 +51,7 @@
   endif
 -%}
 
-<div class="pc-multicolumn color-{{ color_scheme }} pc-gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} pc-background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} pc-no-heading{% endif %}">
+<div class="pc-multicolumn color-{{ color_scheme }} pc-gradient{% unless background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} pc-background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} pc-no-heading{% endif %}">
   <div class="pc-page-width pc-section-{{ section.id }}-padding pc-isolate{% if settings.animations_reveal_on_scroll %} pc-scroll-trigger pc-animate--slide-in{% endif %}"
     {% if settings.animations_reveal_on_scroll %}
       data-cascade
