@@ -120,50 +120,33 @@
           "options": [
             {
               "value": "h2",
-              "label": "t:sections.all.heading_size.options__1.label"
+              "label": "Medium"
             },
             {
               "value": "h1",
-              "label": "t:sections.all.heading_size.options__2.label"
+              "label": "Large"
             },
             {
               "value": "h0",
-              "label": "t:sections.all.heading_size.options__3.label"
+              "label": "Extra Large"
             },
             {
               "value": "hxl",
-              "label": "t:sections.all.heading_size.options__4.label"
+              "label": "XX Large"
             },
             {
               "value": "hxxl",
-              "label": "t:sections.all.heading_size.options__5.label"
+              "label": "XXX Large"
             }
           ],
           "default": "h2",
-          "label": "t:sections.all.heading_size.label"
-        }
-      ]
-    },
-    {
-      "type": "emoji",
-      "name": "Emoji/Symbol",
-      "settings": [
+          "label": "Heading Size"
+        },
         {
           "type": "text",
           "id": "emoji",
-          "label": "Emoji or Symbol",
+          "label": "Emoji/Symbol",
           "default": "🚀"
-        }
-      ]
-    },
-    {
-      "type": "image",
-      "name": "Image",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
         }
       ]
     }
@@ -175,19 +158,9 @@
         {
           "type": "text",
           "settings": {
-            "text": "First Item"
-          }
-        },
-        {
-          "type": "emoji",
-          "settings": {
+            "text": "Main Text",
+            "heading_size": "h1",
             "emoji": "🌟"
-          }
-        },
-        {
-          "type": "text",
-          "settings": {
-            "text": "Second Item"
           }
         }
       ]
