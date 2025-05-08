@@ -30,15 +30,15 @@
 -%}
 
 {%- style -%}
-  {{ sec_id }} .section-padding {
-    padding-top: {{ padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ padding_bottom | times: 0.75 | round: 0 }}px;
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
-    {{ sec_id }}.section-padding {
-      padding-top: {{ padding_top }}px;
-      padding-bottom: {{ padding_bottom }}px;
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 {%- endstyle -%}
@@ -51,7 +51,7 @@
   endif
 -%}
 
-<div class="pc-multicolumn color-{{ color_scheme }} pc-gradient{% unless background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} pc-background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} pc-no-heading{% endif %}">
+<div class="pc-multicolumn color-{{ section.settings.color_scheme }} pc-gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} pc-background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} pc-no-heading{% endif %}">
   <div class="pc-page-width pc-section-{{ section.id }}-padding pc-isolate{% if settings.animations_reveal_on_scroll %} pc-scroll-trigger pc-animate--slide-in{% endif %}"
     {% if settings.animations_reveal_on_scroll %}
       data-cascade
@@ -59,19 +59,19 @@
   >
     {%- unless section.settings.title == blank -%}
       <div class="pc-title-wrapper-with-link pc-title-wrapper--self-padded-mobile pc-title-wrapper--no-top-margin pc-multicolumn__title">
-        <h2 class="pc-title pc-inline-richtext {{ heading_size }}">
-          {{ settings.title }}
+        <h2 class="pc-title pc-inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
         </h2>
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
           <a href="{{ section.settings.button_link }}" class="pc-link pc-underlined-link pc-large-up-hide">
-            {{- button_label | escape -}}
+            {{- section.settings.button_label | escape -}}
           </a>
         {%- endif -%}
       </div>
     {%- endunless -%}
     <slider-component class="pc-slider-mobile-gutter">
       <ul
-        class="pc-multicolumn-list pc-contains-content-container pc-grid pc-grid--{{ columns_mobile }}-col-tablet-down pc-grid--{{ columns_desktop }}-col-desktop{% if show_mobile_slider %} pc-slider pc-slider--tablet pc-grid--peek{% endif %}"
+        class="pc-multicolumn-list pc-contains-content-container pc-grid pc-grid--{{ section.settings.columns_mobile }}-col-tablet-down pc-grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} pc-slider pc-slider--tablet pc-grid--peek{% endif %}"
         id="Slider-{{ section.id }}"
         role="list"
       >
@@ -85,17 +85,17 @@
         -%}
         {%- for block in section.blocks -%}
           {%- assign empty_column = '' -%}
-          {%- if image == blank
-            and title == blank
-            and text == blank
-            and link_label == blank
+          {%- if block.settings.image == blank
+            and block.settings.title == blank
+            and block.settings.text == blank
+            and block.settings.link_label == blank
           -%}
             {%- assign empty_column = ' pc-multicolumn-list__item--empty' -%}
           {%- endif -%}
 
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="pc-multicolumn-list__item pc-grid__item{% if swipe_on_mobile %} pc-slider__slide{% endif %}{% if column_alignment == 'center' %} pc-center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} pc-scroll-trigger pc-animate--slide-in{% endif %}"
+            class="pc-multicolumn-list__item pc-grid__item{% if section.settings.swipe_on_mobile %} pc-slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} pc-center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} pc-scroll-trigger pc-animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
@@ -103,8 +103,8 @@
             {% endif %}
           >
             <div class="pc-multicolumn-card pc-content-container">
-              {%- if image != blank -%}
-                {% if image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
+              {%- if block.settings.image != blank -%}
+                {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
                 {% endif %}
                 <div class="pc-multicolumn-card__image-wrapper pc-multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} pc-multicolumn-card-spacing{% endif %}">
@@ -148,12 +148,12 @@
               
               <div class="pc-multicolumn-card__info">
                 {%- if block.settings.text != blank -%}
-                   <h3 class="pc-inline-richtext {{ content_alignment }}">{{ title }}</h3>
-                <div class="pc-rating {{ desktop_content_position }}">
+                   <h3 class="pc-inline-richtext {{ block.settings.content_alignment }}">{{ block.settings.title }}</h3>
+                <div class="pc-rating {{ block.settings.desktop_content_position }}">
                     {% assign num_stars = block.settings.num_stars %}
-                    {% assign filled_star_color = filled_star_color %}
-                    {% assign empty_star_color = filled_star_color %}
-                    {% assign bg_star_color = bg_star_color %}
+                    {% assign filled_star_color = block.settings.filled_star_color %}
+                    {% assign empty_star_color = block.settings.filled_star_color %}
+                    {% assign bg_star_color = block.settings.bg_star_color %}
 
                     {% for i in (1..num_stars) %}
                       <span
