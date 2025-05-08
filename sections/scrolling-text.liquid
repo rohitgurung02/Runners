@@ -53,38 +53,39 @@
   }
 </style>
 
-   {%- for block in section.blocks -%}
-     {%- assign empty_column = '' -%}
-          {%- if block.settings.main_text == blank
-            and block.settings.emoji == blank
-            and block.settings.secondary_text == blank
-            and block.settings.speed == blank
-          -%}
-           
-          {%- endif -%}
-  {%- endfor -%}
+ 
 
 <div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
-  <div class="pc-track-horizontal-alt">
-    <!-- Double the content for seamless looping -->
-    {% for i in (1..10) %}
-      <div class="pc-marquee-element pc-marquee-text">
-        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-          {{ main_text }}
-        </span>
-      </div>
-      
-      <div class="pc-marquee-element pc-marquee-text">
-        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-          {{ emoji }}
-        </span>
-      </div>
-      
-      <div class="pc-marquee-element pc-marquee-text-block">
-        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-          {{ secondary_text }}
-        </span>
-      </div>
+  <div class="pc-track-horizontal-alt" style="--marquee-speed: {{ block.settings.speed }}s;">
+    <!-- Render blocks content twice for seamless looping -->
+    {% for i in (1..2) %}
+      {% for block in section.blocks %}
+        {% unless block.settings.main_text == blank and block.settings.emoji == blank and block.settings.secondary_text == blank %}
+          {% if block.settings.main_text != blank %}
+            <div class="pc-marquee-element pc-marquee-text">
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
+                {{ block.settings.main_text }}
+              </span>
+            </div>
+          {% endif %}
+          
+          {% if block.settings.emoji != blank %}
+            <div class="pc-marquee-element pc-marquee-text">
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
+                {{ block.settings.emoji }}
+              </span>
+            </div>
+          {% endif %}
+          
+          {% if block.settings.secondary_text != blank %}
+            <div class="pc-marquee-element pc-marquee-text-block">
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
+                {{ block.settings.secondary_text }}
+              </span>
+            </div>
+          {% endif %}
+        {% endunless %}
+      {% endfor %}
     {% endfor %}
   </div>
 </div>
@@ -101,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function() {
   "settings": [],
   "blocks": [
     {
-      "type": "text",
-      "name": "Text Item",
+      "type": "marquee_item",
+      "name": "Marquee Item",
       "settings": [
         {
           "type": "text",
@@ -137,10 +138,16 @@ document.addEventListener('DOMContentLoaded', function() {
   ],
   "presets": [
     {
-      "name": "PWC - Scrolling-List #1",
+      "name": "PWC - Scrolling Marquee",
       "blocks": [
         {
-          "type": "text"
+          "type": "marquee_item",
+          "settings": {
+            "main_text": "Main Text",
+            "emoji": "🌟",
+            "secondary_text": "<p>Secondary Text</p>",
+            "speed": 12
+          }
         }
       ]
     }
