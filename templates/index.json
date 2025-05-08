@@ -298,7 +298,7 @@
           "settings": {
             "heading": "Talk about your brand",
             "heading_size": "h1",
-            "heading_color": "black"
+            "heading_color": "red"
           }
         }
       },
