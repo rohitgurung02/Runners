@@ -309,7 +309,8 @@
       ],
       "name": "PWC - Scrolling-List #1",
       "settings": {
-        "speed": 20
+        "speed": 25,
+        "direction": "right"
       }
     }
   },
