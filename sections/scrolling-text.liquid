@@ -6,11 +6,17 @@
  
 <style>
 
+     /* Heading size classes */
   {{ sec_id }} .h2 { font-size: 1.5rem; }
   {{ sec_id }} .h1 { font-size: 2rem; }
   {{ sec_id }} .h0 { font-size: 2.5rem; }
   {{ sec_id }} .hxl { font-size: 3rem; }
   {{ sec_id }} .hxxl { font-size: 3.5rem; }
+  
+  /* Existing marquee styles */
+  {{ sec_id }} .pc-marquee-horizontal {
+    overflow: hidden;
+    position: relative;
   
   {{ sec_id }} .pc-marquee-horizontal {
     overflow: hidden;
@@ -120,33 +126,50 @@
           "options": [
             {
               "value": "h2",
-              "label": "Medium"
+              "label": "t:sections.all.heading_size.options__1.label"
             },
             {
               "value": "h1",
-              "label": "Large"
+              "label": "t:sections.all.heading_size.options__2.label"
             },
             {
               "value": "h0",
-              "label": "Extra Large"
+              "label": "t:sections.all.heading_size.options__3.label"
             },
             {
               "value": "hxl",
-              "label": "XX Large"
+              "label": "t:sections.all.heading_size.options__4.label"
             },
             {
               "value": "hxxl",
-              "label": "XXX Large"
+              "label": "t:sections.all.heading_size.options__5.label"
             }
           ],
           "default": "h2",
-          "label": "Heading Size"
-        },
+          "label": "t:sections.all.heading_size.label"
+        }
+      ]
+    },
+    {
+      "type": "emoji",
+      "name": "Emoji/Symbol",
+      "settings": [
         {
           "type": "text",
           "id": "emoji",
-          "label": "Emoji/Symbol",
+          "label": "Emoji or Symbol",
           "default": "🚀"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
         }
       ]
     }
@@ -158,9 +181,19 @@
         {
           "type": "text",
           "settings": {
-            "text": "Main Text",
-            "heading_size": "h1",
+            "text": "First Item"
+          }
+        },
+        {
+          "type": "emoji",
+          "settings": {
             "emoji": "🌟"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "Second Item"
           }
         }
       ]
