@@ -298,8 +298,8 @@
           "type": "text",
           "settings": {
             "heading": "Talk about your brand",
-            "heading_size": "h1",
-            "heading_color": "red"
+            "heading_size": "h2",
+            "heading_color": "blue"
           }
         }
       },
