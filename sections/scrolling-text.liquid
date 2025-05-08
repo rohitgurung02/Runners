@@ -69,21 +69,9 @@
             </div>
           {% endif %}
           
-          {% if block.settings.emoji != blank %}
-            <div class="pc-marquee-element pc-marquee-text">
-              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-                {{ block.settings.emoji }}
-              </span>
-            </div>
-          {% endif %}
+         
           
-          {% if block.settings.secondary_text != blank %}
-            <div class="pc-marquee-element pc-marquee-text-block">
-              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-                {{ block.settings.secondary_text }}
-              </span>
-            </div>
-          {% endif %}
+        
         {% endunless %}
       {% endfor %}
     {% endfor %}
