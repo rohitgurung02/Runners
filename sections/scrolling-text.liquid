@@ -61,13 +61,13 @@
               </span>
             
             {% when 'emoji' %}
-              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
                 {{ block.settings.emoji }}
               </span>
             
             {% when 'image' %}
               {% if block.settings.image != blank %}
-                <img class="pc-marquee-image {{ block.settings.heading_size }}" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+                <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
               {% endif %}
           {% endcase %}
         </div>
