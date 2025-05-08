@@ -276,34 +276,37 @@
         "padding_bottom": 36
       }
     },
-    "scrolling_text_9DEJ88": {
+    "scrolling_text_dyAFd8": {
       "type": "scrolling-text",
       "blocks": {
-        "marquee_item_CmDjkP": {
-          "type": "marquee_item",
+        "text_E7HrXc": {
+          "type": "text",
           "settings": {
-            "main_text": "its not done",
-            "emoji": "🚀",
-            "secondary_text": "<p>here is the seconday text</p>",
-            "speed": 12
+            "text": "First Item"
           }
         },
-        "marquee_item_BeaaTt": {
-          "type": "marquee_item",
+        "emoji_fe34qj": {
+          "type": "emoji",
           "settings": {
-            "main_text": "Main Text",
-            "emoji": "🚀",
-            "secondary_text": "<p>Secondary Text</p>",
-            "speed": 12
+            "emoji": "🌟"
+          }
+        },
+        "text_wKwp34": {
+          "type": "text",
+          "settings": {
+            "text": "Second Item"
           }
         }
       },
       "block_order": [
-        "marquee_item_CmDjkP",
-        "marquee_item_BeaaTt"
+        "text_E7HrXc",
+        "emoji_fe34qj",
+        "text_wKwp34"
       ],
-      "name": "Marquee Scroller",
-      "settings": {}
+      "name": "PWC - Scrolling-List #1",
+      "settings": {
+        "speed": 12
+      }
     }
   },
   "order": [
@@ -312,6 +315,6 @@
     "featured_collection_iFxBn4",
     "image_banner_clone_9mxAep",
     "multicolumn_star_clone_Bjwix8",
-    "scrolling_text_9DEJ88"
+    "scrolling_text_dyAFd8"
   ]
 }
