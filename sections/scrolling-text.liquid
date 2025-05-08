@@ -81,26 +81,45 @@
  
 <div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
   <div class="pc-track-horizontal-alt">
-    {% for i in (1..2) %}  <!-- Doubled for smooth looping -->
-      {% for block in section.blocks %}
-        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-          {% case block.type %}
-            {% when 'text' %}
-              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}"
-              style="color: {{ block.settings.heading_color }}">
-                {{ block.settings.heading }}
-              </span>
-            {% when 'emoji' %}
-              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
-                {{ block.settings.emoji }}
-              </span>
-            {% when 'image' %}
-              {% if block.settings.image != blank %}
-                <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
-              {% endif %}
-          {% endcase %}
-        </div>
-      {% endfor %}
+    <!-- Original Content -->
+    {% for block in section.blocks %}
+      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+        {% case block.type %}
+          {% when 'text' %}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}"
+            style="color: {{ block.settings.heading_color }}">
+              {{ block.settings.heading }}
+            </span>
+          {% when 'emoji' %}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
+              {{ block.settings.emoji }}
+            </span>
+          {% when 'image' %}
+            {% if block.settings.image != blank %}
+              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+            {% endif %}
+        {% endcase %}
+      </div>
+    {% endfor %}
+    <!-- Duplicate Content for Seamless Looping -->
+    {% for block in section.blocks %}
+      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+        {% case block.type %}
+          {% when 'text' %}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}"
+            style="color: {{ block.settings.heading_color }}">
+              {{ block.settings.heading }}
+            </span>
+          {% when 'emoji' %}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
+              {{ block.settings.emoji }}
+            </span>
+          {% when 'image' %}
+            {% if block.settings.image != blank %}
+              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+            {% endif %}
+        {% endcase %}
+      </div>
     {% endfor %}
   </div>
 </div>
