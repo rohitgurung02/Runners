@@ -81,8 +81,9 @@
  
 <div 
   class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center" 
-  style="margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px;
-  padding-top: {{ section.settings.padding_top_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;
+  style="padding-top: {{ section.settings.padding_top_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;
+  margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px;
+ 
   background-color: {{ section.settings.background_color }}">
   <div 
     class="pc-track-horizontal-alt" 
@@ -188,6 +189,26 @@
   ],
   "default": "black"
 },
+     {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 52
+    },
     {
       "type": "range",
       "id": "margin_top",
@@ -208,26 +229,7 @@
       "label": "t:sections.all.padding.padding_bottom",
       "default": 52
     },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 52
-    }
+   
   ],
   "blocks": [
     {
