@@ -180,7 +180,7 @@
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "num_stars": 5,
             "desktop_content_position": "center",
-            "filled_star_color": "#429d25",
+            "filled_star_color": "#3e908f",
             "empty_star_color": "#cccccc",
             "bg_star_color": "rgba(0,0,0,0)",
             "rating_padding_top": 0,
