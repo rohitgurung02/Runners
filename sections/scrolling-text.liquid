@@ -1,12 +1,5 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
  
-{%- liquid
-  assign main_text = section.settings.main_text
-  assign emoji = section.settings.emoji 
-  assign secondary_text =  section.settings.secondary_text
-  assign speed = section.settings.speed
--%}
- 
 <style>
   {{ sec_id }} .pc-marquee-horizontal {
     overflow: hidden;
@@ -15,102 +8,68 @@
   }
   
   {{ sec_id }} .pc-track-horizontal-alt {
-    height: 72px;
+    height: 120px; /* Increased height for multiline content */
     display: flex;
     align-items: center;
-    width: fit-content; /* Important for smooth animation */
+    width: fit-content;
     will-change: transform;
+    gap: 40px; /* Space between columns */
   }
   
-  {{ sec_id }} .pc-marquee-element {
-    margin-right: 40px;
-    flex-shrink: 0; /* Prevent elements from shrinking */
-    margin-top: 10px;
+  {{ sec_id }} .marquee-column {
+    flex-shrink: 0;
+    padding: 12px;
+    min-width: 250px; /* Adjust column width */
   }
   
-  {{ sec_id }} .pc-marquee_text {
-    font-size: 42px;
-    line-height: 50px
+  {{ sec_id }} .marquee-heading {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
   }
- 
-  {{ sec_id }} .pc-marquee-element span {
-    font-size: 42px;
-    font-weight: 600;
-    line-height: 50px;
+  
+  {{ sec_id }} .marquee-description {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  
+  {{ sec_id }} .marquee-emoji {
+    font-size: 28px;
+    margin-right: 10px;
+    vertical-align: middle;
   }
   
   @keyframes smooth-scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
   
   {{ sec_id }} .pc-track-horizontal-alt {
-    animation: smooth-scroll {{ speed }}s linear infinite;
+    animation: smooth-scroll {{ section.settings.speed }}s linear infinite;
   }
 </style>
  
-<div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
+<div class="pc-marquee-horizontal">
   <div class="pc-track-horizontal-alt">
-    <!-- Double the content for seamless looping -->
-    {% for i in (1..10) %}
-      <div class="pc-marquee-element pc-marquee-text">
-        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-          {{ main_text }}
-        </span>
-      </div>
-      
-      <div class="pc-marquee-element pc-marquee-text">
-        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-          {{ emoji }}
-        </span>
-      </div>
-      
-      <div class="pc-marquee-element pc-marquee-text-block">
-        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-          {{ secondary_text }}
-        </span>
-      </div>
+    <!-- Render blocks twice for seamless looping -->
+    {% for i in (1..2) %}
+      {% for block in section.blocks %}
+        <div class="marquee-column" {{ block.shopify_attributes }}>
+          {% if block.settings.emoji != blank %}
+            <span class="marquee-emoji">{{ block.settings.emoji }}</span>
+          {% endif %}
+          <h3 class="marquee-heading">{{ block.settings.heading }}</h3>
+          <div class="marquee-description">{{ block.settings.description }}</div>
+        </div>
+      {% endfor %}
     {% endfor %}
   </div>
 </div>
- 
-{% javascript %}
-document.addEventListener('DOMContentLoaded', function() {
-  // JavaScript for marquee functionality if needed
-});
-{% endjavascript %}
- 
+
 {% schema %}
 {
   "name": "Marquee Scroller",
   "settings": [
-    {
-      "type": "text",
-      "id": "main_text",
-      "label": "Main Text",
-      "default": "Main Text"
-    },
-    {
-      "type": "text",
-      "id": "emoji",
-      "label": "Emoji/Symbol",
-      "default": "🚀"
-    },
-    {
-      "type": "richtext",
-      "id": "secondary_text",
-      "label": "Secondary Text",
-      "default": "<p>Secondary Text</p>"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
-    },
     {
       "type": "range",
       "id": "speed",
@@ -122,9 +81,53 @@ document.addEventListener('DOMContentLoaded', function() {
       "default": 12
     }
   ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Content Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Column – The Airflow definition..."
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Detailed description goes here.</p>"
+        },
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji (Optional)",
+          "default": "🌟"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "PWC - Scrolling-List #1"
+      "name": "PWC - Scrolling Columns",
+      "blocks": [
+        {
+          "type": "column",
+          "settings": {
+            "heading": "Column – The Airflow definition",
+            "description": "<p>Breathable fabric for all-day comfort.</p>",
+            "emoji": "🌀"
+          }
+        },
+        {
+          "type": "column",
+          "settings": {
+            "heading": "Column – Ultimate comfort",
+            "description": "<p>Designed for maximum relaxation.</p>",
+            "emoji": "✨"
+          }
+        }
+      ]
     }
   ]
 }
