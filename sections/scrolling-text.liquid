@@ -52,8 +52,8 @@
     }
   }
   
-  {{ sec_id }} .pc-track-horizontal-alt {
-    animation: smooth-scroll-{{ direction }} {{ speed }}s linear infinite;
+ {{ sec_id }} .pc-track-horizontal-alt {
+    animation: {% if direction == 'left' %} scroll-left {% else %} scroll-right {% endif %} {{ speed }}s linear infinite;
   }
 </style>
  
