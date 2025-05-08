@@ -282,7 +282,8 @@
         "text_E7HrXc": {
           "type": "text",
           "settings": {
-            "text": "First Item"
+            "heading": "Talk about your brand",
+            "heading_size": "h2"
           }
         },
         "emoji_fe34qj": {
@@ -294,7 +295,8 @@
         "text_wKwp34": {
           "type": "text",
           "settings": {
-            "text": "Second Item"
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
           }
         }
       },
@@ -305,7 +307,7 @@
       ],
       "name": "PWC - Scrolling-List #1",
       "settings": {
-        "speed": 12
+        "speed": 20
       }
     }
   },
