@@ -53,34 +53,31 @@
   }
   
   {{ sec_id }} .pc-track-horizontal-alt {
-    animation: smooth-scroll {{ speed }}s linear infinite;
+    animation: smooth-scroll-{{ direction }} {{ speed }}s linear infinite;
   }
 </style>
  
 <div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
   <div class="pc-track-horizontal-alt">
-    <!-- Double the content for seamless looping -->
     {% for i in (1..10) %}
       {% for block in section.blocks %}
         <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-  {% case block.type %}
-    {% when 'text' %}
-      <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}"
-      style="color: {{ block.settings.heading_color }}">
-        {{ block.settings.heading }}
-      </span>
-    
-    {% when 'emoji' %}
-      <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
-        {{ block.settings.emoji }}
-      </span>
-    
-    {% when 'image' %}
-      {% if block.settings.image != blank %}
-        <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
-      {% endif %}
-  {% endcase %}
-</div>
+          {% case block.type %}
+            {% when 'text' %}
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}"
+              style="color: {{ block.settings.heading_color }}">
+                {{ block.settings.heading }}
+              </span>
+            {% when 'emoji' %}
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
+                {{ block.settings.emoji }}
+              </span>
+            {% when 'image' %}
+              {% if block.settings.image != blank %}
+                <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+              {% endif %}
+          {% endcase %}
+        </div>
       {% endfor %}
     {% endfor %}
   </div>
@@ -99,7 +96,24 @@
       "unit": "s",
       "label": "Animation Speed",
       "default": 12
+    },
+    {
+  "type": "select",
+  "id": "direction",
+  "label": "Animation Direction",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "right",
+      "label": "Right"
     }
+  ],
+  "default": "left"
+}
+
   ],
   "blocks": [
     {
