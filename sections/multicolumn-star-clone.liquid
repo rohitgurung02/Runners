@@ -137,21 +137,22 @@
               <div class="multicolumn-card__info">
                 {%- if block.settings.text != blank -%}
                    <h3 class="inline-richtext {{ block.settings.content_alignment }} {{ block.settings.heading_size_first }}">{{ block.settings.title }}</h3>
-                <div class="rating {{ block.settings.desktop_content_position }} {{ block.settings.padding_top_first }} {{ block.settings.padding_bottom_first }}">
-                    {% assign num_stars = block.settings.num_stars %}
-                    {% assign filled_star_color = block.settings.filled_star_color %}
-                    {% assign empty_star_color = block.settings.filled_star_color %}
-                    {% assign bg_star_color = block.settings.bg_star_color %}
+               <div class="pc-rating {{ block.settings.desktop_content_position }}" 
+     style="padding-top: {{ block.settings.rating_padding_top }}px; padding-bottom: {{ block.settings.rating_padding_bottom }}px;">
+    {% assign num_stars = block.settings.num_stars %}
+    {% assign filled_star_color = block.settings.filled_star_color %}
+    {% assign empty_star_color = block.settings.filled_star_color %}
+    {% assign bg_star_color = block.settings.bg_star_color %}
 
-                    {% for i in (1..num_stars) %}
-                      <span
-                        class="star{% if i <= product.average_rating %} filled{% endif %}"
-                        style="color: {% if i <= product.average_rating %}{{ filled_star_color }}{% else %}{{ empty_star_color }}{% endif %}; background-color: {{ bg_star_color }};"
-                      >
-                        ★
-                      </span>
-                    {% endfor %}
-                  </div>
+    {% for i in (1..num_stars) %}
+      <span
+        class="pc-star{% if i <= product.average_rating %} pc-filled{% endif %}"
+        style="color: {% if i <= product.average_rating %}{{ filled_star_color }}{% else %}{{ empty_star_color }}{% endif %}; background-color: {{ bg_star_color }};"
+      >
+        ★
+      </span>
+    {% endfor %}
+</div>
                   <div class="rte">{{ block.settings.text }}</div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
@@ -503,61 +504,101 @@
       "label": "Heading Alignment"
     },
     {
-      "type": "richtext",
-      "id": "text",
-      "default": "t:sections.multicolumn.blocks.column.settings.text.default",
-      "label": "t:sections.multicolumn.blocks.column.settings.text.label"
+  "type": "richtext",
+  "id": "text",
+  "default": "t:sections.multicolumn.blocks.column.settings.text.default",
+  "label": "t:sections.multicolumn.blocks.column.settings.text.label"
+},
+{
+  "type": "number",
+  "id": "num_stars",
+  "label": "Number of Stars",
+  "default": 5
+},
+{
+  "type": "select",
+  "id": "desktop_content_position",
+  "options": [
+    {
+      "value": "left",
+      "label": "t:sections.rich-text.settings.desktop_content_position.options__1.label"
     },
     {
-      "type": "number",
-      "id": "num_stars",
-      "label": "Number of Stars",
-      "default": 5
+      "value": "center",
+      "label": "t:sections.rich-text.settings.desktop_content_position.options__2.label"
     },
     {
-      "type": "select",
-      "id": "desktop_content_position",
-      "options": [
-        {
-          "value": "left",
-          "label": "t:sections.rich-text.settings.desktop_content_position.options__1.label"
-        },
-        {
-          "value": "center",
-          "label": "t:sections.rich-text.settings.desktop_content_position.options__2.label"
-        },
-        {
-          "value": "right",
-          "label": "t:sections.rich-text.settings.desktop_content_position.options__3.label"
-        }
-      ],
-      "default": "center",
-      "label": "Star Position Alignment"
-    },
-    {
-      "type": "color",
-      "id": "filled_star_color",
-      "label": "Filled Star Color",
-      "default": "#FFD700"
-    },
-    {
-      "type": "color",
-      "id": "empty_star_color",
-      "label": "Empty Star Color",
-      "default": "#CCCCCC"
-    },
-    {
-      "type": "color",
-      "id": "bg_star_color",
-      "label": "Star Background Color",
-      "default": "transparent"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "My BG Color",
-      "default": "scheme-6"
-    },
+      "value": "right",
+      "label": "t:sections.rich-text.settings.desktop_content_position.options__3.label"
+    }
+  ],
+  "default": "center",
+  "label": "Star Position Alignment"
+},
+{
+  "type": "color",
+  "id": "filled_star_color",
+  "label": "Filled Star Color",
+  "default": "#FFD700"
+},
+{
+  "type": "color",
+  "id": "empty_star_color",
+  "label": "Empty Star Color",
+  "default": "#CCCCCC"
+},
+{
+  "type": "color",
+  "id": "bg_star_color",
+  "label": "Star Background Color",
+  "default": "transparent"
+},
+{
+  "type": "range",
+  "id": "rating_padding_top",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+  "label": "Rating Top Padding",
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "rating_padding_bottom",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+  "label": "Rating Bottom Padding",
+  "default": 0
+},
+{
+  "type": "color_scheme",
+  "id": "color_scheme",
+  "label": "My BG Color",
+  "default": "scheme-6"
+},
+{
+  "type": "range",
+  "id": "padding_top",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+  "label": "t:sections.all.padding.padding_top",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "padding_bottom",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+  "label": "t:sections.all.padding.padding_bottom",
+  "default": 52
+},
      
     {
       "type": "text",
