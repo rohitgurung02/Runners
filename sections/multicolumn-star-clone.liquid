@@ -24,28 +24,28 @@
   endif
 -%}
 
-<div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
-  <div class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+<div class="pc-multicolumn color-{{ section.settings.color_scheme }} pc-gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} pc-background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} pc-no-heading{% endif %}">
+  <div class="pc-page-width pc-section-{{ section.id }}-padding pc-isolate{% if settings.animations_reveal_on_scroll %} pc-scroll-trigger pc-animate--slide-in{% endif %}"
     {% if settings.animations_reveal_on_scroll %}
       data-cascade
     {% endif %}
   >
     {%- unless section.settings.title == blank -%}
-      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
-       <h2 class="title inline-richtext {{ section.settings.heading_size }} {{ section.settings.content_alignment_first }}">
+      <div class="pc-title-wrapper-with-link pc-title-wrapper--self-padded-mobile pc-title-wrapper--no-top-margin pc-multicolumn__title">
+       <h2 class="pc-title pc-inline-richtext {{ section.settings.heading_size }} {{ section.settings.content_alignment_first }}">
   {{ section.settings.title }}
 </h2>
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
-          <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
+          <a href="{{ section.settings.button_link }}" class="pc-link pc-underlined-link pc-large-up-hide">
             {{- section.settings.button_label | escape -}}
           </a>
         {%- endif -%}
       </div>
     {%- endunless -%}
-    <slider-component class="slider-mobile-gutter">
+    <slider-component class="pc-slider-mobile-gutter">
       <ul
-        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
-        id="Slider-{{ section.id }}"
+        class="pc-multicolumn-list pc-contains-content-container pc-grid pc-grid--{{ section.settings.columns_mobile }}-col-tablet-down pc-grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} pc-slider pc-slider--tablet pc-grid--peek{% endif %}"
+        id="pc-Slider-{{ section.id }}"
         role="list"
       >
         {%- liquid
@@ -63,26 +63,26 @@
             and block.settings.text == blank
             and block.settings.link_label == blank
           -%}
-            {%- assign empty_column = ' multicolumn-list__item--empty' -%}
+            {%- assign empty_column = ' pc-multicolumn-list__item--empty' -%}
           {%- endif -%}
 
           <li
-            id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            id="pc-Slide-{{ section.id }}-{{ forloop.index }}"
+            class="pc-multicolumn-list__item pc-grid__item{% if section.settings.swipe_on_mobile %} pc-slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} pc-center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} pc-scroll-trigger pc-animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
-            <div class="multicolumn-card content-container">
+            <div class="pc-multicolumn-card pc-content-container">
               {%- if block.settings.image != blank -%}
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
                 {% endif %}
-                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
+                <div class="pc-multicolumn-card__image-wrapper pc-multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} pc-multicolumn-card-spacing{% endif %}">
                   <div
-                    class="media media--transparent media--{{ section.settings.image_ratio }}"
+                    class="pc-media pc-media--transparent pc-media--{{ section.settings.image_ratio }}"
                     {% if section.settings.image_ratio == 'adapt' %}
                       style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
                     {% endif %}
@@ -113,15 +113,15 @@
                       | image_tag:
                         widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
                         sizes: sizes,
-                        class: 'multicolumn-card__image'
+                        class: 'pc-multicolumn-card__image'
                     }}
                   </div>
                 </div>
               {%- endif -%}
               
-              <div class="multicolumn-card__info">
+              <div class="pc-multicolumn-card__info">
                 {%- if block.settings.text != blank -%}
-                   <h3 class="inline-richtext {{ block.settings.content_alignment }} {{ block.settings.heading_size_first }}">{{ block.settings.title }}</h3>
+                   <h3 class="pc-inline-richtext {{ block.settings.content_alignment }} {{ block.settings.heading_size_first }}">{{ block.settings.title }}</h3>
                <div class="pc-rating {{ block.settings.desktop_content_position }}" 
      style="padding-top: {{ block.settings.rating_padding_top }}px; padding-bottom: {{ block.settings.rating_padding_bottom }}px;">
     {% assign num_stars = block.settings.num_stars %}
@@ -138,11 +138,11 @@
       </span>
     {% endfor %}
 </div>
-                  <div class="rte">{{ block.settings.text }}</div>
+                  <div class="pc-rte">{{ block.settings.text }}</div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
                   <a
-                    class="link animate-arrow"
+                    class="pc-link pc-animate-arrow"
                     {% if block.settings.link == blank %}
                       role="link" aria-disabled="true"
                     {% else %}
@@ -150,8 +150,8 @@
                     {% endif %}
                   >
                     {{- block.settings.link_label | escape -}}
-                    <span class="svg-wrapper"
-                      ><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span
+                    <span class="pc-svg-wrapper"
+                      ><span class="pc-icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span
                     >
                   </a>
                 {%- endif -%}
@@ -162,36 +162,36 @@
       </ul>
 
       {%- if show_mobile_slider -%}
-        <div class="slider-buttons large-up-hide">
+        <div class="pc-slider-buttons pc-large-up-hide">
           <button
             type="button"
-            class="slider-button slider-button--prev"
+            class="pc-slider-button pc-slider-button--prev"
             name="previous"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
           >
-            <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+            <span class="pc-svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
           </button>
-          <div class="slider-counter caption">
-            <span class="slider-counter--current">1</span>
+          <div class="pc-slider-counter pc-caption">
+            <span class="pc-slider-counter--current">1</span>
             <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ section.blocks.size }}</span>
+            <span class="pc-visually-hidden">{{ 'general.slider.of' | t }}</span>
+            <span class="pc-slider-counter--total">{{ section.blocks.size }}</span>
           </div>
           <button
             type="button"
-            class="slider-button slider-button--next"
+            class="pc-slider-button pc-slider-button--next"
             name="next"
             aria-label="{{ 'general.slider.next_slide' | t }}"
           >
-            <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+            <span class="pc-svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
           </button>
         </div>
       {%- endif -%}
     </slider-component>
-    <div class="center{% if show_mobile_slider %} small-hide medium-hide{% endif %}">
+    <div class="pc-center{% if show_mobile_slider %} pc-small-hide pc-medium-hide{% endif %}">
       {%- if section.settings.button_label != blank -%}
         <a
-          class="button button--primary"
+          class="pc-button pc-button--primary"
           {% if section.settings.button_link == blank %}
             role="link" aria-disabled="true"
           {% else %}
