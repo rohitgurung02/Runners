@@ -89,14 +89,16 @@
 </style>
  
 <div 
-  class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center" 
-  style="padding-top: {{ section.settings.padding_top_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;
-  margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px;
- 
-  background-color: {{ section.settings.background_color }}">
+  class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center"
+  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background-color: {{ section.settings.background_color }}">
+  
   <div 
     class="pc-track-horizontal-alt" 
-    style="animation-duration: {{ section.settings.speed }}s; animation-direction: {{ section.settings.direction }}">
+    style="
+      animation: marqueeLoop linear infinite;
+      animation-duration: {{ section.settings.speed }}s;
+      animation-direction: {{ section.settings.direction }};
+    ">
     
     {% for i in (1..2) %}  <!-- Doubled for smooth looping -->
       {% for block in section.blocks %}
@@ -109,10 +111,10 @@
               </span>
             {% when 'emoji' %}
               <span 
-  class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}" 
-  style="font-size: {{ block.settings.emoji_size }}px;">
-  {{ block.settings.emoji }}
-</span>
+                class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}"
+                style="font-size: {{ block.settings.emoji_size }}px;">
+                {{ block.settings.emoji }}
+              </span>
             {% when 'image' %}
               {% if block.settings.image != blank %}
                 <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
@@ -123,6 +125,7 @@
     {% endfor %}
   </div>
 </div>
+
 
 
 
