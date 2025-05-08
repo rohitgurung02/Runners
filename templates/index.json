@@ -311,7 +311,9 @@
       "settings": {
         "speed": 25,
         "direction": "right",
-        "background_color": "skyblue"
+        "background_color": "skyblue",
+        "margin_top": 0,
+        "margin_bottom": 0
       }
     }
   },
