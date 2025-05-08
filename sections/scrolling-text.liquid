@@ -61,6 +61,14 @@
   {{ sec_id }} .pc-track-horizontal-alt {
     animation: smooth-scroll {{ speed }}s linear infinite;
   }
+
+  @media (max-width: 767px) {
+    {{ sec_id }} .h2 { font-size: 1.25rem; }
+    {{ sec_id }} .h1 { font-size: 1.5rem; }
+    {{ sec_id }} .h0 { font-size: 1.75rem; }
+    {{ sec_id }} .hxl { font-size: 2rem; }
+    {{ sec_id }} .hxxl { font-size: 2.25rem; }
+  }
 </style>
  
 <div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
