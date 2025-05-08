@@ -69,10 +69,6 @@
             {%- assign empty_column = ' multicolumn-list__item--empty' -%}
           {%- endif -%}
          {%- endfor -%}
-
-    <div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
-  <div class="pc-track-horizontal-alt" style="--marquee-speed: {{ block.settings.speed }}s;">
-    <!-- Render blocks content twice for seamless looping -->
    
       {% for block in section.blocks %}
         {% unless block.settings.main_text == blank and block.settings.emoji == blank and block.settings.secondary_text == blank %}
