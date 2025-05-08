@@ -137,7 +137,7 @@
               <div class="multicolumn-card__info">
                 {%- if block.settings.text != blank -%}
                    <h3 class="inline-richtext {{ block.settings.content_alignment }} {{ block.settings.heading_size_first }}">{{ block.settings.title }}</h3>
-                <div class="rating {{ block.settings.desktop_content_position }}">
+                <div class="rating {{ block.settings.desktop_content_position }} {{ block.settings.padding_top_first }}">
                     {% assign num_stars = block.settings.num_stars %}
                     {% assign filled_star_color = block.settings.filled_star_color %}
                     {% assign empty_star_color = block.settings.filled_star_color %}
@@ -551,6 +551,26 @@
       "id": "bg_star_color",
       "label": "Star Background Color",
       "default": "transparent"
+    },
+     {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
     },
     {
       "type": "color_scheme",
