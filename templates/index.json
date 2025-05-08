@@ -283,7 +283,8 @@
           "type": "text",
           "settings": {
             "heading": "Talk about your brand",
-            "heading_size": "h2"
+            "heading_size": "h2",
+            "heading_color": "green"
           }
         },
         "emoji_fe34qj": {
@@ -296,7 +297,8 @@
           "type": "text",
           "settings": {
             "heading": "Talk about your brand",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_color": "black"
           }
         }
       },
