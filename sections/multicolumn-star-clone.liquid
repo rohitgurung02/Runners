@@ -1,21 +1,6 @@
 {{ 'section-multicolumn-star-clone.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
-{%- liquid
-  assign title = section.settings.title
-  assign heading_size = section.settings.heading_size
-  assign image_width =  section.settings.image_width
-  assign image_ratio = section.settings.image_ratio
-  assign button_label = section.settings.button_label
-  assign columns_desktop = section.settings.columns_desktop
-  assign column_alignment = section.settings.column_alignment
-  assign background_style = section.settings.background_style
-  assign columns_mobile = section.settings.columns_mobile
-  assign swipe_on_mobile = section.settings.speed
-  assign padding_top = section.settings.speed
-  assign padding_bottom = section.settings.speed
--%}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
