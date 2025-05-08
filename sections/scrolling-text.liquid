@@ -6,6 +6,7 @@
 {%- liquid
   assign speed = section.settings.speed
 -%}
+
 {%- liquid
   assign speed = section.settings.speed
   assign direction = section.settings.direction
@@ -19,19 +20,19 @@
   {{ sec_id }} .hxl { font-size: 3rem; }
   {{ sec_id }} .hxxl { font-size: 3.5rem; }
 
-  {{ sec_id }} .pc-track-horizontal-alt {
-    height: 72px;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    width: max-content;
-    will-change: transform;
+  {{ sec_id }} .pc-marquee-horizontal {
+    background-color: {{ background_color }};
     overflow: hidden;
+  }
+
+  {{ sec_id }} .pc-track-horizontal-alt {
+    display: flex;
+    gap: 40px;
+    animation: scroll {{ speed }}s linear infinite;
   }
   
   {{ sec_id }} .pc-marquee-element {
     flex-shrink: 0;
-    margin-top: 10px;
     display: flex;
     align-items: center;
   }
@@ -49,80 +50,67 @@
   }
 
   /* Animation Definitions */
-  @keyframes scroll-left {
+  @keyframes scroll {
     0% {
       transform: translateX(0);
     }
     100% {
       transform: translateX(-100%);
     }
-  }
-
-  @keyframes scroll-right {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  /* Apply animation based on direction */
-  {{ sec_id }} .pc-track-horizontal-alt {
-    animation: {% if direction == 'left' %} scroll-left {% else %} scroll-right {% endif %} {{ speed }}s linear infinite;
-  }
-
-  /* Dynamic Background Color */
-  {{ sec_id }} .pc-marquee-horizontal {
-    background-color: {{ background_color }};
-    overflow: hidden;
   }
 </style>
  
-<div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
+<div class="pc-marquee-horizontal tw-relative tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
   <div class="pc-track-horizontal-alt">
     <!-- Original Content -->
-    {% for block in section.blocks %}
-      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-        {% case block.type %}
-          {% when 'text' %}
-            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}"
-            style="color: {{ block.settings.heading_color }}">
-              {{ block.settings.heading }}
-            </span>
-          {% when 'emoji' %}
-            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
-              {{ block.settings.emoji }}
-            </span>
-          {% when 'image' %}
-            {% if block.settings.image != blank %}
-              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
-            {% endif %}
-        {% endcase %}
-      </div>
-    {% endfor %}
-    <!-- Duplicate Content for Seamless Looping -->
-    {% for block in section.blocks %}
-      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-        {% case block.type %}
-          {% when 'text' %}
-            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}"
-            style="color: {{ block.settings.heading_color }}">
-              {{ block.settings.heading }}
-            </span>
-          {% when 'emoji' %}
-            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
-              {{ block.settings.emoji }}
-            </span>
-          {% when 'image' %}
-            {% if block.settings.image != blank %}
-              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
-            {% endif %}
-        {% endcase %}
-      </div>
-    {% endfor %}
+    <div class="pc-marquee-content">
+      {% for block in section.blocks %}
+        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+          {% case block.type %}
+            {% when 'text' %}
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}"
+              style="color: {{ block.settings.heading_color }}">
+                {{ block.settings.heading }}
+              </span>
+            {% when 'emoji' %}
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
+                {{ block.settings.emoji }}
+              </span>
+            {% when 'image' %}
+              {% if block.settings.image != blank %}
+                <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+              {% endif %}
+          {% endcase %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Clone of Content for Infinite Loop -->
+    <div class="pc-marquee-content">
+      {% for block in section.blocks %}
+        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+          {% case block.type %}
+            {% when 'text' %}
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}"
+              style="color: {{ block.settings.heading_color }}">
+                {{ block.settings.heading }}
+              </span>
+            {% when 'emoji' %}
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
+                {{ block.settings.emoji }}
+              </span>
+            {% when 'image' %}
+              {% if block.settings.image != blank %}
+                <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+              {% endif %}
+          {% endcase %}
+        </div>
+      {% endfor %}
+    </div>
+
   </div>
 </div>
+
 
 
 {% schema %}
