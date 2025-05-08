@@ -79,7 +79,7 @@
 
 </style>
  
-<div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
+<div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center {{ section.settings.padding_top }}">
   <div class="pc-track-horizontal-alt">
     {% for i in (1..2) %}  <!-- Doubled for smooth looping -->
       {% for block in section.blocks %}
