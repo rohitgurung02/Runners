@@ -137,7 +137,7 @@
               <div class="multicolumn-card__info">
                 {%- if block.settings.text != blank -%}
                    <h3 class="inline-richtext {{ block.settings.content_alignment }} {{ block.settings.heading_size_first }}">{{ block.settings.title }}</h3>
-                <div class="rating {{ block.settings.desktop_content_position }} {{ block.settings.padding_top_first }}">
+                <div class="rating {{ block.settings.desktop_content_position }} {{ block.settings.padding_top_first }} {{ block.settings.padding_bottom_first }}">
                     {% assign num_stars = block.settings.num_stars %}
                     {% assign filled_star_color = block.settings.filled_star_color %}
                     {% assign empty_star_color = block.settings.filled_star_color %}
