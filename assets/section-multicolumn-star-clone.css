@@ -258,6 +258,9 @@
 .media img {
     border-radius: 5px;
 }
+.media img {
+    width: 100% !important;
+}
 
 .pc-rating .pc-star {
     font-size: 27px;
