@@ -60,7 +60,7 @@
     <!-- Render blocks content twice for seamless looping -->
     
       {% for block in section.blocks %}
-        {% unless block.settings.main_text == blank and block.settings.emoji == blank and block.settings.secondary_text == blank %}
+        {% unless block.settings.main_text == blank %}
           {% if block.settings.main_text != blank %}
             <div class="pc-marquee-element pc-marquee-text">
               <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
