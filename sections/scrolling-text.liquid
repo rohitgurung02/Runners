@@ -23,17 +23,12 @@
     height: 72px;
     display: flex;
     align-items: center;
+    gap: 40px;
     width: max-content;
     will-change: transform;
   }
-
-  {{ sec_id }} .pc-marquee-horizontal {
-    width: 100%;
-    overflow: hidden;
-  }
   
   {{ sec_id }} .pc-marquee-element {
-    margin-right: 40px;
     flex-shrink: 0;
     margin-top: 10px;
     display: flex;
@@ -58,13 +53,13 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
     }
   }
 
   @keyframes scroll-right {
     0% {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
     }
     100% {
       transform: translateX(0);
@@ -79,6 +74,7 @@
   /* Dynamic Background Color */
   {{ sec_id }} .pc-marquee-horizontal {
     background-color: {{ background_color }};
+    overflow: hidden;
   }
 
 </style>
