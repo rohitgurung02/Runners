@@ -5,6 +5,13 @@
 -%}
  
 <style>
+
+  {{ sec_id }} .h2 { font-size: 1.5rem; }
+  {{ sec_id }} .h1 { font-size: 2rem; }
+  {{ sec_id }} .h0 { font-size: 2.5rem; }
+  {{ sec_id }} .hxl { font-size: 3rem; }
+  {{ sec_id }} .hxxl { font-size: 3.5rem; }
+  
   {{ sec_id }} .pc-marquee-horizontal {
     overflow: hidden;
     position: relative;
@@ -61,7 +68,7 @@
         <div class="pc-marquee-element" {{ block.shopify_attributes }}>
           {% case block.type %}
             {% when 'text' %}
-              <span class="pc-marquee_text {{ block.settings.heading_size }} tw-font-transducer-extended tw-font-black tw-align-super ">
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super  ">
                 {{ block.settings.text }}
               </span>
             
