@@ -1,5 +1,9 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
  
+{%- liquid
+  assign speed = section.settings.speed
+-%}
+ 
 <style>
   {{ sec_id }} .pc-marquee-horizontal {
     overflow: hidden;
@@ -8,64 +12,75 @@
   }
   
   {{ sec_id }} .pc-track-horizontal-alt {
-    height: 120px; /* Increased height for multiline content */
+    height: 72px;
     display: flex;
     align-items: center;
     width: fit-content;
     will-change: transform;
-    gap: 40px; /* Space between columns */
   }
   
-  {{ sec_id }} .marquee-column {
+  {{ sec_id }} .pc-marquee-element {
+    margin-right: 40px;
     flex-shrink: 0;
-    padding: 12px;
-    min-width: 250px; /* Adjust column width */
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
   }
   
-  {{ sec_id }} .marquee-heading {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 8px;
+  {{ sec_id }} .pc-marquee_text {
+    font-size: 42px;
+    line-height: 50px;
+    font-weight: 600;
   }
   
-  {{ sec_id }} .marquee-description {
-    font-size: 16px;
-    line-height: 1.4;
-  }
-  
-  {{ sec_id }} .marquee-emoji {
-    font-size: 28px;
-    margin-right: 10px;
-    vertical-align: middle;
+  {{ sec_id }} .pc-marquee-image {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
   }
   
   @keyframes smooth-scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
   
   {{ sec_id }} .pc-track-horizontal-alt {
-    animation: smooth-scroll {{ section.settings.speed }}s linear infinite;
+    animation: smooth-scroll {{ speed }}s linear infinite;
   }
 </style>
  
-<div class="pc-marquee-horizontal">
+<div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
   <div class="pc-track-horizontal-alt">
-    <!-- Render blocks twice for seamless looping -->
-
+    <!-- Double the content for seamless looping -->
+    {% for i in (1..10) %}
       {% for block in section.blocks %}
-        <div class="marquee-column" {{ block.shopify_attributes }}>
-          {% if block.settings.emoji != blank %}
-            <span class="marquee-emoji">{{ block.settings.emoji }}</span>
-          {% endif %}
-          <h3 class="marquee-heading">{{ block.settings.heading }}</h3>
-          <div class="marquee-description">{{ block.settings.description }}</div>
+        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+          {% case block.type %}
+            {% when 'text' %}
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
+                {{ block.settings.text }}
+              </span>
+            
+            {% when 'emoji' %}
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
+                {{ block.settings.emoji }}
+              </span>
+            
+            {% when 'image' %}
+              {% if block.settings.image != blank %}
+                <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+              {% endif %}
+          {% endcase %}
         </div>
       {% endfor %}
-    
+    {% endfor %}
   </div>
 </div>
-
+ 
 {% schema %}
 {
   "name": "Marquee Scroller",
@@ -83,54 +98,61 @@
   ],
   "blocks": [
     {
-      "type": "column",
-      "name": "Content Column",
+      "type": "text",
+      "name": "Text Item",
       "settings": [
         {
           "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Heading"
-        },
-        {
-          "type": "richtext",
-          "id": "description",
-          "label": "Description",
-          "default": "<p>Detailed description goes here.</p>"
-        },
+          "id": "text",
+          "label": "Text",
+          "default": "Your text here"
+        }
+      ]
+    },
+    {
+      "type": "emoji",
+      "name": "Emoji/Symbol",
+      "settings": [
         {
           "type": "text",
           "id": "emoji",
-          "label": "Emoji (Optional)",
-          "default": "🌟"
+          "label": "Emoji or Symbol",
+          "default": "🚀"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "PWC - Scrolling Columns",
+      "name": "PWC - Scrolling-List #1",
       "blocks": [
         {
-          "type": "column",
+          "type": "text",
           "settings": {
-            "heading": "Column – The Airflow definition"
+            "text": "First Item"
           }
         },
         {
-          "type": "column",
+          "type": "emoji",
           "settings": {
-           
-            "description": "<p>Designed for maximum relaxation.</p>",
-           
+            "emoji": "🌟"
           }
         },
-         {
-          "type": "column",
+        {
+          "type": "text",
           "settings": {
-            "heading": "Column – Ultimate comfort",
-            "description": "<p>Designed for maximum relaxation.</p>",
-            "emoji": "✨"
+            "text": "Second Item"
           }
         }
       ]
