@@ -1,13 +1,11 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
  
 {%- liquid
   assign speed = section.settings.speed
 -%}
  
 <style>
- .pc-marquee-element .pc-marquee_text{
-    display: inline-block;
-}
   
   /* Add these styles in your section or theme CSS */
   .h2 { font-size: 1.5rem; }
@@ -72,7 +70,7 @@
         <div class="pc-marquee-element" {{ block.shopify_attributes }}>
   {% case block.type %}
     {% when 'text' %}
-      <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
+      <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
         {{ block.settings.text }}
       </span>
     
