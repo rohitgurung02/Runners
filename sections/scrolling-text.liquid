@@ -52,7 +52,7 @@
 <div class="pc-marquee-horizontal">
   <div class="pc-track-horizontal-alt">
     <!-- Render blocks twice for seamless looping -->
-    {% for i in (1..2) %}
+
       {% for block in section.blocks %}
         <div class="marquee-column" {{ block.shopify_attributes }}>
           {% if block.settings.emoji != blank %}
@@ -62,7 +62,7 @@
           <div class="marquee-description">{{ block.settings.description }}</div>
         </div>
       {% endfor %}
-    {% endfor %}
+    
   </div>
 </div>
 
