@@ -1,5 +1,6 @@
-{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 {{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+
  
 {%- liquid
   assign speed = section.settings.speed
