@@ -5,6 +5,11 @@
 -%}
  
 <style>
+  .pc-marquee-element .pc-marquee_text
+Specificity: (0,2,0)
+ {
+    display: inline-block;
+}
   
   /* Add these styles in your section or theme CSS */
   .h2 { font-size: 1.5rem; }
@@ -14,11 +19,11 @@
   .hxxl { font-size: 3.5rem; }
 
   /* If you're using section scoping (recommended): */
-  {{ section.id }} .h2 { font-size: 1.5rem; }
-  {{ section.id }} .h1 { font-size: 2rem; }
-  {{ section.id }} .h0 { font-size: 2.5rem; }
-  {{ section.id }} .hxl { font-size: 3rem; }
-  {{ section.id }} .hxxl { font-size: 3.5rem; }
+  {{ sec_id }} .h2 { font-size: 1.5rem; }
+  {{ sec_id }} .h1 { font-size: 2rem; }
+  {{ sec_id }} .h0 { font-size: 2.5rem; }
+  {{ sec_id }} .hxl { font-size: 3rem; }
+  {{ sec_id }} .hxxl { font-size: 3.5rem; }
   {{ sec_id }} .pc-track-horizontal-alt {
     height: 72px;
     display: flex;
@@ -69,7 +74,7 @@
         <div class="pc-marquee-element" {{ block.shopify_attributes }}>
   {% case block.type %}
     {% when 'text' %}
-      <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super "{{ block.settings.heading_size }}>
+      <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
         {{ block.settings.text }}
       </span>
     
