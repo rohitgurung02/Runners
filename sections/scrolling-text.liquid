@@ -110,31 +110,39 @@
       "type": "text",
       "name": "Text Item",
       "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Text",
-          "default": "Your text here"
+          {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.rich-text.blocks.heading.settings.heading.default",
+          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
         },
-         {
+          {
           "type": "select",
-          "id": "text_size",
+          "id": "heading_size",
           "options": [
             {
-              "value": "small",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__1.label"
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
             },
             {
-              "value": "medium",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__2.label"
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
             },
             {
-              "value": "large",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__3.label"
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "hxxl",
+              "label": "t:sections.all.heading_size.options__5.label"
             }
           ],
-          "default": "medium",
-          "label": "t:sections.rich-text.blocks.caption.settings.caption_size.label"
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
         }
       ]
     },
@@ -167,22 +175,13 @@
       "name": "PWC - Scrolling-List #1",
       "blocks": [
         {
-          "type": "text",
-          "settings": {
-            "text": "First Item"
-          }
+          "type": "text"
         },
         {
-          "type": "emoji",
-          "settings": {
-            "emoji": "🔥"
-          }
+          "type": "emoji"
         },
         {
-          "type": "text",
-          "settings": {
-            "text": "Second Item"
-          }
+          "type": "text"
         },
       ]
     }
