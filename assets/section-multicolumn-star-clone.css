@@ -237,7 +237,6 @@
 .rating {
   unicode-bidi: bidi-override;
   direction: ltr;
-  margin: 10px 0;
   width: 100%
 }
 
