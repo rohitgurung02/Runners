@@ -6,7 +6,6 @@
 {%- liquid
   assign speed = section.settings.speed
 -%}
- 
 {%- liquid
   assign speed = section.settings.speed
   assign direction = section.settings.direction
@@ -19,6 +18,7 @@
   {{ sec_id }} .h0 { font-size: 2.5rem; }
   {{ sec_id }} .hxl { font-size: 3rem; }
   {{ sec_id }} .hxxl { font-size: 3.5rem; }
+
   {{ sec_id }} .pc-track-horizontal-alt {
     height: 72px;
     display: flex;
@@ -26,6 +26,7 @@
     gap: 40px;
     width: max-content;
     will-change: transform;
+    overflow: hidden;
   }
   
   {{ sec_id }} .pc-marquee-element {
@@ -53,13 +54,13 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-100%);
     }
   }
 
   @keyframes scroll-right {
     0% {
-      transform: translateX(-50%);
+      transform: translateX(-100%);
     }
     100% {
       transform: translateX(0);
@@ -76,7 +77,6 @@
     background-color: {{ background_color }};
     overflow: hidden;
   }
-
 </style>
  
 <div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
