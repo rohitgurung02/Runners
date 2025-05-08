@@ -310,7 +310,8 @@
       "name": "PWC - Scrolling-List #1",
       "settings": {
         "speed": 25,
-        "direction": "right"
+        "direction": "right",
+        "background_color": "skyblue"
       }
     }
   },
