@@ -70,7 +70,7 @@
         <div class="pc-marquee-element" {{ block.shopify_attributes }}>
   {% case block.type %}
     {% when 'text' %}
-      <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
+      <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.text_size }}">
         {{ block.settings.text }}
       </span>
     
@@ -115,6 +115,26 @@
           "id": "text",
           "label": "Text",
           "default": "Your text here"
+        },
+         {
+          "type": "select",
+          "id": "text_size",
+          "options": [
+            {
+              "value": "small",
+              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__1.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__2.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__3.label"
+            }
+          ],
+          "default": "medium",
+          "label": "t:sections.rich-text.blocks.caption.settings.caption_size.label"
         }
       ]
     },
@@ -163,7 +183,7 @@
           "settings": {
             "text": "Second Item"
           }
-        }
+        },
       ]
     }
   ]
