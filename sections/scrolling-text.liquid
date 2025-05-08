@@ -61,10 +61,9 @@
     
       {%- for block in section.blocks -%}
           {%- assign empty_column = '' -%}
-          {%- if block.settings.image == blank
-            and block.settings.title == blank
-            and block.settings.text == blank
-            and block.settings.link_label == blank
+          {%- if block.settings.emoji == blank
+            and block.settings.secondary_text == blank
+            and block.settings.speed == blank
           -%}
             {%- assign empty_column = ' multicolumn-list__item--empty' -%}
           {%- endif -%}
