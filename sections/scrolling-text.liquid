@@ -1,6 +1,5 @@
-{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
-
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
  
 {%- liquid
   assign speed = section.settings.speed
@@ -116,37 +115,9 @@
           "id": "text",
           "label": "Text",
           "default": "Your text here"
-        },
-       {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "Medium"
-        },
-        {
-          "value": "h1",
-          "label": "Large"
-        },
-        {
-          "value": "h0",
-          "label": "Extra Large"
-        },
-        {
-          "value": "hxl",
-          "label": "XX Large"
-        },
-        {
-          "value": "hxxl",
-          "label": "XXX Large"
         }
-      ],
-      "default": "h2",
-      "label": "Heading Size"
-    }
-  ]
-  },
+      ]
+    },
     {
       "type": "emoji",
       "name": "Emoji/Symbol",
@@ -156,7 +127,7 @@
           "id": "emoji",
           "label": "Emoji or Symbol",
           "default": "🚀"
-        },
+        }
       ]
     },
     {
@@ -169,8 +140,7 @@
           "label": "Image"
         }
       ]
-    },
-    
+    }
   ],
   "presets": [
     {
@@ -185,7 +155,7 @@
         {
           "type": "emoji",
           "settings": {
-            "emoji": "🌟"
+            "emoji": "🔥"
           }
         },
         {
