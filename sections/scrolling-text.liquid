@@ -1,12 +1,12 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
-
+ 
 {%- liquid
   assign main_text = section.settings.main_text
   assign emoji = section.settings.emoji 
   assign secondary_text =  section.settings.secondary_text
   assign speed = section.settings.speed
 -%}
-
+ 
 <style>
   {{ sec_id }} .pc-marquee-horizontal {
     overflow: hidden;
@@ -32,7 +32,7 @@
     font-size: 42px;
     line-height: 50px
   }
-
+ 
   {{ sec_id }} .pc-marquee-element span {
     font-size: 42px;
     font-weight: 600;
@@ -52,117 +52,79 @@
     animation: smooth-scroll {{ speed }}s linear infinite;
   }
 </style>
-
  
-
 <div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
-  <div class="pc-track-horizontal-alt" style="--marquee-speed: {{ block.settings.speed }}s;">
-    <!-- Render blocks content twice for seamless looping -->
-    
-      {%- for block in section.blocks -%}
-          {%- assign empty_column = '' -%}
-          {%- if block.settings.main_text == blank
-            and block.settings.emoji == blank
-            and block.settings.secondary_text == blank
-            and block.settings.speed == blank
-          -%}
-            {%- assign empty_column = ' multicolumn-list__item--empty' -%}
-          {%- endif -%}
-         {%- endfor -%}
-
-   
-      {% for block in section.blocks %}
-        {% unless block.settings.main_text == blank and block.settings.emoji == blank and block.settings.secondary_text == blank %}
-          {% if block.settings.main_text != blank %}
-            <div class="pc-marquee-element pc-marquee-text">
-              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-                {{ block.settings.main_text }}
-              </span>
-            </div>
-          {% endif %}
-          
-          {% if block.settings.emoji != blank %}
-            <div class="pc-marquee-element pc-marquee-text">
-              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-                {{ block.settings.emoji }}
-              </span>
-            </div>
-          {% endif %}
-          
-          {% if block.settings.secondary_text != blank %}
-            <div class="pc-marquee-element pc-marquee-text-block">
-              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
-                {{ block.settings.secondary_text }}
-              </span>
-            </div>
-          {% endif %}
-        {% endunless %}
-      {% endfor %}
- 
+  <div class="pc-track-horizontal-alt">
+    <!-- Double the content for seamless looping -->
+    {% for i in (1..10) %}
+      <div class="pc-marquee-element pc-marquee-text">
+        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
+          {{ main_text }}
+        </span>
+      </div>
+      
+      <div class="pc-marquee-element pc-marquee-text">
+        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
+          {{ emoji }}
+        </span>
+      </div>
+      
+      <div class="pc-marquee-element pc-marquee-text-block">
+        <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
+          {{ secondary_text }}
+        </span>
+      </div>
+    {% endfor %}
   </div>
 </div>
  
-
 {% javascript %}
 document.addEventListener('DOMContentLoaded', function() {
   // JavaScript for marquee functionality if needed
 });
 {% endjavascript %}
-
+ 
 {% schema %}
 {
   "name": "Marquee Scroller",
-  "settings": [],
-  "blocks": [
+  "settings": [
     {
-      "type": "marquee_item",
-      "name": "Marquee Item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "main_text",
-          "label": "Main Text",
-          "default": "Main Text"
-        },
-        {
-          "type": "text",
-          "id": "emoji",
-          "label": "Emoji/Symbol",
-          "default": "🚀"
-        },
-        {
-          "type": "richtext",
-          "id": "secondary_text",
-          "label": "Secondary Text",
-          "default": "<p>Secondary Text</p>"
-        },
-        {
-          "type": "range",
-          "id": "speed",
-          "min": 5,
-          "max": 30,
-          "step": 1,
-          "unit": "s",
-          "label": "Animation Speed",
-          "default": 12
-        }
-      ]
+      "type": "text",
+      "id": "main_text",
+      "label": "Main Text",
+      "default": "Main Text"
+    },
+    {
+      "type": "text",
+      "id": "emoji",
+      "label": "Emoji/Symbol",
+      "default": "🚀"
+    },
+    {
+      "type": "richtext",
+      "id": "secondary_text",
+      "label": "Secondary Text",
+      "default": "<p>Secondary Text</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "s",
+      "label": "Animation Speed",
+      "default": 12
     }
   ],
   "presets": [
     {
-      "name": "PWC - Scrolling Marquee",
-      "blocks": [
-        {
-          "type": "marquee_item",
-          "settings": {
-            "main_text": "Main Text",
-            "emoji": "🌟",
-            "secondary_text": "<p>Secondary Text</p>",
-            "speed": 12
-          }
-        }
-      ]
+      "name": "PWC - Scrolling-List #1"
     }
   ]
 }
