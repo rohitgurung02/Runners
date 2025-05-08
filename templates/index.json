@@ -260,8 +260,8 @@
       "name": "multicolumn-star-column",
       "settings": {
         "title": "<strong>MEN SPOTLIGHT</strong>",
+        "content_alignment_sec": "right",
         "heading_size": "h1",
-        "content_alignment_first": "center",
         "image_width": "full",
         "image_ratio": "adapt",
         "button_label": "",
