@@ -5,21 +5,6 @@
 -%}
  
 <style>
-
-     /* Heading size classes */
-  {{ sec_id }} .h2 { font-size: 1.5rem; }
-  {{ sec_id }} .h1 { font-size: 2rem; }
-  {{ sec_id }} .h0 { font-size: 2.5rem; }
-  {{ sec_id }} .hxl { font-size: 3rem; }
-  {{ sec_id }} .hxxl { font-size: 3.5rem; }
-  
-  /* Existing marquee styles */
-  
-  {{ sec_id }} .pc-marquee-horizontal {
-    overflow: hidden;
-    position: relative;
-    border: 1px solid black;
-  }
   
   {{ sec_id }} .pc-track-horizontal-alt {
     height: 72px;
@@ -60,14 +45,6 @@
   
   {{ sec_id }} .pc-track-horizontal-alt {
     animation: smooth-scroll {{ speed }}s linear infinite;
-  }
-
-  @media (max-width: 767px) {
-    {{ sec_id }} .h2 { font-size: 1.25rem; }
-    {{ sec_id }} .h1 { font-size: 1.5rem; }
-    {{ sec_id }} .h0 { font-size: 1.75rem; }
-    {{ sec_id }} .hxl { font-size: 2rem; }
-    {{ sec_id }} .hxxl { font-size: 2.25rem; }
   }
 </style>
  
