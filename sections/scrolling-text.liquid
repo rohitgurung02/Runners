@@ -7,9 +7,12 @@
   assign speed = section.settings.speed
 -%}
  
+{%- liquid
+  assign speed = section.settings.speed
+  assign direction = section.settings.direction
+-%}
+ 
 <style>
-
-  /* If you're using section scoping (recommended): */
   {{ sec_id }} .h2 { font-size: 1.5rem; }
   {{ sec_id }} .h1 { font-size: 2rem; }
   {{ sec_id }} .h0 { font-size: 2.5rem; }
@@ -19,7 +22,7 @@
     height: 72px;
     display: flex;
     align-items: center;
-    width: fit-content;
+    width: max-content;
     will-change: transform;
   }
   
@@ -42,24 +45,35 @@
     width: auto;
     object-fit: contain;
   }
-  
-  @keyframes smooth-scroll {
+
+  /* Animation Definitions */
+  @keyframes scroll-left {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-100%);
     }
   }
-  
- {{ sec_id }} .pc-track-horizontal-alt {
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  /* Apply animation based on direction */
+  {{ sec_id }} .pc-track-horizontal-alt {
     animation: {% if direction == 'left' %} scroll-left {% else %} scroll-right {% endif %} {{ speed }}s linear infinite;
   }
 </style>
  
 <div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
   <div class="pc-track-horizontal-alt">
-    {% for i in (1..10) %}
+    {% for i in (1..2) %}  <!-- Doubled for smooth looping -->
       {% for block in section.blocks %}
         <div class="pc-marquee-element" {{ block.shopify_attributes }}>
           {% case block.type %}
