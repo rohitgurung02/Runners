@@ -173,7 +173,7 @@
         "column_PjJVDy": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/3-2-05_RunnersAthletics_Look50040_533x_e3a5ee7a-598e-4dd9-a2ae-5e108f5f5c3e.webp",
+            "image": "shopify://shop_images/1738323256__kannperformance__huge.jpg",
             "title": "dfdf",
             "heading_size_first": "h2",
             "content_alignment": "center",
@@ -260,7 +260,7 @@
       "name": "multicolumn-star-column",
       "settings": {
         "title": "<em><strong>MEN SPOTLIGHT</strong></em>",
-        "content_alignment_sec": "right",
+        "content_alignment_first": "center",
         "heading_size": "h2",
         "image_width": "full",
         "image_ratio": "adapt",
