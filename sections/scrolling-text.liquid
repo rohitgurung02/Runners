@@ -65,7 +65,8 @@
         <div class="pc-marquee-element" {{ block.shopify_attributes }}>
   {% case block.type %}
     {% when 'text' %}
-      <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
+      <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}"
+      style="color: {{ block.settings.heading_color }}">
         {{ block.settings.heading }}
       </span>
     
