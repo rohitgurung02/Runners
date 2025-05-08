@@ -68,10 +68,20 @@
               </span>
             </div>
           {% endif %}
-          
-         
-          
-        
+        {% endunless %}
+      {% endfor %}
+    {% endfor %}
+
+    {% for i in (1..2) %}
+      {% for block in section.blocks %}
+        {% unless block.settings.secondary_text == blank and block.settings.secondary_text == blank and block.settings.secondary_text == blank %}
+          {% if block.settings.secondary_text != blank %}
+            <div class="pc-marquee-element pc-marquee-text">
+              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super">
+                {{ block.settings.secondary_text }}
+              </span>
+            </div>
+          {% endif %}
         {% endunless %}
       {% endfor %}
     {% endfor %}
