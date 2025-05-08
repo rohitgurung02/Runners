@@ -99,9 +99,11 @@
                 {{ block.settings.heading }}
               </span>
             {% when 'emoji' %}
-              <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}">
-                {{ block.settings.emoji }}
-              </span>
+              <span 
+  class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}" 
+  style="font-size: {{ block.settings.emoji_size }}px;">
+  {{ block.settings.emoji }}
+</span>
             {% when 'image' %}
               {% if block.settings.image != blank %}
                 <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
@@ -316,7 +318,17 @@
           "id": "emoji",
           "label": "Emoji or Symbol",
           "default": "🚀"
-        }
+        },
+         {
+      "type": "range",
+      "id": "emoji_size",
+      "min": 12,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Emoji Size",
+      "default": 24
+    }
       ]
     },
     {
