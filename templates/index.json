@@ -284,8 +284,8 @@
           "settings": {
             "heading": "Talk about your brand",
             "custom_font_family": "'Times New Roman', serif",
-            "color_first": "#ff053d",
-            "custom_heading_size": 24
+            "custom_heading_size": 24,
+            "color_first": "#ff053d"
           }
         },
         "emoji_fe34qj": {
@@ -300,8 +300,8 @@
           "settings": {
             "heading": "Talk about your brand",
             "custom_font_family": "Arial, sans-serif",
-            "color_first": "#000000",
-            "custom_heading_size": 24
+            "custom_heading_size": 24,
+            "color_first": "#000000"
           }
         }
       },
@@ -312,6 +312,7 @@
       ],
       "name": "PWC - Scrolling-List #1",
       "settings": {
+        "border_color": "#1e81b0",
         "speed": 2,
         "direction": "left",
         "color": "#97ad4a",
