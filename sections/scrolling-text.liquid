@@ -118,15 +118,6 @@
       <div class="pc-marquee-element" {{ block.shopify_attributes }}>
         {% case block.type %}
           {% when 'text' %}
-            {% case block.settings.heading_size %}
-              {% when 'h0' %} {% assign heading_class = 'h0' %}
-              {% when 'h1' %} {% assign heading_class = 'h1' %}
-              {% when 'h2' %} {% assign heading_class = 'h2' %}
-              {% when 'hxl' %} {% assign heading_class = 'hxl' %}
-              {% when 'hxxl' %} {% assign heading_class = 'hxxl' %}
-              {% else %} {% assign heading_class = 'h1' %}
-            {% endcase %}
-
             <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
                   style="color: {{ block.settings.heading_color }}; font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font_family }};">
                 {{ block.settings.heading }}
