@@ -85,56 +85,49 @@
 
 </style>
  
-<div 
-  class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center" 
-  style="padding-top: {{ section.settings.padding_top_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;
-  margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px;
- 
-  background-color: {{ section.settings.background_color }}">
-  <div 
-    class="pc-track-horizontal-alt" 
-    style="animation-duration: {{ section.settings.speed }}s; animation-direction: {{ section.settings.direction }}">
-    
-    {% for i in (1..2) %}  <!-- Doubled for smooth looping -->
-      {% for block in section.blocks %}
-        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-          {% case block.type %}
-            {% when 'text' %}
-           {% case block.settings.heading_size %}
-  {% when 'h0' %}
-    {% assign heading_class = 'h0' %}
-  {% when 'h1' %}
-    {% assign heading_class = 'h1' %}
-  {% when 'h2' %}
-    {% assign heading_class = 'h2' %}
-  {% when 'hxl' %}
-    {% assign heading_class = 'hxl' %}
-  {% when 'hxxl' %}
-    {% assign heading_class = 'hxxl' %}
-  {% else %}
-    {% assign heading_class = 'h1' %}
-{% endcase %}
+<!-- Add Google Fonts link -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-<span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
-      style="color: {{ block.settings.heading_color }}; font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font_family }};">
-    {{ block.settings.heading }}
-</span>
-            {% when 'emoji' %}
-              <span 
-  class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}" 
-  style="font-size: {{ block.settings.emoji_size }}px;">
-  {{ block.settings.emoji }}
-</span>
-            {% when 'image' %}
-              {% if block.settings.image != blank %}
-                <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
-              {% endif %}
-          {% endcase %}
-        </div>
+<!-- Now your existing code starts -->
+<div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center" style="padding-top: {{ section.settings.padding_top_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px; background-color: {{ section.settings.background_color }}">
+   <div class="pc-track-horizontal-alt" style="animation-duration: {{ section.settings.speed }}s; animation-direction: {{ section.settings.direction }}">
+      {% for i in (1..2) %}
+         {% for block in section.blocks %}
+            <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+               {% case block.type %}
+                  {% when 'text' %}
+                     {% case block.settings.heading_size %}
+                        {% when 'h0' %}
+                           {% assign heading_class = 'text-5xl' %}
+                        {% when 'h1' %}
+                           {% assign heading_class = 'text-4xl' %}
+                        {% when 'h2' %}
+                           {% assign heading_class = 'text-3xl' %}
+                        {% when 'hxl' %}
+                           {% assign heading_class = 'text-2xl' %}
+                        {% when 'hxxl' %}
+                           {% assign heading_class = 'text-xl' %}
+                        {% else %}
+                           {% assign heading_class = 'text-xl' %}
+                     {% endcase %}
+                     <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}" style="color: {{ block.settings.heading_color }}; font-family: {{ block.settings.custom_font_family }}">
+                        {{ block.settings.heading }}
+                     </span>
+                  {% when 'emoji' %}
+                     <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}" style="font-size: {{ block.settings.emoji_size }}px;">
+                        {{ block.settings.emoji }}
+                     </span>
+                  {% when 'image' %}
+                     {% if block.settings.image != blank %}
+                        <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+                     {% endif %}
+               {% endcase %}
+            </div>
+         {% endfor %}
       {% endfor %}
-    {% endfor %}
-  </div>
+   </div>
 </div>
+
 
 
 
