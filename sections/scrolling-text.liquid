@@ -1,4 +1,3 @@
-
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
 {%- liquid
@@ -10,22 +9,10 @@
   assign padding_top = section.settings.padding_top
   assign padding_bottom = section.settings.padding_bottom
   assign margin_top = section.settings.margin_top
-  assign margin_bottom = section.margin_bottom
+  assign margin_bottom = section.settings.margin_bottom
 -%}
 
- {% for block in section.blocks %}
-{%- liquid
-        assign heading = block.settings.heading
-        assign custom_font_family = block.settings.custom_font_family
-        assign custom_heading_size = block.settings.custom_heading_size
-        assign color = block.settings.color
-        assign emoji = block.settings.emoji
-        assign emoji_size = block.settings.emoji_size
-        assign image = block.settings.image
-      -%}
-   {% endfor %}}
 <style>
-  
   {{ sec_id }} .pc-marquee-horizontal {
     background-color: {{ background_color }};
     overflow: hidden;
@@ -33,15 +20,7 @@
       border: {{ border_width }}px solid {{ border_color }};
     {% endif %}
   }
-  
-  {{ sec_id }} .pc-marquee-horizontal {
-    background-color: {{ background_color }};
-    overflow: hidden;
-    {% if border_width > 0 %}
-      border: {{ border_width }}px solid {{ border_color }};
-    {% endif %}
-  }
-  
+
   {{ sec_id }} .pc-track-horizontal-alt {
     height: 72px;
     display: flex;
@@ -49,20 +28,20 @@
     gap: 40px;
     will-change: transform;
   }
-  
+
   {{ sec_id }} .pc-marquee-element {
     flex-shrink: 0;
     margin-top: 10px;
     display: flex;
     align-items: center;
   }
-  
+
   {{ sec_id }} .pc-marquee_text {
     font-size: 42px;
     line-height: 50px;
     font-weight: 600;
   }
-  
+
   {{ sec_id }} .pc-marquee-image {
     height: 50px;
     width: auto;
@@ -87,26 +66,11 @@
       transform: translateX(0);
     }
   }
-  @keyframes scroll-animation {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(0%);
-    }
-  }
-  
+
   /* Apply animation based on direction */
   {{ sec_id }} .pc-track-horizontal-alt {
     animation: {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} {{ speed }}s linear infinite;
   }
-
-  /* Dynamic Background Color */
-  {{ sec_id }} .pc-marquee-horizontal {
-    background-color: {{ background_color }};
-    overflow: hidden;
-  }
-
 </style>
 
 <div 
@@ -120,27 +84,26 @@
     border-top: {{ border_width }}px solid {{ border_color }};
     border-bottom: {{ border_width }}px solid {{ border_color }};
 ">
-  
   <div class="pc-track-horizontal-alt">
     <!-- First set of blocks (visible) -->
     {% for block in section.blocks %}
       <div class="pc-marquee-element" {{ block.shopify_attributes }}>
         {% case block.type %}
           {% when 'text' %}
-            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
-                  style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
-                {{ heading }}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {% if block.settings.uppercase %}uppercase{% endif %}"
+                  style="font-size: {{ block.settings.custom_heading_size }}px; color: {{ block.settings.color }}">
+              {{ block.settings.heading }}
             </span>
           
           {% when 'emoji' %}
             <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" 
-                  style="font-size: {{ emoji_size }}px;">
-              {{ emoji }}
+                  style="font-size: {{ block.settings.emoji_size }}px;">
+              {{ block.settings.emoji }}
             </span>
             
           {% when 'image' %}
             {% if block.settings.image != blank %}
-              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ image.alt }}" width="auto" height="50" loading="lazy">
+              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
             {% endif %}
         {% endcase %}
       </div>
@@ -151,16 +114,15 @@
       <div class="pc-marquee-element" {{ block.shopify_attributes }}>
         {% case block.type %}
           {% when 'text' %}
-            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
-                  style="color: {{ block.settings.heading_color }}; font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font_family }};
-              color: {{ block.settings.color }}">
-                {{ heading }}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {% if block.settings.uppercase %}uppercase{% endif %}"
+                  style="color: {{ block.settings.color }}; font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font }}">
+                {{ block.settings.heading }}
             </span>
           
           {% when 'emoji' %}
             <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" 
                   style="font-size: {{ block.settings.emoji_size }}px;">
-              {{ emoji }}
+              {{ block.settings.emoji }}
             </span>
             
           {% when 'image' %}
@@ -353,6 +315,3 @@
   ]
 }
 {% endschema %}
-
-
-
