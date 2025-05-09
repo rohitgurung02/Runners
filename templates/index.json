@@ -312,7 +312,7 @@
       "settings": {
         "speed": 25,
         "direction": "right",
-        "background_color": "pink",
+        "background_color": "skyblue",
         "padding_top": 8,
         "padding_bottom": 20,
         "margin_top": 0,
