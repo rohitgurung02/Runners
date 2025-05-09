@@ -69,19 +69,19 @@
   /* Improved seamless animation */
   @keyframes scroll-left {
     0% {
-    transform: translateX(100%); /* Start from the right end */
+    transform: translateX(0); /* Start from the right end */
   }
   100% {
-    transform: translateX(-0%); /* End at the left end */
+    transform: translateX(-100%); /* End at the left end */
   }
   }
 
    @keyframes scroll-right {
   0% {
-    transform: translateX(-0%); /* Start from the left end */
+    transform: translateX(100%); /* Start from the left end */
   }
   100% {
-    transform: translateX(100%); /* End at the right end */
+    transform: translateX(0); /* End at the right end */
   }
   } 
   
