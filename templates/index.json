@@ -313,7 +313,7 @@
       "name": "PWC - Scrolling-List #1",
       "settings": {
         "border_color": "#1e81b0",
-        "speed": 2,
+        "speed": 23,
         "direction": "left",
         "color": "#97ad4a",
         "padding_top": 0,
