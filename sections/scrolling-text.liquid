@@ -50,19 +50,19 @@
   /* Animation Definitions */
   @keyframes scroll-left {
     0% {
-      transform: translateX(0);
+      transform: translateX(100%); /* Start off to the right */
     }
     100% {
-      transform: translateX(100%);
+      transform: translateX(-100%); /* Move off to the left */
     }
   }
 
   @keyframes scroll-right {
     0% {
-      transform: translateX(-100%);
+      transform: translateX(-100%); /* Start off to the left */
     }
     100% {
-      transform: translateX(0);
+      transform: translateX(100%); /* Move off to the right */
     }
   }
   
