@@ -162,6 +162,10 @@
   </div>
 </div>
 
+const element = document.querySelector("{{ sec_id }} .pc-track-horizontal-alt");
+const clone = element.cloneNode(true);
+element.parentNode.appendChild(clone);
+
 {% schema %}
 {
   "name": "Marquee Scroller",
