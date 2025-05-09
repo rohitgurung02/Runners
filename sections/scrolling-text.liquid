@@ -106,7 +106,7 @@
           {% when 'text' %}
             <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
                   style="font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font_family }}; color: {{ block.settings.color_first }}
-            background-color: {{ block.settings.color }};">
+            background-color: {{ block.settings.color_first }};">
                 {{ block.settings.heading }}
             </span>
           
@@ -202,7 +202,12 @@
       ],
       "default": "black"
     },
-   
+      {
+      "type": "color",
+      "id": "color_first",
+      "label": "Background Color",
+      "default": "#000000"
+    },
     {
       "type": "range",
       "id": "speed",
