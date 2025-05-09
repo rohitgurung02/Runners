@@ -16,10 +16,6 @@
   {{ sec_id }} .pc-marquee-horizontal {
     background-color: {{ background_color }};
     overflow: hidden;
-    padding-top: {{ padding_top }}px;
-    padding-bottom: {{ padding_bottom }}px;
-    margin-top: {{ margin_top }}px;
-    margin-bottom: {{ margin_bottom }}px;
     {% if border_width > 0 %}
       border: {{ border_width }}px solid {{ border_color }};
     {% endif %}
@@ -31,16 +27,17 @@
     align-items: center;
     gap: 40px;
     will-change: transform;
-    animation: {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} {{ speed }}s linear infinite;
   }
 
   {{ sec_id }} .pc-marquee-element {
     flex-shrink: 0;
+    margin-top: 10px;
     display: flex;
     align-items: center;
   }
 
   {{ sec_id }} .pc-marquee_text {
+    font-size: 42px;
     line-height: 50px;
     font-weight: 600;
   }
@@ -51,6 +48,7 @@
     object-fit: contain;
   }
 
+  /* Improved Animation Definitions */
   @keyframes scroll-left {
     0% {
       transform: translateX(0);
@@ -68,44 +66,74 @@
       transform: translateX(0);
     }
   }
+
+  /* Apply animation based on direction */
+  {{ sec_id }} .pc-track-horizontal-alt {
+    animation: {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} {{ speed }}s linear infinite;
+  }
 </style>
 
-<div class="pc-marquee-horizontal">
+<div 
+  class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center" 
+  style="
+    padding-top: {{ padding_top }}px; 
+    padding-bottom: {{ padding_bottom }}px;
+    margin-top: {{ margin_top }}px; 
+    margin-bottom: {{ margin_bottom }}px;
+    background-color: {{ background_color }};
+    border-top: {{ border_width }}px solid {{ border_color }};
+    border-bottom: {{ border_width }}px solid {{ border_color }};
+">
   <div class="pc-track-horizontal-alt">
+    <!-- First set of blocks (visible) -->
     {% for block in section.blocks %}
       <div class="pc-marquee-element" {{ block.shopify_attributes }}>
         {% case block.type %}
           {% when 'text' %}
-            <span class="pc-marquee_text"
-                  style="
-                    font-size: {{ block.settings.custom_heading_size }}px; 
-                    color: {{ block.settings.color }};
-                    font-family: {{ block.settings.heading_font | font_family }};
-                  ">
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {% if block.settings.uppercase %}uppercase{% endif %}"
+                  style="font-size: {{ block.settings.custom_heading_size }}px; color: {{ block.settings.color }}">
               {{ block.settings.heading }}
             </span>
+          
           {% when 'emoji' %}
-            <span class="pc-marquee_text" 
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" 
                   style="font-size: {{ block.settings.emoji_size }}px;">
               {{ block.settings.emoji }}
             </span>
+            
           {% when 'image' %}
             {% if block.settings.image != blank %}
-              <img class="pc-marquee-image" 
-                   src="{{ block.settings.image | image_url }}" 
-                   alt="{{ block.settings.image.alt }}" 
-                   width="auto" 
-                   height="50" 
-                   loading="lazy">
+              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+            {% endif %}
+        {% endcase %}
+      </div>
+    {% endfor %}
+    
+    <!-- Second set of blocks (duplicate for seamless looping) -->
+    {% for block in section.blocks %}
+      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+        {% case block.type %}
+          {% when 'text' %}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {% if block.settings.uppercase %}uppercase{% endif %}"
+                  style="color: {{ block.settings.color }}; font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font }}">
+                {{ block.settings.heading }}
+            </span>
+          
+          {% when 'emoji' %}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super" 
+                  style="font-size: {{ block.settings.emoji_size }}px;">
+              {{ block.settings.emoji }}
+            </span>
+            
+          {% when 'image' %}
+            {% if block.settings.image != blank %}
+              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
             {% endif %}
         {% endcase %}
       </div>
     {% endfor %}
   </div>
 </div>
-
-
-
 
 {% schema %}
 {
@@ -214,15 +242,10 @@
         {
           "type": "inline_richtext",
           "id": "heading",
-          "label": "Heading Text",
-          "default": "Your Heading Here"
+          "default": "t:sections.rich-text.blocks.heading.settings.heading.default",
+          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
         },
-        {
-          "type": "font_picker",
-          "id": "heading_font",
-          "label": "Select Heading Font",
-          "default": "helvetica_n4"
-        },
+        
         {
           "type": "range",
           "id": "custom_heading_size",
@@ -293,4 +316,3 @@
   ]
 }
 {% endschema %}
-
