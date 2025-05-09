@@ -283,7 +283,7 @@
           "type": "text",
           "settings": {
             "heading": "Talk about your brand",
-            "custom_font_family": "Arial, sans-serif",
+            "custom_font_family": "'Times New Roman', serif",
             "custom_heading_size": 24,
             "heading_color": "red"
           }
@@ -312,11 +312,11 @@
       ],
       "name": "PWC - Scrolling-List #1",
       "settings": {
-        "speed": 4,
+        "speed": 2,
         "direction": "left",
-        "background_color": "black",
-        "padding_top": 8,
-        "padding_bottom": 20,
+        "background_color": "#1e81b0",
+        "padding_top": 0,
+        "padding_bottom": 0,
         "margin_top": 0,
         "margin_bottom": 0
       }
