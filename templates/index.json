@@ -314,7 +314,7 @@
         "border_width": 3,
         "background_color": "#ceeac8",
         "speed": 15,
-        "direction": "right",
+        "direction": "left",
         "padding_top": 4,
         "padding_bottom": 8,
         "margin_top": 0,
