@@ -298,10 +298,10 @@
         "text_wKwp34": {
           "type": "text",
           "settings": {
-            "heading": "Talk about your brand",
+            "heading": "your brand",
             "custom_font_family": "Arial, sans-serif",
             "custom_heading_size": 24,
-            "color_first": "#000000"
+            "color_first": "#d82c2c"
           }
         }
       },
