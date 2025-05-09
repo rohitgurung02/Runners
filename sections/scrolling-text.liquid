@@ -67,8 +67,8 @@
   }
   
   /* Apply animation based on direction */
-  {{ sec_id }} .pc-track-horizontal-alt {
-    animation: {% if direction == 'left' %} scroll-left {% else %} scroll-right {% endif %} {{ speed }}s linear infinite;
+ .pc-marquee-horizontal.scroll-right .pc-track-horizontal-alt {
+    animation: scroll-right 10s linear infinite; /* Scroll from right */
   }
 
   /* Dynamic Background Color */
