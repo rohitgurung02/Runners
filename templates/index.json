@@ -284,8 +284,8 @@
           "settings": {
             "heading": "Talk about your brand",
             "custom_font_family": "'Times New Roman', serif",
-            "custom_heading_size": 24,
-            "heading_color": "red"
+            "color_first": "#ff053d",
+            "custom_heading_size": 24
           }
         },
         "emoji_fe34qj": {
@@ -300,8 +300,8 @@
           "settings": {
             "heading": "Talk about your brand",
             "custom_font_family": "Arial, sans-serif",
-            "custom_heading_size": 24,
-            "heading_color": "white"
+            "color_first": "#000000",
+            "custom_heading_size": 24
           }
         }
       },
@@ -314,7 +314,7 @@
       "settings": {
         "speed": 2,
         "direction": "left",
-        "background_color": "#1e81b0",
+        "color": "#97ad4a",
         "padding_top": 0,
         "padding_bottom": 0,
         "margin_top": 0,
