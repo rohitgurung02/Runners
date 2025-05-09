@@ -315,9 +315,9 @@
         "border_color": "#95a5a6",
         "background_color": "#ceeac8",
         "speed": 4,
-        "direction": "right",
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "direction": "left",
+        "padding_top": 4,
+        "padding_bottom": 8,
         "margin_top": 0,
         "margin_bottom": 0
       }
