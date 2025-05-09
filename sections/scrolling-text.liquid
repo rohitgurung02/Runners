@@ -48,26 +48,21 @@
   }
 
   /* Animation Definitions */
- {{ sec_id }} .pc-track-horizontal-alt {
-    display: flex;
-    gap: 40px;
-    overflow: hidden;
-    white-space: nowrap;
-    animation: scroll-horizontal {{ speed }}s linear infinite;
-  }
-
-  /* Duplicate the list for seamless loop */
-  {{ sec_id }} .pc-track-horizontal-alt .inner-track {
-    display: inline-flex;
-  }
-
-  /* Animation that loops seamlessly */
-  @keyframes scroll-horizontal {
+  @keyframes scroll-left {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
   
