@@ -285,7 +285,7 @@
             "heading": "Talk about",
             "custom_font_family": "'Times New Roman', serif",
             "custom_heading_size": 24,
-            "color_first": "#05a5ff"
+            "color": "#cb3030"
           }
         },
         "emoji_fe34qj": {
@@ -301,7 +301,7 @@
             "heading": "your brand",
             "custom_font_family": "Arial, sans-serif",
             "custom_heading_size": 24,
-            "color_first": "#d82c2c"
+            "color": "#000000"
           }
         }
       },
