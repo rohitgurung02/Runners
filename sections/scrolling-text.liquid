@@ -13,6 +13,12 @@
 -%}
  
 <style>
+  
+  {{ sec_id }} .h2 { font-size: 1.5rem; }
+  {{ sec_id }} .h1 { font-size: 2rem; }
+  {{ sec_id }} .h0 { font-size: 2.5rem; }
+  {{ sec_id }} .hxl { font-size: 3rem; }
+  {{ sec_id }} .hxxl { font-size: 3.5rem; }
   {{ sec_id }} .pc-track-horizontal-alt {
     height: 72px;
     display: flex;
@@ -20,70 +26,49 @@
     gap: 40px;
     width: max-content;
     will-change: transform;
-    overflow: hidden; /* Ensure no overflow visible */
   }
-
+  
   {{ sec_id }} .pc-marquee-element {
     flex-shrink: 0;
     margin-top: 10px;
     display: flex;
     align-items: center;
   }
-
+  
   {{ sec_id }} .pc-marquee_text {
     font-size: 42px;
     line-height: 50px;
     font-weight: 600;
   }
-
+  
   {{ sec_id }} .pc-marquee-image {
     height: 50px;
     width: auto;
     object-fit: contain;
   }
 
-  /* Create animation for scrolling left */
+  /* Animation Definitions */
   @keyframes scroll-left {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
     }
   }
 
-  /* Create animation for scrolling right */
   @keyframes scroll-right {
     0% {
-      transform: translateX(100%);
+      transform: translateX(-50%);
     }
     100% {
       transform: translateX(0);
     }
   }
-
+  
   /* Apply animation based on direction */
   {{ sec_id }} .pc-track-horizontal-alt {
-    display: flex;
     animation: {% if direction == 'left' %} scroll-left {% else %} scroll-right {% endif %} {{ speed }}s linear infinite;
-  }
-
-  /* Smoother Looping Effect */
-  {{ sec_id }} .pc-track-horizontal-alt {
-    position: relative;
-  }
-  {{ sec_id }} .pc-marquee-element {
-    animation: {% if direction == 'left' %} scroll-left {% else %} scroll-right {% endif %} {{ speed }}s linear infinite;
-    position: absolute;
-    top: 0;
-  }
-
-  /* Prevent text overflow and jump back */
-  {{ sec_id }} .pc-track-horizontal-alt {
-    display: flex;
-    flex-wrap: nowrap;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
   }
 
   /* Dynamic Background Color */
@@ -91,6 +76,7 @@
     background-color: {{ background_color }};
     overflow: hidden;
   }
+
 </style>
  
 <div 
