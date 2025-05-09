@@ -20,6 +20,16 @@
   assign emoji_size = emoji_size
   assign image = emoji_size
 -%}
+
+{%- liquid
+        assign heading = block.settings.heading
+        assign custom_font_family = block.settings.custom_font_family
+        assign custom_heading_size = block.settings.custom_heading_size
+        assign color = block.settings.color
+        assign emoji = block.settings.emoji
+        assign emoji_size = block.settings.emoji_size
+        assign image = block.settings.image
+      -%}
 <style>
   
   {{ sec_id }} .pc-marquee-horizontal {
