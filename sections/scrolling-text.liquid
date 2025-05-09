@@ -148,6 +148,54 @@
   "name": "Marquee Scroller",
   "settings": [
     {
+      "type": "select",
+      "id": "border_color",
+      "label": "Border Color",
+      "options": [
+        {
+          "value": "black",
+          "label": "Black"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "#1e81b0",
+          "label": "Blue"
+        },
+        {
+          "value": "#FF5733",
+          "label": "Orange"
+        },
+        {
+          "value": "#95a5a6",
+          "label": "Concrete"
+        },
+        {
+          "value": "#f368e0",
+          "label": "Pink"
+        },
+        {
+          "value": "#1dd1a1",
+          "label": "Green"
+        },
+        {
+          "value": "#abdbe3",
+          "label": "Sky Blue"
+        },
+        {
+          "value": "#f1c40f",
+          "label": "Yellow"
+        },
+        {
+          "value": "#ee5253",
+          "label": "Red"
+        }
+      ],
+      "default": "black"
+    },
+    {
       "type": "range",
       "id": "speed",
       "min": 2,
@@ -158,28 +206,28 @@
       "default": 5
     },
     {
-  "type": "select",
-  "id": "direction",
-  "label": "Animation Direction",
-  "options": [
-    {
-      "value": "left",
-      "label": "Left"
+      "type": "select",
+      "id": "direction",
+      "label": "Animation Direction",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
     },
     {
-      "value": "right",
-      "label": "Right"
-    }
-  ],
-  "default": "left"
-}, 
- {
-  "type": "color",
-  "id": "color",
-  "label": "Background Color",
-  "default": "#000000"
-},
-     {
+      "type": "color",
+      "id": "color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
       "type": "range",
       "id": "padding_top",
       "min": 0,
@@ -218,7 +266,7 @@
       "unit": "px",
       "label": "Margin Bottom",
       "default": 20
-    },
+    }
   ],
   "blocks": [
     {
@@ -281,12 +329,12 @@
           "label": "Heading Size",
           "default": 24
         },
-         {
-        "type": "color",
-        "id": "color_first",
-        "label": "Color",
-        "default": "#000000"
-    },
+        {
+          "type": "color",
+          "id": "color_first",
+          "label": "Color",
+          "default": "#000000"
+        }
       ]
     },
     {
@@ -335,10 +383,11 @@
         },
         {
           "type": "text"
-        },
+        }
       ]
     }
   ]
 }
 {% endschema %}
+
 
