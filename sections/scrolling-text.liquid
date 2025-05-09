@@ -223,91 +223,55 @@
           "default": "t:sections.rich-text.blocks.heading.settings.heading.default",
           "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
         },
-           {
-  "type": "select",
-  "id": "custom_font_family",
-  "label": "Custom Font Family",
-  "options": [
-    {
-      "value": "Arial, sans-serif",
-      "label": "Arial"
-    },
-    {
-      "value": "Georgia, serif",
-      "label": "Georgia"
-    },
-    {
-      "value": "'Times New Roman', serif",
-      "label": "Times New Roman"
-    },
-    {
-      "value": "'Courier New', monospace",
-      "label": "Courier New"
-    },
-    {
-      "value": "'Lucida Sans', sans-serif",
-      "label": "Lucida Sans"
-    },
-    {
-      "value": "'Poppins', sans-serif",
-      "label": "Poppins"
-    },
-    {
-      "value": "'Roboto', sans-serif",
-      "label": "Roboto"
-    },
-    {
-      "value": "'Montserrat', sans-serif",
-      "label": "Montserrat"
-    }
-  ],
-  "default": "Arial, sans-serif"
-},
-        {
-  "type": "range",
-  "id": "custom_heading_size",
-  "min": 10,
-  "max": 100,
-  "step": 1,
-  "unit": "px",
-  "label": "Heading Size",
-  "default": 24
-},
         {
           "type": "select",
-          "id": "heading_color",
-          "label": "Heading Color",
+          "id": "custom_font_family",
+          "label": "Custom Font Family",
           "options": [
             {
-              "value": "black",
-              "label": "Black"
+              "value": "Arial, sans-serif",
+              "label": "Arial"
             },
             {
-              "value": "red",
-              "label": "Red"
+              "value": "Georgia, serif",
+              "label": "Georgia"
             },
             {
-              "value": "blue",
-              "label": "Blue"
+              "value": "'Times New Roman', serif",
+              "label": "Times New Roman"
             },
             {
-              "value": "white",
-              "label": "White"
+              "value": "'Courier New', monospace",
+              "label": "Courier New"
             },
             {
-              "value": "green",
-              "label": "Green"
+              "value": "'Lucida Sans', sans-serif",
+              "label": "Lucida Sans"
             },
             {
-              "value": "#f0932b",
-              "label": "Orange"
+              "value": "'Poppins', sans-serif",
+              "label": "Poppins"
             },
             {
-              "value": "purple",
-              "label": "Purple"
+              "value": "'Roboto', sans-serif",
+              "label": "Roboto"
+            },
+            {
+              "value": "'Montserrat', sans-serif",
+              "label": "Montserrat"
             }
           ],
-          "default": "black"
+          "default": "Arial, sans-serif"
+        },
+        {
+          "type": "range",
+          "id": "custom_heading_size",
+          "min": 10,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Heading Size",
+          "default": 24
         }
       ]
     },
@@ -321,16 +285,16 @@
           "label": "Emoji or Symbol",
           "default": "🚀"
         },
-         {
-      "type": "range",
-      "id": "emoji_size",
-      "min": 12,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Emoji Size",
-      "default": 24
-    }
+        {
+          "type": "range",
+          "id": "emoji_size",
+          "min": 12,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Emoji Size",
+          "default": 24
+        }
       ]
     },
     {
@@ -357,8 +321,7 @@
         },
         {
           "type": "text"
-        },
-        
+        }
       ]
     }
   ]
