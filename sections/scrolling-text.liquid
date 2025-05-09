@@ -13,6 +13,7 @@
   assign margin_top = section.settings.margin_top
   assign margin_bottom = section.settings.margin_bottom
   assign custom_font_family = section.settings.custom_font_family
+  
   assign heading = block.settings.heading
   assign custom_heading_size = block.settings.custom_heading_size
   assign color = block.settings.color
@@ -124,9 +125,9 @@
             </span>
           
           {% when 'emoji' %}
-            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}" 
-                  style="font-size: {{ block.settings.emoji_size }}px;">
-              {{ block.settings.emoji }}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_size }}" 
+                  style="font-size: {{ emoji_size }}px;">
+              {{ emoji }}
             </span>
             
           {% when 'image' %}
