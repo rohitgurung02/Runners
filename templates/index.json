@@ -313,9 +313,9 @@
       "name": "PWC - Scrolling-List #1",
       "settings": {
         "border_color": "#1e81b0",
+        "color": "#adba81",
         "speed": 23,
         "direction": "left",
-        "color": "#97ad4a",
         "padding_top": 0,
         "padding_bottom": 0,
         "margin_top": 0,
