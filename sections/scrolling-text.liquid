@@ -68,22 +68,34 @@
 
   /* Improved seamless animation */
   @keyframes scroll-left {
-    0% {
-    transform: translateX(0); /* Start from the right end */
+  0% {
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%); /* End at the left end */
+    transform: translateX(-100%);
   }
-  }
+}
 
-   @keyframes scroll-right {
-  -100% {
-    transform: translateX(50%); /* Start from the left end */
+.scrolling-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 10s linear infinite;
+}
+
+  @keyframes scroll-right {
+  0% {
+    transform: translateX(100%);
   }
   100% {
-    transform: translateX(0); /* End at the right end */
+    transform: translateX(-100%);
   }
-  } 
+}
+
+.scrolling-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-right 10s linear infinite;
+}
   
   {{ sec_id }} .pc-track-horizontal-alt {
     animation: {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} {{ speed }}s linear infinite;
