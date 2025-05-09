@@ -95,7 +95,22 @@
         <div class="pc-marquee-element" {{ block.shopify_attributes }}>
           {% case block.type %}
             {% when 'text' %}
-             <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }} {% if block.settings.uppercase %}uppercase{% endif %}"
+            {% case block.settings.heading_size %}
+  {% when 'h0' %}
+    {% assign heading_class = 'text-5xl' %}
+  {% when 'h1' %}
+    {% assign heading_class = 'text-4xl' %}
+  {% when 'h2' %}
+    {% assign heading_class = 'text-3xl' %}
+  {% when 'hxl' %}
+    {% assign heading_class = 'text-2xl' %}
+  {% when 'hxxl' %}
+    {% assign heading_class = 'text-xl' %}
+  {% else %}
+    {% assign heading_class = 'text-xl' %}
+{% endcase %}
+
+<span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
       style="color: {{ block.settings.heading_color }}">
     {{ block.settings.heading }}
 </span>
@@ -244,21 +259,34 @@
           "default": "t:sections.rich-text.blocks.heading.settings.heading.default",
           "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
         },
-       {
-      "type": "select",
-      "id": "heading_size",
-      "label": "Heading Size",
-      "options": [
-        { "value": "text-4xl", "label": "Extra Large" },
-        { "value": "text-3xl", "label": "Very Large" },
-        { "value": "text-2xl", "label": "Large" },
-        { "value": "text-xl", "label": "Medium" },
-        { "value": "text-lg", "label": "Small" },
-        { "value": "text-base", "label": "Normal" },
-        { "value": "text-sm", "label": "Very Small" }
-      ],
-      "default": "text-xl"
-    },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "hxxl",
+              "label": "t:sections.all.heading_size.options__5.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
+        },
         {
           "type": "select",
           "id": "heading_color",
