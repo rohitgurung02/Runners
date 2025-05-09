@@ -13,14 +13,22 @@
   assign custom_font = section.settings.custom_font
 -%}
 
- {%- liquid
-  assign heading = block.settings.heading
-  assign custom_heading_size = block.settings.custom_heading_size
-  assign color = block.settings.color
-  assign emoji = block.settings.emoji
-  assign emoji_size = block.settings.emoji_size
-  assign image = block.settings.image
--%}
+ {% for block in section.blocks %}
+  {%- liquid
+    assign heading = block.settings.heading
+    assign custom_heading_size = block.settings.custom_heading_size
+    assign color = block.settings.color
+    assign emoji = block.settings.emoji
+    assign emoji_size = block.settings.emoji_size
+    assign image = block.settings.image
+  -%}
+
+  <div>
+    <span style="font-size: {{ custom_heading_size }}px; color: {{ color }};">
+      {{ heading }}
+    </span>
+  </div>
+{% endfor %}
 
 
 <style>
