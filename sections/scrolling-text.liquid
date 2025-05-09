@@ -1,30 +1,24 @@
 
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
- 
-{%- liquid
-  assign speed = section.settings.speed
--%}
- 
 {%- liquid
   assign speed = section.settings.speed
   assign direction = section.settings.direction
   assign background_color = section.settings.background_color
 -%}
- 
+
 <style>
-  
   {{ sec_id }} .h2 { font-size: 1.5rem; }
   {{ sec_id }} .h1 { font-size: 2rem; }
   {{ sec_id }} .h0 { font-size: 2.5rem; }
   {{ sec_id }} .hxl { font-size: 3rem; }
   {{ sec_id }} .hxxl { font-size: 3.5rem; }
+  
   {{ sec_id }} .pc-track-horizontal-alt {
     height: 72px;
     display: flex;
     align-items: center;
     gap: 40px;
-    width: max-content;
     will-change: transform;
   }
   
@@ -47,7 +41,7 @@
     object-fit: contain;
   }
 
-  /* Animation Definitions */
+  /* Improved Animation Definitions */
   @keyframes scroll-left {
     0% {
       transform: translateX(0);
@@ -59,7 +53,7 @@
 
   @keyframes scroll-right {
     0% {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
     }
     100% {
       transform: translateX(0);
@@ -68,7 +62,7 @@
   
   /* Apply animation based on direction */
   {{ sec_id }} .pc-track-horizontal-alt {
-    animation: {% if direction == 'left' %} scroll-left {% else %} scroll-right {% endif %} {{ speed }}s linear infinite;
+    animation: {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} {{ speed }}s linear infinite;
   }
 
   /* Dynamic Background Color */
@@ -78,35 +72,26 @@
   }
 
 </style>
- 
+
 <div 
   class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center" 
-  style="padding-top: {{ section.settings.padding_top_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;
+  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;
   margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px;
- 
   background-color: {{ section.settings.background_color }}">
-  <div 
-    class="pc-track-horizontal-alt" 
-    style="animation-duration: {{ section.settings.speed }}s; animation-direction: {{ section.settings.direction }}">
-    
-    {% for i in (1..2) %}  <!-- Doubled for smooth looping -->
-      {% for block in section.blocks %}
-        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-          {% case block.type %}
-            {% when 'text' %}
-           {% case block.settings.heading_size %}
-              {% when 'h0' %}
-                {% assign heading_class = 'h0' %}
-              {% when 'h1' %}
-                {% assign heading_class = 'h1' %}
-              {% when 'h2' %}
-                {% assign heading_class = 'h2' %}
-              {% when 'hxl' %}
-                {% assign heading_class = 'hxl' %}
-              {% when 'hxxl' %}
-                {% assign heading_class = 'hxxl' %}
-              {% else %}
-                {% assign heading_class = 'h1' %}
+  
+  <div class="pc-track-horizontal-alt">
+    <!-- First set of blocks (visible) -->
+    {% for block in section.blocks %}
+      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+        {% case block.type %}
+          {% when 'text' %}
+            {% case block.settings.heading_size %}
+              {% when 'h0' %} {% assign heading_class = 'h0' %}
+              {% when 'h1' %} {% assign heading_class = 'h1' %}
+              {% when 'h2' %} {% assign heading_class = 'h2' %}
+              {% when 'hxl' %} {% assign heading_class = 'hxl' %}
+              {% when 'hxxl' %} {% assign heading_class = 'hxxl' %}
+              {% else %} {% assign heading_class = 'h1' %}
             {% endcase %}
 
             <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
@@ -114,19 +99,51 @@
                 {{ block.settings.heading }}
             </span>
           
-            {% when 'emoji' %}
-              <span 
-  class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}" 
-  style="font-size: {{ block.settings.emoji_size }}px;">
-  {{ block.settings.emoji }}
-</span>
-            {% when 'image' %}
-              {% if block.settings.image != blank %}
-                <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
-              {% endif %}
-          {% endcase %}
-        </div>
-      {% endfor %}
+          {% when 'emoji' %}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}" 
+                  style="font-size: {{ block.settings.emoji_size }}px;">
+              {{ block.settings.emoji }}
+            </span>
+            
+          {% when 'image' %}
+            {% if block.settings.image != blank %}
+              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+            {% endif %}
+        {% endcase %}
+      </div>
+    {% endfor %}
+    
+    <!-- Second set of blocks (duplicate for seamless looping) -->
+    {% for block in section.blocks %}
+      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+        {% case block.type %}
+          {% when 'text' %}
+            {% case block.settings.heading_size %}
+              {% when 'h0' %} {% assign heading_class = 'h0' %}
+              {% when 'h1' %} {% assign heading_class = 'h1' %}
+              {% when 'h2' %} {% assign heading_class = 'h2' %}
+              {% when 'hxl' %} {% assign heading_class = 'hxl' %}
+              {% when 'hxxl' %} {% assign heading_class = 'hxxl' %}
+              {% else %} {% assign heading_class = 'h1' %}
+            {% endcase %}
+
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
+                  style="color: {{ block.settings.heading_color }}; font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font_family }};">
+                {{ block.settings.heading }}
+            </span>
+          
+          {% when 'emoji' %}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}" 
+                  style="font-size: {{ block.settings.emoji_size }}px;">
+              {{ block.settings.emoji }}
+            </span>
+            
+          {% when 'image' %}
+            {% if block.settings.image != blank %}
+              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+            {% endif %}
+        {% endcase %}
+      </div>
     {% endfor %}
   </div>
 </div>
