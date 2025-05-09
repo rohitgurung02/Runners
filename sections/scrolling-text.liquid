@@ -11,8 +11,6 @@
   assign padding_bottom = section.settings.padding_bottom
   assign margin_top = section.settings.margin_top
   assign margin_bottom = section.margin_bottom
- 
- 
 -%}
 
  {% for block in section.blocks %}
@@ -134,7 +132,7 @@
             
           {% when 'image' %}
             {% if block.settings.image != blank %}
-              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ image.alt }}" width="auto" height="50" loading="lazy">
             {% endif %}
         {% endcase %}
       </div>
