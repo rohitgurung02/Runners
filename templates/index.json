@@ -282,8 +282,7 @@
         "text_E7HrXc": {
           "type": "text",
           "settings": {
-            "heading": "here is the code",
-            "heading_font": "abril_fatface_n4",
+            "heading": "The Airflow tee in army green color is fantastic!",
             "custom_heading_size": 24,
             "color": "#cb3030"
           }
@@ -299,7 +298,6 @@
           "type": "text",
           "settings": {
             "heading": "your brand",
-            "heading_font": "helvetica_n4",
             "custom_heading_size": 24,
             "color": "#334fb4"
           }
@@ -320,8 +318,7 @@
         "padding_top": 4,
         "padding_bottom": 8,
         "margin_top": 0,
-        "margin_bottom": 0,
-        "custom_font": "helvetica_n4"
+        "margin_bottom": 0
       }
     }
   },
