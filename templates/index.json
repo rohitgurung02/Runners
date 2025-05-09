@@ -282,10 +282,10 @@
         "text_E7HrXc": {
           "type": "text",
           "settings": {
-            "heading": "Talk about your brand",
+            "heading": "Talk about",
             "custom_font_family": "'Times New Roman', serif",
             "custom_heading_size": 24,
-            "color_first": "#ff053d"
+            "color_first": "#05a5ff"
           }
         },
         "emoji_fe34qj": {
