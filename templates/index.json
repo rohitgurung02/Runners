@@ -313,8 +313,8 @@
       "name": "PWC - Scrolling-List #1",
       "settings": {
         "speed": 4,
-        "direction": "right",
-        "background_color": "#95a5a6",
+        "direction": "left",
+        "background_color": "black",
         "padding_top": 8,
         "padding_bottom": 20,
         "margin_top": 0,
