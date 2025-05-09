@@ -10,7 +10,15 @@
 -%}
 
 <style>
-
+  
+  {{ sec_id }} .pc-marquee-horizontal {
+    background-color: {{ background_color }};
+    overflow: hidden;
+    {% if border_width > 0 %}
+      border: {{ border_width }}px solid {{ border_color }};
+    {% endif %}
+  }
+  
   {{ sec_id }} .pc-marquee-horizontal {
     background-color: {{ background_color }};
     overflow: hidden;
@@ -82,7 +90,7 @@
   class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center" 
   style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;
   margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px;
-  background-color: {{ section.settings.color }}">
+  background-color: {{ section.settings.background_color }};">
   
   <div class="pc-track-horizontal-alt">
     <!-- First set of blocks (visible) -->
