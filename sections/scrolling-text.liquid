@@ -67,102 +67,74 @@
 
 
   /* Improved seamless animation */
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
+    @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
-  100% {
-    transform: translateX(-50%);
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
-}
 
-@keyframes scroll-right {
-  0% {
-    transform: translateX(-50%);
+  {{ sec_id }} .pc-track-horizontal-alt {
+    display: flex;
+    width: max-content; /* Ensure the track resizes to its content */
+    animation: 
+      {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} 
+      {{ speed }}s linear infinite;
   }
-  100% {
-    transform: translateX(0);
+
+  .pc-marquee-horizontal {
+    overflow: hidden;
+    white-space: nowrap;
   }
-}
-
-{{ sec_id }} .pc-track-horizontal-alt {
-  display: flex;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-{{ sec_id }} .pc-track-horizontal-alt .scroll-content {
-  display: inline-block;
-  animation: 
-    {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} 
-    {{ speed }}s linear infinite;
-}
-
 </style>
 
 <div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
   <div class="pc-track-horizontal-alt">
-    <!-- First set of blocks (visible) -->
-    {% for block in section.blocks %}
-      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-        {% case block.type %}
-          {% when 'text' %}
-            <span class="pc-marquee_text" 
-                  style="font-size: {{ block.settings.custom_heading_size }}px; 
-                         color: {{ block.settings.color }}">
-              {{ block.settings.heading }}
-            </span>
-          
-          {% when 'emoji' %}
-            <span class="pc-marquee_text" 
-                  style="font-size: {{ block.settings.emoji_size }}px;">
-              {{ block.settings.emoji }}
-            </span>
+    <!-- Render blocks twice for seamless loop -->
+    {% for _ in (1..2) %}
+      {% for block in section.blocks %}
+        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+          {% case block.type %}
+            {% when 'text' %}
+              <span class="pc-marquee_text" 
+                    style="font-size: {{ block.settings.custom_heading_size }}px; 
+                           color: {{ block.settings.color }}">
+                {{ block.settings.heading }}
+              </span>
             
-          {% when 'image' %}
-            {% if block.settings.image != blank %}
-              <img class="pc-marquee-image" 
-                   src="{{ block.settings.image | img_url: '100x' }}" 
-                   alt="{{ block.settings.image.alt }}" 
-                   width="auto" 
-                   height="50" 
-                   loading="lazy">
-            {% endif %}
-        {% endcase %}
-      </div>
-    {% endfor %}
-    
-    <!-- Second set of blocks (duplicate for seamless looping) -->
-    {% for block in section.blocks %}
-      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-        {% case block.type %}
-          {% when 'text' %}
-            <span class="pc-marquee_text" 
-                  style="font-size: {{ block.settings.custom_heading_size }}px; 
-                         color: {{ block.settings.color }}">
-              {{ block.settings.heading }}
-            </span>
-          
-          {% when 'emoji' %}
-            <span class="pc-marquee_text" 
-                  style="font-size: {{ block.settings.emoji_size }}px;">
-              {{ block.settings.emoji }}
-            </span>
-            
-          {% when 'image' %}
-            {% if block.settings.image != blank %}
-              <img class="pc-marquee-image" 
-                   src="{{ block.settings.image | img_url: '100x' }}" 
-                   alt="{{ block.settings.image.alt }}" 
-                   width="auto" 
-                   height="50" 
-                   loading="lazy">
-            {% endif %}
-        {% endcase %}
-      </div>
+            {% when 'emoji' %}
+              <span class="pc-marquee_text" 
+                    style="font-size: {{ block.settings.emoji_size }}px;">
+                {{ block.settings.emoji }}
+              </span>
+              
+            {% when 'image' %}
+              {% if block.settings.image != blank %}
+                <img class="pc-marquee-image" 
+                     src="{{ block.settings.image | img_url: '100x' }}" 
+                     alt="{{ block.settings.image.alt }}" 
+                     width="auto" 
+                     height="50" 
+                     loading="lazy">
+              {% endif %}
+          {% endcase %}
+        </div>
+      {% endfor %}
     {% endfor %}
   </div>
 </div>
+
 
 {% schema %}
 {
