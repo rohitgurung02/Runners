@@ -16,6 +16,12 @@
 <style>
   /* Font face declaration */
   {{ custom_font | font_face: font_display: 'swap' }}
+
+   {{ sec_id }} span {
+   font-family: {{ settings.custom_font.family }};
+    font-weight: {{ settings.custom_font.weight }};
+    font-style: {{ settings.custom_font.style }};
+  }
   
   {{ sec_id }} .pc-marquee-horizontal {
     background-color: {{ background_color }};
