@@ -292,7 +292,7 @@
           "type": "emoji",
           "settings": {
             "emoji": "🌟",
-            "emoji_size": 36
+            "emoji_size": 54
           }
         },
         "text_wKwp34": {
@@ -312,11 +312,11 @@
       ],
       "name": "PWC - Scrolling-List #1",
       "settings": {
-        "border_color": "#95a5a6",
-        "border_width": 2,
+        "border_color": "#34d3dd",
+        "border_width": 3,
         "background_color": "#ceeac8",
-        "speed": 15,
-        "direction": "left",
+        "speed": 10,
+        "direction": "right",
         "padding_top": 4,
         "padding_bottom": 8,
         "margin_top": 0,
