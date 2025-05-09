@@ -2,8 +2,24 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
 {%- liquid
+  assign speed = section.settings.speed
+  assign direction = section.settings.direction
+  assign background_color = section.settings.background_color
+  assign border_color = section.settings.border_color
+  assign border_width = section.settings.border_width
 
-
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+  assign margin_top = section.settings.margin_top
+  assign margin_bottom = section.settings.margin_bottom
+  assign custom_font_family = section.settings.custom_font_family
+  assign heading = block.settings.heading
+  assign custom_heading_size = block.settings.custom_heading_size
+  assign color = block.settings.color
+  assign emoji = emoji
+  assign emoji_size = emoji_size
+ 
+  
   
 -%}
 
@@ -87,13 +103,13 @@
 <div 
   class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center" 
   style="
-    padding-top: {{ section.settings.padding_top }}px; 
-    padding-bottom: {{ section.settings.padding_bottom }}px;
-    margin-top: {{ section.settings.margin_top }}px; 
-    margin-bottom: {{ section.settings.margin_bottom }}px;
-    background-color: {{ section.settings.background_color }};
-    border-top: 2px solid {{ section.settings.border_color }};
-    border-bottom: 2px solid {{ section.settings.border_color }};
+    padding-top: {{ padding_top }}px; 
+    padding-bottom: {{ padding_bottom }}px;
+    margin-top: {{ margin_top }}px; 
+    margin-bottom: {{ margin_bottom }}px;
+    background-color: {{ background_color }};
+    border-top: 2px solid {{ border_color }};
+    border-bottom: 2px solid {{ border_color }};
 ">
   
   <div class="pc-track-horizontal-alt">
@@ -103,8 +119,8 @@
         {% case block.type %}
           {% when 'text' %}
             <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
-                  style="font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font_family }}; color: {{ block.settings.color }}">
-                {{ block.settings.heading }}
+                  style="font-size: {{ custom_heading_size }}px; font-family: {{ custom_font_family }}; color: {{ color }}">
+                {{ heading }}
             </span>
           
           {% when 'emoji' %}
