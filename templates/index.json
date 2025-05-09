@@ -283,8 +283,9 @@
           "type": "text",
           "settings": {
             "heading": "Talk about your brand",
-            "heading_size": "h2",
-            "heading_color": "green"
+            "custom_font_family": "Arial, sans-serif",
+            "custom_heading_size": 24,
+            "heading_color": "purple"
           }
         },
         "emoji_fe34qj": {
@@ -298,8 +299,9 @@
           "type": "text",
           "settings": {
             "heading": "Talk about your brand",
-            "heading_size": "h2",
-            "heading_color": "blue"
+            "custom_font_family": "Arial, sans-serif",
+            "custom_heading_size": 24,
+            "heading_color": "white"
           }
         }
       },
@@ -310,9 +312,9 @@
       ],
       "name": "PWC - Scrolling-List #1",
       "settings": {
-        "speed": 25,
+        "speed": 4,
         "direction": "right",
-        "background_color": "skyblue",
+        "background_color": "#95a5a6",
         "padding_top": 8,
         "padding_bottom": 20,
         "margin_top": 0,
