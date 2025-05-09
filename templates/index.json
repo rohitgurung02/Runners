@@ -284,7 +284,7 @@
           "settings": {
             "heading": "The Airflow tee in army green color is fantastic!",
             "custom_heading_size": 24,
-            "color": "#cb3030"
+            "color": "#c12a2a"
           }
         },
         "emoji_fe34qj": {
@@ -314,7 +314,7 @@
         "border_width": 3,
         "background_color": "#ceeac8",
         "speed": 15,
-        "direction": "left",
+        "direction": "right",
         "padding_top": 4,
         "padding_bottom": 8,
         "margin_top": 0,
