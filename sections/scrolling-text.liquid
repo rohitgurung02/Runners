@@ -43,21 +43,11 @@
 
   /* Improved Animation Definitions */
   @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
+   transform: translateX(calc(-100% / var(--item-count) * var(--item-count) / 2))
   }
 
   @keyframes scroll-right {
-    0% {
-      transform: translateX(-50%);
-    }
-    100% {
-      transform: translateX(0);
-    }
+    translateX(calc(-100% / var(--item-count) * var(--item-count) / 2))
   }
   
   /* Apply animation based on direction */
