@@ -315,7 +315,7 @@
         "border_color": "#95a5a6",
         "border_width": 2,
         "background_color": "#ceeac8",
-        "speed": 4,
+        "speed": 15,
         "direction": "left",
         "padding_top": 4,
         "padding_bottom": 8,
