@@ -91,7 +91,7 @@
         {% case block.type %}
           {% when 'text' %}
             <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
-                  style="color: {{ block.settings.heading_color }}; font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font_family }};">
+                  style="color: {{ block.settings.color_first }}; font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font_family }};">
                 {{ block.settings.heading }}
             </span>
           
