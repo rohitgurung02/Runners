@@ -5,9 +5,19 @@
   assign speed = section.settings.speed
   assign direction = section.settings.direction
   assign background_color = section.settings.background_color
+  assign border_color = section.settings.border_color
+  assign border_width = section.settings.border_width
 -%}
 
 <style>
+
+  {{ sec_id }} .pc-marquee-horizontal {
+    background-color: {{ background_color }};
+    overflow: hidden;
+    {% if border_width > 0 %}
+      border: {{ border_width }}px solid {{ border_color }};
+    {% endif %}
+  }
   
   {{ sec_id }} .pc-track-horizontal-alt {
     height: 72px;
