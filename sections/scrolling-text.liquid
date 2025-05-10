@@ -13,6 +13,15 @@
   assign custom_font = section.settings.custom_font
 -%}
 
+{%- liquid
+  assign heading = block.settings.heading
+  assign custom_heading_size = section.settings.custom_heading_size
+  assign color = section.settings.color
+  assign emoji = section.settings.emoji 
+  assign emoji_size = section.settings.emoji_size
+  assign image = section.settings.image 
+-%}
+
 <style>
   /* Font face declaration */
   {{ custom_font | font_face: font_display: 'swap' }}
