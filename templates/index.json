@@ -43,6 +43,7 @@
         "text_8LaaLB",
         "buttons_drzFfz"
       ],
+      "disabled": true,
       "name": "Video Banner",
       "settings": {
         "video_url": "https://cdn.shopify.com/videos/c/o/v/a6cc51260b324888b676e57ab24f3524.mp4",
@@ -152,6 +153,7 @@
         "text_BhpFRh",
         "buttons_BCcekY"
       ],
+      "disabled": true,
       "name": "Image Banner Clone",
       "settings": {
         "image": "shopify://shop_images/X365_Banner.webp",
@@ -257,6 +259,7 @@
         "column_4izy4Y",
         "column_7HVBD9"
       ],
+      "disabled": true,
       "name": "multicolumn-star-column",
       "settings": {
         "title": "<em><strong>MEN SPOTLIGHT</strong></em>",
