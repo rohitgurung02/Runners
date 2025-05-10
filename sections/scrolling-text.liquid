@@ -13,25 +13,14 @@
   assign custom_font = section.settings.custom_font
 -%}
 
- {% for block in section.blocks %}
-  {%- liquid
-    assign heading = block.settings.heading
-    assign custom_heading_size = block.settings.custom_heading_size
-    assign color = block.settings.color
-    assign emoji = block.settings.emoji
-    assign emoji_size = block.settings.emoji_size
-    assign image = block.settings.image
-  -%}
-{% endfor %}
-
 <style>
   /* Font face declaration */
   {{ custom_font | font_face: font_display: 'swap' }}
 
-   {{ sec_id }} span {
-   font-family: {{ settings.custom_font.family }};
-    font-weight: {{ settings.custom_font.weight }};
-    font-style: {{ settings.custom_font.style }};
+  {{ sec_id }} span {
+    font-family: {{ custom_font.family }};
+    font-weight: {{ custom_font.weight }};
+    font-style: {{ custom_font.style }};
   }
   
   {{ sec_id }} .pc-marquee-horizontal {
@@ -54,11 +43,13 @@
     gap: 20px;
     will-change: transform;
     width: max-content;
+    animation: 
+      {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} 
+      {{ speed }}s linear infinite;
   }
   
   {{ sec_id }} .pc-marquee-element {
     flex-shrink: 0;
-    margin-top: 10px;
     display: flex;
     align-items: center;
   }
@@ -76,8 +67,7 @@
     object-fit: contain;
   }
 
-  /* Improved seamless animation */
-    @keyframes scroll-left {
+  @keyframes scroll-left {
     0% {
       transform: translateX(0);
     }
@@ -95,58 +85,31 @@
     }
   }
 
-  {{ sec_id }} .pc-track-horizontal-alt {
-    display: flex;
-    width: max-content; /* Ensure the track resizes to its content */
-    animation: 
-      {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} 
-      {{ speed }}s linear infinite;
-  }
-
   .pc-marquee-horizontal {
     overflow: hidden;
     white-space: nowrap;
   }
 </style>
 
-<div class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center">
+<div class="pc-marquee-horizontal">
   <div class="pc-track-horizontal-alt">
-    <!-- Render blocks twice for seamless loop -->
     {% for _ in (1..2) %}
       {% for block in section.blocks %}
-        {% for block in section.blocks %}
-  {%- liquid
-    assign heading = block.settings.heading
-    assign custom_heading_size = block.settings.custom_heading_size
-    assign color = block.settings.color
-    assign emoji = block.settings.emoji
-    assign emoji_size = block.settings.emoji_size
-    assign image = block.settings.image
-  -%}
-{% endfor %}
-        <!-- Liquid assignments scoped to each block -->
-        
         <div class="pc-marquee-element" {{ block.shopify_attributes }}>
           {% case block.type %}
             {% when 'text' %}
-              <span class="pc-marquee_text" 
-                    style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
-                {{ heading }}
+              <span class="pc-marquee_text" style="font-size: {{ block.settings.custom_heading_size }}px; color: {{ block.settings.color }}">
+                {{ block.settings.heading }}
               </span>
-            
             {% when 'emoji' %}
-              <span class="pc-marquee_text" 
-                    style="font-size: {{ emoji_size }}px;">
-                {{ emoji }}
+              <span class="pc-marquee_text" style="font-size: {{ block.settings.emoji_size }}px;">
+                {{ block.settings.emoji }}
               </span>
-              
             {% when 'image' %}
-              {% if image != blank %}
+              {% if block.settings.image != blank %}
                 <img class="pc-marquee-image" 
-                     src="{{ image | img_url: '100x' }}" 
-                     alt="{{ image.alt }}" 
-                     width="auto" 
-                     height="50" 
+                     src="{{ block.settings.image | img_url: '100x' }}" 
+                     alt="{{ block.settings.image.alt }}" 
                      loading="lazy">
               {% endif %}
           {% endcase %}
@@ -155,6 +118,8 @@
     {% endfor %}
   </div>
 </div>
+
+
 
 {% schema %}
 {
