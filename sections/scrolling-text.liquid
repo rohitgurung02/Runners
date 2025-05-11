@@ -80,101 +80,67 @@
     object-fit: contain;
   }
 
-    @keyframes scroll-left {
+  @keyframes scroll-left {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
     }
   }
 
   @keyframes scroll-right {
     0% {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
     }
     100% {
       transform: translateX(0);
     }
   }
 
-  {{ sec_id }} .pc-track-horizontal-alt {
-    height: 72px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    will-change: transform;
-    width: max-content;
-    animation: 
-      {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} 
-      {{ speed }}s linear infinite;
-  }
-
-  {{ sec_id }} .pc-marquee-horizontal {
-    background-color: {{ background_color }};
+  .pc-marquee-horizontal {
     overflow: hidden;
     white-space: nowrap;
-    position: relative;
-  }
-
-  {{ sec_id }} .pc-track-wrapper {
-    display: flex;
   }
 </style>
 
 <div class="pc-marquee-horizontal">
-  <div class="pc-track-wrapper">
-    <div class="pc-track-horizontal-alt">
-      {% for block in section.blocks %}
-        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-          {% case block.type %}
-            {% when 'text' %}
-              <span class="pc-marquee_text" style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
-                {{ heading }}
-              </span>
-            {% when 'emoji' %}
-              <span class="pc-marquee_text" style="font-size: {{ emoji_size }}px;">
-                {{ emoji }}
-              </span>
-            {% when 'image' %}
-              {% if image != blank %}
-                <img class="pc-marquee-image" 
-                     src="{{ image | img_url: '100x' }}" 
-                     alt="{{ image.alt }}" 
-                     loading="lazy">
-              {% endif %}
-          {% endcase %}
-        </div>
-      {% endfor %}
-    </div>
+  <div class="pc-track-horizontal-alt">
+    {% for _ in (1..2) %}
+     {% for block in section.blocks %}
+  {%- liquid
+    assign heading = block.settings.heading
+    assign custom_heading_size = block.settings.custom_heading_size
+    assign color = block.settings.color
+    assign emoji = block.settings.emoji 
+    assign emoji_size = block.settings.emoji_size
+    assign image = block.settings.image 
+  -%}
+  
+  <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+    {% case block.type %}
+      {% when 'text' %}
+        <span class="pc-marquee_text" style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
+          {{ heading }}
+        </span>
+      {% when 'emoji' %}
+        <span class="pc-marquee_text" style="font-size: {{ emoji_size }}px;">
+          {{ emoji }}
+        </span>
+      {% when 'image' %}
+        {% if image != blank %}
+          <img class="pc-marquee-image" 
+               src="{{ image | img_url: '100x' }}" 
+               alt="{{ image.alt }}" 
+               loading="lazy">
+        {% endif %}
+    {% endcase %}
+  </div>
+{% endfor %}
 
-    <!-- Duplicate for smooth looping -->
-    <div class="pc-track-horizontal-alt">
-      {% for block in section.blocks %}
-        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-          {% case block.type %}
-            {% when 'text' %}
-              <span class="pc-marquee_text" style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
-                {{ heading }}
-              </span>
-            {% when 'emoji' %}
-              <span class="pc-marquee_text" style="font-size: {{ emoji_size }}px;">
-                {{ emoji }}
-              </span>
-            {% when 'image' %}
-              {% if image != blank %}
-                <img class="pc-marquee-image" 
-                     src="{{ image | img_url: '100x' }}" 
-                     alt="{{ image.alt }}" 
-                     loading="lazy">
-              {% endif %}
-          {% endcase %}
-        </div>
-      {% endfor %}
-    </div>
+    {% endfor %}
   </div>
 </div>
-
 
 {% schema %}
 {
