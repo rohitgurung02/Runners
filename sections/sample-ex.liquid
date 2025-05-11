@@ -85,24 +85,23 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-1 * var(--content-width)));
+      transform: translateX(-50%);
     }
   }
 
   @keyframes scroll-right {
     0% {
-      transform: translateX(calc(-1 * var(--content-width)));
+      transform: translateX(-50%);
     }
     100% {
       transform: translateX(0);
     }
   }
 
-
-  
-
-
- 
+  .pc-marquee-horizontal {
+    overflow: hidden;
+    white-space: nowrap;
+  }
 </style>
 
 <div class="pc-marquee-horizontal">
