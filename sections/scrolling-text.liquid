@@ -105,42 +105,58 @@
 </style>
 
 <div class="pc-marquee-horizontal">
-  <div class="pc-track-horizontal-alt">
-    {% for _ in (1..2) %}
-     {% for block in section.blocks %}
-  {%- liquid
-    assign heading = block.settings.heading
-    assign custom_heading_size = block.settings.custom_heading_size
-    assign color = block.settings.color
-    assign emoji = block.settings.emoji 
-    assign emoji_size = block.settings.emoji_size
-    assign image = block.settings.image 
-  -%}
-  
-  <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-    {% case block.type %}
-      {% when 'text' %}
-        <span class="pc-marquee_text" style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
-          {{ heading }}
-        </span>
-      {% when 'emoji' %}
-        <span class="pc-marquee_text" style="font-size: {{ emoji_size }}px;">
-          {{ emoji }}
-        </span>
-      {% when 'image' %}
-        {% if image != blank %}
-          <img class="pc-marquee-image" 
-               src="{{ image | img_url: '100x' }}" 
-               alt="{{ image.alt }}" 
-               loading="lazy">
-        {% endif %}
-    {% endcase %}
-  </div>
-{% endfor %}
+  <div class="pc-track-wrapper" style="--content-width: 31.3731%">
+    <div class="pc-track-horizontal-alt">
+      {% for block in section.blocks %}
+        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+          {% case block.type %}
+            {% when 'text' %}
+              <span class="pc-marquee_text" style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
+                {{ heading }}
+              </span>
+            {% when 'emoji' %}
+              <span class="pc-marquee_text" style="font-size: {{ emoji_size }}px;">
+                {{ emoji }}
+              </span>
+            {% when 'image' %}
+              {% if image != blank %}
+                <img class="pc-marquee-image" 
+                     src="{{ image | img_url: '100x' }}" 
+                     alt="{{ image.alt }}" 
+                     loading="lazy">
+              {% endif %}
+          {% endcase %}
+        </div>
+      {% endfor %}
+    </div>
 
-    {% endfor %}
+    <!-- Duplicate the content for smooth scroll -->
+    <div class="pc-track-horizontal-alt">
+      {% for block in section.blocks %}
+        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+          {% case block.type %}
+            {% when 'text' %}
+              <span class="pc-marquee_text" style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
+                {{ heading }}
+              </span>
+            {% when 'emoji' %}
+              <span class="pc-marquee_text" style="font-size: {{ emoji_size }}px;">
+                {{ emoji }}
+              </span>
+            {% when 'image' %}
+              {% if image != blank %}
+                <img class="pc-marquee-image" 
+                     src="{{ image | img_url: '100x' }}" 
+                     alt="{{ image.alt }}" 
+                     loading="lazy">
+              {% endif %}
+          {% endcase %}
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
+
 
 {% schema %}
 {
