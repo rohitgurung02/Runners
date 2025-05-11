@@ -80,31 +80,28 @@
     object-fit: contain;
   }
 
- {{ sec_id }} .pc-marquee-element{
-    margin: 0 auto;
-  white-space: nowrap;
-  overflow: hidden;
-  position: absolute;
- }
-
-  {{ sec_id }} .pc-marquee-element span {
-  display: inline-block;
-  padding-left: 100%;
-  animation: marquee 5s linear infinite;
-  }
-  
-  {{ sec_id }} .pc-marquee-element span {
-  animation-delay: 2.5s;
+ @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
 
-@keyframes pc-marquee-element {
-  0% {
-    transform: translate(0, 0);
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
-  100% {
-    transform: translate(-100%, 0);
+
+  .pc-marquee-horizontal {
+    overflow: hidden;
+    white-space: nowrap;
   }
-}
 </style>
 
 <div class="pc-marquee-horizontal">
