@@ -288,7 +288,7 @@
           "type": "text",
           "settings": {
             "heading": "The Airflow tee in army green color is fantastic!",
-            "custom_heading_size": 24,
+            "custom_heading_size": 28,
             "color": "#c12a2a"
           }
         },
@@ -315,9 +315,9 @@
       ],
       "name": "PWC - Scrolling-List #1",
       "settings": {
-        "border_color": "#34d3dd",
-        "border_width": 3,
-        "background_color": "#ceeac8",
+        "border_color": "#538d91",
+        "border_width": 4,
+        "background_color": "#c8d6ea",
         "speed": 15,
         "direction": "right",
         "padding_top": 4,
