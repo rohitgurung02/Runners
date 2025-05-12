@@ -13,6 +13,19 @@
   assign custom_font = section.settings.custom_font
 -%}
 
+  {%- liquid
+  assign heading = block.settings.heading
+  assign border_color = section.settings.border_color
+  assign border_width = section.settings.border_width
+  assign background_color = section.settings.background_color 
+  assign direction = section.settings.direction
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+  assign margin_top = section.settings.margin_top
+  assign margin_bottom = section.settings.margin_bottom
+  assign custom_font = section.settings.custom_font
+-%}
+
 <style>
   /* Font face declaration */
   {{ custom_font | font_face: font_display: 'swap' }}
@@ -34,39 +47,23 @@
     padding-bottom: {{ padding_bottom }}px;
     margin-top: {{ margin_top }}px;
     margin-bottom: {{ margin_bottom }}px;
-    white-space: nowrap;
-    position: relative;
   }
   
   {{ sec_id }} .pc-track-horizontal-alt {
-    display: inline-flex;
+    height: 72px;
+    display: flex;
+    align-items: center;
     gap: 20px;
     will-change: transform;
+    width: max-content;
     animation: 
-      {% if direction == 'left' %}scroll-marquee-left{% else %}scroll-marquee-right{% endif %} 
+      {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} 
       {{ speed }}s linear infinite;
   }
-
-  @keyframes scroll-marquee-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  @keyframes scroll-marquee-right {
-    0% {
-      transform: translateX(-50%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-
+  
   {{ sec_id }} .pc-marquee-element {
-    display: inline-flex;
+    flex-shrink: 0;
+    display: flex;
     align-items: center;
   }
   
@@ -82,72 +79,68 @@
     width: auto;
     object-fit: contain;
   }
+
+ @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .pc-marquee-horizontal {
+    overflow: hidden;
+    white-space: nowrap;
+  }
 </style>
 
 <div class="pc-marquee-horizontal">
   <div class="pc-track-horizontal-alt">
     {% for _ in (1..2) %}
-      {% for block in section.blocks %}
-        {%- liquid
-          assign heading = block.settings.heading
-          assign custom_heading_size = block.settings.custom_heading_size
-          assign color = block.settings.color
-          assign emoji = block.settings.emoji 
-          assign emoji_size = block.settings.emoji_size
-          assign image = block.settings.image 
-        -%}
-        
-        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-          {% case block.type %}
-            {% when 'text' %}
-              <span class="pc-marquee_text" style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
-                {{ heading }}
-              </span>
-            {% when 'emoji' %}
-              <span class="pc-marquee_text" style="font-size: {{ emoji_size }}px;">
-                {{ emoji }}
-              </span>
-            {% when 'image' %}
-              {% if image != blank %}
-                <img class="pc-marquee-image" 
-                     src="{{ image | img_url: '100x' }}" 
-                     alt="{{ image.alt }}" 
-                     loading="lazy">
-              {% endif %}
-          {% endcase %}
-        </div>
-      {% endfor %}
+     {% for block in section.blocks %}
+  {%- liquid
+    assign heading = block.settings.heading
+    assign custom_heading_size = block.settings.custom_heading_size
+    assign color = block.settings.color
+    assign emoji = block.settings.emoji 
+    assign emoji_size = block.settings.emoji_size
+    assign image = block.settings.image 
+  -%}
+  
+  <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+    {% case block.type %}
+      {% when 'text' %}
+        <span class="pc-marquee_text" style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
+          {{ heading }}
+        </span>
+      {% when 'emoji' %}
+        <span class="pc-marquee_text" style="font-size: {{ emoji_size }}px;">
+          {{ emoji }}
+        </span>
+      {% when 'image' %}
+        {% if image != blank %}
+          <img class="pc-marquee-image" 
+               src="{{ image | img_url: '100x' }}" 
+               alt="{{ image.alt }}" 
+               loading="lazy">
+        {% endif %}
+    {% endcase %}
+  </div>
+{% endfor %}
+
     {% endfor %}
-    <!-- Duplicate the track for seamless looping -->
-    <div class="pc-track-horizontal-alt">
-      {% for _ in (1..2) %}
-        {% for block in section.blocks %}
-          <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-            {% case block.type %}
-              {% when 'text' %}
-                <span class="pc-marquee_text" style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
-                  {{ heading }}
-                </span>
-              {% when 'emoji' %}
-                <span class="pc-marquee_text" style="font-size: {{ emoji_size }}px;">
-                  {{ emoji }}
-                </span>
-              {% when 'image' %}
-                {% if image != blank %}
-                  <img class="pc-marquee-image" 
-                       src="{{ image | img_url: '100x' }}" 
-                       alt="{{ image.alt }}" 
-                       loading="lazy">
-                {% endif %}
-            {% endcase %}
-          </div>
-        {% endfor %}
-      {% endfor %}
-    </div>
   </div>
 </div>
-
-
 
 {% schema %}
 {
