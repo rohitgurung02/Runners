@@ -1,4 +1,4 @@
-{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+""{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
 {%- liquid
   assign speed = section.settings.speed
@@ -42,15 +42,26 @@
     display: inline-flex;
     gap: 20px;
     will-change: transform;
-    animation: scroll-marquee {{ speed }}s linear infinite;
+    animation: 
+      {% if direction == 'left' %}scroll-marquee-left{% else %}scroll-marquee-right{% endif %} 
+      {{ speed }}s linear infinite;
   }
 
-  @keyframes scroll-marquee {
+  @keyframes scroll-marquee-left {
     0% {
-      transform: translateX(100%);
+      transform: translateX(0);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes scroll-marquee-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
 
@@ -107,8 +118,35 @@
         </div>
       {% endfor %}
     {% endfor %}
+    <!-- Duplicate the track for seamless looping -->
+    <div class="pc-track-horizontal-alt">
+      {% for _ in (1..2) %}
+        {% for block in section.blocks %}
+          <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+            {% case block.type %}
+              {% when 'text' %}
+                <span class="pc-marquee_text" style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
+                  {{ heading }}
+                </span>
+              {% when 'emoji' %}
+                <span class="pc-marquee_text" style="font-size: {{ emoji_size }}px;">
+                  {{ emoji }}
+                </span>
+              {% when 'image' %}
+                {% if image != blank %}
+                  <img class="pc-marquee-image" 
+                       src="{{ image | img_url: '100x' }}" 
+                       alt="{{ image.alt }}" 
+                       loading="lazy">
+                {% endif %}
+            {% endcase %}
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
   </div>
-</div>
+</div>""
+
 
 {% schema %}
 {
