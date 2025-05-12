@@ -93,7 +93,7 @@
 
 <div class="pc-marquee-horizontal">
   <div class="pc-track-horizontal-alt">
-    {% for _ in (1..2) %}
+    
      {% for block in section.blocks %}
   {%- liquid
     assign heading = block.settings.heading
@@ -123,7 +123,7 @@
         {% endif %}
     {% endcase %}
   </div>
-{% endfor %}
+
 
     {% endfor %}
   </div>
