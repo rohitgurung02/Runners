@@ -82,12 +82,12 @@
 
  
 
-  .pc-marquee_text {
-  transform: translateX(50%);
+  {{ sec_id }} .pc-marquee_text {
+ 
   transition: transform 0.3s ease; /* Adjust duration (0.3s) and timing function (ease) as needed */
 }
 
-.pc-marquee_text span {
+ {{ sec_id }} .pc-marquee_text span {
   transform: translateX(0%);
 }
 
