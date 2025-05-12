@@ -80,23 +80,18 @@
     object-fit: contain;
   }
 
- @keyframes scroll-left {
-   0% {
-    transform: translate(0,0);
-  }
-  100% {
-    transform: translate(100%,0);
-  }
-  }
+.marquee2 span {
+  animation-delay: 2.5s;
+}
 
-  @keyframes scroll-right {
-   0% {
-    transform: translate(-100%);
+@keyframes pc-marquee_text {
+  0% {
+    transform: translate(0, 0);
   }
   100% {
-    transform: translate(-0);
+    transform: translate(-100%, 0);
   }
-  }
+}
 
   .pc-marquee-horizontal {
     overflow: hidden;
