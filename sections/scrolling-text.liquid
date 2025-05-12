@@ -80,6 +80,12 @@
     object-fit: contain;
   }
 
+  {{ sec_id }} .pc-marquee-element span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 5s linear infinite;
+}
+
  @keyframes scroll-left {
     0% {
       transform: translateX(0);
