@@ -13,6 +13,19 @@
   assign custom_font = section.settings.custom_font
 -%}
 
+  {%- liquid
+  assign heading = block.settings.heading
+  assign border_color = section.settings.border_color
+  assign border_width = section.settings.border_width
+  assign background_color = section.settings.background_color 
+  assign direction = section.settings.direction
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+  assign margin_top = section.settings.margin_top
+  assign margin_bottom = section.settings.margin_bottom
+  assign custom_font = section.settings.custom_font
+-%}
+
 <style>
   /* Font face declaration */
   {{ custom_font | font_face: font_display: 'swap' }}
