@@ -84,14 +84,23 @@
   animation-delay: 2.5s;
 }
 
-@keyframes pc-marquee_text {
-  0% {
-    transform: translate(0, 0);
+ @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
-  100% {
-    transform: translate(-100%, 0);
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
-}
 
   .pc-marquee-horizontal {
     overflow: hidden;
