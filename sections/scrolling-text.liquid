@@ -13,6 +13,19 @@
   assign custom_font = section.settings.custom_font
 -%}
 
+  {%- liquid
+  assign heading = block.settings.heading
+  assign border_color = section.settings.border_color
+  assign border_width = section.settings.border_width
+  assign background_color = section.settings.background_color 
+  assign direction = section.settings.direction
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+  assign margin_top = section.settings.margin_top
+  assign margin_bottom = section.settings.margin_bottom
+  assign custom_font = section.settings.custom_font
+-%}
+
 <style>
   /* Font face declaration */
   {{ custom_font | font_face: font_display: 'swap' }}
@@ -26,7 +39,6 @@
   {{ sec_id }} .pc-marquee-horizontal {
     background-color: {{ background_color }};
     overflow: hidden;
-    display: flex;
     {% if border_width > 0 %}
       border-top: {{ border_width }}px solid {{ border_color }};
       border-bottom: {{ border_width }}px solid {{ border_color }};
@@ -38,10 +50,15 @@
   }
   
   {{ sec_id }} .pc-track-horizontal-alt {
+    height: 72px;
     display: flex;
     align-items: center;
     gap: 20px;
-    animation: scroll-loop {{ speed }}s linear infinite;
+    will-change: transform;
+    width: max-content;
+    animation: 
+      {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} 
+      {{ speed }}s linear infinite;
   }
   
   {{ sec_id }} .pc-marquee-element {
@@ -63,10 +80,7 @@
     object-fit: contain;
   }
 
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-
-  @keyframes scroll-loop {
+ @keyframes scroll-left {
     0% {
       transform: translateX(0);
     }
@@ -74,45 +88,59 @@
       transform: translateX(-50%);
     }
   }
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .pc-marquee-horizontal {
+    overflow: hidden;
+    white-space: nowrap;
+  }
 </style>
 
 <div class="pc-marquee-horizontal">
   <div class="pc-track-horizontal-alt">
     {% for _ in (1..2) %}
-      {% for block in section.blocks %}
-        {%- liquid
-          assign heading = block.settings.heading
-          assign custom_heading_size = block.settings.custom_heading_size
-          assign color = block.settings.color
-          assign emoji = block.settings.emoji 
-          assign emoji_size = block.settings.emoji_size
-          assign image = block.settings.image 
-        -%}
-        
-        <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-          {% case block.type %}
-            {% when 'text' %}
-              <span class="pc-marquee_text" style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
-                {{ heading }}
-              </span>
-            {% when 'emoji' %}
-              <span class="pc-marquee_text" style="font-size: {{ emoji_size }}px;">
-                {{ emoji }}
-              </span>
-            {% when 'image' %}
-              {% if image != blank %}
-                <img class="pc-marquee-image" 
-                     src="{{ image | img_url: '100x' }}" 
-                     alt="{{ image.alt }}" 
-                     loading="lazy">
-              {% endif %}
-          {% endcase %}
-        </div>
-      {% endfor %}
+     {% for block in section.blocks %}
+  {%- liquid
+    assign heading = block.settings.heading
+    assign custom_heading_size = block.settings.custom_heading_size
+    assign color = block.settings.color
+    assign emoji = block.settings.emoji 
+    assign emoji_size = block.settings.emoji_size
+    assign image = block.settings.image 
+  -%}
+  
+  <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+    {% case block.type %}
+      {% when 'text' %}
+        <span class="pc-marquee_text" style="font-size: {{ custom_heading_size }}px; color: {{ color }}">
+          {{ heading }}
+        </span>
+      {% when 'emoji' %}
+        <span class="pc-marquee_text" style="font-size: {{ emoji_size }}px;">
+          {{ emoji }}
+        </span>
+      {% when 'image' %}
+        {% if image != blank %}
+          <img class="pc-marquee-image" 
+               src="{{ image | img_url: '100x' }}" 
+               alt="{{ image.alt }}" 
+               loading="lazy">
+        {% endif %}
+    {% endcase %}
+  </div>
+{% endfor %}
+
     {% endfor %}
   </div>
 </div>
-
 
 {% schema %}
 {
