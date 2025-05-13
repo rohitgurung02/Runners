@@ -303,8 +303,8 @@
           "type": "text",
           "settings": {
             "heading": "breathable, and perfect for staying cool during workouts.",
-            "custom_heading_size": 18,
-            "color": "#334fb4"
+            "custom_heading_size": 33,
+            "color": "#15324e"
           }
         }
       },
@@ -316,10 +316,10 @@
       "name": "PWC - Scrolling-List #1",
       "settings": {
         "border_color": "#538d91",
-        "border_width": 4,
-        "background_color": "#c8d6ea",
-        "speed": 15,
-        "direction": "right",
+        "border_width": 6,
+        "background_color": "#5385cd",
+        "speed": 11,
+        "direction": "left",
         "padding_top": 4,
         "padding_bottom": 8,
         "margin_top": 0,
