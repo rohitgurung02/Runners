@@ -326,12 +326,12 @@
         "margin_bottom": 0
       }
     },
-    "featured_collection_9wwdaJ": {
-      "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.name",
+    "featured_collection_copy_kaw7iD": {
+      "type": "featured-collection-copy",
+      "name": "PWC - Featuted-Collection #1",
       "settings": {
         "collection": "blissthera",
-        "products_to_show": 4,
+        "products_to_show": 8,
         "title": "Featured collection",
         "heading_size": "h1",
         "description": "",
@@ -363,6 +363,6 @@
     "image_banner_clone_9mxAep",
     "multicolumn_star_clone_Bjwix8",
     "scrolling_text_dyAFd8",
-    "featured_collection_9wwdaJ"
+    "featured_collection_copy_kaw7iD"
   ]
 }
