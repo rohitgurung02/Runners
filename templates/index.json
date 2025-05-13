@@ -295,7 +295,7 @@
         "text_TiVKyD": {
           "type": "text",
           "settings": {
-            "new_text": "Welcome to our store",
+            "new_text": "this is just a text",
             "text_color": "#ffffff",
             "text_transform": "uppercase",
             "font_weight": "bold",
