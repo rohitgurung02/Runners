@@ -1,6 +1,24 @@
 <div class="custom-section">
   
 </div>
+
+<div class="custom-section">
+  {% for block in section.blocks %}
+    <div class="block-item" style="color: {{ block.settings.text_color }}">
+      {% if block.type == 'text' %}
+        <p>{{ block.settings.heading }}</p>
+      {% elsif block.type == 'heading' %}
+        <h2>{{ block.settings.heading }}</h2>
+      {% elsif block.type == 'form' %}
+        <form action="#" method="post">
+          <input type="text" placeholder="Enter your text">
+          <button type="submit">Submit</button>
+        </form>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
 {% schema %}
 {
   "name": "Pwc Marquee",
@@ -22,7 +40,37 @@
           "id": "text_color",
           "label": "Text color",
           "default": "#ffffff"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Main Heading",
+          "label": "Heading"
         },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#ffffff"
+        }
+      ]
+    },
+    {
+      "type": "form",
+      "name": "Form",
+      "settings": [
+        {
+          "type": "text",
+          "id": "placeholder",
+          "default": "Enter your text",
+          "label": "Placeholder Text"
+        }
       ]
     }
   ],
@@ -31,13 +79,21 @@
       "name": "Group"
     },
     {
-      "name": "learn custom block",
+      "name": "Column",
+      "settings": {},
       "blocks": [
         {
           "type": "text"
+        },
+        {
+          "type": "heading"
+        },
+        {
+          "type": "form"
         }
       ]
     }
   ]
 }
 {% endschema %}
+
