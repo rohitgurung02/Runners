@@ -357,7 +357,7 @@
           "type": "column",
           "settings": {
             "heading": "heading three",
-            "text_color": "#ffffff"
+            "text_color": "#121212"
           }
         }
       },
