@@ -1,7 +1,7 @@
 <div class="custom-section">
   {% for block in section.blocks %}
     <div class="block-item" style="color: {{ block.settings.text_color }}">
-      {% if block.type == 'heading' %}
+      {% if block.type == 'column' %}
         <p>{{ block.settings.heading }}</p>
       {% elsif block.type == 'form' %}
         <form action="#" method="post">
