@@ -349,8 +349,8 @@
         "column_BhD7EX": {
           "type": "column",
           "settings": {
-            "heading": "Main Heading",
-            "text_color": "#ffffff"
+            "heading": "heading two",
+            "text_color": "#121212"
           }
         },
         "column_YnkXH8": {
