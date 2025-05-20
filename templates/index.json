@@ -296,52 +296,28 @@
           "type": "text",
           "settings": {
             "new_text": "this is just a text",
-            "text_color": "#ffffff",
-            "text_transform": "uppercase",
-            "font_weight": "bold",
-            "text_decoration": "none",
-            "font_style": "normal",
-            "letter_spacing": 0,
-            "text_color_mobile": "#ffffff",
-            "text_transform_mobile": "uppercase",
-            "font_weight_mobile": "bold",
-            "text_decoration_mobile": "none",
-            "font_style_mobile": "default",
-            "letter_spacing_mobile": 0
+            "text_color": "#ffffff"
           }
         },
         "icon_AgkMkQ": {
           "type": "icon",
           "settings": {
             "icon_name": "shopping-cart",
-            "icon_color": "#ff0000",
-            "icon_color_mobile": "#ff0000"
+            "icon_color": "#ff0000"
           }
         },
         "text_WymJFJ": {
           "type": "text",
           "settings": {
             "new_text": "Free shipping on all orders",
-            "text_color": "#00ff00",
-            "text_transform": "none",
-            "font_weight": "normal",
-            "text_decoration": "underline",
-            "font_style": "italic",
-            "letter_spacing": 0,
-            "text_color_mobile": "#00cc00",
-            "text_transform_mobile": "none",
-            "font_weight_mobile": "default",
-            "text_decoration_mobile": "none",
-            "font_style_mobile": "default",
-            "letter_spacing_mobile": 0
+            "text_color": "#00ff00"
           }
         },
         "icon_Yxkce9": {
           "type": "icon",
           "settings": {
             "icon_name": "star",
-            "icon_color": "#ffff00",
-            "icon_color_mobile": "#ffff00"
+            "icon_color": "#ffff00"
           }
         }
       },
@@ -356,23 +332,41 @@
         "colorBackground": "#000000",
         "colorText": "#ffffff",
         "link": "",
-        "direction": "left",
-        "marquee_height": 46,
-        "font_size": 24,
-        "icon_size": 24,
-        "padding_horizontal": 20,
-        "image_width": 40,
-        "image_height": 40,
-        "speed": 12,
-        "colorBackground_mobile": "#000000",
-        "colorText_mobile": "#ffffff",
-        "marquee_height_mobile": 36,
-        "font_size_mobile": 16,
-        "icon_size_mobile": 16,
-        "padding_horizontal_mobile": 10,
-        "image_width_mobile": 30,
-        "image_height_mobile": 30
+        "direction": "left"
       }
+    },
+    "pwc_block_section_rqRCkP": {
+      "type": "pwc-block-section",
+      "blocks": {
+        "column_8RWt4R": {
+          "type": "column",
+          "settings": {
+            "heading": "Main Heading",
+            "text_color": "#ffffff"
+          }
+        },
+        "column_BhD7EX": {
+          "type": "column",
+          "settings": {
+            "heading": "Main Heading",
+            "text_color": "#ffffff"
+          }
+        },
+        "column_YnkXH8": {
+          "type": "column",
+          "settings": {
+            "heading": "Main Heading",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "column_8RWt4R",
+        "column_BhD7EX",
+        "column_YnkXH8"
+      ],
+      "name": "Lean code group",
+      "settings": {}
     }
   },
   "order": [
@@ -382,6 +376,7 @@
     "image_banner_clone_9mxAep",
     "multicolumn_star_clone_Bjwix8",
     "featured_collection_copy_kaw7iD",
-    "pwc_scrolling_text_1_infR3x"
+    "pwc_scrolling_text_1_infR3x",
+    "pwc_block_section_rqRCkP"
   ]
 }
