@@ -335,39 +335,6 @@
         "link": "",
         "direction": "left"
       }
-    },
-    "pwc_block_section_rqRCkP": {
-      "type": "pwc-block-section",
-      "blocks": {
-        "column_8RWt4R": {
-          "type": "column",
-          "settings": {
-            "heading": "heading one",
-            "text_color": "#121212"
-          }
-        },
-        "column_BhD7EX": {
-          "type": "column",
-          "settings": {
-            "heading": "heading two",
-            "text_color": "#121212"
-          }
-        },
-        "column_YnkXH8": {
-          "type": "column",
-          "settings": {
-            "heading": "heading three",
-            "text_color": "#121212"
-          }
-        }
-      },
-      "block_order": [
-        "column_8RWt4R",
-        "column_BhD7EX",
-        "column_YnkXH8"
-      ],
-      "name": "Lean code group",
-      "settings": {}
     }
   },
   "order": [
@@ -377,7 +344,6 @@
     "image_banner_clone_9mxAep",
     "multicolumn_star_clone_Bjwix8",
     "featured_collection_copy_kaw7iD",
-    "pwc_scrolling_text_1_infR3x",
-    "pwc_block_section_rqRCkP"
+    "pwc_scrolling_text_1_infR3x"
   ]
 }
