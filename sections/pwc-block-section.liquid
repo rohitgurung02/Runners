@@ -14,7 +14,7 @@
           {% when 'grid' %}
             <h2>{{ block.settings.title }}</h2>
             <h3>{{ block.settings.text }}</h3>
-            <button>{{ block.settings.btnurl }}</button>
+            <button>{{ block.settings.btn }}</button>
         {% endcase %}}
         
       {% endfor %}}
@@ -75,11 +75,6 @@
           "type": "text",
           "id": "btn",
           "label": "Title"
-        },
-        {
-          "type": "text",
-          "id": "btnurl",
-          "label": "Button Url"
         }
       ]
     },
