@@ -1,17 +1,25 @@
-<div class="custom-section">
-  {% for block in section.blocks %}
-    <div class="block-item" style="color: {{ block.settings.text_color }}">
-      {% if block.type == 'column' %}
-        <p>{{ block.settings.heading }}</p>
-      {% elsif block.type == 'form' %}
-        <form action="#" method="post">
-          <input type="text" placeholder="Enter your text">
-          <button type="submit">Submit</button>
-        </form>
-      {% endif %}
+
+  
+    <div class="gridrow">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'column'  %}
+            <p>{{ block.settings.heading }}</p>
+      
+          {% when 'form' %}
+             <form action="#" method="post">
+                <input type="text" placeholder="Enter your text">
+                <button type="submit">Submit</button>
+              </form>
+          {% when 'grid' %}
+            <h2>{{ block.settings.title }}</h2>
+            <h3>{{ block.settings.text }}</h3>
+            <button>{{ block.settings.btnurl }}</button>
+        {% endcase %}}
+      {% endfor %}}
     </div>
-  {% endfor %}
-</div>
+
+
 
 {% schema %}
 {
