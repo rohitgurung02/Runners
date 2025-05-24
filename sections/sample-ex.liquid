@@ -1,965 +1,1522 @@
-{%- liquid
-  assign sid = '#shopify-section-' | append: section.id
-  assign padding_horizontal = section.settings.padding_horizontal
-  assign padding_horizontal_mobile = section.settings.padding_horizontal_mobile
-  assign image_width = section.settings.image_width
-  assign image_height = section.settings.image_height
-  assign image_width_mobile = section.settings.image_width_mobile
-  assign image_height_mobile = section.settings.image_height_mobile
-  assign direction = section.settings.direction
--%}
-
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 <style>
-  /* Desktop styles */
-  {{ sid }} .pc-marquee.section-{{ section.id }} {
-    display: flex;
-    align-items: center;
-    height: {{ section.settings.marquee_height }}px;
-    width: 100vw;
-    max-width: 100%;
-    overflow-x: hidden;
-    background: {{ section.settings.colorBackground }};
-    color: {{ section.settings.colorText }};
-    padding: 0 {{ padding_horizontal }}px;
-  }
-
-  {{ sid }} .pc-marquee.section-{{ section.id }} a {
-    color: {{ section.settings.colorText }};
-    text-decoration: none;
-  }
-
-  {{ sid }} .pc-marquee.section-{{ section.id }} .pc-track {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    will-change: transform;
-    animation: marquee-{{ direction }} {{ section.settings.speed }}s linear infinite;
-  }
-
-  {{ sid }} .pc-marquee.section-{{ section.id }} .pc-content {
-    margin-left: 40px;
-    font-size: {{ section.settings.font_size }}px;
-  }
-
-  {{ sid }} .pc-marquee.section-{{ section.id }} .pc-image {
-    margin-left: 40px;
-    width: {{ image_width }}px;
-    height: {{ image_height }}px;
-    object-fit: contain;
-    flex-shrink: 0;
-  }
-
-  {{ sid }} .pc-marquee.section-{{ section.id }} .pc-icon {
-    margin-left: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: {{ image_width }}px;
-    height: {{ image_height }}px;
-  }
-
-  {{ sid }} .pc-marquee.section-{{ section.id }} .pc-icon svg {
-    width: {{ section.settings.icon_size }}px;
-    height: {{ section.settings.icon_size }}px;
-  }
-
-  @keyframes marquee-left {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-20%);
-    }
-  }
-
-  @keyframes marquee-right {
-    from {
-      transform: translateX(-20%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-
-  /* Mobile styles */
-  @media screen and (max-width: 749px) {
-    {{ sid }} .pc-marquee.section-{{ section.id }} {
-      height: {{ section.settings.marquee_height_mobile }}px;
-      background: {{ section.settings.colorBackground_mobile | default: section.settings.colorBackground }};
-      color: {{ section.settings.colorText_mobile | default: section.settings.colorText }};
-      padding: 0 {{ padding_horizontal_mobile }}px;
-    }
-
-    {{ sid }} .pc-marquee.section-{{ section.id }} a {
-      color: {{ section.settings.colorText_mobile | default: section.settings.colorText }};
-    }
-
-    {{ sid }} .pc-marquee.section-{{ section.id }} .pc-content {
-      font-size: {{ section.settings.font_size_mobile }}px;
-    }
-
-    {{ sid }} .pc-marquee.section-{{ section.id }} .pc-image {
-      width: {{ image_width_mobile }}px;
-      height: {{ image_height_mobile }}px;
-    }
-
-    {{ sid }} .pc-marquee.section-{{ section.id }} .pc-icon {
-      width: {{ image_width_mobile }}px;
-      height: {{ image_height_mobile }}px;
-    }
-
-    {{ sid }} .pc-marquee.section-{{ section.id }} .pc-icon svg {
-      width: {{ section.settings.icon_size_mobile }}px;
-      height: {{ section.settings.icon_size_mobile }}px;
-    }
-  }
-
-  /* Block-specific styles */
-  {%- for block in section.blocks -%}
-    {%- case block.type -%}
-      {%- when 'text' -%}
-        {{ sid }} .pc-marquee.section-{{ section.id }} .pc-content-{{ block.id }} {
-          {%- if block.settings.text_color != blank -%}
-            color: {{ block.settings.text_color }};
-          {%- endif -%}
-          {%- if block.settings.text_transform != 'none' -%}
-            text-transform: {{ block.settings.text_transform }};
-          {%- endif -%}
-          {%- if block.settings.font_weight != 'normal' -%}
-            font-weight: {{ block.settings.font_weight }};
-          {%- endif -%}
-          {%- if block.settings.text_decoration != 'none' -%}
-            text-decoration: {{ block.settings.text_decoration }};
-          {%- endif -%}
-          {%- if block.settings.font_style != 'normal' -%}
-            font-style: {{ block.settings.font_style }};
-          {%- endif -%}
-          {%- if block.settings.letter_spacing != 0 -%}
-            letter-spacing: {{ block.settings.letter_spacing }}px;
-          {%- endif -%}
-        }
-
-        @media screen and (max-width: 749px) {
-          {{ sid }} .pc-marquee.section-{{ section.id }} .pc-content-{{ block.id }} {
-            {%- if block.settings.text_color_mobile != blank -%}
-              color: {{ block.settings.text_color_mobile }} !important;
-            {%- endif -%}
-            {%- if block.settings.text_transform_mobile != 'none' -%}
-              text-transform: {{ block.settings.text_transform_mobile }};
-            {%- endif -%}
-            {%- if block.settings.font_weight_mobile != 'default' -%}
-              font-weight: {{ block.settings.font_weight_mobile }};
-            {%- endif -%}
-            {%- if block.settings.text_decoration_mobile != 'none' -%}
-              text-decoration: {{ block.settings.text_decoration_mobile }};
-            {%- endif -%}
-            {%- if block.settings.font_style_mobile != 'default' -%}
-              font-style: {{ block.settings.font_style_mobile }};
-            {%- endif -%}
-            {%- if block.settings.letter_spacing_mobile != 0 -%}
-              letter-spacing: {{ block.settings.letter_spacing_mobile }}px;
-            {%- endif -%}
-          }
-        }
-
-      {%- when 'icon' -%}
-        {%- if block.settings.icon_color != blank -%}
-          {{ sid }} .pc-marquee.section-{{ section.id }} .pc-icon-{{ block.id }} {
-            color: {{ block.settings.icon_color }};
-          }
-        {%- endif -%}
-
-        {%- if block.settings.icon_color_mobile != blank -%}
-          @media screen and (max-width: 749px) {
-            {{ sid }} .pc-marquee.section-{{ section.id }} .pc-icon-{{ block.id }} {
-              color: {{ block.settings.icon_color_mobile }} !important;
-            }
-          }
-        {%- endif -%}
-    {%- endcase -%}
-  {%- endfor -%}
+  
+{{ sec_id }} .pc-pricing-table__item img {
+    height: 128px;
+    margin-bottom: 20px;
+}
+{{ sec_id }} .pc-pricing-table__products {
+    margin: 11px 0;
+}
+  
+{{ sec_id }} .pc-all-pricing-table{
+  width: 100%;
+}
+  
+{{ sec_id }} .pc-pricing-table-wrapper {
+  max-width: 71rem;
+  margin: 0 auto;
+}
+{{ sec_id }} .pc-pricing-table {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2em;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  margin-top: 22px;
+}
+{{ sec_id }} .pc-pricing-table__item {
+  display: flex;
+  max-height: 100%;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 1.5em;
+  transition: box-shadow 200ms cubic-bezier(0.02, 0.01, 0.47, 1), transform 200ms cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+{{ sec_id }} .pc-pricing-table__item:hover {
+  transform: translateY(-20px);
+}
+{{ sec_id }} .pc-pricing-table__item--popular {
+  position: relative;
+}
+{{ sec_id }} .pc-pricing-table__item--popular::before {
+  position: absolute;
+  content: attr(data-popular);
+  top: 2em;
+  right: 2em;
+  font-size: 0.9em;
+  padding: 0 1em;
+  background-color: hsl(51, 100%, 50%);
+  border-radius: 1em;
+  color: hsl(60, 5%, 15%);
+}
+{{ sec_id }} .pc-pricing-table__img {
+  width: 100%;
+  max-width: 9.3em;
+}
+{{ sec_id }} .pc-pricing-table__title {
+  margin: 0;
+  font-size: 1.7em;
+  text-transform: capitalize;
+}
+{{ sec_id }} .pc-pricing-table__description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+{{ sec_id }} .pc-pricing-table__tagline {
+  margin: 0;
+  text-align: center;
+}
+{{ sec_id }} .pc-pricing-table__price {
+  font-size: 2.5em;
+  margin: -2px;
+  font-weight: bold;
+}
+{{ sec_id }} .pc-pricing-table__label {
+  margin: 0;
+  font-size: 0.9em;
+}
+{{ sec_id }} .pc-pricing-table__save {
+  font-weight: bold;
+}
+{{ sec_id }} .pc-pricing-table__products {
+  padding: 0;
+  list-style: none;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+{{ sec_id }} .pc-pricing-table__product {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+{{ sec_id }} .pc-pricing-table__product a {
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+{{ sec_id }} .pc-pricing-table__product::before {
+  content: '';
+  width: 0.5em;
+  height: 0.5em;
+  margin-inline-end: 1em;
+  border-radius: 50%;
+}
+{{ sec_id }} .pc-pricing-table__product--excluded::before {
+  content: '';
+  width: 0.5em;
+  height: 0.5em;
+  margin-inline-end: 1em;
+  border-radius: 0;
+  background: no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='hsl(4, 90%, 58%)'%3E%3Cpath d='M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z'/%3E%3C/svg%3E") center/contain;
+  transform: scale(2.5);
+}
+{{ sec_id }} .pc-pricing-table__button {
+  margin-top: auto;
+  padding: 1em 2em;
+  text-decoration: none;
+  width: 100%;
+  border-radius: 1.87em;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  text-transform: capitalize;
+}
+/* custom-settings */
+{{ sec_id }} .pc-all-pricing-table{
+  background-color: {{ section.settings.background_color }};
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+}
 </style>
-
-<div class="pc-marquee section-{{ section.id }}" role="region" {{ block.shopify_attributes }}>
-  {%- if section.settings.link != blank -%}
-    <a href="{{ section.settings.link }}" class="pc-link">
-  {%- endif -%}
-
-  <div class="pc-track">
-    {%- for i in (1..10) -%}
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when 'text' -%}
-            <span class="pc-content pc-text pc-content-{{ block.id }}">
-              {{ block.settings.new_text | escape }}
+ 
+<div class="pc-all-pricing-table">
+  <div class="page-width">
+    <ul class="pc-pricing-table">
+      {% for block in section.blocks %}
+        {% assign plan = block.settings %}
+        <li class="pc-pricing-table__item{% if block.settings.popular %} pc-pricing-table__item--popular{% endif %}"
+            {% if block.settings.popular %}data-popular="Popular"{% endif %}
+            style="box-shadow: {{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }};
+                   --pc-pricing-table-color: {{ block.settings.accent_color }};"
+            onmouseover="this.style.boxShadow='{{ block.settings.hover_box_shadow_x }}px {{ block.settings.hover_box_shadow_y }}px {{ block.settings.hover_box_shadow_blur }}px {{ block.settings.hover_box_shadow_spread }}px {{ block.settings.hover_box_shadow_color }}';"
+            onmouseout="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';">
+          
+          {% if plan.image %}
+            <img
+                src="{{ plan.image | image_url }}"
+                alt=""
+                class="pc-pricing-table__img"
+                style="width: {{ plan.image_width }}px; height: auto;"
+            />
+          {% endif %}
+          <h3 class="pc-pricing-table__title" style="
+            color: {{ plan.title_color }};
+            font-weight: {{ plan.title_font_weight }};
+            font-style: {{ plan.title_font_style }};
+            letter-spacing: {{ plan.title_letter_spacing }}px;
+            text-decoration: {{ plan.title_text_decoration }};
+            {% if plan.title_text_decoration != 'none' %}text-decoration-color: {{ plan.title_text_decoration_color }};{% endif %}
+            padding-top: {{ plan.title_padding_top }}px;
+            padding-bottom: {{ plan.title_padding_bottom }}px;
+            font-size: {% case plan.title_text_size %}
+              {% when 'small' %}14px
+              {% when 'medium' %}18px
+              {% when 'large' %}24px
+              {% else %}16px
+            {% endcase %};
+          ">
+            {{ plan.title }}
+          </h3>
+  
+          <p class="pc-pricing-table__description">
+            <span class="pc-pricing-table__tagline" style="
+              color: {{ plan.tagline_text_color }};
+              text-align: {{ plan.tagline_text_align }};
+              font-weight: {{ plan.tagline_font_weight }};
+              font-style: {{ plan.tagline_font_style }};
+              letter-spacing: {{ plan.tagline_letter_spacing }}px;
+              text-decoration: {{ plan.tagline_text_decoration }};
+              {% if plan.tagline_text_decoration != 'none' %}text-decoration-color: {{ plan.tagline_text_decoration_color }};{% endif %}
+              padding-top: {{ plan.tagline_padding_top }}px;
+              padding-bottom: {{ plan.tagline_padding_bottom }}px;
+              font-size: {% case plan.tagline_text_size %}
+                {% when 'small' %}14px
+                {% when 'medium' %}18px
+                {% when 'large' %}24px
+                {% else %}16px
+              {% endcase %};
+            ">
+              {{ plan.tagline }}
             </span>
-          {%- when 'image' -%}
-            {%- if block.settings.image != blank -%}
-              <img
-                class="pc-image"
-                src="{{ block.settings.image | img_url: 'master' }}"
-                alt="{{ block.settings.image.alt | escape }}"
-                width="{{ image_width }}"
-                height="{{ image_height }}"
-                loading="lazy"
-              >
-            {%- endif -%}
-          {%- when 'icon' -%}
-            <div class="pc-icon pc-icon-{{ block.id }}">
-              {%- case block.settings.icon_name -%}
-                {% when 'shopping-cart' %}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                  </svg>
-                {% when 'star' %}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                  </svg>
-                {% when 'heart' %}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                  </svg>
-                {% when 'truck' %}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle>
-                  </svg>
-                {% when 'tag' %}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
-                  </svg>
-                {% when 'gift' %}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
-                  </svg>
-                {% when 'shield' %}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  </svg>
-                {% when 'clock' %}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-                  </svg>
-                {% when 'award' %}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                  </svg>
-                {% else %}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
-                  </svg>
-              {%- endcase -%}
-            </div>
-        {%- endcase -%}
-      {%- endfor -%}
-    {%- endfor -%}
+            
+            <span class="pc-pricing-table__price" style="
+              color: {{ plan.price_text_color }};
+              text-align: {{ plan.price_text_align }};
+              font-weight: {{ plan.price_font_weight }};
+              font-style: {{ plan.price_font_style }};
+              letter-spacing: {{ plan.price_letter_spacing }}px;
+              text-decoration: {{ plan.price_text_decoration }};
+              {% if plan.price_text_decoration != 'none' %}text-decoration-color: {{ plan.price_text_decoration_color }};{% endif %}
+              padding-top: {{ plan.price_padding_top }}px;
+              padding-bottom: {{ plan.price_padding_bottom }}px;
+              font-size: {% case plan.price_text_size %}
+                {% when 'small' %}14px
+                {% when 'medium' %}18px
+                {% when 'large' %}24px
+                {% else %}16px
+              {% endcase %};
+            ">
+              {{ plan.price }}
+            </span>
+            <span class="pc-pricing-table__label" style="
+              color: {{ plan.label_text_color }};
+              text-align: {{ plan.label_text_align }};
+              font-weight: {{ plan.label_font_weight }};
+              font-style: {{ plan.label_font_style }};
+              letter-spacing: {{ plan.label_letter_spacing }}px;
+              text-decoration: {{ plan.label_text_decoration }};
+              {% if plan.label_text_decoration != 'none' %}text-decoration-color: {{ plan.label_text_decoration_color }};{% endif %}
+              padding-top: {{ plan.label_padding_top }}px;
+              padding-bottom: {{ plan.label_padding_bottom }}px;
+              font-size: {% case plan.label_text_size %}
+                {% when 'small' %}14px
+                {% when 'medium' %}18px
+                {% when 'large' %}24px
+                {% else %}16px
+              {% endcase %};
+            ">
+              {{ plan.label }}
+            </span>
+            <span class="pc-pricing-table__save" style="
+              color: {{ plan.save_text_color }};
+              text-align: {{ plan.save_text_align }};
+              font-weight: {{ plan.save_font_weight }};
+              font-style: {{ plan.save_font_style }};
+              letter-spacing: {{ plan.save_letter_spacing }}px;
+              text-decoration: {{ plan.save_text_decoration }};
+              {% if plan.save_text_decoration != 'none' %}text-decoration-color: {{ plan.save_text_decoration_color }};{% endif %}
+              padding-top: {{ plan.save_padding_top }}px;
+              padding-bottom: {{ plan.save_padding_bottom }}px;
+              font-size: {% case plan.save_text_size %}
+                {% when 'small' %}14px
+                {% when 'medium' %}18px
+                {% when 'large' %}24px
+                {% else %}16px
+              {% endcase %};
+            ">
+              {{ plan.save }}
+            </span>
+          </p>
+          
+          <ul class="pc-pricing-table__products">
+            {% assign included = plan.included_items | split: ',' %}
+            {% for item in included %}
+              {% assign item_trimmed = item | strip %}
+              <li class="pc-pricing-table__product">
+                <a href="#" style="color: {{ plan.product_text_color }};">
+                  {{ item_trimmed }}
+                </a>
+              </li>
+            {% endfor %}
+            {% assign excluded = plan.excluded_items | split: ',' %}
+            {% for item in excluded %}
+              {% assign item_trimmed = item | strip %}
+              <li class="pc-pricing-table__product pc-pricing-table__product--excluded">
+                <span style="color: {{ plan.excluded_product_text_color }};">
+                  {{ item_trimmed }}
+                </span>
+              </li>
+            {% endfor %}
+          </ul>
+          
+          <a href="{{ plan.button_url | default: '#' }}"
+            class="pc-pricing-table__button"
+            style="
+              background: {{ plan.button_background_color }};
+              color: {{ plan.button_text_color }};
+              font-size: {{ plan.button_font_size }}px;
+              font-weight: {{ plan.button_font_weight }};
+              text-transform: {{ plan.button_text_transform }};
+              letter-spacing: {{ plan.button_letter_spacing }}px;
+              text-decoration: {{ plan.button_text_decoration }};
+              border: 1px solid {{ plan.button_border_color }};
+              border-radius: {{ plan.button_border_radius }}px;
+              padding: {{ plan.button_padding_vertical }}px {{ plan.button_padding_horizontal }}px;
+              min-width: {{ plan.button_min_width }}px;
+            "
+            onmouseover="this.style.background='{{ plan.button_hover_background_color }}'; this.style.color='{{ plan.button_hover_text_color }}'; this.style.borderColor='{{ plan.button_hover_border_color }}';"
+            onmouseout="this.style.background='{{ plan.button_background_color }}'; this.style.color='{{ plan.button_text_color }}'; this.style.borderColor='{{ plan.button_border_color }}';"
+          >
+            {{ plan.button_label }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
   </div>
-
-  {%- if section.settings.link != blank -%}
-    </a>
-  {%- endif -%}
 </div>
+ 
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
+ 
 {% schema %}
 {
-  "name": "Pwc Marquee",
+  "name": "Pricing Table",
+  "tag": "section",
+  "class": "pricing-table-wrapper",
   "settings": [
     {
-      "type": "header",
-      "content": "Desktop Settings"
-    },
-    {
       "type": "color",
-      "id": "colorBackground",
-      "label": "Background color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "colorText",
-      "label": "Text color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Link"
-    },
-    {
-      "type": "select",
-      "id": "direction",
-      "label": "Marquee direction",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left to right"
-        },
-        {
-          "value": "right",
-          "label": "Right to left"
-        }
-      ],
-      "default": "left"
-    },
-    {
-      "type": "range",
-      "id": "marquee_height",
-      "min": 24,
-      "max": 200,
-      "step": 2,
-      "default": 46,
-      "label": "Marquee height (px)",
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "font_size",
-      "min": 8,
-      "max": 100,
-      "step": 2,
-      "default": 24,
-      "label": "Font size (px)",
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "icon_size",
-      "min": 8,
-      "max": 100,
-      "step": 2,
-      "default": 24,
-      "label": "Icon size (px)",
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "padding_horizontal",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "default": 20,
-      "label": "Horizontal padding (px)",
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "image_width",
-      "min": 10,
-      "max": 200,
-      "step": 5,
-      "default": 40,
-      "label": "Image width (px)",
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "image_height",
-      "min": 10,
-      "max": 200,
-      "step": 5,
-      "default": 40,
-      "label": "Image height (px)",
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "speed",
-      "min": 5,
-      "max": 30,
-      "step": 1,
-      "default": 12,
-      "label": "Animation speed (seconds)"
-    },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
-    },
-    {
-      "type": "color",
-      "id": "colorBackground_mobile",
-      "label": "Background color (mobile)",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "colorText_mobile",
-      "label": "Text color (mobile)",
+      "id": "background_color",
+      "label": "Background Color",
       "default": "#ffffff"
     },
     {
       "type": "range",
-      "id": "marquee_height_mobile",
-      "min": 24,
-      "max": 200,
-      "step": 2,
-      "default": 36,
-      "label": "Marquee height (mobile) (px)",
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "font_size_mobile",
-      "min": 8,
-      "max": 60,
-      "step": 2,
-      "default": 16,
-      "label": "Font size (mobile) (px)",
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "icon_size_mobile",
-      "min": 8,
-      "max": 60,
-      "step": 2,
-      "default": 16,
-      "label": "Icon size (mobile) (px)",
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "padding_horizontal_mobile",
+      "id": "padding_top",
+      "label": "Padding Top (px)",
+      "default": 50,
       "min": 0,
-      "max": 50,
-      "step": 2,
-      "default": 10,
-      "label": "Horizontal padding (mobile) (px)",
-      "unit": "px"
+      "max": 150,
+      "step": 5
     },
     {
       "type": "range",
-      "id": "image_width_mobile",
-      "min": 10,
-      "max": 100,
-      "step": 5,
-      "default": 30,
-      "label": "Image width (mobile) (px)",
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "image_height_mobile",
-      "min": 10,
-      "max": 100,
-      "step": 5,
-      "default": 30,
-      "label": "Image height (mobile) (px)",
-      "unit": "px"
+      "id": "padding_bottom",
+      "label": "Padding Bottom (px)",
+      "default": 50,
+      "min": 0,
+      "max": 150,
+      "step": 5
     }
   ],
   "blocks": [
     {
-      "type": "text",
-      "name": "Text",
-      "limit": 20,
+      "type": "plan",
+      "name": "Plan",
       "settings": [
         {
-          "type": "text",
-          "id": "new_text",
-          "default": "Welcome to store",
-          "label": "Text"
-        },
-        {
-          "type": "header",
-          "content": "Desktop Text Style"
+          "type": "checkbox",
+          "id": "popular",
+          "label": "Mark as Popular",
+          "default": false
         },
         {
           "type": "color",
-          "id": "text_color",
-          "label": "Text color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "select",
-          "id": "text_transform",
-          "label": "Text transform",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "uppercase",
-              "label": "Uppercase"
-            },
-            {
-              "value": "lowercase",
-              "label": "Lowercase"
-            },
-            {
-              "value": "capitalize",
-              "label": "Capitalize"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "select",
-          "id": "font_weight",
-          "label": "Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "select",
-          "id": "text_decoration",
-          "label": "Text decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "select",
-          "id": "font_style",
-          "label": "Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "range",
-          "id": "letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Letter spacing",
-          "default": 0
+          "id": "accent_color",
+          "label": "Accent Color",
+          "default": "#2196F3"
         },
         {
           "type": "header",
-          "content": "Mobile Text Style"
-        },
-        {
-          "type": "color",
-          "id": "text_color_mobile",
-          "label": "Text color (mobile)",
-          "default": "#ffffff"
-        },
-        {
-          "type": "select",
-          "id": "text_transform_mobile",
-          "label": "Text transform (mobile)",
-          "options": [
-            {
-              "value": "none",
-              "label": "None (inherit from desktop)"
-            },
-            {
-              "value": "uppercase",
-              "label": "Uppercase"
-            },
-            {
-              "value": "lowercase",
-              "label": "Lowercase"
-            },
-            {
-              "value": "capitalize",
-              "label": "Capitalize"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "select",
-          "id": "font_weight_mobile",
-          "label": "Font weight (mobile)",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default (inherit from desktop)"
-            },
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "default"
-        },
-        {
-          "type": "select",
-          "id": "text_decoration_mobile",
-          "label": "Text decoration (mobile)",
-          "options": [
-            {
-              "value": "none",
-              "label": "None (inherit from desktop)"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "select",
-          "id": "font_style_mobile",
-          "label": "Font style (mobile)",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default (inherit from desktop)"
-            },
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "default"
+          "content": "Box Shadow"
         },
         {
           "type": "range",
-          "id": "letter_spacing_mobile",
+          "id": "box_shadow_x",
+          "label": "X Offset",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "box_shadow_y",
+          "label": "Y Offset",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 4,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "box_shadow_blur",
+          "label": "Blur",
           "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Letter spacing (mobile)",
-          "default": 0
-        }
-      ]
-    },
-    {
-      "type": "image",
-      "name": "Image",
-      "limit": 20,
-      "settings": [
+          "max": 100,
+          "step": 1,
+          "default": 12,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "box_shadow_spread",
+          "label": "Spread",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "box_shadow_color",
+          "label": "Color",
+          "default": "rgba(0,0,0,0.1)"
+        },
+        {
+          "type": "header",
+          "content": "Hover Box Shadow"
+        },
+        {
+          "type": "range",
+          "id": "hover_box_shadow_x",
+          "label": "X Offset",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "hover_box_shadow_y",
+          "label": "Y Offset",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 8,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "hover_box_shadow_blur",
+          "label": "Blur",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 20,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "hover_box_shadow_spread",
+          "label": "Spread",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "hover_box_shadow_color",
+          "label": "Color",
+          "default": "rgba(0,0,0,0.2)"
+        },
+        {
+          "type": "header",
+          "content": "Image"
+        },
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
-        }
-      ]
-    },
-    {
-      "type": "icon",
-      "name": "Icon",
-      "limit": 20,
-      "settings": [
+          "label": "Plan Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 200,
+          "step": 10,
+          "unit": "px",
+          "default": 100,
+          "label": "Image Width"
+        },
+        {
+          "type": "header",
+          "content": "Title"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Package Title"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Color",
+          "default": "#000000"
+        },
         {
           "type": "select",
-          "id": "icon_name",
-          "label": "Icon",
-          "default": "shopping-cart",
+          "id": "title_text_size",
+          "label": "Size",
           "options": [
             {
-              "value": "shopping-cart",
-              "label": "Shopping Cart"
+              "value": "small",
+              "label": "Small"
             },
             {
-              "value": "star",
-              "label": "Star"
+              "value": "medium",
+              "label": "Medium"
             },
             {
-              "value": "heart",
-              "label": "Heart"
-            },
-            {
-              "value": "truck",
-              "label": "Truck"
-            },
-            {
-              "value": "tag",
-              "label": "Tag"
-            },
-            {
-              "value": "gift",
-              "label": "Gift"
-            },
-            {
-              "value": "shield",
-              "label": "Shield"
-            },
-            {
-              "value": "clock",
-              "label": "Clock"
-            },
-            {
-              "value": "award",
-              "label": "Award"
+              "value": "large",
+              "label": "Large"
             }
-          ]
+          ],
+          "default": "medium"
+        },
+        {
+          "type": "select",
+          "id": "title_font_weight",
+          "label": "Font Weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            }
+          ],
+          "default": "bold"
+        },
+        {
+          "type": "select",
+          "id": "title_font_style",
+          "label": "Font Style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "title_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter Spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "title_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
         },
         {
           "type": "color",
-          "id": "icon_color",
-          "label": "Icon color (desktop)",
+          "id": "title_text_decoration_color",
+          "label": "Decoration Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "title_padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Top",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "title_padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Bottom",
+          "default": 10
+        },
+        {
+          "type": "header",
+          "content": "Tagline"
+        },
+        {
+          "type": "text",
+          "id": "tagline",
+          "label": "Text",
+          "default": "Package tagline"
+        },
+ 
+{
+          "type": "color",
+          "id": "tagline_text_color",
+          "label": "Color",
+          "default": "#666666"
+        },
+        {
+          "type": "select",
+          "id": "tagline_text_align",
+          "label": "Text Align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "select",
+          "id": "tagline_text_size",
+          "label": "Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "tagline_font_weight",
+          "label": "Font Weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "tagline_font_style",
+          "label": "Font Style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "tagline_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter Spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "tagline_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "tagline_text_decoration_color",
+          "label": "Decoration Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "tagline_padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Top",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "tagline_padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Bottom",
+          "default": 10
+        },
+        {
+          "type": "header",
+          "content": "Price"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Text",
+          "default": "$99"
+        },
+        {
+          "type": "color",
+          "id": "price_text_color",
+          "label": "Color",
+          "default": "#2196F3"
+        },
+ 
+  
+        {
+          "type": "select",
+          "id": "price_text_align",
+          "label": "Text Align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "select",
+          "id": "price_text_size",
+          "label": "Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "large"
+        },
+        {
+          "type": "select",
+          "id": "price_font_weight",
+          "label": "Font Weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            }
+          ],
+          "default": "bold"
+        },
+        {
+          "type": "select",
+          "id": "price_font_style",
+          "label": "Font Style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "price_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter Spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "price_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "price_text_decoration_color",
+          "label": "Decoration Color",
+          "default": "#2196F3"
+        },
+        {
+          "type": "range",
+          "id": "price_padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Top",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "price_padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Bottom",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Label"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Text",
+          "default": "per month"
+        },
+        {
+          "type": "color",
+          "id": "label_text_color",
+          "label": "Color",
+          "default": "#666666"
+        },
+        {
+          "type": "select",
+          "id": "label_text_align",
+          "label": "Text Align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "select",
+          "id": "label_text_size",
+          "label": "Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "label_font_weight",
+          "label": "Font Weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "label_font_style",
+          "label": "Font Style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "label_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter Spacing",
+          "default": 0
+        },
+ 
+{
+          "type": "select",
+          "id": "label_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "label_text_decoration_color",
+          "label": "Decoration Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "label_padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Top",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "label_padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Bottom",
+          "default": 10
+        },
+        {
+          "type": "header",
+          "content": "Save"
+        },
+        {
+          "type": "text",
+          "id": "save",
+          "label": "Text",
+          "default": "Save 20%"
+        },
+        {
+          "type": "color",
+          "id": "save_text_color",
+          "label": "Color",
+          "default": "#4CAF50"
+        },
+        {
+          "type": "select",
+          "id": "save_text_align",
+          "label": "Text Align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "select",
+          "id": "save_text_size",
+          "label": "Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "save_font_weight",
+          "label": "Font Weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            }
+          ],
+          "default": "bold"
+        },
+        {
+          "type": "select",
+          "id": "save_font_style",
+          "label": "Font Style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "save_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter Spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "save_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "save_text_decoration_color",
+          "label": "Decoration Color",
+          "default": "#4CAF50"
+        },
+        {
+          "type": "range",
+          "id": "save_padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Top",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "save_padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Bottom",
+          "default": 10
+        },
+        {
+          "type": "header",
+          "content": "Products"
+        },
+        {
+          "type": "color",
+          "id": "product_text_color",
+          "label": "Included Items Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "excluded_product_text_color",
+          "label": "Excluded Items Color",
+          "default": "#999999"
+        },
+        {
+          "type": "textarea",
+          "id": "included_items",
+          "label": "Included Items",
+          "default": "Product 1, Product 2, Product 3",
+          "info": "Separate items with commas"
+        },
+        {
+          "type": "textarea",
+          "id": "excluded_items",
+          "label": "Excluded Items",
+          "default": "Product 4, Product 5",
+          "info": "Separate items with commas"
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Label",
+          "default": "Get Started"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Link"
+        },
+        {
+          "type": "color",
+          "id": "button_background_color",
+          "label": "Background Color",
+          "default": "#2196F3"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Text Color",
           "default": "#ffffff"
         },
         {
           "type": "color",
-          "id": "icon_color_mobile",
-          "label": "Icon color (mobile)",
+          "id": "button_border_color",
+          "label": "Border Color",
+          "default": "transparent"
+        },
+ 
+
+ 
+ 
+      
+        
+        {
+          "type": "range",
+          "id": "button_font_size",
+          "min": 10,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 16
+        },
+        {
+          "type": "select",
+          "id": "button_font_weight",
+          "label": "Font Weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            }
+          ],
+          "default": "bold"
+        },
+        {
+          "type": "select",
+          "id": "button_text_transform",
+          "label": "Text Transform",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize"
+            },
+            {
+              "value": "uppercase",
+              "label": "Uppercase"
+            },
+            {
+              "value": "lowercase",
+              "label": "Lowercase"
+            }
+          ],
+          "default": "capitalize"
+        },
+        {
+          "type": "range",
+          "id": "button_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter Spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "button_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Border Radius",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "button_padding_vertical",
+          "min": 5,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Vertical Padding",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "button_padding_horizontal",
+          "min": 5,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Horizontal Padding",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "button_min_width",
+          "min": 50,
+          "max": 300,
+          "step": 10,
+          "unit": "px",
+          "label": "Min Width",
+          "default": 150
+        },
+        {
+          "type": "header",
+          "content": "Button Hover"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_background_color",
+          "label": "Background Color",
+          "default": "#1976D2"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_text_color",
+          "label": "Text Color",
           "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_border_color",
+          "label": "Border Color",
+          "default": "transparent"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Pwc Marquee",
+      "name": "Pricing Table",
       "blocks": [
         {
-          "type": "text",
+          "type": "plan",
           "settings": {
-            "new_text": "Welcome to our store",
-            "text_color": "#ffffff",
-            "text_transform": "uppercase",
-            "font_weight": "bold",
-            "text_color_mobile": "#ffffff",
-            "text_transform_mobile": "uppercase",
-            "font_weight_mobile": "bold"
+            "title": "Basic",
+            "price": "$19",
+            "label": "per month",
+            "save": "Save 10%",
+            "included_items": "Feature 1, Feature 2",
+            "excluded_items": "Feature 3, Feature 4"
           }
         },
         {
-          "type": "icon",
+          "type": "plan",
           "settings": {
-            "icon_name": "shopping-cart",
-            "icon_color": "#ff0000",
-            "icon_color_mobile": "#ff0000"
+            "popular": true,
+            "title": "Pro",
+            "price": "$39",
+            "label": "per month",
+            "save": "Save 20%",
+            "included_items": "Feature 1, Feature 2, Feature 3",
+            "excluded_items": "Feature 4"
           }
         },
         {
-          "type": "text",
+          "type": "plan",
           "settings": {
-            "new_text": "Free shipping on all orders",
-            "text_color": "#00ff00",
-            "text_decoration": "underline",
-            "text_color_mobile": "#00cc00",
-            "font_style": "italic"
-          }
-        },
-        {
-          "type": "icon",
-          "settings": {
-            "icon_name": "star",
-            "icon_color": "#ffff00",
-            "icon_color_mobile": "#ffff00"
+            "title": "Enterprise",
+            "price": "$99",
+            "label": "per month",
+            "save": "Save 30%",
+            "included_items": "Feature 1, Feature 2, Feature 3, Feature 4"
           }
         }
       ]
@@ -967,3 +1524,4 @@
   ]
 }
 {% endschema %}
+ 
