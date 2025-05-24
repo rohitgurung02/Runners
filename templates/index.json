@@ -637,6 +637,11 @@
         "column_FcnJyi": {
           "type": "column",
           "settings": {
+            "bg_color": "#7a5b5b",
+            "border_radius": 30,
+            "padding": 35,
+            "margin": 29,
+            "font_size": 19,
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
@@ -646,6 +651,11 @@
         "column_rz9Yn6": {
           "type": "column",
           "settings": {
+            "bg_color": "#ffffff",
+            "border_radius": 10,
+            "padding": 16,
+            "margin": 20,
+            "font_size": 14,
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
@@ -655,6 +665,11 @@
         "column_czfqnr": {
           "type": "column",
           "settings": {
+            "bg_color": "#ffffff",
+            "border_radius": 10,
+            "padding": 16,
+            "margin": 20,
+            "font_size": 14,
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
