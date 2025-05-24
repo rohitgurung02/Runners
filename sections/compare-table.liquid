@@ -6,8 +6,8 @@
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
-  .multicolumn-card__info {
-ackground-color: {{ block.settings.bg_color }};
+  .multicolumn.background-none .multicolumn-card {
+background-color: {{ block.settings.bg_color }};
   border-radius: {{ block.settings.border_radius }}px;
   padding: {{ block.settings.padding }}px;
   margin: {{ block.settings.margin }}px;
