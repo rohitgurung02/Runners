@@ -648,6 +648,20 @@
             "link": ""
           }
         },
+        "column_mnHP6j": {
+          "type": "column",
+          "settings": {
+            "bg_color": "#ffffff",
+            "border_radius": 10,
+            "padding": 16,
+            "margin": 20,
+            "font_size": 14,
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
         "column_rz9Yn6": {
           "type": "column",
           "settings": {
@@ -679,6 +693,7 @@
       },
       "block_order": [
         "column_FcnJyi",
+        "column_mnHP6j",
         "column_rz9Yn6",
         "column_czfqnr"
       ],
