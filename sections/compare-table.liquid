@@ -361,82 +361,1508 @@
     }
   ],
   "blocks": [
-    {
+   {
       "type": "column",
-      "name": "t:sections.multicolumn.blocks.column.name",
+      "name": "Plan",
       "settings": [
+        {
+          "type": "header",
+          "content": "Box Shadow"
+        },
+        {
+          "type": "range",
+          "id": "box_shadow_x",
+          "label": "Box Shadow X Offset",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "box_shadow_y",
+          "label": "Box Shadow Y Offset",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 4,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "box_shadow_blur",
+          "label": "Box Shadow Blur",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 12,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "box_shadow_spread",
+          "label": "Box Shadow Spread",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "box_shadow_color",
+          "label": "Box Shadow Color",
+          "default": "#0000001A"
+        },
+        {
+          "type": "header",
+          "content": "Image"
+        },
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:sections.multicolumn.blocks.column.settings.image.label"
+          "label": "Plan Image"
         },
         {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 200,
+          "step": 10,
+          "unit": "px",
+          "default": 50,
+          "label": "Image Width (px)"
+        },
+        {
+          "type": "header",
+          "content": "Package Title"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Package Title",
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Text Color",
+          "default": "#000"
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "label": "Text Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "title_font_weight",
+          "label": "Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "font_style",
+          "label": "Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "header",
+          "content": "Tagline"
+        },
+        {
+          "type": "text",
+          "id": "tagline",
+          "label": "Tagline",
+          "default": "The tagline goes here"
+        },
+        {
+          "type": "color",
+          "id": "tagline_text_color",
+          "label": "Text Color",
+          "default": "#000"
+        },
+        {
+          "type": "select",
+          "id": "tagline_text_size",
+          "label": "Text Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "tagline_font_weight",
+          "label": "Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "tagline_font_style",
+          "label": "Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "tagline_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "tagline_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "tagline_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "tagline_padding_top",
+          "label": "Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "tagline_padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "header",
+          "content": "Price"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "800"
+        },
+        {
+          "type": "color",
+          "id": "price_title_color",
+          "label": "Text Color",
+          "default": "#000"
+        },
+        {
+          "type": "select",
+          "id": "price_text_size",
+          "label": "Text Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "price_font_weight",
+          "label": "Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "price_font_style",
+          "label": "Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "price_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "price_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "price_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "price_padding_top",
+          "label": "Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "price_padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "header",
+          "content": "Label"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label (Original Price)",
+          "default": "900 is the real price"
+        },
+        {
+          "type": "color",
+          "id": "label_title_color",
+          "label": "Text Color",
+          "default": "#000"
+        },
+        {
+          "type": "select",
+          "id": "label_text_size",
+          "label": "Text Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "label_font_weight",
+          "label": "Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "label_font_style",
+          "label": "Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "label_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "label_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "label_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "label_padding_top",
+          "label": "Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "label_padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "header",
+          "content": "Save"
+        },
+        {
+          "type": "text",
+          "id": "save",
+          "label": "Save Text",
+          "default": "You save 100"
+        },
+        {
+          "type": "color",
+          "id": "save_title_color",
+          "label": "Text Color",
+          "default": "#000"
+        },
+        {
+          "type": "select",
+          "id": "save_text_size",
+          "label": "Text Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "save_font_weight",
+          "label": "Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "save_font_style",
+          "label": "Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "save_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "save_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "save_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "save_padding_top",
+          "label": "Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "save_padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+         {
+          "type": "text",
+      "id": "button_label",
+      "default": "t:sections.multicolumn.settings.button_label.default",
+      "label": "t:sections.multicolumn.settings.button_label.label", 
+      "info": "t:sections.multicolumn.settings.button_label.info"
+    },
+       {
       "type": "color",
-      "id": "bg_color",
-      "label": "Background Color",
-      "default": "#ffffff"
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#0073e6"
     },
     {
       "type": "range",
-      "id": "border_radius",
-      "label": "Border Radius",
+      "id": "button_font_size",
+      "label": "Input Font Size (px)",
       "default": 10,
-      "min": 0,
-      "max": 50,
-      "step": 1
-    },
-    {
-      "type": "range",
-      "id": "padding",
-      "label": "Padding",
-      "default": 16,
-      "min": 0,
-      "max": 50,
-      "step": 1
-    },
-    {
-      "type": "range",
-      "id": "margin",
-      "label": "Margin",
-      "default": 20,
-      "min": 0,
-      "max": 50,
-      "step": 1,
-    },
-    {
-      "type": "range",
-      "id": "font_size",
-      "label": "Font Size",
-      "default": 14,
       "min": 10,
       "max": 24,
       "step": 1
     },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Font weight",
+      "options": [
         {
-          "type": "inline_richtext",
-          "id": "title",
-          "default": "t:sections.multicolumn.blocks.column.settings.title.default",
-          "label": "t:sections.multicolumn.blocks.column.settings.title.label"
+          "value": "normal",
+          "label": "Normal"
         },
         {
-          "type": "richtext",
-          "id": "text",
-          "default": "t:sections.multicolumn.blocks.column.settings.text.default",
-          "label": "t:sections.multicolumn.blocks.column.settings.text.label"
+          "value": "bold",
+          "label": "Bold"
         },
         {
-          "type": "text",
-          "id": "link_label",
-          "label": "t:sections.multicolumn.blocks.column.settings.link_label.label",
-          "info": "t:sections.multicolumn.blocks.column.settings.link_label.info"
+          "value": "bolder",
+          "label": "Bolder"
         },
         {
-          "type": "url",
-          "id": "link",
-          "label": "t:sections.multicolumn.blocks.column.settings.link.label"
+          "value": "lighter",
+          "label": "Lighter"
+        },
+        {
+          "value": "100",
+          "label": "100"
+        },
+        {
+          "value": "200",
+          "label": "200"
+        },
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "button_text_transform",
+      "label": "Text Transform",
+      "default": "uppercase",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "initial",
+          "label": "Initial"
+        },
+        {
+          "value": "inherit",
+          "label": "Inherit"
         }
       ]
-    }
+    },
+    {
+      "type": "range",
+      "id": "button_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "button_text_decoration",
+      "label": "Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "#005bb5"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Input border radius",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background_color",
+      "label": "Button Hover Background Color",
+      "default": "#005bb5"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Button Hover Border Color",
+      "default": "#003f7f"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 5,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "button_min_width",
+      "label": "Button Minimum Width (px)",
+      "min": 50,
+      "max": 500,
+      "step": 10,
+      "default": 160,
+      "unit": "px"
+    },
+        {
+          "type": "header",
+          "content": "Included Items"
+        },
+        {
+          "type": "textarea",
+          "id": "included_items",
+          "label": "Included Items (comma-separated)",
+          "default": "Included item 1,Included item 2"
+        },
+        {
+          "type": "select",
+          "id": "included_items_text_size",
+          "label": "Text Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "included_items_font_weight",
+          "label": "Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "included_items_font_style",
+          "label": "Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "included_items_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "included_items_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "included_items_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "included_items_padding_top",
+          "label": "Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "included_items_padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "header",
+          "content": "Excluded Items"
+        },
+        {
+          "type": "textarea",
+          "id": "excluded_items",
+          "label": "Excluded Items",
+          "default": "Excluded Items"
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_text_size",
+          "label": "Text Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_font_weight",
+          "label": "Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_font_style",
+          "label": "Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "excluded_items_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "excluded_items_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "excluded_items_padding_top",
+          "label": "Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "excluded_items_padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+      ]
+    },
   ],
   "presets": [
     {
