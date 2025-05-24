@@ -1,198 +1,415 @@
-{{ 'section-multicolumn.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+<style>
+  
+ {{ sec_id }} .pc-pricing-table__item img {
+    height: 128px;
+    margin-bottom: 20px;
+ }
+
+  {{ sec_id }} .pc-pricing-table__products {
+    margin: 11px 0;
+ }
+  
+  {{ sec_id }} .pc-all-pricing-table{
+  width: 100%;
+  }
+  
+  {{ sec_id }} .pc-pricing-table-wrapper {
+  max-width: 71rem;
+  margin: 0 auto;
+}
+
+  {{ sec_id }} .pc-pricing-table {
+  --pc-pricing-table-color: hsl(219, 83%, 57%);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2em;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  margin-top: 22px;
   }
 
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
+  {{ sec_id }} .pc-pricing-table__item {
+  display: flex;
+  max-height: 100%;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 1.5em;
+  box-shadow:  0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);;
+  transition: box-shadow 200ms cubic-bezier(0.02, 0.01, 0.47, 1), transform 200ms cubic-bezier(0.02, 0.01, 0.47, 1);
   }
-{%- endstyle -%}
 
-{%- liquid
-  assign columns_mobile_int = section.settings.columns_mobile | plus: 0
-  assign show_mobile_slider = false
-  if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
-    assign show_mobile_slider = true
-  endif
--%}
+ {{ sec_id }} .pc-pricing-table__item:hover {
+  box-shadow: 0 40px 40px rgba(0, 0, 0, 0.16);
+  transform: translateY(-20px);
+  }
 
-<div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
-  <div
-    class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    {% if settings.animations_reveal_on_scroll %}
-      data-cascade
-    {% endif %}
-  >
-    {%- unless section.settings.title == blank -%}
-      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
-          {{ section.settings.title }}
-        </h2>
-        {%- if section.settings.button_label != blank and show_mobile_slider -%}
-          <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
-            {{- section.settings.button_label | escape -}}
-          </a>
-        {%- endif -%}
-      </div>
-    {%- endunless -%}
-    <slider-component class="slider-mobile-gutter">
-      <ul
-        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
-        id="Slider-{{ section.id }}"
-        role="list"
-      >
-        {%- liquid
-          assign highest_ratio = 0
-          for block in section.blocks
-            if block.settings.image.aspect_ratio > highest_ratio
-              assign highest_ratio = block.settings.image.aspect_ratio
-            endif
-          endfor
-        -%}
-        {%- for block in section.blocks -%}
-          {%- assign empty_column = '' -%}
-          {%- if block.settings.image == blank
-            and block.settings.title == blank
-            and block.settings.text == blank
-            and block.settings.link_label == blank
-          -%}
-            {%- assign empty_column = ' multicolumn-list__item--empty' -%}
-          {%- endif -%}
+ {{ sec_id }} .pc-pricing-table__item--popular {
+  position: relative;
+ }
 
-          <li
-            id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {{ block.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
+  {{ sec_id }} .pc-pricing-table__item--popular::before {
+  position: absolute;
+  content: attr(data-popular);
+  top: 2em;
+  right: 2em;
+  font-size: 0.9em;
+  padding: 0 1em;
+  background-color: hsl(51, 100%, 50%);
+  border-radius: 1em;
+  color: hsl(60, 5%, 15%);
+  }
+
+  {{ sec_id }} .pc-pricing-table__img {
+  width: 100%;
+  max-width: 9.3em;
+  }
+
+  {{ sec_id }} .pc-pricing-table__title {
+  margin: 0;
+  font-size: 1.7em;
+  text-transform: capitalize;
+  }
+
+  {{ sec_id }} .pc-pricing-table__description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  }
+
+  {{ sec_id }} .pc-pricing-table__tagline {
+  margin: 0;
+  color: hsl(216, 3%, 63%);
+  text-align: center;
+  }
+
+  {{ sec_id }} .pc-pricing-table__price {
+  color: var(--pc-pricing-table-color);
+  font-size: 2.5em;
+  margin: -2px;
+  font-weight: bold;
+  }
+
+  {{ sec_id }} .pc-pricing-table__label {
+  margin: 0;
+  color: hsl(216, 3%, 63%);
+  font-size: 0.9em;
+  }
+
+  {{ sec_id }} .pc-pricing-table__save {
+  color: hsl(122, 39%, 49%);
+  font-weight: bold;
+  }
+
+  {{ sec_id }} .pc-pricing-table__products {
+  padding: 0;
+  list-style: none;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  }
+
+  {{ sec_id }} .pc-pricing-table__product {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  }
+
+  {{ sec_id }} .pc-pricing-table__product a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease-in-out;
+  }
+
+  {{ sec_id }} .pc-pricing-table__product a:hover {
+  color: var(--pc-pricing-table-color);
+  }
+
+  {{ sec_id }} .pc-pricing-table__product::before {
+  content: '';
+  width: 0.5em;
+  height: 0.5em;
+  margin-inline-end: 1em;
+  border-radius: 50%;
+  background-color: var(--pc-pricing-table-color);
+  }
+
+  {{ sec_id }} .pc-pricing-table__product--excluded::before {
+  content: '';
+  width: 0.5em;
+  height: 0.5em;
+  margin-inline-end: 1em;
+  border-radius: 0;
+  background: no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='hsl(4, 90%, 58%)'%3E%3Cpath d='M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z'/%3E%3C/svg%3E") center/contain;
+  transform: scale(2.5);
+  }
+
+  {{ sec_id }} .pc-pricing-table__button {
+  background: var(--pc-pricing-table-color);
+  color: #fff;
+  margin-top: auto;
+  padding: 1em 2em;
+  text-decoration: none;
+  width: 100%;
+  border-radius: 1.87em;
+  text-align: center;
+  transition: background 0.2s ease-in-out;
+  text-transform: capitalize;
+  }
+
+  {{ sec_id }} .pc-pricing-table__button:hover {
+  background-color: hsl(122, 39%, 49%);
+  }
+
+  {{ sec_id }} .pc-all-pricing-table{
+  background-color: {{ section.settings.background_color }};
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  {{ sec_id }} .pc-pricing-table__title {
+  }
+  
+</style>
+
+<div class="pc-all-pricing-table" style="">
+  <div class="page-width">
+<ul class="pc-pricing-table">
+  {% for block in section.blocks %}
+    {% assign plan = block.settings %}
+<li class="pc-pricing-table__item{% if block.settings.popular %} pc-pricing-table__item--popular{% endif %}"
+    {% if block.settings.popular %}data-popular="Popular"{% endif %}
+    style="box-shadow: {{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }};"
+    onmouseover="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
+    onmouseout="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
+>
+       <div class="pc-pricing-table__img" {{ block.shopify_attributes }} style="width: {{ plan.image_width }}px; height: auto;">
+            {% if block.settings.image %}
+                {{
+                  block.settings.image
+                  | image_url: width: plan.image_width
+                  | image_tag
+                }}
             {% endif %}
-          >
-            <div class="multicolumn-card content-container">
-              {%- if block.settings.image != blank -%}
-                {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
-                  {% assign spaced_image = true %}
-                {% endif %}
-                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
-                  <div
-                    class="media media--transparent media--{{ section.settings.image_ratio }}"
-                    {% if section.settings.image_ratio == 'adapt' %}
-                      style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
-                    {% endif %}
-                  >
-                    {%- liquid
-                      assign number_of_columns = section.settings.columns_desktop
-                      assign number_of_columns_mobile = section.settings.columns_mobile
-                      assign grid_space_desktop = number_of_columns | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
-                      assign grid_space_tablet = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
-                      assign grid_space_mobile = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | divided_by: 2 | plus: 30 | append: 'px'
-                      if section.settings.image_width == 'half'
-                        assign image_width = 0.5
-                      elsif section.settings.image_width == 'third'
-                        assign image_width = 0.33
-                      else
-                        assign image_width = 1
-                      endif
-                    -%}
-                    {% capture sizes %}
-                      (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width }}px - {{ grid_space_desktop }}) * {{ image_width }} /  {{ number_of_columns }}),
-                      (min-width: 990px) calc((100vw - {{ grid_space_desktop }}) * {{ image_width }} / {{ number_of_columns }}),
-                      (min-width: 750px) calc((100vw - {{ grid_space_tablet }}) * {{ image_width }} / {{ number_of_columns_mobile }}),
-                      calc((100vw - {{ grid_space_mobile }}) * {{ image_width }} / {{ number_of_columns_mobile }})
-                    {% endcapture %}
-                    {{
-                      block.settings.image
-                      | image_url: width: 3200
-                      | image_tag:
-                        widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
-                        sizes: sizes,
-                        class: 'multicolumn-card__image'
-                    }}
-                  </div>
-                </div>
-              {%- endif -%}
-              <div class="multicolumn-card__info" style="background-color: {{ block.settings.bg_color }};
-                          border-radius: {{ block.settings.border_radius }}px;
-                          padding: {{ block.settings.padding }}px;
-                          margin: {{ block.settings.margin }}px;
-                          font-size: {{ block.settings.font_size }}px;">
-                {%- if block.settings.title != blank -%}
-                  <h3 class="inline-richtext">{{ block.settings.title }}</h3>
-                {%- endif -%}
-                {%- if block.settings.text != blank -%}
-                  <div class="rte">{{ block.settings.text }}</div>
-                {%- endif -%}
-                {%- if block.settings.link_label != blank -%}
-                  <a
-                    class="link animate-arrow"
-                    {% if block.settings.link == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ block.settings.link }}"
-                    {% endif %}
-                  >
-                    {{- block.settings.link_label | escape -}}
-                    <span class="svg-wrapper"
-                      ><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span
-                    >
-                  </a>
-                {%- endif -%}
-              </div>
-            </div>
-          </li>
-        {%- endfor -%}
-      </ul>
-
-      {%- if show_mobile_slider -%}
-        <div class="slider-buttons large-up-hide">
-          <button
-            type="button"
-            class="slider-button slider-button--prev"
-            name="previous"
-            aria-label="{{ 'general.slider.previous_slide' | t }}"
-          >
-            <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
-          </button>
-          <div class="slider-counter caption">
-            <span class="slider-counter--current">1</span>
-            <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ section.blocks.size }}</span>
-          </div>
-          <button
-            type="button"
-            class="slider-button slider-button--next"
-            name="next"
-            aria-label="{{ 'general.slider.next_slide' | t }}"
-          >
-            <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
-          </button>
         </div>
-      {%- endif -%}
-    </slider-component>
-    <div class="center{% if show_mobile_slider %} small-hide medium-hide{% endif %}">
-      {%- if section.settings.button_label != blank -%}
-        <a
-          class="button button--primary"
-          {% if section.settings.button_link == blank %}
-            role="link" aria-disabled="true"
-          {% else %}
-            href="{{ section.settings.button_link }}"
+
+       <h3 class="pc-pricing-table__title"
+         style="
+          color: {{ block.settings.title_color }};
+    font-weight: {{ block.settings.title_font_weight }};
+    font-style: {{ block.settings.font_style }};
+    letter-spacing: {{ block.settings.letter_spacing }}px;
+    text-decoration: {{ block.settings.text_decoration }};
+    {% if block.settings.text_decoration != 'none' %}
+      text-decoration-color: {{ block.settings.text_decoration_color }};
+    {% endif %}
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+    font-size: 
+    {% case block.settings.text_size %}
+      {% when 'small' %}14px
+      {% when 'medium' %}18px
+      {% when 'large' %}24px
+      {% else %}16px
+    {% endcase %};
+         "
+         >{{ block.settings.title }}</h3>
+  
+      <p class="pc-pricing-table__description">
+        <span class="pc-pricing-table__tagline"
+          style="
+    color: {{ block.settings.tagline_text_color }};
+    text-align: {{ block.settings.tagline_text_align }};
+   font-weight: {{ block.settings.tagline_font_weight }};
+    font-style: {{ block.settings.tagline_font_style }};
+    letter-spacing: {{ block.settings.tagline_letter_spacing }}px;
+    text-decoration: {{ block.settings.tagline_text_decoration }};
+    text-decoration-color: {{ block.settings.tagline_text_decoration_color}} !important;
+    padding-top: {{ block.settings.tagline_padding_top }}px;
+    padding-bottom: {{ block.settings.tagline_padding_bottom }}px;
+    font-size:
+      {% case block.settings.tagline_text_size %}
+        {% when 'small' %}14px
+        {% when 'medium' %}18px
+        {% when 'large' %}24px
+        {% else %}16px
+      {% endcase %};
+  ">{{block.settings.tagline }}</span>
+        
+    {% assign price_font_size = '' %}
+{% case plan.price_text_size %}
+  {% when 'small' %} {% assign price_font_size = '14px' %}
+  {% when 'medium' %} {% assign price_font_size = '18px' %}
+  {% when 'large' %} {% assign price_font_size = '24px' %}
+  {% else %} {% assign price_font_size = '16px' %}
+{% endcase %}
+
+<span class="pc-pricing-table__price"
+  style="
+    color: {{ block.settings.price_title_color }};
+    text-align: {{ plan.price_text_align }};
+    font-weight: {{ plan.price_font_weight }};
+    font-style: {{ plan.price_font_style }};
+    letter-spacing: {{ plan.price_letter_spacing }}px;
+    text-decoration: {{ plan.price_text_decoration }};
+    padding-top: {{ plan.price_padding_top }}px;
+    padding-bottom: {{ plan.price_padding_bottom }}px;
+    font-size: {{ price_font_size }};
+  "
+>
+  {{ plan.price }}
+</span>
+
+      {% assign label_font_size = '' %}
+{% case plan.label_text_size %}
+  {% when 'small' %} {% assign label_font_size = '14px' %}
+  {% when 'medium' %} {% assign label_font_size = '18px' %}
+  {% when 'large' %} {% assign label_font_size = '24px' %}
+  {% else %} {% assign label_font_size = '16px' %}
+{% endcase %}
+
+<span class="pc-pricing-table__label"
+  style="
+    color: {{ block.settings.label_title_color }};
+    text-align: {{ plan.label_text_align }};
+   font-weight: {{ plan.label_font_weight }};
+    font-style: {{ plan.label_font_style }};
+    letter-spacing: {{ plan.label_letter_spacing }}px;
+    text-decoration: {{ plan.label_text_decoration }};
+    text-decoration-color: {{ plan.label_text_decoration_color }};
+    padding-top: {{ plan.label_padding_top }}px;
+    padding-bottom: {{ plan.label_padding_bottom }}px;
+    font-size: {{ label_font_size }};
+  "
+>
+  {{ plan.label }}
+</span>
+
+       {% assign save_font_size = '' %}
+{% case plan.save_text_size %}
+  {% when 'small' %} {% assign save_font_size = '14px' %}
+  {% when 'medium' %} {% assign save_font_size = '18px' %}
+  {% when 'large' %} {% assign save_font_size = '24px' %}
+  {% else %} {% assign save_font_size = '16px' %}
+{% endcase %}
+
+<span class="pc-pricing-table__save"
+  style="
+    color: {{ block.settings.save_title_color }};
+    text-align: {{ plan.save_text_align }};
+   font-weight: {{ plan.save_font_weight }};
+    font-style: {{ plan.save_font_style }};
+    letter-spacing: {{ plan.save_letter_spacing }}px;
+    text-decoration: {{ plan.save_text_decoration }};
+    text-decoration-color: {{ plan.save_text_decoration_color }};
+    padding-top: {{ plan.save_padding_top }}px;
+    padding-bottom: {{ plan.save_padding_bottom }}px;
+    font-size: {{ save_font_size }};
+  "
+>
+  {{ plan.save }}
+</span>
+</p>
+           <ul class="pc-pricing-table__products">
+     {% if block.settings.included_items != blank %}
+
+  {% assign included = block.settings.included_items | split: ',' %}
+  {% for item in included %}
+    {% assign item_trimmed = item | strip %}
+    <li class="pc-pricing-table__product"
+        style="
+          font-size: {% case block.settings.included_items_text_size %}
+            {% when 'small' %}12px
+            {% when 'medium' %}16px
+            {% when 'large' %}20px
+          {% endcase %};
+          text-align: {{ block.settings.included_items_text_align }};
+          font-weight: {{ block.settings.included_items_font_weight }};
+          font-style: {{ block.settings.included_items_font_style }};
+          letter-spacing: {{ block.settings.included_items_letter_spacing }}px;
+          text-decoration: {{ block.settings.included_items_text_decoration }};
+          text-decoration-color: {{ block.settings.included_items_text_decoration_color }};
+          padding-top: {{ block.settings.included_items_padding_top }}px;
+          padding-bottom: {{ block.settings.included_items_padding_bottom }}px;
+        ">
+      <a href="#">
+        {{ item_trimmed }}
+      </a>
+    </li>
+  {% endfor %}
+{% endif %}
+
+
+     {% if block.settings.excluded_items != blank %}
+  <li class="pc-pricing-table__product-label">
+    {{ block.settings.excluded_label }}
+  </li>
+  {% assign excluded = block.settings.excluded_items | split: ',' %}
+  {% for item in excluded %}
+    {% assign item_trimmed = item | strip %}
+    <li class="pc-pricing-table__product pc-pricing-table__product--excluded"
+        style="
+          font-size: {% case block.settings.excluded_items_text_size %}
+            {% when 'small' %}12px
+            {% when 'medium' %}16px
+            {% when 'large' %}20px
+          {% endcase %};
+          text-align: {{ block.settings.excluded_items_text_align | default: 'left' }};
+          font-weight: {{ block.settings.excluded_items_font_weight }};
+          font-style: {{ block.settings.excluded_items_font_style }};
+          letter-spacing: {{ block.settings.excluded_items_letter_spacing }}px;
+          text-decoration: {{ block.settings.excluded_items_text_decoration }};
+          {% if block.settings.excluded_items_text_decoration != 'none' %}
+            text-decoration-color: {{ block.settings.excluded_items_text_decoration_color }};
           {% endif %}
-        >
-          {{ section.settings.button_label | escape }}
-        </a>
-      {%- endif -%}
-    </div>
-  </div>
+          padding-top: {{ block.settings.excluded_items_padding_top }}px;
+          padding-bottom: {{ block.settings.excluded_items_padding_bottom }}px;
+          color: {{ block.settings.excluded_items_text_color | default: 'inherit' }};
+        ">
+      <a href="#">
+        {{ item_trimmed }}
+      </a>
+    </li>
+  {% endfor %}
+{% endif %}
+      </ul>
+      
+      <a href="{{ block.settings.button_url | default: '#' }}"
+        class="pricing-table__button"
+        style="
+          background: {{ block.settings.button_background_color }};
+          color: {{ block.settings.button_text_color }};
+          font-size: {{ block.settings.button_font_size }}px;
+          font-weight: {{ plan.button_font_weight }};
+          text-transform: {{ block.settings.button_text_transform }};
+          letter-spacing: {{ block.settings.button_letter_spacing }}px;
+          text-decoration: {{ block.settings.button_text_decoration }};
+          text-decoration-color: {{ block.settings.button_text_decoration_color }};
+          border: 1px solid {{ block.settings.button_border_color }};
+          border-radius: {{ block.settings.button_border_radius }}px;
+          padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+          min-width: {{ block.settings.button_min_width }}px;
+          display: inline-block;
+          text-align: center;
+          text-decoration: none;
+          transition: all 0.3s ease;
+        "
+        onmouseover="this.style.background='{{ block.settings.button_hover_background_color }}'; this.style.color='{{ block.settings.button_hover_text_color }}'; this.style.borderColor='{{ block.settings.button_hover_border_color }}';"
+        onmouseout="this.style.background='{{ block.settings.button_background_color }}'; this.style.color='{{ block.settings.button_text_color }}'; this.style.borderColor='{{ block.settings.button_border_color }}';"
+      >
+        {{ block.settings.button_label }}
+      </a>
+    </li> <!-- This closes the pc-pricing-table__item -->
+  {% endfor %}
+</ul>
+</div>
 </div>
 
 {% schema %}
