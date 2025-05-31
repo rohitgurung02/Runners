@@ -339,7 +339,13 @@
     "sample_ex_YKmU3X": {
       "type": "sample-ex",
       "name": "Pricing Table",
-      "settings": {}
+      "settings": {
+        "show_badge": false,
+        "grayscale_before": false,
+        "show_content": false,
+        "ba_heading": "",
+        "ba_content": ""
+      }
     },
     "compare_table_VdBwkG": {
       "type": "compare-table",
@@ -651,12 +657,17 @@
         "padding_bottom": 36
       }
     },
-    "sample_ex_bziTb6": {
+    "sample_ex_YqUAiW": {
       "type": "sample-ex",
-      "name": "Image Comparison Slider",
+      "name": "Before / After Slider",
       "settings": {
-        "before_image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
-        "after_image": "shopify://shop_images/1738323256__kannperformance__huge.jpg"
+        "bf_image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
+        "af_image": "shopify://shop_images/1735917732__screenshot2025-01-03at111804pm__huge.png",
+        "show_badge": false,
+        "grayscale_before": false,
+        "show_content": false,
+        "ba_heading": "",
+        "ba_content": ""
       }
     }
   },
@@ -670,6 +681,6 @@
     "pwc_scrolling_text_1_infR3x",
     "sample_ex_YKmU3X",
     "compare_table_VdBwkG",
-    "sample_ex_bziTb6"
+    "sample_ex_YqUAiW"
   ]
 }
