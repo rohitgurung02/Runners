@@ -1,3 +1,323 @@
-{% for num in (1..10) %}
-  {{ num }}
-{% endfor %}
+{% comment %}
+  Image Comparison Slider - Shopify Liquid Component
+  Uses vanilla JavaScript instead of jQuery
+{% endcomment %}
+
+<style>
+  /* Image Comparison Slider Styles */
+  .image-comparison-slider {
+    margin: 2rem 0;
+  }
+  
+  .cd-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+  
+  .cd-image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  .cd-image-label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #ffffff;
+    padding: 1em;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.3s 0.7s, opacity 0.3s 0.7s;
+    font-size: 14px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 4px;
+  }
+  
+  .cd-image-label.is-hidden {
+    visibility: hidden;
+  }
+  
+  .is-visible .cd-image-label {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .cd-resize-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  .cd-resize-img img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: none;
+  }
+  
+  .cd-resize-img .cd-image-label {
+    right: auto;
+    left: 0;
+  }
+  
+  .cd-handle {
+    position: absolute;
+    height: 44px;
+    width: 44px;
+    left: 50%;
+    top: 50%;
+    margin-left: -22px;
+    margin-top: -22px;
+    border-radius: 50%;
+    background: #dc717d;
+    cursor: move;
+    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cd-handle::before,
+  .cd-handle::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 2px;
+    background: white;
+  }
+  
+  .cd-handle::before {
+    transform: rotate(45deg);
+    left: 12px;
+  }
+  
+  .cd-handle::after {
+    transform: rotate(-45deg);
+    right: 12px;
+  }
+  
+  .cd-handle.draggable {
+    background-color: #445b7c;
+  }
+  
+  .is-visible .cd-handle {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition: transform 0.3s 0.7s, opacity 0s 0.7s;
+  }
+  
+  @keyframes cd-bounce-in {
+    0% { width: 0; }
+    60% { width: 55%; }
+    100% { width: 50%; }
+  }
+  
+  .is-visible .cd-resize-img {
+    width: 50%;
+    animation: cd-bounce-in 0.7s;
+  }
+</style>
+
+<div class="image-comparison-slider">
+  <figure class="cd-image-container">
+    <img src="{{ section.settings.before_image | img_url: '1000x' }}" alt="Before image" loading="lazy"/>
+    <span class="cd-image-label" data-type="original">Before</span>
+
+    <div class="cd-resize-img">
+      <img src="{{ section.settings.after_image | img_url: '1000x' }}" alt="After image" loading="lazy"/>
+      <span class="cd-image-label" data-type="modified">After</span>
+    </div>
+
+    <span class="cd-handle"></span>
+  </figure>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize all image comparison sliders on the page
+  const containers = document.querySelectorAll('.cd-image-container');
+  
+  containers.forEach(container => {
+    initImageComparison(container);
+  });
+  
+  // Check if elements are in viewport to trigger animation
+  checkPosition(containers);
+  window.addEventListener('scroll', throttle(() => checkPosition(containers), 100));
+  window.addEventListener('resize', throttle(() => checkLabel(containers), 100));
+});
+
+function initImageComparison(container) {
+  const handle = container.querySelector('.cd-handle');
+  const resizeImg = container.querySelector('.cd-resize-img');
+  const originalLabel = container.querySelector('.cd-image-label[data-type="original"]');
+  const modifiedLabel = container.querySelector('.cd-image-label[data-type="modified"]');
+  
+  // Make the handle draggable
+  setupDraggable(handle, resizeImg, container, originalLabel, modifiedLabel);
+  
+  // Initialize labels
+  updateLabel(modifiedLabel, resizeImg, 'left');
+  updateLabel(originalLabel, resizeImg, 'right');
+}
+
+function setupDraggable(handle, resizeElement, container, originalLabel, modifiedLabel) {
+  let isDragging = false;
+  let startX, startLeft, containerWidth, containerLeft;
+  
+  handle.addEventListener('mousedown', startDrag);
+  handle.addEventListener('touchstart', startDrag, { passive: false });
+  
+  function startDrag(e) {
+    e.preventDefault();
+    isDragging = true;
+    
+    // Get initial positions
+    startX = e.clientX || e.touches[0].clientX;
+    startLeft = parseFloat(getComputedStyle(resizeElement).width) / 100 * container.offsetWidth;
+    
+    // Get container dimensions
+    containerWidth = container.offsetWidth;
+    containerLeft = container.getBoundingClientRect().left;
+    
+    // Add active classes
+    handle.classList.add('draggable');
+    resizeElement.classList.add('resizable');
+    
+    // Add event listeners
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('touchmove', drag, { passive: false });
+    document.addEventListener('mouseup', stopDrag);
+    document.addEventListener('touchend', stopDrag);
+  }
+  
+  function drag(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    
+    const clientX = e.clientX || e.touches[0].clientX;
+    let newLeft = startLeft + (clientX - startX);
+    
+    // Constrain to container
+    newLeft = Math.max(0, Math.min(newLeft, containerWidth));
+    
+    // Calculate percentage
+    const percent = (newLeft / containerWidth) * 100;
+    
+    // Update positions
+    resizeElement.style.width = `${percent}%`;
+    handle.style.left = `${percent}%`;
+    
+    // Update labels
+    updateLabel(modifiedLabel, resizeElement, 'left');
+    updateLabel(originalLabel, resizeElement, 'right');
+  }
+  
+  function stopDrag() {
+    if (!isDragging) return;
+    isDragging = false;
+    
+    // Remove active classes
+    handle.classList.remove('draggable');
+    resizeElement.classList.remove('resizable');
+    
+    // Remove event listeners
+    document.removeEventListener('mousemove', drag);
+    document.removeEventListener('touchmove', drag);
+    document.removeEventListener('mouseup', stopDrag);
+    document.removeEventListener('touchend', stopDrag);
+  }
+}
+
+function updateLabel(label, resizeElement, position) {
+  if (!label || !resizeElement) return;
+  
+  const labelRect = label.getBoundingClientRect();
+  const resizeRect = resizeElement.getBoundingClientRect();
+  
+  if (position === 'left') {
+    (labelRect.left + labelRect.width < resizeRect.left + resizeRect.width) 
+      ? label.classList.remove('is-hidden')
+      : label.classList.add('is-hidden');
+  } else {
+    (labelRect.left > resizeRect.left + resizeRect.width)
+      ? label.classList.remove('is-hidden')
+      : label.classList.add('is-hidden');
+  }
+}
+
+function checkPosition(containers) {
+  containers.forEach(container => {
+    const rect = container.getBoundingClientRect();
+    const isVisible = (rect.top <= window.innerHeight * 0.75) && 
+                     (rect.bottom >= window.innerHeight * 0.25);
+    
+    if (isVisible) {
+      container.classList.add('is-visible');
+    }
+  });
+}
+
+function checkLabel(containers) {
+  containers.forEach(container => {
+    const modifiedLabel = container.querySelector('.cd-image-label[data-type="modified"]');
+    const originalLabel = container.querySelector('.cd-image-label[data-type="original"]');
+    const resizeImg = container.querySelector('.cd-resize-img');
+    
+    updateLabel(modifiedLabel, resizeImg, 'left');
+    updateLabel(originalLabel, resizeImg, 'right');
+  });
+}
+
+// Throttle function to limit how often a function can fire
+function throttle(func, limit) {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+</script>
+
+{% schema %}
+{
+  "name": "Image Comparison Slider",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pwc Image Comparison Slider",
+      "category": "Media"
+    }
+  ]
+}
+{% endschema %}
