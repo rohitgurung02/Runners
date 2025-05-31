@@ -2117,6 +2117,222 @@ div.DP__widths * {
 {%- endcapture -%}
 {{ minify | strip_newlines }}
 
+{%- comment -%} JSON Settings {%- endcomment -%}
+<script type="application/json" data-wsp-section="{{ section_id }}">
+  {
+    "id": {{ section_id | json }},
+    "animation": {{ section.settings.animation | json }}
+  }
+</script>
+{%- if slider_block.size > 0 and slider_count != 0 -%}
+  <script
+    data-wsp-section-external-js="{{ section_id }}"
+    src="https://cdn.shopify.com/s/files/1/0577/7673/4361/files/flickity-2.3.0.pkgd.min.js?v=1671485005"
+    defer
+  ></script>
+  <script
+    data-wsp-section-external-js="{{ section_id }}"
+    src="https://cdn.shopify.com/s/files/1/0577/7673/4361/files/flickity-fade-1.0.0.min.js?v=1659560790"
+    defer
+  ></script>
+{%- endif -%}
+{%- comment -%} JavaScript {%- endcomment -%}
+<script
+  data-wsp-section-js="{{ section_id }}"
+  type="module"
+  defer
+>
+  (function(){
+
+    const webPack = {
+      settings: {},
+      animateSection: function(entries, observer){
+        // Target the first entry available.
+        let observedSection = entries[0];
+        if (observedSection.isIntersecting) {
+          observedSection.target.classList.add('wsp-section__animation-applied');
+        }
+      },
+      enableSliderBlock: function(section){
+        const sliderBlocks = section.querySelectorAll(`.wsp-section__slider-block`);
+
+        sliderBlocks.forEach(elem => {
+          webPack.flkty = new Flickity( elem, {
+            cellAlign: 'left',
+            contain: true,
+            wrapAround: true,
+            adaptiveHeight: true,
+            imagesLoaded: true,
+            prevNextButtons: JSON.parse(getComputedStyle(elem).getPropertyValue('--show-arrows')),
+            autoPlay: JSON.parse(getComputedStyle(elem).getPropertyValue('--autoplay')),
+            fade: JSON.parse(getComputedStyle(elem).getPropertyValue('--slider-animation')),
+            pageDots: JSON.parse(getComputedStyle(elem).getPropertyValue('--page-dots')),
+            draggable: JSON.parse(getComputedStyle(elem).getPropertyValue('--draggable')),
+            freeScrollFriction: JSON.parse(getComputedStyle(elem).getPropertyValue('--free-scroll-friction')),
+            selectedAttraction: JSON.parse(getComputedStyle(elem).getPropertyValue('--selected-attraction')),
+            friction: JSON.parse(getComputedStyle(elem).getPropertyValue('--friction')),
+            dragThreshold: JSON.parse(getComputedStyle(elem).getPropertyValue('--drag-threshold'))
+          });
+        });
+
+      },
+      initializeAndEnableClock(section) {
+        const clockSelector = '.wsp-section__clock';
+        const startDate = section.querySelector('[data-timer-start]').dataset.timerStart;
+        const endDate = section.querySelector('[data-timer-end]').dataset.timerEnd;
+
+        const startMs = Date.parse(startDate);
+        const endMs = Date.parse(endDate);
+        const currentMs = Date.parse(new Date());
+
+        if (endMs <= currentMs || currentMs < startMs) {
+          section.querySelector(`.wsp-section__clock-wrap`).style.display = 'none';
+          return;
+        }
+
+        const clock = section.querySelector(clockSelector);
+
+        function updateClock() {
+          const total = Date.parse(endDate) - Date.parse(new Date());
+          const days = Math.floor(total / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((total / 1000 / 60) % 60);
+          const seconds = Math.floor((total / 1000) % 60);
+
+          const daysSpan = clock.querySelector('.wsp-section__days .wsp-section__number');
+          const hoursSpan = clock.querySelector('.wsp-section__hours .wsp-section__number');
+          const minutesSpan = clock.querySelector('.wsp-section__minutes .wsp-section__number');
+          const secondsSpan = clock.querySelector('.wsp-section__seconds .wsp-section__number');
+
+          if (daysSpan.innerHTML != days) daysSpan.innerHTML = days;
+          if (hoursSpan.innerHTML != hours) hoursSpan.innerHTML = ('0' + hours).slice(-2);
+          if (minutesSpan.innerHTML != minutes) minutesSpan.innerHTML = ('0' + minutes).slice(-2);
+          if (secondsSpan.innerHTML != seconds) secondsSpan.innerHTML = ('0' + seconds).slice(-2);
+
+          if (total <= 0) clearInterval(timeinterval);
+        }
+
+        updateClock();
+        const timeinterval = setInterval(updateClock, 1000);
+      },
+      load: function(section){
+
+        let isClicked = false;
+
+        const image = section.querySelector('.wsp-section__comparison__overlay');
+        const slider = section.querySelector('.wsp-section__comparison__slider');
+        const fullImage = section.querySelector('.wsp-section__compare');
+
+        const width = fullImage.offsetWidth;
+        const height = fullImage.offsetHeight;
+
+        function compare() {
+
+          slider.style.top = height / 2 - slider.offsetHeight / 2 + 'px';
+          slider.style.left = width / 2 - slider.offsetWidth / 2 + 'px';
+          image.style.width = '50%';
+
+          slider.addEventListener('mousedown', onSlideStart);
+          slider.addEventListener('touchstart', onSlideStart);
+
+          section.addEventListener('mouseup', () => (isClicked = false));
+          section.addEventListener('touchstop', () => (isClicked = false));
+
+          section.addEventListener('mousemove', onSlideMove);
+          section.addEventListener('touchmove', onSlideMove);
+        }
+
+        function doSlide(x) {
+          image.style.width = x + 'px';
+          slider.style.left = image.offsetWidth - slider.offsetWidth / 2 + 'px';
+        }
+
+        function onSlideStart(event) {
+          event.preventDefault();
+          isClicked = true;
+        }
+
+        function onSlideMove(event) {
+          if (!isClicked) return;
+
+          doSlide(currentPosition(event));
+        }
+
+        function currentPosition(event = window.event) {
+          let pageX = event.pageX;
+          let hasTouchScreen = null;
+
+          if ("maxTouchPoints" in navigator && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            hasTouchScreen = navigator.maxTouchPoints > 0;
+          }
+
+          if (typeof hasTouchScreen != 'undefined' && hasTouchScreen != null) {
+            pageX = event.changedTouches[0].pageX
+          }
+
+          let xImage = image.getBoundingClientRect();
+          let x = 0;
+
+          x = pageX - xImage.left;
+
+          if (x < 0) x = 0;
+
+          if (x > width) x = width;
+
+          return x;
+        }
+
+        compare();
+
+
+        if (this.settings.animation !== 'none'){
+          const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: [0, 0.25, 0.5, 0.75, 1]
+          };
+          // Construct Intersection Observer.
+          const observer = new IntersectionObserver( this.animateSection, options );
+          // Observe if element is present.
+          if (section) {
+            observer.observe(section);
+          }
+        }
+
+        const countdownTimer = section.querySelector('.wsp-section__clock');
+        if (typeof countdownTimer !== 'undefined' && countdownTimer !== null){
+          webPack.initializeAndEnableClock(section);
+        }
+
+        const sliderBlock = section.querySelector('.wsp-section__slider-block');
+        if (typeof sliderBlock !== 'undefined' && sliderBlock !== null){
+          webPack.enableSliderBlock(section);
+        }
+      },
+      unload: function(section){
+        section.classList.remove('wsp-section__animation-applied')
+      }
+    }
+
+    window.addEventListener('shopify:section:unload', function (e) {
+      const settings = document.querySelector(`[data-wsp-section="${e.detail.sectionId}"]`);
+      const sectionId = e.detail.sectionId;
+      const section = document.querySelector(`#DP--${e.detail.sectionId}`);
+      if (sectionId == webPack.settings.id){
+        webPack.unload(section);
+      }
+    });
+
+    webPack.settings = JSON.parse(document.querySelector('[data-wsp-section="{{ section_id }}"]').innerHTML);
+    const sectionId = {{ section.id | json }};
+    const section = document.querySelector(`#DP--${sectionId}`);
+
+    if (sectionId == webPack.settings.id){
+      webPack.load(section);
+    }
+  })()
+</script>
+
 {% schema %}
 {
   "name": "Comparison slider text",
@@ -4559,218 +4775,3 @@ div.DP__widths * {
 }
 {% endschema %}
 
-{%- comment -%} JSON Settings {%- endcomment -%}
-<script type="application/json" data-wsp-section="{{ section_id }}">
-  {
-    "id": {{ section_id | json }},
-    "animation": {{ section.settings.animation | json }}
-  }
-</script>
-{%- if slider_block.size > 0 and slider_count != 0 -%}
-  <script
-    data-wsp-section-external-js="{{ section_id }}"
-    src="https://cdn.shopify.com/s/files/1/0577/7673/4361/files/flickity-2.3.0.pkgd.min.js?v=1671485005"
-    defer
-  ></script>
-  <script
-    data-wsp-section-external-js="{{ section_id }}"
-    src="https://cdn.shopify.com/s/files/1/0577/7673/4361/files/flickity-fade-1.0.0.min.js?v=1659560790"
-    defer
-  ></script>
-{%- endif -%}
-{%- comment -%} JavaScript {%- endcomment -%}
-<script
-  data-wsp-section-js="{{ section_id }}"
-  type="module"
-  defer
->
-  (function(){
-
-    const webPack = {
-      settings: {},
-      animateSection: function(entries, observer){
-        // Target the first entry available.
-        let observedSection = entries[0];
-        if (observedSection.isIntersecting) {
-          observedSection.target.classList.add('wsp-section__animation-applied');
-        }
-      },
-      enableSliderBlock: function(section){
-        const sliderBlocks = section.querySelectorAll(`.wsp-section__slider-block`);
-
-        sliderBlocks.forEach(elem => {
-          webPack.flkty = new Flickity( elem, {
-            cellAlign: 'left',
-            contain: true,
-            wrapAround: true,
-            adaptiveHeight: true,
-            imagesLoaded: true,
-            prevNextButtons: JSON.parse(getComputedStyle(elem).getPropertyValue('--show-arrows')),
-            autoPlay: JSON.parse(getComputedStyle(elem).getPropertyValue('--autoplay')),
-            fade: JSON.parse(getComputedStyle(elem).getPropertyValue('--slider-animation')),
-            pageDots: JSON.parse(getComputedStyle(elem).getPropertyValue('--page-dots')),
-            draggable: JSON.parse(getComputedStyle(elem).getPropertyValue('--draggable')),
-            freeScrollFriction: JSON.parse(getComputedStyle(elem).getPropertyValue('--free-scroll-friction')),
-            selectedAttraction: JSON.parse(getComputedStyle(elem).getPropertyValue('--selected-attraction')),
-            friction: JSON.parse(getComputedStyle(elem).getPropertyValue('--friction')),
-            dragThreshold: JSON.parse(getComputedStyle(elem).getPropertyValue('--drag-threshold'))
-          });
-        });
-
-      },
-      initializeAndEnableClock(section) {
-        const clockSelector = '.wsp-section__clock';
-        const startDate = section.querySelector('[data-timer-start]').dataset.timerStart;
-        const endDate = section.querySelector('[data-timer-end]').dataset.timerEnd;
-
-        const startMs = Date.parse(startDate);
-        const endMs = Date.parse(endDate);
-        const currentMs = Date.parse(new Date());
-
-        if (endMs <= currentMs || currentMs < startMs) {
-          section.querySelector(`.wsp-section__clock-wrap`).style.display = 'none';
-          return;
-        }
-
-        const clock = section.querySelector(clockSelector);
-
-        function updateClock() {
-          const total = Date.parse(endDate) - Date.parse(new Date());
-          const days = Math.floor(total / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-          const minutes = Math.floor((total / 1000 / 60) % 60);
-          const seconds = Math.floor((total / 1000) % 60);
-
-          const daysSpan = clock.querySelector('.wsp-section__days .wsp-section__number');
-          const hoursSpan = clock.querySelector('.wsp-section__hours .wsp-section__number');
-          const minutesSpan = clock.querySelector('.wsp-section__minutes .wsp-section__number');
-          const secondsSpan = clock.querySelector('.wsp-section__seconds .wsp-section__number');
-
-          if (daysSpan.innerHTML != days) daysSpan.innerHTML = days;
-          if (hoursSpan.innerHTML != hours) hoursSpan.innerHTML = ('0' + hours).slice(-2);
-          if (minutesSpan.innerHTML != minutes) minutesSpan.innerHTML = ('0' + minutes).slice(-2);
-          if (secondsSpan.innerHTML != seconds) secondsSpan.innerHTML = ('0' + seconds).slice(-2);
-
-          if (total <= 0) clearInterval(timeinterval);
-        }
-
-        updateClock();
-        const timeinterval = setInterval(updateClock, 1000);
-      },
-      load: function(section){
-
-        let isClicked = false;
-
-        const image = section.querySelector('.wsp-section__comparison__overlay');
-        const slider = section.querySelector('.wsp-section__comparison__slider');
-        const fullImage = section.querySelector('.wsp-section__compare');
-
-        const width = fullImage.offsetWidth;
-        const height = fullImage.offsetHeight;
-
-        function compare() {
-
-          slider.style.top = height / 2 - slider.offsetHeight / 2 + 'px';
-          slider.style.left = width / 2 - slider.offsetWidth / 2 + 'px';
-          image.style.width = '50%';
-
-          slider.addEventListener('mousedown', onSlideStart);
-          slider.addEventListener('touchstart', onSlideStart);
-
-          section.addEventListener('mouseup', () => (isClicked = false));
-          section.addEventListener('touchstop', () => (isClicked = false));
-
-          section.addEventListener('mousemove', onSlideMove);
-          section.addEventListener('touchmove', onSlideMove);
-        }
-
-        function doSlide(x) {
-          image.style.width = x + 'px';
-          slider.style.left = image.offsetWidth - slider.offsetWidth / 2 + 'px';
-        }
-
-        function onSlideStart(event) {
-          event.preventDefault();
-          isClicked = true;
-        }
-
-        function onSlideMove(event) {
-          if (!isClicked) return;
-
-          doSlide(currentPosition(event));
-        }
-
-        function currentPosition(event = window.event) {
-          let pageX = event.pageX;
-          let hasTouchScreen = null;
-
-          if ("maxTouchPoints" in navigator && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            hasTouchScreen = navigator.maxTouchPoints > 0;
-          }
-
-          if (typeof hasTouchScreen != 'undefined' && hasTouchScreen != null) {
-            pageX = event.changedTouches[0].pageX
-          }
-
-          let xImage = image.getBoundingClientRect();
-          let x = 0;
-
-          x = pageX - xImage.left;
-
-          if (x < 0) x = 0;
-
-          if (x > width) x = width;
-
-          return x;
-        }
-
-        compare();
-
-
-        if (this.settings.animation !== 'none'){
-          const options = {
-            root: null,
-            rootMargin: '0px',
-            threshold: [0, 0.25, 0.5, 0.75, 1]
-          };
-          // Construct Intersection Observer.
-          const observer = new IntersectionObserver( this.animateSection, options );
-          // Observe if element is present.
-          if (section) {
-            observer.observe(section);
-          }
-        }
-
-        const countdownTimer = section.querySelector('.wsp-section__clock');
-        if (typeof countdownTimer !== 'undefined' && countdownTimer !== null){
-          webPack.initializeAndEnableClock(section);
-        }
-
-        const sliderBlock = section.querySelector('.wsp-section__slider-block');
-        if (typeof sliderBlock !== 'undefined' && sliderBlock !== null){
-          webPack.enableSliderBlock(section);
-        }
-      },
-      unload: function(section){
-        section.classList.remove('wsp-section__animation-applied')
-      }
-    }
-
-    window.addEventListener('shopify:section:unload', function (e) {
-      const settings = document.querySelector(`[data-wsp-section="${e.detail.sectionId}"]`);
-      const sectionId = e.detail.sectionId;
-      const section = document.querySelector(`#DP--${e.detail.sectionId}`);
-      if (sectionId == webPack.settings.id){
-        webPack.unload(section);
-      }
-    });
-
-    webPack.settings = JSON.parse(document.querySelector('[data-wsp-section="{{ section_id }}"]').innerHTML);
-    const sectionId = {{ section.id | json }};
-    const section = document.querySelector(`#DP--${sectionId}`);
-
-    if (sectionId == webPack.settings.id){
-      webPack.load(section);
-    }
-  })()
-</script>
