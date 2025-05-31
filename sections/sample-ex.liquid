@@ -2,21 +2,6 @@
   Image Comparison Slider - Shopify Liquid Component
   With fixed left-to-right and right-to-left animations
 {% endcomment %}
-
-<div class="image-comparison-slider">
-  <figure class="cd-image-container">
-    <img src="{{ section.settings.before_image | img_url: '1000x' }}" alt="Before image" loading="lazy"/>
-    <span class="cd-image-label" data-type="original">Before</span>
-
-    <div class="cd-resize-img">
-      <img src="{{ section.settings.after_image | img_url: '1000x' }}" alt="After image" loading="lazy"/>
-      <span class="cd-image-label" data-type="modified">After</span>
-    </div>
-
-    <span class="cd-handle"></span>
-  </figure>
-</div>
-
 <style>
   /* Image Comparison Slider Styles */
   .image-comparison-slider {
@@ -170,6 +155,22 @@
     100% { width: 100%; }
   }
 </style>
+
+<div class="image-comparison-slider">
+  <figure class="cd-image-container">
+    <img src="{{ section.settings.before_image | img_url: '1000x' }}" alt="Before image" loading="lazy"/>
+    <span class="cd-image-label" data-type="original">Before</span>
+
+    <div class="cd-resize-img">
+      <img src="{{ section.settings.after_image | img_url: '1000x' }}" alt="After image" loading="lazy"/>
+      <span class="cd-image-label" data-type="modified">After</span>
+    </div>
+
+    <span class="cd-handle"></span>
+  </figure>
+</div>
+
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
