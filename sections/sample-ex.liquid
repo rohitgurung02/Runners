@@ -169,7 +169,7 @@ function initImageComparison(container) {
 
 function setupDragEvents(handle, resizeElement, container, originalLabel, modifiedLabel) {
   let isDragging = false;
-  let startX, startWidth, containerWidth;
+  let startX, startWidth, containerWidth, containerLeft;
   
   // Mouse events
   handle.addEventListener('mousedown', startDrag);
@@ -185,13 +185,20 @@ function setupDragEvents(handle, resizeElement, container, originalLabel, modifi
     isDragging = true;
     
     // Get initial positions
-    startX = e.clientX || e.touches[0].clientX;
+    const clientX = e.clientX || e.touches[0].clientX;
+    const containerRect = container.getBoundingClientRect();
+    
+    startX = clientX;
     startWidth = parseInt(window.getComputedStyle(resizeElement).width, 10);
-    containerWidth = container.offsetWidth;
+    containerWidth = containerRect.width;
+    containerLeft = containerRect.left;
     
     // Add active classes
     handle.classList.add('draggable');
     resizeElement.classList.add('resizable');
+    
+    // Prevent text selection during drag
+    e.preventDefault();
   }
   
   function drag(e) {
@@ -214,6 +221,9 @@ function setupDragEvents(handle, resizeElement, container, originalLabel, modifi
     // Update labels
     updateLabel(modifiedLabel, resizeElement, 'left');
     updateLabel(originalLabel, resizeElement, 'right');
+    
+    // Prevent scrolling and text selection during drag
+    e.preventDefault();
   }
   
   function stopDrag() {
