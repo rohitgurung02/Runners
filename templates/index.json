@@ -340,11 +340,32 @@
       "type": "sample-ex",
       "name": "Pricing Table",
       "settings": {
-        "show_badge": false,
-        "grayscale_before": false,
-        "show_content": false,
-        "ba_heading": "",
-        "ba_content": ""
+        "left_caption": "",
+        "right_caption": "",
+        "image_position": "left",
+        "text_alignment": "left",
+        "text_size": 100,
+        "text_width": 50,
+        "text_color": "#121212",
+        "text_background_color": "",
+        "border_color": "#ffffff",
+        "drag_color": "#ffffff",
+        "handle_color": "#121212",
+        "caption_text": "#ffffff",
+        "caption_background": "#121212",
+        "background_color": "",
+        "show_background_image": false,
+        "animation": "none",
+        "base_width": 90,
+        "max_width": "",
+        "inner_padding": 60,
+        "outer_margin": 0,
+        "custom_css": "",
+        "mobile_custom_css": "",
+        "anchor_id": "",
+        "override_theme_font": false,
+        "heading_font": "serif",
+        "main_font": "sans-serif"
       }
     },
     "compare_table_VdBwkG": {
@@ -657,17 +678,76 @@
         "padding_bottom": 36
       }
     },
-    "sample_ex_YqUAiW": {
+    "sample_ex_xfBEUG": {
       "type": "sample-ex",
-      "name": "Before / After Slider",
+      "blocks": {
+        "inset_image_xANJHX": {
+          "type": "inset_image",
+          "settings": {
+            "inset_image_size": 10,
+            "image_alignment": "default"
+          }
+        },
+        "small_text_8NaebR": {
+          "type": "small_text",
+          "settings": {
+            "small_text": "<p>New arrivals</p>"
+          }
+        },
+        "heading_PxpeKn": {
+          "type": "heading",
+          "settings": {
+            "title": "Attention-grabbing headline",
+            "block_heading_color": "",
+            "block_heading_size": "",
+            "enable_custom_font": false,
+            "custom_font": "abel_n4",
+            "heading_level": "h2"
+          }
+        },
+        "text_yXtcNA": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Drag and drop block options like heading, text, buttons, dividers, and more.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "inset_image_xANJHX",
+        "small_text_8NaebR",
+        "heading_PxpeKn",
+        "text_yXtcNA"
+      ],
+      "name": "Before After Slider",
       "settings": {
-        "bf_image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
-        "af_image": "shopify://shop_images/1735917732__screenshot2025-01-03at111804pm__huge.png",
-        "show_badge": false,
-        "grayscale_before": false,
-        "show_content": false,
-        "ba_heading": "",
-        "ba_content": ""
+        "left_image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
+        "left_caption": "",
+        "right_image": "shopify://shop_images/1738323256__kannperformance__huge.jpg",
+        "right_caption": "",
+        "image_position": "left",
+        "text_alignment": "left",
+        "text_size": 100,
+        "text_width": 50,
+        "text_color": "#121212",
+        "text_background_color": "",
+        "border_color": "#FFFFFF",
+        "drag_color": "#FFFFFF",
+        "handle_color": "#121212",
+        "caption_text": "#FFFFFF",
+        "caption_background": "#121212",
+        "background_color": "",
+        "show_background_image": false,
+        "animation": "none",
+        "base_width": 90,
+        "max_width": "",
+        "inner_padding": 60,
+        "outer_margin": 0,
+        "custom_css": "",
+        "mobile_custom_css": "",
+        "anchor_id": "",
+        "override_theme_font": false,
+        "heading_font": "serif",
+        "main_font": "sans-serif"
       }
     }
   },
@@ -681,6 +761,6 @@
     "pwc_scrolling_text_1_infR3x",
     "sample_ex_YKmU3X",
     "compare_table_VdBwkG",
-    "sample_ex_YqUAiW"
+    "sample_ex_xfBEUG"
   ]
 }
