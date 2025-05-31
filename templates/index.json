@@ -650,14 +650,6 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "sample_ex_PHrzhL": {
-      "type": "sample-ex",
-      "name": "Pwc Image Comparison Slider",
-      "settings": {
-        "before_image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
-        "after_image": "shopify://shop_images/1738323256__kannperformance__huge.jpg"
-      }
     }
   },
   "order": [
@@ -669,7 +661,6 @@
     "featured_collection_copy_kaw7iD",
     "pwc_scrolling_text_1_infR3x",
     "sample_ex_YKmU3X",
-    "compare_table_VdBwkG",
-    "sample_ex_PHrzhL"
+    "compare_table_VdBwkG"
   ]
 }
