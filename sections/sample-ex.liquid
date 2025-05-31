@@ -1,11 +1,10 @@
 {% comment %}
   Image Comparison Slider - Shopify Liquid Component
-  With fixed left-to-right and right-to-left animations
+  Drag-only version without buttons
 {% endcomment %}
+
 <style>
   /* Image Comparison Slider Styles */
-
-  
   .image-comparison-slider {
     margin: 2rem 0;
   }
@@ -23,6 +22,7 @@
     width: 100%;
     height: 600px;
     pointer-events: none;
+    object-fit: cover;
   }
   
   .cd-image-label {
@@ -137,25 +137,6 @@
     60% { width: 55%; }
     100% { width: 50%; }
   }
-  
-  /* Animation classes */
-  .animate-left {
-    animation: slide-left 0.7s forwards;
-  }
-  
-  .animate-right {
-    animation: slide-right 0.7s forwards;
-  }
-  
-  @keyframes slide-left {
-    0% { width: 100%; }
-    100% { width: 0%; }
-  }
-  
-  @keyframes slide-right {
-    0% { width: 0%; }
-    100% { width: 100%; }
-  }
 </style>
 
 <div class="image-comparison-slider">
@@ -172,8 +153,6 @@
   </figure>
 </div>
 
-
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all image comparison sliders on the page
@@ -187,9 +166,6 @@ document.addEventListener('DOMContentLoaded', function() {
   checkPosition(containers);
   window.addEventListener('scroll', throttle(() => checkPosition(containers), 100));
   window.addEventListener('resize', throttle(() => checkLabel(containers), 100));
-  
-  // Add animation buttons (optional - you can remove if not needed)
-  addAnimationControls();
 });
 
 function initImageComparison(container) {
@@ -315,61 +291,6 @@ function checkLabel(containers) {
     
     updateLabel(modifiedLabel, resizeImg, 'left');
     updateLabel(originalLabel, resizeImg, 'right');
-  });
-}
-
-// Optional animation controls (can be removed if not needed)
-function addAnimationControls() {
-  const sliders = document.querySelectorAll('.image-comparison-slider');
-  
-  sliders.forEach(slider => {
-    const controls = document.createElement('div');
-    controls.className = 'animation-controls';
-    controls.style.display = 'flex';
-    controls.style.justifyContent = 'center';
-    controls.style.margin = '10px 0';
-    controls.style.gap = '10px';
-    
-    const leftBtn = document.createElement('button');
-    leftBtn.textContent = '◀ Show Before';
-    leftBtn.style.padding = '8px 16px';
-    leftBtn.style.cursor = 'pointer';
-    
-    const rightBtn = document.createElement('button');
-    rightBtn.textContent = 'Show After ▶';
-    rightBtn.style.padding = '8px 16px';
-    rightBtn.style.cursor = 'pointer';
-    
-    const resetBtn = document.createElement('button');
-    resetBtn.textContent = 'Reset';
-    resetBtn.style.padding = '8px 16px';
-    resetBtn.style.cursor = 'pointer';
-    
-    const resizeImg = slider.querySelector('.cd-resize-img');
-    const handle = slider.querySelector('.cd-handle');
-    
-    leftBtn.addEventListener('click', () => {
-      resizeImg.classList.remove('animate-right');
-      resizeImg.classList.add('animate-left');
-      handle.style.left = '0%';
-    });
-    
-    rightBtn.addEventListener('click', () => {
-      resizeImg.classList.remove('animate-left');
-      resizeImg.classList.add('animate-right');
-      handle.style.left = '100%';
-    });
-    
-    resetBtn.addEventListener('click', () => {
-      resizeImg.classList.remove('animate-left', 'animate-right');
-      resizeImg.style.width = '50%';
-      handle.style.left = '50%';
-    });
-    
-    controls.appendChild(leftBtn);
-    controls.appendChild(resetBtn);
-    controls.appendChild(rightBtn);
-    slider.appendChild(controls);
   });
 }
 
