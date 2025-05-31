@@ -1,155 +1,247 @@
 {% comment %}
-  Image Comparison Slider - Fixed Version
-  Simple drag-to-compare functionality
+  Image Comparison Slider - Shopify Liquid Component
+  Drag-only version without buttons
 {% endcomment %}
 
 <style>
+  /* Image Comparison Slider Styles */
   .image-comparison-slider {
-    margin: 2rem auto;
-    max-width: 800px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 2rem 0;
   }
-
-  .comparison-container {
+  
+  .cd-image-container {
     position: relative;
     width: 100%;
-    height: 500px;
+    max-width: 768px;
+    margin: 0 auto;
+    overflow: hidden;
   }
-
-  .comparison-before,
-  .comparison-after {
+  
+  .cd-image-container img {
+    display: block;
+    width: 100%;
+    height: 600px;
+    pointer-events: none;
+    object-fit: cover;
+  }
+  
+  .cd-image-label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #ffffff;
+    padding: 1em;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.3s 0.7s, opacity 0.3s 0.7s;
+    font-size: 14px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .cd-image-label.is-hidden {
+    visibility: hidden;
+  }
+  
+  .is-visible .cd-image-label {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .cd-resize-img {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 50%;
     height: 100%;
     overflow: hidden;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: width;
   }
-
-  .comparison-before img,
-  .comparison-after img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-  }
-
-  .comparison-after {
-    width: 50%;
-  }
-
-  .comparison-handle {
+  
+  .cd-resize-img img {
     position: absolute;
-    width: 4px;
-    height: 100%;
-    background: white;
-    left: 50%;
+    left: 0;
     top: 0;
-    transform: translateX(-50%);
-    cursor: ew-resize;
-    z-index: 10;
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: none;
   }
-
-  .comparison-handle:after {
+  
+  .cd-resize-img .cd-image-label {
+    right: auto;
+    left: 0;
+  }
+  
+  .cd-handle {
+    position: absolute;
+    height: 44px;
+    width: 44px;
+    left: 50%;
+    top: 50%;
+    margin-left: -22px;
+    margin-top: -22px;
+    border-radius: 50%;
+    background: #dc717d;
+    cursor: ew-resize;
+    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s, opacity 0.1s, background-color 0.2s;
+  }
+  
+  .cd-handle::before,
+  .cd-handle::after {
     content: '';
     position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    width: 12px;
+    height: 2px;
     background: white;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 6px rgba(0,0,0,0.3);
   }
-
-  .comparison-label {
-    position: absolute;
-    bottom: 20px;
-    padding: 8px 16px;
-    background: rgba(0,0,0,0.6);
-    color: white;
-    border-radius: 4px;
-    font-size: 14px;
-    z-index: 5;
+  
+  .cd-handle::before {
+    transform: rotate(45deg);
+    left: 12px;
   }
-
-  .comparison-before .comparison-label {
-    right: 20px;
+  
+  .cd-handle::after {
+    transform: rotate(-45deg);
+    right: 12px;
   }
-
-  .comparison-after .comparison-label {
-    left: 20px;
+  
+  .cd-handle.draggable {
+    background-color: #445b7c;
   }
 </style>
 
 <div class="image-comparison-slider">
-  <div class="comparison-container">
-    <div class="comparison-before">
-      <img src="{{ section.settings.before_image | img_url: '1200x' }}" alt="Before" loading="lazy">
-      <div class="comparison-label">Before</div>
+  <figure class="cd-image-container is-visible">
+    <img src="{{ section.settings.before_image | img_url: '1000x' }}" alt="Before image" loading="lazy"/>
+    <span class="cd-image-label" data-type="original">Before</span>
+
+    <div class="cd-resize-img">
+      <img src="{{ section.settings.after_image | img_url: '1000x' }}" alt="After image" loading="lazy"/>
+      <span class="cd-image-label" data-type="modified">After</span>
     </div>
-    <div class="comparison-after">
-      <img src="{{ section.settings.after_image | img_url: '1200x' }}" alt="After" loading="lazy">
-      <div class="comparison-label">After</div>
-    </div>
-    <div class="comparison-handle"></div>
-  </div>
+
+    <span class="cd-handle"></span>
+  </figure>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const slider = document.querySelector('.image-comparison-slider');
-  const container = slider.querySelector('.comparison-container');
-  const after = slider.querySelector('.comparison-after');
-  const handle = slider.querySelector('.comparison-handle');
-  let isDragging = false;
+  // Initialize all image comparison sliders on the page
+  const containers = document.querySelectorAll('.cd-image-container');
+  
+  containers.forEach(container => {
+    initImageComparison(container);
+  });
+});
 
+function initImageComparison(container) {
+  const handle = container.querySelector('.cd-handle');
+  const resizeImg = container.querySelector('.cd-resize-img');
+  const originalLabel = container.querySelector('.cd-image-label[data-type="original"]');
+  const modifiedLabel = container.querySelector('.cd-image-label[data-type="modified"]');
+  
+  // Make the container interactive immediately
+  container.classList.add('is-visible');
+  
+  // Initialize labels
+  updateLabel(modifiedLabel, resizeImg, 'left');
+  updateLabel(originalLabel, resizeImg, 'right');
+  
+  // Set up touch and mouse events
+  setupDragEvents(handle, resizeImg, container, originalLabel, modifiedLabel);
+  
+  // Set initial position
+  resizeImg.style.width = '50%';
+  handle.style.left = '50%';
+}
+
+function setupDragEvents(handle, resizeElement, container, originalLabel, modifiedLabel) {
+  let isDragging = false;
+  let startX, startWidth, containerWidth;
+  
   // Mouse events
   handle.addEventListener('mousedown', startDrag);
   document.addEventListener('mousemove', drag);
   document.addEventListener('mouseup', stopDrag);
-
+  
   // Touch events
-  handle.addEventListener('touchstart', startDrag);
-  document.addEventListener('touchmove', drag);
+  handle.addEventListener('touchstart', startDrag, { passive: false });
+  document.addEventListener('touchmove', drag, { passive: false });
   document.addEventListener('touchend', stopDrag);
-
+  
   function startDrag(e) {
-    e.preventDefault();
     isDragging = true;
-    document.body.style.cursor = 'ew-resize';
-    handle.style.backgroundColor = 'rgba(255,255,255,0.8)';
+    
+    // Get initial positions
+    startX = e.clientX || e.touches[0].clientX;
+    startWidth = parseInt(window.getComputedStyle(resizeElement).width, 10);
+    containerWidth = container.offsetWidth;
+    
+    // Add active classes
+    handle.classList.add('draggable');
+    resizeElement.classList.add('resizable');
   }
-
+  
   function drag(e) {
     if (!isDragging) return;
-    e.preventDefault();
     
-    // Get position
-    const containerRect = container.getBoundingClientRect();
-    let x = e.clientX || e.touches[0].clientX;
+    const clientX = e.clientX || e.touches[0].clientX;
+    const deltaX = clientX - startX;
+    let newWidth = startWidth + deltaX;
+    
+    // Constrain to container
+    newWidth = Math.max(0, Math.min(newWidth, containerWidth));
     
     // Calculate percentage
-    let percentage = ((x - containerRect.left) / containerRect.width) * 100;
+    const percent = (newWidth / containerWidth) * 100;
     
-    // Constrain between 0-100%
-    percentage = Math.max(0, Math.min(percentage, 100));
+    // Update positions
+    resizeElement.style.width = `${percent}%`;
+    handle.style.left = `${percent}%`;
     
-    // Update UI
-    after.style.width = `${percentage}%`;
-    handle.style.left = `${percentage}%`;
+    // Update labels
+    updateLabel(modifiedLabel, resizeElement, 'left');
+    updateLabel(originalLabel, resizeElement, 'right');
   }
-
+  
   function stopDrag() {
+    if (!isDragging) return;
     isDragging = false;
-    document.body.style.cursor = '';
-    handle.style.backgroundColor = '';
+    
+    // Remove active classes
+    handle.classList.remove('draggable');
+    resizeElement.classList.remove('resizable');
   }
-});
+}
+
+function updateLabel(label, resizeElement, position) {
+  if (!label || !resizeElement) return;
+  
+  const labelRect = label.getBoundingClientRect();
+  const resizeRect = resizeElement.getBoundingClientRect();
+  
+  if (position === 'left') {
+    (labelRect.left + labelRect.width < resizeRect.left + resizeRect.width) 
+      ? label.classList.remove('is-hidden')
+      : label.classList.add('is-hidden');
+  } else {
+    (labelRect.left > resizeRect.left + resizeRect.width)
+      ? label.classList.remove('is-hidden')
+      : label.classList.add('is-hidden');
+  }
+}
 </script>
 
 {% schema %}
