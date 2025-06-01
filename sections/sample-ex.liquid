@@ -1,9 +1,7 @@
-{% comment %}
-  Section: PC Image Hover Pro
-  Description: Split image banner with hover effects, title, description, and button.
-{% endcomment %}
 {% assign sec_id = '#shopify-section-' | append: section.id %}
+
 <style>
+  
   {{ sec_id }} .pc-section-container {
     {% case section.settings.page_width %}
       {% when 'full' %} max-width: 100%;
