@@ -2,32 +2,91 @@
   .pc-hover-section {
     max-width: 1200px;
     margin: 0 auto;
-}
+    padding: 20px;
+  }
   
-.pc-hover-container {
+  .pc-hover-container {
     display: flex;
-    gap: 14px;
-  height: 450px;
-}
+    gap: {{ section.settings.gap_between }}px;
+    height: {{ section.settings.image_height }}px;
+  }
 
   .pc-hover-image {
     position: relative;
-}
-
-.pc-image-description {
-    position: absolute;
-    bottom: 40px;
-    left: 20px;
-    right: 20px;
-    z-index: 2;
-    transition: all 0.3s ease;
-    opacity: 1;
-    color: #fff;
-}
-
-.pc-hover-section {
+    flex: 1;
     overflow: hidden;
-}
+    transition: all 0.5s ease;
+    border-radius: 4px;
+  }
+
+  .pc-hover-image:hover {
+    flex: 2;
+  }
+
+  .pc-hover-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .pc-hover-image:hover img {
+    transform: scale(1.05);
+  }
+
+  .pc-image-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+    transform: translateY(100%);
+    transition: all 0.5s ease;
+    opacity: 0;
+  }
+
+  .pc-hover-image:hover .pc-image-content {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .pc-image-title {
+    color: {{ block.settings.title_color }};
+    font-size: {{ block.settings.title_font_size }}px;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .pc-hover-image:hover .pc-image-title {
+    color: {{ block.settings.title_hover_color }};
+  }
+
+  .pc-image-description {
+    color: {{ block.settings.description_color }};
+    font-size: {{ block.settings.description_font_size }}px;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+  }
+
+  .pc-hover-image:hover .pc-image-description {
+    color: {{ block.settings.description_hover_color }};
+  }
+
+  .pc-image-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: {{ block.settings.button_bg }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .pc-image-button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
 {% endstyle %}
 
 <div class="pc-hover-section">
@@ -35,27 +94,26 @@
     {% for block in section.blocks %}
     <div class="pc-hover-image">
       {% if block.settings.image != blank %}
-          <img src="{{ block.settings.image | img_url: '1200x' }}" 
-           >
-        {% endif %}
+        <img src="{{ block.settings.image | img_url: '1200x' }}" alt="{{ block.settings.title | escape }}">
+      {% endif %}
 
-       <div class="pc-image-content">
-          <h3 class="pc-image-title">{{ block.settings.title }}</h3>
-          <div class="pc-image-description">{{ block.settings.description }}</div>
+      <div class="pc-image-content">
+        <h3 class="pc-image-title">{{ block.settings.title }}</h3>
+        <div class="pc-image-description">{{ block.settings.description }}</div>
+        {% if block.settings.button_text != blank %}
           <a href="{{ block.settings.link }}" class="pc-image-button">
             {{ block.settings.button_text }}
           </a>
-        </div>
+        {% endif %}
+      </div>
     </div>
-
-    
-      {% endfor %}
+    {% endfor %}
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "split banner hover pwc",
+  "name": "Split Banner Hover Effect",
   "settings": [
     {
       "type": "select",
@@ -77,7 +135,7 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 10
+      "default": 14
     },
     {
       "type": "range",
@@ -87,7 +145,7 @@
       "max": 800,
       "step": 10,
       "unit": "px",
-      "default": 500
+      "default": 450
     }
   ],
   "blocks": [
@@ -168,16 +226,6 @@
         },
         {
           "type": "header",
-          "content": "Hover Colors"
-        },
-        {
-          "type": "color",
-          "id": "hover_bg",
-          "label": "Background color",
-          "default": "#333333"
-        },
-        {
-          "type": "header",
           "content": "Button Colors"
         },
         {
@@ -191,30 +239,22 @@
           "id": "button_text_color",
           "label": "Button text color",
           "default": "#000000"
-        },
-        {
-          "type": "header",
-          "content": "Hover Behavior"
-        },
-        {
-          "type": "range",
-          "id": "hover_width",
-          "label": "Hovered width",
-          "min": 50,
-          "max": 80,
-          "step": 1,
-          "unit": "%",
-          "default": 60,
-          "info": "Width when this block is hovered"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Pwc Split Hover Banner",
-      "category": "Custom",
-      "blocks": []
+      "name": "pwc Split Hover Banner",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
     }
   ]
 }
