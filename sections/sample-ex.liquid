@@ -36,38 +36,69 @@
 
   .pc-image-content {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 0;
+    width: 40%;
+    height: 100%;
     padding: 30px;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
-    transform: translateY(100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
     transition: all 0.5s ease;
-    opacity: 0;
+    z-index: 2;
+  }
+
+  /* Position content on right side by default */
+  .pc-image-content {
+    right: -40%;
+  }
+
+  /* Alternate content position for even blocks (left side) */
+  .pc-hover-image:nth-child(even) .pc-image-content {
+    left: -40%;
+    right: auto;
   }
 
   .pc-hover-image:hover .pc-image-content {
-    transform: translateY(0);
-    opacity: 1;
+    right: 0;
   }
 
-  /* Title styles will be handled inline for each block */
+  .pc-hover-image:nth-child(even):hover .pc-image-content {
+    left: 0;
+    right: auto;
+  }
+
   .pc-image-title {
+    color: {{ block.settings.title_color }};
+    font-size: {{ block.settings.title_font_size }}px;
     margin-bottom: 10px;
     transition: color 0.3s ease;
   }
 
+  .pc-hover-image:hover .pc-image-title {
+    color: {{ block.settings.title_hover_color }};
+  }
+
   .pc-image-description {
+    color: {{ block.settings.description_color }};
+    font-size: {{ block.settings.description_font_size }}px;
     margin-bottom: 15px;
     transition: color 0.3s ease;
+  }
+
+  .pc-hover-image:hover .pc-image-description {
+    color: {{ block.settings.description_hover_color }};
   }
 
   .pc-image-button {
     display: inline-block;
     padding: 10px 20px;
+    background-color: {{ block.settings.button_bg }};
+    color: {{ block.settings.button_text_color }};
     text-decoration: none;
     border-radius: 4px;
     transition: all 0.3s ease;
+    align-self: flex-start;
   }
 
   .pc-image-button:hover {
@@ -85,27 +116,34 @@
       {% endif %}
 
       <div class="pc-image-content">
-        <h3 class="pc-image-title" style="color: {{ block.settings.title_color }}; font-size: {{ block.settings.title_font_size }}px;">
-          {{ block.settings.title }}
-        </h3>
-        <div class="pc-image-description" style="color: {{ block.settings.description_color }}; font-size: {{ block.settings.description_font_size }}px;">
-          {{ block.settings.description }}
-        </div>
+        <h3 class="pc-image-title">{{ block.settings.title }}</h3>
+        <div class="pc-image-description">{{ block.settings.description }}</div>
         {% if block.settings.button_text != blank %}
-          <a href="{{ block.settings.link }}" class="pc-image-button" 
-             style="background-color: {{ block.settings.button_bg }}; color: {{ block.settings.button_text_color }};">
+          <a href="{{ block.settings.link }}" class="pc-image-button">
             {{ block.settings.button_text }}
           </a>
         {% endif %}
       </div>
       
       <style>
-        /* Hover styles specific to this block */
+        /* Block-specific styles */
+        #block-{{ block.id }} .pc-image-title {
+          color: {{ block.settings.title_color }};
+          font-size: {{ block.settings.title_font_size }}px;
+        }
         #block-{{ block.id }}:hover .pc-image-title {
           color: {{ block.settings.title_hover_color }} !important;
         }
+        #block-{{ block.id }} .pc-image-description {
+          color: {{ block.settings.description_color }};
+          font-size: {{ block.settings.description_font_size }}px;
+        }
         #block-{{ block.id }}:hover .pc-image-description {
           color: {{ block.settings.description_hover_color }} !important;
+        }
+        #block-{{ block.id }} .pc-image-button {
+          background-color: {{ block.settings.button_bg }};
+          color: {{ block.settings.button_text_color }};
         }
       </style>
     </div>
@@ -148,6 +186,17 @@
       "step": 10,
       "unit": "px",
       "default": 450
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Default Content Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" },
+        { "value": "alternate", "label": "Alternate (Left/Right)" }
+      ],
+      "default": "alternate"
     }
   ],
   "blocks": [
@@ -225,6 +274,16 @@
           "type": "url",
           "id": "link",
           "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "content_side",
+          "label": "Content Position",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "right"
         },
         {
           "type": "header",
