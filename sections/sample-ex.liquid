@@ -139,6 +139,22 @@
     transform: translateY(0);
   }
 
+   {% for block in section.blocks %}
+   {{ sec_id }} .pc-image-box {
+    --hover-bg: {{ block.settings.hover_bg }};
+                  --title-color: {{ block.settings.title_color }};
+                  --title-hover-color: {{ block.settings.title_hover_color }};
+                  --desc-color: {{ block.settings.description_color }};
+                  --desc-hover-color: {{ block.settings.description_hover_color }};
+                  --btn-bg: {{ block.settings.button_bg }};
+                  --btn-text: {{ block.settings.button_text_color }};
+                  --hover-width: {{ block.settings.hover_width }}%;
+                  --title-font-size: {{ block.settings.title_font_size }}px;
+                  --desc-font-size: {{ block.settings.description_font_size }}px;
+  }
+  {% endfor %}}
+ 
+
   @media (max-width: 768px) {
     {{ sec_id }} .pc-split-container {
       flex-direction: column;
@@ -162,16 +178,7 @@
   <div class="pc-split-container">
     {% for block in section.blocks %}
       <div class="pc-image-box"
-           style="--hover-bg: {{ block.settings.hover_bg }};
-                  --title-color: {{ block.settings.title_color }};
-                  --title-hover-color: {{ block.settings.title_hover_color }};
-                  --desc-color: {{ block.settings.description_color }};
-                  --desc-hover-color: {{ block.settings.description_hover_color }};
-                  --btn-bg: {{ block.settings.button_bg }};
-                  --btn-text: {{ block.settings.button_text_color }};
-                  --hover-width: {{ block.settings.hover_width }}%;
-                  --title-font-size: {{ block.settings.title_font_size }}px;
-                  --desc-font-size: {{ block.settings.description_font_size }}px;">
+           style="">
         {% if block.settings.image != blank %}
           <img src="{{ block.settings.image | img_url: '1200x' }}" 
                alt="{{ block.settings.title | escape }}" 
