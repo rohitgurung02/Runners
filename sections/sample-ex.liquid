@@ -1,0 +1,179 @@
+
+<div class="pc-hover-section">
+  <div class="pc-hover-container">
+    {% for blocks in section.blocks %}
+    <div class="pc-hover-right-image">
+      {% if block.settings.image != blank %}
+          <img src="{{ block.settings.image | img_url: '1200x' }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+        {% endif %}
+    </div>
+      {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "split banner hover pwc",
+  "settings": [
+    {
+      "type": "select",
+      "id": "page_width",
+      "label": "Section width",
+      "options": [
+        { "value": "full", "label": "Full width" },
+        { "value": "wide", "label": "Wide (1200px)" },
+        { "value": "normal", "label": "Normal (1000px)" },
+        { "value": "narrow", "label": "Narrow (800px)" }
+      ],
+      "default": "wide"
+    },
+    {
+      "type": "range",
+      "id": "gap_between",
+      "label": "Gap between images",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Section height",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 500
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image Box",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Collection Title"
+        },
+        {
+          "type": "range",
+          "id": "title_font_size",
+          "label": "Title font size (px)",
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "default": 32
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color (normal)",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "title_hover_color",
+          "label": "Title color (hover)",
+          "default": "#ffcc00"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Add your product description here</p>"
+        },
+        {
+          "type": "range",
+          "id": "description_font_size",
+          "label": "Description font size (px)",
+          "min": 10,
+          "max": 30,
+          "step": 1,
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description color (normal)",
+          "default": "#f5f5f5"
+        },
+        {
+          "type": "color",
+          "id": "description_hover_color",
+          "label": "Description color (hover)",
+          "default": "#eeeeee"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Hover Colors"
+        },
+        {
+          "type": "color",
+          "id": "hover_bg",
+          "label": "Background color",
+          "default": "#333333"
+        },
+        {
+          "type": "header",
+          "content": "Button Colors"
+        },
+        {
+          "type": "color",
+          "id": "button_bg",
+          "label": "Button background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button text color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Hover Behavior"
+        },
+        {
+          "type": "range",
+          "id": "hover_width",
+          "label": "Hovered width",
+          "min": 50,
+          "max": 80,
+          "step": 1,
+          "unit": "%",
+          "default": 60,
+          "info": "Width when this block is hovered"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pwc Split Hover Banner",
+      "category": "Custom",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}
