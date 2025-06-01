@@ -177,8 +177,7 @@
 <div class="pc-section-container">
   <div class="pc-split-container">
     {% for block in section.blocks %}
-      <div class="pc-image-box"
-           style="">
+      <div class="pc-image-box">
         {% if block.settings.image != blank %}
           <img src="{{ block.settings.image | img_url: '1200x' }}" 
                alt="{{ block.settings.title | escape }}" 
