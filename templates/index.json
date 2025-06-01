@@ -672,10 +672,10 @@
             "description_hover_color": "#cd2323",
             "button_text": "Shop Now",
             "link": "",
-            "hover_bg": "#f11313",
+            "hover_bg": "#ffffff",
             "button_bg": "#334fb4",
             "button_text_color": "#ffffff",
-            "hover_width": 60
+            "hover_width": 58
           }
         },
         "image_mYfJXq": {
