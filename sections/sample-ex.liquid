@@ -45,6 +45,14 @@
       --hover-width: {{ block.settings.hover_width }}%;
       --title-font-size: {{ block.settings.title_font_size }}px;
       --desc-font-size: {{ block.settings.description_font_size }}px;
+      
+      {% case block.settings.border_radius_option %}
+        {% when 'none' %} border-radius: 0;
+        {% when 'small' %} border-radius: 4px;
+        {% when 'medium' %} border-radius: 8px;
+        {% when 'large' %} border-radius: 16px;
+        {% when 'custom' %} border-radius: {{ block.settings.custom_border_radius }};
+      {% endcase %}
     }
   {% endfor %}
 
@@ -153,6 +161,7 @@
       width: 100% !important;
       height: {{ section.settings.image_height | divided_by: 1.5 }}px;
       flex: 1 0 auto !important;
+      margin-left: 0 !important;
     }
     
     {{ sec_id }} .pc-image-box:hover img {
@@ -263,25 +272,25 @@
           "default": "#ffcc00"
         },
         {
-      "type": "select",
-      "id": "border_radius_option",
-      "label": "Border radius",
-      "default": "medium",
-      "options": [
-        { "value": "none", "label": "None (0px)" },
-        { "value": "small", "label": "Small (4px)" },
-        { "value": "medium", "label": "Medium (8px)" },
-        { "value": "large", "label": "Large (16px)" },
-        { "value": "custom", "label": "Custom" }
-      ]
-    },
+          "type": "select",
+          "id": "border_radius_option",
+          "label": "Border radius",
+          "default": "medium",
+          "options": [
+            { "value": "none", "label": "None (0px)" },
+            { "value": "small", "label": "Small (4px)" },
+            { "value": "medium", "label": "Medium (8px)" },
+            { "value": "large", "label": "Large (16px)" },
+            { "value": "custom", "label": "Custom" }
+          ]
+        },
         {
-      "type": "text",
-      "id": "custom_border_radius",
-      "label": "Custom border radius (e.g. 12px, 0.5rem, 50%)",
-      "default": "12px",
-      "info": "Only used if 'Custom' is selected above."
-    },
+          "type": "text",
+          "id": "custom_border_radius",
+          "label": "Custom border radius (e.g. 12px, 0.5rem, 50%)",
+          "default": "12px",
+          "info": "Only used if 'Custom' is selected above."
+        },
         {
           "type": "richtext",
           "id": "description",
