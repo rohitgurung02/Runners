@@ -173,7 +173,7 @@
                   --title-font-size: {{ block.settings.title_font_size }}px;
                   --desc-font-size: {{ block.settings.description_font_size }}px;">
         {% if block.settings.image != blank %}
-          <img src="{{ block.settings.image | img_url: '1200px' }}" 
+          <img src="{{ block.settings.image | img_url: '1200x' }}" 
                alt="{{ block.settings.title | escape }}" 
                loading="lazy" 
                width="1200" 
