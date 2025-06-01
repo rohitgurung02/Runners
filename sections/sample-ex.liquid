@@ -10,6 +10,10 @@
   height: 450px;
 }
 
+  .pc-hover-image {
+    position: relative;
+}
+
 .pc-hover-section {
     overflow: hidden;
 }
@@ -18,7 +22,7 @@
 <div class="pc-hover-section">
   <div class="pc-hover-container">
     {% for block in section.blocks %}
-    <div class="pc-hover-right-image">
+    <div class="pc-hover-image">
       {% if block.settings.image != blank %}
           <img src="{{ block.settings.image | img_url: '1200x' }}" 
            >
