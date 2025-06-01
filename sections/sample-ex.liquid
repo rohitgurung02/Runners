@@ -2,12 +2,14 @@
 .pc-hover-container {
     display: flex;
     gap: 10px;
+  max-width: 1200px;
 }
 
 .pc-hover-section {
     overflow: hidden;
 }
 {% endstyle %}
+
 <div class="pc-hover-section">
   <div class="pc-hover-container">
     {% for block in section.blocks %}
