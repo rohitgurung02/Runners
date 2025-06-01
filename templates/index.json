@@ -663,40 +663,6 @@
         "gap_between": 10,
         "image_height": 500
       }
-    },
-    "sample_ex_M4aLdf": {
-      "type": "sample-ex",
-      "blocks": {
-        "image_J86iQm": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/1735917732__screenshot2025-01-03at111804pm__huge.png",
-            "title": "Collection Title",
-            "title_font_size": 32,
-            "title_color": "#ffffff",
-            "title_hover_color": "#ffcc00",
-            "description": "<p>Add your product description here</p>",
-            "description_font_size": 16,
-            "description_color": "#f5f5f5",
-            "description_hover_color": "#eeeeee",
-            "button_text": "Shop Now",
-            "link": "",
-            "hover_bg": "#333333",
-            "button_bg": "#ffffff",
-            "button_text_color": "#000000",
-            "hover_width": 60
-          }
-        }
-      },
-      "block_order": [
-        "image_J86iQm"
-      ],
-      "name": "Pwc Split Hover Banner",
-      "settings": {
-        "page_width": "wide",
-        "gap_between": 10,
-        "image_height": 500
-      }
     }
   },
   "order": [
@@ -709,7 +675,6 @@
     "pwc_scrolling_text_1_infR3x",
     "sample_ex_YKmU3X",
     "compare_table_VdBwkG",
-    "sample_ex_xfBEUG",
-    "sample_ex_M4aLdf"
+    "sample_ex_xfBEUG"
   ]
 }
