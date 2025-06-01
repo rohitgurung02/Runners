@@ -340,32 +340,9 @@
       "type": "sample-ex",
       "name": "Pricing Table",
       "settings": {
-        "left_caption": "",
-        "right_caption": "",
-        "image_position": "left",
-        "text_alignment": "left",
-        "text_size": 100,
-        "text_width": 50,
-        "text_color": "#121212",
-        "text_background_color": "",
-        "border_color": "#ffffff",
-        "drag_color": "#ffffff",
-        "handle_color": "#121212",
-        "caption_text": "#ffffff",
-        "caption_background": "#121212",
-        "background_color": "",
-        "show_background_image": false,
-        "animation": "none",
-        "base_width": 90,
-        "max_width": "",
-        "inner_padding": 60,
-        "outer_margin": 0,
-        "custom_css": "",
-        "mobile_custom_css": "",
-        "anchor_id": "",
-        "override_theme_font": false,
-        "heading_font": "serif",
-        "main_font": "sans-serif"
+        "page_width": "wide",
+        "gap_between": 10,
+        "image_height": 500
       }
     },
     "compare_table_VdBwkG": {
@@ -680,74 +657,45 @@
     },
     "sample_ex_xfBEUG": {
       "type": "sample-ex",
+      "name": "Before After Slider",
+      "settings": {
+        "page_width": "wide",
+        "gap_between": 10,
+        "image_height": 500
+      }
+    },
+    "sample_ex_M4aLdf": {
+      "type": "sample-ex",
       "blocks": {
-        "inset_image_xANJHX": {
-          "type": "inset_image",
+        "image_J86iQm": {
+          "type": "image",
           "settings": {
-            "inset_image_size": 10,
-            "image_alignment": "default"
-          }
-        },
-        "small_text_8NaebR": {
-          "type": "small_text",
-          "settings": {
-            "small_text": "<p>New arrivals</p>"
-          }
-        },
-        "heading_PxpeKn": {
-          "type": "heading",
-          "settings": {
-            "title": "Attention-grabbing headline",
-            "block_heading_color": "",
-            "block_heading_size": "",
-            "enable_custom_font": false,
-            "custom_font": "abel_n4",
-            "heading_level": "h2"
-          }
-        },
-        "text_yXtcNA": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Drag and drop block options like heading, text, buttons, dividers, and more.</p>"
+            "image": "shopify://shop_images/1735917732__screenshot2025-01-03at111804pm__huge.png",
+            "title": "Collection Title",
+            "title_font_size": 32,
+            "title_color": "#ffffff",
+            "title_hover_color": "#ffcc00",
+            "description": "<p>Add your product description here</p>",
+            "description_font_size": 16,
+            "description_color": "#f5f5f5",
+            "description_hover_color": "#eeeeee",
+            "button_text": "Shop Now",
+            "link": "",
+            "hover_bg": "#333333",
+            "button_bg": "#ffffff",
+            "button_text_color": "#000000",
+            "hover_width": 60
           }
         }
       },
       "block_order": [
-        "inset_image_xANJHX",
-        "small_text_8NaebR",
-        "heading_PxpeKn",
-        "text_yXtcNA"
+        "image_J86iQm"
       ],
-      "name": "Before After Slider",
+      "name": "Pwc Split Hover Banner",
       "settings": {
-        "left_image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
-        "left_caption": "",
-        "right_image": "shopify://shop_images/1738323256__kannperformance__huge.jpg",
-        "right_caption": "",
-        "image_position": "left",
-        "text_alignment": "center",
-        "text_size": 100,
-        "text_width": 50,
-        "text_color": "#121212",
-        "text_background_color": "",
-        "border_color": "#FFFFFF",
-        "drag_color": "#FFFFFF",
-        "handle_color": "#121212",
-        "caption_text": "#FFFFFF",
-        "caption_background": "#121212",
-        "background_color": "",
-        "show_background_image": false,
-        "animation": "none",
-        "base_width": 80,
-        "max_width": "",
-        "inner_padding": 60,
-        "outer_margin": 0,
-        "custom_css": "",
-        "mobile_custom_css": "",
-        "anchor_id": "",
-        "override_theme_font": false,
-        "heading_font": "serif",
-        "main_font": "sans-serif"
+        "page_width": "wide",
+        "gap_between": 10,
+        "image_height": 500
       }
     }
   },
@@ -761,6 +709,7 @@
     "pwc_scrolling_text_1_infR3x",
     "sample_ex_YKmU3X",
     "compare_table_VdBwkG",
-    "sample_ex_xfBEUG"
+    "sample_ex_xfBEUG",
+    "sample_ex_M4aLdf"
   ]
 }
