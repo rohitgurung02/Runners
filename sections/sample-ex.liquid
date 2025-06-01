@@ -1,7 +1,7 @@
 
 <div class="pc-hover-section">
   <div class="pc-hover-container">
-    {% for blocks in section.blocks %}
+    {% for block in section.blocks %}
     <div class="pc-hover-right-image">
       {% if block.settings.image != blank %}
           <img src="{{ block.settings.image | img_url: '1200x' }}" 
