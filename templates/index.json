@@ -672,10 +672,8 @@
             "description_hover_color": "#eeeeee",
             "button_text": "Shop Now",
             "link": "",
-            "hover_bg": "#333333",
             "button_bg": "#ffffff",
-            "button_text_color": "#000000",
-            "hover_width": 60
+            "button_text_color": "#000000"
           }
         },
         "image_mYfJXq": {
@@ -685,17 +683,15 @@
             "title": "Collection Title",
             "title_font_size": 32,
             "title_color": "#ffffff",
-            "title_hover_color": "#ffcc00",
+            "title_hover_color": "#e4ff00",
             "description": "<p>Add your product description here</p>",
             "description_font_size": 16,
             "description_color": "#f5f5f5",
             "description_hover_color": "#eeeeee",
             "button_text": "Shop Now",
             "link": "",
-            "hover_bg": "#333333",
             "button_bg": "#ffffff",
-            "button_text_color": "#000000",
-            "hover_width": 60
+            "button_text_color": "#000000"
           }
         }
       },
