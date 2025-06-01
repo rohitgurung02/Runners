@@ -1,121 +1,198 @@
-{% style %}
-  .pc-hover-section {
-    max-width: 1200px;
+{% comment %}
+  Section: PC Image Hover Pro
+  Description: Split image banner with hover effects, title, description, and button.
+{% endcomment %}
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+<style>
+  {{ sec_id }} .pc-section-container {
+    {% case section.settings.page_width %}
+      {% when 'full' %} max-width: 100%;
+      {% when 'wide' %} max-width: 1200px;
+      {% when 'normal' %} max-width: 1000px;
+      {% when 'narrow' %} max-width: 800px;
+    {% endcase %}
     margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .pc-hover-container {
-    display: flex;
-    gap: {{ section.settings.gap_between }}px;
-    height: {{ section.settings.image_height }}px;
+    padding: 0 15px;
   }
 
-  .pc-hover-image {
+  {{ sec_id }} .pc-split-container {
+    display: flex;
+    width: 100%;
+    height: {{ section.settings.image_height }}px;
+    gap: {{ section.settings.gap_between }}px;
+    transition: all 0.4s ease-in-out;
+  }
+
+  {{ sec_id }} .pc-image-box {
     position: relative;
     flex: 1;
     overflow: hidden;
-    transition: all 0.5s ease;
-    border-radius: 4px;
+    transition: flex 0.4s ease-in-out, background-color 0.3s ease;
+    height: 100%;
+    background-color: transparent;
   }
 
-  .pc-hover-image:hover {
-    flex: 2;
+  {{ sec_id }} .pc-split-container:hover .pc-image-box {
+    flex: 0.8;
   }
 
-  .pc-hover-image img {
+  {{ sec_id }} .pc-split-container:hover .pc-image-box:hover {
+    flex: 1.2;
+  }
+
+  {{ sec_id }} .pc-image-box:not(:first-child) {
+    margin-left: {{ section.settings.gap_between }}px;
+  }
+
+  {{ sec_id }} .pc-image-box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: opacity 0.3s ease;
+    display: block;
   }
 
-  .pc-hover-image:hover img {
-    transform: scale(1.05);
-  }
-
-  .pc-image-content {
+  /* Reduced horizontal padding from 40px to 20px */
+  {{ sec_id }} .pc-image-content {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 30px;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
-    transform: translateY(100%);
-    transition: all 0.5s ease;
-    opacity: 0;
-  }
-
-  .pc-hover-image:hover .pc-image-content {
-    transform: translateY(0);
+    bottom: 40px;
+    left: 20px;  /* reduced */
+    right: 20px; /* reduced */
+    z-index: 2;
+    transition: all 0.3s ease;
     opacity: 1;
   }
 
-  /* Title styles will be handled inline for each block */
-  .pc-image-title {
-    margin-bottom: 10px;
-    transition: color 0.3s ease;
+  {{ sec_id }} .pc-image-title {
+    font-weight: bold;
+    margin: 0 0 4px 0;  /* reduced bottom margin */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    color: var(--title-color);
+    font-size: var(--title-font-size);
   }
 
-  .pc-image-description {
-    margin-bottom: 15px;
-    transition: color 0.3s ease;
-  }
-
-  .pc-image-button {
-    display: inline-block;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 4px;
+  {{ sec_id }} .pc-image-description {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
     transition: all 0.3s ease;
+    margin: 4px 0;  /* top and bottom margin reduced */
+    color: var(--desc-color);
+    font-size: var(--desc-font-size);
   }
 
-  .pc-image-button:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
+  {{ sec_id }} .pc-image-button {
+    display: inline-block;
+    padding: 10px 20px; /* reduced horizontal padding */
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    opacity: 0;
+    transform: translateY(10px);
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    letter-spacing: 0.5px;
   }
-{% endstyle %}
 
-<div class="pc-hover-section">
-  <div class="pc-hover-container">
+  {{ sec_id }} .pc-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+
+  {{ sec_id }} .pc-split-container:hover .pc-image-box:not(:hover) {
+    flex: 0 0 calc(100% - var(--hover-width));
+  }
+
+  {{ sec_id }} .pc-image-box:hover {
+    flex: 0 0 var(--hover-width);
+    background-color: var(--hover-bg);
+  }
+
+  {{ sec_id }} .pc-image-box:hover img {
+    opacity: 0.3; /* Changed from 0 to 0.3 for better effect */
+  }
+
+  {{ sec_id }} .pc-image-box:hover .pc-image-title {
+    color: var(--title-hover-color);
+  }
+
+  {{ sec_id }} .pc-image-box:hover .pc-image-description {
+    max-height: 200px;
+    opacity: 1;
+    margin-bottom: 20px;
+    color: var(--desc-hover-color);
+  }
+
+  {{ sec_id }} .pc-image-box:hover .pc-image-button {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} .pc-split-container {
+      flex-direction: column;
+      height: auto;
+      gap: 10px;
+    }
+
+    {{ sec_id }} .pc-image-box {
+      width: 100% !important;
+      height: {{ section.settings.image_height | divided_by: 1.5 }}px;
+      flex: 1 0 auto !important;
+    }
+    
+    {{ sec_id }} .pc-image-box:hover img {
+      opacity: 1; /* Keep image visible on mobile */
+    }
+  }
+</style>
+
+<div class="pc-section-container">
+  <div class="pc-split-container">
     {% for block in section.blocks %}
-    <div class="pc-hover-image">
-      {% if block.settings.image != blank %}
-        <img src="{{ block.settings.image | img_url: '1200x' }}" alt="{{ block.settings.title | escape }}">
-      {% endif %}
+      <div class="pc-image-box"
+           style="--hover-bg: {{ block.settings.hover_bg }};
+                  --title-color: {{ block.settings.title_color }};
+                  --title-hover-color: {{ block.settings.title_hover_color }};
+                  --desc-color: {{ block.settings.description_color }};
+                  --desc-hover-color: {{ block.settings.description_hover_color }};
+                  --btn-bg: {{ block.settings.button_bg }};
+                  --btn-text: {{ block.settings.button_text_color }};
+                  --hover-width: {{ block.settings.hover_width }}%;
+                  --title-font-size: {{ block.settings.title_font_size }}px;
+                  --desc-font-size: {{ block.settings.description_font_size }}px;">
+        {% if block.settings.image != blank %}
+          <img src="{{ block.settings.image | img_url: '1200x' }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+        {% endif %}
 
-      <div class="pc-image-content">
-        <h3 class="pc-image-title" style="color: {{ block.settings.title_color }}; font-size: {{ block.settings.title_font_size }}px;">
-          {{ block.settings.title }}
-        </h3>
-        <div class="pc-image-description" style="color: {{ block.settings.description_color }}; font-size: {{ block.settings.description_font_size }}px;">
-          {{ block.settings.description }}
-        </div>
-        {% if block.settings.button_text != blank %}
-          <a href="{{ block.settings.link }}" class="pc-image-button" 
-             style="background-color: {{ block.settings.button_bg }}; color: {{ block.settings.button_text_color }};">
+        <div class="pc-image-overlay"></div>
+
+        <div class="pc-image-content">
+          <h3 class="pc-image-title">{{ block.settings.title }}</h3>
+          <div class="pc-image-description">{{ block.settings.description }}</div>
+          <a href="{{ block.settings.link }}" class="pc-image-button">
             {{ block.settings.button_text }}
           </a>
-        {% endif %}
+        </div>
       </div>
-      
-      <style>
-        /* Hover styles specific to this block */
-        #block-{{ block.id }}:hover .pc-image-title {
-          color: {{ block.settings.title_hover_color }} !important;
-        }
-        #block-{{ block.id }}:hover .pc-image-description {
-          color: {{ block.settings.description_hover_color }} !important;
-        }
-      </style>
-    </div>
     {% endfor %}
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "Split Banner Hover Effect",
+  "name": "split banner hover pwc",
   "settings": [
     {
       "type": "select",
@@ -137,7 +214,7 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 14
+      "default": 10
     },
     {
       "type": "range",
@@ -147,7 +224,7 @@
       "max": 800,
       "step": 10,
       "unit": "px",
-      "default": 450
+      "default": 500
     }
   ],
   "blocks": [
@@ -228,6 +305,16 @@
         },
         {
           "type": "header",
+          "content": "Hover Colors"
+        },
+        {
+          "type": "color",
+          "id": "hover_bg",
+          "label": "Background color",
+          "default": "#333333"
+        },
+        {
+          "type": "header",
           "content": "Button Colors"
         },
         {
@@ -241,22 +328,30 @@
           "id": "button_text_color",
           "label": "Button text color",
           "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Hover Behavior"
+        },
+        {
+          "type": "range",
+          "id": "hover_width",
+          "label": "Hovered width",
+          "min": 50,
+          "max": 80,
+          "step": 1,
+          "unit": "%",
+          "default": 60,
+          "info": "Width when this block is hovered"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Split Hover Banner",
-      "category": "Image",
-      "blocks": [
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        }
-      ]
+      "name": "split banner hover pwc",
+      "category": "Custom",
+      "blocks": []
     }
   ]
 }
