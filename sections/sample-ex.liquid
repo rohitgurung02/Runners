@@ -28,6 +28,15 @@
     height: 100%;
     background-color: transparent;
   }
+
+   {% case section.settings.border_radius_option %}
+      {% when 'none' %} border-radius: 0;
+      {% when 'small' %} border-radius: 4px;
+      {% when 'medium' %} border-radius: 8px;
+      {% when 'large' %} border-radius: 16px;
+      {% when 'custom' %} border-radius: {{ section.settings.custom_border_radius }};
+    {% endcase %}
+  }
   
   /* Block-specific styles */
   {% for block in section.blocks %}
