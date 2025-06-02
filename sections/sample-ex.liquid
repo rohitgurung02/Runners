@@ -25,9 +25,8 @@
     position: relative;
     flex: 1;
     overflow: hidden;
-    transition: flex 0.4s ease-in-out, background-color 0.3s ease;
+    transition: flex 0.4s ease-in-out;
     height: 100%;
-    background-color: transparent;
   }
 
   /* Block-specific styles */
@@ -59,11 +58,8 @@
   }
 
   {{ sec_id }} .pc-split-container:hover .pc-image-box:hover {
-    flex: 1.2;
-  }
-
-  {{ sec_id }} .pc-image-box:not(:first-child) {
-    margin-left: {{ section.settings.gap_between }}px;
+    flex: var(--hover-width);
+    background-color: var(--hover-bg);
   }
 
   {{ sec_id }} .pc-image-box img {
@@ -91,6 +87,7 @@
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     color: var(--title-color);
     font-size: var(--title-font-size);
+    transition: color 0.3s ease;
   }
 
   {{ sec_id }} .pc-image-description {
@@ -122,11 +119,6 @@
   }
 
   /* Hover effects */
-  {{ sec_id }} .pc-image-box:hover {
-    flex: 0 0 var(--hover-width);
-    background-color: var(--hover-bg);
-  }
-
   {{ sec_id }} .pc-image-box:hover img {
     opacity: 0.3;
   }
@@ -159,7 +151,10 @@
       width: 100% !important;
       height: {{ section.settings.image_height | divided_by: 1.5 }}px;
       flex: 1 0 auto !important;
-      margin-left: 0 !important;
+    }
+    
+    {{ sec_id }} .pc-image-box:hover {
+      flex: 1 0 auto !important;
     }
     
     {{ sec_id }} .pc-image-box:hover img {
@@ -180,14 +175,14 @@
                height="{{ 1200 | divided_by: block.settings.image.aspect_ratio | round }}">
         {% endif %}
 
-        <div class="pc-image-overlay"></div>
-
         <div class="pc-image-content">
           <h3 class="pc-image-title">{{ block.settings.title }}</h3>
           <div class="pc-image-description">{{ block.settings.description }}</div>
-          <a class="pc-image-button" href="{{ block.settings.link }}">
-            {{ block.settings.button_text }}
-          </a>
+          {% if block.settings.button_text != blank and block.settings.link != blank %}
+            <a class="pc-image-button" href="{{ block.settings.link }}">
+              {{ block.settings.button_text }}
+            </a>
+          {% endif %}
         </div>
       </div>
     {% endfor %}
