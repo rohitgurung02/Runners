@@ -29,11 +29,6 @@
     height: 100%;
     background-color: transparent;
   }
-
-  {{ sec_id }} .pc-image-box{
-    border-radius: {{ section.settings.border_radius_option }}px;
-  }
-  
   
 
   /* Block-specific styles */
@@ -49,6 +44,14 @@
       --hover-width: {{ block.settings.hover_width }}%;
       --title-font-size: {{ block.settings.title_font_size }}px;
       --desc-font-size: {{ block.settings.description_font_size }}px;
+      
+      {% case block.settings.border_radius_option %}
+        {% when 'none' %} border-radius: 0;
+        {% when 'small' %} border-radius: 4px;
+        {% when 'medium' %} border-radius: 8px;
+        {% when 'large' %} border-radius: 16px;
+        {% when 'custom' %} border-radius: {{ block.settings.custom_border_radius }};
+      {% endcase %}
     }
 
     {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] .pc-image-title {
@@ -283,17 +286,26 @@
       "unit": "px",
       "default": 500
     },
-    {
-      "type": "range",
-      "id": "border_radius_option",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Base border radius",
-      "default": 4,
-      "info": "This will be the default radius applied to most elements"
-    }
+     {
+          "type": "select",
+          "id": "border_radius_option",
+          "label": "Border radius",
+          "default": "medium",
+          "options": [
+            { "value": "none", "label": "None (0px)" },
+            { "value": "small", "label": "Small (4px)" },
+            { "value": "medium", "label": "Medium (8px)" },
+            { "value": "large", "label": "Large (16px)" },
+            { "value": "custom", "label": "Custom" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "custom_border_radius",
+          "label": "Custom border radius (e.g. 12px, 0.5rem, 50%)",
+          "default": "12px",
+          "info": "Only used if 'Custom' is selected above."
+        }, 
   ],
   "blocks": [
     {
