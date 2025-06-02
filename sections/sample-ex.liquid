@@ -31,9 +31,11 @@
   }
 
   {{ sec_id }} .pc-image-box{
-    border-radius: {{ section.settings.border_radius_option }}
+    border-radius: {{ section.settings.border_radius_option }}px;
   }
   
+  
+
   /* Block-specific styles */
   {% for block in section.blocks %}
     {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] {
