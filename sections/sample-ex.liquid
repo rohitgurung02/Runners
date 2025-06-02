@@ -38,7 +38,7 @@
       --title-hover-color: {{ block.settings.title_hover_color }};
       --desc-color: {{ block.settings.description_color }};
       --desc-hover-color: {{ block.settings.description_hover_color }};
-      --btn-bg: {{ block.settings.button_bg }};
+      --btn-bg: {{ block.settings.button_background_color }};
       --btn-text: {{ block.settings.button_text_color }};
       --hover-width: {{ block.settings.hover_width }}%;
       --title-font-size: {{ block.settings.title_font_size }}px;
@@ -86,7 +86,8 @@
       {% if block.settings.button_text_decoration != 'none' %}
         text-decoration-color: {{ block.settings.button_text_decoration_color }};
       {% endif %}
-      background-color: {{ block.settings.button_background_color }};
+      background-color: var(--btn-bg);
+      color: var(--btn-text);
       border: 1px solid {{ block.settings.button_border_color }};
       border-radius: {{ block.settings.button_border_radius }}px;
       padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
@@ -150,11 +151,9 @@
 
   {{ sec_id }} .pc-image-button {
     display: inline-block;
-    font-weight: 600;
     margin-top: 4px;
     opacity: 0;
     transform: translateY(10px);
-    color: var(--btn-text);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
     transition: all 0.3s ease;
     text-decoration: none;
