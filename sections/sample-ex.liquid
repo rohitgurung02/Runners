@@ -13,7 +13,7 @@
     padding: 0 15px;
   }
 
-  {{ sec_id }} .pc-split-container {
+  {{ sec_id }} .pc-image-container {
     display: flex;
     width: 100%;
     height: {{ section.settings.image_height }}px;
@@ -102,11 +102,11 @@
     }
   {% endfor %}
 
-  {{ sec_id }} .pc-split-container:hover .pc-image-box {
+  {{ sec_id }} .pc-image-container:hover .pc-image-box {
     flex: 0.8;
   }
 
-  {{ sec_id }} .pc-split-container:hover .pc-image-box:hover {
+  {{ sec_id }} ..pc-image-container:hover .pc-image-box:hover {
     flex: 1.2;
   }
 
@@ -191,7 +191,7 @@
 
   /* Mobile styles */
   @media (max-width: 768px) {
-    {{ sec_id }} .pc-split-container {
+    {{ sec_id }} ..pc-image-container {
       flex-direction: column;
       height: auto;
       gap: 10px;
@@ -211,7 +211,7 @@
 </style>
 
 <div class="pc-image-section">
-  <div class="pc-split-container">
+  <div class="pc-image-container">
     {% for block in section.blocks %}
       <div class="pc-image-box" data-block-id="{{ block.id }}">
         {% if block.settings.image != blank %}
