@@ -1,7 +1,6 @@
 {% assign sec_id = '#shopify-section-' | append: section.id %}
 
 <style>
-  
   {{ sec_id }} .pc-section-container {
     {% case section.settings.page_width %}
       {% when 'full' %} max-width: 100%;
@@ -39,9 +38,18 @@
       --desc-hover-color: {{ block.settings.description_hover_color }};
       --btn-bg: {{ block.settings.button_bg }};
       --btn-text: {{ block.settings.button_text_color }};
+      --btn-hover-bg: {{ block.settings.button_hover_background_color }};
+      --btn-hover-text: {{ block.settings.button_hover_text_color }};
+      --btn-border: {{ block.settings.button_border_color }};
+      --btn-hover-border: {{ block.settings.button_hover_border_color }};
       --hover-width: {{ block.settings.hover_width }}%;
       --title-font-size: {{ block.settings.title_font_size }}px;
       --desc-font-size: {{ block.settings.description_font_size }}px;
+      --btn-font-size: {{ block.settings.button_font_size }}px;
+      --btn-min-width: {{ block.settings.button_min_width }}px;
+      --btn-padding-v: {{ block.settings.button_padding_vertical }}px;
+      --btn-padding-h: {{ block.settings.button_padding_horizontal }}px;
+      --btn-border-radius: {{ block.settings.button_border_radius }}px;
       
       {% case block.settings.border_radius_option %}
         {% when 'none' %} border-radius: 0;
@@ -79,15 +87,25 @@
     z-index: 2;
     transition: all 0.3s ease;
     opacity: 1;
+    padding-top: var(--content-padding-top);
+    padding-bottom: var(--content-padding-bottom);
   }
 
   {{ sec_id }} .pc-image-title {
-    font-weight: bold;
+    font-weight: {{ block.settings.title_font_weight }};
+    font-style: {{ block.settings.font_style }};
     margin: 0 0 4px 0;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     color: var(--title-color);
     font-size: var(--title-font-size);
     transition: color 0.3s ease;
+    letter-spacing: {{ block.settings.letter_spacing }}px;
+    text-decoration: {{ block.settings.text_decoration }};
+    {% if block.settings.text_decoration != 'none' %}
+      text-decoration-color: {{ block.settings.text_decoration_color }};
+    {% endif %}
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
   }
 
   {{ sec_id }} .pc-image-description {
@@ -98,24 +116,38 @@
     margin: 4px 0;
     color: var(--desc-color);
     font-size: var(--desc-font-size);
+    font-weight: {{ block.settings.description_font_weight }};
+    font-style: {{ block.settings.description_font_style }};
+    letter-spacing: {{ block.settings.description_letter_spacing }}px;
+    text-decoration: {{ block.settings.description_text_decoration }};
+    {% if block.settings.description_text_decoration != 'none' %}
+      text-decoration-color: {{ block.settings.description_text_decoration_color }};
+    {% endif %}
+    padding-top: {{ block.settings.description_padding_top }}px;
+    padding-bottom: {{ block.settings.description_padding_bottom }}px;
   }
 
   {{ sec_id }} .pc-image-button {
     display: inline-block;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 13px;
-    text-transform: uppercase;
+    padding: var(--btn-padding-v) var(--btn-padding-h);
+    border-radius: var(--btn-border-radius);
+    font-weight: {{ block.settings.button_font_weight }};
+    font-size: var(--btn-font-size);
+    text-transform: {{ block.settings.button_text_transform }};
     margin-top: 4px;
     opacity: 0;
     transform: translateY(10px);
     background-color: var(--btn-bg);
     color: var(--btn-text);
+    border: 1px solid var(--btn-border);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
     transition: all 0.3s ease;
-    text-decoration: none;
-    letter-spacing: 0.5px;
+    text-decoration: {{ block.settings.button_text_decoration }};
+    {% if block.settings.button_text_decoration != 'none' %}
+      text-decoration-color: {{ block.settings.button_text_decoration_color }};
+    {% endif %}
+    letter-spacing: {{ block.settings.button_letter_spacing }}px;
+    min-width: var(--btn-min-width);
   }
 
   /* Hover effects */
@@ -137,6 +169,9 @@
   {{ sec_id }} .pc-image-box:hover .pc-image-button {
     opacity: 1;
     transform: translateY(0);
+    background-color: var(--btn-hover-bg);
+    color: var(--btn-hover-text);
+    border-color: var(--btn-hover-border);
   }
 
   /* Mobile styles */
@@ -330,7 +365,7 @@
               "label": "900"
             }
           ],
-          "default": "normal"
+          "default": "bold"
         },
          {
           "type": "select",
@@ -390,7 +425,7 @@
           "type": "color",
           "id": "text_decoration_color",
           "label": "Text Decoration Color",
-          "default": "#000"
+          "default": "#000000"
         },
         {
           "type": "color",
@@ -585,7 +620,7 @@
           "type": "color",
           "id": "description_text_decoration_color",
           "label": "Text Decoration Color",
-          "default": "#000"
+          "default": "#000000"
         },
         {
           "type": "color",
@@ -633,17 +668,17 @@
           "label": "Button text color",
           "default": "#000000"
         },
-          {
+        {
           "type": "color",
-          "id": "button_background_color",
-          "label": "Button Background Color",
-          "default": "#0073e6"
+          "id": "button_border_color",
+          "label": "Button Border Color",
+          "default": "#005bb5"
         },
         {
           "type": "range",
           "id": "button_font_size",
-          "label": "Input Font Size (px)",
-          "default": 10,
+          "label": "Font Size (px)",
+          "default": 13,
           "min": 10,
           "max": 24,
           "step": 1
@@ -706,7 +741,7 @@
               "label": "900"
             }
           ],
-          "default": "normal"
+          "default": "600"
         },
         {
           "type": "select",
@@ -729,14 +764,6 @@
             {
               "value": "lowercase",
               "label": "Lowercase"
-            },
-            {
-              "value": "initial",
-              "label": "Initial"
-            },
-            {
-              "value": "inherit",
-              "label": "Inherit"
             }
           ]
         },
@@ -748,7 +775,7 @@
           "step": 0.1,
           "unit": "px",
           "label": "Letter spacing",
-          "default": 0
+          "default": 0.5
         },
         {
           "type": "select",
@@ -778,13 +805,7 @@
           "type": "color",
           "id": "button_text_decoration_color",
           "label": "Text Decoration Color",
-          "default": "#000"
-        },
-        {
-          "type": "color",
-          "id": "button_border_color",
-          "label": "Button Border Color",
-          "default": "#005bb5"
+          "default": "#000000"
         },
         {
           "type": "range",
@@ -793,8 +814,8 @@
           "max": 50,
           "step": 1,
           "unit": "px",
-          "label": "Input border radius",
-          "default": 4
+          "label": "Border radius",
+          "default": 20
         },
         {
           "type": "color",
@@ -821,8 +842,8 @@
           "max": 100,
           "step": 1,
           "unit": "px",
-          "label": "Button Vertical Padding",
-          "default": 12
+          "label": "Vertical Padding",
+          "default": 10
         },
         {
           "type": "range",
@@ -831,13 +852,13 @@
           "max": 100,
           "step": 5,
           "unit": "px",
-          "label": "Button Horizontal Padding",
-          "default": 30
+          "label": "Horizontal Padding",
+          "default": 20
         },
         {
           "type": "range",
           "id": "button_min_width",
-          "label": "Button Minimum Width (px)",
+          "label": "Minimum Width (px)",
           "min": 50,
           "max": 500,
           "step": 10,
@@ -861,11 +882,6 @@
         },
         {
           "type": "header",
-          "content": "Button Colors"
-        },
-        
-        {
-          "type": "header",
           "content": "Hover Behavior"
         },
         {
@@ -886,7 +902,24 @@
     {
       "name": "Pwc Split Image Banner Hover",
       "category": "Custom",
-      "blocks": []
+      "blocks": [
+        {
+          "type": "image",
+          "settings": {
+            "title": "Collection 1",
+            "description": "<p>Shop our latest collection</p>",
+            "button_text": "Shop Now"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "title": "Collection 2",
+            "description": "<p>Discover new arrivals</p>",
+            "button_text": "Explore"
+          }
+        }
+      ]
     }
   ]
 }
