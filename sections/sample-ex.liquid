@@ -51,15 +51,6 @@
       --hover-width: {{ block.settings.hover_width }}%;
       --title-font-size: {{ block.settings.title_font_size }}px;
       --desc-font-size: {{ block.settings.description_font_size }}px;
-      
-      {% case block.settings.border_radius_option %}
-        {% when 'none' %} border-radius: 0;
-        {% when 'small' %} border-radius: 4px;
-        {% when 'medium' %} border-radius: 8px;
-        {% when 'large' %} border-radius: 16px;
-        {% when 'custom' %} border-radius: {{ block.settings.custom_border_radius }};
-      {% endcase %}
-    }
 
     {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] .pc-image-title {
       font-weight: {{ block.settings.title_font_weight }};
