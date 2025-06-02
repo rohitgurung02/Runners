@@ -284,7 +284,27 @@
       "step": 10,
       "unit": "px",
       "default": 500
-    }
+    },
+     {
+          "type": "select",
+          "id": "border_radius_option",
+          "label": "Border radius",
+          "default": "medium",
+          "options": [
+            { "value": "none", "label": "None (0px)" },
+            { "value": "small", "label": "Small (4px)" },
+            { "value": "medium", "label": "Medium (8px)" },
+            { "value": "large", "label": "Large (16px)" },
+            { "value": "custom", "label": "Custom" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "custom_border_radius",
+          "label": "Custom border radius (e.g. 12px, 0.5rem, 50%)",
+          "default": "12px",
+          "info": "Only used if 'Custom' is selected above."
+        }, 
   ],
   "blocks": [
     {
@@ -410,26 +430,6 @@
           "max": 150,
           "step": 5
         },
-        {
-          "type": "select",
-          "id": "border_radius_option",
-          "label": "Border radius",
-          "default": "medium",
-          "options": [
-            { "value": "none", "label": "None (0px)" },
-            { "value": "small", "label": "Small (4px)" },
-            { "value": "medium", "label": "Medium (8px)" },
-            { "value": "large", "label": "Large (16px)" },
-            { "value": "custom", "label": "Custom" }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "custom_border_radius",
-          "label": "Custom border radius (e.g. 12px, 0.5rem, 50%)",
-          "default": "12px",
-          "info": "Only used if 'Custom' is selected above."
-        }, 
         {
           "type": "header",
           "content": "Description"
