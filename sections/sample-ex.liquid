@@ -2,7 +2,7 @@
 
 <style>
   
-  {{ sec_id }} .pc-section-container {
+  {{ sec_id }} .pc-image-section {
     {% case section.settings.page_width %}
       {% when 'full' %} max-width: 100%;
       {% when 'wide' %} max-width: 1200px;
@@ -210,7 +210,7 @@
   }
 </style>
 
-<div class="pc-section-container">
+<div class="pc-image-section">
   <div class="pc-split-container">
     {% for block in section.blocks %}
       <div class="pc-image-box" data-block-id="{{ block.id }}">
