@@ -21,7 +21,7 @@
     transition: all 0.4s ease-in-out;
   }
 
-  {{ sec_id }} .pc-image-box {
+  {{ sec_id }} .pc-image-row {
     position: relative;
     flex: 1;
     overflow: hidden;
@@ -30,18 +30,18 @@
     background-color: transparent;
   }
 
-  {{ sec_id }} .pc-image-box{
+  {{ sec_id }} .pc-image-row {
     border-radius: {{ section.settings.border_radius_option }}px;
   }
 
-  {{ sec_id }} .pc-image-box{
+  {{ sec_id }} .pc-image-row {
     border-radius: {{ section.settings.custom_border_radius }}px;
   }
   
 
   /* Block-specific styles */
   {% for block in section.blocks %}
-    {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] {
+    {{ sec_id }} .pc-image-row[data-block-id="{{ block.id }}"] {
       --hover-bg: {{ block.settings.hover_bg }};
       --title-color: {{ block.settings.title_color }};
       --title-hover-color: {{ block.settings.title_hover_color }};
@@ -54,7 +54,7 @@
       --desc-font-size: {{ block.settings.description_font_size }}px;
     }
 
-    {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] .pc-image-title {
+    {{ sec_id }} .pc-image-row[data-block-id="{{ block.id }}"] .pc-image-title {
       font-weight: {{ block.settings.title_font_weight }};
       font-style: {{ block.settings.font_style }};
       letter-spacing: {{ block.settings.letter_spacing }}px;
@@ -66,7 +66,7 @@
       padding-bottom: {{ block.settings.padding_bottom }}px;
     }
 
-    {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] .pc-image-description {
+    {{ sec_id }} .pc-image-row[data-block-id="{{ block.id }}"] .pc-image-description {
       font-weight: {{ block.settings.description_font_weight }};
       font-style: {{ block.settings.description_font_style }};
       letter-spacing: {{ block.settings.description_letter_spacing }}px;
@@ -78,7 +78,7 @@
       padding-bottom: {{ block.settings.description_padding_bottom }}px;
     }
 
-    {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] .pc-image-button {
+    {{ sec_id }} .pc-image-row[data-block-id="{{ block.id }}"] .pc-image-button {
       font-size: {{ block.settings.button_font_size }}px;
       font-weight: {{ block.settings.button_font_weight }};
       text-transform: {{ block.settings.button_text_transform }};
@@ -95,26 +95,26 @@
       min-width: {{ block.settings.button_min_width }}px;
     }
 
-    {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] .pc-image-button:hover {
+    {{ sec_id }} .pc-image-row[data-block-id="{{ block.id }}"] .pc-image-button:hover {
       background-color: {{ block.settings.button_hover_background_color }};
       color: {{ block.settings.button_hover_text_color }};
       border-color: {{ block.settings.button_hover_border_color }};
     }
   {% endfor %}
 
-  {{ sec_id }} .pc-image-container:hover .pc-image-box {
+  {{ sec_id }} .pc-image-container:hover .pc-image-row {
     flex: 0.8;
   }
 
-  {{ sec_id }} ..pc-image-container:hover .pc-image-box:hover {
+  {{ sec_id }} ..pc-image-container:hover .pc-image-row:hover {
     flex: 1.2;
   }
 
-  {{ sec_id }} .pc-image-box:not(:first-child) {
+  {{ sec_id }} .pc-image-row:not(:first-child) {
     margin-left: {{ section.settings.gap_between }}px;
   }
 
-  {{ sec_id }} .pc-image-box img {
+  {{ sec_id }} .pc-image-row img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -161,31 +161,31 @@
   }
 
   /* Hover effects */
-  {{ sec_id }} .pc-image-box:hover {
+  {{ sec_id }} .pc-image-row:hover {
     flex: 0 0 var(--hover-width);
     background-color: var(--hover-bg);
   }
 
-  {{ sec_id }} .pc-image-box:hover img {
+  {{ sec_id }} .pc-image-row:hover img {
     opacity: 0.3;
   }
 
-  {{ sec_id }} .pc-image-box:hover .pc-image-title {
+  {{ sec_id }} .pc-image-row:hover .pc-image-title {
     color: var(--title-hover-color);
   }
 
-  {{ sec_id }} .pc-image-box:hover .pc-image-description {
+  {{ sec_id }} .pc-image-row:hover .pc-image-description {
     max-height: 200px;
     opacity: 1;
     color: var(--desc-hover-color);
   }
 
-  {{ sec_id }} .pc-image-box:hover .pc-image-button {
+  {{ sec_id }} .pc-image-row:hover .pc-image-button {
     opacity: 1;
     transform: translateY(0);
   }
 
-  .pc-image-description p {
+  {{ sec_id }} .pc-image-description p {
     margin: 0;
  }
 
@@ -197,14 +197,14 @@
       gap: 10px;
     }
 
-    {{ sec_id }} .pc-image-box {
+    {{ sec_id }}.pc-image-row {
       width: 100% !important;
       height: {{ section.settings.image_height | divided_by: 1.5 }}px;
       flex: 1 0 auto !important;
       margin-left: 0 !important;
     }
     
-    {{ sec_id }} .pc-image-box:hover img {
+    {{ sec_id }} .pc-image-row:hover img {
       opacity: 1;
     }
   }
@@ -213,7 +213,7 @@
 <div class="pc-image-section">
   <div class="pc-image-container">
     {% for block in section.blocks %}
-      <div class="pc-image-box" data-block-id="{{ block.id }}">
+      <div class="pc-image-row" data-block-id="{{ block.id }}">
         {% if block.settings.image != blank %}
           <img src="{{ block.settings.image | img_url: '1200x' }}" 
                alt="{{ block.settings.title | escape }}" 
