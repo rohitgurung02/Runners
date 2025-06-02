@@ -215,11 +215,11 @@
     {% for block in section.blocks %}
       <div class="pc-image-box" data-block-id="{{ block.id }}">
         {% if block.settings.image != blank %}
-         {{-
-                  block.settings.image
-                  | image_url: width: 500, height: 500
-                  | image_tag
-                -}}
+          {{-
+            block.settings.image
+            | image_url: width: 600, height: 500
+            | image_tag
+          -}}
         {% endif %}
 
         <div class="pc-image-overlay"></div>
