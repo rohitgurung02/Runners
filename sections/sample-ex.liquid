@@ -1,7 +1,6 @@
 {% assign sec_id = '#shopify-section-' | append: section.id %}
 
 <style>
-  
   {{ sec_id }} .pc-section-container {
     {% case section.settings.page_width %}
       {% when 'full' %} max-width: 100%;
@@ -29,16 +28,7 @@
     height: 100%;
     background-color: transparent;
   }
-
-   {% case section.settings.border_radius_option %}
-        {% when 'none' %} border-radius: 0;
-        {% when 'small' %} border-radius: 4px;
-        {% when 'medium' %} border-radius: 8px;
-        {% when 'large' %} border-radius: 16px;
-        {% when 'custom' %} border-radius: {{ section.settings.custom_border_radius }};
-      {% endcase %}
-    }
-
+  
   /* Block-specific styles */
   {% for block in section.blocks %}
     {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] {
@@ -115,11 +105,7 @@
   }
 
   {{ sec_id }} .pc-split-container:hover .pc-image-box:hover {
-    flex: 1.2;
-  }
-
-  {{ sec_id }} .pc-image-box:not(:first-child) {
-    margin-left: {{ section.settings.gap_between }}px;
+    flex: var(--hover-width);
   }
 
   {{ sec_id }} .pc-image-box img {
@@ -170,7 +156,6 @@
 
   /* Hover effects */
   {{ sec_id }} .pc-image-box:hover {
-    flex: 0 0 var(--hover-width);
     background-color: var(--hover-bg);
   }
 
@@ -195,7 +180,7 @@
 
   .pc-image-description p {
     margin: 0;
- }
+  }
 
   /* Mobile styles */
   @media (max-width: 768px) {
@@ -209,7 +194,6 @@
       width: 100% !important;
       height: {{ section.settings.image_height | divided_by: 1.5 }}px;
       flex: 1 0 auto !important;
-      margin-left: 0 !important;
     }
     
     {{ sec_id }} .pc-image-box:hover img {
@@ -229,8 +213,6 @@
                width="1200" 
                height="{{ 1200 | divided_by: block.settings.image.aspect_ratio | round }}">
         {% endif %}
-
-        <div class="pc-image-overlay"></div>
 
         <div class="pc-image-content">
           <h3 class="pc-image-title">{{ block.settings.title }}</h3>
