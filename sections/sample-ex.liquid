@@ -1,316 +1,219 @@
-{% assign unique_id = 'ba_slider_' | append: section.id %}
 
-<main class="ba_main {{ unique_id }}">
-  <div class="container before_after">
-    <div class="image-container">
-      <div class="before_img">
-        <img
-          class="image-before slider-image"
-          src="{{ section.settings.bf_image | image_url }}"
-          alt="color photo"
-        >
-        <span
-          class="before_badge ba_badge"
-          style="{% unless section.settings.show_badge %}display: none;{% endunless %}"
-          >Before</span
-        >
-      </div>
-      <div class="after_img">
-        <img
-          class="image-after slider-image"
-          src="{{ section.settings.af_image | image_url }}"
-          alt="black and white"
-        >
-        <span class="after_badge ba_badge" style="{% unless section.settings.show_badge %}display: none;{% endunless %}"
-          >After</span
-        >
-      </div>
-    </div>
-    <!-- step="10" -->
-    <input
-      type="range"
-      min="0"
-      max="100"
-      value="50"
-      aria-label="Percentage of before photo shown"
-      class="ba-slider"
-    >
-    <div class="slider-line" aria-hidden="true"></div>
-    <div class="slider-button" aria-hidden="true">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="30"
-        height="30"
-        fill="currentColor"
-        viewBox="0 0 256 256"
-      >
-        <rect width="256" height="256" fill="none"></rect>
-        <line
-          x1="128"
-          y1="40"
-          x2="128"
-          y2="216"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="16"
-        ></line>
-        <line
-          x1="96"
-          y1="128"
-          x2="16"
-          y2="128"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="16"
-        ></line>
-        <polyline class="before_arrow"
-          points="48 160 16 128 48 96"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="16"
-        ></polyline>
-        <line
-          x1="160"
-          y1="128"
-          x2="240"
-          y2="128"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="16"
-        ></line>
-        <polyline  class="after_arrow"
-          points="208 96 240 128 208 160"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="16"
-        ></polyline>
-      </svg>
-    </div>
-  </div>
-  <div
-    class="container before_after-content"
-    style="{% unless section.settings.show_content %}display: none;{% endunless %}"
-  >
-    <div class="before_after-heading">
-      <h3>{{ section.settings.ba_heading }}</h3>
-    </div>
-    <div class="before_after-paragraph">
-      <p>{{ section.settings.ba_content }}</p>
-    </div>
-  </div>
-</main>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+
+
+
+{% style %}
+ .slid_aftr_bfr_container--{{ section.id }} {
+	 position: relative;
+	 border: 2px solid white;
+  width: {{ section.settings.slider_aftr_bfr_img_width }}px;
+    height: {{ section.settings.slider_aftr_bfr_img_sz }}px;
+   margin-left: auto;
+      margin-right: auto;
+
+}
+ .slid_aftr_bfr_container--{{ section.id }} .img_slid_aftr_bfr--{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: {{ section.settings.slider_aftr_bfr_img_width }}px {{ section.settings.slider_aftr_bfr_img_sz }}px;
+  background-repeat: no-repeat;
+}
+ .slid_aftr_bfr_container--{{ section.id }} .background-img {
+	 background-image: url('{{section.settings.image_before | img_url: ''}}');
+}
+ .slid_aftr_bfr_container--{{ section.id }} .foreground-img {
+	 background-image: url('{{section.settings.image_after | img_url: ''}}');
+	 width: 50%;
+}
+ .slid_aftr_bfr_container--{{ section.id }} .slider {
+	 position: absolute;
+	 -webkit-appearance: none;
+	 appearance: none;
+	 width: 100%;
+	 height: 100%;
+	 background: rgba(242, 242, 242, .1);
+	 outline: none;
+	 margin: 0;
+	 transition: all 0.2s;
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+}
+ .slid_aftr_bfr_container--{{ section.id }} .slider::-webkit-slider-thumb {
+	 -webkit-appearance: none;
+	 appearance: none;
+	 width: 6px;
+	 height: {{ section.settings.slider_aftr_bfr_img_sz }}px;
+	 background: white;
+	 cursor: pointer;
+}
+ .slid_aftr_bfr_container--{{ section.id }} .slider::-moz-range-thumb {
+	 width: 6px;
+	 height: 600px;
+	 background: white;
+	 cursor: pointer;
+}
+ .slid_aftr_bfr_container--{{ section.id }} .slider-button {
+	 pointer-events: none;
+	 position: absolute;
+	 width: 30px;
+	 height: 30px;
+	 border-radius: 50%;
+	 background-color: white;
+	 left: calc(50% - 18px);
+	 top: calc(50% - 18px);
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+}
+ .slid_aftr_bfr_container--{{ section.id }} .slider-button:after {
+	 content: '';
+	 padding: 3px;
+	 display: inline-block;
+	 border: solid #5d5d5d;
+	 border-width: 0 2px 2px 0;
+	 transform: rotate(-45deg);
+}
+ .slid_aftr_bfr_container--{{ section.id }} .slider-button:before {
+	 content: '';
+	 padding: 3px;
+	 display: inline-block;
+	 border: solid #5d5d5d;
+	 border-width: 0 2px 2px 0;
+	 transform: rotate(135deg);
+}
+
+
+        .before_slider--{{section.id}}::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: {{ section.settings.color_slid_aftr_bfr_over}};
+      opacity: {{section.settings.slide_aftr_bfr_opacity}}%;
+        }
+@media only screen and (max-width: 749px) {
+.small--hide {
+    display: none !important; 
+}
+}
+                      @media screen and (min-width: 750px) {
+.medium-up--hide {
+    display: none !important;
+}
+          }
+  {% endstyle %}
+  <div class="{{ section.settings.slide_aftr_bfr-visibility }} page-width">
+                   {% if section.settings.title != blank %}
+        <h1 class="title inline-richtext h2">{{ section.settings.title | escape }}</h1>
+
+            {% endif %}
+  <div class="slid_aftr_bfr_container--{{ section.id }}">
+    <div class='img_slid_aftr_bfr--{{ section.id }} background-img'>.</div>
+    <div class='img_slid_aftr_bfr--{{ section.id }} foreground-img {% if section.settings.slid_aftr_bfr_en-over %} before_slider--{{section.id}} {% endif %}'>.</div>
+    <input type="range" min="1" max="100" value="50" class="slider" name='slider' id="slid_aftr_bfr--{{ section.id }}">
+    <div class='slider-button'></div>
+  </div>
+  </div>
+<script>
+  $("#slid_aftr_bfr--{{ section.id }}").on("input change", (e)=>{
+  const sliderPos = e.target.value;
+  // Update the width of the foreground image
+  $('.foreground-img').css('width', `${sliderPos}%`)
+  // Update the position of the slider button
+  $('.slider-button').css('left', `calc(${sliderPos}% - 18px)`)
+});
+</script>
 {% schema %}
-{
-  "name": "Before / After Slider",
-  "settings": [
-     {
-          "type": "header",
-          "content": "Subscribe to our [channel](https://www.youtube.com/@websensepro?sub_confirmation=1)"
-        },
-    {
-      "id":"bf_image",
-      "type":"image_picker",
-      "label":"Before Image"
-    },
-    {
-      "id":"af_image",
-      "type":"image_picker",
-      "label":"After Image"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_badge",
-      "label": "Show Badges",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "grayscale_before",
-      "label": "Grayscale for Before Image",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "show_content",
-      "label": "Show content",
-      "default": false
-    },
   {
-      "id":"ba_heading",
-      "type":"text",
-      "label":"Heading"
-    },
+    "name": "Slider After Before",
+    "class": "index-section",
+    "settings": [
+            {
+        "type": "paragraph",
+        "content": "For better responsiveness, it is recommended to use 2 sections with different container sizes, 1 for mobile only and 1 for desktop only [Need help?](https:\/\/scrowp.com\/scrowp-shopify-theme-documentation\/slider-after-before-on-scrowp-theme/)"
+      },
+      {
+   "type": "radio",
+   "id": "slide_aftr_bfr-visibility",
+   "options": [
+      { "value": "medium-up--hide", 
+        "label": "Mobile only"
+        },
+      { "value": "small--hide", 
+        "label": "Desktop only"
+      },
+      { "value": "showboth",
+        "label": "both"
+      }
+   ],
+          "label": "Visibility",
+"default":   "showboth"
+},
+      {
+"type": "text",
+"id": "title",
+"label": "Heading"
+      },
+            {
+"type": "text",
+"id": "slider_aftr_bfr_img_width",
+"label": "container width",
+"default": "1200"
+},
+      {
+"type": "text",
+"id": "slider_aftr_bfr_img_sz",
+"label": "Image height",
+"default": "400"
+},
+              {
+          "type": "image_picker",
+          "id": "image_before",
+          "label": "Image"
+        },
+      {
+"type": "checkbox",
+"id": "slid_aftr_bfr_en-over",
+"label": "Enable overlay on Before image",
+"default": true
+},
+      {
+        "type": "color",
+        "id": "color_slid_aftr_bfr_over",
+        "label": "Overlay color",
+        "default": "#000000"
+      },
+      {
+        "type": "range",
+        "id": "slide_aftr_bfr_opacity",
+        "label": "Opacity",
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "default": 50
+      },
+              {
+          "type": "image_picker",
+          "id": "image_after",
+          "label": "Image 2"
+        }
+    ],
+      "presets": [
     {
-      "id":"ba_content",
-      "type":"richtext",
-      "label":"Content"
-    }
-  ],
-  "presets":[
-    {
-      "name":"Before / After Slider"
+      "name": "Slider before after",
+      "category": "Image"
     }
   ]
-}
+  }
 {% endschema %}
-
-{% javascript %}
-{% endjavascript %}
-
-
-<style>
-      {% if section.settings.show_content == true %}
-         .container{
-          width: calc(50% - 20px);
-        }
-       {% else %}
-         .container{
-          width: 50%;
-           margin: 0 auto;
-        } 
-       {% endif %}
-
-         .ba_main {
-                 display: flex;
-                 place-items: center;
-                 flex-wrap: wrap;
-                 gap: 30px;
-                 padding: 0 5rem;
-                 max-width: 1200px;
-           width: 100%;
-           margin: 50px auto;
-               }
-
-               img {
-                 display: block;
-                 max-width: 100%;
-               }
-
-               .container {
-                 display: grid;
-                 /* place-content: center; */
-                 position: relative;
-                 overflow: hidden;
-                 border-radius: 1rem;
-                 --position: 50%;
-               }
-
-               .image-container {
-                 max-width: 1200px;
-               }
-
-  .before_badge {
-    z-index: 99 !important;
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    background: #fff;
-    padding: 0 5px;
-    border-radius: 5px;
-    color: #000;
-  }
-
-    .after_badge {
-    z-index: 99 !important;
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: #fff;
-    padding: 0 5px;
-    border-radius: 5px;
-    color: #000;
-  }
-
-               .slider-image {
-                 width: 100%;
-                 height: 100%;
-                 object-fit: cover;
-                 object-position: left;
-                 max-height: 500px;
-               }
-
-               .image-before {
-                 position: absolute;
-                 inset: 0;
-                 width: var(--position);
-                 {% if section.settings.grayscale_before %}filter: grayscale(100%);{% endif %}
-               }
-
-               .ba-slider {
-                 position: absolute;
-                 inset: 0;
-                 cursor: pointer;
-                 opacity: 0;
-                 /* for Firefox */
-                 width: 100%;
-                 height: 100%;
-               }
-
-               .ba-slider:focus-visible ~ .slider-button {
-                 outline: 5px solid black;
-                 outline-offset: 3px;
-               }
-
-               .slider-line {
-                 position: absolute;
-                 inset: 0;
-                 width: .2rem;
-                 height: 100%;
-                 background-color: #fff;
-                 /* z-index: 10; */
-                 left: var(--position);
-                 transform: translateX(-50%);
-                 pointer-events: none;
-               }
-
-               .slider-button {
-                 position: absolute;
-                 background-color: #fff !important;
-                 color: black;
-                 padding: .5rem;
-                 border-radius: 100vw;
-                 display: grid;
-                 place-items: center;
-                 top: 50%;
-                 left: var(--position);
-                 transform: translate(-50%, -50%);
-                 pointer-events: none;
-                 /* z-index: 100; */
-                 box-shadow: 1px 1px 1px hsl(0, 50%, 2%, .5);
-               }
-
-       @media only screen and (max-width: 768px)
-         {
-           .container{
-               width: 100%;
-           }
-           .ba_main{
-             padding: 0 20px;
-           }
-         }
-</style>
-
-
-<script>
-function initializeBeforeAfterSlider(uniqueId) {
-  const container = document.querySelector(`.${uniqueId} .before_after`);
-  const slider = document.querySelector(`.${uniqueId} .ba-slider`);
-
-  slider.addEventListener('input', (e) => {
-    container.style.setProperty('--position', `${e.target.value}%`);
-  });
-}
-
-initializeBeforeAfterSlider('{{ unique_id }}');
-</script>
