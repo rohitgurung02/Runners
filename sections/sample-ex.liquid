@@ -1,205 +1,298 @@
-{% style %}
+{%- style -%}
+  .image-comparison {
+    max-width: 48.063em;
+    margin-right: auto;
+    margin-left: auto;
+    --position: 50%;
+  }
 
-/* extra code */
-.image-comparison-container {
-  position: relative;
-  width: 100%;
-  height: {{ section.settings.section_height }};
-  overflow: hidden;
-}
+  .image-comparison__slider-wrapper {
+    position: relative;
+  }
 
-.image-comparison-before,
-.image-comparison-after {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+  .image-comparison__label {
+    font-size: 0;
+    line-height: 0;
+  }
 
-.image-comparison-before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
+  .image-comparison__label,
+  .image-comparison__range {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    appearance: none;
+    outline: none;
+    cursor: ew-resize;
+    z-index: 20;
+  }
 
-.image-comparison-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 50%;
-  overflow: hidden;
-  z-index: 1;
-  pointer-events: none; /* So you can drag even over the masked image */
-}
+  @media (hover: hover) {
+    .image-comparison__range:hover ~ .image-comparison__slider .image-comparison__thumb {
+      transform: scale(1.2);
+    }
+  }
 
-.image-comparison-after {
-  position: absolute; /* Important */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  .image-comparison .image-comparison__slider-wrapper .image-comparison__range:active,
+  .image-comparison .image-comparison__slider-wrapper .image-comparison__range:focus,
+  .image-comparison .image-comparison__slider-wrapper .image-comparison__range--active {
+    ~ .image-comparison__slider .image-comparison__thumb {
+      transform: scale(0.8);
+      background-color: rgba({{ section.settings.slider_color | default: '#0066cc' }}, 0.5);
+    }
+  }
 
+  .image-comparison__image-wrapper--overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--position);
+    height: 100%;
+    overflow: hidden;
+  }
 
+  .image-comparison__figure {
+    margin: 0;
+    position: relative;
+    padding-top: 66.666666667%;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: {{ section.settings.overlay_color | default: '#f5f5f5' }};
+      z-index: 1;
+    }
+  }
 
+  .image-comparison__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+  }
 
-.image-comparison-border {
-  position: absolute;
-  width: 4px;
-  height: 100%;
-  left: 50%;
-  margin-left: -2px;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 2;
-}
+  .image-comparison__figure--overlay .image-comparison__image {
+    z-index: 2;
+  }
 
-.image-comparison-handle {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: {{ section.settings.slider_color }};
-  top: 50%;
-  margin-top: -25px;
-  left: 50%;
-  margin-left: -25px;
-  opacity: {{ section.settings.slider_opacity }};
-  cursor: ew-resize;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  touch-action: none;
-  user-select: none;
-}
+  .image-comparison__caption {
+    position: absolute;
+    bottom: 12px;
+    min-width: max-content;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    color: {{ section.settings.caption_text_color | default: '#ffffff' }};
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: {{ section.settings.caption_font_size | default: 14 }}px;
+    z-index: 3;
+  }
 
-.image-comparison-handle svg {
-  width: 20px;
-  height: 20px;
-}
+  .image-comparison__caption--before {
+    left: 12px;
+  }
 
-@media (max-width: 768px) {
-  .image-comparison-handle {
+  .image-comparison__caption--after {
+    right: 12px;
+    text-align: right;
+  }
+
+  .image-comparison__caption-body {
+    max-width: 40vmin;
+    padding: 6px 12px;
+    background-color: rgba({{ section.settings.caption_bg_color | default: '#000000' }}, 0.55);
+  }
+
+  .image-comparison__slider {
+    position: absolute;
+    top: 0;
+    left: var(--position);
+    width: 2px;
+    height: 100%;
+    background-color: {{ section.settings.slider_line_color | default: '#ffffff' }};
+    transition: background-color 0.3s ease-in-out;
+    z-index: 10;
+
+    .image-comparison__range--active ~ & {
+      background-color: rgba({{ section.settings.slider_line_active_color | default: '#ffffff' }}, 0);
+    }
+  }
+
+  .image-comparison__thumb {
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
     width: 40px;
     height: 40px;
-    margin-top: -20px;
-    margin-left: -20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: {{ section.settings.slider_color | default: '#0066cc' }};
+    color: {{ section.settings.slider_icon_color | default: '#ffffff' }};
+    border-radius: 50%;
+    box-shadow: 0 0 22px 0 rgba({{ section.settings.slider_shadow_color | default: '#000000' }}, 0.5);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    z-index: 11;
   }
 
-  .image-comparison-handle svg {
-    width: 16px;
-    height: 16px;
+  @media screen and (max-width: 40.063em) {
+    .image-comparison__caption {
+      font-size: 12px;
+    }
   }
-}
-{% endstyle %}
 
-<div class="image-comparison-container">
-  <img class="image-comparison-before" src="{{ section.settings.before_image | img_url: '2000x' }}" alt="Before Image" />
+  .image-comparison__range::-webkit-slider-runnable-track {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+  }
 
-  <div class="image-comparison-mask">
-    <img class="image-comparison-after" src="{{ section.settings.after_image | img_url: '2000x' }}" alt="After Image" />
-  </div>
+  .image-comparison__range::-moz-range-thumb {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+  }
 
-  <div class="image-comparison-border"></div>
-  <div class="image-comparison-handle">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
+  .image-comparison__range::-webkit-slider-thumb {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+  }
+
+  .image-comparison__range::-ms-fill-lower {
+    background-color: transparent;
+  }
+
+  .image-comparison__range::-ms-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: transparent;
+    outline: none;
+    cursor: col-resize;
+  }
+
+  .image-comparison__range::-ms-thumb {
+    width: 0.5%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  .image-comparison__range::-ms-tooltip {
+    display: none;
+  }
+
+  .placeholder-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    fill: #999;
+  }
+{%- endstyle -%}
+
+<section class="image-comparison" data-component="image-comparison-slider" id="shopify-section-{{ section.id }}">
+  <div class="image-comparison__slider-wrapper pc-ba-container">
+    <label for="image-comparison-range-{{ section.id }}" class="image-comparison__label">Move image comparison slider</label>
+    <input type="range" min="0" max="100" value="50" class="image-comparison__range pc-ba-slider-input" id="image-comparison-range-{{ section.id }}" data-image-comparison-range="">
+
+    <div class="image-comparison__image-wrapper image-comparison__image-wrapper--overlay" data-image-comparison-overlay="">
+      <figure class="image-comparison__figure image-comparison__figure--overlay">
+        {%- if section.settings.before_image != blank -%}
+          <img src="{{ section.settings.before_image | img_url: '1200x' }}" 
+               alt="{{ section.settings.before_image.alt | escape }}" 
+               class="image-comparison__image"
+               loading="lazy"
+               width="{{ section.settings.before_image.width }}"
+               height="{{ section.settings.before_image.height }}">
+        {%- else -%}
+          <div class="image-comparison__image placeholder-background">
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+
+        <figcaption class="image-comparison__caption image-comparison__caption--before">
+          <span class="image-comparison__caption-body">{{ section.settings.before_label }}</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="image-comparison__slider" data-image-comparison-slider="">
+      <span class="image-comparison__thumb" data-image-comparison-thumb="">
+        <svg class="image-comparison__thumb-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="currentColor">
+          <path class="image-comparison__thumb-icon--left" d="M12.121 4.703V.488c0-.302.384-.454.609-.24l4.42 4.214a.33.33 0 0 1 0 .481l-4.42 4.214c-.225.215-.609.063-.609-.24V4.703z"></path>
+          <path class="image-comparison__thumb-icon--right" d="M5.879 4.703V.488c0-.302-.384-.454-.609-.24L.85 4.462a.33.33 0 0 0 0 .481l4.42 4.214c.225.215.609.063.609-.24V4.703z"></path>
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
+      </span>
+    </div>
+
+    <div class="image-comparison__image-wrapper">
+      <figure class="image-comparison__figure">
+        {%- if section.settings.after_image != blank -%}
+          <img src="{{ section.settings.after_image | img_url: '1200x' }}" 
+               alt="{{ section.settings.after_image.alt | escape }}" 
+               class="image-comparison__image"
+               loading="lazy"
+               width="{{ section.settings.after_image.width }}"
+               height="{{ section.settings.after_image.height }}">
+        {%- else -%}
+          <div class="image-comparison__image placeholder-background">
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+
+        <figcaption class="image-comparison__caption image-comparison__caption--after">
+          <span class="image-comparison__caption-body">{{ section.settings.after_label }}</span>
+        </figcaption>
+      </figure>
+    </div>
   </div>
-</div>
-
-
+</section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const container = document.querySelector('.image-comparison-container');
-    const mask = document.querySelector('.image-comparison-mask');
-    const border = document.querySelector('.image-comparison-border');
-    const handle = document.querySelector('.image-comparison-handle');
-    
-    if (!handle || !mask || !border) return;
-    
-    let isDragging = false;
-    
-    // Initialize slider position
-    function initSlider() {
-        mask.style.width = '50%';
-        border.style.left = '50%';
-        handle.style.left = '50%';
-    }
-    
-    // Mouse events
-    handle.addEventListener('mousedown', function(e) {
-        isDragging = true;
-        e.preventDefault();
+(function() {
+  const sectionId = '{{ section.id }}';
+  const container = document.querySelector(`#shopify-section-${sectionId} .pc-ba-container`);
+  const slider = document.querySelector(`#shopify-section-${sectionId} .pc-ba-slider-input`);
+
+  if (slider && container) {
+    slider.addEventListener('input', (e) => {
+      container.style.setProperty('--position', `${e.target.value}%`);
     });
-    
-    document.addEventListener('mousemove', function(e) {
-        if (!isDragging) return;
-        moveSlider(e.clientX);
-    });
-    
-    document.addEventListener('mouseup', function() {
-        isDragging = false;
-    });
-    
-    // Touch events for mobile
-    handle.addEventListener('touchstart', function(e) {
-        isDragging = true;
-        e.preventDefault();
-    });
-    
-    document.addEventListener('touchmove', function(e) {
-        if (!isDragging) return;
-        moveSlider(e.touches[0].clientX);
-    });
-    
-    document.addEventListener('touchend', function() {
-        isDragging = false;
-    });
-    
-    // Click/tap on container to move slider
-    container.addEventListener('click', function(e) {
-        if (isDragging) return; // Prevent conflict with drag
-        moveSlider(e.clientX);
-    });
-    
-    function moveSlider(xPosition) {
-        const containerRect = container.getBoundingClientRect();
-        const containerLeft = containerRect.left;
-        const containerWidth = containerRect.width;
-        
-        let newPosition = xPosition - containerLeft;
-        
-        // Keep within bounds
-        newPosition = Math.max(0, Math.min(newPosition, containerWidth));
-        
-        const percentage = (newPosition / containerWidth) * 100;
-        
-        mask.style.width = percentage + '%';
-        border.style.left = percentage + '%';
-        handle.style.left = percentage + '%';
-    }
-    
-    // Initialize on load
-    initSlider();
-    
-    // Handle window resize
-    window.addEventListener('resize', function() {
-        // Recalculate position based on current percentage
-        const currentPercentage = parseFloat(mask.style.width) || 50;
-        mask.style.width = currentPercentage + '%';
-        border.style.left = currentPercentage + '%';
-        handle.style.left = currentPercentage + '%';
-    });
-});
+  }
+})();
 </script>
 
 {% schema %}
@@ -213,50 +306,92 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "type": "image_picker",
       "id": "before_image",
-      "label": "Before Image",
-      "info": "This will be shown on the right side"
+      "label": "Before Image"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before Label",
+      "default": "Before"
     },
     {
       "type": "image_picker",
       "id": "after_image",
-      "label": "After Image",
-      "info": "This will be shown on the left side and revealed by the slider"
+      "label": "After Image"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After Label",
+      "default": "After"
     },
     {
       "type": "header",
-      "content": "Slider Settings"
+      "content": "Style Settings"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#f5f5f5"
     },
     {
       "type": "color",
       "id": "slider_color",
-      "label": "Slider Handle Color",
-      "default": "#4682B4"
+      "label": "Slider Color",
+      "default": "#0066cc"
+    },
+    {
+      "type": "color",
+      "id": "slider_icon_color",
+      "label": "Slider Icon Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "slider_shadow_color",
+      "label": "Slider Shadow Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "slider_line_color",
+      "label": "Slider Line Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "slider_line_active_color",
+      "label": "Slider Line Active Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "caption_text_color",
+      "label": "Caption Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "caption_bg_color",
+      "label": "Caption Background Color",
+      "default": "#000000"
     },
     {
       "type": "range",
-      "id": "slider_opacity",
-      "min": 0.1,
-      "max": 1,
-      "step": 0.1,
-      "label": "Slider Handle Opacity",
-      "default": 0.9
-    },
-    {
-      "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "text",
-      "id": "section_height",
-      "label": "Section Height",
-      "default": "600px",
-      "info": "Enter value with unit (e.g. 500px or 80vh)"
+      "id": "caption_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Caption Font Size",
+      "default": 14
     }
   ],
   "presets": [
     {
-      "name": "Image Comparison Slider First",
-      "category": "Media"
+      "name": "Image Comparison Slider",
+      "category": "Image"
     }
   ]
 }
