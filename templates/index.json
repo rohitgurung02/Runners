@@ -58,10 +58,73 @@
         "contact_subheading": "Don't hesitate to contact us",
         "button_label": "Send message"
       }
+    },
+    "collapsible_content_a3rgE8": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_MWQthf": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_a9bNT6": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_kX98YB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_NqLUbp": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_MWQthf",
+        "collapsible_row_a9bNT6",
+        "collapsible_row_kX98YB",
+        "collapsible_row_NqLUbp"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "Collapsible content",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "",
+        "color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "featured_collection_copy_kaw7iD",
-    "sample_ex_cJHqyA"
+    "sample_ex_cJHqyA",
+    "collapsible_content_a3rgE8"
   ]
 }
