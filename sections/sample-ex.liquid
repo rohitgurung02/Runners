@@ -31,7 +31,18 @@
   width: 50%;
   overflow: hidden;
   z-index: 1;
+  pointer-events: none; /* So you can drag even over the masked image */
 }
+
+.image-comparison-after {
+  position: absolute; /* Important */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 .image-comparison-mask img {
   width: 100%;
@@ -177,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const percentage = (newPosition / containerWidth) * 100;
         
         mask.style.width = percentage + '%';
-      
+        border.style.left = percentage + '%';
         handle.style.left = percentage + '%';
     }
     
@@ -189,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Recalculate position based on current percentage
         const currentPercentage = parseFloat(mask.style.width) || 50;
         mask.style.width = currentPercentage + '%';
-       
+        border.style.left = currentPercentage + '%';
         handle.style.left = currentPercentage + '%';
     });
 });
