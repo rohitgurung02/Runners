@@ -607,7 +607,7 @@
     <div class="section-{{ section.id }}-settings">
       <div class="faq-body-{{ section.id }}">
         <div class="faq-image-{{ section.id }}">
-          {% for block in section.blocks %}
+         {% for block in section.blocks %}
                  <div class="form-container contact-form">
               {% if form.posted_successfully? %}
                 <div class="success-message" id="successMessage">
@@ -654,11 +654,7 @@
   {% endform %}
 </div>
           {% endfor %}
-          {% if form != blank %}
-        
-          {% else %}
-            {{ 'collection-1' | placeholder_svg_tag }}
-          {% endif %}
+         
         </div>
         <div class="faq-info-{{ section.id }}">
           {% if heading != blank %}
