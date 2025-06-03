@@ -23,8 +23,8 @@
       "settings": {
         "before_image": "shopify://shop_images/1738323256__kannperformance__huge.jpg",
         "after_image": "shopify://shop_images/1743000616__screenshot2025-03-26at34755pm__huge.jpg",
-        "slider_color": "#4682B4",
-        "slider_opacity": 0.9,
+        "slider_color": "#4682b4",
+        "slider_opacity": 1,
         "section_height": "600px"
       }
     }
