@@ -16,9 +16,70 @@
       "settings": {
         "announcement_compact": false
       }
+    },
+    "collapsible_content_mf4gem": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_TUbtWV": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_WGggJ6": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_BMwUFG": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_tETm4f": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_TUbtWV",
+        "collapsible_row_WGggJ6",
+        "collapsible_row_BMwUFG",
+        "collapsible_row_tETm4f"
+      ],
+      "name": "Collapsible content with form",
+      "settings": {
+        "caption": "",
+        "heading": "Collapsible content with contact form",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "",
+        "color_scheme": "",
+        "open_first_collapsible_row": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD"
+    "featured_collection_copy_kaw7iD",
+    "collapsible_content_mf4gem"
   ]
 }
