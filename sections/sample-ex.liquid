@@ -639,12 +639,6 @@
       <div class="error-message" id="messageError">Please enter your message</div>
     </div>
 
-    <div class="checkbox-group">
-      <input type="checkbox" id="dataConsent" name="contact[data_consent]" required>
-      <label for="dataConsent">
-        {{ section.settings.consent_text | default: 'I consent to having this website store my submitted information so they can respond to my inquiry. See our privacy policy to learn more about how we protect and manage your submitted data. *' }}
-      </label>
-    </div>
     <div class="error-message" id="consentError">You must accept the privacy policy</div>
 
     {% if section.settings.show_marketing_opt_in %}
