@@ -67,75 +67,112 @@
 
 /* extra code */
 .image-comparison-container {
-    position: relative;
-    width: 100%;
-    height: {{ section.settings.section_height }};
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: {{ section.settings.section_height }};
+  overflow: hidden;
 }
 
 .image-comparison-before,
 .image-comparison-after {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .image-comparison-before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
 
 .image-comparison-mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 50%;
-    overflow: hidden;
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.image-comparison-after {
-    position: absolute;
-    top: 0;
-    left: 0;
+.image-comparison-mask img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-comparison-border {
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  left: 50%;
+  margin-left: -2px;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.image-comparison-handle {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: {{ section.settings.slider_color }};
+  top: 50%;
+  margin-top: -25px;
+  left: 50%;
+  margin-left: -25px;
+  opacity: {{ section.settings.slider_opacity }};
+  cursor: ew-resize;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  touch-action: none;
+  user-select: none;
+}
+
+.image-comparison-handle svg {
+  width: 20px;
+  height: 20px;
 }
 
 @media (max-width: 768px) {
-    .image-comparison-handle {
-        width: 40px;
-        height: 40px;
-        margin-top: -20px;
-        margin-left: -20px;
-    }
-    
-    .image-comparison-handle svg {
-        width: 16px;
-        height: 16px;
-    }
+  .image-comparison-handle {
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    margin-left: -20px;
+  }
+
+  .image-comparison-handle svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 {% endstyle %}
 
 <div class="image-comparison-container">
-    <img class="image-comparison-before" src="{{ section.settings.before_image | img_url: '2000x' }}" alt="Before Image" />
-    
-    <div class="image-comparison-mask">
-        <img class="image-comparison-after" src="{{ section.settings.after_image | img_url: '2000x' }}" alt="After Image" />
-    </div>
-    
-    <div class="image-comparison-border"></div>
-    <div class="image-comparison-handle">
-       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <img class="image-comparison-before" src="{{ section.settings.before_image | img_url: '2000x' }}" alt="Before Image" />
+
+  <div class="image-comparison-mask">
+    <img class="image-comparison-after" src="{{ section.settings.after_image | img_url: '2000x' }}" alt="After Image" />
+  </div>
+
+  <div class="image-comparison-border"></div>
+  <div class="image-comparison-handle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
-    </div>
+  </div>
 </div>
+
 
 
 <script>
