@@ -609,11 +609,11 @@
         <div class="faq-image-{{ section.id }}">
           {% if form != blank %}
            <div class="form-container contact-form">
-  {% if form.posted_successfully? %}
-    <div class="success-message" id="successMessage">
-      Thank you! Your form has been submitted successfully.
-    </div>
-  {% endif %}
+              {% if form.posted_successfully? %}
+                <div class="success-message" id="successMessage">
+                  Thank you! Your form has been submitted successfully.
+                </div>
+              {% endif %}
   
   <h1>{{ section.settings.heading | default: 'Contact Form' }}</h1>
   
