@@ -16,60 +16,9 @@
       "settings": {
         "announcement_compact": false
       }
-    },
-    "sample_ex_izyQJD": {
-      "type": "sample-ex",
-      "blocks": {
-        "collapsible_row_mmbPrM": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Collapsible row",
-            "icon": "check_mark",
-            "row_content": "",
-            "page": ""
-          }
-        },
-        "collapsible_row_GMPfbm": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Collapsible row",
-            "icon": "check_mark",
-            "row_content": "",
-            "page": ""
-          }
-        },
-        "collapsible_row_C8JYWP": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Collapsible row",
-            "icon": "check_mark",
-            "row_content": "",
-            "page": ""
-          }
-        }
-      },
-      "block_order": [
-        "collapsible_row_mmbPrM",
-        "collapsible_row_GMPfbm",
-        "collapsible_row_C8JYWP"
-      ],
-      "name": "Collapsible content with form",
-      "settings": {
-        "caption": "",
-        "heading": "Collapsible content with contact form",
-        "heading_size": "h1",
-        "heading_alignment": "center",
-        "layout": "none",
-        "container_color_scheme": "",
-        "color_scheme": "",
-        "open_first_collapsible_row": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD",
-    "sample_ex_izyQJD"
+    "featured_collection_copy_kaw7iD"
   ]
 }
