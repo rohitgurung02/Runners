@@ -16,25 +16,9 @@
       "settings": {
         "announcement_compact": false
       }
-    },
-    "sample_ex_xM36r4": {
-      "type": "sample-ex",
-      "name": "Image Comparison slider",
-      "settings": {
-        "before_image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
-        "after_image": "shopify://shop_images/1735917732__screenshot2025-01-03at111804pm__huge.png",
-        "width": 800,
-        "aspect_ratio": 1,
-        "initial_position": 50,
-        "slider_color": "#9b2c2c",
-        "border_color": "#9b2c2c8f",
-        "show_instructions": true,
-        "instructions_text": "Drag the slider to compare images"
-      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD",
-    "sample_ex_xM36r4"
+    "featured_collection_copy_kaw7iD"
   ]
 }
