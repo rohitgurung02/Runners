@@ -607,7 +607,7 @@
     <div class="section-{{ section.id }}-settings">
       <div class="faq-body-{{ section.id }}">
         <div class="faq-image-{{ section.id }}">
-          {% if image != blank %}
+          {% if form != blank %}
            <div class="form-container contact-form">
   {% if form.posted_successfully? %}
     <div class="success-message" id="successMessage">
@@ -761,88 +761,9 @@
         "content": "Image Settings"
       },
       {
-        "type": "image_picker",
-        "label": "Image",
-        "id": "image"
-      },
-      {
-         "type": "range",
-         "id": "image_border_thickness",
-         "min": 0,
-         "max": 10,
-         "step": 1,
-         "unit": "px",
-         "label": "Image Border Thickness",
-         "default": 0
-      },
-      {
-        "type": "select",
-        "id": "image_ratio",
-        "label": "Image Aspect Ratio",
-        "default": "square",
-        "options": [
-          {
-            "label": "Portrait",
-            "value": "portrait"
-          },
-          {
-            "label": "Square",
-            "value": "square"
-          },
-          {
-            "label": "Landscape",
-            "value": "landscape"
-          },
-          {
-            "label": "Original",
-            "value": "original"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "image_ratio_mobile",
-        "label": "Image Aspect Ratio - Mobile",
-        "default": "portrait",
-        "options": [
-          {
-            "label": "Portrait",
-            "value": "portrait"
-          },
-          {
-            "label": "Square",
-            "value": "square"
-          },
-          {
-            "label": "Landscape",
-            "value": "landscape"
-          },
-          {
-            "label": "Original",
-            "value": "original"
-          }
-        ]
-      },
-      {
         "type": "select",
         "id": "image_position",
         "label": "Image Position",
-        "default": "1",
-        "options": [
-          {
-            "label": "First",
-            "value": "1"
-          },
-          {
-            "label": "Second",
-            "value": "2"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "image_position_mobile",
-        "label": "Image Position - Mobile",
         "default": "1",
         "options": [
           {
