@@ -16,9 +16,60 @@
       "settings": {
         "announcement_compact": false
       }
+    },
+    "sample_ex_mKU9Vq": {
+      "type": "sample-ex",
+      "blocks": {
+        "collapsible_row_4LeWT7": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_G8KXDR": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_iYrqNy": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_4LeWT7",
+        "collapsible_row_G8KXDR",
+        "collapsible_row_iYrqNy"
+      ],
+      "name": "Collapsible content with form",
+      "settings": {
+        "caption": "",
+        "heading": "Collapsible content with contact form",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "",
+        "color_scheme": "",
+        "open_first_collapsible_row": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD"
+    "featured_collection_copy_kaw7iD",
+    "sample_ex_mKU9Vq"
   ]
 }
