@@ -46,23 +46,25 @@
         "padding_bottom": 36
       }
     },
-    "sample_ex_DbKdj8": {
+    "sample_ex_Cgfdbp": {
       "type": "sample-ex",
-      "name": "Before / After Slider",
+      "name": "Slider before after",
       "settings": {
-        "bf_image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
-        "af_image": "shopify://shop_images/1735917732__screenshot2025-01-03at111804pm__huge.png",
-        "show_badge": false,
-        "grayscale_before": false,
-        "show_content": false,
-        "ba_heading": "this is just a text",
-        "ba_content": "<p>here is out content</p>"
+        "slide_aftr_bfr-visibility": "showboth",
+        "title": "slider image",
+        "slider_aftr_bfr_img_width": "1200",
+        "slider_aftr_bfr_img_sz": "400",
+        "image_before": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
+        "slid_aftr_bfr_en-over": true,
+        "color_slid_aftr_bfr_over": "#000000",
+        "slide_aftr_bfr_opacity": 50,
+        "image_after": "shopify://shop_images/1735917732__screenshot2025-01-03at111804pm__huge.png"
       }
     }
   },
   "order": [
     "featured_collection_copy_kaw7iD",
     "featured_collection_Jihpf9",
-    "sample_ex_DbKdj8"
+    "sample_ex_Cgfdbp"
   ]
 }
