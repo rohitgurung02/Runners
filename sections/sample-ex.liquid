@@ -1,222 +1,205 @@
-{%- style -%}
-  #contact-{{ section.id }} {
-    background: #FFFFFF;
-    padding: 6rem 2rem;
-    display: flex;
-    justify-content: center;
-  }
+{% stylesheet %}
+.ko-faq-section {
+  padding: 40px 0;
+}
+.ko-faq-section h2 {
+  text-align: center;
+  font-size: 42px;
+  line-height: 52px;
+  margin-bottom: 10px;
+}
+.ko-container {
+  width: 100%;
+  max-width: 1370px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.ko-faq-section .ko-container > p {
+  text-align: center;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 30px;
+}
+.ko-accordion-item {
+  background-color: #fff;
+  border-bottom: 1px solid #dfdfdf;
+}
+.ko-accordion-item-header {
+  padding: 20px 0;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.ko-accordion-item-header::after {
+  content: "";
+  display: block;
+  width: 25px;
+  height: 25px;
+  background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkgMThMMTUgMTJMOSA2IiBzdHJva2U9IiMwNDdDQzEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: all 0.4s ease;
+}
+.ko-accordion-item-header.active::after {
+  content: "";
+  transform: rotate(90deg);
+}
+.ko-accordion-item-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+.ko-accordion-item-body-content {
+  padding-bottom: 20px;
+}
+.ko-faq-accordion {
+  margin-bottom: 30px;
+}
+.ko-ask-qus h3 {
+  font-size: 28px;
+  line-height: 38px;
+  margin-bottom: 10px;
+}
+.ko-ask-qus p {
+  margin-bottom: 20px;
+}
+.ko-form-cotrl {
+  margin-bottom: 20px;
+}
+.ko-faq-input-field {
+  width: 100%;
+  max-width: 520px;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #dfdfdf;
+}
+.ko-faq-input-field:focus {
+  outline: none;
+  border: 1px solid #aae0ff;
+  box-shadow: 1px 1px 10px #aae0ff;
+}
+.ko-btn {
+  border: 0;
+  padding: 6px 12px;
+  background: #000000;
+  color: #ffffff;
+  cursor: pointer;
+}
+{% endstylesheet %}
 
-  .contact-box-{{ section.id }} {
-    max-width: {{ section.settings.max_width }}px;
-    background: #FFFFFF;
-    padding: 3rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-    text-align: center;
-  }
 
-  .contact-box-{{ section.id }} h2 {
-    font-size: 2.5rem;
-    color: #111;
-    margin-bottom: 1rem;
-    position: relative;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-  }
 
-  .contact-box-{{ section.id }} h2::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 4px;
-    background: {{ section.settings.accent_color }};
-    margin: 1rem auto 1.5rem;
-    border-radius: 2px;
-  }
-
-  .contact-lead-{{ section.id }} {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #ccc;
-    margin-bottom: 0.5rem;
-  }
-
-  .contact-box-{{ section.id }} p {
-    color: #aaa;
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .contact-form-{{ section.id }} {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .form-item-{{ section.id }} {
-    position: relative;
-  }
-
-  .form-item-{{ section.id }} input,
-  .form-item-{{ section.id }} textarea {
-    width: 100%;
-    padding: 10px 6px;
-    border: none;
-    border-bottom: 2px solid black;
-    background: transparent;
-    font-size: 16px;
-    outline: none;
-    resize: none;
-  }
-
-  .form-item-{{ section.id }} label {
-    position: absolute;
-    left: 6px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 16px;
-    color: grey;
-    pointer-events: none;
-    transition: all 0.3s ease;
-  }
-
-  .form-item-{{ section.id }}:has(textarea) label {
-    top: 75%;
-  }
-
-  .form-item-{{ section.id }} input:focus + label,
-  .form-item-{{ section.id }} textarea:focus + label,
-  .form-item-{{ section.id }} input:not(:placeholder-shown) + label,
-  .form-item-{{ section.id }} textarea:not(:placeholder-shown) + label {
-    top: -10px;
-    font-size: 12px;
-    color: black;
-  }
-
-  .form-button-{{ section.id }} {
-    background-color: black;
-    color: white;
-    border: none;
-    padding: 12px 0;
-    border-radius: 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  .form-button-{{ section.id }}:hover {
-    background-color: {{ section.settings.accent_color }};
-    color: white;
-  }
-
-  .form-button-{{ section.id }}:active {
-    background-color: #3270D3;
-  }
-{%- endstyle -%}
-
-<section id="contact-{{ section.id }}">
-  <div class="contact-box-{{ section.id }}">
-    <h2>{{ section.settings.heading }}</h2>
-    <p class="contact-lead-{{ section.id }}">{{ section.settings.subheading }}</p>
-    <p>{{ section.settings.description }}</p>
+<div class="ko-faq-section">
+  <div class="ko-container">
+    <h2>{{ section.settings.title }}</h2>
+    <p>{{ section.settings.subtitle }}</p>
     
-    {% form 'contact', id: 'contactForm' %}
-      {% if form.posted_successfully? %}
-        <p class="form-success">{{ 'contact.form.post_success' | t }}</p>
-      {% endif %}
-      
-      {{ form.errors | default_errors }}
-      
-      <div class="contact-form-{{ section.id }}">
-        <div class="form-item-{{ section.id }}">
-          <input type="text" 
-                 id="contact-name" 
-                 name="contact[name]" 
-                 required>
-          <label for="contact-name">{{ 'contact.form.name' | t }}</label>
+    <div class="ko-faq-accordion">
+      {% for block in section.blocks %}
+        <div class="ko-accordion-item" {{ block.shopify_attributes }}>
+          <div class="ko-accordion-item-header">{{ block.settings.question }}</div>
+          <div class="ko-accordion-item-body">
+            <div class="ko-accordion-item-body-content">
+              {{ block.settings.answer }}
+            </div>
+          </div>
         </div>
-        
-        <div class="form-item-{{ section.id }}">
-          <input type="email" 
-                 id="contact-email" 
-                 name="contact[email]" 
-                 required>
-          <label for="contact-email">{{ 'contact.form.email' | t }}</label>
+      {% endfor %}
+    </div>
+    
+    <div class="ko-ask-qus">
+      <h3>{{ section.settings.ask_title }}</h3>
+      <p>{{ section.settings.ask_text }}</p>
+      <form action="#">
+        <div class="ko-form-cotrl">
+          <input type="text" class="ko-faq-input-field" placeholder="Ask the question" />
         </div>
-        
-        <div class="form-item-{{ section.id }}">
-          <input type="text" 
-                 id="contact-subject" 
-                 name="contact[subject]" 
-                 required>
-          <label for="contact-subject">{{ 'contact.form.subject' | t }}</label>
-        </div>
-        
-        <div class="form-item-{{ section.id }}">
-          <textarea id="contact-message" 
-                    name="contact[body]" 
-                    rows="4" 
-                    required></textarea>
-          <label for="contact-message">{{ 'contact.form.message' | t }}</label>
-        </div>
-        
-        <button type="submit" class="form-button-{{ section.id }}">
-          {{ section.settings.button_text }}
-        </button>
-      </div>
-    {% endform %}
+        <button class="ko-btn" type="submit">{{ section.settings.button_text }}</button>
+      </form>
+    </div>
   </div>
-</section>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const accordionItemh = document.querySelectorAll(".ko-accordion-item-header");
+  accordionItemh.forEach((accordionItemh) => {
+    accordionItemh.addEventListener("click", (event) => {
+      accordionItemh.classList.toggle("active");
+      const accordionItemBody = accordionItemh.nextElementSibling;
+      if (accordionItemh.classList.contains("active")) {
+        accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";
+      } else {
+        accordionItemBody.style.maxHeight = 0;
+      }
+    });
+  });
+});
+</script>
 
 {% schema %}
 {
-  "name": "Custom Contact Form",
+  "name": "Custom FAQ",
   "settings": [
     {
       "type": "text",
-      "id": "heading",
+      "id": "title",
       "label": "Heading",
-      "default": "Contact"
+      "default": "Frequently asked questions"
     },
     {
       "type": "text",
-      "id": "subheading",
+      "id": "subtitle",
       "label": "Subheading",
-      "default": "Interested in a joint project?"
+      "default": "Question you might ask about our services."
     },
     {
       "type": "text",
-      "id": "description",
-      "label": "Description",
-      "default": "Write to me directly or call me – I look forward to exciting ideas!"
+      "id": "ask_title",
+      "label": "Ask question title",
+      "default": "Still have questions?"
+    },
+    {
+      "type": "text",
+      "id": "ask_text",
+      "label": "Ask question text",
+      "default": "Can't find the answer you're looking for? Please Ask the question."
     },
     {
       "type": "text",
       "id": "button_text",
-      "label": "Button Text",
-      "default": "Send Message"
-    },
+      "label": "Button text",
+      "default": "Ask Now"
+    }
+  ],
+  "blocks": [
     {
-      "type": "range",
-      "id": "max_width",
-      "min": 500,
-      "max": 1200,
-      "step": 50,
-      "unit": "px",
-      "label": "Form Max Width",
-      "default": 700
-    },
-    {
-      "type": "color",
-      "id": "accent_color",
-      "label": "Accent Color",
-      "default": "#3b82f6"
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What does LOREM mean?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Custom Contact Form",
-      "category": "Contact"
+      "name": "Custom FAQ",
+      "category": "Custom"
     }
   ]
 }
