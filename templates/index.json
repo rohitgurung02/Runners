@@ -17,30 +17,11 @@
         "announcement_compact": false
       }
     },
-    "sample_ex_GYgp4M": {
-      "type": "sample-ex",
-      "name": "Image Comparison Slider one",
-      "settings": {
-        "before_image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
-        "before_label": "Before",
-        "after_image": "shopify://shop_images/1735917732__screenshot2025-01-03at111804pm__huge.png",
-        "after_label": "After",
-        "overlay_color": "#f5f5f5",
-        "slider_color": "#0066cc",
-        "slider_icon_color": "#ffffff",
-        "slider_shadow_color": "#000000",
-        "slider_line_color": "#ffffff",
-        "slider_line_active_color": "#ffffff",
-        "caption_text_color": "#ffffff",
-        "caption_bg_color": "#000000",
-        "caption_font_size": 14
-      }
-    },
-    "featured_collection_38YDzC": {
+    "featured_collection_Hmk3C3": {
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
-        "collection": "",
+        "collection": "runner-girls-products",
         "products_to_show": 4,
         "title": "Featured collection",
         "heading_size": "h1",
@@ -56,10 +37,10 @@
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
-        "show_vendor": true,
+        "show_vendor": false,
         "show_rating": false,
         "quick_add": "standard",
-        "columns_mobile": "1",
+        "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
@@ -68,7 +49,6 @@
   },
   "order": [
     "featured_collection_copy_kaw7iD",
-    "sample_ex_GYgp4M",
-    "featured_collection_38YDzC"
+    "featured_collection_Hmk3C3"
   ]
 }
