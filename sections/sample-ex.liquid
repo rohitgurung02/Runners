@@ -171,11 +171,11 @@
 
 <style>
       {% if section.settings.show_content == true %}
-         .ba_main .container{
+         .container{
           width: calc(50% - 20px);
         }
        {% else %}
-         .ba_main .container{
+         .container{
           width: 50%;
            margin: 0 auto;
         } 
@@ -192,12 +192,12 @@
            margin: 50px auto;
                }
 
-               .ba_main img {
+               img {
                  display: block;
                  max-width: 100%;
                }
 
-               .ba_main .container {
+               .container {
                  display: grid;
                  /* place-content: center; */
                  position: relative;
@@ -206,11 +206,11 @@
                  --position: 50%;
                }
 
-               .ba_main .image-container {
+               .image-container {
                  max-width: 1200px;
                }
 
-  .ba_main .before_badge {
+  .before_badge {
     z-index: 99 !important;
     position: absolute;
     bottom: 15px;
@@ -221,7 +221,7 @@
     color: #000;
   }
 
-    .ba_main .after_badge {
+    .after_badge {
     z-index: 99 !important;
     position: absolute;
     bottom: 15px;
@@ -232,7 +232,7 @@
     color: #000;
   }
 
-               .ba_main .slider-image {
+               .slider-image {
                  width: 100%;
                  height: 100%;
                  object-fit: cover;
@@ -240,14 +240,14 @@
                  max-height: 500px;
                }
 
-               .ba_main .image-before {
+               .image-before {
                  position: absolute;
                  inset: 0;
                  width: var(--position);
                  {% if section.settings.grayscale_before %}filter: grayscale(100%);{% endif %}
                }
 
-               .ba_main .ba-slider {
+               .ba-slider {
                  position: absolute;
                  inset: 0;
                  cursor: pointer;
@@ -257,12 +257,12 @@
                  height: 100%;
                }
 
-               .ba_main .ba-slider:focus-visible ~ .slider-button {
+               .ba-slider:focus-visible ~ .slider-button {
                  outline: 5px solid black;
                  outline-offset: 3px;
                }
 
-               .ba_main .slider-line {
+               .slider-line {
                  position: absolute;
                  inset: 0;
                  width: .2rem;
@@ -274,7 +274,7 @@
                  pointer-events: none;
                }
 
-               .ba_main .slider-button {
+               .slider-button {
                  position: absolute;
                  background-color: #fff !important;
                  color: black;
@@ -292,7 +292,7 @@
 
        @media only screen and (max-width: 768px)
          {
-           .ba_main .container{
+           .container{
                width: 100%;
            }
            .ba_main{
