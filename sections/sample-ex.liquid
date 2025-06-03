@@ -1,205 +1,643 @@
-{% stylesheet %}
-.ko-faq-section {
-  padding: 40px 0;
-}
-.ko-faq-section h2 {
-  text-align: center;
-  font-size: 42px;
-  line-height: 52px;
-  margin-bottom: 10px;
-}
-.ko-container {
-  width: 100%;
-  max-width: 1370px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-.ko-faq-section .ko-container > p {
-  text-align: center;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 30px;
-}
-.ko-accordion-item {
-  background-color: #fff;
-  border-bottom: 1px solid #dfdfdf;
-}
-.ko-accordion-item-header {
-  padding: 20px 0;
-  font-size: 20px;
-  line-height: 30px;
-  font-weight: 500;
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+{{ 'collapsible-content.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #contact {
+  background: #FFFFFF;
+  padding: 6rem 2rem;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
+  justify-content: center;
 }
-.ko-accordion-item-header::after {
+
+.contact-box {
+  max-width: 700px;
+  background: #FFFFFF;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.contact-box h2 {
+  font-size: 2.5rem;
+  color: #111;
+  margin-bottom: 1rem;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.contact-box h2::after {
   content: "";
   display: block;
-  width: 25px;
-  height: 25px;
-  background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkgMThMMTUgMTJMOSA2IiBzdHJva2U9IiMwNDdDQzEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==");
-  background-repeat: no-repeat;
-  background-size: cover;
-  transition: all 0.4s ease;
+  width: 60px;
+  height: 4px;
+  background: #3b82f6;
+  margin: 1rem auto 1.5rem;
+  border-radius: 2px;
 }
-.ko-accordion-item-header.active::after {
-  content: "";
-  transform: rotate(90deg);
+
+.contact-lead {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ccc;
+  margin-bottom: 0.5rem;
 }
-.ko-accordion-item-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
+
+.contact-box p {
+  color: #aaa;
+  font-size: 1rem;
+  margin-bottom: 2rem;
 }
-.ko-accordion-item-body-content {
-  padding-bottom: 20px;
+
+.contact-button {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s;
 }
-.ko-faq-accordion {
-  margin-bottom: 30px;
+
+.contact-button:hover {
+  background-color: #2563eb;
 }
-.ko-ask-qus h3 {
-  font-size: 28px;
-  line-height: 38px;
-  margin-bottom: 10px;
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
-.ko-ask-qus p {
-  margin-bottom: 20px;
+
+.form-item {
+  position: relative;
 }
-.ko-form-cotrl {
-  margin-bottom: 20px;
-}
-.ko-faq-input-field {
+
+.form-item input,
+.form-item textarea {
   width: 100%;
-  max-width: 520px;
-  padding: 10px;
+  padding: 10px 6px;
+  border: none;
+  border-bottom: 2px solid black;
+  background: transparent;
+  font-size: 16px;
   outline: none;
-  border: 1px solid #dfdfdf;
+  resize: none;
 }
-.ko-faq-input-field:focus {
-  outline: none;
-  border: 1px solid #aae0ff;
-  box-shadow: 1px 1px 10px #aae0ff;
+
+.form-item label {
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: grey;
+  pointer-events: none;
+  transition: all 0.3s ease;
 }
-.ko-btn {
-  border: 0;
-  padding: 6px 12px;
-  background: #000000;
-  color: #ffffff;
+
+.form-item:has(textarea) label {
+  top: 75%;
+}
+
+.form-item input:focus + label,
+.form-item textarea:focus + label,
+.form-item input:not(:placeholder-shown) + label,
+.form-item textarea:not(:placeholder-shown) + label {
+  top: -10px;
+  font-size: 12px;
+  color: black;
+}
+
+.form-button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 12px 0;
+  border-radius: 20px;
+  font-size: 1rem;
   cursor: pointer;
+  transition: background 0.3s;
 }
-{% endstylesheet %}
 
+.form-button:hover {
+  background-color: #3b82f6;
+  color: white;
+}
 
+.form-button:active {
+  background-color: #3270D3;
+}
+</style>
 
-<div class="ko-faq-section">
-  <div class="ko-container">
-    <h2>{{ section.settings.title }}</h2>
-    <p>{{ section.settings.subtitle }}</p>
-    
-    <div class="ko-faq-accordion">
-      {% for block in section.blocks %}
-        <div class="ko-accordion-item" {{ block.shopify_attributes }}>
-          <div class="ko-accordion-item-header">{{ block.settings.question }}</div>
-          <div class="ko-accordion-item-body">
-            <div class="ko-accordion-item-body-content">
-              {{ block.settings.answer }}
-            </div>
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .contact-form {
+    padding: 2rem;
+    background: rgba(var(--color-background), 1);
+    border-radius: var(--text-boxes-radius);
+    box-shadow: var(--text-boxes-shadow-horizontal-offset) var(--text-boxes-shadow-vertical-offset) var(--text-boxes-shadow-blur-radius) rgba(var(--color-shadow), var(--text-boxes-shadow-opacity));
+  }
+
+  .contact-form__field {
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-form__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .contact-form__input,
+  .contact-form__textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid rgba(var(--color-foreground), 0.1);
+    border-radius: var(--inputs-radius);
+  }
+
+  .contact-form__textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  .contact-form__button {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(var(--color-button), var(--color-button-text));
+    color: rgba(var(--color-button-text), 1);
+    border: none;
+    border-radius: var(--buttons-radius-outset);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .contact-form__button:hover {
+    opacity: 0.9;
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="collapsible-content collapsible-{{ section.settings.layout }}-layout isolate{% if section.settings.layout == 'section' %} page-width{% elsif section.settings.layout == 'none' %} content-container content-container--full-width{% endif %}">
+    <div class="collapsible-content__wrapper section-{{ section.id }}-padding{% if section.settings.layout == 'section' %} content-container color-{{ section.settings.container_color_scheme }} gradient{% endif %}">
+      <div class="{% if section.settings.image == blank %}collapsible-content-wrapper-narrow{% else %}page-width{% endif %}">
+        <div
+          class="collapsible-content__header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          style="text-align: {{ section.settings.heading_alignment }};"
+        >
+          {%- if section.settings.caption != blank -%}
+            <p class="caption-with-letter-spacing">
+              {{ section.settings.caption | escape }}
+            </p>
+          {% endif %}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="collapsible-content__heading inline-richtext {{ section.settings.heading_size }}">
+              {{ section.settings.heading }}
+            </h2>
+          {%- else -%}
+            <h2 class="visually-hidden">{{ 'accessibility.collapsible_content_title' | t }}</h2>
+          {% endif %}
+        </div>
+        <div class="grid grid--1-col grid--2-col-tablet collapsible-content__grid{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <div class="flex-items">
+          <div class="grid__item">
+            {%- for block in section.blocks -%}
+              <div
+                class="accordion{% if section.settings.layout == 'row' %} content-container color-{{ section.settings.container_color_scheme }} gradient{% endif %}"
+                {{ block.shopify_attributes }}
+              >
+                <details
+                  id="Details-{{ block.id }}-{{ section.id }}"
+                  {% if section.settings.open_first_collapsible_row and forloop.first %}
+                    open
+                  {% endif %}
+                >
+                  <summary id="Summary-{{ block.id }}-{{ section.id }}">
+                    {% render 'icon-accordion', icon: block.settings.icon %}
+                    <h3 class="accordion__title inline-richtext h4">
+                      {{ block.settings.heading | default: block.settings.page.title | escape }}
+                    </h3>
+                    {{- 'icon-caret.svg' | inline_asset_content -}}
+                  </summary>
+                  <div
+                    class="accordion__content rte"
+                    id="CollapsibleAccordion-{{ block.id }}-{{ section.id }}"
+                    role="region"
+                    aria-labelledby="Summary-{{ block.id }}-{{ section.id }}"
+                  >
+                    {{ block.settings.row_content }}
+                    {{ block.settings.page.content }}
+                  </div>
+                </details>
+              </div>
+            {%- endfor -%}
           </div>
+          <!-- Contact Form -->
+          <section id="contact">
+  <div class="contact-box">
+    <h2>Contact</h2>
+    <p class="contact-lead">Interested in a joint project?</p>
+    <p>Write to me directly or call me – I look forward to exciting ideas!</p>
+    <form class="contact-form" method="POST" action="#contact" id="contactForm">
+      <div class="form-item">
+        <label for="contact-name">Full Name</label>
+        <input id="contact-name" name="name" type="text" required>
+      </div>
+      <div class="form-item">
+        <label for="contact-email">E-Mail</label>
+        <input id="contact-email" name="email" type="email" required>
+      </div>
+      <div class="form-item">
+        <label for="contact-subject">Subject</label>
+        <input id="contact-subject" name="subject" type="text" required>
+      </div>
+      <div class="form-item">
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" name="message" rows="4" required></textarea>
+      </div>
+      <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+      <button class="form-button" type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
         </div>
-      {% endfor %}
+      </div>
     </div>
-    
-    <div class="ko-ask-qus">
-      <h3>{{ section.settings.ask_title }}</h3>
-      <p>{{ section.settings.ask_text }}</p>
-      <form action="#">
-        <div class="ko-form-cotrl">
-          <input type="text" class="ko-faq-input-field" placeholder="Ask the question" />
-        </div>
-        <button class="ko-btn" type="submit">{{ section.settings.button_text }}</button>
-      </form>
-    </div>
+  </div>
   </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const accordionItemh = document.querySelectorAll(".ko-accordion-item-header");
-  accordionItemh.forEach((accordionItemh) => {
-    accordionItemh.addEventListener("click", (event) => {
-      accordionItemh.classList.toggle("active");
-      const accordionItemBody = accordionItemh.nextElementSibling;
-      if (accordionItemh.classList.contains("active")) {
-        accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";
-      } else {
-        accordionItemBody.style.maxHeight = 0;
-      }
-    });
-  });
-});
-</script>
-
 {% schema %}
 {
-  "name": "Custom FAQ",
+  "name": "Content with Form",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
   "settings": [
     {
       "type": "text",
-      "id": "title",
+      "id": "caption",
+      "label": "Caption"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
       "label": "Heading",
-      "default": "Frequently asked questions"
+      "default": "Collapsible content with contact form"
     },
     {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subheading",
-      "default": "Question you might ask about our services."
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
     },
     {
-      "type": "text",
-      "id": "ask_title",
-      "label": "Ask question title",
-      "default": "Still have questions?"
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
     },
     {
-      "type": "text",
-      "id": "ask_text",
-      "label": "Ask question text",
-      "default": "Can't find the answer you're looking for? Please Ask the question."
+      "type": "header",
+      "content": "Layout"
+    },    
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "none",
+          "label": "Full width"
+        },
+        {
+          "value": "row",
+          "label": "Row"
+        },
+        {
+          "value": "section",
+          "label": "Section"
+        }
+      ],
+      "default": "none"
     },
     {
-      "type": "text",
-      "id": "button_text",
-      "label": "Button text",
-      "default": "Ask Now"
+      "type": "color_scheme",
+      "id": "container_color_scheme",
+      "label": "Container color scheme",
+      "default": "scheme-2"
+    },    
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Section color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first_collapsible_row",
+      "default": false,
+      "label": "Open first collapsible row by default"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
     }
   ],
   "blocks": [
     {
-      "type": "question",
-      "name": "Question",
+      "type": "collapsible_row",
+      "name": "Collapsible row",
       "settings": [
         {
           "type": "text",
-          "id": "question",
-          "label": "Question",
-          "default": "What does LOREM mean?"
+          "id": "heading",
+          "default": "Collapsible row",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "apple",
+              "label": "Apple"
+            },
+            {
+              "value": "banana",
+              "label": "Banana"
+            },
+            {
+              "value": "bottle",
+              "label": "Bottle"
+            },
+            {
+              "value": "box",
+              "label": "Box"
+            },
+            {
+              "value": "carrot",
+              "label": "Carrot"
+            },
+            {
+              "value": "chat_bubble",
+              "label": "Chat bubble"
+            },
+            {
+              "value": "check_mark",
+              "label": "Check mark"
+            },
+            {
+              "value": "clipboard",
+              "label": "Clipboard"
+            },
+            {
+              "value": "dairy",
+              "label": "Dairy"
+            },
+            {
+              "value": "dairy_free",
+              "label": "Dairy free"
+            },
+            {
+              "value": "dryer",
+              "label": "Dryer"
+            },
+            {
+              "value": "eye",
+              "label": "Eye"
+            },
+            {
+              "value": "fire",
+              "label": "Fire"
+            },
+            {
+              "value": "gluten_free",
+              "label": "Gluten free"
+            },
+            {
+              "value": "heart",
+              "label": "Heart"
+            },
+            {
+              "value": "iron",
+              "label": "Iron"
+            },
+            {
+              "value": "leaf",
+              "label": "Leaf"
+            },
+            {
+              "value": "leather",
+              "label": "Leather"
+            },
+            {
+              "value": "lightning_bolt",
+              "label": "Lightning bolt"
+            },
+            {
+              "value": "lipstick",
+              "label": "Lipstick"
+            },
+            {
+              "value": "lock",
+              "label": "Lock"
+            },
+            {
+              "value": "map_pin",
+              "label": "Map pin"
+            },
+            {
+              "value": "nut_free",
+              "label": "Nut free"
+            },
+            {
+              "value": "pants",
+              "label": "Pants"
+            },
+            {
+              "value": "paw_print",
+              "label": "Paw print"
+            },
+            {
+              "value": "pepper",
+              "label": "Pepper"
+            },
+            {
+              "value": "perfume",
+              "label": "Perfume"
+            },
+            {
+              "value": "plane",
+              "label": "Plane"
+            },
+            {
+              "value": "plant",
+              "label": "Plant"
+            },
+            {
+              "value": "price_tag",
+              "label": "Price tag"
+            },
+            {
+              "value": "question_mark",
+              "label": "Question mark"
+            },
+            {
+              "value": "recycle",
+              "label": "Recycle"
+            },
+            {
+              "value": "return",
+              "label": "Return"
+            },
+            {
+              "value": "ruler",
+              "label": "Ruler"
+            },
+            {
+              "value": "serving_dish",
+              "label": "Serving dish"
+            },
+            {
+              "value": "shirt",
+              "label": "Shirt"
+            },
+            {
+              "value": "shoe",
+              "label": "Shoe"
+            },
+            {
+              "value": "silhouette",
+              "label": "Silhouette"
+            },
+            {
+              "value": "snowflake",
+              "label": "Snowflake"
+            },
+            {
+              "value": "star",
+              "label": "Star"
+            },
+            {
+              "value": "stopwatch",
+              "label": "Stopwatch"
+            },
+            {
+              "value": "truck",
+              "label": "Truck"
+            },
+            {
+              "value": "washing",
+              "label": "Washing"
+            }
+          ],
+          "default": "check_mark",
+          "label": "Icon"
         },
         {
           "type": "richtext",
-          "id": "answer",
-          "label": "Answer",
-          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"
+          "id": "row_content",
+          "label": "Row content"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page content"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Custom FAQ",
-      "category": "Custom"
+      "name": "Collapsible content with form",
+      "blocks": [
+        {
+          "type": "collapsible_row"
+        },
+        {
+          "type": "collapsible_row"
+        },
+        {
+          "type": "collapsible_row"
+        }
+      ]
     }
   ]
 }
