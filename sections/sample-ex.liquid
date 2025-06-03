@@ -604,67 +604,74 @@
 {% endif %}
 
 <div class="section-{{ section.id }} faq-{{ section.id }}" style="background-color:{{ background_color }}; background-image: {{ background_gradient }};">
-    <div class="section-{{ section.id }}-settings">
-      <div class="faq-body-{{ section.id }}">
-        <div class="faq-image-{{ section.id }}">
-         {% for block in section.blocks %}
-                 <div class="form-container contact-form">
+  <div class="section-{{ section.id }}-settings">
+    <div class="faq-body-{{ section.id }}">
+      <div class="faq-image-{{ section.id }}">
+        {% for block in section.blocks %}
+          {% if block.type == 'contact_form' %}
+            <div class="form-container contact-form">
               {% if form.posted_successfully? %}
                 <div class="success-message" id="successMessage">
                   Thank you! Your form has been submitted successfully.
                 </div>
               {% endif %}
   
-  <h1>{{ section.settings.heading | default: 'Contact Form' }}</h1>
+              <h1>{{ block.settings.heading | default: 'Contact Form' }}</h1>
   
-  {% form 'contact', id: 'gdprForm' %}
-    <div class="form-group">
-      <label for="name">Full Name *</label>
-      <input type="text" id="name" name="contact[name]" required>
-      <span class="validation-icon">✓</span>
-      <div class="error-message" id="nameError">Please enter your full name</div>
-    </div>
+              {% form 'contact', id: 'gdprForm' %}
+                <div class="form-group">
+                  <label for="name">Full Name *</label>
+                  <input type="text" id="name" name="contact[name]" required>
+                  <span class="validation-icon">✓</span>
+                  <div class="error-message" id="nameError">Please enter your full name</div>
+                </div>
 
-    <div class="form-group">
-      <label for="email">Email Address *</label>
-      <input type="email" id="email" name="contact[email]" required>
-      <span class="validation-icon">✓</span>
-      <div class="error-message" id="emailError">Please enter a valid email address</div>
-    </div>
+                <div class="form-group">
+                  <label for="email">Email Address *</label>
+                  <input type="email" id="email" name="contact[email]" required>
+                  <span class="validation-icon">✓</span>
+                  <div class="error-message" id="emailError">Please enter a valid email address</div>
+                </div>
 
-    <div class="form-group">
-      <label for="message">Message *</label>
-      <textarea id="message" name="contact[body]" rows="4" required></textarea>
-      <span class="validation-icon">✓</span>
-      <div class="error-message" id="messageError">Please enter your message</div>
-    </div>
+                <div class="form-group">
+                  <label for="message">Message *</label>
+                  <textarea id="message" name="contact[body]" rows="4" required></textarea>
+                  <span class="validation-icon">✓</span>
+                  <div class="error-message" id="messageError">Please enter your message</div>
+                </div>
 
-    <div class="error-message" id="consentError">You must accept the privacy policy</div>
+                <div class="error-message" id="consentError">You must accept the privacy policy</div>
 
-    {% if section.settings.show_marketing_opt_in %}
-      <div class="checkbox-group">
-        <input type="checkbox" id="marketing" name="contact[accepts_marketing]">
-        <label for="marketing">
-          {{ section.settings.marketing_text | default: 'I would like to receive marketing communications about your products and services' }}
-        </label>
-      </div>
-    {% endif %}
+                {% if block.settings.show_marketing_opt_in %}
+                  <div class="checkbox-group">
+                    <input type="checkbox" id="marketing" name="contact[accepts_marketing]">
+                    <label for="marketing">
+                      {{ block.settings.marketing_text | default: 'I would like to receive marketing communications about your products and services' }}
+                    </label>
+                  </div>
+                {% endif %}
 
-    <button type="submit">{{ section.settings.button_text | default: 'Submit Form' }}</button>
-  {% endform %}
-</div>
-          {% endfor %}
-         
-        </div>
-        <div class="faq-info-{{ section.id }}">
-          {% if heading != blank %}
-            <div class='faq-heading-{{ section.id }}'>
-              {{ heading }}
+                <button type="submit">{{ block.settings.button_text | default: 'Submit Form' }}</button>
+              {% endform %}
             </div>
           {% endif %}
+        {% endfor %}
+        
+        {% if form == blank and section.blocks.size == 0 %}
+          {{ 'collection-1' | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+      
+      <div class="faq-info-{{ section.id }}">
+        {% if heading != blank %}
+          <div class='faq-heading-{{ section.id }}'>
+            {{ heading }}
+          </div>
+        {% endif %}
 
-          <div class="faq-items-{{ section.id }}">
-            {% for block in section.blocks %}
+        <div class="faq-items-{{ section.id }}">
+          {% for block in section.blocks %}
+            {% if block.type == 'faq_item' %}
               <div class="faq-item-{{ section.id }}">
                 <button class="faq-button-{{ section.id }}">
                   <div class="faq-left-{{ section.id }}">
@@ -681,11 +688,12 @@
                   </div>
                 </div>
               </div>
-            {% endfor %}
-          </div>
+            {% endif %}
+          {% endfor %}
         </div>
       </div>
     </div>
+  </div>
 </div>
 
 <script>
