@@ -1,305 +1,574 @@
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+{{ 'collapsible-content.css' | asset_url | stylesheet_tag }}
+
 {%- style -%}
-  .faq-section {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    font-family: var(--font-body-family);
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
-  
-  .faq-section__divider {
-    border-top: 1px solid rgba(var(--color-foreground), 0.1);
-    margin: 30px 0;
-  }
-  
-  .faq-item {
-    margin-bottom: 20px;
-  }
-  
-  .faq-question {
-    font-weight: bold;
-    margin-bottom: 10px;
-    cursor: pointer;
-    position: relative;
-    padding-left: 25px;
-    font-size: 1.6rem;
-  }
-  
-  .faq-question:before {
-    content: "+";
-    position: absolute;
-    left: 0;
-    font-size: 2rem;
-    line-height: 1;
-  }
-  
-  .faq-item.active .faq-question:before {
-    content: "-";
-  }
-  
-  .faq-answer {
-    padding-left: 25px;
-    display: none;
-    font-size: 1.4rem;
-  }
-  
-  .faq-item.active .faq-answer {
-    display: block;
-  }
-  
-  .contact-form {
-    margin-top: 20px;
-  }
-  
-  .form-field {
-    margin-bottom: 15px;
-  }
-  
-  .form-field label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 1.4rem;
-  }
-  
-  .form-field input,
-  .form-field textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid rgba(var(--color-foreground), 0.2);
-    border-radius: 4px;
-    font-size: 1.4rem;
-  }
-  
-  .form-field textarea {
-    min-height: 100px;
-  }
-  
-  .send-button {
-    background-color: rgb(var(--color-button));
-    color: rgb(var(--color-button-text));
-    padding: 12px 24px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1.4rem;
-    transition: opacity 0.3s ease;
-  }
-  
-  .send-button:hover {
-    opacity: 0.9;
-  }
-  
+
   @media screen and (min-width: 750px) {
-    .faq-section {
-      padding: 60px 20px;
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+  }
+
+  .contact-form {
+    padding: 2rem;
+    background: rgba(var(--color-background), 1);
+    border-radius: var(--text-boxes-radius);
+    box-shadow: var(--text-boxes-shadow-horizontal-offset) var(--text-boxes-shadow-vertical-offset) var(--text-boxes-shadow-blur-radius) rgba(var(--color-shadow), var(--text-boxes-shadow-opacity));
+  }
+
+  .contact-form__field {
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-form__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .contact-form__input,
+  .contact-form__textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid rgba(var(--color-foreground), 0.1);
+    border-radius: var(--inputs-radius);
+  }
+
+  .contact-form__textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  .contact-form__button {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(var(--color-button), var(--color-button-text));
+    color: rgba(var(--color-button-text), 1);
+    border: none;
+    border-radius: var(--buttons-radius-outset);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .contact-form__button:hover {
+    opacity: 0.9;
   }
 {%- endstyle -%}
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
-      question.addEventListener('click', () => {
-        item.classList.toggle('active');
-      });
-    });
-  });
-</script>
-
-<div class="faq-section">
-  <h1 class="h0">{{ section.settings.heading }}</h1>
-  <p>{{ section.settings.subheading }}</p>
-  
-  <div class="faq-section__divider"></div>
-  <div class="flex-items">
-    <div class="faq-items">
-  {%- if section.settings.show_international_question -%}
-    <h2 class="h2">{{ section.settings.international_heading }}</h2>
-  {%- endif -%}
-  
-  {%- for block in section.blocks -%}
-    {%- case block.type -%}
-      {%- when 'question' -%}
-        <div class="faq-item" {{ block.shopify_attributes }}>
-          <h3 class="faq-question">{{ block.settings.question }}</h3>
-          <div class="faq-answer">{{ block.settings.answer }}</div>
-        </div>
-    {%- endcase -%}
-  {%- endfor -%}
-  
-  {%- if section.settings.show_contact_form -%}
-    <div class="faq-section__divider"></div>
-    
-    <h2 class="h2">{{ section.settings.contact_heading }}</h2>
-    <p>{{ section.settings.contact_subheading }}</p>
-    </div>
-  
-    <div class="contact-form">
-      {%- form 'contact', id: 'FAQContactForm' -%}
-        {%- if form.posted_successfully? -%}
-          <div class="form-status form-status-list form__message" tabindex="-1" autofocus>
-            {% render 'icon-success' %}
-            {{ 'templates.contact.form.post_success' | t }}
-          </div>
-        {%- elsif form.errors -%}
-          <div class="form__message">
-            <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
-              {% render 'icon-error' %}
-              {{ 'templates.contact.form.error_heading' | t }}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="collapsible-content collapsible-{{ section.settings.layout }}-layout isolate{% if section.settings.layout == 'section' %} page-width{% elsif section.settings.layout == 'none' %} content-container content-container--full-width{% endif %}">
+    <div class="collapsible-content__wrapper section-{{ section.id }}-padding{% if section.settings.layout == 'section' %} content-container color-{{ section.settings.container_color_scheme }} gradient{% endif %}">
+      <div class="{% if section.settings.image == blank %}collapsible-content-wrapper-narrow{% else %}page-width{% endif %}">
+        <div
+          class="collapsible-content__header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          style="text-align: {{ section.settings.heading_alignment }};"
+        >
+          {%- if section.settings.caption != blank -%}
+            <p class="caption-with-letter-spacing">
+              {{ section.settings.caption | escape }}
+            </p>
+          {% endif %}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="collapsible-content__heading inline-richtext {{ section.settings.heading_size }}">
+              {{ section.settings.heading }}
             </h2>
+          {%- else -%}
+            <h2 class="visually-hidden">{{ 'accessibility.collapsible_content_title' | t }}</h2>
+          {% endif %}
+        </div>
+        <div class="grid grid--1-col grid--2-col-tablet collapsible-content__grid{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <div class="grid__item">
+            {%- for block in section.blocks -%}
+              <div
+                class="accordion{% if section.settings.layout == 'row' %} content-container color-{{ section.settings.container_color_scheme }} gradient{% endif %}"
+                {{ block.shopify_attributes }}
+              >
+                <details
+                  id="Details-{{ block.id }}-{{ section.id }}"
+                  {% if section.settings.open_first_collapsible_row and forloop.first %}
+                    open
+                  {% endif %}
+                >
+                  <summary id="Summary-{{ block.id }}-{{ section.id }}">
+                    {% render 'icon-accordion', icon: block.settings.icon %}
+                    <h3 class="accordion__title inline-richtext h4">
+                      {{ block.settings.heading | default: block.settings.page.title | escape }}
+                    </h3>
+                    {{- 'icon-caret.svg' | inline_asset_content -}}
+                  </summary>
+                  <div
+                    class="accordion__content rte"
+                    id="CollapsibleAccordion-{{ block.id }}-{{ section.id }}"
+                    role="region"
+                    aria-labelledby="Summary-{{ block.id }}-{{ section.id }}"
+                  >
+                    {{ block.settings.row_content }}
+                    {{ block.settings.page.content }}
+                  </div>
+                </details>
+              </div>
+            {%- endfor -%}
           </div>
-          <ul class="form-status-list caption-large" role="list">
-            <li>
-              <a href="#FAQContactForm-email">
-                {{ form.errors.translated_fields['email'] | capitalize }}
-                {{ form.errors.messages['email'] }}
-              </a>
-            </li>
-          </ul>
-        {%- endif -%}
-        
-        <div class="form-field">
-          <label for="FAQContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
-          <input
-            type="text"
-            name="contact[name]"
-            id="FAQContactForm-name"
-            autocomplete="name"
-            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-          >
+          <div class="grid__item">
+            <div class="contact-form">
+              {% form 'contact' %}
+                {% if form.posted_successfully? %}
+                  <p class="form-status form-status-list form__message" tabindex="-1" autofocus>
+                    {% render 'icon-success' %}
+                    {{ 'templates.contact.form.post_success' | t }}
+                  </p>
+                {% elsif form.errors %}
+                  <div class="form__message">
+                    <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+                      {% render 'icon-error' %}
+                      {{ 'templates.contact.form.error_heading' | t }}
+                    </h2>
+                  </div>
+                  <ul class="form-status-list caption-large" role="list">
+                    <li>
+                      <a href="#ContactForm-email" class="link">
+                        {{ form.errors.translated_fields.email | capitalize }}
+                        {{ form.errors.messages.email }}
+                      </a>
+                    </li>
+                  </ul>
+                {% endif %}
+                
+                <div class="contact-form__field">
+                  <label class="contact-form__label" for="ContactForm-name">
+                    {{ 'templates.contact.form.name' | t }}
+                  </label>
+                  <input
+                    class="contact-form__input"
+                    autocomplete="name"
+                    type="text"
+                    id="ContactForm-name"
+                    name="contact[{{ 'templates.contact.form.name' | t }}]"
+                    value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                    placeholder="{{ 'templates.contact.form.name' | t }}"
+                  >
+                </div>
+                
+                <div class="contact-form__field">
+                  <label class="contact-form__label" for="ContactForm-email">
+                    {{ 'templates.contact.form.email' | t }} <span aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    class="contact-form__input"
+                    autocomplete="email"
+                    type="email"
+                    id="ContactForm-email"
+                    name="contact[email]"
+                    spellcheck="false"
+                    autocapitalize="off"
+                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                    aria-required="true"
+                    {% if form.errors contains 'email' %}
+                      aria-invalid="true"
+                      aria-describedby="ContactForm-email-error"
+                    {% endif %}
+                    placeholder="{{ 'templates.contact.form.email' | t }}"
+                    required
+                  >
+                  {%- if form.errors contains 'email' -%}
+                    <small class="contact-form__error" id="ContactForm-email-error">
+                      <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+                      <span class="form__message">
+                        {%- render 'icon-error' -%}
+                        {{- form.errors.translated_fields.email | capitalize }}
+                        {{ form.errors.messages.email -}}
+                      </span>
+                    </small>
+                  {%- endif -%}
+                </div>
+                
+                <div class="contact-form__field">
+                  <label class="contact-form__label" for="ContactForm-body">
+                    {{ 'templates.contact.form.message' | t }}
+                  </label>
+                  <textarea
+                    rows="10"
+                    class="contact-form__textarea"
+                    id="ContactForm-body"
+                    name="contact[{{ 'templates.contact.form.message' | t }}]"
+                    placeholder="{{ 'templates.contact.form.message' | t }}"
+                  >
+                    {{- form.body -}}
+                  </textarea>
+                </div>
+                
+                <button type="submit" class="contact-form__button button">
+                  {{ 'templates.contact.form.send' | t }}
+                </button>
+              {% endform %}
+            </div>
+          </div>
         </div>
-        
-        <div class="form-field">
-          <label for="FAQContactForm-email">{{ 'templates.contact.form.email' | t }}</label>
-          <input
-            type="email"
-            name="contact[email]"
-            id="FAQContactForm-email"
-            autocomplete="email"
-            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-            required
-          >
-        </div>
-        
-        <div class="form-field">
-          <label for="FAQContactForm-body">{{ 'templates.contact.form.message' | t }}</label>
-          <textarea
-            rows="5"
-            name="contact[body]"
-            id="FAQContactForm-body"
-          >{% if form.body %}{{ form.body }}{% endif %}</textarea>
-        </div>
-        
-        <button type="submit" class="send-button">
-          {{ section.settings.button_label | escape }}
-        </button>
-      {%- endform -%}
+      </div>
     </div>
-  {%- endif -%}
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "Custom FAQ",
+  "name": "Content with Form",
   "tag": "section",
   "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
   "settings": [
     {
       "type": "text",
+      "id": "caption",
+      "label": "Caption"
+    },
+    {
+      "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Shipping & Returns"
+      "default": "Collapsible content with contact form"
     },
     {
-      "type": "text",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Below are some common questions about shipping, returns, and exchanges"
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },    
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "none",
+          "label": "Full width"
+        },
+        {
+          "value": "row",
+          "label": "Row"
+        },
+        {
+          "value": "section",
+          "label": "Section"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color_scheme",
+      "id": "container_color_scheme",
+      "label": "Container color scheme",
+      "default": "scheme-2"
+    },    
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Section color scheme",
+      "default": "scheme-1"
     },
     {
       "type": "checkbox",
-      "id": "show_international_question",
-      "label": "Show international shipping question",
-      "default": true
+      "id": "open_first_collapsible_row",
+      "default": false,
+      "label": "Open first collapsible row by default"
     },
     {
-      "type": "text",
-      "id": "international_heading",
-      "label": "International heading",
-      "default": "Do you ship internationally?"
+      "type": "header",
+      "content": "Section padding"
     },
     {
-      "type": "checkbox",
-      "id": "show_contact_form",
-      "label": "Show contact form",
-      "default": true
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
     },
     {
-      "type": "text",
-      "id": "contact_heading",
-      "label": "Contact heading",
-      "default": "Didn't find your answer?"
-    },
-    {
-      "type": "text",
-      "id": "contact_subheading",
-      "label": "Contact subheading",
-      "default": "Don't hesitate to contact us"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button label",
-      "default": "Send message"
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
     }
   ],
   "blocks": [
     {
-      "type": "question",
-      "name": "Question",
+      "type": "collapsible_row",
+      "name": "Collapsible row",
       "settings": [
         {
           "type": "text",
-          "id": "question",
-          "label": "Question",
-          "default": "When will my order be shipped?"
+          "id": "heading",
+          "default": "Collapsible row",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "apple",
+              "label": "Apple"
+            },
+            {
+              "value": "banana",
+              "label": "Banana"
+            },
+            {
+              "value": "bottle",
+              "label": "Bottle"
+            },
+            {
+              "value": "box",
+              "label": "Box"
+            },
+            {
+              "value": "carrot",
+              "label": "Carrot"
+            },
+            {
+              "value": "chat_bubble",
+              "label": "Chat bubble"
+            },
+            {
+              "value": "check_mark",
+              "label": "Check mark"
+            },
+            {
+              "value": "clipboard",
+              "label": "Clipboard"
+            },
+            {
+              "value": "dairy",
+              "label": "Dairy"
+            },
+            {
+              "value": "dairy_free",
+              "label": "Dairy free"
+            },
+            {
+              "value": "dryer",
+              "label": "Dryer"
+            },
+            {
+              "value": "eye",
+              "label": "Eye"
+            },
+            {
+              "value": "fire",
+              "label": "Fire"
+            },
+            {
+              "value": "gluten_free",
+              "label": "Gluten free"
+            },
+            {
+              "value": "heart",
+              "label": "Heart"
+            },
+            {
+              "value": "iron",
+              "label": "Iron"
+            },
+            {
+              "value": "leaf",
+              "label": "Leaf"
+            },
+            {
+              "value": "leather",
+              "label": "Leather"
+            },
+            {
+              "value": "lightning_bolt",
+              "label": "Lightning bolt"
+            },
+            {
+              "value": "lipstick",
+              "label": "Lipstick"
+            },
+            {
+              "value": "lock",
+              "label": "Lock"
+            },
+            {
+              "value": "map_pin",
+              "label": "Map pin"
+            },
+            {
+              "value": "nut_free",
+              "label": "Nut free"
+            },
+            {
+              "value": "pants",
+              "label": "Pants"
+            },
+            {
+              "value": "paw_print",
+              "label": "Paw print"
+            },
+            {
+              "value": "pepper",
+              "label": "Pepper"
+            },
+            {
+              "value": "perfume",
+              "label": "Perfume"
+            },
+            {
+              "value": "plane",
+              "label": "Plane"
+            },
+            {
+              "value": "plant",
+              "label": "Plant"
+            },
+            {
+              "value": "price_tag",
+              "label": "Price tag"
+            },
+            {
+              "value": "question_mark",
+              "label": "Question mark"
+            },
+            {
+              "value": "recycle",
+              "label": "Recycle"
+            },
+            {
+              "value": "return",
+              "label": "Return"
+            },
+            {
+              "value": "ruler",
+              "label": "Ruler"
+            },
+            {
+              "value": "serving_dish",
+              "label": "Serving dish"
+            },
+            {
+              "value": "shirt",
+              "label": "Shirt"
+            },
+            {
+              "value": "shoe",
+              "label": "Shoe"
+            },
+            {
+              "value": "silhouette",
+              "label": "Silhouette"
+            },
+            {
+              "value": "snowflake",
+              "label": "Snowflake"
+            },
+            {
+              "value": "star",
+              "label": "Star"
+            },
+            {
+              "value": "stopwatch",
+              "label": "Stopwatch"
+            },
+            {
+              "value": "truck",
+              "label": "Truck"
+            },
+            {
+              "value": "washing",
+              "label": "Washing"
+            }
+          ],
+          "default": "check_mark",
+          "label": "Icon"
         },
         {
           "type": "richtext",
-          "id": "answer",
-          "label": "Answer",
-          "default": "<p>Orders are typically shipped within 1-2 business days.</p>"
+          "id": "row_content",
+          "label": "Row content"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page content"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Custom FAQ",
+      "name": "Collapsible content with form",
       "blocks": [
         {
-          "type": "question",
-          "settings": {
-            "question": "When will my order be shipped?",
-            "answer": "<p>Orders are typically shipped within 1-2 business days.</p>"
-          }
+          "type": "collapsible_row"
         },
         {
-          "type": "question",
-          "settings": {
-            "question": "What is your return policy?",
-            "answer": "<p>We accept returns within 30 days of purchase.</p>"
-          }
+          "type": "collapsible_row"
         },
         {
-          "type": "question",
-          "settings": {
-            "question": "How long will it take until I receive my order?",
-            "answer": "<p>Delivery times vary by location, typically 3-7 business days.</p>"
-          }
+          "type": "collapsible_row"
         }
       ]
     }
