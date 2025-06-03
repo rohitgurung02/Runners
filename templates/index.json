@@ -16,9 +16,52 @@
       "settings": {
         "announcement_compact": false
       }
+    },
+    "sample_ex_cJHqyA": {
+      "type": "sample-ex",
+      "blocks": {
+        "question_WAfB98": {
+          "type": "question",
+          "settings": {
+            "question": "When will my order be shipped?",
+            "answer": "<p>Orders are typically shipped within 1-2 business days.</p>"
+          }
+        },
+        "question_rEx6TK": {
+          "type": "question",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We accept returns within 30 days of purchase.</p>"
+          }
+        },
+        "question_r7CxFA": {
+          "type": "question",
+          "settings": {
+            "question": "How long will it take until I receive my order?",
+            "answer": "<p>Delivery times vary by location, typically 3-7 business days.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_WAfB98",
+        "question_rEx6TK",
+        "question_r7CxFA"
+      ],
+      "name": "Custom FAQ",
+      "settings": {
+        "heading": "Shipping & Returns",
+        "subheading": "Below are some common questions about shipping, returns, and exchanges",
+        "show_international_question": true,
+        "international_heading": "Do you ship internationally?",
+        "show_contact_form": true,
+        "contact_heading": "Didn't find your answer?",
+        "contact_subheading": "Don't hesitate to contact us",
+        "button_label": "Send message"
+      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD"
+    "featured_collection_copy_kaw7iD",
+    "sample_ex_cJHqyA"
   ]
 }
