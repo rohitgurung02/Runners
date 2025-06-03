@@ -1,753 +1,220 @@
-{% assign sec_id = '#shopify-section-' | append: section.id %}
-
-<style>
-  
-  {{ sec_id }} .pc-section-container {
-    {% case section.settings.page_width %}
-      {% when 'full' %} max-width: 100%;
-      {% when 'wide' %} max-width: 1200px;
-      {% when 'normal' %} max-width: 1000px;
-      {% when 'narrow' %} max-width: 800px;
-    {% endcase %}
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-
-  {{ sec_id }} .pc-split-container {
-    display: flex;
-    width: 100%;
-    height: {{ section.settings.image_height }}px;
-    gap: {{ section.settings.gap_between }}px;
-    transition: all 0.4s ease-in-out;
-  }
-
-  {{ sec_id }} .pc-image-box {
+{% style %}
+.image-comparison-container {
     position: relative;
-    flex: 1;
-    overflow: hidden;
-    transition: flex 0.4s ease-in-out, background-color 0.3s ease;
-    height: 100%;
-    background-color: transparent;
-  }
-
-  {{ sec_id }} .pc-image-box{
-    border-radius: {{ section.settings.border_radius_option }}px;
-  }
-
-  {{ sec_id }} .pc-image-box{
-    border-radius: {{ section.settings.custom_border_radius }}px;
-  }
-  
-  /* Block-specific styles */
-  {% for block in section.blocks %}
-    {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] {
-      --hover-bg: {{ block.settings.hover_bg }};
-      --title-color: {{ block.settings.title_color }};
-      --title-hover-color: {{ block.settings.title_hover_color }};
-      --desc-color: {{ block.settings.description_color }};
-      --desc-hover-color: {{ block.settings.description_hover_color }};
-      --btn-bg: {{ block.settings.button_background_color }};
-      --btn-text: {{ block.settings.button_text_color }};
-      --hover-width: {{ block.settings.hover_width }}%;
-      --title-font-size: {{ block.settings.title_font_size }}px;
-      --desc-font-size: {{ block.settings.description_font_size }}px;
-    }
-
-    {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] .pc-image-title {
-      font-weight: {{ block.settings.title_font_weight }};
-      font-style: {{ block.settings.font_style }};
-      letter-spacing: {{ block.settings.letter_spacing }}px;
-      text-decoration: {{ block.settings.text_decoration }};
-      {% if block.settings.text_decoration != 'none' %}
-        text-decoration-color: {{ block.settings.text_decoration_color }};
-      {% endif %}
-      padding-top: {{ block.settings.padding_top }}px;
-      padding-bottom: {{ block.settings.padding_bottom }}px;
-    }
-
-    {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] .pc-image-description {
-      font-weight: {{ block.settings.description_font_weight }};
-      font-style: {{ block.settings.description_font_style }};
-      letter-spacing: {{ block.settings.description_letter_spacing }}px;
-      text-decoration: {{ block.settings.description_text_decoration }};
-      {% if block.settings.description_text_decoration != 'none' %}
-        text-decoration-color: {{ block.settings.description_text_decoration_color }};
-      {% endif %}
-      padding-top: {{ block.settings.description_padding_top }}px;
-      padding-bottom: {{ block.settings.description_padding_bottom }}px;
-    }
-
-    {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] .pc-image-button {
-      font-size: {{ block.settings.button_font_size }}px;
-      font-weight: {{ block.settings.button_font_weight }};
-      text-transform: {{ block.settings.button_text_transform }};
-      letter-spacing: {{ block.settings.button_letter_spacing }}px;
-      text-decoration: {{ block.settings.button_text_decoration }};
-      {% if block.settings.button_text_decoration != 'none' %}
-        text-decoration-color: {{ block.settings.button_text_decoration_color }};
-      {% endif %}
-      background-color: var(--btn-bg);
-      color: var(--btn-text);
-      border: 1px solid {{ block.settings.button_border_color }};
-      border-radius: {{ block.settings.button_border_radius }}px;
-      padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
-      min-width: {{ block.settings.button_min_width }}px;
-    }
-
-    {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] .pc-image-button:hover {
-      background-color: {{ block.settings.button_hover_background_color }};
-      color: {{ block.settings.button_hover_text_color }};
-      border-color: {{ block.settings.button_hover_border_color }};
-    }
-  {% endfor %}
-
-  {{ sec_id }} .pc-split-container:hover .pc-image-box {
-    flex: 0.8;
-  }
-
-  {{ sec_id }} .pc-split-container:hover .pc-image-box:hover {
-    flex: 1.2;
-  }
-
-  {{ sec_id }} .pc-image-box:not(:first-child) {
-    margin-left: {{ section.settings.gap_between }}px;
-  }
-
-  {{ sec_id }} .pc-image-box img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 0.3s ease;
-    display: block;
-  }
-
-  /* Content styles */
-  {{ sec_id }} .pc-image-content {
-    position: absolute;
-    bottom: 55px;
-    left: 50px;
-    right: 20px;
-    z-index: 2;
-    transition: all 0.3s ease;
-    opacity: 1;
-  }
-
-  {{ sec_id }} .pc-image-title {
-    margin: 0 0 4px 0;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    color: var(--title-color);
-    font-size: var(--title-font-size);
-  }
-
-  {{ sec_id }} .pc-image-description {
-    max-height: 0;
-    opacity: 0;
+    height: {{ section.settings.section_height }};
+    background-image: url('{{ section.settings.before_image | img_url: '2000x' }}');
+    background-position: center center;
+    background-size: cover;
     overflow: hidden;
-    transition: all 0.3s ease;
-    margin: 4px 0;
-    color: var(--desc-color);
-    font-size: var(--desc-font-size);
-  }
+}
 
-  {{ sec_id }} .pc-image-button {
-    display: inline-block;
-    margin-top: 4px;
-    opacity: 0;
-    transform: translateY(10px);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
-    transition: all 0.3s ease;
-    text-decoration: none;
-  }
+.image-comparison-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+}
 
-  /* Hover effects */
-  {{ sec_id }} .pc-image-box:hover {
-    flex: 0 0 var(--hover-width);
-    background-color: var(--hover-bg);
-  }
+.image-comparison-mask-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('{{ section.settings.after_image | img_url: '2000x' }}');
+    background-position: center center;
+    background-size: cover;
+}
 
-  {{ sec_id }} .pc-image-box:hover img {
-    opacity: 0.3;
-  }
+.image-comparison-border {
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    left: 50%;
+    margin-left: -2px;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 2;
+}
 
-  {{ sec_id }} .pc-image-box:hover .pc-image-title {
-    color: var(--title-hover-color);
-  }
+.image-comparison-handle {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: {{ section.settings.slider_color }};
+    top: 50%;
+    margin-top: -25px;
+    left: 50%;
+    margin-left: -25px;
+    opacity: 0.9;
+    cursor: ew-resize;
+    z-index: 3;
+    touch-action: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
 
-  {{ sec_id }} .pc-image-box:hover .pc-image-description {
-    max-height: 200px;
-    opacity: 1;
-    color: var(--desc-hover-color);
-  }
-
-  {{ sec_id }} .pc-image-box:hover .pc-image-button {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .pc-image-description p {
-    margin: 0;
- }
-
-  /* Mobile styles */
-  @media (max-width: 768px) {
-    {{ sec_id }} .pc-split-container {
-      flex-direction: column;
-      height: auto;
-      gap: 10px;
+@media (max-width: 768px) {
+    .image-comparison-handle {
+        width: 40px;
+        height: 40px;
+        margin-top: -20px;
+        margin-left: -20px;
+        font-size: 16px;
     }
+}
+{% endstyle %}
 
-    {{ sec_id }} .pc-image-box {
-      width: 100% !important;
-      height: {{ section.settings.image_height | divided_by: 1.5 }}px;
-      flex: 1 0 auto !important;
-      margin-left: 0 !important;
-    }
-    
-    {{ sec_id }} .pc-image-box:hover img {
-      opacity: 1;
-    }
-  }
-</style>
-
-<div class="pc-section-container">
-  <div class="pc-split-container">
-    {% for block in section.blocks %}
-      <div class="pc-image-box" data-block-id="{{ block.id }}">
-        {% if block.settings.image != blank %}
-          {{-
-            block.settings.image
-            | image_url: width: 600, height: 550
-            | image_tag
-          -}}
-        {% endif %}
-
-        <div class="pc-image-content">
-          <h3 class="pc-image-title">{{ block.settings.title }}</h3>
-          <div class="pc-image-description">{{ block.settings.description }}</div>
-          {% if block.settings.button_text != blank %}
-            <a class="pc-image-button" href="{{ block.settings.link }}">
-              {{ block.settings.button_text }}
-            </a>
-          {% endif %}
-        </div>
-      </div>
-    {% endfor %}
-  </div>
+<div class="image-comparison-container">
+    <div class="image-comparison-mask">
+        <div class="image-comparison-mask-image"></div>
+    </div>
+    <div class="image-comparison-border"></div>
+    <div class="image-comparison-handle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+    </div>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.image-comparison-container');
+    const mask = document.querySelector('.image-comparison-mask');
+    const border = document.querySelector('.image-comparison-border');
+    const handle = document.querySelector('.image-comparison-handle');
+    
+    if (!handle || !mask || !border) return;
+    
+    let isDragging = false;
+    
+    // Mouse events
+    handle.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        e.preventDefault();
+    });
+    
+    document.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        moveSlider(e.clientX);
+    });
+    
+    document.addEventListener('mouseup', function() {
+        isDragging = false;
+    });
+    
+    // Touch events for mobile
+    handle.addEventListener('touchstart', function() {
+        isDragging = true;
+    });
+    
+    document.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        moveSlider(e.touches[0].clientX);
+    });
+    
+    document.addEventListener('touchend', function() {
+        isDragging = false;
+    });
+    
+    // Click/tap on container to move slider
+    container.addEventListener('click', function(e) {
+        if (isDragging) return; // Prevent conflict with drag
+        moveSlider(e.clientX);
+    });
+    
+    function moveSlider(xPosition) {
+        const containerRect = container.getBoundingClientRect();
+        const containerLeft = containerRect.left;
+        const containerWidth = containerRect.width;
+        
+        let newPosition = xPosition - containerLeft;
+        
+        // Keep within bounds
+        newPosition = Math.max(0, Math.min(newPosition, containerWidth));
+        
+        const percentage = (newPosition / containerWidth) * 100;
+        
+        mask.style.width = percentage + '%';
+        border.style.left = percentage + '%';
+        handle.style.left = percentage + '%';
+    }
+});
+</script>
+
 {% schema %}
-  {
-    "name": "Split Banner Hover PWC",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Width:"
-      },
-      {
-        "type": "select",
-        "id": "page_width",
-        "label": "Section width",
-        "options": [
-          { "value": "full", "label": "Full width" },
-          { "value": "wide", "label": "Wide (1200px)" },
-          { "value": "normal", "label": "Normal (1000px)" },
-          { "value": "narrow", "label": "Narrow (800px)" }
-        ],
-        "default": "wide"
-      },
-      {
-        "type": "header",
-        "content": "Gap Between Images"
-      },
-      {
-        "type": "range",
-        "id": "gap_between",
-        "label": "Gap",
-        "min": 0,
-        "max": 50,
-        "step": 1,
-        "unit": "px",
-        "default": 10
-      },
-      {
-        "type": "header",
-        "content": "Section Height"
-      },
-      {
-        "type": "range",
-        "id": "image_height",
-        "label": "Height",
-        "min": 300,
-        "max": 800,
-        "step": 10,
-        "unit": "px",
-        "default": 500
-      },
-      {
-        "type": "header",
-        "content": "Image Border Radius"
-      },
-      {
-        "type": "text",
-        "id": "custom_border_radius",
-        "label": "Border Radius",
-        "default": "12px",
-        "info": "Only used if 'Custom' is selected above."
-      }
-    ],
-    "blocks": [
-      {
-        "type": "image",
-        "name": "Image Box",
-        "limit": 2,
-        "settings": [
-          {
-            "type": "header",
-            "content": "Image"
-          },
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Image"
-          },
-          {
-            "type": "header",
-            "content": "Title"
-          },
-          {
-            "type": "text",
-            "id": "title",
-            "label": "Title",
-            "default": "Collection Title"
-          },
-          {
-            "type": "range",
-            "id": "title_font_size",
-            "label": "Title font size (px)",
-            "min": 10,
-            "max": 50,
-            "step": 1,
-            "default": 32
-          },
-          {
-            "type": "select",
-            "id": "title_font_weight",
-            "label": "Font weight",
-            "options": [
-              { "value": "normal", "label": "Normal" },
-              { "value": "bold", "label": "Bold" },
-              { "value": "bolder", "label": "Bolder" },
-              { "value": "lighter", "label": "Lighter" },
-              { "value": "100", "label": "100" },
-              { "value": "200", "label": "200" },
-              { "value": "300", "label": "300" },
-              { "value": "400", "label": "400" },
-              { "value": "500", "label": "500" },
-              { "value": "600", "label": "600" },
-              { "value": "700", "label": "700" },
-              { "value": "800", "label": "800" },
-              { "value": "900", "label": "900" }
-            ],
-            "default": "normal"
-          },
-          {
-            "type": "select",
-            "id": "font_style",
-            "label": "Font style",
-            "options": [
-              { "value": "normal", "label": "Normal" },
-              { "value": "italic", "label": "Italic" },
-              { "value": "oblique", "label": "Oblique" }
-            ],
-            "default": "normal"
-          },
-          {
-            "type": "range",
-            "id": "letter_spacing",
-            "min": 0,
-            "max": 10,
-            "step": 0.5,
-            "unit": "px",
-            "label": "Letter spacing",
-            "default": 0
-          },
-          {
-            "type": "select",
-            "id": "text_decoration",
-            "label": "Text Decoration",
-            "options": [
-              { "value": "none", "label": "None" },
-              { "value": "underline", "label": "Underline" },
-              { "value": "overline", "label": "Overline" },
-              { "value": "line-through", "label": "Line Through" }
-            ],
-            "default": "none"
-          },
-          {
-            "type": "color",
-            "id": "text_decoration_color",
-            "label": "Text Decoration Color",
-            "default": "#000"
-          },
-          {
-            "type": "color",
-            "id": "title_color",
-            "label": "Title color (normal)",
-            "default": "#ffffff"
-          },
-          {
-            "type": "color",
-            "id": "title_hover_color",
-            "label": "Title color (hover)",
-            "default": "#ffffff"
-          },
-          {
-            "type": "range",
-            "id": "padding_top",
-            "label": "Padding Top (px)",
-            "default": 5,
-            "min": 0,
-            "max": 150,
-            "step": 5
-          },
-          {
-            "type": "range",
-            "id": "padding_bottom",
-            "label": "Padding Bottom (px)",
-            "default": 5,
-            "min": 0,
-            "max": 150,
-            "step": 5
-          },
-          {
-            "type": "header",
-            "content": "Description"
-          },
-          {
-            "type": "richtext",
-            "id": "description",
-            "label": "Description",
-            "default": "<p>Add your product description here</p>"
-          },
-          {
-            "type": "range",
-            "id": "description_font_size",
-            "label": "Description font size (px)",
-            "min": 10,
-            "max": 30,
-            "step": 1,
-            "default": 16
-          },
-          {
-            "type": "color",
-            "id": "description_color",
-            "label": "Description color (normal)",
-            "default": "#f5f5f5"
-          },
-          {
-            "type": "select",
-            "id": "description_font_weight",
-            "label": "Font weight",
-            "options": [
-              { "value": "normal", "label": "Normal" },
-              { "value": "bold", "label": "Bold" },
-              { "value": "bolder", "label": "Bolder" },
-              { "value": "lighter", "label": "Lighter" },
-              { "value": "100", "label": "100" },
-              { "value": "200", "label": "200" },
-              { "value": "300", "label": "300" },
-              { "value": "400", "label": "400" },
-              { "value": "500", "label": "500" },
-              { "value": "600", "label": "600" },
-              { "value": "700", "label": "700" },
-              { "value": "800", "label": "800" },
-              { "value": "900", "label": "900" }
-            ],
-            "default": "normal"
-          },
-          {
-            "type": "select",
-            "id": "description_font_style",
-            "label": "Font style",
-            "options": [
-              { "value": "normal", "label": "Normal" },
-              { "value": "italic", "label": "Italic" },
-              { "value": "oblique", "label": "Oblique" }
-            ],
-            "default": "normal"
-          },
-          {
-            "type": "range",
-            "id": "description_letter_spacing",
-            "min": 0,
-            "max": 10,
-            "step": 0.5,
-            "unit": "px",
-            "label": "Letter spacing",
-            "default": 0
-          },
-          {
-            "type": "select",
-            "id": "description_text_decoration",
-            "label": "Text Decoration",
-            "options": [
-              { "value": "none", "label": "None" },
-              { "value": "underline", "label": "Underline" },
-              { "value": "overline", "label": "Overline" },
-              { "value": "line-through", "label": "Line Through" }
-            ],
-            "default": "none"
-          },
-          {
-            "type": "color",
-            "id": "description_text_decoration_color",
-            "label": "Text Decoration Color",
-            "default": "#000"
-          },
-          {
-            "type": "color",
-            "id": "description_hover_color",
-            "label": "Description color (hover)",
-            "default": "#eeeeee"
-          },
-          {
-            "type": "range",
-            "id": "description_padding_top",
-            "label": "Padding Top (px)",
-            "default": 5,
-            "min": 0,
-            "max": 150,
-            "step": 5
-          },
-          {
-            "type": "range",
-            "id": "description_padding_bottom",
-            "label": "Padding Bottom (px)",
-            "default": 5,
-            "min": 0,
-            "max": 150,
-            "step": 5
-          },
-          {
-            "type": "header",
-            "content": "Button"
-          },
-          {
-            "type": "text",
-            "id": "button_text",
-            "label": "Button Text",
-            "default": "Shop Now"
-          },
-          {
-            "type": "color",
-            "id": "button_bg",
-            "label": "Button background",
-            "default": "#ffffff"
-          },
-          {
-            "type": "color",
-            "id": "button_text_color",
-            "label": "Button text color",
-            "default": "#000000"
-          },
-          {
-            "type": "color",
-            "id": "button_background_color",
-            "label": "Button Background Color",
-            "default": "#ffffff"
-          },
-          {
-            "type": "range",
-            "id": "button_font_size",
-            "label": "Input Font Size (px)",
-            "default": 10,
-            "min": 10,
-            "max": 24,
-            "step": 1
-          },
-          {
-            "type": "select",
-            "id": "button_font_weight",
-            "label": "Font weight",
-            "options": [
-              { "value": "normal", "label": "Normal" },
-              { "value": "bold", "label": "Bold" },
-              { "value": "bolder", "label": "Bolder" },
-              { "value": "lighter", "label": "Lighter" },
-              { "value": "100", "label": "100" },
-              { "value": "200", "label": "200" },
-              { "value": "300", "label": "300" },
-              { "value": "400", "label": "400" },
-              { "value": "500", "label": "500" },
-              { "value": "600", "label": "600" },
-              { "value": "700", "label": "700" },
-              { "value": "800", "label": "800" },
-              { "value": "900", "label": "900" }
-            ],
-            "default": "normal"
-          },
-          {
-            "type": "select",
-            "id": "button_text_transform",
-            "label": "Text Transform",
-            "default": "uppercase",
-            "options": [
-              { "value": "none", "label": "None" },
-              { "value": "capitalize", "label": "Capitalize" },
-              { "value": "uppercase", "label": "Uppercase" },
-              { "value": "lowercase", "label": "Lowercase" },
-              { "value": "initial", "label": "Initial" },
-              { "value": "inherit", "label": "Inherit" }
-            ]
-          },
-          {
-            "type": "range",
-            "id": "button_letter_spacing",
-            "min": 0,
-            "max": 10,
-            "step": 0.1,
-            "unit": "px",
-            "label": "Letter spacing",
-            "default": 0
-          },
-          {
-            "type": "select",
-            "id": "button_text_decoration",
-            "label": "Text Decoration",
-            "options": [
-              { "value": "none", "label": "None" },
-              { "value": "underline", "label": "Underline" },
-              { "value": "overline", "label": "Overline" },
-              { "value": "line-through", "label": "Line Through" }
-            ],
-            "default": "none"
-          },
-          {
-            "type": "color",
-            "id": "button_text_decoration_color",
-            "label": "Text Decoration Color",
-            "default": "#000"
-          },
-          {
-            "type": "color",
-            "id": "button_border_color",
-            "label": "Button Border Color",
-            "default": "#005bb5"
-          },
-          {
-            "type": "range",
-            "id": "button_border_radius",
-            "min": 0,
-            "max": 50,
-            "step": 1,
-            "unit": "px",
-            "label": "Input border radius",
-            "default": 4
-          },
-          {
-            "type": "color",
-            "id": "button_hover_background_color",
-            "label": "Button Hover Background Color",
-            "default": "#005bb5"
-          },
-          {
-            "type": "color",
-            "id": "button_hover_text_color",
-            "label": "Button Hover Text Color",
-            "default": "#ffffff"
-          },
-          {
-            "type": "color",
-            "id": "button_hover_border_color",
-            "label": "Button Hover Border Color",
-            "default": "#003f7f"
-          },
-          {
-            "type": "range",
-            "id": "button_padding_vertical",
-            "min": 5,
-            "max": 100,
-            "step": 1,
-            "unit": "px",
-            "label": "Button Vertical Padding",
-            "default": 12
-          },
-          {
-            "type": "range",
-            "id": "button_padding_horizontal",
-            "min": 10,
-            "max": 100,
-            "step": 5,
-            "unit": "px",
-            "label": "Button Horizontal Padding",
-            "default": 30
-          },
-          {
-            "type": "range",
-            "id": "button_min_width",
-            "label": "Button Minimum Width (px)",
-            "min": 50,
-            "max": 500,
-            "step": 10,
-            "default": 160,
-            "unit": "px"
-          },
-          {
-            "type": "url",
-            "id": "link",
-            "label": "Link"
-          },
-          {
-            "type": "header",
-            "content": "Hover Colors"
-          },
-          {
-            "type": "color",
-            "id": "hover_bg",
-            "label": "Background color",
-            "default": "#333333"
-          },
-          {
-            "type": "header",
-            "content": "Hover Behavior"
-          },
-          {
-            "type": "range",
-            "id": "hover_width",
-            "label": "Hovered width",
-            "min": 50,
-            "max": 80,
-            "step": 1,
-            "unit": "%",
-            "default": 60,
-            "info": "Width when this block is hovered"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "PWC Split Image Banner Hover",
-        "category": "Custom",
-        "blocks": [
-          {
-            "type": "image",
-            "settings": {
-              "title": "Collection 1",
-              "description": "<p>Shop our latest collection</p>",
-              "button_text": "Shop Now"
-            }
-          },
-          {
-            "type": "image",
-            "settings": {
-              "title": "Collection 2",
-              "description": "<p>Discover new arrivals</p>",
-              "button_text": "Explore"
-            }
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "Image Comparison Slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before Image",
+      "info": "This will be shown on the right side"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After Image",
+      "info": "This will be shown on the left side and revealed by the slider"
+    },
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "color",
+      "id": "slider_color",
+      "label": "Slider Handle Color",
+      "default": "#4682B4"
+    },
+    {
+      "type": "range",
+      "id": "slider_opacity",
+      "min": 0.1,
+      "max": 1,
+      "step": 0.1,
+      "label": "Slider Handle Opacity",
+      "default": 0.9
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "text",
+      "id": "section_height",
+      "label": "Section Height",
+      "default": "600px",
+      "info": "Enter value with unit (e.g. 500px or 80vh)"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Comparison Slider",
+      "category": "Media"
+    }
+  ]
+}
 {% endschema %}
