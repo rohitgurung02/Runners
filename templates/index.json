@@ -16,22 +16,9 @@
       "settings": {
         "announcement_compact": false
       }
-    },
-    "sample_ex_3ejCx4": {
-      "type": "sample-ex",
-      "name": "Custom Contact Form",
-      "settings": {
-        "heading": "Contact",
-        "subheading": "Interested in a joint project?",
-        "description": "Write to me directly or call me – I look forward to exciting ideas!",
-        "button_text": "Send Message",
-        "max_width": 700,
-        "accent_color": "#3b82f6"
-      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD",
-    "sample_ex_3ejCx4"
+    "featured_collection_copy_kaw7iD"
   ]
 }
