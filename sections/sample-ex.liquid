@@ -1,263 +1,140 @@
 {% style %}
-
-/* extra code */
-.image-comparison-container {
-  position: relative;
-  width: 100%;
-  height: {{ section.settings.section_height }};
-  overflow: hidden;
-}
-
-.image-comparison-before,
-.image-comparison-after {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.image-comparison-before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
-
-.image-comparison-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 50%;
-  overflow: hidden;
-  z-index: 1;
-  pointer-events: none; /* So you can drag even over the masked image */
-}
-
-.image-comparison-after {
-  position: absolute; /* Important */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-
-
-
-.image-comparison-border {
-  position: absolute;
-  width: 4px;
-  height: 100%;
-  left: 50%;
-  margin-left: -2px;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 2;
-}
-
-.image-comparison-handle {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: {{ section.settings.slider_color }};
-  top: 50%;
-  margin-top: -25px;
-  left: 50%;
-  margin-left: -25px;
-  opacity: {{ section.settings.slider_opacity }};
-  cursor: ew-resize;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  touch-action: none;
-  user-select: none;
-}
-
-.image-comparison-handle svg {
-  width: 20px;
-  height: 20px;
-}
-
-@media (max-width: 768px) {
-  .image-comparison-handle {
-    width: 40px;
-    height: 40px;
-    margin-top: -20px;
-    margin-left: -20px;
+  :root {
+    --widget-width: 45em;
+    --slider-thumb-position: 50%;
   }
 
-  .image-comparison-handle svg {
-    width: 16px;
-    height: 16px;
+  .image-comparison-container {
+    max-width: calc(var(--widget-width) * 1.5);
+    margin: auto;
+    padding: 0.5em 1.5em;
+    color: #1a202c;
+    background-color: #fff5f5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   }
-}
+
+  .image-comparison-container a {
+    font-weight: bold;
+    color: inherit;
+  }
+
+  .image-comparison-container h1 {
+    color: #742a2a;
+  }
+
+  .image-comparison-widget {
+    position: relative;
+    width: var(--widget-width);
+    height: calc(var(--widget-width) * 9 / 16);
+    margin: auto;
+  }
+
+  .image-comparison-widget::before {
+    content: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="12" fill="%239b2c2c" /><path fill="white" d="M11,4h2v16h-2v-16zm-4,5l-3,3l3,3v-2h3v-2h-3zm13,3l-3,-3v2h-3v2h3v2z"/></svg>');
+    position: absolute;
+    left: calc(var(--slider-thumb-position) - 13px);
+    top: 50%;
+    z-index: 10;
+    pointer-events: none;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+  }
+
+  .image-comparison-widget img {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 50%;
+    user-select: none;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .image-comparison-widget .before-image {
+    width: var(--slider-thumb-position);
+    border-right: 3px solid #9b2c2c8f;
+  }
+
+  .image-comparison-widget .after-image {
+    width: 100%;
+  }
+
+  .image-comparison-slider {
+    position: absolute;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    cursor: ew-resize;
+    -webkit-appearance: none;
+    background: transparent;
+  }
+
+  .image-comparison-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+  }
+
+  .image-comparison-slider::-moz-range-thumb {
+    width: 0;
+    height: 0;
+  }
+
+  .image-comparison-slider:focus {
+    outline: none;
+  }
+
+  .image-comparison-instructions {
+    margin-top: 1.8em;
+  }
+
+  .image-comparison-instructions a {
+    text-decoration: underline #742a2a;
+  }
+
+  .image-comparison-footer {
+    margin-top: 1.8em;
+    text-align: center;
+  }
+
+  .image-comparison-footer a:not(:hover) {
+    text-decoration: none;
+  }
 {% endstyle %}
 
 <div class="image-comparison-container">
-  <img class="image-comparison-before" src="{{ section.settings.before_image | img_url: '2000x' }}" alt="Before Image" />
-
-  <div class="image-comparison-mask">
-    <img class="image-comparison-after" src="{{ section.settings.after_image | img_url: '2000x' }}" alt="After Image" />
+  <div class="image-comparison-widget" style="--slider-thumb-position: {{ slider_position | default: 50 }}%">
+    <img class="after-image" src="{{ after_image | default: 'https://via.placeholder.com/800x450?text=After+Image' }}" alt="After">
+    <img class="before-image" src="{{ before_image | default: 'https://via.placeholder.com/800x450?text=Before+Image' }}" alt="Before">
+    <input type="range" class="image-comparison-slider" min="0" max="100" value="50">
   </div>
 
-  <div class="image-comparison-border"></div>
-  <div class="image-comparison-handle">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
+  <div class="image-comparison-instructions">
+    <p>Follow these steps to play with the widget:</p>
+    <ol>
+      <li><a href="/account/login">Login</a> with your account</li>
+      <li>Switch to <b>Edit</b> mode in your Shopify admin</li>
+      <li>Change the images in the theme editor.</li>
+    </ol>
   </div>
 </div>
 
-
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const container = document.querySelector('.image-comparison-container');
-    const mask = document.querySelector('.image-comparison-mask');
-    const border = document.querySelector('.image-comparison-border');
-    const handle = document.querySelector('.image-comparison-handle');
-    
-    if (!handle || !mask || !border) return;
-    
-    let isDragging = false;
-    
-    // Initialize slider position
-    function initSlider() {
-        mask.style.width = '50%';
-        border.style.left = '50%';
-        handle.style.left = '50%';
-    }
-    
-    // Mouse events
-    handle.addEventListener('mousedown', function(e) {
-        isDragging = true;
-        e.preventDefault();
+  const slider = document.querySelector('.image-comparison-slider');
+  const beforeImage = document.querySelector('.before-image');
+  const widget = document.querySelector('.image-comparison-widget');
+  
+  if (slider && beforeImage && widget) {
+    slider.addEventListener('input', function(e) {
+      const value = e.target.value;
+      beforeImage.style.width = `${value}%`;
+      widget.style.setProperty('--slider-thumb-position', value);
     });
-    
-    document.addEventListener('mousemove', function(e) {
-        if (!isDragging) return;
-        moveSlider(e.clientX);
-    });
-    
-    document.addEventListener('mouseup', function() {
-        isDragging = false;
-    });
-    
-    // Touch events for mobile
-    handle.addEventListener('touchstart', function(e) {
-        isDragging = true;
-        e.preventDefault();
-    });
-    
-    document.addEventListener('touchmove', function(e) {
-        if (!isDragging) return;
-        moveSlider(e.touches[0].clientX);
-    });
-    
-    document.addEventListener('touchend', function() {
-        isDragging = false;
-    });
-    
-    // Click/tap on container to move slider
-    container.addEventListener('click', function(e) {
-        if (isDragging) return; // Prevent conflict with drag
-        moveSlider(e.clientX);
-    });
-    
-    function moveSlider(xPosition) {
-        const containerRect = container.getBoundingClientRect();
-        const containerLeft = containerRect.left;
-        const containerWidth = containerRect.width;
-        
-        let newPosition = xPosition - containerLeft;
-        
-        // Keep within bounds
-        newPosition = Math.max(0, Math.min(newPosition, containerWidth));
-        
-        const percentage = (newPosition / containerWidth) * 100;
-        
-        mask.style.width = percentage + '%';
-        border.style.left = percentage + '%';
-        handle.style.left = percentage + '%';
-    }
-    
-    // Initialize on load
-    initSlider();
-    
-    // Handle window resize
-    window.addEventListener('resize', function() {
-        // Recalculate position based on current percentage
-        const currentPercentage = parseFloat(mask.style.width) || 50;
-        mask.style.width = currentPercentage + '%';
-        border.style.left = currentPercentage + '%';
-        handle.style.left = currentPercentage + '%';
-    });
+  }
 });
 </script>
-
-{% schema %}
-{
-  "name": "Image Comparison Slider",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Images"
-    },
-    {
-      "type": "image_picker",
-      "id": "before_image",
-      "label": "Before Image",
-      "info": "This will be shown on the right side"
-    },
-    {
-      "type": "image_picker",
-      "id": "after_image",
-      "label": "After Image",
-      "info": "This will be shown on the left side and revealed by the slider"
-    },
-    {
-      "type": "header",
-      "content": "Slider Settings"
-    },
-    {
-      "type": "color",
-      "id": "slider_color",
-      "label": "Slider Handle Color",
-      "default": "#4682B4"
-    },
-    {
-      "type": "range",
-      "id": "slider_opacity",
-      "min": 0.1,
-      "max": 1,
-      "step": 0.1,
-      "label": "Slider Handle Opacity",
-      "default": 0.9
-    },
-    {
-      "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "text",
-      "id": "section_height",
-      "label": "Section Height",
-      "default": "600px",
-      "info": "Enter value with unit (e.g. 500px or 80vh)"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Image Comparison Slider",
-      "category": "Media"
-    }
-  ]
-}
-{% endschema %}
