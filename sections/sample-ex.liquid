@@ -177,15 +177,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const percentage = (newPosition / containerWidth) * 100;
         
         mask.style.width = percentage + '%';
-        border.style.left = percentage + '%';
-        
+      
+        handle.style.left = percentage + '%';
     }
     
     // Initialize on load
     initSlider();
     
     // Handle window resize
-
+    window.addEventListener('resize', function() {
+        // Recalculate position based on current percentage
+        const currentPercentage = parseFloat(mask.style.width) || 50;
+        mask.style.width = currentPercentage + '%';
+       
+        handle.style.left = currentPercentage + '%';
+    });
 });
 </script>
 
