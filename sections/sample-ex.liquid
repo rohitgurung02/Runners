@@ -49,7 +49,7 @@
     margin-top: -25px;
     left: 50%;
     margin-left: -25px;
-    opacity: 0.9;
+    opacity: {{ section.settings.slider_opacity }};
     cursor: ew-resize;
     z-index: 3;
     touch-action: none;
@@ -58,8 +58,11 @@
     align-items: center;
     justify-content: center;
     color: white;
-    font-weight: bold;
-    font-size: 18px;
+}
+
+.image-comparison-handle svg {
+    width: 20px;
+    height: 20px;
 }
 
 @media (max-width: 768px) {
@@ -68,7 +71,11 @@
         height: 40px;
         margin-top: -20px;
         margin-left: -20px;
-        font-size: 16px;
+    }
+    
+    .image-comparison-handle svg {
+        width: 16px;
+        height: 16px;
     }
 }
 {% endstyle %}
@@ -79,10 +86,10 @@
     </div>
     <div class="image-comparison-border"></div>
     <div class="image-comparison-handle">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
     </div>
@@ -98,6 +105,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!handle || !mask || !border) return;
     
     let isDragging = false;
+    
+    // Initialize slider position
+    function initSlider() {
+        const containerWidth = container.offsetWidth;
+        const initialPosition = containerWidth * 0.5; // Start at 50%
+        moveSlider(initialPosition + container.getBoundingClientRect().left);
+    }
     
     // Mouse events
     handle.addEventListener('mousedown', function(e) {
@@ -115,8 +129,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Touch events for mobile
-    handle.addEventListener('touchstart', function() {
+    handle.addEventListener('touchstart', function(e) {
         isDragging = true;
+        e.preventDefault();
     });
     
     document.addEventListener('touchmove', function(e) {
@@ -150,6 +165,17 @@ document.addEventListener('DOMContentLoaded', function() {
         border.style.left = percentage + '%';
         handle.style.left = percentage + '%';
     }
+    
+    // Initialize on load
+    initSlider();
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        const currentPercentage = parseFloat(mask.style.width) || 50;
+        const containerWidth = container.offsetWidth;
+        const newPosition = (currentPercentage / 100) * containerWidth;
+        moveSlider(newPosition + container.getBoundingClientRect().left);
+    });
 });
 </script>
 
@@ -202,12 +228,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "label": "Section Height",
       "default": "600px",
       "info": "Enter value with unit (e.g. 500px or 80vh)"
-    },
-    {
-      "type": "checkbox",
-      "id": "full_width",
-      "label": "Full width",
-      "default": true
     }
   ],
   "presets": [
