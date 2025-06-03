@@ -108,9 +108,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize slider position
     function initSlider() {
-        const containerWidth = container.offsetWidth;
-        const initialPosition = containerWidth * 0.5; // Start at 50%
-        moveSlider(initialPosition + container.getBoundingClientRect().left);
+        mask.style.width = '50%';
+        border.style.left = '50%';
+        handle.style.left = '50%';
     }
     
     // Mouse events
@@ -171,10 +171,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle window resize
     window.addEventListener('resize', function() {
+        // Recalculate position based on current percentage
         const currentPercentage = parseFloat(mask.style.width) || 50;
-        const containerWidth = container.offsetWidth;
-        const newPosition = (currentPercentage / 100) * containerWidth;
-        moveSlider(newPosition + container.getBoundingClientRect().left);
+        mask.style.width = currentPercentage + '%';
+        border.style.left = currentPercentage + '%';
+        handle.style.left = currentPercentage + '%';
     });
 });
 </script>
