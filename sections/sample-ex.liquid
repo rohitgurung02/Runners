@@ -113,7 +113,7 @@
   <p>{{ section.settings.subheading }}</p>
   
   <div class="faq-section__divider"></div>
-  
+  <div class="flex-items">
   {%- if section.settings.show_international_question -%}
     <h2 class="h2">{{ section.settings.international_heading }}</h2>
   {%- endif -%}
@@ -133,7 +133,8 @@
     
     <h2 class="h2">{{ section.settings.contact_heading }}</h2>
     <p>{{ section.settings.contact_subheading }}</p>
-    
+    </div>
+  
     <div class="contact-form">
       {%- form 'contact', id: 'FAQContactForm' -%}
         {%- if form.posted_successfully? -%}
