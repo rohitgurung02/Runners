@@ -16,21 +16,9 @@
       "settings": {
         "announcement_compact": false
       }
-    },
-    "sample_ex_6zHeej": {
-      "type": "sample-ex",
-      "name": "Custom FAQ",
-      "settings": {
-        "title": "Frequently asked questions",
-        "subtitle": "Question you might ask about our services.",
-        "ask_title": "Still have questions?",
-        "ask_text": "Can't find the answer you're looking for? Please Ask the question.",
-        "button_text": "Ask Now"
-      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD",
-    "sample_ex_6zHeej"
+    "featured_collection_copy_kaw7iD"
   ]
 }
