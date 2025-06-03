@@ -1317,53 +1317,83 @@
         "default": true
       }
     ],
-    "blocks": [
-      {
-        "type": "item",
-        "name": "FAQ Item",
-        "settings": [
-          {
-            "type": "text",
-            "id": "question",
-            "label": "Question",
-            "default": "Question"
-          },
-          {
-            "type": "richtext",
-            "id": "answer",
-            "label": "Answer",
-            "default": "<p>Answer</p>"
+   "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Answer</p>"
+        }
+      ]
+    },
+    {
+      "type": "contact_form",
+      "name": "Contact Form",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Form Heading",
+          "default": "Contact Us"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_marketing_opt_in",
+          "label": "Show marketing opt-in",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "marketing_text",
+          "label": "Marketing text",
+          "default": "I would like to receive marketing communications"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Submit Form"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom FAQ Section",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "BREAKS DOWN FOOD",
+            "answer": "<p>Everything we eat is broken down by the digestive enzymes we produce in our salvia, pancreas and stomach, allowing nutrients to be efficiently absorbed into the bloodstream. The 17 digestive enzymes found in DEBLOAT+ are particularly beneficial for people suffering from IBS and other digestive issues. They help to break down specific food groups (e.g. carbs, starches, fats, etc.), supported by a trio of organic ingredients known for their anti-inflammatory properties: cinnamon, turmeric and ginger.</p>"
           }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Custom FAQ Section",
-        "blocks": [
-          {
-            "type": "item",
-            "settings": {
-              "question": "BREAKS DOWN FOOD",
-              "answer": "<p>Everything we eat is broken down by the digestive enzymes we produce in our salvia, pancreas and stomach, allowing nutrients to be efficiently absorbed into the bloodstream. The 17 digestive enzymes found in DEBLOAT+ are particularly beneficial for people suffering from IBS and other digestive issues. They help to break down specific food groups (e.g. carbs, starches, fats, etc.), supported by a trio of organic ingredients known for their anti-inflammatory properties: cinnamon, turmeric and ginger.</p>"
-            }
-          },
-          {
-            "type": "item",
-            "settings": {
-              "question": "REDUCES GAS",
-              "answer": "<p>Alpha galactosidase is 1 of the 17 digestive enzymes found in DEBLOAT+. It breaks down the oligosaccharides (a type of carbohydrate) found in beans and cruciferous vegetables such as broccoli and cabbage, known for causing excess gas and bloating. Cinnamon, turmeric and ginger also boast carminative benefits, meaning they break up gas in the gastrointestinal tract and stimulate antral contractions (the contractions which help food pass from one part of the gut to another).</p>"
-            }
-          },
-          {
-            "type": "item",
-            "settings": {
-              "question": "IMPROVES GUT HEALTH",
-              "answer": "<p>Licorice root has been used for centuries in Ayurvedic medicine, where it is believed to pacify “altered pitta”, reduce heartburn and heal ulcers. In clinical trials, 51% of people reported a reduction in bloating, nausea, gas and abdominal fullness within 30 days of taking our key ingredient daily.</p>"
-            }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "REDUCES GAS",
+            "answer": "<p>Alpha galactosidase is 1 of the 17 digestive enzymes found in DEBLOAT+. It breaks down the oligosaccharides (a type of carbohydrate) found in beans and cruciferous vegetables such as broccoli and cabbage, known for causing excess gas and bloating. Cinnamon, turmeric and ginger also boast carminative benefits, meaning they break up gas in the gastrointestinal tract and stimulate antral contractions (the contractions which help food pass from one part of the gut to another).</p>"
           }
-        ]
-      }
-    ]
-  }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "IMPROVES GUT HEALTH",
+            "answer": "<p>Licorice root has been used for centuries in Ayurvedic medicine, where it is believed to pacify \"altered pitta\", reduce heartburn and heal ulcers. In clinical trials, 51% of people reported a reduction in bloating, nausea, gas and abdominal fullness within 30 days of taking our key ingredient daily.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
