@@ -16,9 +16,22 @@
       "settings": {
         "announcement_compact": false
       }
+    },
+    "sample_ex_wYm9AT": {
+      "type": "sample-ex",
+      "name": "Custom Contact Form",
+      "settings": {
+        "heading": "Contact Form",
+        "button_text": "Submit Form",
+        "show_marketing_opt_in": true,
+        "marketing_text": "I would like to receive marketing communications about your products and services",
+        "consent_text": "I consent to having this website store my submitted information so they can respond to my inquiry. See our privacy policy to learn more about how we protect and manage your submitted data. *",
+        "privacy_text": "Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy."
+      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD"
+    "featured_collection_copy_kaw7iD",
+    "sample_ex_wYm9AT"
   ]
 }
