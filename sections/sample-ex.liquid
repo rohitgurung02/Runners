@@ -185,13 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSlider();
     
     // Handle window resize
-    window.addEventListener('resize', function() {
-        // Recalculate position based on current percentage
-        const currentPercentage = parseFloat(mask.style.width) || 50;
-        mask.style.width = currentPercentage + '%';
-        border.style.left = currentPercentage + '%';
-        handle.style.left = currentPercentage + '%';
-    });
+
 });
 </script>
 
