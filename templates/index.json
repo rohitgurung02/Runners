@@ -340,10 +340,10 @@
       "type": "sample-ex",
       "name": "Pricing Table",
       "settings": {
-        "page_width": "wide",
-        "gap_between": 10,
-        "image_height": 500,
-        "custom_border_radius": "12px"
+        "slider_color": "#4682b4",
+        "slider_opacity": 0.9,
+        "section_height": "600px",
+        "full_width": true
       }
     },
     "compare_table_VdBwkG": {
@@ -656,118 +656,16 @@
         "padding_bottom": 36
       }
     },
-    "sample_ex_F6P8yf": {
+    "sample_ex_pCtgpE": {
       "type": "sample-ex",
-      "blocks": {
-        "image_3Xh9h8": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
-            "title": "Collection 1",
-            "title_font_size": 32,
-            "title_font_weight": "normal",
-            "font_style": "normal",
-            "letter_spacing": 0,
-            "text_decoration": "none",
-            "text_decoration_color": "#000000",
-            "title_color": "#ffffff",
-            "title_hover_color": "#ffcc00",
-            "padding_top": 0,
-            "padding_bottom": 0,
-            "description": "<p>Shop our latest collection</p>",
-            "description_font_size": 16,
-            "description_color": "#f5f5f5",
-            "description_font_weight": "normal",
-            "description_font_style": "normal",
-            "description_letter_spacing": 0,
-            "description_text_decoration": "none",
-            "description_text_decoration_color": "#000000",
-            "description_hover_color": "#eeeeee",
-            "description_padding_top": 0,
-            "description_padding_bottom": 0,
-            "button_text": "Shop Now",
-            "button_bg": "#ffffff",
-            "button_text_color": "#ffffff",
-            "button_background_color": "#e34d4d",
-            "button_font_size": 12,
-            "button_font_weight": "bold",
-            "button_text_transform": "uppercase",
-            "button_letter_spacing": 0.5,
-            "button_text_decoration": "none",
-            "button_text_decoration_color": "#ffffff",
-            "button_border_color": "#005bb5",
-            "button_border_radius": 13,
-            "button_hover_background_color": "#43709d",
-            "button_hover_text_color": "#ffffff",
-            "button_hover_border_color": "#43709d",
-            "button_padding_vertical": 11,
-            "button_padding_horizontal": 40,
-            "button_min_width": 50,
-            "link": "https://www.facebook.com",
-            "hover_bg": "#333333",
-            "hover_width": 60
-          }
-        },
-        "image_XTQ9fr": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/bbb_533x_dcefeac7-8bb2-41c0-8e81-fa64239fd5c9.webp",
-            "title": "Collection 2",
-            "title_font_size": 32,
-            "title_font_weight": "normal",
-            "font_style": "normal",
-            "letter_spacing": 0,
-            "text_decoration": "none",
-            "text_decoration_color": "#000000",
-            "title_color": "#ffffff",
-            "title_hover_color": "#ffcc00",
-            "padding_top": 5,
-            "padding_bottom": 5,
-            "description": "<p>Discover new arrivals</p>",
-            "description_font_size": 16,
-            "description_color": "#f5f5f5",
-            "description_font_weight": "normal",
-            "description_font_style": "normal",
-            "description_letter_spacing": 0,
-            "description_text_decoration": "none",
-            "description_text_decoration_color": "#000000",
-            "description_hover_color": "#eeeeee",
-            "description_padding_top": 5,
-            "description_padding_bottom": 5,
-            "button_text": "Explore",
-            "button_bg": "#ffffff",
-            "button_text_color": "#000000",
-            "button_background_color": "#0073e6",
-            "button_font_size": 10,
-            "button_font_weight": "normal",
-            "button_text_transform": "uppercase",
-            "button_letter_spacing": 0,
-            "button_text_decoration": "none",
-            "button_text_decoration_color": "#000000",
-            "button_border_color": "#005bb5",
-            "button_border_radius": 4,
-            "button_hover_background_color": "#005bb5",
-            "button_hover_text_color": "#ffffff",
-            "button_hover_border_color": "#003f7f",
-            "button_padding_vertical": 12,
-            "button_padding_horizontal": 30,
-            "button_min_width": 160,
-            "link": "",
-            "hover_bg": "#333333",
-            "hover_width": 60
-          }
-        }
-      },
-      "block_order": [
-        "image_3Xh9h8",
-        "image_XTQ9fr"
-      ],
-      "name": "PWC Split Image Banner Hover",
+      "name": "Image Comparison Slider",
       "settings": {
-        "page_width": "wide",
-        "gap_between": 10,
-        "image_height": 500,
-        "custom_border_radius": "20"
+        "before_image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
+        "after_image": "shopify://shop_images/1735917732__screenshot2025-01-03at111804pm__huge.png",
+        "slider_color": "#4682B4",
+        "slider_opacity": 0.9,
+        "section_height": "600px",
+        "full_width": true
       }
     }
   },
@@ -781,6 +679,6 @@
     "pwc_scrolling_text_1_infR3x",
     "sample_ex_YKmU3X",
     "compare_table_VdBwkG",
-    "sample_ex_F6P8yf"
+    "sample_ex_pCtgpE"
   ]
 }
