@@ -1,67 +1,54 @@
-{% style %}
-  :root {
-    --widget-width: 45em;
-    --slider-thumb-position: 50%;
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --widget-width: {{ section.settings.width }}px;
+    --slider-thumb-position: {{ section.settings.initial_position }}%;
+    --slider-thumb-color: {{ section.settings.slider_color }};
+    --slider-border-color: {{ section.settings.border_color }};
   }
 
-  .image-comparison-container {
+  .image-comparison-{{ section.id }} {
     max-width: calc(var(--widget-width) * 1.5);
-    margin: auto;
-    padding: 0.5em 1.5em;
-    color: #1a202c;
-    background-color: #fff5f5;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin: 0 auto;
+    padding: 1.5rem;
   }
 
-  .image-comparison-container a {
-    font-weight: bold;
-    color: inherit;
-  }
-
-  .image-comparison-container h1 {
-    color: #742a2a;
-  }
-
-  .image-comparison-widget {
+  .image-comparison-widget-{{ section.id }} {
     position: relative;
     width: var(--widget-width);
-    height: calc(var(--widget-width) * 9 / 16);
-    margin: auto;
+    height: calc(var(--widget-width) * {{ section.settings.aspect_ratio }});
+    margin: 0 auto;
   }
 
-  .image-comparison-widget::before {
-    content: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="12" fill="%239b2c2c" /><path fill="white" d="M11,4h2v16h-2v-16zm-4,5l-3,3l3,3v-2h3v-2h-3zm13,3l-3,-3v2h-3v2h3v2z"/></svg>');
+  .image-comparison-widget-{{ section.id }}::before {
+    content: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="12" fill="%23{{ section.settings.slider_color | remove: '#' }}" /><path fill="white" d="M11,4h2v16h-2v-16zm-4,5l-3,3l3,3v-2h3v-2h-3zm13,3l-3,-3v2h-3v2h3v2z"/></svg>');
     position: absolute;
     left: calc(var(--slider-thumb-position) - 13px);
     top: 50%;
+    transform: translateY(-50%);
     z-index: 10;
     pointer-events: none;
     filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
   }
 
-  .image-comparison-widget img {
+  .image-comparison-widget-{{ section.id }} img {
     display: block;
     position: absolute;
     left: 0;
     top: 0;
-    bottom: 0;
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 0 50%;
+    object-position: center;
     user-select: none;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
 
-  .image-comparison-widget .before-image {
+  .image-comparison-widget-{{ section.id }} .before-image {
     width: var(--slider-thumb-position);
-    border-right: 3px solid #9b2c2c8f;
+    border-right: 3px solid var(--slider-border-color);
   }
 
-  .image-comparison-widget .after-image {
-    width: 100%;
-  }
-
-  .image-comparison-slider {
+  .image-comparison-slider-{{ section.id }} {
     position: absolute;
     margin: 0;
     width: 100%;
@@ -71,63 +58,70 @@
     cursor: ew-resize;
     -webkit-appearance: none;
     background: transparent;
+    z-index: 5;
   }
 
-  .image-comparison-slider::-webkit-slider-thumb {
+  .image-comparison-slider-{{ section.id }}::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 0;
     height: 0;
   }
 
-  .image-comparison-slider::-moz-range-thumb {
+  .image-comparison-slider-{{ section.id }}::-moz-range-thumb {
     width: 0;
     height: 0;
   }
 
-  .image-comparison-slider:focus {
-    outline: none;
-  }
-
-  .image-comparison-instructions {
-    margin-top: 1.8em;
-  }
-
-  .image-comparison-instructions a {
-    text-decoration: underline #742a2a;
-  }
-
-  .image-comparison-footer {
-    margin-top: 1.8em;
+  .image-comparison-instructions-{{ section.id }} {
+    margin-top: 1.8rem;
     text-align: center;
   }
 
-  .image-comparison-footer a:not(:hover) {
-    text-decoration: none;
+  @media (max-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      --widget-width: 100%;
+    }
+    
+    .image-comparison-widget-{{ section.id }} {
+      height: calc(100vw * {{ section.settings.aspect_ratio }});
+    }
   }
-{% endstyle %}
+{%- endstyle -%}
 
-<div class="image-comparison-container">
-  <div class="image-comparison-widget" style="--slider-thumb-position: {{ slider_position | default: 50 }}%">
-    <img class="after-image" src="{{ after_image | default: 'https://via.placeholder.com/800x450?text=After+Image' }}" alt="After">
-    <img class="before-image" src="{{ before_image | default: 'https://via.placeholder.com/800x450?text=Before+Image' }}" alt="Before">
-    <input type="range" class="image-comparison-slider" min="0" max="100" value="50">
+<div class="image-comparison-{{ section.id }}">
+  <div class="image-comparison-widget-{{ section.id }}">
+    {%- if section.settings.after_image != blank -%}
+      <img class="after-image" src="{{ section.settings.after_image | image_url: width: 2000 }}" alt="{{ section.settings.after_image.alt | escape }}" loading="lazy">
+    {%- else -%}
+      <img class="after-image" src="{{ 'image-comparison-after.jpg' | asset_img_url: '2000x' }}" alt="After" loading="lazy">
+    {%- endif -%}
+    
+    {%- if section.settings.before_image != blank -%}
+      <img class="before-image" src="{{ section.settings.before_image | image_url: width: 2000 }}" alt="{{ section.settings.before_image.alt | escape }}" loading="lazy">
+    {%- else -%}
+      <img class="before-image" src="{{ 'image-comparison-before.jpg' | asset_img_url: '2000x' }}" alt="Before" loading="lazy">
+    {%- endif -%}
+    
+    <input type="range" 
+           class="image-comparison-slider-{{ section.id }}" 
+           min="0" 
+           max="100" 
+           value="{{ section.settings.initial_position }}"
+           aria-label="Image comparison slider">
   </div>
 
-  <div class="image-comparison-instructions">
-    <p>Follow these steps to play with the widget:</p>
-    <ol>
-      <li><a href="/account/login">Login</a> with your account</li>
-      <li>Switch to <b>Edit</b> mode in your Shopify admin</li>
-      <li>Change the images in the theme editor.</li>
-    </ol>
-  </div>
+  {%- if section.settings.show_instructions -%}
+    <div class="image-comparison-instructions-{{ section.id }}">
+      <p>{{ section.settings.instructions_text }}</p>
+    </div>
+  {%- endif -%}
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const slider = document.querySelector('.image-comparison-slider');
-  const beforeImage = document.querySelector('.before-image');
-  const widget = document.querySelector('.image-comparison-widget');
+  const slider = document.querySelector('.image-comparison-slider-{{ section.id }}');
+  const beforeImage = document.querySelector('.image-comparison-widget-{{ section.id }} .before-image');
+  const widget = document.querySelector('.image-comparison-widget-{{ section.id }}');
   
   if (slider && beforeImage && widget) {
     slider.addEventListener('input', function(e) {
@@ -138,3 +132,102 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+
+{% schema %}
+{
+  "name": "Image Comparison",
+  "tag": "section",
+  "class": "shopify-section--image-comparison",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before image",
+      "info": "The image that will be revealed by the slider"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After image",
+      "info": "The image that will be shown behind the slider"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "aspect_ratio",
+      "min": 0.5,
+      "max": 1.5,
+      "step": 0.1,
+      "label": "Image aspect ratio",
+      "default": 1,
+      "info": "Height relative to width (9:16 = 0.5625)"
+    },
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "initial_position",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Initial slider position",
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "slider_color",
+      "label": "Slider thumb color",
+      "default": "#9b2c2c"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Divider line color",
+      "default": "#9b2c2c8f"
+    },
+    {
+      "type": "header",
+      "content": "Instructions"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_instructions",
+      "label": "Show instructions",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "instructions_text",
+      "label": "Instruction text",
+      "default": "Drag the slider to compare images",
+      "info": "Leave blank to hide instructions"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Comparison slider",
+      "category": "Media"
+    }
+  ]
+}
+{% endschema %}
