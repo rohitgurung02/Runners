@@ -16,21 +16,9 @@
       "settings": {
         "announcement_compact": false
       }
-    },
-    "sample_ex_JzhUGx": {
-      "type": "sample-ex",
-      "name": "Image Comparison Slider",
-      "settings": {
-        "before_image": "shopify://shop_images/1738323256__kannperformance__huge.jpg",
-        "after_image": "shopify://shop_images/1743000616__screenshot2025-03-26at34755pm__huge.jpg",
-        "slider_color": "#4682b4",
-        "slider_opacity": 1,
-        "section_height": "600px"
-      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD",
-    "sample_ex_JzhUGx"
+    "featured_collection_copy_kaw7iD"
   ]
 }
