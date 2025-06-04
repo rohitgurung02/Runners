@@ -61,7 +61,7 @@
             "heading": "Didn't find your answer?",
             "form_width": 420,
             "form_padding": 23,
-            "form_background": "#ffffff",
+            "form_background": "#fcfcfc",
             "form_border_color": "#ffffff",
             "form_border_width": 0,
             "text_size": "medium",
