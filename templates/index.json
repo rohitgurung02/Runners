@@ -75,7 +75,7 @@
             "form_input_text_color": "#333333",
             "form_input_text_size": 16,
             "form_input_focus_border_color": "#000000",
-            "form_textarea_min_height": 120,
+            "form_textarea_min_height": 80,
             "form_button_custom": false,
             "form_button_font": "josefin_sans_n4",
             "form_button_size": 16,
