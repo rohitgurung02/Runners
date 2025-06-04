@@ -59,7 +59,7 @@
           "type": "contact_form",
           "settings": {
             "heading": "Didn't find your answer?",
-            "form_width": 460,
+            "form_width": 550,
             "form_padding": 23,
             "form_background": "#ffffff",
             "form_border_color": "#ffffff",
