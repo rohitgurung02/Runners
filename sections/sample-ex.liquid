@@ -173,12 +173,6 @@
     border-color: #dc2626;
   }
 
-  .checkbox-group {
-    display: flex;
-    align-items: start;
-    gap: 0.75rem;
-    margin-top: 1rem;
-  }
 
   .checkbox-group input[type="checkbox"] {
     width: auto;
@@ -642,14 +636,7 @@
 
                 <div class="error-message" id="consentError">You must accept the privacy policy</div>
 
-                {% if block.settings.show_marketing_opt_in %}
-                  <div class="checkbox-group">
-                    <input type="checkbox" id="marketing" name="contact[accepts_marketing]">
-                    <label for="marketing">
-                      {{ block.settings.marketing_text | default: 'I would like to receive marketing communications about your products and services' }}
-                    </label>
-                  </div>
-                {% endif %}
+               
 
                 <button type="submit">{{ block.settings.button_text | default: 'Submit Form' }}</button>
               {% endform %}
