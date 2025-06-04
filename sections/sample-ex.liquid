@@ -473,6 +473,28 @@
    .faq-answer-{{ section.id }} p{
      margin-block:12px;
    }
+  /* contact-form */
+  .form-container input:focus,
+  .form-container textarea:focus {
+    border-color: {{ block.settings.form_input_focus_border_color }} !important;
+    outline: none;
+  }
+  
+  .form-container button:hover {
+    background-color: {{ block.settings.form_button_hover_background }} !important;
+    color: {{ block.settings.form_button_hover_text_color }} !important;
+  }
+  
+  @media (max-width: 768px) {
+    .form-container h1 {
+      font-size: {{ block.settings.form_heading_size_mobile }}px !important;
+    }
+    
+    .form-container {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+  }
 {%- endstyle -%}
 
 {% unless full_width %}
@@ -597,46 +619,136 @@
   </style>
 {% endif %}
 
-<div class="section-{{ section.id }} faq-{{ section.id }}" style="background-color:{{ background_color }}; background-image: {{ background_gradient }};">
+<div class="section-{{ section.id }} faq-{{ section.id }}" style="background-color:{{ section.settings.background_color }}; background-image: {{ section.settings.background_gradient }};">
   <div class="section-{{ section.id }}-settings">
     <div class="faq-body-{{ section.id }}">
       <div class="faq-image-{{ section.id }}">
         {% for block in section.blocks %}
           {% if block.type == 'contact_form' %}
-            <div class="form-container contact-form">
+            <div class="form-container contact-form" style="
+              width: {{ block.settings.form_width }}px;
+              padding: {{ block.settings.form_padding }}px;
+              background-color: {{ block.settings.form_background }};
+              border: {{ block.settings.form_border_width }}px solid {{ block.settings.form_border_color }};
+              border-radius: {{ block.settings.form_border_radius }}px;
+            ">
               {% if form.posted_successfully? %}
-                <div class="success-message" id="successMessage">
+                <div class="success-message" id="successMessage" style="
+                  color: {{ block.settings.form_success_color }};
+                  font-size: {{ block.settings.form_message_size }}px;
+                  margin-top: {{ block.settings.form_message_margin_top }}px;
+                ">
                   Thank you! Your form has been submitted successfully.
                 </div>
               {% endif %}
   
-              <h1>{{ block.settings.heading | default: 'Contact Form' }}</h1>
+              <h1 style="
+                {% if block.settings.form_heading_custom %}font-family: {{ block.settings.form_heading_font.family }};{% endif %}
+                font-size: {{ block.settings.form_heading_size }}px;
+                color: {{ block.settings.form_heading_color }};
+                margin-bottom: {{ block.settings.form_heading_margin_bottom }}px;
+              ">{{ block.settings.heading | default: 'Contact Form' }}</h1>
   
               {% form 'contact', id: 'gdprForm' %}
                 <div class="form-group">
-                  <label for="name">Full Name *</label>
-                  <input type="text" id="name" name="contact[name]" required>
+                  <label for="name" style="
+                    {% if block.settings.form_label_custom %}font-family: {{ block.settings.form_label_font.family }};{% endif %}
+                    font-size: {{ block.settings.form_label_size }}px;
+                    color: {{ block.settings.form_label_color }};
+                    margin-bottom: {{ block.settings.form_label_margin_bottom }}px;
+                  ">Full Name *</label>
+                  <input type="text" id="name" name="contact[name]" required style="
+                    height: {{ block.settings.form_input_height }}px;
+                    padding: {{ block.settings.form_input_padding }}px;
+                    background-color: {{ block.settings.form_input_background }};
+                    border: {{ block.settings.form_input_border_width }}px solid {{ block.settings.form_input_border_color }};
+                    border-radius: {{ block.settings.form_input_border_radius }}px;
+                    color: {{ block.settings.form_input_text_color }};
+                    font-size: {{ block.settings.form_input_text_size }}px;
+                  ">
                   <span class="validation-icon">✓</span>
-                  <div class="error-message" id="nameError">Please enter your full name</div>
+                  <div class="error-message" id="nameError" style="
+                    color: {{ block.settings.form_error_color }};
+                    font-size: {{ block.settings.form_message_size }}px;
+                    margin-top: {{ block.settings.form_message_margin_top }}px;
+                  ">Please enter your full name</div>
                 </div>
 
                 <div class="form-group">
-                  <label for="email">Email Address *</label>
-                  <input type="email" id="email" name="contact[email]" required>
+                  <label for="email" style="
+                    {% if block.settings.form_label_custom %}font-family: {{ block.settings.form_label_font.family }};{% endif %}
+                    font-size: {{ block.settings.form_label_size }}px;
+                    color: {{ block.settings.form_label_color }};
+                    margin-bottom: {{ block.settings.form_label_margin_bottom }}px;
+                  ">Email Address *</label>
+                  <input type="email" id="email" name="contact[email]" required style="
+                    height: {{ block.settings.form_input_height }}px;
+                    padding: {{ block.settings.form_input_padding }}px;
+                    background-color: {{ block.settings.form_input_background }};
+                    border: {{ block.settings.form_input_border_width }}px solid {{ block.settings.form_input_border_color }};
+                    border-radius: {{ block.settings.form_input_border_radius }}px;
+                    color: {{ block.settings.form_input_text_color }};
+                    font-size: {{ block.settings.form_input_text_size }}px;
+                  ">
                   <span class="validation-icon">✓</span>
-                  <div class="error-message" id="emailError">Please enter a valid email address</div>
+                  <div class="error-message" id="emailError" style="
+                    color: {{ block.settings.form_error_color }};
+                    font-size: {{ block.settings.form_message_size }}px;
+                    margin-top: {{ block.settings.form_message_margin_top }}px;
+                  ">Please enter a valid email address</div>
                 </div>
 
                 <div class="form-group">
-                  <label for="message">Message *</label>
-                  <textarea id="message" name="contact[body]" rows="4" required></textarea>
+                  <label for="message" style="
+                    {% if block.settings.form_label_custom %}font-family: {{ block.settings.form_label_font.family }};{% endif %}
+                    font-size: {{ block.settings.form_label_size }}px;
+                    color: {{ block.settings.form_label_color }};
+                    margin-bottom: {{ block.settings.form_label_margin_bottom }}px;
+                  ">Message *</label>
+                  <textarea id="message" name="contact[body]" rows="4" required style="
+                    min-height: {{ block.settings.form_textarea_min_height }}px;
+                    padding: {{ block.settings.form_input_padding }}px;
+                    background-color: {{ block.settings.form_input_background }};
+                    border: {{ block.settings.form_input_border_width }}px solid {{ block.settings.form_input_border_color }};
+                    border-radius: {{ block.settings.form_input_border_radius }}px;
+                    color: {{ block.settings.form_input_text_color }};
+                    font-size: {{ block.settings.form_input_text_size }}px;
+                  "></textarea>
                   <span class="validation-icon">✓</span>
-                  <div class="error-message" id="messageError">Please enter your message</div>
+                  <div class="error-message" id="messageError" style="
+                    color: {{ block.settings.form_error_color }};
+                    font-size: {{ block.settings.form_message_size }}px;
+                    margin-top: {{ block.settings.form_message_margin_top }}px;
+                  ">Please enter your message</div>
                 </div>
 
-                <div class="error-message" id="consentError">You must accept the privacy policy</div>
+                {% if block.settings.show_marketing_opt_in %}
+                  <div class="marketing-checkbox" style="margin-top: 15px; margin-bottom: 15px;">
+                    <input type="checkbox" id="marketing-opt-in" name="contact[accepts_marketing]">
+                    <label for="marketing-opt-in" style="
+                      font-size: {{ block.settings.form_label_size }}px;
+                      color: {{ block.settings.form_label_color }};
+                    ">
+                      {{ block.settings.marketing_text }}
+                    </label>
+                  </div>
+                {% endif %}
 
-                <button type="submit">{{ block.settings.button_text | default: 'Submit Form' }}</button>
+                <div class="error-message" id="consentError" style="
+                  color: {{ block.settings.form_error_color }};
+                  font-size: {{ block.settings.form_message_size }}px;
+                  margin-top: {{ block.settings.form_message_margin_top }}px;
+                ">You must accept the privacy policy</div>
+
+                <button type="submit" style="
+                  {% if block.settings.form_button_custom %}font-family: {{ block.settings.form_button_font.family }};{% endif %}
+                  font-size: {{ block.settings.form_button_size }}px;
+                  padding: {{ block.settings.form_button_padding_vertical }}px {{ block.settings.form_button_padding_horizontal }}px;
+                  background-color: {{ block.settings.form_button_background }};
+                  color: {{ block.settings.form_button_text_color }};
+                  border-radius: {{ block.settings.form_button_border_radius }}px;
+                  border: {{ block.settings.form_button_border_width }}px solid {{ block.settings.form_button_border_color }};
+                ">{{ block.settings.button_text | default: 'Submit Form' }}</button>
               {% endform %}
             </div>
           {% endif %}
@@ -648,9 +760,9 @@
       </div>
       
       <div class="faq-info-{{ section.id }}">
-        {% if heading != blank %}
+        {% if section.settings.heading != blank %}
           <div class='faq-heading-{{ section.id }}'>
-            {{ heading }}
+            {{ section.settings.heading }}
           </div>
         {% endif %}
 
@@ -660,7 +772,7 @@
               <div class="faq-item-{{ section.id }}">
                 <button class="faq-button-{{ section.id }}">
                   <div class="faq-left-{{ section.id }}">
-                    {% unless number_hide %}
+                    {% unless section.settings.number_hide %}
                       <p class="faq-number-{{ section.id }}">0{{ forloop.index }}</p>
                     {% endunless %}
                     <p class="faq-question-{{ section.id }}">{{ block.settings.question }}</p>
