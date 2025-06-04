@@ -494,6 +494,15 @@
       width: 100% !important;
       max-width: 100% !important;
     }
+    
+    .form-container input,
+    .form-container textarea {
+      font-size: {% if block.settings.text_size == 'small' %}12px{% elsif block.settings.text_size == 'medium' %}14px{% else %}16px{% endif %} !important;
+    }
+    
+    .form-container label {
+      font-size: {% if block.settings.form_label_text_size == 'small' %}12px{% elsif block.settings.form_label_text_size == 'medium' %}14px{% else %}16px{% endif %} !important;
+    }
   }
 {%- endstyle -%}
 
@@ -647,15 +656,17 @@
                 font-size: {{ block.settings.form_heading_size }}px;
                 color: {{ block.settings.form_heading_color }};
                 margin-bottom: {{ block.settings.form_heading_margin_bottom }}px;
+                font-weight: {{ block.settings.title_font_weight }};
               ">{{ block.settings.heading | default: 'Contact Form' }}</h1>
   
               {% form 'contact', id: 'gdprForm' %}
                 <div class="form-group">
                   <label for="name" style="
                     {% if block.settings.form_label_custom %}font-family: {{ block.settings.form_label_font.family }};{% endif %}
-                    font-size: {{ block.settings.form_label_size }}px;
+                    font-size: {% if block.settings.form_label_text_size == 'small' %}14px{% elsif block.settings.form_label_text_size == 'medium' %}16px{% else %}18px{% endif %};
                     color: {{ block.settings.form_label_color }};
                     margin-bottom: {{ block.settings.form_label_margin_bottom }}px;
+                    font-weight: {{ block.settings.form_label_title_font_weight }};
                   ">Full Name *</label>
                   <input type="text" id="name" name="contact[name]" required style="
                     height: {{ block.settings.form_input_height }}px;
@@ -664,7 +675,7 @@
                     border: {{ block.settings.form_input_border_width }}px solid {{ block.settings.form_input_border_color }};
                     border-radius: {{ block.settings.form_input_border_radius }}px;
                     color: {{ block.settings.form_input_text_color }};
-                    font-size: {{ block.settings.form_input_text_size }}px;
+                    font-size: {% if block.settings.text_size == 'small' %}14px{% elsif block.settings.text_size == 'medium' %}16px{% else %}18px{% endif %};
                   ">
                   <span class="validation-icon">✓</span>
                   <div class="error-message" id="nameError" style="
@@ -677,9 +688,10 @@
                 <div class="form-group">
                   <label for="email" style="
                     {% if block.settings.form_label_custom %}font-family: {{ block.settings.form_label_font.family }};{% endif %}
-                    font-size: {{ block.settings.form_label_size }}px;
+                    font-size: {% if block.settings.form_label_text_size == 'small' %}14px{% elsif block.settings.form_label_text_size == 'medium' %}16px{% else %}18px{% endif %};
                     color: {{ block.settings.form_label_color }};
                     margin-bottom: {{ block.settings.form_label_margin_bottom }}px;
+                    font-weight: {{ block.settings.form_label_title_font_weight }};
                   ">Email Address *</label>
                   <input type="email" id="email" name="contact[email]" required style="
                     height: {{ block.settings.form_input_height }}px;
@@ -688,7 +700,7 @@
                     border: {{ block.settings.form_input_border_width }}px solid {{ block.settings.form_input_border_color }};
                     border-radius: {{ block.settings.form_input_border_radius }}px;
                     color: {{ block.settings.form_input_text_color }};
-                    font-size: {{ block.settings.form_input_text_size }}px;
+                    font-size: {% if block.settings.text_size == 'small' %}14px{% elsif block.settings.text_size == 'medium' %}16px{% else %}18px{% endif %};
                   ">
                   <span class="validation-icon">✓</span>
                   <div class="error-message" id="emailError" style="
@@ -701,9 +713,10 @@
                 <div class="form-group">
                   <label for="message" style="
                     {% if block.settings.form_label_custom %}font-family: {{ block.settings.form_label_font.family }};{% endif %}
-                    font-size: {{ block.settings.form_label_size }}px;
+                    font-size: {% if block.settings.form_label_text_size == 'small' %}14px{% elsif block.settings.form_label_text_size == 'medium' %}16px{% else %}18px{% endif %};
                     color: {{ block.settings.form_label_color }};
                     margin-bottom: {{ block.settings.form_label_margin_bottom }}px;
+                    font-weight: {{ block.settings.form_label_title_font_weight }};
                   ">Message *</label>
                   <textarea id="message" name="contact[body]" rows="4" required style="
                     min-height: {{ block.settings.form_textarea_min_height }}px;
@@ -712,7 +725,7 @@
                     border: {{ block.settings.form_input_border_width }}px solid {{ block.settings.form_input_border_color }};
                     border-radius: {{ block.settings.form_input_border_radius }}px;
                     color: {{ block.settings.form_input_text_color }};
-                    font-size: {{ block.settings.form_input_text_size }}px;
+                    font-size: {% if block.settings.text_size == 'small' %}14px{% elsif block.settings.text_size == 'medium' %}16px{% else %}18px{% endif %};
                   "></textarea>
                   <span class="validation-icon">✓</span>
                   <div class="error-message" id="messageError" style="
@@ -721,6 +734,19 @@
                     margin-top: {{ block.settings.form_message_margin_top }}px;
                   ">Please enter your message</div>
                 </div>
+
+                {% if block.settings.show_marketing_opt_in %}
+                  <div class="marketing-checkbox" style="margin-top: 15px; margin-bottom: 15px;">
+                    <input type="checkbox" id="marketing-opt-in" name="contact[accepts_marketing]">
+                    <label for="marketing-opt-in" style="
+                      font-size: {% if block.settings.form_label_text_size == 'small' %}14px{% elsif block.settings.form_label_text_size == 'medium' %}16px{% else %}18px{% endif %};
+                      color: {{ block.settings.form_label_color }};
+                      font-weight: {{ block.settings.form_label_title_font_weight }};
+                    ">
+                      {{ block.settings.marketing_text }}
+                    </label>
+                  </div>
+                {% endif %}
 
                 <div class="error-message" id="consentError" style="
                   color: {{ block.settings.form_error_color }};
@@ -736,6 +762,7 @@
                   color: {{ block.settings.form_button_text_color }};
                   border-radius: {{ block.settings.form_button_border_radius }}px;
                   border: {{ block.settings.form_button_border_width }}px solid {{ block.settings.form_button_border_color }};
+                  font-weight: {{ block.settings.title_font_weight }};
                 ">{{ block.settings.button_text | default: 'Submit Form' }}</button>
               {% endform %}
             </div>
@@ -780,6 +807,7 @@
     </div>
   </div>
 </div>
+
 
 <script>
   function initFAQ6() {
