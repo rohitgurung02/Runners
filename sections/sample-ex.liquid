@@ -722,18 +722,6 @@
                   ">Please enter your message</div>
                 </div>
 
-                {% if block.settings.show_marketing_opt_in %}
-                  <div class="marketing-checkbox" style="margin-top: 15px; margin-bottom: 15px;">
-                    <input type="checkbox" id="marketing-opt-in" name="contact[accepts_marketing]">
-                    <label for="marketing-opt-in" style="
-                      font-size: {{ block.settings.form_label_size }}px;
-                      color: {{ block.settings.form_label_color }};
-                    ">
-                      {{ block.settings.marketing_text }}
-                    </label>
-                  </div>
-                {% endif %}
-
                 <div class="error-message" id="consentError" style="
                   color: {{ block.settings.form_error_color }};
                   font-size: {{ block.settings.form_message_size }}px;
