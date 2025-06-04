@@ -160,7 +160,7 @@
         "content_padding_vertical_mobile": 30,
         "content_padding_horizontal": 60,
         "content_padding_horizontal_mobile": 30,
-        "answer_width": 590,
+        "answer_width": 495,
         "answer_custom": false,
         "answer_font": "josefin_sans_n4",
         "answer_size": 15,
