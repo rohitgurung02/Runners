@@ -63,7 +63,7 @@
             "form_padding": 23,
             "form_background": "#ffffff",
             "form_border_color": "#ffffff",
-            "form_border_width": 1,
+            "form_border_width": 0,
             "text_size": "medium",
             "title_font_weight": "normal",
             "form_border_radius": 4,
