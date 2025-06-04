@@ -139,7 +139,7 @@
         "heading_padding_vertical_mobile": 0,
         "heading_padding_horizontal": 24,
         "heading_padding_horizontal_mobile": 24,
-        "item_padding_vertical": 28,
+        "item_padding_vertical": 20,
         "item_padding_vertical_mobile": 20,
         "item_padding_horizontal": 32,
         "item_padding_horizontal_mobile": 30,
