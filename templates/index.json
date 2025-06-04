@@ -44,7 +44,7 @@
         "contact_form_dkKmBN": {
           "type": "contact_form",
           "settings": {
-            "heading": "Contact Us",
+            "heading": "Didn't find your answer?",
             "show_marketing_opt_in": true,
             "marketing_text": "I would like to receive marketing communications",
             "button_text": "Submit"
