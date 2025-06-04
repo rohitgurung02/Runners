@@ -126,7 +126,7 @@
       "settings": {
         "layout_gap": 0,
         "layout_gap_mobile": 0,
-        "image_position": "1",
+        "image_position": "2",
         "heading": "<p>Do you have any question?</p>",
         "heading_custom": false,
         "heading_font": "aleo_n4",
