@@ -55,13 +55,6 @@
             "answer": "<p>Answer</p>"
           }
         },
-        "faq_item_c3e3hT": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Question",
-            "answer": "<p>Answer</p>"
-          }
-        },
         "contact_form_dkKmBN": {
           "type": "contact_form",
           "settings": {
@@ -125,7 +118,6 @@
         "faq_item_rMnWDh",
         "faq_item_xGKJVX",
         "faq_item_73MzWn",
-        "faq_item_c3e3hT",
         "contact_form_dkKmBN"
       ],
       "name": "Custom FAQ Section",
