@@ -101,7 +101,7 @@
             "form_button_text_color": "#ffffff",
             "form_button_hover_background": "#f09c9c",
             "form_button_hover_text_color": "#ffd700",
-            "form_button_border_radius": 14,
+            "form_button_border_radius": 29,
             "form_button_border_width": 1,
             "form_button_border_color": "rgba(0,0,0,0)",
             "form_message_size": 14,
