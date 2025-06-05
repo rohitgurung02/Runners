@@ -60,7 +60,7 @@
       "settings": {
         "title": "Multicolumn",
         "heading_size": "h2",
-        "image_width": "third",
+        "image_width": "half",
         "image_height": 280,
         "image_border_radius": 4,
         "image_ratio": "square",
