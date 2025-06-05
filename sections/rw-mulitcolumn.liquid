@@ -1,8 +1,9 @@
+
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-/* Multicolumn Base Styles */
-.multicolumn .title {
+  /* css */
+  .multicolumn .title {
   margin: 0;
 }
 
@@ -230,86 +231,80 @@
     display: list-item;
   }
 }
-
-/* Section Padding */
-.section-{{ section.id }}-padding {
-  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-}
-
-@media screen and (min-width: 750px) {
+  /* endcss */
+  
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
-}
 
-/* Image Container Styles */
-#shopify-section-{{ section.id }} .multicolumn-card__image-wrapper {
-  border-radius: {{ section.settings.image_border_radius }}px;
-  padding-top: {{ section.settings.image_padding_top }}px;
-  padding-bottom: {{ section.settings.image_padding_bottom }}px;
-  overflow: hidden;
-  height: {{ section.settings.image_height }}px;
-  width: {{ section.settings.image_width_size }}%;
-  margin: 0 auto;
-  position: relative;
-}
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
 
-/* Image Styles */
-#shopify-section-{{ section.id }} .multicolumn-card__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  {%- if section.settings.image_position == 'left' -%}
-    object-position: left;
-  {%- elsif section.settings.image_position == 'right' -%}
-    object-position: right;
-  {%- else -%}
-    object-position: center;
-  {%- endif -%}
-}
+  #shopify-section-{{ section.id }} .multicolumn-card__image-wrapper {
+    border-radius: {{ section.settings.image_border_radius }}px;
+    padding-top: {{ section.settings.image_padding_top }}px;
+    padding-bottom: {{ section.settings.image_padding_bottom }}px;
+    overflow: hidden;
+    height: {{ section.settings.image_height }}px;
+    width: {{ section.settings.image_width_size }}%;
+    margin: 0 auto;
+    position: relative;
+  }
 
-/* Card Info Container */
+  {%- if section.settings.show_horizontal_line -%}
+  #shopify-section-{{ section.id }} .multicolumn-card {
+    position: relative;
+  }
+  
+  #shopify-section-{{ section.id }} .multicolumn-card__info::after {
+    content: '';
+    display: block;
+    width: {{ section.settings.horizontal_line_width }}%;
+    height: {{ section.settings.horizontal_line_height }}px;
+    background: {{ section.settings.horizontal_line_color }};
+    margin: 9px auto 0;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    z-index: 99;
+    transform: translateX(-50%);
+  }
+{%- endif -%}
+
 #shopify-section-{{ section.id }} .multicolumn-card__info {
   text-align: {{ section.settings.text_alignment }};
   padding: 23px 0 20px !important;
   position: relative;
+  {%- if section.settings.show_horizontal_line -%}
+    padding-bottom: {{ section.settings.horizontal_line_height | plus: 30 }}px;
+  {%- endif -%}
 }
 
-/* Block-specific Horizontal Line Styles */
-{%- for block in section.blocks -%}
-  #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info {
-    position: relative;
-  }
-  
-  #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info::after {
-    {%- if block.settings.show_horizontal_line -%}
-      content: '';
-      display: block;
-      width: {{ block.settings.horizontal_line_width }}%;
-      height: {{ block.settings.horizontal_line_height }}px;
-      background: {{ block.settings.horizontal_line_color }};
-      margin: 0 auto;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      z-index: 1;
+  #shopify-section-{{ section.id }} .multicolumn-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    {%- if section.settings.image_position == 'left' -%}
+      object-position: left;
+    {%- elsif section.settings.image_position == 'right' -%}
+      object-position: right;
     {%- else -%}
-      content: none;
+      object-position: center;
     {%- endif -%}
   }
-  
-  /* Adjust padding when line is shown */
-  {%- if block.settings.show_horizontal_line -%}
-    #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info {
-      padding-top: {{ block.settings.horizontal_line_height | plus: 23 }}px !important;
-    }
-  {%- endif -%}
 
-  /* Block-specific Title Styles */
-  #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info h3 {
+  #shopify-section-{{ section.id }} .multicolumn-card__info {
+    text-align: {{ section.settings.text_alignment }};
+    padding: 40px 0 20px;
+  }
+
+  /* Title styles */
+  #shopify-section-{{ section.id }} .multicolumn-card__info h3 {
     {%- if block.settings.title_font_size != blank -%}
       font-size: {{ block.settings.title_font_size }}px;
     {%- else -%}
@@ -346,8 +341,8 @@
     {%- endif -%}
   }
 
-  /* Block-specific Text Styles */
-  #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info .rte {
+  /* Text styles */
+  #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
     {%- if block.settings.text_font_size != blank -%}
       font-size: {{ block.settings.text_font_size }}px;
     {%- else -%}
@@ -383,8 +378,16 @@
       padding-bottom: {{ block.settings.text_padding_bottom }}px;
     {%- endif -%}
   }
-{%- endfor -%}
+
 {%- endstyle -%}
+
+{%- liquid
+  assign columns_mobile_int = section.settings.columns_mobile | plus: 0
+  assign show_mobile_slider = false
+  if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
+    assign show_mobile_slider = true
+  endif
+-%}
 
 <div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
   <div
@@ -1110,7 +1113,7 @@
   ],
   "presets": [
     {
-      "name": "Three Column Features",
+      "name": "RW Multicolumn",
       "blocks": [
         {
           "type": "column",
