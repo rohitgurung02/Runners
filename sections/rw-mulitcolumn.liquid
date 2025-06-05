@@ -23,16 +23,16 @@
     position: relative;
   }
 
-  {%- if section.settings.show_vertical_line -%}
+  {%- if section.settings.show_horizontal_line -%}
     #shopify-section-{{ section.id }} .multicolumn-card__image-wrapper::after {
       content: '';
       display: block;
-      width: {{ section.settings.vertical_line_width }}px;
-      height: {{ section.settings.vertical_line_height }}px;
-      background: {{ section.settings.vertical_line_color }};
+      width: {{ section.settings.horizontal_line_width }}%;
+      height: {{ section.settings.horizontal_line_height }}px;
+      background: {{ section.settings.horizontal_line_color }};
       margin: 20px auto 0;
       position: absolute;
-      bottom: -{{ section.settings.vertical_line_height | plus: 10 }}px;
+      bottom: -{{ section.settings.horizontal_line_height | plus: 10 }}px;
       left: 50%;
       transform: translateX(-50%);
     }
@@ -54,8 +54,8 @@
   #shopify-section-{{ section.id }} .multicolumn-card__info {
     text-align: {{ section.settings.text_alignment }};
     padding: 40px 0 20px;
-    {%- if section.settings.show_vertical_line -%}
-      margin-top: {{ section.settings.vertical_line_height | plus: 10 }}px;
+    {%- if section.settings.show_horizontal_line -%}
+      margin-top: {{ section.settings.horizontal_line_height | plus: 10 }}px;
     {%- else -%}
       margin-top: 20px;
     {%- endif -%}
@@ -364,38 +364,38 @@
     },
     {
       "type": "header",
-      "content": "Vertical line settings"
+      "content": "Horizontal line settings"
     },
     {
       "type": "checkbox",
-      "id": "show_vertical_line",
-      "label": "Show vertical line",
+      "id": "show_horizontal_line",
+      "label": "Show horizontal line",
       "default": true
     },
     {
       "type": "range",
-      "id": "vertical_line_width",
+      "id": "horizontal_line_width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Horizontal line width",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "horizontal_line_height",
       "min": 1,
       "max": 20,
       "step": 1,
       "unit": "px",
-      "label": "Vertical line width",
+      "label": "Horizontal line height",
       "default": 2
     },
     {
-      "type": "range",
-      "id": "vertical_line_height",
-      "min": 10,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Vertical line height",
-      "default": 30
-    },
-    {
       "type": "color",
-      "id": "vertical_line_color",
-      "label": "Vertical line color",
+      "id": "horizontal_line_color",
+      "label": "Horizontal line color",
       "default": "#000000"
     },
     {
