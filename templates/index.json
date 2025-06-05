@@ -16,9 +16,72 @@
       "settings": {
         "announcement_compact": false
       }
+    },
+    "rw_mulitcolumn_DAVDez": {
+      "type": "rw-mulitcolumn",
+      "blocks": {
+        "column_X3Bgbk": {
+          "type": "column",
+          "settings": {
+            "title": "CLICK AND COLLECT",
+            "text": "<p>Just 10% deposit. Pay the rest on collection. Same price online & instore!</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_mhKDWG": {
+          "type": "column",
+          "settings": {
+            "title": "WE SHIP WORLDWIDE",
+            "text": "<p>Competitive prices in the EU & selected countries worldwide.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_NMTxVX": {
+          "type": "column",
+          "settings": {
+            "title": "OVER 20,000 PRODUCTS",
+            "text": "<p>In stock at our store and warehouse, ready to ship directly to you!</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_X3Bgbk",
+        "column_mhKDWG",
+        "column_NMTxVX"
+      ],
+      "name": "Three Column Features",
+      "settings": {
+        "title": "Featured columns",
+        "heading_size": "h1",
+        "image_width_size": 100,
+        "image_height": 300,
+        "image_border_radius": 0,
+        "image_position": "center",
+        "image_ratio": "adapt",
+        "show_horizontal_line": true,
+        "horizontal_line_width": 80,
+        "horizontal_line_height": 2,
+        "horizontal_line_color": "#d52929",
+        "text_alignment": "center",
+        "button_label": "View all",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-4d80e460-62c3-438e-bbba-43df88b47e6a",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD"
+    "featured_collection_copy_kaw7iD",
+    "rw_mulitcolumn_DAVDez"
   ]
 }
