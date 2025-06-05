@@ -68,7 +68,7 @@
         "horizontal_line_height": 2,
         "horizontal_line_color": "#000000",
         "text_alignment": "center",
-        "button_label": "View all",
+        "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
         "column_alignment": "left",
