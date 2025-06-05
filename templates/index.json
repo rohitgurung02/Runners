@@ -23,6 +23,7 @@
         "column_nY48P7": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/2703076_delivery_truck_shipping_store_icon_52b177d4-9f4d-42fc-b07b-0f23ea54d0e3.png",
             "title": "CLICK AND COLLECT",
             "text": "<p>Just 10% deposit. Pay the rest on collection. Same price online & instore!</p>",
             "link_label": "",
@@ -57,7 +58,7 @@
       "settings": {
         "title": "Featured columns",
         "heading_size": "h1",
-        "image_width_size": 100,
+        "image_width_size": 85,
         "image_height": 300,
         "image_border_radius": 0,
         "image_position": "center",
