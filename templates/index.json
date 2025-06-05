@@ -16,75 +16,9 @@
       "settings": {
         "announcement_compact": false
       }
-    },
-    "rw_mulitcolumn_M9nUFQ": {
-      "type": "rw-mulitcolumn",
-      "blocks": {
-        "column_8xhwyJ": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/2703076_delivery_truck_shipping_store_icon_52b177d4-9f4d-42fc-b07b-0f23ea54d0e3.png",
-            "title": "CLICK AND COLLECT",
-            "text": "<p>Just 10% deposit. Pay the rest on collection. Same price online & instore!</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_Lpaf8r": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/9027024_smiley_wink_thin_icon_69b1f20f-785d-4665-8359-6d0ecc274a95.png",
-            "title": "WE SHIP WORLDWIDE",
-            "text": "<p>Competitive prices in the EU & selected countries worldwide.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_bM3M7r": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/2703076_delivery_truck_shipping_store_icon_52b177d4-9f4d-42fc-b07b-0f23ea54d0e3.png",
-            "title": "OVER 20,000 PRODUCTS",
-            "text": "<p>In stock at our store and warehouse, ready to ship directly to you!</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_8xhwyJ",
-        "column_Lpaf8r",
-        "column_bM3M7r"
-      ],
-      "name": "Three Column Features",
-      "settings": {
-        "title": "",
-        "heading_size": "h2",
-        "image_width_size": 20,
-        "image_height": 100,
-        "image_border_radius": 0,
-        "image_position": "center",
-        "image_ratio": "adapt",
-        "show_horizontal_line": true,
-        "horizontal_line_width": 80,
-        "horizontal_line_height": 2,
-        "horizontal_line_color": "#35a4da",
-        "text_alignment": "center",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "scheme-4d80e460-62c3-438e-bbba-43df88b47e6a",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD",
-    "rw_mulitcolumn_M9nUFQ"
+    "featured_collection_copy_kaw7iD"
   ]
 }

@@ -303,20 +303,81 @@
     padding: 40px 0 20px;
   }
 
+  /* Title styles */
   #shopify-section-{{ section.id }} .multicolumn-card__info h3 {
-    font-size: 18px;
-    font-weight: bold;
+    {%- if block.settings.title_font_size != blank -%}
+      font-size: {{ block.settings.title_font_size }}px;
+    {%- else -%}
+      font-size: 18px;
+    {%- endif -%}
+    
+    {%- if block.settings.title_font_weight != blank -%}
+      font-weight: {{ block.settings.title_font_weight }};
+    {%- else -%}
+      font-weight: bold;
+    {%- endif -%}
+    
     margin-bottom: 10px;
     text-transform: uppercase;
+    
+    {%- if block.settings.title_color != blank -%}
+      color: {{ block.settings.title_color }};
+    {%- endif -%}
+    
+    {%- if block.settings.title_text_decoration != blank -%}
+      text-decoration: {{ block.settings.title_text_decoration }};
+    {%- endif -%}
+    
+    {%- if block.settings.title_font_style != blank -%}
+      font-style: {{ block.settings.title_font_style }};
+    {%- endif -%}
+    
+    {%- if block.settings.title_padding_top != blank -%}
+      padding-top: {{ block.settings.title_padding_top }}px;
+    {%- endif -%}
+    
+    {%- if block.settings.title_padding_bottom != blank -%}
+      padding-bottom: {{ block.settings.title_padding_bottom }}px;
+    {%- endif -%}
   }
 
- #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
-  font-size: 14px;
-  line-height: 1.4;
-  width: {{ section.settings.paragraph_width }}%;
-  margin-left: auto;
-  margin-right: auto;
-}
+  /* Text styles */
+  #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
+    {%- if block.settings.text_font_size != blank -%}
+      font-size: {{ block.settings.text_font_size }}px;
+    {%- else -%}
+      font-size: 14px;
+    {%- endif -%}
+    
+    line-height: 1.4;
+    width: {{ section.settings.paragraph_width }}%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    {%- if block.settings.text_font_weight != blank -%}
+      font-weight: {{ block.settings.text_font_weight }};
+    {%- endif -%}
+    
+    {%- if block.settings.text_color != blank -%}
+      color: {{ block.settings.text_color }};
+    {%- endif -%}
+    
+    {%- if block.settings.text_text_decoration != blank -%}
+      text-decoration: {{ block.settings.text_text_decoration }};
+    {%- endif -%}
+    
+    {%- if block.settings.text_font_style != blank -%}
+      font-style: {{ block.settings.text_font_style }};
+    {%- endif -%}
+    
+    {%- if block.settings.text_padding_top != blank -%}
+      padding-top: {{ block.settings.text_padding_top }}px;
+    {%- endif -%}
+    
+    {%- if block.settings.text_padding_bottom != blank -%}
+      padding-bottom: {{ block.settings.text_padding_bottom }}px;
+    {%- endif -%}
+  }
 
 {%- endstyle -%}
 
@@ -537,7 +598,7 @@
     {
       "type": "range",
       "id": "image_width_size",
-      "min": 10,
+      "min": 20,
       "max": 100,
       "step": 5,
       "unit": "%",
@@ -669,6 +730,16 @@
       "label": "Text alignment"
     },
     {
+      "type": "range",
+      "id": "paragraph_width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Paragraph width",
+      "default": 100
+    },
+    {
       "type": "header",
       "content": "Button"
     },    
@@ -796,16 +867,236 @@
           "label": "Image"
         },
         {
+          "type": "header",
+          "content": "Title settings"
+        },
+        {
           "type": "inline_richtext",
           "id": "title",
           "default": "Feature title",
           "label": "Title"
         },
         {
+          "type": "range",
+          "id": "title_font_size",
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Title font size",
+          "default": 18
+        },
+        {
+          "type": "select",
+          "id": "title_font_weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            }
+          ],
+          "default": "bold",
+          "label": "Title font weight"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color",
+          "default": "#000000"
+        },
+        {
+          "type": "select",
+          "id": "title_text_decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line through"
+            }
+          ],
+          "default": "none",
+          "label": "Title text decoration"
+        },
+        {
+          "type": "select",
+          "id": "title_font_style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal",
+          "label": "Title font style"
+        },
+        {
+          "type": "range",
+          "id": "title_padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Title padding top",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "title_padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Title padding bottom",
+          "default": 10
+        },
+        {
+          "type": "header",
+          "content": "Text settings"
+        },
+        {
           "type": "richtext",
           "id": "text",
           "default": "<p>Feature description</p>",
           "label": "Text"
+        },
+        {
+          "type": "range",
+          "id": "text_font_size",
+          "min": 10,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "label": "Text font size",
+          "default": 14
+        },
+        {
+          "type": "select",
+          "id": "text_font_weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            }
+          ],
+          "default": "normal",
+          "label": "Text font weight"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "select",
+          "id": "text_text_decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line through"
+            }
+          ],
+          "default": "none",
+          "label": "Text text decoration"
+        },
+        {
+          "type": "select",
+          "id": "text_font_style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal",
+          "label": "Text font style"
+        },
+        {
+          "type": "range",
+          "id": "text_padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Text padding top",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "text_padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Text padding bottom",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Link"
         },
         {
           "type": "text",
