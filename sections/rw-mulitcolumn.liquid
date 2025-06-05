@@ -1,4 +1,3 @@
-
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
@@ -280,6 +279,10 @@
 
 /* Block-specific Horizontal Line Styles */
 {%- for block in section.blocks -%}
+  #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info {
+    position: relative;
+  }
+  
   #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info::after {
     {%- if block.settings.show_horizontal_line -%}
       content: '';
@@ -287,22 +290,21 @@
       width: {{ block.settings.horizontal_line_width }}%;
       height: {{ block.settings.horizontal_line_height }}px;
       background: {{ block.settings.horizontal_line_color }};
-      margin: 9px auto 0;
+      margin: 0 auto;
       position: absolute;
-      left: 50%;
+      left: 0;
+      right: 0;
       top: 0;
-      z-index: 99;
-      transform: translateX(-50%);
+      z-index: 1;
     {%- else -%}
       content: none;
-      display: none;
     {%- endif -%}
   }
   
   /* Adjust padding when line is shown */
   {%- if block.settings.show_horizontal_line -%}
     #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info {
-      padding-bottom: {{ block.settings.horizontal_line_height | plus: 30 }}px !important;
+      padding-top: {{ block.settings.horizontal_line_height | plus: 23 }}px !important;
     }
   {%- endif -%}
 
