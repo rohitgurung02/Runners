@@ -23,17 +23,20 @@
     position: relative;
   }
 
- {%- if section.settings.show_horizontal_line -%}
-  #shopify-section-{{ section.id }} .multicolumn-card::after {
-    content: '';
-    display: block;
-    width: {{ section.settings.horizontal_line_width }}%;
-    height: {{ section.settings.horizontal_line_height }}px;
-    background: {{ section.settings.horizontal_line_color }};
-    margin: 20px auto 0;
-  }
-{%- endif -%}
-
+  {%- if section.settings.show_horizontal_line -%}
+    #shopify-section-{{ section.id }} .multicolumn-card::after {
+      content: '';
+      display: block;
+      width: {{ section.settings.horizontal_line_width }}%;
+      height: {{ section.settings.horizontal_line_height }}px;
+      background: {{ section.settings.horizontal_line_color }};
+      margin: 20px auto 0;
+      position: absolute;
+      bottom: -{{ section.settings.horizontal_line_height | plus: 10 }}px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  {%- endif -%}
 
   #shopify-section-{{ section.id }} .multicolumn-card__image {
     width: 100%;
