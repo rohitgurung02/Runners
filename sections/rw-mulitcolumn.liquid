@@ -307,7 +307,7 @@
   #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
     font-size: 14px;
     line-height: 1.4;
-    width: {{ section.settings.paragraph_width }}%;
+    width: {{ section.settings.text_width }}%;
     {% if section.settings.text_alignment == 'center' %}
       margin-left: auto;
       margin-right: auto;
@@ -836,12 +836,12 @@
         },
         {
         "type": "range",
-  "id": "paragraph_width",
-  "min": 50,
+  "id": "text_width",
+  "min": 30,
   "max": 100,
   "step": 5,
   "unit": "%",
-  "label": "Paragraph width",
+  "label": "Text width",
   "default": 100
 },
         {
