@@ -59,10 +59,10 @@
       "name": "RW Multicolumn",
       "settings": {
         "title": "Multicolumn",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "image_width": "third",
-        "image_height": 300,
-        "image_border_radius": 0,
+        "image_height": 280,
+        "image_border_radius": 4,
         "image_ratio": "square",
         "button_label": "",
         "button_link": "",
