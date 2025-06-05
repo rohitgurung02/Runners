@@ -58,7 +58,7 @@
       "settings": {
         "title": "Featured columns",
         "heading_size": "h1",
-        "image_width_size": 35,
+        "image_width_size": 30,
         "image_height": 120,
         "image_border_radius": 0,
         "image_position": "center",
