@@ -70,9 +70,7 @@
   #shopify-section-{{ section.id }} .multicolumn-card__info {
     text-align: {{ section.settings.text_alignment }};
     padding: 40px 0 20px;
-    {%- if section.settings.show_horizontal_line -%}
-      margin-top: {{ section.settings.horizontal_line_height | plus: 10 }}px;
-    {%- endif -%}
+  
   }
 
   #shopify-section-{{ section.id }} .multicolumn-card__info h3 {
