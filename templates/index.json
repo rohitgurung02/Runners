@@ -43,6 +43,7 @@
         "column_NMTxVX": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/9027024_smiley_wink_thin_icon_69b1f20f-785d-4665-8359-6d0ecc274a95.png",
             "title": "OVER 20,000 PRODUCTS",
             "text": "<p>In stock at our store and warehouse, ready to ship directly to you!</p>",
             "link_label": "",
