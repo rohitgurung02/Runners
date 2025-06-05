@@ -100,8 +100,8 @@
       "settings": {
         "title": "",
         "heading_size": "h1",
-        "image_width_size": 10,
-        "image_height": 100,
+        "image_width_size": 15,
+        "image_height": 60,
         "image_border_radius": 0,
         "image_position": "center",
         "image_ratio": "adapt",
