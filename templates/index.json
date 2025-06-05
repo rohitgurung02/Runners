@@ -16,9 +16,67 @@
       "settings": {
         "announcement_compact": false
       }
+    },
+    "multicolumn_icJyHR": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_jbyHcd": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2703076_delivery_truck_shipping_store_icon_52b177d4-9f4d-42fc-b07b-0f23ea54d0e3.png",
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_LmwLHK": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/8666616_shopping_cart_icon_c759b4e9-4e7a-44f4-a571-bfc74b8dca1d.png",
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_xytA7R": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9027024_smiley_wink_thin_icon_69b1f20f-785d-4665-8359-6d0ecc274a95.png",
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_jbyHcd",
+        "column_LmwLHK",
+        "column_xytA7R"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Multicolumn",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Button label",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-4d80e460-62c3-438e-bbba-43df88b47e6a",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD"
+    "featured_collection_copy_kaw7iD",
+    "multicolumn_icJyHR"
   ]
 }
