@@ -25,7 +25,7 @@
           "settings": {
             "image": "shopify://shop_images/2703076_delivery_truck_shipping_store_icon_52b177d4-9f4d-42fc-b07b-0f23ea54d0e3.png",
             "title": "CLICK AND COLLECT",
-            "text": "<p>Just 10% deposit. Pay the rest on &lt;br&gt; collection. Same price online & instore!<br/><br/></p>",
+            "text": "<p>Just 10% deposit. Pay the rest on &lt;/br&gt; collection. Same price online & instore!<br/><br/></p>",
             "link_label": "",
             "link": ""
           }
