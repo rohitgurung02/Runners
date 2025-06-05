@@ -65,7 +65,7 @@
         "image_ratio": "adapt",
         "show_horizontal_line": true,
         "horizontal_line_width": 65,
-        "horizontal_line_height": 6,
+        "horizontal_line_height": 10,
         "horizontal_line_color": "#c12a2a",
         "text_alignment": "center",
         "button_label": "View all",
