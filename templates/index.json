@@ -16,9 +16,115 @@
       "settings": {
         "announcement_compact": false
       }
+    },
+    "rw_mulitcolumn_pGW8Ym": {
+      "type": "rw-mulitcolumn",
+      "blocks": {
+        "column_xjJNnV": {
+          "type": "column",
+          "settings": {
+            "title": "CLICK AND COLLECT",
+            "title_font_size": 18,
+            "title_font_weight": "bold",
+            "title_color": "#000000",
+            "title_text_decoration": "none",
+            "title_font_style": "normal",
+            "title_padding_top": 0,
+            "title_padding_bottom": 10,
+            "text": "<p>Just 10% deposit. Pay the rest on collection. Same price online & instore!</p>",
+            "text_font_size": 14,
+            "text_font_weight": "normal",
+            "text_color": "#000000",
+            "text_text_decoration": "none",
+            "text_font_style": "normal",
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_ypxftU": {
+          "type": "column",
+          "settings": {
+            "title": "WE SHIP WORLDWIDE",
+            "title_font_size": 18,
+            "title_font_weight": "bold",
+            "title_color": "#000000",
+            "title_text_decoration": "none",
+            "title_font_style": "normal",
+            "title_padding_top": 0,
+            "title_padding_bottom": 10,
+            "text": "<p>Competitive prices in the EU & selected countries worldwide.</p>",
+            "text_font_size": 14,
+            "text_font_weight": "normal",
+            "text_color": "#000000",
+            "text_text_decoration": "none",
+            "text_font_style": "normal",
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_V6UUki": {
+          "type": "column",
+          "settings": {
+            "title": "OVER 20,000 PRODUCTS",
+            "title_font_size": 18,
+            "title_font_weight": "bold",
+            "title_color": "#000000",
+            "title_text_decoration": "none",
+            "title_font_style": "normal",
+            "title_padding_top": 0,
+            "title_padding_bottom": 10,
+            "text": "<p>In stock at our store and warehouse, ready to ship directly to you!</p>",
+            "text_font_size": 14,
+            "text_font_weight": "normal",
+            "text_color": "#000000",
+            "text_text_decoration": "none",
+            "text_font_style": "normal",
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_xjJNnV",
+        "column_ypxftU",
+        "column_V6UUki"
+      ],
+      "name": "Three Column Features",
+      "settings": {
+        "title": "Featured columns",
+        "heading_size": "h1",
+        "image_width_size": 100,
+        "image_height": 300,
+        "image_border_radius": 0,
+        "image_position": "center",
+        "image_ratio": "adapt",
+        "show_horizontal_line": true,
+        "horizontal_line_width": 80,
+        "horizontal_line_height": 2,
+        "horizontal_line_color": "#000000",
+        "text_alignment": "center",
+        "paragraph_width": 100,
+        "button_label": "View all",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-4d80e460-62c3-438e-bbba-43df88b47e6a",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD"
+    "featured_collection_copy_kaw7iD",
+    "rw_mulitcolumn_pGW8Ym"
   ]
 }
