@@ -27,7 +27,7 @@
             "title": "CLICK AND COLLECT",
             "text": "<p>Just 10% deposit. Pay the rest on  collection. Same price online & instore!<br/><br/></p>",
             "text_width": 30,
-            "text_alignment": "center",
+            "text_alignment": "left",
             "link_label": "",
             "link": ""
           }
