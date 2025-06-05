@@ -26,7 +26,8 @@
             "image": "shopify://shop_images/2703076_delivery_truck_shipping_store_icon_52b177d4-9f4d-42fc-b07b-0f23ea54d0e3.png",
             "title": "CLICK AND COLLECT",
             "text": "<p>Just 10% deposit. Pay the rest on  collection. Same price online & instore!<br/><br/></p>",
-            "paragraph_width": 55,
+            "paragraph_width": 100,
+            "text_alignment": "right",
             "link_label": "",
             "link": ""
           }
@@ -38,6 +39,7 @@
             "title": "WE SHIP WORLDWIDE",
             "text": "<p>Competitive prices in the EU & selected countries worldwide.</p>",
             "paragraph_width": 100,
+            "text_alignment": "center",
             "link_label": "",
             "link": ""
           }
@@ -49,6 +51,7 @@
             "title": "OVER 20,000 PRODUCTS",
             "text": "<p>In stock at our store and warehouse, ready to ship directly to you!</p>",
             "paragraph_width": 100,
+            "text_alignment": "center",
             "link_label": "",
             "link": ""
           }
