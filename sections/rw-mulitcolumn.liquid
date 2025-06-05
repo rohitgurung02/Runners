@@ -24,7 +24,7 @@
   }
 
   {%- if section.settings.show_horizontal_line -%}
-    #shopify-section-{{ section.id }} .multicolumn-card::after {
+    #shopify-section-{{ section.id }} .multicolumn-card .multicolumn-card__image-wrapper::after {
       content: '';
       display: block;
       width: {{ section.settings.horizontal_line_width }}%;
