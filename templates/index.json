@@ -68,7 +68,7 @@
         "image_padding_top": 30,
         "image_padding_bottom": 0,
         "show_horizontal_line": true,
-        "horizontal_line_width": 50,
+        "horizontal_line_width": 60,
         "horizontal_line_height": 3,
         "horizontal_line_color": "#506acb",
         "text_alignment": "center",
