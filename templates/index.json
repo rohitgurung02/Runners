@@ -114,7 +114,7 @@
         "image_padding_top": 0,
         "image_padding_bottom": 0,
         "show_horizontal_line": true,
-        "horizontal_line_width": 80,
+        "horizontal_line_width": 60,
         "horizontal_line_height": 2,
         "horizontal_line_color": "#000000",
         "text_alignment": "center",
