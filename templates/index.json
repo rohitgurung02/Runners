@@ -32,6 +32,7 @@
         },
         "column_mhKDWG": {
           "type": "column",
+          "disabled": true,
           "settings": {
             "title": "WE SHIP WORLDWIDE",
             "text": "<p>Competitive prices in the EU & selected countries worldwide.</p>",
@@ -41,6 +42,7 @@
         },
         "column_NMTxVX": {
           "type": "column",
+          "disabled": true,
           "settings": {
             "title": "OVER 20,000 PRODUCTS",
             "text": "<p>In stock at our store and warehouse, ready to ship directly to you!</p>",
@@ -68,7 +70,7 @@
         "horizontal_line_height": 2,
         "horizontal_line_color": "#d52929",
         "text_alignment": "center",
-        "button_label": "View all",
+        "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
         "column_alignment": "left",
