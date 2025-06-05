@@ -2,8 +2,8 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  /* css */
-  .multicolumn .title {
+/* Multicolumn Base Styles */
+.multicolumn .title {
   margin: 0;
 }
 
@@ -231,142 +231,158 @@
     display: list-item;
   }
 }
-  /* endcss */
-  
+
+/* Section Padding */
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
   }
+}
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
+/* Image Container Styles */
+#shopify-section-{{ section.id }} .multicolumn-card__image-wrapper {
+  border-radius: {{ section.settings.image_border_radius }}px;
+  padding-top: {{ section.settings.image_padding_top }}px;
+  padding-bottom: {{ section.settings.image_padding_bottom }}px;
+  overflow: hidden;
+  height: {{ section.settings.image_height }}px;
+  width: {{ section.settings.image_width_size }}%;
+  margin: 0 auto;
+  position: relative;
+}
 
-  #shopify-section-{{ section.id }} .multicolumn-card__image-wrapper {
-    border-radius: {{ section.settings.image_border_radius }}px;
-    padding-top: {{ section.settings.image_padding_top }}px;
-    padding-bottom: {{ section.settings.image_padding_bottom }}px;
-    overflow: hidden;
-    height: {{ section.settings.image_height }}px;
-    width: {{ section.settings.image_width_size }}%;
-    margin: 0 auto;
-    position: relative;
-  }
+/* Image Styles */
+#shopify-section-{{ section.id }} .multicolumn-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  {%- if section.settings.image_position == 'left' -%}
+    object-position: left;
+  {%- elsif section.settings.image_position == 'right' -%}
+    object-position: right;
+  {%- else -%}
+    object-position: center;
+  {%- endif -%}
+}
 
-  {%- if section.settings.show_horizontal_line -%}
-  #shopify-section-{{ section.id }} .multicolumn-card {
-    position: relative;
-  }
-  
-  #shopify-section-{{ section.id }} .multicolumn-card__info::after {
-    content: '';
-    display: block;
-    width: {{ section.settings.horizontal_line_width }}%;
-    height: {{ section.settings.horizontal_line_height }}px;
-    background: {{ section.settings.horizontal_line_color }};
-    margin: 9px auto 0;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    z-index: 99;
-    transform: translateX(-50%);
-  }
-{%- endif -%}
-
+/* Card Info Container */
 #shopify-section-{{ section.id }} .multicolumn-card__info {
   text-align: {{ section.settings.text_alignment }};
   padding: 23px 0 20px !important;
   position: relative;
-  {%- if section.settings.show_horizontal_line -%}
-    padding-bottom: {{ section.settings.horizontal_line_height | plus: 30 }}px;
-  {%- endif -%}
 }
 
-  #shopify-section-{{ section.id }} .multicolumn-card__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    {%- if section.settings.image_position == 'left' -%}
-      object-position: left;
-    {%- elsif section.settings.image_position == 'right' -%}
-      object-position: right;
+/* Block-specific Horizontal Line Styles */
+{%- for block in section.blocks -%}
+  #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info::after {
+    {%- if block.settings.show_horizontal_line -%}
+      content: '';
+      display: block;
+      width: {{ block.settings.horizontal_line_width }}%;
+      height: {{ block.settings.horizontal_line_height }}px;
+      background: {{ block.settings.horizontal_line_color }};
+      margin: 9px auto 0;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      z-index: 99;
+      transform: translateX(-50%);
     {%- else -%}
-      object-position: center;
+      content: none;
+      display: none;
     {%- endif -%}
-  }
-
-  #shopify-section-{{ section.id }} .multicolumn-card__info {
-    text-align: {{ section.settings.text_alignment }};
-    padding: 40px 0 20px;
-  }
-
-  /* Title styles */
- /* Horizontal line styles - now block-based */
-  #shopify-section-{{ section.id }} .multicolumn-card {
-    position: relative;
   }
   
-  #shopify-section-{{ section.id }} .multicolumn-card__info {
-    text-align: {{ section.settings.text_alignment }};
-    padding: 23px 0 20px !important;
-    position: relative;
-  }
-
-  /* Dynamic horizontal line styles from block settings */
-  {%- for block in section.blocks -%}
-    #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info::after {
-      {%- if block.settings.show_horizontal_line -%}
-        content: '';
-        display: block;
-        width: {{ block.settings.horizontal_line_width }}%;
-        height: {{ block.settings.horizontal_line_height }}px;
-        background: {{ block.settings.horizontal_line_color }};
-        margin: 9px auto 0;
-        position: absolute;
-        left: 50%;
-        top: 0;
-        z-index: 99;
-        transform: translateX(-50%);
-      {%- else -%}
-        content: none;
-        display: none;
-      {%- endif -%}
+  /* Adjust padding when line is shown */
+  {%- if block.settings.show_horizontal_line -%}
+    #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info {
+      padding-bottom: {{ block.settings.horizontal_line_height | plus: 30 }}px !important;
     }
-    
-    /* Adjust padding when line is shown */
-    {%- if block.settings.show_horizontal_line -%}
-      #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info {
-        padding-bottom: {{ block.settings.horizontal_line_height | plus: 30 }}px !important;
-      }
-    {%- endif -%}
-  {%- endfor -%}
+  {%- endif -%}
 
-  /* Rest of your existing styles */
-  #shopify-section-{{ section.id }} .multicolumn-card__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    {%- if section.settings.image_position == 'left' -%}
-      object-position: left;
-    {%- elsif section.settings.image_position == 'right' -%}
-      object-position: right;
+  /* Block-specific Title Styles */
+  #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info h3 {
+    {%- if block.settings.title_font_size != blank -%}
+      font-size: {{ block.settings.title_font_size }}px;
     {%- else -%}
-      object-position: center;
+      font-size: 18px;
+    {%- endif -%}
+    
+    {%- if block.settings.title_font_weight != blank -%}
+      font-weight: {{ block.settings.title_font_weight }};
+    {%- else -%}
+      font-weight: bold;
+    {%- endif -%}
+    
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    
+    {%- if block.settings.title_color != blank -%}
+      color: {{ block.settings.title_color }};
+    {%- endif -%}
+    
+    {%- if block.settings.title_text_decoration != blank -%}
+      text-decoration: {{ block.settings.title_text_decoration }};
+    {%- endif -%}
+    
+    {%- if block.settings.title_font_style != blank -%}
+      font-style: {{ block.settings.title_font_style }};
+    {%- endif -%}
+    
+    {%- if block.settings.title_padding_top != blank -%}
+      padding-top: {{ block.settings.title_padding_top }}px;
+    {%- endif -%}
+    
+    {%- if block.settings.title_padding_bottom != blank -%}
+      padding-bottom: {{ block.settings.title_padding_bottom }}px;
     {%- endif -%}
   }
 
+  /* Block-specific Text Styles */
+  #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info .rte {
+    {%- if block.settings.text_font_size != blank -%}
+      font-size: {{ block.settings.text_font_size }}px;
+    {%- else -%}
+      font-size: 14px;
+    {%- endif -%}
+    
+    line-height: 1.4;
+    width: {{ section.settings.paragraph_width }}%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    {%- if block.settings.text_font_weight != blank -%}
+      font-weight: {{ block.settings.text_font_weight }};
+    {%- endif -%}
+    
+    {%- if block.settings.text_color != blank -%}
+      color: {{ block.settings.text_color }};
+    {%- endif -%}
+    
+    {%- if block.settings.text_text_decoration != blank -%}
+      text-decoration: {{ block.settings.text_text_decoration }};
+    {%- endif -%}
+    
+    {%- if block.settings.text_font_style != blank -%}
+      font-style: {{ block.settings.text_font_style }};
+    {%- endif -%}
+    
+    {%- if block.settings.text_padding_top != blank -%}
+      padding-top: {{ block.settings.text_padding_top }}px;
+    {%- endif -%}
+    
+    {%- if block.settings.text_padding_bottom != blank -%}
+      padding-bottom: {{ block.settings.text_padding_bottom }}px;
+    {%- endif -%}
+  }
+{%- endfor -%}
 {%- endstyle -%}
-
-{%- liquid
-  assign columns_mobile_int = section.settings.columns_mobile | plus: 0
-  assign show_mobile_slider = false
-  if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
-    assign show_mobile_slider = true
-  endif
--%}
 
 <div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
   <div
