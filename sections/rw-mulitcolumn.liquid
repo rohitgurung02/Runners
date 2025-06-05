@@ -304,28 +304,6 @@
     text-transform: uppercase;
   }
 
-  #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
-    font-size: 14px;
-    line-height: 1.4;
-    width: {{ section.settings.text_width }}%;
-    {% if section.settings.text_alignment == 'center' %}
-      margin-left: auto;
-      margin-right: auto;
-    {% elsif section.settings.text_alignment == 'right' %}
-      margin-left: auto;
-      margin-right: 0;
-    {% else %}
-      margin-left: 0;
-      margin-right: auto;
-    {% endif %}
-    max-width: 100%;
-  }
-
-  /* Fix for text width */
-  #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
-  width: {{ section.settings.text_width }}% !important;
-}
-
 {%- endstyle -%}
 
 {%- liquid
@@ -835,36 +813,6 @@
           "default": "<p>Feature description</p>",
           "label": "Text"
         },
-        {
-        "type": "range",
-  "id": "text_width",
-  "min": 40,
-  "max": 100,
-  "step": 5,
-  "unit": "%",
-  "label": "Text width",
-  "default": 100
-},
-        {
-  "type": "select",
-  "id": "text_alignment",
-  "options": [
-    {
-      "value": "left",
-      "label": "Left"
-    },
-    {
-      "value": "center",
-      "label": "Center"
-    },
-    {
-      "value": "right",
-      "label": "Right"
-    }
-  ],
-  "default": "center",
-  "label": "Text alignment"
-},
         {
           "type": "text",
           "id": "link_label",
