@@ -106,7 +106,7 @@
         "image_position": "center",
         "image_ratio": "adapt",
         "show_horizontal_line": true,
-        "horizontal_line_width": 80,
+        "horizontal_line_width": 40,
         "horizontal_line_height": 2,
         "horizontal_line_color": "#000000",
         "text_alignment": "center",
