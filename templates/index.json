@@ -16,9 +16,73 @@
       "settings": {
         "announcement_compact": false
       }
+    },
+    "rw_mulitcolumn_TVeajN": {
+      "type": "rw-mulitcolumn",
+      "blocks": {
+        "column_VMgLxx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2703076_delivery_truck_shipping_store_icon_52b177d4-9f4d-42fc-b07b-0f23ea54d0e3.png",
+            "title": "CLICK AND COLLECT",
+            "text": "<p>Just 10% deposit. Pay the rest on collection. Same price online & instore!</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_qc6jzd": {
+          "type": "column",
+          "settings": {
+            "title": "WE SHIP WORLDWIDE",
+            "text": "<p>Competitive prices in the EU & selected countries worldwide.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_3yEg3H": {
+          "type": "column",
+          "settings": {
+            "title": "OVER 20,000 PRODUCTS",
+            "text": "<p>In stock at our store and warehouse, ready to ship directly to you!</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_VMgLxx",
+        "column_qc6jzd",
+        "column_3yEg3H"
+      ],
+      "name": "Three Column Features",
+      "settings": {
+        "title": "Featured columns",
+        "heading_size": "h1",
+        "image_width_size": 30,
+        "image_height": 120,
+        "image_border_radius": 0,
+        "image_position": "center",
+        "image_ratio": "adapt",
+        "show_horizontal_line": true,
+        "horizontal_line_width": 80,
+        "horizontal_line_height": 2,
+        "horizontal_line_color": "#000000",
+        "text_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-4d80e460-62c3-438e-bbba-43df88b47e6a",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD"
+    "featured_collection_copy_kaw7iD",
+    "rw_mulitcolumn_TVeajN"
   ]
 }
