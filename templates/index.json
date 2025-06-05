@@ -23,6 +23,7 @@
         "column_aM3NYN": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/9027024_smiley_wink_thin_icon_69b1f20f-785d-4665-8359-6d0ecc274a95.png",
             "title": "CLICK AND COLLECT",
             "text": "<p>Just 10% deposit. Pay the rest on collection. Same price online & instore!</p>",
             "link_label": "",
@@ -57,8 +58,8 @@
       "settings": {
         "title": "Featured columns",
         "heading_size": "h1",
-        "image_width_size": 100,
-        "image_height": 300,
+        "image_width_size": 50,
+        "image_height": 280,
         "image_border_radius": 0,
         "image_position": "center",
         "image_ratio": "adapt",
