@@ -37,7 +37,7 @@
     margin: 20px auto 0;
     position: absolute;
     left: 50%;
-    bottom: 0;
+    top: 0;
     z-index: 99;
     transform: translateX(-50%);
   }
@@ -376,6 +376,30 @@
       "default": "adapt",
       "label": "Image ratio"
     },
+    {
+  "type": "header",
+  "content": "Image padding"
+},
+{
+  "type": "range",
+  "id": "image_padding_top",
+  "min": 0,
+  "max": 100,
+  "step": 2,
+  "unit": "px",
+  "label": "Image padding top",
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "image_padding_bottom",
+  "min": 0,
+  "max": 100,
+  "step": 2,
+  "unit": "px",
+  "label": "Image padding bottom",
+  "default": 0
+},
     {
       "type": "header",
       "content": "Horizontal line settings"
