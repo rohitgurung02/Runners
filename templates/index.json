@@ -65,7 +65,7 @@
         "button_label": "Button label",
         "button_link": "",
         "columns_desktop": 3,
-        "column_alignment": "left",
+        "column_alignment": "center",
         "background_style": "primary",
         "color_scheme": "scheme-4d80e460-62c3-438e-bbba-43df88b47e6a",
         "columns_mobile": "1",
