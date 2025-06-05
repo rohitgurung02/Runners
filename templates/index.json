@@ -58,8 +58,8 @@
       ],
       "name": "Three Column Features",
       "settings": {
-        "title": "Featured columns",
-        "heading_size": "h1",
+        "title": "",
+        "heading_size": "h2",
         "image_width_size": 20,
         "image_height": 100,
         "image_border_radius": 0,
