@@ -63,7 +63,7 @@
         "image_border_radius": 0,
         "image_position": "center",
         "image_ratio": "square",
-        "show_vertical_line": true,
+        "show_vertical_line": false,
         "vertical_line_width": 13,
         "vertical_line_height": 30,
         "vertical_line_color": "#c12a2a",
