@@ -304,7 +304,22 @@
     text-transform: uppercase;
   }
 
- 
+  #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
+    font-size: 14px;
+    line-height: 1.4;
+    width: {{ section.settings.text_width }}%;
+    {% if section.settings.text_alignment == 'center' %}
+      margin-left: auto;
+      margin-right: auto;
+    {% elsif section.settings.text_alignment == 'right' %}
+      margin-left: auto;
+      margin-right: 0;
+    {% else %}
+      margin-left: 0;
+      margin-right: auto;
+    {% endif %}
+    max-width: 100%;
+  }
 
   /* Fix for text width */
   #shopify-section-{{ section.id }} .multicolumn-card__info > .rte {
@@ -822,7 +837,7 @@
         {
         "type": "range",
   "id": "text_width",
-  "min": 30,
+  "min": 20,
   "max": 100,
   "step": 5,
   "unit": "%",
