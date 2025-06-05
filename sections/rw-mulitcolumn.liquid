@@ -46,12 +46,34 @@
     {%- endif -%}
   }
 
-  /* Title styles */
+  /* Title styles - now using block settings */
   #shopify-section-{{ section.id }} .multicolumn-card__info h3 {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: {% if block.settings.title_text_size == 'small' %}14px{% elsif block.settings.title_text_size == 'medium' %}18px{% else %}22px{% endif %};
+    font-weight: {{ block.settings.title_font_weight }};
+    font-style: {{ block.settings.title_font_style }};
+    letter-spacing: {{ block.settings.title_letter_spacing }}px;
+    text-decoration: {{ block.settings.title_text_decoration }};
+    {% if block.settings.title_text_decoration != 'none' %}
+      text-decoration-color: {{ block.settings.title_text_decoration_color }};
+    {% endif %}
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.title_padding_bottom }}px;
     margin-bottom: 10px;
     text-transform: uppercase;
+  }
+
+  /* Text styles - now using block settings */
+  #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
+    font-size: {% if block.settings.text_size == 'small' %}12px{% elsif block.settings.text_size == 'medium' %}14px{% else %}16px{% endif %};
+    font-weight: {{ block.settings.text_font_weight }};
+    font-style: {{ block.settings.text_font_style }};
+    letter-spacing: {{ block.settings.text_letter_spacing }}px;
+    text-decoration: {{ block.settings.text_text_decoration }};
+    {% if block.settings.text_text_decoration != 'none' %}
+      text-decoration-color: {{ block.settings.text_decoration_color }};
+    {% endif %}
+    padding-top: {{ block.settings.text_padding_top }}px;
+    padding-bottom: {{ block.settings.text_padding_bottom }}px;
   }
 
   /* Horizontal line styles */
