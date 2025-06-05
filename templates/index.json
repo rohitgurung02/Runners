@@ -16,83 +16,9 @@
       "settings": {
         "announcement_compact": false
       }
-    },
-    "rw_mulitcolumn_DAVDez": {
-      "type": "rw-mulitcolumn",
-      "blocks": {
-        "column_X3Bgbk": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/2703076_delivery_truck_shipping_store_icon_52b177d4-9f4d-42fc-b07b-0f23ea54d0e3.png",
-            "title": "CLICK AND COLLECT",
-            "text": "<p>Just 10% deposit. Pay the rest on  collection. Same price online & instore!<br/><br/></p>",
-            "text_width": 40,
-            "text_alignment": "center",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_mhKDWG": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/9027024_smiley_wink_thin_icon_69b1f20f-785d-4665-8359-6d0ecc274a95.png",
-            "title": "WE SHIP WORLDWIDE",
-            "text": "<p>Competitive prices in the EU & selected countries worldwide.</p>",
-            "text_width": 100,
-            "text_alignment": "center",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_NMTxVX": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/2703076_delivery_truck_shipping_store_icon_52b177d4-9f4d-42fc-b07b-0f23ea54d0e3.png",
-            "title": "OVER 20,000 PRODUCTS",
-            "text": "<p>In stock at our store and warehouse, ready to ship directly to you!</p>",
-            "text_width": 100,
-            "text_alignment": "center",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_X3Bgbk",
-        "column_mhKDWG",
-        "column_NMTxVX"
-      ],
-      "name": "Three Column Features",
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width_size": 20,
-        "image_height": 100,
-        "image_border_radius": 0,
-        "image_position": "center",
-        "image_ratio": "adapt",
-        "image_padding_top": 30,
-        "image_padding_bottom": 0,
-        "show_horizontal_line": true,
-        "horizontal_line_width": 60,
-        "horizontal_line_height": 3,
-        "horizontal_line_color": "#506acb",
-        "text_alignment": "center",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "scheme-4d80e460-62c3-438e-bbba-43df88b47e6a",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 16,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
-    "featured_collection_copy_kaw7iD",
-    "rw_mulitcolumn_DAVDez"
+    "featured_collection_copy_kaw7iD"
   ]
 }
