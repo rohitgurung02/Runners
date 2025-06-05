@@ -23,9 +23,10 @@
         "column_UJhcJw": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/2703076_delivery_truck_shipping_store_icon_52b177d4-9f4d-42fc-b07b-0f23ea54d0e3.png",
             "title": "CLICK AND COLLECT",
-            "title_font_size": 18,
-            "title_font_weight": "bold",
+            "title_font_size": 38,
+            "title_font_weight": "normal",
             "title_color": "#000000",
             "title_text_decoration": "none",
             "title_font_style": "normal",
@@ -99,8 +100,8 @@
       "settings": {
         "title": "",
         "heading_size": "h1",
-        "image_width_size": 100,
-        "image_height": 300,
+        "image_width_size": 25,
+        "image_height": 120,
         "image_border_radius": 0,
         "image_position": "center",
         "image_ratio": "adapt",
