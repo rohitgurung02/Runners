@@ -128,9 +128,9 @@
         "plan_Xw76Xj": {
           "type": "plan",
           "settings": {
-            "badge_text": "jdkdkd",
+            "badge_text": "Basic",
             "badge_color": "#ffffff",
-            "max_font_size": 10,
+            "max_font_size": 8,
             "badge_font_weight": "bold",
             "badge_font_style": "italic",
             "badge_letter_spacing": 0,
