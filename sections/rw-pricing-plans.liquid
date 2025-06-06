@@ -64,11 +64,6 @@
         },
         {
           "type": "text",
-          "id": "subtitle",
-          "label": "Plan Subtitle"
-        },
-        {
-          "type": "text",
           "id": "highlight_text",
           "label": "Highlight Text (e.g., FOR AGENCIES)"
         },
@@ -77,11 +72,6 @@
           "id": "price",
           "label": "Price",
           "default": "0"
-        },
-        {
-          "type": "image_picker",
-          "id": "icon",
-          "label": "Plan Icon"
         },
         {
           "type": "text",
@@ -97,7 +87,7 @@
         {
           "type": "richtext",
           "id": "features",
-          "label": "Features"
+          "label": "Features (one per line)"
         }
       ]
     }
@@ -172,17 +162,6 @@
     --mb-2: 2rem;
   }
 
-  @media screen and (min-width: 968px) {
-    :root {
-      --biggest-font-size: 2.125rem;
-      --h2-font-size: 1.5rem;
-      --normal-font-size: 1rem;
-      --small-font-size: .875rem;
-      --smaller-font-size: .813rem;
-      --tiny-font-size: .688rem;
-    }
-  }
-
   .pricing-plans * {
     box-sizing: border-box;
     padding: 0;
@@ -215,48 +194,20 @@
 
   .pricing-plans__grid {
     display: grid;
-    gap: 3rem 1.25rem;
+    gap: 2rem;
   }
 
   .pricing-plan {
     position: relative;
     background-color: var(--container-color);
-    padding: 2rem 1.5rem 2.5rem;
-    border-radius: 1.75rem;
-    box-shadow: 0 12px 24px hsla(var(--hue-color), 61%, 16%, 0.1);
-    transition: .4s;
-  }
-
-  .pricing-plan:hover {
-    box-shadow: 0 16px 24px hsla(var(--hue-color), 61%, 16%, 0.15);
-  }
-
-  .pricing-plan__icon {
-    width: 30px;
-    height: 30px;
-  }
-
-  .pricing-plan__icon-circle {
-    width: 40px;
-    height: 40px;
-    background-color: var(--first-color-lighter);
-    border-radius: 50%;
-    margin-bottom: var(--mb-1);
-    display: grid;
-    place-items: center;
-  }
-
-  .pricing-plan__subtitle {
-    display: block;
-    font-size: var(--smaller-font-size);
-    color: var(--text-color-light);
-    text-transform: uppercase;
-    margin-bottom: var(--mb-0-25);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .pricing-plan__highlight {
     position: absolute;
-    top: -10px;
+    top: -12px;
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--first-color);
@@ -269,128 +220,49 @@
   }
 
   .pricing-plan__title {
-    font-size: var(--biggest-font-size);
+    font-size: var(--h2-font-size);
     color: var(--title-color);
     margin-bottom: var(--mb-1);
-  }
-
-  .pricing-plan__price {
-    position: absolute;
-    background: linear-gradient(157deg, var(--first-color-light) -12%, var(--first-color) 109%);
-    width: 60px;
-    height: 88px;
-    right: 1.5rem;
-    top: -1rem;
-    padding-top: 1.25rem;
     text-align: center;
   }
 
-  .pricing-plan__price-number {
-    font-family: var(--pricing-font);
-  }
-
-  .pricing-plan__price-symbol {
-    font-size: var(--smaller-font-size);
-  }
-
-  .pricing-plan__price-number {
-    font-size: var(--h2-font-size);
-  }
-
-  .pricing-plan__price-month {
-    display: block;
-    font-size: var(--tiny-font-size);
-  }
-
-  .pricing-plan__price-number, 
-  .pricing-plan__price-month {
-    color: var(--white-color);
-  }
-
-  .pricing-plan__price::after, 
-  .pricing-plan__price::before {
-    content: '';
-    position: absolute;
-  }
-
-  .pricing-plan__price::after {
-    width: 100%;
-    height: 14px;
-    background-color: var(--white-color);
-    left: 0;
-    bottom: 0;
-    clip-path: polygon(0 100%, 50% 0, 100% 100%);
-  }
-
-  .pricing-plan__price::before {
-    width: 14px;
-    height: 16px;
-    background-color: var(--first-color-alt);
-    top: 0;
-    left: -14px;
-    clip-path: polygon(0 100%, 100% 0, 100% 100%);
-  }
-
   .pricing-plan__features {
-    display: grid;
-    row-gap: .5rem;
-    margin-bottom: var(--mb-2);
+    margin: 2rem 0;
+    padding: 0;
   }
 
   .pricing-plan__feature {
-    display: flex;
-    align-items: center;
+    margin-bottom: 0.75rem;
+    padding: 0;
+    line-height: 1.5;
   }
 
-  .pricing-plan__feature-icon {
-    font-size: 1.5rem;
-    color: var(--first-color);
-    margin-right: var(--mb-0-5);
+  .pricing-plan__feature:last-child {
+    margin-bottom: 0;
   }
 
   .pricing-plan__button {
+    display: block;
     width: 100%;
-    padding: 1.25rem;
+    padding: 0.75rem;
     border: none;
     font-size: var(--normal-font-size);
-    border-radius: .5rem;
-    background: linear-gradient(157deg, var(--first-color-light) -12%, var(--first-color) 109%);
+    border-radius: 0.5rem;
+    background-color: var(--first-color);
     color: var(--white-color);
     cursor: pointer;
-    transition: .4s;
+    transition: all 0.3s ease;
+    text-align: center;
     font-weight: bold;
-    text-transform: uppercase;
   }
 
   .pricing-plan__button:hover {
-    box-shadow: 0 12px 24px hsla(var(--hue-color), 97%, 54%, 0.2);
+    background-color: var(--first-color-alt);
   }
 
-  @media screen and (max-width: 320px) {
-    .pricing-plans__container {
-      padding: 0 1rem;
-    }
-    .pricing-plan {
-      padding: 2rem 1.25rem;
-      border-radius: 1rem;
-    }
-  }
-
-  @media screen and (min-width: 568px) {
-    .pricing-plans__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media screen and (min-width: 968px) {
+  @media screen and (min-width: 768px) {
     .pricing-plans__grid {
       grid-template-columns: repeat(3, 1fr);
-    }
-    .pricing-plan__icon-circle {
-      margin-bottom: var(--mb-1-25);
-    }
-    .pricing-plan__subtitle {
-      font-size: var(--small-font-size);
     }
   }
 {% endstyle %}
@@ -408,30 +280,14 @@
             <div class="pricing-plan__highlight">{{ block.settings.highlight_text }}</div>
           {% endif %}
           
-          <div class="pricing-plan__price">
-            <div class="pricing-plan__price-number">
-              <span class="pricing-plan__price-symbol">$</span>{{ block.settings.price }}
-            </div>
-            <span class="pricing-plan__price-month">/month</span>
-          </div>
-          
-          <header class="pricing-plan__header">
-            <div class="pricing-plan__icon-circle">
-              {% if block.settings.icon != blank %}
-                <img src="{{ block.settings.icon | img_url: '60x60' }}" alt="{{ block.settings.title }}" class="pricing-plan__icon">
-              {% endif %}
-            </div>
-            
-            <h3 class="pricing-plan__title">{{ block.settings.title }}</h3>
-          </header>
+          <h3 class="pricing-plan__title">{{ block.settings.title }}</h3>
           
           <ul class="pricing-plan__features">
             {% assign features = block.settings.features | strip_html | split: '<p>' %}
             {% for feature in features %}
               {% if feature != '' %}
                 <li class="pricing-plan__feature">
-                  <i class="uil uil-check pricing-plan__feature-icon"></i>
-                  <span class="pricing-plan__feature-text">{{ feature | strip | replace: '</p>', '' }}</span>
+                  • {{ feature | strip | replace: '</p>', '' }}
                 </li>
               {% endif %}
             {% endfor %}
