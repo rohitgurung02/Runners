@@ -65,13 +65,12 @@
         {
           "type": "text",
           "id": "subtitle",
-          "label": "Plan Subtitle",
-          "default": "Free plan"
+          "label": "Plan Subtitle"
         },
         {
           "type": "text",
           "id": "highlight_text",
-          "label": "Highlight Text (e.g., MOST POPULAR)"
+          "label": "Highlight Text (e.g., FOR AGENCIES)"
         },
         {
           "type": "text",
@@ -98,44 +97,42 @@
         {
           "type": "richtext",
           "id": "features",
-          "label": "Features",
-          "default": "<p>3 user request</p><p>10 downloads por day</p><p>Daily content updates</p><p>Fully editable files</p>"
+          "label": "Features"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "RW Pricing Plans",
+      "name": "Pricing Plans",
       "category": "Pricing",
       "blocks": [
         {
           "type": "plan",
           "settings": {
             "title": "Basic",
-            "subtitle": "Free plan",
             "price": "0",
-            "features": "<p>3 user request</p><p>10 downloads por day</p><p>Daily content updates</p><p>Fully editable files</p>"
+            "features": "<p>3 user request</p><p>10 downloads por day</p><p>Daily content updates</p><p>Fully editable files</p>",
+            "button_text": "Choose this plan"
           }
         },
         {
           "type": "plan",
           "settings": {
             "title": "Professional",
-            "subtitle": "Most popular",
-            "highlight_text": "MOST POPULAR",
             "price": "19",
-            "features": "<p>100 user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p><p>Fully editable files</p>"
+            "features": "<p>100 user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p><p>Fully editable files</p>",
+            "button_text": "Choose this plan"
           }
         },
         {
           "type": "plan",
           "settings": {
             "title": "Enterprise",
-            "subtitle": "For agencies",
             "highlight_text": "FOR AGENCIES",
             "price": "29",
-            "features": "<p>Unlimited user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p><p>Fully editable files</p>"
+            "features": "<p>Unlimited user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p><p>Fully editable files</p>",
+            "button_text": "Choose this plan"
           }
         }
       ]
@@ -425,7 +422,6 @@
               {% endif %}
             </div>
             
-            <span class="pricing-plan__subtitle">{{ block.settings.subtitle }}</span>
             <h3 class="pricing-plan__title">{{ block.settings.title }}</h3>
           </header>
           
@@ -443,11 +439,11 @@
           
           {% if block.settings.button_link != blank %}
             <a href="{{ block.settings.button_link }}" class="pricing-plan__button">
-              {{ block.settings.button_text | default: 'Choose this plan' }}
+              {{ block.settings.button_text }}
             </a>
           {% else %}
             <button class="pricing-plan__button">
-              {{ block.settings.button_text | default: 'Choose this plan' }}
+              {{ block.settings.button_text }}
             </button>
           {% endif %}
         </div>
