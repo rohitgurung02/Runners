@@ -10,7 +10,7 @@
   }
 
   {{ sec_id }} .pc-pricing-container {
-    max-width: 1024px;
+    max-width: {{ section.settings.container_width }}px;
     margin: 0 auto;
     padding: 0 1.5rem;
   }
@@ -263,15 +263,8 @@
 
 {% schema %}
 {
-  "name": "PWC - Pricing Plans #1",
-  "tag": "section",
-  "class": "shopify-section--pricing-plans",
-  "max_blocks": 3,
+  "name": "Pricing Plans",
   "settings": [
-    {
-      "type": "header",
-      "content": "Section Settings"
-    },
     {
       "type": "text",
       "id": "heading",
@@ -281,8 +274,8 @@
     {
       "type": "range",
       "id": "heading_size",
-      "label": "Heading Size",
-      "min": 16,
+      "label": "Heading size",
+      "min": 20,
       "max": 60,
       "step": 1,
       "unit": "px",
@@ -291,181 +284,134 @@
     {
       "type": "select",
       "id": "heading_alignment",
-      "label": "Heading Alignment",
+      "label": "Heading alignment",
       "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
       ],
       "default": "center"
     },
     {
       "type": "color",
       "id": "heading_color",
-      "label": "Heading Color",
+      "label": "Heading color",
       "default": "#333333"
     },
     {
       "type": "range",
       "id": "heading_spacing",
-      "label": "Heading Spacing",
+      "label": "Heading spacing",
       "min": 0,
       "max": 100,
-      "step": 5,
+      "step": 2,
       "unit": "px",
-      "default": 30
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container width",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 800
     },
     {
       "type": "color",
       "id": "bg_color",
-      "label": "Background Color",
-      "default": "#FFFFFF"
+      "label": "Background color",
+      "default": "#ffffff"
     },
     {
       "type": "range",
       "id": "padding_top",
-      "label": "Padding Top",
+      "label": "Padding top",
       "min": 0,
       "max": 100,
-      "step": 5,
+      "step": 2,
       "unit": "px",
-      "default": 50
+      "default": 48
     },
     {
       "type": "range",
       "id": "padding_bottom",
-      "label": "Padding Bottom",
+      "label": "Padding bottom",
       "min": 0,
       "max": 100,
-      "step": 5,
+      "step": 2,
       "unit": "px",
-      "default": 50
-    },
-    {
-      "type": "header",
-      "content": "Card Settings"
+      "default": 48
     },
     {
       "type": "color",
       "id": "card_bg_color",
-      "label": "Card Background Color",
-      "default": "#FFFFFF"
+      "label": "Card background color",
+      "default": "#ffffff"
     },
     {
       "type": "checkbox",
       "id": "card_shadow",
-      "label": "Enable Card Shadow",
+      "label": "Enable card shadow",
       "default": true
     },
     {
       "type": "range",
       "id": "hue_color",
-      "label": "Accent Hue Color",
-      "min":10,
+      "label": "Accent color hue",
+      "min": 1,
       "max": 101,
       "step": 1,
       "default": 101
     },
     {
-      "type": "header",
-      "content": "Typography"
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Badge background color",
+      "default": "#FF5722"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text color",
+      "default": "#FFFFFF"
     },
     {
       "type": "select",
-      "id": "title_font_weight",
-      "label": "Title Font Weight",
+      "id": "subtitle_font_weight",
+      "label": "Subtitle font weight",
       "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
       ],
       "default": "600"
     },
     {
       "type": "select",
-      "id": "subtitle_font_weight",
-      "label": "Subtitle Font Weight",
+      "id": "title_font_weight",
+      "label": "Title font weight",
       "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
       ],
-      "default": "400"
+      "default": "700"
     },
     {
       "type": "select",
       "id": "button_font_weight",
-      "label": "Button Font Weight",
+      "label": "Button font weight",
       "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
       ],
-      "default": "500"
-    },
-    {
-      "type": "header",
-      "content": "Badge Settings"
-    },
-    {
-      "type": "color",
-      "id": "badge_bg_color",
-      "label": "Badge Background Color",
-      "default": "#FFD700"
-    },
-    {
-      "type": "color",
-      "id": "badge_text_color",
-      "label": "Badge Text Color",
-      "default": "#333333"
+      "default": "600"
     }
   ],
   "blocks": [
@@ -476,135 +422,145 @@
         {
           "type": "text",
           "id": "badge_text",
-          "label": "Badge Text",
-          "info": "Leave blank to hide badge"
+          "label": "Badge text",
+          "info": "Leave empty to hide badge"
         },
         {
           "type": "image_picker",
           "id": "icon",
-          "label": "Icon Image"
+          "label": "Icon"
         },
         {
           "type": "text",
           "id": "subtitle",
           "label": "Subtitle",
-          "default": "Free plan"
+          "default": "BASIC"
         },
         {
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Basic"
+          "default": "Starter"
         },
         {
           "type": "text",
           "id": "currency_symbol",
-          "label": "Currency Symbol",
+          "label": "Currency symbol",
           "default": "$"
         },
         {
           "type": "text",
           "id": "price",
           "label": "Price",
-          "default": "0"
+          "default": "19"
         },
         {
           "type": "text",
           "id": "billing_period",
-          "label": "Billing Period",
+          "label": "Billing period",
           "default": "/month"
+        },
+        {
+          "type": "header",
+          "content": "Features"
         },
         {
           "type": "text",
           "id": "feature_1_text",
           "label": "Feature 1",
-          "default": "3 user request"
+          "default": "Access to basic features"
         },
         {
           "type": "text",
           "id": "feature_2_text",
           "label": "Feature 2",
-          "default": "10 downloads por day"
+          "default": "Limited support"
         },
         {
           "type": "text",
           "id": "feature_3_text",
           "label": "Feature 3",
-          "default": "Daily content updates"
+          "default": "Basic analytics"
         },
         {
           "type": "text",
           "id": "feature_4_text",
           "label": "Feature 4",
-          "default": "Fully editable files"
+          "default": "Up to 5 projects"
         },
         {
           "type": "text",
           "id": "feature_5_text",
           "label": "Feature 5",
-          "default": "feature 5"
+          "default": "Community access"
+        },
+        {
+          "type": "header",
+          "content": "Button"
         },
         {
           "type": "text",
           "id": "button_text",
-          "label": "Button Text",
-          "default": "Choose this plan"
+          "label": "Button text",
+          "default": "Get Started"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "PWC - Pricing Plans #3",
+      "name": "Pricing Plans",
+      "category": "Pricing",
       "blocks": [
         {
           "type": "plan",
           "settings": {
             "badge_text": "",
-            "subtitle": "Free plan",
-            "title": "Basic",
-            "currency_symbol": "$",
-            "price": "0",
-            "billing_period": "/month",
-            "feature_1_text": "3 user request",
-            "feature_2_text": "10 downloads por day",
-            "feature_3_text": "Daily content updates",
-            "feature_4_text": "Fully editable files",
-            "button_text": "Choose this plan"
-          }
-        },
-        {
-          "type": "plan",
-          "settings": {
-            "badge_text": "MOST POPULAR",
-            "subtitle": "Professional",
-            "title": "Professional",
+            "subtitle": "BASIC",
+            "title": "Starter",
             "currency_symbol": "$",
             "price": "19",
             "billing_period": "/month",
-            "feature_1_text": "100 user request",
-            "feature_2_text": "Unlimited downloads",
-            "feature_3_text": "Unlock all features from our site",
-            "feature_4_text": "Daily content updates",
-            "feature_5_text": "Fully editable files",
-            "button_text": "Choose this plan"
+            "feature_1_text": "Access to basic features",
+            "feature_2_text": "Limited support",
+            "feature_3_text": "Basic analytics",
+            "feature_4_text": "Up to 5 projects",
+            "feature_5_text": "Community access",
+            "button_text": "Get Started"
           }
         },
         {
           "type": "plan",
           "settings": {
-            "badge_text": "FOR AGENCIES",
-            "subtitle": "Enterprise",
+            "badge_text": "POPULAR",
+            "subtitle": "PROFESSIONAL",
+            "title": "Pro",
+            "currency_symbol": "$",
+            "price": "49",
+            "billing_period": "/month",
+            "feature_1_text": "All basic features",
+            "feature_2_text": "Priority support",
+            "feature_3_text": "Advanced analytics",
+            "feature_4_text": "Up to 20 projects",
+            "feature_5_text": "Exclusive content",
+            "button_text": "Get Started"
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "badge_text": "",
+            "subtitle": "ENTERPRISE",
             "title": "Enterprise",
             "currency_symbol": "$",
-            "price": "29",
+            "price": "99",
             "billing_period": "/month",
-            "feature_1_text": "Unlimited user request",
-            "feature_2_text": "Unlimited downloads",
-            "feature_3_text": "Unlock all features from our site",
-            "feature_4_text": "Daily content updates",
-            "feature_5_text": "Fully editable files",
-            "button_text": "Choose this plan"
+            "feature_1_text": "All professional features",
+            "feature_2_text": "24/7 dedicated support",
+            "feature_3_text": "Custom analytics",
+            "feature_4_text": "Unlimited projects",
+            "feature_5_text": "VIP services",
+            "button_text": "Get Started"
           }
         }
       ]
