@@ -1,6 +1,457 @@
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Pricing Plans",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Choose Your Plan"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary Color",
+      "default": "#2F80ED"
+    },
+    {
+      "type": "color",
+      "id": "primary_color_light",
+      "label": "Primary Light Color",
+      "default": "#6EA8FE"
+    },
+    {
+      "type": "color",
+      "id": "primary_color_alt",
+      "label": "Primary Alt Color",
+      "default": "#1A5FB4"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#4A4A4A"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Background Color",
+      "default": "#F9F9F9"
+    },
+    {
+      "type": "color",
+      "id": "container_color",
+      "label": "Card Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Pricing Plan",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Plan Title",
+          "default": "Basic"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Plan Subtitle",
+          "default": "Free plan"
+        },
+        {
+          "type": "text",
+          "id": "highlight_text",
+          "label": "Highlight Text (e.g., MOST POPULAR)"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "0"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Plan Icon"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Choose this plan"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "richtext",
+          "id": "features",
+          "label": "Features",
+          "default": "<p>3 user request</p><p>10 downloads por day</p><p>Daily content updates</p><p>Fully editable files</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RW Pricing Plans",
+      "category": "Pricing",
+      "blocks": [
+        {
+          "type": "plan",
+          "settings": {
+            "title": "Basic",
+            "subtitle": "Free plan",
+            "price": "0",
+            "features": "<p>3 user request</p><p>10 downloads por day</p><p>Daily content updates</p><p>Fully editable files</p>"
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "title": "Professional",
+            "subtitle": "Most popular",
+            "highlight_text": "MOST POPULAR",
+            "price": "19",
+            "features": "<p>100 user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p><p>Fully editable files</p>"
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "title": "Enterprise",
+            "subtitle": "For agencies",
+            "highlight_text": "FOR AGENCIES",
+            "price": "29",
+            "features": "<p>Unlimited user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p><p>Fully editable files</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
+
+{% style %}
+  :root {
+    --hue-color: 214;
+    --first-color: {{ section.settings.primary_color }};
+    --first-color-light: {{ section.settings.primary_color_light }};
+    --first-color-alt: {{ section.settings.primary_color_alt }};
+    --first-color-lighter: hsl(var(--hue-color), 14%, 96%);
+    --title-color: {{ section.settings.title_color }};
+    --text-color: {{ section.settings.text_color }};
+    --text-color-light: hsl(var(--hue-color), 12%, 65%);
+    --white-color: #FFF;
+    --body-color: {{ section.settings.body_color }};
+    --container-color: {{ section.settings.container_color }};
+    
+    --body-font: 'Lato', sans-serif;
+    --pricing-font: 'Rubik', sans-serif;
+    --biggest-font-size: 1.75rem;
+    --normal-font-size: .938rem;
+    --h2-font-size: 1.25rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+    --tiny-font-size: .625rem;
+    
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-1: 1rem;
+    --mb-1-25: 1.25rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+  }
+
+  @media screen and (min-width: 968px) {
+    :root {
+      --biggest-font-size: 2.125rem;
+      --h2-font-size: 1.5rem;
+      --normal-font-size: 1rem;
+      --small-font-size: .875rem;
+      --smaller-font-size: .813rem;
+      --tiny-font-size: .688rem;
+    }
+  }
+
+  .pricing-plans * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pricing-plans {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+    padding: 3rem 0;
+  }
+
+  .pricing-plans ul {
+    list-style: none;
+  }
+
+  .pricing-plans img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .pricing-plans__container {
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1.5rem;
+  }
+
+  .pricing-plans__grid {
+    display: grid;
+    gap: 3rem 1.25rem;
+  }
+
+  .pricing-plan {
+    position: relative;
+    background-color: var(--container-color);
+    padding: 2rem 1.5rem 2.5rem;
+    border-radius: 1.75rem;
+    box-shadow: 0 12px 24px hsla(var(--hue-color), 61%, 16%, 0.1);
+    transition: .4s;
+  }
+
+  .pricing-plan:hover {
+    box-shadow: 0 16px 24px hsla(var(--hue-color), 61%, 16%, 0.15);
+  }
+
+  .pricing-plan__icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .pricing-plan__icon-circle {
+    width: 40px;
+    height: 40px;
+    background-color: var(--first-color-lighter);
+    border-radius: 50%;
+    margin-bottom: var(--mb-1);
+    display: grid;
+    place-items: center;
+  }
+
+  .pricing-plan__subtitle {
+    display: block;
+    font-size: var(--smaller-font-size);
+    color: var(--text-color-light);
+    text-transform: uppercase;
+    margin-bottom: var(--mb-0-25);
+  }
+
+  .pricing-plan__highlight {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--first-color);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 1rem;
+    font-size: var(--smaller-font-size);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .pricing-plan__title {
+    font-size: var(--biggest-font-size);
+    color: var(--title-color);
+    margin-bottom: var(--mb-1);
+  }
+
+  .pricing-plan__price {
+    position: absolute;
+    background: linear-gradient(157deg, var(--first-color-light) -12%, var(--first-color) 109%);
+    width: 60px;
+    height: 88px;
+    right: 1.5rem;
+    top: -1rem;
+    padding-top: 1.25rem;
+    text-align: center;
+  }
+
+  .pricing-plan__price-number {
+    font-family: var(--pricing-font);
+  }
+
+  .pricing-plan__price-symbol {
+    font-size: var(--smaller-font-size);
+  }
+
+  .pricing-plan__price-number {
+    font-size: var(--h2-font-size);
+  }
+
+  .pricing-plan__price-month {
+    display: block;
+    font-size: var(--tiny-font-size);
+  }
+
+  .pricing-plan__price-number, 
+  .pricing-plan__price-month {
+    color: var(--white-color);
+  }
+
+  .pricing-plan__price::after, 
+  .pricing-plan__price::before {
+    content: '';
+    position: absolute;
+  }
+
+  .pricing-plan__price::after {
+    width: 100%;
+    height: 14px;
+    background-color: var(--white-color);
+    left: 0;
+    bottom: 0;
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  }
+
+  .pricing-plan__price::before {
+    width: 14px;
+    height: 16px;
+    background-color: var(--first-color-alt);
+    top: 0;
+    left: -14px;
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  }
+
+  .pricing-plan__features {
+    display: grid;
+    row-gap: .5rem;
+    margin-bottom: var(--mb-2);
+  }
+
+  .pricing-plan__feature {
+    display: flex;
+    align-items: center;
+  }
+
+  .pricing-plan__feature-icon {
+    font-size: 1.5rem;
+    color: var(--first-color);
+    margin-right: var(--mb-0-5);
+  }
+
+  .pricing-plan__button {
+    width: 100%;
+    padding: 1.25rem;
+    border: none;
+    font-size: var(--normal-font-size);
+    border-radius: .5rem;
+    background: linear-gradient(157deg, var(--first-color-light) -12%, var(--first-color) 109%);
+    color: var(--white-color);
+    cursor: pointer;
+    transition: .4s;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .pricing-plan__button:hover {
+    box-shadow: 0 12px 24px hsla(var(--hue-color), 97%, 54%, 0.2);
+  }
+
+  @media screen and (max-width: 320px) {
+    .pricing-plans__container {
+      padding: 0 1rem;
+    }
+    .pricing-plan {
+      padding: 2rem 1.25rem;
+      border-radius: 1rem;
+    }
+  }
+
+  @media screen and (min-width: 568px) {
+    .pricing-plans__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 968px) {
+    .pricing-plans__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .pricing-plan__icon-circle {
+      margin-bottom: var(--mb-1-25);
+    }
+    .pricing-plan__subtitle {
+      font-size: var(--small-font-size);
+    }
+  }
+{% endstyle %}
+
+<div class="pricing-plans">
+  <div class="pricing-plans__container">
+    {% if section.settings.section_title != blank %}
+      <h2 class="pricing-plans__title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+    
+    <div class="pricing-plans__grid">
+      {% for block in section.blocks %}
+        <div class="pricing-plan" {{ block.shopify_attributes }}>
+          {% if block.settings.highlight_text != blank %}
+            <div class="pricing-plan__highlight">{{ block.settings.highlight_text }}</div>
+          {% endif %}
+          
+          <div class="pricing-plan__price">
+            <div class="pricing-plan__price-number">
+              <span class="pricing-plan__price-symbol">$</span>{{ block.settings.price }}
+            </div>
+            <span class="pricing-plan__price-month">/month</span>
+          </div>
+          
+          <header class="pricing-plan__header">
+            <div class="pricing-plan__icon-circle">
+              {% if block.settings.icon != blank %}
+                <img src="{{ block.settings.icon | img_url: '60x60' }}" alt="{{ block.settings.title }}" class="pricing-plan__icon">
+              {% endif %}
+            </div>
+            
+            <span class="pricing-plan__subtitle">{{ block.settings.subtitle }}</span>
+            <h3 class="pricing-plan__title">{{ block.settings.title }}</h3>
+          </header>
+          
+          <ul class="pricing-plan__features">
+            {% assign features = block.settings.features | strip_html | split: '<p>' %}
+            {% for feature in features %}
+              {% if feature != '' %}
+                <li class="pricing-plan__feature">
+                  <i class="uil uil-check pricing-plan__feature-icon"></i>
+                  <span class="pricing-plan__feature-text">{{ feature | strip | replace: '</p>', '' }}</span>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          
+          {% if block.settings.button_link != blank %}
+            <a href="{{ block.settings.button_link }}" class="pricing-plan__button">
+              {{ block.settings.button_text | default: 'Choose this plan' }}
+            </a>
+          {% else %}
+            <button class="pricing-plan__button">
+              {{ block.settings.button_text | default: 'Choose this plan' }}
+            </button>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
