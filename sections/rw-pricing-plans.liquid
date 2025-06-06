@@ -242,7 +242,19 @@
             </div>
 
             {% if block.settings.subtitle != blank %}
-              <span class="pc-plan-subtitle">{{ block.settings.subtitle }}</span>
+              <span class="pc-plan-subtitle" 
+                style="
+              font-size: {{ block.settings.subtitle_max_font_size }}px;
+              color: {{ block.settings.subtitle_color }};
+              font-weight: {{ block.settings.subtitle_font_weight }};
+              font-style: {{ block.settings.subtitle_font_style }};
+              letter-spacing: {{ block.settings.subtitle_letter_spacing }};
+              text-decoration: {{ block.settings.subtitle_text_decoration }};
+              text-decoration-color: {{ block.settings.subtitle_text_decoration_color }};
+              padding-top: {{ block.settings.subtitle_padding_top }};
+              padding-bottom: {{ block.settings.subtitle_padding_bottom }};
+              "
+                >{{ block.settings.subtitle }}</span>
             {% endif %}
             <h3 class="pc-plan-title">{{ block.settings.title }}</h3>
           </header>
