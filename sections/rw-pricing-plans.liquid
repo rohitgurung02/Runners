@@ -1,36 +1,471 @@
+{%- liquid
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign plan_count = section.blocks.size
+-%}
+
+<style>
+  {{ sec_id }} .pc-pricing-plans {
+    padding: 3rem 0;
+    width: 100%;
+  }
+
+  {{ sec_id }} .pc-pricing-container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  {{ sec_id }} .pc-plans-grid {
+    display: grid;
+    gap: 3rem 1.25rem;
+  }
+
+  {{ sec_id }} .pc-plan-card {
+    position: relative;
+    background-color: {{ section.settings.card_bg_color }};
+    padding: 2rem 1.5rem 2.5rem;
+    border-radius: 1.75rem;
+    box-shadow: {% if section.settings.card_shadow %}0 12px 24px hsla({{ section.settings.hue_color }}, 61%, 16%, 0.1){% else %}none{% endif %};
+    transition: 0.4s;
+    height: 100%;
+  }
+
+  {{ sec_id }} .pc-plan-card:hover {
+    box-shadow: {% if section.settings.card_shadow %}0 16px 24px hsla({{ section.settings.hue_color }}, 61%, 16%, 0.15){% else %}none{% endif %};
+  }
+
+  {{ sec_id }} .pc-plan-header-img {
+    width: 30px;
+    height: 30px;
+  }
+
+  {{ sec_id }} .pc-plan-header-circle {
+    width: 40px;
+    height: 40px;
+    background-color: hsl({{ section.settings.hue_color }}, 14%, 96%);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    display: grid;
+    place-items: center;
+  }
+
+  {{ sec_id }} .pc-plan-subtitle {
+    display: block;
+    font-size: 0.813rem;
+    color: hsl({{ section.settings.hue_color }}, 12%, 65%);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+    font-weight: {{ section.settings.subtitle_font_weight }};
+  }
+
+  {{ sec_id }} .pc-plan-title {
+    font-size: 1.75rem;
+    color: hsl({{ section.settings.hue_color }}, 12%, 15%);
+    margin-bottom: 1rem;
+    font-weight: {{ section.settings.title_font_weight }};
+  }
+
+  {{ sec_id }} .pc-plan-price {
+    position: absolute;
+    background: linear-gradient(157deg, hsl({{ section.settings.hue_color }}, 96%, 69%) -12%, hsl({{ section.settings.hue_color }}, 96%, 54%) 109%);
+    width: 60px;
+    height: 88px;
+    right: 1.5rem;
+    top: -1rem;
+    padding-top: 1.25rem;
+    text-align: center;
+  }
+
+  {{ sec_id }} .pc-price-number {
+    font-family: inherit;
+  }
+
+  {{ sec_id }} .pc-price-symbol {
+    font-size: 0.75rem;
+  }
+
+  {{ sec_id }} .pc-price-number {
+    font-size: 1.25rem;
+  }
+
+  {{ sec_id }} .pc-price-month {
+    display: block;
+    font-size: 0.625rem;
+  }
+
+  {{ sec_id }} .pc-price-number,
+  {{ sec_id }} .pc-price-month {
+    color: #FFF;
+  }
+
+  {{ sec_id }} .pc-plan-price::after,
+  {{ sec_id }} .pc-plan-price::before {
+    content: '';
+    position: absolute;
+  }
+
+  {{ sec_id }} .pc-plan-price::after {
+    width: 100%;
+    height: 14px;
+    background-color: #FFF;
+    left: 0;
+    bottom: 0;
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  }
+
+  {{ sec_id }} .pc-plan-price::before {
+    width: 14px;
+    height: 16px;
+    background-color: hsl({{ section.settings.hue_color }}, 96%, 37%);
+    top: 0;
+    left: -14px;
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  }
+
+  {{ sec_id }} .pc-plan-features {
+    display: grid;
+    row-gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  {{ sec_id }} .pc-feature-item {
+    display: flex;
+    align-items: center;
+  }
+
+  {{ sec_id }} .pc-feature-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+    color: hsl({{ section.settings.hue_color }}, 96%, 54%);
+  }
+
+  {{ sec_id }} .pc-feature-text {
+    font-size: 0.938rem;
+    color: hsl({{ section.settings.hue_color }}, 12%, 35%);
+  }
+
+  {{ sec_id }} .pc-plan-button {
+    padding: 1.25rem;
+    border: none;
+    font-size: 0.938rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(157deg, hsl({{ section.settings.hue_color }}, 96%, 69%) -12%, hsl({{ section.settings.hue_color }}, 96%, 54%) 109%);
+    color: #FFF;
+    cursor: pointer;
+    transition: 0.4s;
+    width: 100%;
+    font-weight: {{ section.settings.button_font_weight }};
+  }
+
+  {{ sec_id }} .pc-plan-button:hover {
+    box-shadow: 0 12px 24px hsla({{ section.settings.hue_color }}, 97%, 54%, 0.2);
+  }
+
+  {{ sec_id }} .pc-popular-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: {{ section.settings.badge_bg_color }};
+    color: {{ section.settings.badge_text_color }};
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+
+  @media screen and (max-width: 320px) {
+    {{ sec_id }} .pc-pricing-container {
+      padding: 0 1rem;
+    }
+    {{ sec_id }} .pc-plan-card {
+      padding: 2rem 1.25rem;
+      border-radius: 1rem;
+    }
+  }
+
+  @media screen and (min-width: 568px) {
+    {{ sec_id }} .pc-plans-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 968px) {
+    {{ sec_id }} .pc-plans-grid {
+      grid-template-columns: repeat({{ plan_count }}, 1fr);
+    }
+    {{ sec_id }} .pc-plan-header-circle {
+      margin-bottom: 1.25rem;
+    }
+    {{ sec_id }} .pc-plan-subtitle {
+      font-size: 0.875rem;
+    }
+  }
+</style>
+
+<section class="pc-pricing-plans" style="background-color: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="pc-pricing-container">
+    {% if section.settings.heading != blank %}
+      <h2 class="pc-section-heading" style="text-align: {{ section.settings.heading_alignment }}; font-size: {{ section.settings.heading_size }}px; color: {{ section.settings.heading_color }}; margin-bottom: {{ section.settings.heading_spacing }}px;">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    <div class="pc-plans-grid">
+      {% for block in section.blocks %}
+        <div class="pc-plan-card" {{ block.shopify_attributes }}>
+          {% if block.settings.badge_text != blank %}
+            <div class="pc-popular-badge">{{ block.settings.badge_text }}</div>
+          {% endif %}
+
+          <div class="pc-plan-price">
+            <div class="pc-price-number">
+              <span class="pc-price-symbol">{{ block.settings.currency_symbol }}</span>{{ block.settings.price }}
+            </div>
+            <span class="pc-price-month">{{ block.settings.billing_period }}</span>
+          </div>
+
+          <header class="pc-plan-header">
+            <div class="pc-plan-header-circle">
+              {%- if block.settings.icon != blank -%}
+                {{ block.settings.icon | image_url: width: 30 | image_tag: class: 'pc-plan-header-img', loading: 'lazy' }}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'pc-plan-header-img' }}
+              {%- endif -%}
+            </div>
+
+            {% if block.settings.subtitle != blank %}
+              <span class="pc-plan-subtitle">{{ block.settings.subtitle }}</span>
+            {% endif %}
+            <h3 class="pc-plan-title">{{ block.settings.title }}</h3>
+          </header>
+
+          <ul class="pc-plan-features">
+            {% for i in (1..5) %}
+              {% assign feature_text = 'feature_' | append: i | append: '_text' %}
+              {% if block.settings[feature_text] != blank %}
+                <li class="pc-feature-item">
+                  <svg class="pc-feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span class="pc-feature-text">{{ block.settings[feature_text] }}</span>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+
+          <button class="pc-plan-button" type="button">{{ block.settings.button_text }}</button>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 {% schema %}
 {
-  "name": "Pricing Plans",
+  "name": "PWC - Pricing Plans #1",
+  "tag": "section",
+  "class": "shopify-section--pricing-plans",
+  "max_blocks": 3,
   "settings": [
     {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
       "type": "text",
-      "id": "section_title",
-      "label": "Section Title",
+      "id": "heading",
+      "label": "Heading",
       "default": "Pricing Plans"
     },
     {
-      "type": "color",
-      "id": "primary_color",
-      "label": "Primary Color",
-      "default": "#2F80ED"
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
     },
     {
       "type": "color",
-      "id": "background_color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Heading Spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
       "label": "Background Color",
       "default": "#FFFFFF"
     },
     {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#333333"
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Card Settings"
     },
     {
       "type": "color",
-      "id": "highlight_color",
-      "label": "Highlight Color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_shadow",
+      "label": "Enable Card Shadow",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "hue_color",
+      "label": "Accent Hue Color",
+      "min": 101,
+      "max": 101,
+      "step": 1,
+      "default": 101
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "subtitle_font_weight",
+      "label": "Subtitle Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Button Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "header",
+      "content": "Badge Settings"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Badge Background Color",
       "default": "#FFD700"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge Text Color",
+      "default": "#333333"
     }
   ],
   "blocks": [
@@ -40,61 +475,136 @@
       "settings": [
         {
           "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "info": "Leave blank to hide badge"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Free plan"
+        },
+        {
+          "type": "text",
           "id": "title",
-          "label": "Plan Title",
+          "label": "Title",
           "default": "Basic"
         },
         {
           "type": "text",
-          "id": "highlight_text",
-          "label": "Highlight Text"
+          "id": "currency_symbol",
+          "label": "Currency Symbol",
+          "default": "$"
         },
         {
-          "type": "richtext",
-          "id": "features",
-          "label": "Features",
-          "default": "<p>3 user request</p><p>10 downloads por day</p><p>Daily content updates</p>"
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "0"
+        },
+        {
+          "type": "text",
+          "id": "billing_period",
+          "label": "Billing Period",
+          "default": "/month"
+        },
+        {
+          "type": "text",
+          "id": "feature_1_text",
+          "label": "Feature 1",
+          "default": "3 user request"
+        },
+        {
+          "type": "text",
+          "id": "feature_2_text",
+          "label": "Feature 2",
+          "default": "10 downloads por day"
+        },
+        {
+          "type": "text",
+          "id": "feature_3_text",
+          "label": "Feature 3",
+          "default": "Daily content updates"
+        },
+        {
+          "type": "text",
+          "id": "feature_4_text",
+          "label": "Feature 4",
+          "default": "Fully editable files"
+        },
+        {
+          "type": "text",
+          "id": "feature_5_text",
+          "label": "Feature 5",
+          "default": "feature 5"
         },
         {
           "type": "text",
           "id": "button_text",
           "label": "Button Text",
           "default": "Choose this plan"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button Link"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Pricing Plans",
-      "category": "Pricing",
+      "name": "PWC - Pricing Plans #3",
       "blocks": [
         {
           "type": "plan",
           "settings": {
+            "badge_text": "",
+            "subtitle": "Free plan",
             "title": "Basic",
-            "features": "<p>3 user request</p><p>10 downloads por day</p><p>Daily content updates</p><p>Fully editable files</p>"
+            "currency_symbol": "$",
+            "price": "0",
+            "billing_period": "/month",
+            "feature_1_text": "3 user request",
+            "feature_2_text": "10 downloads por day",
+            "feature_3_text": "Daily content updates",
+            "feature_4_text": "Fully editable files",
+            "button_text": "Choose this plan"
           }
         },
         {
           "type": "plan",
           "settings": {
+            "badge_text": "MOST POPULAR",
+            "subtitle": "Professional",
             "title": "Professional",
-            "highlight_text": "MOST POPULAR",
-            "features": "<p>100 user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p>"
+            "currency_symbol": "$",
+            "price": "19",
+            "billing_period": "/month",
+            "feature_1_text": "100 user request",
+            "feature_2_text": "Unlimited downloads",
+            "feature_3_text": "Unlock all features from our site",
+            "feature_4_text": "Daily content updates",
+            "feature_5_text": "Fully editable files",
+            "button_text": "Choose this plan"
           }
         },
         {
           "type": "plan",
           "settings": {
+            "badge_text": "FOR AGENCIES",
+            "subtitle": "Enterprise",
             "title": "Enterprise",
-            "highlight_text": "FOR AGENCIES",
-            "features": "<p>Unlimited user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p>"
+            "currency_symbol": "$",
+            "price": "29",
+            "billing_period": "/month",
+            "feature_1_text": "Unlimited user request",
+            "feature_2_text": "Unlimited downloads",
+            "feature_3_text": "Unlock all features from our site",
+            "feature_4_text": "Daily content updates",
+            "feature_5_text": "Fully editable files",
+            "button_text": "Choose this plan"
           }
         }
       ]
@@ -102,148 +612,3 @@
   ]
 }
 {% endschema %}
-
-{% style %}
-  .pricing-section {
-    background-color: {{ section.settings.background_color }};
-    padding: 3rem 1rem;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: {{ section.settings.text_color }};
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .pricing-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: {{ section.settings.primary_color }};
-  }
-
-  .pricing-plans {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-  }
-
-  .pricing-plan {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    padding: 2rem;
-    flex: 1;
-    min-width: 280px;
-    max-width: 350px;
-    position: relative;
-    border-top: 4px solid {{ section.settings.primary_color }};
-  }
-
-  .plan-highlight {
-    position: absolute;
-    top: -12px;
-    right: 20px;
-    background: {{ section.settings.highlight_color }};
-    color: #333;
-    padding: 0.25rem 1rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  .plan-title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: {{ section.settings.primary_color }};
-    font-weight: bold;
-  }
-
-  .plan-features {
-    margin: 1.5rem 0;
-    padding: 0;
-  }
-
-  .plan-feature {
-    margin-bottom: 0.75rem;
-    padding-left: 1.5rem;
-    position: relative;
-    line-height: 1.5;
-  }
-
-  .plan-feature:before {
-    content: "-";
-    position: absolute;
-    left: 0;
-  }
-
-  .plan-button {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    background: {{ section.settings.primary_color }};
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
-    text-decoration: none;
-  }
-
-  .plan-button:hover {
-    background: {{ section.settings.primary_color | color_darken: 10 }};
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
-    .pricing-plans {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .pricing-plan {
-      width: 100%;
-      max-width: 100%;
-    }
-  }
-{% endstyle %}
-
-<div class="pricing-section">
-  {% if section.settings.section_title != blank %}
-    <h2 class="pricing-title">{{ section.settings.section_title }}</h2>
-  {% endif %}
-  
-  <div class="pricing-plans">
-    {% for block in section.blocks %}
-      <div class="pricing-plan">
-        {% if block.settings.highlight_text != blank %}
-          <div class="plan-highlight">{{ block.settings.highlight_text }}</div>
-        {% endif %}
-        
-        <h3 class="plan-title">{{ block.settings.title }}</h3>
-        
-        <ul class="plan-features">
-          {% assign features = block.settings.features | strip_html | split: '<p>' %}
-          {% for feature in features %}
-            {% if feature != '' %}
-              <li class="plan-feature">{{ feature | strip | replace: '</p>', '' }}</li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-        
-        {% if block.settings.button_link != blank %}
-          <a href="{{ block.settings.button_link }}" class="plan-button">
-            {{ block.settings.button_text | default: 'Choose this plan' }}
-          </a>
-        {% else %}
-          <button class="plan-button">
-            {{ block.settings.button_text | default: 'Choose this plan' }}
-          </button>
-        {% endif %}
-      </div>
-    {% endfor %}
-  </div>
-</div>
