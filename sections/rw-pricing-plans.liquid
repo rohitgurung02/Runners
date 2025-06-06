@@ -162,6 +162,10 @@
     box-shadow: 0 12px 24px hsla({{ section.settings.hue_color }}, 97%, 54%, 0.2);
   }
 
+  .pc-plan-header-circle {
+    margin-top: 14px !important;
+  }
+
   {{ sec_id }} .pc-popular-badge {
     position: absolute;
     top: 10px;
@@ -299,7 +303,8 @@
         text-decoration-color: {{ block.settings.button_text_decoration_color }};
         border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
         border-radius: {{ block.settings.button_border_radius }}px;
-        padding: {{ block.settings.button_padding_top_bottom }}px {{ block.settings.button_padding_left_right }}px;
+       padding: {{ block.settings.button_padding_top_bottom }}px {{ block.settings.button_padding_left_right }}px;
+    transition: all 0.3s ease;
         "
         type="button">
             {{ block.settings.button_text }}
@@ -1136,16 +1141,7 @@
           "label": "Button Text Color",
           "default": "#ffffff"
         },
-        {
-          "type": "range",
-          "id": "button_padding_vertical",
-          "min": 5,
-          "max": 100,
-          "step": 1,
-          "unit": "px",
-          "label": "Button Vertical Padding",
-          "default": 12
-        },
+       
         {
           "type": "range",
           "id": "button_padding_horizontal",
