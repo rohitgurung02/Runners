@@ -6,7 +6,7 @@
       "type": "text",
       "id": "section_title",
       "label": "Section Title",
-      "default": "Choose Your Plan"
+      "default": "Pricing Plans"
     },
     {
       "type": "color",
@@ -16,39 +16,21 @@
     },
     {
       "type": "color",
-      "id": "primary_color_light",
-      "label": "Primary Light Color",
-      "default": "#6EA8FE"
-    },
-    {
-      "type": "color",
-      "id": "primary_color_alt",
-      "label": "Primary Alt Color",
-      "default": "#1A5FB4"
-    },
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": "Title Color",
-      "default": "#1A1A1A"
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
     },
     {
       "type": "color",
       "id": "text_color",
       "label": "Text Color",
-      "default": "#4A4A4A"
+      "default": "#333333"
     },
     {
       "type": "color",
-      "id": "body_color",
-      "label": "Background Color",
-      "default": "#F9F9F9"
-    },
-    {
-      "type": "color",
-      "id": "container_color",
-      "label": "Card Color",
-      "default": "#FFFFFF"
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#FFD700"
     }
   ],
   "blocks": [
@@ -65,13 +47,13 @@
         {
           "type": "text",
           "id": "highlight_text",
-          "label": "Highlight Text (e.g., FOR AGENCIES)"
+          "label": "Highlight Text"
         },
         {
-          "type": "text",
-          "id": "price",
-          "label": "Price",
-          "default": "0"
+          "type": "richtext",
+          "id": "features",
+          "label": "Features",
+          "default": "<p>3 user request</p><p>10 downloads por day</p><p>Daily content updates</p>"
         },
         {
           "type": "text",
@@ -83,11 +65,6 @@
           "type": "url",
           "id": "button_link",
           "label": "Button Link"
-        },
-        {
-          "type": "richtext",
-          "id": "features",
-          "label": "Features (one per line)"
         }
       ]
     }
@@ -101,18 +78,15 @@
           "type": "plan",
           "settings": {
             "title": "Basic",
-            "price": "0",
-            "features": "<p>3 user request</p><p>10 downloads por day</p><p>Daily content updates</p><p>Fully editable files</p>",
-            "button_text": "Choose this plan"
+            "features": "<p>3 user request</p><p>10 downloads por day</p><p>Daily content updates</p><p>Fully editable files</p>"
           }
         },
         {
           "type": "plan",
           "settings": {
             "title": "Professional",
-            "price": "19",
-            "features": "<p>100 user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p><p>Fully editable files</p>",
-            "button_text": "Choose this plan"
+            "highlight_text": "MOST POPULAR",
+            "features": "<p>100 user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p>"
           }
         },
         {
@@ -120,9 +94,7 @@
           "settings": {
             "title": "Enterprise",
             "highlight_text": "FOR AGENCIES",
-            "price": "29",
-            "features": "<p>Unlimited user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p><p>Fully editable files</p>",
-            "button_text": "Choose this plan"
+            "features": "<p>Unlimited user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p>"
           }
         }
       ]
@@ -132,178 +104,146 @@
 {% endschema %}
 
 {% style %}
-  :root {
-    --hue-color: 214;
-    --first-color: {{ section.settings.primary_color }};
-    --first-color-light: {{ section.settings.primary_color_light }};
-    --first-color-alt: {{ section.settings.primary_color_alt }};
-    --first-color-lighter: hsl(var(--hue-color), 14%, 96%);
-    --title-color: {{ section.settings.title_color }};
-    --text-color: {{ section.settings.text_color }};
-    --text-color-light: hsl(var(--hue-color), 12%, 65%);
-    --white-color: #FFF;
-    --body-color: {{ section.settings.body_color }};
-    --container-color: {{ section.settings.container_color }};
-    
-    --body-font: 'Lato', sans-serif;
-    --pricing-font: 'Rubik', sans-serif;
-    --biggest-font-size: 1.75rem;
-    --normal-font-size: .938rem;
-    --h2-font-size: 1.25rem;
-    --small-font-size: .813rem;
-    --smaller-font-size: .75rem;
-    --tiny-font-size: .625rem;
-    
-    --mb-0-25: .25rem;
-    --mb-0-5: .5rem;
-    --mb-1: 1rem;
-    --mb-1-25: 1.25rem;
-    --mb-1-5: 1.5rem;
-    --mb-2: 2rem;
+  .pricing-section {
+    background-color: {{ section.settings.background_color }};
+    padding: 3rem 1rem;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: {{ section.settings.text_color }};
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  .pricing-plans * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  .pricing-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: {{ section.settings.primary_color }};
   }
 
   .pricing-plans {
-    font-family: var(--body-font);
-    font-size: var(--normal-font-size);
-    background-color: var(--body-color);
-    color: var(--text-color);
-    padding: 3rem 0;
-  }
-
-  .pricing-plans ul {
-    list-style: none;
-  }
-
-  .pricing-plans img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .pricing-plans__container {
-    max-width: 1024px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 1.5rem;
-  }
-
-  .pricing-plans__grid {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
   }
 
   .pricing-plan {
-    position: relative;
-    background-color: var(--container-color);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    position: relative;
+    border-top: 4px solid {{ section.settings.primary_color }};
   }
 
-  .pricing-plan__highlight {
+  .plan-highlight {
     position: absolute;
     top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--first-color);
-    color: white;
+    right: 20px;
+    background: {{ section.settings.highlight_color }};
+    color: #333;
     padding: 0.25rem 1rem;
-    border-radius: 1rem;
-    font-size: var(--smaller-font-size);
+    border-radius: 20px;
+    font-size: 0.75rem;
     font-weight: bold;
     text-transform: uppercase;
   }
 
-  .pricing-plan__title {
-    font-size: var(--h2-font-size);
-    color: var(--title-color);
-    margin-bottom: var(--mb-1);
-    text-align: center;
-  }
-
-  .pricing-plan__features {
-    margin: 2rem 0;
-    padding: 0;
-  }
-
-  .pricing-plan__feature {
-    margin-bottom: 0.75rem;
-    padding: 0;
-    line-height: 1.5;
-  }
-
-  .pricing-plan__feature:last-child {
-    margin-bottom: 0;
-  }
-
-  .pricing-plan__button {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    border: none;
-    font-size: var(--normal-font-size);
-    border-radius: 0.5rem;
-    background-color: var(--first-color);
-    color: var(--white-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
+  .plan-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: {{ section.settings.primary_color }};
     font-weight: bold;
   }
 
-  .pricing-plan__button:hover {
-    background-color: var(--first-color-alt);
+  .plan-features {
+    margin: 1.5rem 0;
+    padding: 0;
   }
 
-  @media screen and (min-width: 768px) {
-    .pricing-plans__grid {
-      grid-template-columns: repeat(3, 1fr);
+  .plan-feature {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .plan-feature:before {
+    content: "-";
+    position: absolute;
+    left: 0;
+  }
+
+  .plan-button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background: {{ section.settings.primary_color }};
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    text-decoration: none;
+  }
+
+  .plan-button:hover {
+    background: {{ section.settings.primary_color | color_darken: 10 }};
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .pricing-plans {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .pricing-plan {
+      width: 100%;
+      max-width: 100%;
     }
   }
 {% endstyle %}
 
-<div class="pricing-plans">
-  <div class="pricing-plans__container">
-    {% if section.settings.section_title != blank %}
-      <h2 class="pricing-plans__title">{{ section.settings.section_title }}</h2>
-    {% endif %}
-    
-    <div class="pricing-plans__grid">
-      {% for block in section.blocks %}
-        <div class="pricing-plan" {{ block.shopify_attributes }}>
-          {% if block.settings.highlight_text != blank %}
-            <div class="pricing-plan__highlight">{{ block.settings.highlight_text }}</div>
-          {% endif %}
-          
-          <h3 class="pricing-plan__title">{{ block.settings.title }}</h3>
-          
-          <ul class="pricing-plan__features">
-            {% assign features = block.settings.features | strip_html | split: '<p>' %}
-            {% for feature in features %}
-              {% if feature != '' %}
-                <li class="pricing-plan__feature">
-                  • {{ feature | strip | replace: '</p>', '' }}
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-          
-          {% if block.settings.button_link != blank %}
-            <a href="{{ block.settings.button_link }}" class="pricing-plan__button">
-              {{ block.settings.button_text }}
-            </a>
-          {% else %}
-            <button class="pricing-plan__button">
-              {{ block.settings.button_text }}
-            </button>
-          {% endif %}
-        </div>
-      {% endfor %}
-    </div>
+<div class="pricing-section">
+  {% if section.settings.section_title != blank %}
+    <h2 class="pricing-title">{{ section.settings.section_title }}</h2>
+  {% endif %}
+  
+  <div class="pricing-plans">
+    {% for block in section.blocks %}
+      <div class="pricing-plan">
+        {% if block.settings.highlight_text != blank %}
+          <div class="plan-highlight">{{ block.settings.highlight_text }}</div>
+        {% endif %}
+        
+        <h3 class="plan-title">{{ block.settings.title }}</h3>
+        
+        <ul class="plan-features">
+          {% assign features = block.settings.features | strip_html | split: '<p>' %}
+          {% for feature in features %}
+            {% if feature != '' %}
+              <li class="plan-feature">{{ feature | strip | replace: '</p>', '' }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        
+        {% if block.settings.button_link != blank %}
+          <a href="{{ block.settings.button_link }}" class="plan-button">
+            {{ block.settings.button_text | default: 'Choose this plan' }}
+          </a>
+        {% else %}
+          <button class="plan-button">
+            {{ block.settings.button_text | default: 'Choose this plan' }}
+          </button>
+        {% endif %}
+      </div>
+    {% endfor %}
   </div>
 </div>
