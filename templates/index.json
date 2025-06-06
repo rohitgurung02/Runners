@@ -121,69 +121,10 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "rw_pricing_plans_Ujaxgp": {
-      "type": "rw-pricing-plans",
-      "blocks": {
-        "plan_QyBe6Q": {
-          "type": "plan",
-          "settings": {
-            "title": "Basic",
-            "subtitle": "dkjsodjf",
-            "highlight_text": "sfsdfd",
-            "price": "25",
-            "icon": "shopify://shop_images/1735917732__screenshot2025-01-03at111804pm__huge.png",
-            "button_text": "Choose this plan",
-            "button_link": "",
-            "features": "<p>3 user request&lt;br&gt;</p><p>10 downloads por day</p><p>Daily content updates</p><p>Fully editable files</p>"
-          }
-        },
-        "plan_MWqxXe": {
-          "type": "plan",
-          "settings": {
-            "title": "Professional",
-            "subtitle": "",
-            "highlight_text": "",
-            "price": "19",
-            "button_text": "Choose this plan",
-            "button_link": "",
-            "features": "<p>100 user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p><p>Fully editable files</p>"
-          }
-        },
-        "plan_cTXB7U": {
-          "type": "plan",
-          "settings": {
-            "title": "Enterprise",
-            "subtitle": "",
-            "highlight_text": "FOR AGENCIES",
-            "price": "29",
-            "button_text": "Choose this plan",
-            "button_link": "",
-            "features": "<p>Unlimited user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p><p>Fully editable files</p>"
-          }
-        }
-      },
-      "block_order": [
-        "plan_QyBe6Q",
-        "plan_MWqxXe",
-        "plan_cTXB7U"
-      ],
-      "name": "Pricing Plans",
-      "settings": {
-        "section_title": "Choose Your Plan",
-        "primary_color": "#2F80ED",
-        "primary_color_light": "#6EA8FE",
-        "primary_color_alt": "#1A5FB4",
-        "title_color": "#1A1A1A",
-        "text_color": "#4A4A4A",
-        "body_color": "#F9F9F9",
-        "container_color": "#FFFFFF"
-      }
     }
   },
   "order": [
     "featured_collection_copy_kaw7iD",
-    "rw_mulitcolumn_pGW8Ym",
-    "rw_pricing_plans_Ujaxgp"
+    "rw_mulitcolumn_pGW8Ym"
   ]
 }
