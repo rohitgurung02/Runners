@@ -121,10 +121,59 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "rw_pricing_plans_iFqARb": {
+      "type": "rw-pricing-plans",
+      "blocks": {
+        "plan_mULckF": {
+          "type": "plan",
+          "settings": {
+            "title": "Basic",
+            "highlight_text": "fgfgf",
+            "features": "<p>3 user request</p><p>10 downloads por day</p><p>Daily content updates</p><p>Fully editable files</p>",
+            "button_text": "Choose this plan",
+            "button_link": ""
+          }
+        },
+        "plan_zYfxm7": {
+          "type": "plan",
+          "settings": {
+            "title": "Professional",
+            "highlight_text": "MOST POPULAR",
+            "features": "<p>100 user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p>",
+            "button_text": "Choose this plan",
+            "button_link": ""
+          }
+        },
+        "plan_hi9Wnf": {
+          "type": "plan",
+          "settings": {
+            "title": "Enterprise",
+            "highlight_text": "FOR AGENCIES",
+            "features": "<p>Unlimited user request</p><p>Unlimited downloads</p><p>Unlock all features from our site</p><p>Daily content updates</p>",
+            "button_text": "Choose this plan",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "plan_mULckF",
+        "plan_zYfxm7",
+        "plan_hi9Wnf"
+      ],
+      "name": "Pricing Plans",
+      "settings": {
+        "section_title": "Pricing Plans",
+        "primary_color": "#2F80ED",
+        "background_color": "#FFFFFF",
+        "text_color": "#333333",
+        "highlight_color": "#FFD700"
+      }
     }
   },
   "order": [
     "featured_collection_copy_kaw7iD",
-    "rw_mulitcolumn_pGW8Ym"
+    "rw_mulitcolumn_pGW8Ym",
+    "rw_pricing_plans_iFqARb"
   ]
 }
