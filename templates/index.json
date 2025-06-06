@@ -238,9 +238,9 @@
         "plan_W8Qicw": {
           "type": "plan",
           "settings": {
-            "badge_text": "",
+            "badge_text": "Pro",
             "badge_color": "#000000",
-            "max_font_size": 48,
+            "max_font_size": 12,
             "badge_font_weight": "normal",
             "badge_font_style": "normal",
             "badge_letter_spacing": 0,
