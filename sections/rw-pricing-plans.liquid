@@ -287,7 +287,23 @@
             {% endfor %}
           </ul>
 
-          <button class="pc-plan-button" type="button">{{ block.settings.button_text }}</button>
+          <button class="pc-plan-button"
+        style="
+        background-color: {{ block.settings.button_background_color }};
+        color: {{ block.settings.button_text_color }};
+        font-size: {{ block.settings.button_font_size }}px;
+        font-weight: {{ block.settings.button_font_weight }};
+        text-transform: {{ block.settings.button_text_transform }};
+        letter-spacing: {{ block.settings.button_letter_spacing }}px;
+        text-decoration: {{ block.settings.button_text_decoration }};
+        text-decoration-color: {{ block.settings.button_text_decoration_color }};
+        border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+        border-radius: {{ block.settings.button_border_radius }}px;
+        padding: {{ block.settings.button_padding_top_bottom }}px {{ block.settings.button_padding_left_right }}px;
+        "
+        type="button">
+  {{ block.settings.button_text }}
+        </button>
         </div>
       {% endfor %}
     </div>
