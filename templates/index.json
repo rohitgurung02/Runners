@@ -128,7 +128,7 @@
         "plan_BbaWVU": {
           "type": "plan",
           "settings": {
-            "badge_text": "",
+            "badge_text": "Basic",
             "badge_color": "#000",
             "max_font_size": 10,
             "badge_font_weight": "normal",
@@ -228,7 +228,7 @@
         "plan_tYtkA3": {
           "type": "plan",
           "settings": {
-            "badge_text": "",
+            "badge_text": "Pro",
             "badge_color": "#000",
             "max_font_size": 10,
             "badge_font_weight": "normal",
