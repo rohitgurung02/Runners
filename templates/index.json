@@ -129,7 +129,7 @@
           "type": "plan",
           "settings": {
             "title": "Basic",
-            "highlight_text": "",
+            "highlight_text": "dffdf",
             "price": "0",
             "button_text": "Choose this plan",
             "button_link": "",
@@ -140,7 +140,7 @@
           "type": "plan",
           "settings": {
             "title": "Professional",
-            "highlight_text": "",
+            "highlight_text": "sddd",
             "price": "19",
             "button_text": "Choose this plan",
             "button_link": "",
