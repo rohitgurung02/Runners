@@ -4,201 +4,131 @@
 -%}
 
 <style>
-  {{ sec_id }} .pc-pricing-plans {
-    padding: 3rem 0;
-    width: 100%;
-  }
-
-  {{ sec_id }} .pc-pricing-container {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  {{ sec_id }} .pc-plans-grid {
-    display: grid;
-    gap: 3rem 1.25rem;
-  }
-
-  {{ sec_id }} .pc-plan-card {
-    position: relative;
-    background-color: {{ section.settings.card_bg_color }};
-    padding: 2rem 1.5rem 2.5rem;
-    border-radius: 1.75rem;
-    box-shadow: {% if section.settings.card_shadow %}0 12px 24px hsla({{ section.settings.hue_color }}, 61%, 16%, 0.1){% else %}none{% endif %};
-    transition: 0.4s;
-    height: 100%;
-  }
-
-  {{ sec_id }} .pc-plan-card:hover {
-    box-shadow: {% if section.settings.card_shadow %}0 16px 24px hsla({{ section.settings.hue_color }}, 61%, 16%, 0.15){% else %}none{% endif %};
-  }
-
-  {{ sec_id }} .pc-plan-header-img {
-    width: 30px;
-    height: 30px;
-  }
-
-  {{ sec_id }} .pc-plan-header-circle {
-    width: 40px;
-    height: 40px;
-    background-color: hsl({{ section.settings.hue_color }}, 14%, 96%);
-    border-radius: 50%;
-    margin-bottom: 1rem;
-    display: grid;
-    place-items: center;
-  }
-
-  {{ sec_id }} .pc-plan-subtitle {
-    display: block;
-    font-size: 0.813rem;
-    color: hsl({{ section.settings.hue_color }}, 12%, 65%);
-    text-transform: uppercase;
-    margin-bottom: 0.25rem;
-    font-weight: {{ section.settings.subtitle_font_weight }};
-  }
-
-  {{ sec_id }} .pc-plan-title {
-    font-size: 1.75rem;
-    color: hsl({{ section.settings.hue_color }}, 12%, 15%);
-    margin-bottom: 1rem;
-    font-weight: {{ section.settings.title_font_weight }};
-  }
-
-  {{ sec_id }} .pc-plan-price {
-    position: absolute;
-    background: linear-gradient(157deg, hsl({{ section.settings.hue_color }}, 96%, 69%) -12%, hsl({{ section.settings.hue_color }}, 96%, 54%) 109%);
-    width: 60px;
-    height: 88px;
-    right: 1.5rem;
-    top: -1rem;
-    padding-top: 1.25rem;
-    text-align: center;
-  }
-
-  {{ sec_id }} .pc-price-number {
-    font-family: inherit;
-  }
-
-  {{ sec_id }} .pc-price-symbol {
-    font-size: 0.75rem;
-  }
-
-  {{ sec_id }} .pc-price-number {
-    font-size: 1.25rem;
-  }
-
-  {{ sec_id }} .pc-price-month {
-    display: block;
-    font-size: 0.625rem;
-  }
-
-  {{ sec_id }} .pc-price-number,
-  {{ sec_id }} .pc-price-month {
-    color: #FFF;
-  }
-
-  {{ sec_id }} .pc-plan-price::after,
-  {{ sec_id }} .pc-plan-price::before {
-    content: '';
-    position: absolute;
-  }
-
-  {{ sec_id }} .pc-plan-price::after {
-    width: 100%;
-    height: 14px;
-    background-color: #FFF;
-    left: 0;
-    bottom: 0;
-    clip-path: polygon(0 100%, 50% 0, 100% 100%);
-  }
-
-  {{ sec_id }} .pc-plan-price::before {
-    width: 14px;
-    height: 16px;
-    background-color: hsl({{ section.settings.hue_color }}, 96%, 37%);
-    top: 0;
-    left: -14px;
-    clip-path: polygon(0 100%, 100% 0, 100% 100%);
-  }
-
-  {{ sec_id }} .pc-plan-features {
-    display: grid;
-    row-gap: 0.5rem;
-    margin-bottom: 2rem;
-  }
-
-  {{ sec_id }} .pc-feature-item {
-    display: flex;
-    align-items: center;
-  }
-
-  {{ sec_id }} .pc-feature-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 0.5rem;
-    color: hsl({{ section.settings.hue_color }}, 96%, 54%);
-  }
-
-  {{ sec_id }} .pc-feature-text {
-    font-size: 0.938rem;
-    color: hsl({{ section.settings.hue_color }}, 12%, 35%);
-  }
-
-  {{ sec_id }} .pc-plan-button {
-    padding: 1.25rem;
-    border: none;
-    font-size: 0.938rem;
-    border-radius: 0.5rem;
-    background: linear-gradient(157deg, hsl({{ section.settings.hue_color }}, 96%, 69%) -12%, hsl({{ section.settings.hue_color }}, 96%, 54%) 109%);
-    color: #FFF;
-    cursor: pointer;
-    transition: 0.4s;
-    width: 100%;
-    font-weight: {{ section.settings.button_font_weight }};
-  }
-
-  {{ sec_id }} .pc-plan-button:hover {
-    box-shadow: 0 12px 24px hsla({{ section.settings.hue_color }}, 97%, 54%, 0.2);
+  {{ sec_id }} .pc-section-heading {
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    font-weight: {{ section.settings.heading_font_weight }};
+    color: {{ section.settings.heading_color }};
+    text-transform: {{ section.settings.heading_text_transform }};
+    letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+    line-height: {{ section.settings.heading_line_height }};
+    margin-bottom: {{ section.settings.heading_spacing }}px;
+    text-align: {{ section.settings.heading_alignment }};
   }
 
   {{ sec_id }} .pc-popular-badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: {{ section.settings.badge_bg_color }};
+    font-size: {{ section.settings.badge_font_size_mobile }}px;
+    font-weight: {{ section.settings.badge_font_weight }};
     color: {{ section.settings.badge_text_color }};
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    font-weight: bold;
+    background-color: {{ section.settings.badge_bg_color }};
+    padding: {{ section.settings.badge_padding_top }}px {{ section.settings.badge_padding_right }}px {{ section.settings.badge_padding_bottom }}px {{ section.settings.badge_padding_left }}px;
+    border-radius: {{ section.settings.badge_border_radius }}px;
   }
 
-  @media screen and (max-width: 320px) {
-    {{ sec_id }} .pc-pricing-container {
-      padding: 0 1rem;
+  {% for block in section.blocks %}
+    {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-plan-subtitle {
+      font-size: {{ block.settings.subtitle_font_size_mobile }}px;
+      font-weight: {{ block.settings.subtitle_font_weight }};
+      color: {{ block.settings.subtitle_color }};
+      text-transform: {{ block.settings.subtitle_text_transform }};
+      letter-spacing: {{ block.settings.subtitle_letter_spacing }}px;
+      margin-bottom: {{ block.settings.subtitle_margin_bottom }}px;
     }
-    {{ sec_id }} .pc-plan-card {
-      padding: 2rem 1.25rem;
-      border-radius: 1rem;
+
+    {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-plan-title {
+      font-size: {{ block.settings.title_font_size_mobile }}px;
+      font-weight: {{ block.settings.title_font_weight }};
+      color: {{ block.settings.title_color }};
+      text-transform: {{ block.settings.title_text_transform }};
+      letter-spacing: {{ block.settings.title_letter_spacing }}px;
+      margin-bottom: {{ block.settings.title_margin_bottom }}px;
     }
+
+    {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-price-number {
+      font-size: {{ block.settings.price_font_size_mobile }}px;
+      font-weight: {{ block.settings.price_font_weight }};
+    }
+
+    {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-price-symbol {
+      font-size: {{ block.settings.symbol_font_size }}px;
+    }
+
+    {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-price-month {
+      font-size: {{ block.settings.period_font_size }}px;
+    }
+
+    {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-feature-text {
+      font-size: {{ block.settings.feature_font_size_mobile }}px;
+      font-weight: {{ block.settings.feature_font_weight }};
+      color: {{ block.settings.feature_color }};
+    }
+
+    {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-feature-icon {
+      width: {{ block.settings.feature_icon_size }}px;
+      height: {{ block.settings.feature_icon_size }}px;
+      color: {{ block.settings.feature_icon_color }};
+    }
+
+    {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-feature-item {
+      margin-bottom: {{ block.settings.feature_spacing }}px;
+    }
+
+    {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-plan-features {
+      margin-bottom: {{ block.settings.features_margin_bottom }}px;
+    }
+
+    {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-plan-button {
+      font-size: {{ block.settings.button_font_size_mobile }}px;
+      font-weight: {{ block.settings.button_font_weight }};
+      color: {{ block.settings.button_text_color }};
+      background-color: {{ block.settings.button_bg_color }};
+      padding: {{ block.settings.button_padding_top }}px {{ block.settings.button_padding_right }}px {{ block.settings.button_padding_bottom }}px {{ block.settings.button_padding_left }}px;
+      border-radius: {{ block.settings.button_border_radius }}px;
+      letter-spacing: {{ block.settings.button_letter_spacing }}px;
+    }
+
+    {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-plan-button:hover {
+      color: {{ block.settings.button_hover_text_color }};
+      background-color: {{ block.settings.button_hover_bg_color }};
+    }
+  {% endfor %}
+
+  @media screen and (min-width: 768px) {
+    {{ sec_id }} .pc-section-heading {
+      font-size: {{ section.settings.heading_size }}px;
+    }
+
+    {{ sec_id }} .pc-popular-badge {
+      font-size: {{ section.settings.badge_font_size }}px;
+    }
+
+    {% for block in section.blocks %}
+      {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-plan-subtitle {
+        font-size: {{ block.settings.subtitle_font_size }}px;
+      }
+
+      {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-plan-title {
+        font-size: {{ block.settings.title_font_size }}px;
+      }
+
+      {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-price-number {
+        font-size: {{ block.settings.price_font_size }}px;
+      }
+
+      {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-feature-text {
+        font-size: {{ block.settings.feature_font_size }}px;
+      }
+
+      {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-plan-button {
+        font-size: {{ block.settings.button_font_size }}px;
+      }
+    {% endfor %}
   }
 
-  @media screen and (min-width: 568px) {
-    {{ sec_id }} .pc-plans-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media screen and (min-width: 968px) {
-    {{ sec_id }} .pc-plans-grid {
-      grid-template-columns: repeat({{ plan_count }}, 1fr);
-    }
-    {{ sec_id }} .pc-plan-header-circle {
-      margin-bottom: 1.25rem;
-    }
-    {{ sec_id }} .pc-plan-subtitle {
-      font-size: 0.875rem;
+  /* Mobile specific padding */
+  @media screen and (max-width: 767px) {
+    {{ sec_id }} .pc-pricing-plans {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
   }
 </style>
@@ -289,24 +219,31 @@
       "default": 32
     },
     {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size (Mobile)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
       "type": "select",
-      "id": "heading_alignment",
-      "label": "Heading Alignment",
+      "id": "heading_font_weight",
+      "label": "Heading Font Weight",
       "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
+        { "value": "100", "label": "Thin" },
+        { "value": "200", "label": "Extra Light" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
       ],
-      "default": "center"
+      "default": "700"
     },
     {
       "type": "color",
@@ -315,14 +252,56 @@
       "default": "#333333"
     },
     {
+      "type": "select",
+      "id": "heading_text_transform",
+      "label": "Heading Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "label": "Heading Letter Spacing",
+      "min": -2,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Heading Line Height",
+      "min": 0.8,
+      "max": 3,
+      "step": 0.1,
+      "default": 1.2
+    },
+    {
       "type": "range",
       "id": "heading_spacing",
-      "label": "Heading Spacing",
+      "label": "Heading Bottom Spacing",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
       "default": 30
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
     },
     {
       "type": "color",
@@ -351,6 +330,26 @@
       "default": 50
     },
     {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
       "type": "header",
       "content": "Card Settings"
     },
@@ -370,86 +369,10 @@
       "type": "range",
       "id": "hue_color",
       "label": "Accent Hue Color",
-      "min":10,
+      "min": 1,
       "max": 101,
       "step": 1,
       "default": 101
-    },
-    {
-      "type": "header",
-      "content": "Typography"
-    },
-    {
-      "type": "select",
-      "id": "title_font_weight",
-      "label": "Title Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "600"
-    },
-    {
-      "type": "select",
-      "id": "subtitle_font_weight",
-      "label": "Subtitle Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "400"
-    },
-    {
-      "type": "select",
-      "id": "button_font_weight",
-      "label": "Button Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "500"
     },
     {
       "type": "header",
@@ -466,6 +389,88 @@
       "id": "badge_text_color",
       "label": "Badge Text Color",
       "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "label": "Badge Font Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size_mobile",
+      "label": "Badge Font Size (Mobile)",
+      "min": 8,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "select",
+      "id": "badge_font_weight",
+      "label": "Badge Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "badge_padding_top",
+      "label": "Badge Top Padding",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "badge_padding_bottom",
+      "label": "Badge Bottom Padding",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "badge_padding_left",
+      "label": "Badge Left Padding",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "badge_padding_right",
+      "label": "Badge Right Padding",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "label": "Badge Border Radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 4
     }
   ],
   "blocks": [
@@ -474,15 +479,27 @@
       "name": "Pricing Plan",
       "settings": [
         {
+          "type": "header",
+          "content": "Badge Settings"
+        },
+        {
           "type": "text",
           "id": "badge_text",
           "label": "Badge Text",
           "info": "Leave blank to hide badge"
         },
         {
+          "type": "header",
+          "content": "Icon Settings"
+        },
+        {
           "type": "image_picker",
           "id": "icon",
           "label": "Icon Image"
+        },
+        {
+          "type": "header",
+          "content": "Subtitle Settings"
         },
         {
           "type": "text",
@@ -491,10 +508,158 @@
           "default": "Free plan"
         },
         {
+          "type": "range",
+          "id": "subtitle_font_size",
+          "label": "Subtitle Font Size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 13
+        },
+        {
+          "type": "range",
+          "id": "subtitle_font_size_mobile",
+          "label": "Subtitle Font Size (Mobile)",
+          "min": 8,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "default": 11
+        },
+        {
+          "type": "select",
+          "id": "subtitle_font_weight",
+          "label": "Subtitle Font Weight",
+          "options": [
+            { "value": "400", "label": "Normal" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semi Bold" },
+            { "value": "700", "label": "Bold" }
+          ],
+          "default": "400"
+        },
+        {
+          "type": "color",
+          "id": "subtitle_color",
+          "label": "Subtitle Color",
+          "default": "#666666"
+        },
+        {
+          "type": "select",
+          "id": "subtitle_text_transform",
+          "label": "Subtitle Text Transform",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "uppercase", "label": "Uppercase" },
+            { "value": "lowercase", "label": "Lowercase" },
+            { "value": "capitalize", "label": "Capitalize" }
+          ],
+          "default": "uppercase"
+        },
+        {
+          "type": "range",
+          "id": "subtitle_letter_spacing",
+          "label": "Subtitle Letter Spacing",
+          "min": -1,
+          "max": 5,
+          "step": 0.5,
+          "unit": "px",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "subtitle_margin_bottom",
+          "label": "Subtitle Bottom Margin",
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "default": 4
+        },
+        {
+          "type": "header",
+          "content": "Title Settings"
+        },
+        {
           "type": "text",
           "id": "title",
           "label": "Title",
           "default": "Basic"
+        },
+        {
+          "type": "range",
+          "id": "title_font_size",
+          "label": "Title Font Size",
+          "min": 16,
+          "max": 42,
+          "step": 1,
+          "unit": "px",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "title_font_size_mobile",
+          "label": "Title Font Size (Mobile)",
+          "min": 14,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 22
+        },
+        {
+          "type": "select",
+          "id": "title_font_weight",
+          "label": "Title Font Weight",
+          "options": [
+            { "value": "400", "label": "Normal" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semi Bold" },
+            { "value": "700", "label": "Bold" }
+          ],
+          "default": "600"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#333333"
+        },
+        {
+          "type": "select",
+          "id": "title_text_transform",
+          "label": "Title Text Transform",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "uppercase", "label": "Uppercase" },
+            { "value": "lowercase", "label": "Lowercase" },
+            { "value": "capitalize", "label": "Capitalize" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "range",
+          "id": "title_letter_spacing",
+          "label": "Title Letter Spacing",
+          "min": -1,
+          "max": 5,
+          "step": 0.5,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "title_margin_bottom",
+          "label": "Title Bottom Margin",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "header",
+          "content": "Price Settings"
         },
         {
           "type": "text",
@@ -513,6 +678,62 @@
           "id": "billing_period",
           "label": "Billing Period",
           "default": "/month"
+        },
+        {
+          "type": "range",
+          "id": "price_font_size",
+          "label": "Price Font Size",
+          "min": 16,
+          "max": 42,
+          "step": 1,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "price_font_size_mobile",
+          "label": "Price Font Size (Mobile)",
+          "min": 14,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        },
+        {
+          "type": "select",
+          "id": "price_font_weight",
+          "label": "Price Font Weight",
+          "options": [
+            { "value": "400", "label": "Normal" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semi Bold" },
+            { "value": "700", "label": "Bold" }
+          ],
+          "default": "600"
+        },
+        {
+          "type": "range",
+          "id": "symbol_font_size",
+          "label": "Symbol Font Size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "period_font_size",
+          "label": "Period Font Size",
+          "min": 8,
+          "max": 16,
+          "step": 1,
+          "unit": "px",
+          "default": 10
+        },
+        {
+          "type": "header",
+          "content": "Feature List Settings"
         },
         {
           "type": "text",
@@ -542,20 +763,213 @@
           "type": "text",
           "id": "feature_5_text",
           "label": "Feature 5",
-          "default": "feature 5"
+          "default": "Feature 5"
+        },
+        {
+          "type": "range",
+          "id": "feature_font_size",
+          "label": "Feature Font Size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 15
+        },
+        {
+          "type": "range",
+          "id": "feature_font_size_mobile",
+          "label": "Feature Font Size (Mobile)",
+          "min": 10,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "select",
+          "id": "feature_font_weight",
+          "label": "Feature Font Weight",
+          "options": [
+            { "value": "400", "label": "Normal" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semi Bold" }
+          ],
+          "default": "400"
+        },
+        {
+          "type": "color",
+          "id": "feature_color",
+          "label": "Feature Text Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "feature_icon_size",
+          "label": "Feature Icon Size",
+          "min": 12,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "feature_icon_color",
+          "label": "Feature Icon Color",
+          "default": "#0066CC"
+        },
+        {
+          "type": "range",
+          "id": "feature_spacing",
+          "label": "Feature Item Spacing",
+          "min": 4,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "features_margin_bottom",
+          "label": "Features Bottom Margin",
+          "min": 0,
+          "max": 60,
+          "step": 5,
+          "unit": "px",
+          "default": 5
+        },
+        {
+          "type": "header",
+          "content": "Button Settings"
         },
         {
           "type": "text",
           "id": "button_text",
           "label": "Button Text",
           "default": "Choose this plan"
+        },
+        {
+          "type": "range",
+          "id": "button_font_size",
+          "label": "Button Font Size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 15
+        },
+        {
+          "type": "range",
+          "id": "button_font_size_mobile",
+          "label": "Button Font Size (Mobile)",
+          "min": 10,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "select",
+          "id": "button_font_weight",
+          "label": "Button Font Weight",
+          "options": [
+            { "value": "400", "label": "Normal" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semi Bold" },
+            { "value": "700", "label": "Bold" }
+          ],
+          "default": "500"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Text Color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button Background Color",
+          "default": "#0066CC"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_text_color",
+          "label": "Button Hover Text Color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_bg_color",
+          "label": "Button Hover Background Color",
+          "default": "#0052A3"
+        },
+        {
+          "type": "range",
+          "id": "button_padding_top",
+          "label": "Button Top Padding",
+          "min": 8,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "button_padding_bottom",
+          "label": "Button Bottom Padding",
+          "min": 8,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "button_padding_left",
+          "label": "Button Left Padding",
+          "min": 8,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "button_padding_right",
+          "label": "Button Right Padding",
+          "min": 8,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "label": "Button Border Radius",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "button_letter_spacing",
+          "label": "Button Letter Spacing",
+          "min": -1,
+          "max": 5,
+          "step": 0.5,
+          "unit": "px",
+          "default": 0
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "PWC - Pricing Plans #3",
+      "name": "PWC - Pricing Plans #1",
       "blocks": [
         {
           "type": "plan",
