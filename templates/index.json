@@ -195,7 +195,7 @@
         "padding_bottom": 48,
         "card_bg_color": "#ffffff",
         "card_shadow": true,
-        "hue_color": 101,
+        "hue_color": 1,
         "badge_bg_color": "#FF5722",
         "badge_text_color": "#FFFFFF",
         "subtitle_font_weight": "600",
