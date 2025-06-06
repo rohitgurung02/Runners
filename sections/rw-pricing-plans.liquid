@@ -1,6 +1,3 @@
-I'll enhance the code to include comprehensive typography controls for all text elements. Here's the improved version with complete styling options:
-
-liquid
 {%- liquid
   assign sec_id = '#shopify-section-' | append: section.id
   assign plan_count = section.blocks.size
@@ -13,85 +10,70 @@ liquid
   }
 
   {{ sec_id }} .pc-pricing-container {
-    max-width: {{ section.settings.container_width }}px;
+    max-width: 1024px;
     margin: 0 auto;
-    padding: 0 {{ section.settings.container_padding }}px;
+    padding: 0 1.5rem;
   }
 
   {{ sec_id }} .pc-plans-grid {
     display: grid;
-    gap: {{ section.settings.grid_gap }}px;
+    gap: 3rem 1.25rem;
   }
 
   {{ sec_id }} .pc-plan-card {
     position: relative;
     background-color: {{ section.settings.card_bg_color }};
-    padding: {{ section.settings.card_padding_top }}px {{ section.settings.card_padding_sides }}px {{ section.settings.card_padding_bottom }}px;
-    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: 2rem 1.5rem 2.5rem;
+    border-radius: 1.75rem;
     box-shadow: {% if section.settings.card_shadow %}0 12px 24px hsla({{ section.settings.hue_color }}, 61%, 16%, 0.1){% else %}none{% endif %};
     transition: 0.4s;
     height: 100%;
-    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
   }
 
   {{ sec_id }} .pc-plan-card:hover {
     box-shadow: {% if section.settings.card_shadow %}0 16px 24px hsla({{ section.settings.hue_color }}, 61%, 16%, 0.15){% else %}none{% endif %};
-    transform: translateY(-{{ section.settings.card_hover_lift }}px);
   }
 
   {{ sec_id }} .pc-plan-header-img {
-    width: {{ section.settings.icon_size }}px;
-    height: {{ section.settings.icon_size }}px;
+    width: 30px;
+    height: 30px;
   }
 
   {{ sec_id }} .pc-plan-header-circle {
-    width: {{ section.settings.icon_container_size }}px;
-    height: {{ section.settings.icon_container_size }}px;
-    background-color: {{ section.settings.icon_container_color }};
+    width: 40px;
+    height: 40px;
+    background-color: hsl({{ section.settings.hue_color }}, 14%, 96%);
     border-radius: 50%;
-    margin-bottom: {{ section.settings.icon_bottom_spacing }}px;
+    margin-bottom: 1rem;
     display: grid;
     place-items: center;
   }
 
   {{ sec_id }} .pc-plan-subtitle {
     display: block;
-    font-size: {{ section.settings.subtitle_font_size }}px;
-    color: {{ section.settings.subtitle_color }};
-    text-transform: {{ section.settings.subtitle_text_transform }};
-    margin-bottom: {{ section.settings.subtitle_bottom_spacing }}px;
+    font-size: 0.813rem;
+    color: hsl({{ section.settings.hue_color }}, 12%, 65%);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
     font-weight: {{ section.settings.subtitle_font_weight }};
-    letter-spacing: {{ section.settings.subtitle_letter_spacing }}px;
-    line-height: {{ section.settings.subtitle_line_height }};
-    text-decoration: {{ section.settings.subtitle_text_decoration }};
-    font-style: {{ section.settings.subtitle_font_style }};
-    padding-top: {{ section.settings.subtitle_padding_top }}px;
-    padding-bottom: {{ section.settings.subtitle_padding_bottom }}px;
   }
 
   {{ sec_id }} .pc-plan-title {
-    font-size: {{ section.settings.title_font_size }}px;
-    color: {{ section.settings.title_color }};
-    margin-bottom: {{ section.settings.title_bottom_spacing }}px;
+    font-size: 1.75rem;
+    color: hsl({{ section.settings.hue_color }}, 12%, 15%);
+    margin-bottom: 1rem;
     font-weight: {{ section.settings.title_font_weight }};
-    letter-spacing: {{ section.settings.title_letter_spacing }}px;
-    line-height: {{ section.settings.title_line_height }};
-    text-decoration: {{ section.settings.title_text_decoration }};
-    font-style: {{ section.settings.title_font_style }};
-    padding-top: {{ section.settings.title_padding_top }}px;
-    padding-bottom: {{ section.settings.title_padding_bottom }}px;
   }
 
   {{ sec_id }} .pc-plan-price {
     position: absolute;
     background: linear-gradient(157deg, hsl({{ section.settings.hue_color }}, 96%, 69%) -12%, hsl({{ section.settings.hue_color }}, 96%, 54%) 109%);
-    width: {{ section.settings.price_tag_width }}px;
-    height: {{ section.settings.price_tag_height }}px;
-    right: {{ section.settings.price_tag_right_position }}px;
-    top: -{{ section.settings.price_tag_top_position }}px;
-    padding-top: {{ section.settings.price_tag_padding_top }}px;
+    width: 60px;
+    height: 88px;
+    right: 1.5rem;
+    top: -1rem;
+    padding-top: 1.25rem;
     text-align: center;
-    border-radius: {{ section.settings.price_tag_border_radius }}px;
   }
 
   {{ sec_id }} .pc-price-number {
@@ -99,25 +81,21 @@ liquid
   }
 
   {{ sec_id }} .pc-price-symbol {
-    font-size: {{ section.settings.price_symbol_size }}px;
-    font-weight: {{ section.settings.price_symbol_font_weight }};
+    font-size: 0.75rem;
   }
 
   {{ sec_id }} .pc-price-number {
-    font-size: {{ section.settings.price_number_size }}px;
-    font-weight: {{ section.settings.price_number_font_weight }};
+    font-size: 1.25rem;
   }
 
   {{ sec_id }} .pc-price-month {
     display: block;
-    font-size: {{ section.settings.price_period_size }}px;
-    font-weight: {{ section.settings.price_period_font_weight }};
-    margin-top: {{ section.settings.price_period_spacing }}px;
+    font-size: 0.625rem;
   }
 
   {{ sec_id }} .pc-price-number,
   {{ sec_id }} .pc-price-month {
-    color: {{ section.settings.price_text_color }};
+    color: #FFF;
   }
 
   {{ sec_id }} .pc-plan-price::after,
@@ -146,8 +124,8 @@ liquid
 
   {{ sec_id }} .pc-plan-features {
     display: grid;
-    row-gap: {{ section.settings.features_row_gap }}px;
-    margin-bottom: {{ section.settings.features_bottom_spacing }}px;
+    row-gap: 0.5rem;
+    margin-bottom: 2rem;
   }
 
   {{ sec_id }} .pc-feature-item {
@@ -156,64 +134,44 @@ liquid
   }
 
   {{ sec_id }} .pc-feature-icon {
-    width: {{ section.settings.feature_icon_size }}px;
-    height: {{ section.settings.feature_icon_size }}px;
-    margin-right: {{ section.settings.feature_icon_spacing }}px;
-    color: {{ section.settings.feature_icon_color }};
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+    color: hsl({{ section.settings.hue_color }}, 96%, 54%);
   }
 
   {{ sec_id }} .pc-feature-text {
-    font-size: {{ section.settings.feature_text_size }}px;
-    color: {{ section.settings.feature_text_color }};
-    font-weight: {{ section.settings.feature_text_font_weight }};
-    letter-spacing: {{ section.settings.feature_text_letter_spacing }}px;
-    line-height: {{ section.settings.feature_text_line_height }};
-    text-decoration: {{ section.settings.feature_text_decoration }};
-    font-style: {{ section.settings.feature_text_font_style }};
-    padding-top: {{ section.settings.feature_text_padding_top }}px;
-    padding-bottom: {{ section.settings.feature_text_padding_bottom }}px;
+    font-size: 0.938rem;
+    color: hsl({{ section.settings.hue_color }}, 12%, 35%);
   }
 
   {{ sec_id }} .pc-plan-button {
-    padding: {{ section.settings.button_padding_top }}px {{ section.settings.button_padding_sides }}px {{ section.settings.button_padding_bottom }}px;
+    padding: 1.25rem;
     border: none;
-    font-size: {{ section.settings.button_font_size }}px;
-    border-radius: {{ section.settings.button_border_radius }}px;
+    font-size: 0.938rem;
+    border-radius: 0.5rem;
     background: linear-gradient(157deg, hsl({{ section.settings.hue_color }}, 96%, 69%) -12%, hsl({{ section.settings.hue_color }}, 96%, 54%) 109%);
-    color: {{ section.settings.button_text_color }};
+    color: #FFF;
     cursor: pointer;
     transition: 0.4s;
     width: 100%;
     font-weight: {{ section.settings.button_font_weight }};
-    letter-spacing: {{ section.settings.button_letter_spacing }}px;
-    line-height: {{ section.settings.button_line_height }};
-    text-decoration: {{ section.settings.button_text_decoration }};
-    font-style: {{ section.settings.button_font_style }};
-    text-transform: {{ section.settings.button_text_transform }};
-    border: {{ section.settings.button_border_width }}px solid {{ section.settings.button_border_color }};
   }
 
   {{ sec_id }} .pc-plan-button:hover {
     box-shadow: 0 12px 24px hsla({{ section.settings.hue_color }}, 97%, 54%, 0.2);
-    opacity: {{ section.settings.button_hover_opacity }};
   }
 
   {{ sec_id }} .pc-popular-badge {
     position: absolute;
-    top: {{ section.settings.badge_top_position }}px;
-    left: {{ section.settings.badge_left_position }}px;
+    top: 10px;
+    left: 10px;
     background-color: {{ section.settings.badge_bg_color }};
     color: {{ section.settings.badge_text_color }};
-    padding: {{ section.settings.badge_padding_top }}px {{ section.settings.badge_padding_sides }}px {{ section.settings.badge_padding_bottom }}px;
-    border-radius: {{ section.settings.badge_border_radius }}px;
-    font-size: {{ section.settings.badge_font_size }}px;
-    font-weight: {{ section.settings.badge_font_weight }};
-    letter-spacing: {{ section.settings.badge_letter_spacing }}px;
-    line-height: {{ section.settings.badge_line_height }};
-    text-decoration: {{ section.settings.badge_text_decoration }};
-    font-style: {{ section.settings.badge_font_style }};
-    text-transform: {{ section.settings.badge_text_transform }};
-    border: {{ section.settings.badge_border_width }}px solid {{ section.settings.badge_border_color }};
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: bold;
   }
 
   @media screen and (max-width: 320px) {
@@ -248,20 +206,7 @@ liquid
 <section class="pc-pricing-plans" style="background-color: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
   <div class="pc-pricing-container">
     {% if section.settings.heading != blank %}
-      <h2 class="pc-section-heading" style="
-        text-align: {{ section.settings.heading_alignment }};
-        font-size: {{ section.settings.heading_size }}px;
-        color: {{ section.settings.heading_color }};
-        margin-bottom: {{ section.settings.heading_spacing }}px;
-        font-weight: {{ section.settings.heading_font_weight }};
-        letter-spacing: {{ section.settings.heading_letter_spacing }}px;
-        line-height: {{ section.settings.heading_line_height }};
-        text-decoration: {{ section.settings.heading_text_decoration }};
-        font-style: {{ section.settings.heading_font_style }};
-        text-transform: {{ section.settings.heading_text_transform }};
-        padding-top: {{ section.settings.heading_padding_top }}px;
-        padding-bottom: {{ section.settings.heading_padding_bottom }}px;
-      ">
+      <h2 class="pc-section-heading" style="text-align: {{ section.settings.heading_alignment }}; font-size: {{ section.settings.heading_size }}px; color: {{ section.settings.heading_color }}; margin-bottom: {{ section.settings.heading_spacing }}px;">
         {{ section.settings.heading }}
       </h2>
     {% endif %}
