@@ -215,8 +215,14 @@
       {% for block in section.blocks %}
         <div class="pc-plan-card" {{ block.shopify_attributes }}>
           {% if block.settings.badge_text != blank %}
-            <div class="pc-popular-badge" style="text-align: {{ section.settings.badge_alignment }}; font-size: {{ section.settings.badge_heading_size }}px; color: {{ section.settings.badge_color }};
-              margin-bottom: {{ section.settings.badge_spacing }}px;">{{ block.settings.badge_text }}</div>
+            <div class="pc-popular-badge" style="text-align: {{ block.settings.badge_alignment }};
+              font-size: {{ block.settings.badge_text_size }}px;
+              color: {{ block.settings.badge_color }};
+              margin-bottom: {{ block.settings.badge_spacing }}px;
+              font-weight: {{ block.settings.badge_font_weight }};
+              font-style: {{ block.settings.badge_font_style }};
+              letter-spacing: {{ block.settings.badge_letter_spacing }};
+              ">{{ block.settings.badge_text }}</div>
           {% endif %}
 
           <div class="pc-plan-price">
@@ -428,13 +434,13 @@
         },
          {
           "type": "color",
-          "id": "title_color",
+          "id": "badge_color",
           "label": "Text Color",
           "default": "#000"
         },
         {
           "type": "select",
-          "id": "text_size",
+          "id": "badge_text_size",
           "label": "Text Size",
           "options": [
             {
@@ -454,7 +460,7 @@
         },
         {
           "type": "select",
-          "id": "title_font_weight",
+          "id": "badge_font_weight",
           "label": "Font weight",
           "options": [
             {
@@ -514,7 +520,7 @@
         },
         {
           "type": "select",
-          "id": "font_style",
+          "id": "badge_font_style",
           "label": "Font style",
           "options": [
             {
@@ -534,7 +540,7 @@
         },
         {
           "type": "range",
-          "id": "letter_spacing",
+          "id": "badge_letter_spacing",
           "min": 0,
           "max": 10,
           "step": 0.5,
@@ -542,55 +548,6 @@
           "label": "Letter spacing",
           "default": 0
         },
-        {
-          "type": "select",
-          "id": "text_decoration",
-          "label": "Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "text_decoration_color",
-          "label": "Text Decoration Color",
-          "default": "#000"
-        },
-        {
-          "type": "range",
-          "id": "padding_top",
-          "label": "Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "padding_bottom",
-          "label": "Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-       
         {
           "type": "image_picker",
           "id": "icon",
