@@ -174,12 +174,6 @@
     font-weight: bold;
   }
 
-  {{ sec_id }} .pc-plan-button:hover {
-    background-color: {{ block.settings.button_background_hover_color }};
-    color: {{ block.settings.button_text_hover_color }};
-    border-color: {{ block.settings.button_border_hover_color }};
-  }
-
   @media screen and (max-width: 320px) {
     {{ sec_id }} .pc-pricing-container {
       padding: 0 1rem;
@@ -1141,12 +1135,6 @@
           "id": "button_text_color",
           "label": "Button Text Color",
           "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "button_hover_background_color",
-          "label": "Button Hover Background Color",
-          "default": "#005bb5"
         },
         {
           "type": "color",
