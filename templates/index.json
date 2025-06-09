@@ -342,7 +342,7 @@
         "message_position_top": 0,
         "message_position_left": 280,
         "message_padding": "0.2rem 1rem",
-        "container_padding": 20,
+        "container_padding": 10,
         "container_border_radius": 10,
         "message_border_radius": 4,
         "mobile_min_height": 100,
