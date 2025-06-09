@@ -335,7 +335,7 @@
         "min_height": 280,
         "heading_width": 650,
         "heading_height": 55,
-        "prefix_margin_left": 42,
+        "prefix_margin_left": 60,
         "message_width": 285,
         "message_height": 75,
         "word_height": 100,
