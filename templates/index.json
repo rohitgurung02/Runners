@@ -362,12 +362,48 @@
         "shadow_enable": true,
         "message_shadow_enable": true
       }
+    },
+    "rw_interactive_text_two_AgAHKa": {
+      "type": "rw-interactive-text-two",
+      "name": "RWC Animated SVG Logo",
+      "settings": {
+        "animation_duration": 1,
+        "animation_stagger": 1,
+        "animation_repeat_delay": 0,
+        "hover_slowdown_factor": 0.1,
+        "gsap_version": "1.20.4",
+        "svg_fill_color": "#d25d5d",
+        "svg_stroke_color": "#1c1c1c",
+        "svg_stroke_width": 0.1,
+        "svg_width": 90,
+        "svg_padding": 5,
+        "mobile_svg_width": 95,
+        "mobile_svg_padding": 1,
+        "background_color": "#c49f28",
+        "container_height": 100,
+        "mobile_container_height": 80,
+        "show_hover_tip": true,
+        "hover_tip_text": "Hover to Slow Motion",
+        "tip_text_color": "#1c1c1c",
+        "tip_font_size": 9,
+        "tip_font_weight": "700",
+        "tip_font_family": "Tahoma, sans-serif",
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "desktop_padding_top": 0,
+        "desktop_padding_bottom": 0,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0
+      }
     }
   },
   "order": [
     "featured_collection_copy_kaw7iD",
     "rw_mulitcolumn_pGW8Ym",
     "rw_pricing_plans_U7cd9L",
-    "rw_interactive_text_NLRF3G"
+    "rw_interactive_text_NLRF3G",
+    "rw_interactive_text_two_AgAHKa"
   ]
 }
