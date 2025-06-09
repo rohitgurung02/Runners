@@ -362,12 +362,57 @@
         "shadow_enable": true,
         "message_shadow_enable": true
       }
+    },
+    "rw_interactive_text_two_PHMLJH": {
+      "type": "rw-interactive-text-two",
+      "blocks": {
+        "logo_EBkcxQ": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/t-shirt_01.webp"
+          }
+        },
+        "logo_rcaQGN": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/t-shirt_02.webp"
+          }
+        },
+        "logo_PNjGFh": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/t-shirt_02.webp"
+          }
+        }
+      },
+      "block_order": [
+        "logo_EBkcxQ",
+        "logo_rcaQGN",
+        "logo_PNjGFh"
+      ],
+      "name": "PWC - Trusted Brands #1",
+      "settings": {
+        "heading": "Trusted by more than 30,000 customers globally",
+        "heading_font_size": 32,
+        "mobile_heading_font_size": 24,
+        "heading_font_weight": "400",
+        "heading_align": "center",
+        "heading_color": "#333333",
+        "desktop_padding_top": 60,
+        "desktop_padding_bottom": 60,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30,
+        "background_color": "#ffffff",
+        "enable_shadow": false,
+        "custom_class": "custom class"
+      }
     }
   },
   "order": [
     "featured_collection_copy_kaw7iD",
     "rw_mulitcolumn_pGW8Ym",
     "rw_pricing_plans_U7cd9L",
-    "rw_interactive_text_NLRF3G"
+    "rw_interactive_text_NLRF3G",
+    "rw_interactive_text_two_PHMLJH"
   ]
 }
