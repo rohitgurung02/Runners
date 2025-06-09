@@ -320,7 +320,7 @@
         "prefix_font_size": 40,
         "mobile_prefix_font_size": 24,
         "heading_font_weight": "300",
-        "message_font_weight": "700",
+        "message_font_weight": "600",
         "heading_color": "#2c3e50",
         "prefix_color": "#2c3e50",
         "prefix_hover_color": "#7c5ce0",
