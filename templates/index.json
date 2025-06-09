@@ -362,12 +362,34 @@
         "shadow_enable": true,
         "message_shadow_enable": true
       }
+    },
+    "rw_interactive_text_two_CPETWk": {
+      "type": "rw-interactive-text-two",
+      "name": "PWC Infinite Text Scroll #1",
+      "settings": {
+        "text": "Get in touch",
+        "speed": 8,
+        "rotation": -4,
+        "gap": 40,
+        "text_size_desktop": 100,
+        "text_size_mobile": 50,
+        "gradient_start": "#baa9a9",
+        "gradient_middle": "#ffffff",
+        "gradient_end": "#ffd700",
+        "bg_color": "#e34d4d",
+        "shadow": true,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20
+      }
     }
   },
   "order": [
     "featured_collection_copy_kaw7iD",
     "rw_mulitcolumn_pGW8Ym",
     "rw_pricing_plans_U7cd9L",
-    "rw_interactive_text_NLRF3G"
+    "rw_interactive_text_NLRF3G",
+    "rw_interactive_text_two_CPETWk"
   ]
 }
