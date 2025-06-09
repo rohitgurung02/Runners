@@ -2,22 +2,6 @@
   assign sec_id = '#shopify-section-' | append: section.id
 -%}
 
-<pc-animated-text class="pc-animated-text">
-  <div class="pc-animated-text__container">
-    <h1 class="pc-animated-text__heading">
-      <span class="pc-animated-text__prefix">{{ section.settings.prefix }}</span>
-      <div class="pc-animated-text__message">
-        {%- for i in (1..4) -%}
-          {%- assign word_key = 'word_' | append: i -%}
-          {%- if section.settings[word_key] != blank -%}
-            <div class="pc-animated-text__word pc-animated-text__word-{{ i }}">{{ section.settings[word_key] }}</div>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
-    </h1>
-  </div>
-</pc-animated-text>
-
 <style>
   {{ sec_id }} .pc-animated-text {
     display: flex;
@@ -182,14 +166,29 @@
   }
 </style>
 
+<pc-animated-text class="pc-animated-text">
+  <div class="pc-animated-text__container">
+    <h1 class="pc-animated-text__heading">
+      <span class="pc-animated-text__prefix">{{ section.settings.prefix }}</span>
+      <div class="pc-animated-text__message">
+        {%- for i in (1..4) -%}
+          {%- assign word_key = 'word_' | append: i -%}
+          {%- if section.settings[word_key] != blank -%}
+            <div class="pc-animated-text__word pc-animated-text__word-{{ i }}">{{ section.settings[word_key] }}</div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </h1>
+  </div>
+</pc-animated-text>
+
 <script>
   class PCAnimatedText extends HTMLElement {
     constructor() {
       super();
-      // Custom element initialization if needed
     }
   }
-
+  
   customElements.define('pc-animated-text', PCAnimatedText);
 </script>
 
