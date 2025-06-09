@@ -334,7 +334,7 @@
         "message_shadow_color": "#0000001a",
         "min_height": 360,
         "heading_width": 650,
-        "heading_height": 30,
+        "heading_height": 70,
         "prefix_margin_left": 10,
         "message_width": 285,
         "message_height": 30,
