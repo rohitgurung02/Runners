@@ -110,7 +110,7 @@
         "horizontal_line_color": "#000000",
         "text_alignment": "center",
         "paragraph_width": 100,
-        "button_label": "View all",
+        "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
         "column_alignment": "left",
@@ -281,6 +281,7 @@
         "plan_awLPHw",
         "plan_tYtkA3"
       ],
+      "disabled": true,
       "name": "RW Pricing Plans",
       "settings": {
         "heading": "Pricing Plans",
