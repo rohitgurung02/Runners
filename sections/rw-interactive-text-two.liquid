@@ -17,25 +17,6 @@
   assign shadow = section.settings.shadow
 -%}
 
-<pc-infinite-text-scroll class="pc-infinite-text-scroll">
-  <div class="pc-infinite-text-scroll__wrapper" style="background-color: {{ bg_color }};">
-    <div class="pc-infinite-text-scroll__container" style="--pc-speed: {{ speed }}s; --pc-rotation: {{ rotation }}deg; --pc-gap: {{ gap }}px; --pc-text-size-desktop: {{ text_size_desktop }}px; --pc-text-size-mobile: {{ text_size_mobile }}px; --pc-gradient-start: {{ gradient_start }}; --pc-gradient-middle: {{ gradient_middle }}; --pc-gradient-end: {{ gradient_end }};">
-      <div class="pc-infinite-text-scroll__marquee">
-        <ul class="pc-infinite-text-scroll__list">
-          {% for i in (1..5) %}
-            <li class="pc-infinite-text-scroll__item"><span class="pc-infinite-text-scroll__text">{{ text }}</span></li>
-          {% endfor %}
-        </ul>
-        <ul class="pc-infinite-text-scroll__list" aria-hidden="true">
-          {% for i in (1..5) %}
-            <li class="pc-infinite-text-scroll__item"><span class="pc-infinite-text-scroll__text">{{ text }}</span></li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-  </div>
-</pc-infinite-text-scroll>
-
 <style>
   {{ sec_id }} .pc-infinite-text-scroll {
     position: relative;
@@ -108,6 +89,25 @@
     }
   }
 </style>
+
+<pc-infinite-text-scroll class="pc-infinite-text-scroll">
+  <div class="pc-infinite-text-scroll__wrapper" style="background-color: {{ bg_color }};">
+    <div class="pc-infinite-text-scroll__container" style="--pc-speed: {{ speed }}s; --pc-rotation: {{ rotation }}deg; --pc-gap: {{ gap }}px; --pc-text-size-desktop: {{ text_size_desktop }}px; --pc-text-size-mobile: {{ text_size_mobile }}px; --pc-gradient-start: {{ gradient_start }}; --pc-gradient-middle: {{ gradient_middle }}; --pc-gradient-end: {{ gradient_end }};">
+      <div class="pc-infinite-text-scroll__marquee">
+        <ul class="pc-infinite-text-scroll__list">
+          {% for i in (1..5) %}
+            <li class="pc-infinite-text-scroll__item"><span class="pc-infinite-text-scroll__text">{{ text }}</span></li>
+          {% endfor %}
+        </ul>
+        <ul class="pc-infinite-text-scroll__list" aria-hidden="true">
+          {% for i in (1..5) %}
+            <li class="pc-infinite-text-scroll__item"><span class="pc-infinite-text-scroll__text">{{ text }}</span></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</pc-infinite-text-scroll>
 
 <script>
   class PCInfiniteTextScroll extends HTMLElement {
