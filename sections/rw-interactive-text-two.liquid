@@ -17,19 +17,21 @@
   assign shadow = section.settings.shadow
 -%}
 
-<pc-infinite-text-scroll class="pc-infinite-text-scroll" style="background: {{ bg_color }}; --pc-speed: {{ speed }}s; --pc-rotation: {{ rotation }}deg; --pc-gap: {{ gap }}px; --pc-text-size-desktop: {{ text_size_desktop }}px; --pc-text-size-mobile: {{ text_size_mobile }}px; --pc-gradient-start: {{ gradient_start }}; --pc-gradient-middle: {{ gradient_middle }}; --pc-gradient-end: {{ gradient_end }};">
-  <div class="pc-infinite-text-scroll__container">
-    <div class="pc-infinite-text-scroll__marquee">
-      <ul class="pc-infinite-text-scroll__list">
-        {% for i in (1..5) %}
-          <li class="pc-infinite-text-scroll__item"><span class="pc-infinite-text-scroll__text">{{ text }}</span></li>
-        {% endfor %}
-      </ul>
-      <ul class="pc-infinite-text-scroll__list" aria-hidden="true">
-        {% for i in (1..5) %}
-          <li class="pc-infinite-text-scroll__item"><span class="pc-infinite-text-scroll__text">{{ text }}</span></li>
-        {% endfor %}
-      </ul>
+<pc-infinite-text-scroll class="pc-infinite-text-scroll">
+  <div class="pc-infinite-text-scroll__wrapper" style="background-color: {{ bg_color }};">
+    <div class="pc-infinite-text-scroll__container" style="--pc-speed: {{ speed }}s; --pc-rotation: {{ rotation }}deg; --pc-gap: {{ gap }}px; --pc-text-size-desktop: {{ text_size_desktop }}px; --pc-text-size-mobile: {{ text_size_mobile }}px; --pc-gradient-start: {{ gradient_start }}; --pc-gradient-middle: {{ gradient_middle }}; --pc-gradient-end: {{ gradient_end }};">
+      <div class="pc-infinite-text-scroll__marquee">
+        <ul class="pc-infinite-text-scroll__list">
+          {% for i in (1..5) %}
+            <li class="pc-infinite-text-scroll__item"><span class="pc-infinite-text-scroll__text">{{ text }}</span></li>
+          {% endfor %}
+        </ul>
+        <ul class="pc-infinite-text-scroll__list" aria-hidden="true">
+          {% for i in (1..5) %}
+            <li class="pc-infinite-text-scroll__item"><span class="pc-infinite-text-scroll__text">{{ text }}</span></li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
   </div>
 </pc-infinite-text-scroll>
@@ -39,6 +41,10 @@
     position: relative;
     width: 100%;
     overflow: hidden;
+  }
+
+  {{ sec_id }} .pc-infinite-text-scroll__wrapper {
+    width: 100%;
     padding-top: {{ padding_top_mobile }}px;
     padding-bottom: {{ padding_bottom_mobile }}px;
   }
@@ -93,7 +99,7 @@
   }
 
   @media (min-width: 768px) {
-    {{ sec_id }} .pc-infinite-text-scroll {
+    {{ sec_id }} .pc-infinite-text-scroll__wrapper {
       padding-top: {{ padding_top }}px;
       padding-bottom: {{ padding_bottom }}px;
     }
@@ -202,7 +208,7 @@
       "type": "color",
       "id": "bg_color",
       "label": "Background Color",
-      "default": "#ffffff"
+      "default": "transparent"
     },
     {
       "type": "checkbox",
@@ -261,7 +267,7 @@
   ],
   "presets": [
     {
-      "name": "PWC Infinite Text Scroll #1",
+      "name": "PWC Infinite Text Scroll",
       "category": "Text"
     }
   ]
