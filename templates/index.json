@@ -443,8 +443,8 @@
         "mobile_padding_bottom": 30,
         "mobile_padding_left": 15,
         "mobile_padding_right": 15,
-        "margin_top": 100,
-        "margin_bottom": 100
+        "margin_top": 35,
+        "margin_bottom": 0
       }
     }
   },
