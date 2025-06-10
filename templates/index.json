@@ -402,7 +402,7 @@
       "name": "RW Animated Testimonials",
       "settings": {
         "max_width": 1200,
-        "grid_gap": 50,
+        "grid_gap": 40,
         "mobile_grid_gap": 30,
         "arrow_position": "bottom",
         "background_color": "#f1f1f7",
