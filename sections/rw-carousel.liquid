@@ -1,53 +1,6 @@
-{%- assign parts = sec_id | split: '_' -%}
+{% assign sec_id = '#shopify-section-' | append: section.id %}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
-
-<pc-carousel-slider-{{ last_part }} class="pc-carousel-slider-{{ last_part }}">
-  <h1 class="pc-main-heading-{{ last_part }}">{{ section.settings.heading }}</h1>
-  <div class="pc-carousel-container-{{ last_part }}">
-    {%- for block in section.blocks -%}
-      <div class="pc-slide-{{ last_part }}{% if forloop.first %} pc-active-{{ last_part }}{% endif %}" data-index="{{ forloop.index0 }}">
-        {%- if block.settings.image != blank -%}
-          {{- block.settings.image | image_url: width: block.settings.image.width, height: block.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-slide-image-' | append: last_part -}}
-        {%- else -%}
-          {{ 'product-1' | placeholder_svg_tag: 'pc-slide-image-' | append: last_part }}
-        {%- endif -%}
-        <div class="pc-overlay-{{ last_part }}"></div>
-        <div class="pc-slide-content-{{ last_part }}">
-          {%- if block.settings.title != blank -%}
-            <h2 class="pc-slide-title-{{ last_part }}">{{ block.settings.title }}</h2>
-          {%- endif -%}
-          {%- if block.settings.text != blank -%}
-            <p class="pc-slide-text-{{ last_part }}">{{ block.settings.text }}</p>
-          {%- endif -%}
-          {%- if block.settings.author != blank -%}
-            <p class="pc-slide-author-{{ last_part }}">{{ block.settings.author }}</p>
-          {%- endif -%}
-        </div>
-      </div>
-    {%- endfor -%}
-    <div class="pc-controls-{{ last_part }}">
-      <div class="pc-dots-{{ last_part }}">
-        {%- for block in section.blocks -%}
-          <div class="pc-dot-{{ last_part }}{% if forloop.first %} pc-active-{{ last_part }}{% endif %}" data-index="{{ forloop.index0 }}"></div>
-        {%- endfor -%}
-      </div>
-      <div class="pc-arrows-{{ last_part }}">
-        <button class="pc-arrow-btn-{{ last_part }} pc-prev-{{ last_part }}">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <button class="pc-arrow-btn-{{ last_part }} pc-next-{{ last_part }}">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-  <p class="pc-footer-text-{{ last_part }}">Made with ❤️ by Nitish</p>
-</pc-carousel-slider-{{ last_part }}>
 
 <style>
   {{ sec_id }} .pc-carousel-slider-{{ last_part }} {
@@ -223,6 +176,52 @@
     }
   }
 </style>
+
+<pc-carousel-slider-{{ last_part }} class="pc-carousel-slider-{{ last_part }}">
+  <h1 class="pc-main-heading-{{ last_part }}">{{ section.settings.heading }}</h1>
+  <div class="pc-carousel-container-{{ last_part }}">
+    {%- for block in section.blocks -%}
+      <div class="pc-slide-{{ last_part }}{% if forloop.first %} pc-active-{{ last_part }}{% endif %}" data-index="{{ forloop.index0 }}">
+        {%- if block.settings.image != blank -%}
+          {{- block.settings.image | image_url: width: block.settings.image.width, height: block.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-slide-image-' | append: last_part -}}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'pc-slide-image-' | append: last_part }}
+        {%- endif -%}
+        <div class="pc-overlay-{{ last_part }}"></div>
+        <div class="pc-slide-content-{{ last_part }}">
+          {%- if block.settings.title != blank -%}
+            <h2 class="pc-slide-title-{{ last_part }}">{{ block.settings.title }}</h2>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <p class="pc-slide-text-{{ last_part }}">{{ block.settings.text }}</p>
+          {%- endif -%}
+          {%- if block.settings.author != blank -%}
+            <p class="pc-slide-author-{{ last_part }}">{{ block.settings.author }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+    <div class="pc-controls-{{ last_part }}">
+      <div class="pc-dots-{{ last_part }}">
+        {%- for block in section.blocks -%}
+          <div class="pc-dot-{{ last_part }}{% if forloop.first %} pc-active-{{ last_part }}{% endif %}" data-index="{{ forloop.index0 }}"></div>
+        {%- endfor -%}
+      </div>
+      <div class="pc-arrows-{{ last_part }}">
+        <button class="pc-arrow-btn-{{ last_part }} pc-prev-{{ last_part }}">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="pc-arrow-btn-{{ last_part }} pc-next-{{ last_part }}">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</pc-carousel-slider-{{ last_part }}>
 
 <script>
   class PCCarouselSlider{{ last_part | capitalize }} extends HTMLElement {
