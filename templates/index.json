@@ -436,7 +436,7 @@
         "arrow_size": 40,
         "arrow_icon_size": 20,
         "arrow_gap": 10,
-        "arrow_padding_top": 30,
+        "arrow_padding_top": 55,
         "mobile_arrow_padding_top": 20,
         "arrow_background": "#f5f5f5",
         "arrow_hover_background": "#e0e0e0",
