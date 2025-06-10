@@ -112,6 +112,8 @@
   @media (max-width: 767px) {
     {{ sec_id }} .pc-testimonial-slider {
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+      margin-top: {{ section.settings.margin_top }};
+      margin-bottom: {{ section.settings.margin_bottom }};
     }
 
     {{ sec_id }} .pc-testimonial-grid {
@@ -739,7 +741,31 @@
       "step": 5,
       "unit": "px",
       "default": 15
-    }
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Vertical Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Vertical Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
   ],
   "blocks": [
     {
