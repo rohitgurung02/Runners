@@ -430,7 +430,7 @@
         "arrow_gap": 10,
         "arrow_padding_top": 30,
         "mobile_arrow_padding_top": 30,
-        "arrow_background": "#141414",
+        "arrow_background": "#e34d4d",
         "arrow_hover_background": "#00a6fb",
         "arrow_icon_color": "#f1f1f7",
         "arrow_icon_hover_color": "#ffffff",
