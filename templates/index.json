@@ -362,12 +362,94 @@
         "shadow_enable": true,
         "message_shadow_enable": true
       }
+    },
+    "rw_testimonials_YMJ3Xj": {
+      "type": "rw-testimonials",
+      "blocks": {
+        "testimonial_M3L8LE": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Tamar Mendelson",
+            "designation": "Restaurant Critic",
+            "quote": "I was impressed by the food — every dish is bursting with flavor! And I could really tell that they use high-quality ingredients. The staff was friendly and attentive, going the extra mile. I'll definitely be back for more!"
+          }
+        },
+        "testimonial_aWAkmq": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Joe Charlescraft",
+            "designation": "Frequent Visitor",
+            "quote": "This place exceeded all expectations! The atmosphere is inviting, and the staff truly goes above and beyond to ensure a fantastic visit. I'll definitely keep returning for more exceptional dining experience."
+          }
+        },
+        "testimonial_n7kLdn": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Martina Edelweist",
+            "designation": "Satisfied Customer",
+            "quote": "Shining Yam is a hidden gem! From the moment I walked in, I knew I was in for a treat. The impeccable service and overall attention to detail created a memorable experience. I highly recommend it!"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_M3L8LE",
+        "testimonial_aWAkmq",
+        "testimonial_n7kLdn"
+      ],
+      "name": "RW Animated Testimonials",
+      "settings": {
+        "max_width": 1200,
+        "grid_gap": 50,
+        "mobile_grid_gap": 30,
+        "arrow_position": "side",
+        "shadow_enabled": false,
+        "image_width": 600,
+        "image_height": 400,
+        "mobile_image_height": 300,
+        "image_border_radius": 15,
+        "image_shadow_enabled": true,
+        "name_font_size": 24,
+        "mobile_name_font_size": 20,
+        "name_font_weight": "600",
+        "name_color": "#000000",
+        "name_margin_bottom": 5,
+        "designation_font_size": 14,
+        "mobile_designation_font_size": 12,
+        "designation_color": "#6b7280",
+        "designation_margin_bottom": 20,
+        "quote_font_size": 18,
+        "mobile_quote_font_size": 16,
+        "quote_color": "#4b5563",
+        "quote_line_height": 1.6,
+        "arrow_size": 28,
+        "arrow_icon_size": 20,
+        "arrow_gap": 10,
+        "arrow_padding_top": 30,
+        "mobile_arrow_padding_top": 30,
+        "arrow_background": "#141414",
+        "arrow_hover_background": "#00a6fb",
+        "arrow_icon_color": "#f1f1f7",
+        "arrow_icon_hover_color": "#ffffff",
+        "autoplay_enabled": true,
+        "autoplay_interval": 5000,
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 40,
+        "desktop_padding_left": 20,
+        "desktop_padding_right": 20,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30,
+        "mobile_padding_left": 15,
+        "mobile_padding_right": 15,
+        "margin_top": 100,
+        "margin_bottom": 30
+      }
     }
   },
   "order": [
     "featured_collection_copy_kaw7iD",
     "rw_mulitcolumn_pGW8Ym",
     "rw_pricing_plans_U7cd9L",
-    "rw_interactive_text_NLRF3G"
+    "rw_interactive_text_NLRF3G",
+    "rw_testimonials_YMJ3Xj"
   ]
 }
