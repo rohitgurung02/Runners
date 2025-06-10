@@ -392,13 +392,24 @@
             "designation": "Satisfied Customer",
             "quote": "Shining Yam is a hidden gem! From the moment I walked in, I knew I was in for a treat. The impeccable service and overall attention to detail created a memorable experience. I highly recommend it!"
           }
+        },
+        "testimonial_3yJcgF": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg",
+            "name": "John Doe",
+            "designation": "Happy Customer",
+            "quote": "This is an amazing product. I've never seen anything like it before. The quality is outstanding and the service was exceptional."
+          }
         }
       },
       "block_order": [
         "testimonial_4RfwWQ",
         "testimonial_tVBPVQ",
-        "testimonial_nkmUaa"
+        "testimonial_nkmUaa",
+        "testimonial_3yJcgF"
       ],
+      "disabled": true,
       "name": "RW Animated Testimonials",
       "settings": {
         "max_width": 1100,
