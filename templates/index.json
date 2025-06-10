@@ -405,7 +405,6 @@
         "grid_gap": 50,
         "mobile_grid_gap": 30,
         "arrow_position": "side",
-        "background_color": "#1515e3",
         "shadow_enabled": false,
         "image_width": 600,
         "image_height": 400,
@@ -444,7 +443,7 @@
         "mobile_padding_bottom": 30,
         "mobile_padding_left": 15,
         "mobile_padding_right": 15,
-        "margin_top": 10,
+        "margin_top": 75,
         "margin_bottom": 35
       }
     }
