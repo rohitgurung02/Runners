@@ -424,7 +424,7 @@
         "quote_font_size": 18,
         "mobile_quote_font_size": 16,
         "quote_color": "#4b5563",
-        "quote_line_height": 2,
+        "quote_line_height": 1.6,
         "arrow_size": 28,
         "arrow_icon_size": 20,
         "arrow_gap": 10,
