@@ -437,7 +437,7 @@
         "autoplay_enabled": true,
         "autoplay_interval": 5000,
         "desktop_padding_top": 40,
-        "desktop_padding_bottom": 40,
+        "desktop_padding_bottom": 90,
         "desktop_padding_left": 20,
         "desktop_padding_right": 20,
         "mobile_padding_top": 30,
