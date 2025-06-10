@@ -109,10 +109,10 @@
   }
 
   @media (max-width: 767px) {
-    {{ sec_id }} .pc-testimonial-slider {
+    {{ sec_id }} .pc-testimonial-slider-{{ last_part }}.pc-testimonial-slider {
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
-      margin-top: {{ section.settings.margin_top }}px;
-      margin-bottom: {{ section.settings.margin_bottom }}px;
+      margin-top: {{ section.settings.mobile_margin_top | default: section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.mobile_margin_bottom | default: section.settings.margin_bottom }}px;
     }
 
     {{ sec_id }} .pc-testimonial-grid {
