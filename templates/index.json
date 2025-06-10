@@ -362,12 +362,94 @@
         "shadow_enable": true,
         "message_shadow_enable": true
       }
+    },
+    "rw_testimonials_DEKhL8": {
+      "type": "rw-testimonials",
+      "blocks": {
+        "testimonial_fY9WiV": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/location_three.webp",
+            "name": "Sarah Johnson",
+            "designation": "Marketing Director",
+            "quote": "The customer service was outstanding and the product exceeded all my expectations. Will definitely purchase again!"
+          }
+        },
+        "testimonial_8R4wcF": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/location_one.webp",
+            "name": "Michael Chen",
+            "designation": "Product Designer",
+            "quote": "I've tried many similar products but this one stands out for its attention to detail and innovative features."
+          }
+        },
+        "testimonial_jkQjc4": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/location_two.webp",
+            "name": "John Doe",
+            "designation": "CEO, Company Inc.",
+            "quote": "This product has completely transformed my daily routine. The quality is exceptional and I would recommend it to anyone looking for a premium solution."
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_fY9WiV",
+        "testimonial_8R4wcF",
+        "testimonial_jkQjc4"
+      ],
+      "name": "PC Testimonial Slider",
+      "settings": {
+        "margin_top": 30,
+        "margin_bottom": 30,
+        "max_width": 1200,
+        "grid_gap": 40,
+        "mobile_grid_gap": 20,
+        "image_height": 400,
+        "mobile_image_height": 300,
+        "image_border_radius": 12,
+        "shadow_enabled": true,
+        "image_shadow_enabled": true,
+        "desktop_padding_top": 40,
+        "desktop_padding_right": 40,
+        "desktop_padding_bottom": 40,
+        "desktop_padding_left": 40,
+        "mobile_padding_top": 20,
+        "mobile_padding_right": 20,
+        "mobile_padding_bottom": 20,
+        "mobile_padding_left": 20,
+        "name_font_size": 24,
+        "mobile_name_font_size": 20,
+        "name_font_weight": "600",
+        "name_color": "#333333",
+        "name_margin_bottom": 10,
+        "designation_font_size": 16,
+        "mobile_designation_font_size": 14,
+        "designation_color": "#666666",
+        "designation_margin_bottom": 15,
+        "quote_font_size": 18,
+        "mobile_quote_font_size": 16,
+        "quote_color": "#444444",
+        "quote_line_height": 1.6,
+        "arrow_position": "bottom",
+        "arrow_size": 40,
+        "arrow_icon_size": 20,
+        "arrow_gap": 10,
+        "arrow_padding_top": 30,
+        "mobile_arrow_padding_top": 20,
+        "arrow_background": "#f5f5f5",
+        "arrow_hover_background": "#e0e0e0",
+        "arrow_icon_color": "#333333",
+        "arrow_icon_hover_color": "#000000"
+      }
     }
   },
   "order": [
     "featured_collection_copy_kaw7iD",
     "rw_mulitcolumn_pGW8Ym",
     "rw_pricing_plans_U7cd9L",
-    "rw_interactive_text_NLRF3G"
+    "rw_interactive_text_NLRF3G",
+    "rw_testimonials_DEKhL8"
   ]
 }
