@@ -1,10 +1,10 @@
-{% assign sec_id = '#shopify-section-' | append: section.id %}
+   {% assign sec_id = '#shopify-section-' | append: section.id %}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
   
-  {{ sec_id }} .pc-testimonial-container{
+  {{ sec_id }} .pc-testimonial-container {
      margin-top: {{ section.settings.margin_top }}px;
      margin-bottom: {{ section.settings.margin_bottom }}px;
   }
@@ -746,7 +746,7 @@
     {
       "type": "range",
       "id": "margin_top",
-      "label": "Vertical Top Padding",
+      "label": "Vertical Top Margin",
       "min": 0,
       "max": 100,
       "step": 5,
@@ -756,7 +756,7 @@
     {
       "type": "range",
       "id": "margin_bottom",
-      "label": "Vertical Bottom Padding",
+      "label": "Vertical Bottom Margin",
       "min": 0,
       "max": 100,
       "step": 5,
