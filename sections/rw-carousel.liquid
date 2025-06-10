@@ -179,6 +179,7 @@
 
 <pc-carousel-slider-{{ last_part }} class="pc-carousel-slider-{{ last_part }}">
   <h1 class="pc-main-heading-{{ last_part }}">{{ section.settings.heading }}</h1>
+  <div class="overlay">
   <div class="pc-carousel-container-{{ last_part }}">
     {%- for block in section.blocks -%}
       <div class="pc-slide-{{ last_part }}{% if forloop.first %} pc-active-{{ last_part }}{% endif %}" data-index="{{ forloop.index0 }}">
@@ -220,6 +221,7 @@
         </button>
       </div>
     </div>
+  </div>     
   </div>
 </pc-carousel-slider-{{ last_part }}>
 
@@ -318,7 +320,7 @@
 
 {% schema %}
 {
-  "name": "RW Dynamic Carousel #1",
+  "name": "RW Carousel #1",
   "tag": "section",
   "class": "shopify-section--pc-carousel",
   "settings": [
@@ -648,7 +650,7 @@
   ],
   "presets": [
     {
-      "name": "RW Dynamic Carousel #1",
+      "name": "RW Carousel #1",
       "category": "Custom",
       "blocks": [
         {
