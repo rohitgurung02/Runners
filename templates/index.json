@@ -416,7 +416,7 @@
         "mobile_name_font_size": 20,
         "name_font_weight": "600",
         "name_color": "#000000",
-        "name_margin_bottom": 25,
+        "name_margin_bottom": 30,
         "designation_font_size": 14,
         "mobile_designation_font_size": 12,
         "designation_color": "#6b7280",
