@@ -404,7 +404,7 @@
         "max_width": 1000,
         "grid_gap": 50,
         "mobile_grid_gap": 30,
-        "arrow_position": "bottom",
+        "arrow_position": "side",
         "background_color": "#f1f1f7",
         "shadow_enabled": false,
         "image_width": 600,
