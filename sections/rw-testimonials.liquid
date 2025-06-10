@@ -1,4 +1,4 @@
-   {% assign sec_id = '#shopify-section-' | append: section.id %}
+{% assign sec_id = '#shopify-section-' | append: section.id %}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
@@ -199,550 +199,10 @@
   </div>
 </pc-testimonial-slider-{{ last_part }}>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const testimonials = [
-      {%- for block in section.blocks -%}
-        {
-          quote: {{ block.settings.quote | json }},
-          name: {{ block.settings.name | json }},
-          designation: {{ block.settings.designation | json }},
-          src: {{ block.settings.image | image_url: width: section.settings.image_width, height: section.settings.image_height | json }}
-        }{% unless forloop.last %},{% endunless %}
-      {%- endfor -%}
-    ];
-
-    if (testimonials.length > 0) {
-      const lastPart = '{{ last_part }}';
-      let activeIndex = 0;
-      const imageContainer = document.getElementById(`pc-image-container-${lastPart}`);
-      const nameElement = document.getElementById(`pc-name-${lastPart}`);
-      const designationElement = document.getElementById(`pc-designation-${lastPart}`);
-      const quoteElement = document.getElementById(`pc-quote-${lastPart}`);
-      const prevButton = document.getElementById(`pc-prev-button-${lastPart}`);
-      const nextButton = document.getElementById(`pc-next-button-${lastPart}`);
-
-      function updateTestimonial(direction) {
-        const oldIndex = activeIndex;
-        activeIndex = (activeIndex + direction + testimonials.length) % testimonials.length;
-
-        testimonials.forEach((testimonial, index) => {
-          let img = imageContainer.querySelector(`[data-index="${index}"]`);
-          if (!img) return;
-
-          const offset = index - activeIndex;
-          const absOffset = Math.abs(offset);
-          const zIndex = testimonials.length - absOffset;
-          const opacity = index === activeIndex ? 1 : 0.7;
-          const scale = 1 - (absOffset * 0.15);
-          const translateY = offset === -1 ? '-1%' : offset === 1 ? '1%' : '0%';
-          const rotateY = offset === -1 ? '15deg' : offset === 1 ? '-1deg' : '0deg';
-
-          img.style.zIndex = zIndex;
-          img.style.opacity = opacity;
-          img.style.transform = `translateY(${translateY}) scale(${scale}) rotateY(${rotateY})`;
-        });
-
-        nameElement.textContent = testimonials[activeIndex].name;
-        designationElement.textContent = testimonials[activeIndex].designation;
-        quoteElement.innerHTML = testimonials[activeIndex].quote.split(' ').map(word => `<span class="word">${word}</span>`).join(' ');
-
-        animateWords();
-      }
-
-      function animateWords() {
-        const words = quoteElement.querySelectorAll('.word');
-        words.forEach((word, index) => {
-          word.style.opacity = '0';
-          word.style.transform = 'translateY(10px)';
-          word.style.filter = 'blur(10px)';
-          setTimeout(() => {
-            word.style.transition = 'opacity 0.2s ease-in-out, transform 0.2s ease-in-out, filter 0.2s ease-in-out';
-            word.style.opacity = '1';
-            word.style.transform = 'translateY(0)';
-            word.style.filter = 'blur(0)';
-          }, index * 20);
-        });
-      }
-
-      function handleNext() {
-        updateTestimonial(1);
-      }
-
-      function handlePrev() {
-        updateTestimonial(-1);
-      }
-
-      prevButton.addEventListener('click', handlePrev);
-      nextButton.addEventListener('click', handleNext);
-
-      // Initial setup
-      updateTestimonial(0);
-
-      // Autoplay functionality
-      let autoplayInterval;
-      if ({{ section.settings.autoplay_enabled }}) {
-        autoplayInterval = setInterval(handleNext, {{ section.settings.autoplay_interval }});
-      }
-
-      // Stop autoplay on user interaction
-      [prevButton, nextButton].forEach(button => {
-        button.addEventListener('click', () => {
-          if (autoplayInterval) clearInterval(autoplayInterval);
-        });
-      });
-    }
-  });
-</script>
-
 {% schema %}
 {
-  "name": "RW Animated Testimonials",
-  "class": "shopify-section--testimonials",
+  "name": "PC Testimonial Slider",
   "settings": [
-    {
-      "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "range",
-      "id": "max_width",
-      "label": "Max width",
-      "min": 800,
-      "max": 1400,
-      "step": 50,
-      "unit": "px",
-      "default": 1200
-    },
-    {
-      "type": "range",
-      "id": "grid_gap",
-      "label": "Grid gap (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 50
-    },
-    {
-      "type": "range",
-      "id": "mobile_grid_gap",
-      "label": "Grid gap (Mobile)",
-      "min": 0,
-      "max": 60,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "select",
-      "id": "arrow_position",
-      "label": "Arrow position (Desktop)",
-      "options": [
-        {
-          "value": "side",
-          "label": "Side"
-        },
-        {
-          "value": "bottom",
-          "label": "Bottom"
-        }
-      ],
-      "default": "side"
-    },
-    {
-      "type": "header",
-      "content": "Background"
-    },
-    {
-      "type": "checkbox",
-      "id": "shadow_enabled",
-      "label": "Enable section shadow",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "Image Settings"
-    },
-    {
-      "type": "range",
-      "id": "image_width",
-      "label": "Image width",
-      "min": 200,
-      "max": 1000,
-      "step": 50,
-      "unit": "px",
-      "default": 600
-    },
-    {
-      "type": "range",
-      "id": "image_height",
-      "label": "Image height (Desktop)",
-      "min": 200,
-      "max": 800,
-      "step": 50,
-      "unit": "px",
-      "default": 400
-    },
-    {
-      "type": "range",
-      "id": "mobile_image_height",
-      "label": "Image height (Mobile)",
-      "min": 200,
-      "max": 600,
-      "step": 50,
-      "unit": "px",
-      "default": 300
-    },
-    {
-      "type": "range",
-      "id": "image_border_radius",
-      "label": "Image border radius",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "checkbox",
-      "id": "image_shadow_enabled",
-      "label": "Enable image shadow",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Name Settings"
-    },
-    {
-      "type": "range",
-      "id": "name_font_size",
-      "label": "Font size (Desktop)",
-      "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "mobile_name_font_size",
-      "label": "Font size (Mobile)",
-      "min": 12,
-      "max": 28,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "select",
-      "id": "name_font_weight",
-      "label": "Font weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi-bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "600"
-    },
-    {
-      "type": "color",
-      "id": "name_color",
-      "label": "Color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "name_margin_bottom",
-      "label": "Margin bottom",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 5
-    },
-    {
-      "type": "header",
-      "content": "Designation Settings"
-    },
-    {
-      "type": "range",
-      "id": "designation_font_size",
-      "label": "Font size (Desktop)",
-      "min": 10,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "mobile_designation_font_size",
-      "label": "Font size (Mobile)",
-      "min": 10,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "color",
-      "id": "designation_color",
-      "label": "Color",
-      "default": "#6b7280"
-    },
-    {
-      "type": "range",
-      "id": "designation_margin_bottom",
-      "label": "Margin bottom",
-      "min": 0,
-      "max": 50,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "header",
-      "content": "Quote Settings"
-    },
-    {
-      "type": "range",
-      "id": "quote_font_size",
-      "label": "Font size (Desktop)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "mobile_quote_font_size",
-      "label": "Font size (Mobile)",
-      "min": 12,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "color",
-      "id": "quote_color",
-      "label": "Color",
-      "default": "#4b5563"
-    },
-    {
-      "type": "range",
-      "id": "quote_line_height",
-      "label": "Line height",
-      "min": 1.2,
-      "max": 2,
-      "step": 0.1,
-      "default": 1.6
-    },
-    {
-      "type": "header",
-      "content": "Arrow Settings"
-    },
-    {
-      "type": "range",
-      "id": "arrow_size",
-      "label": "Button size",
-      "min": 20,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "default": 28
-    },
-    {
-      "type": "range",
-      "id": "arrow_icon_size",
-      "label": "Icon size",
-      "min": 12,
-      "max": 30,
-      "step": 2,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "arrow_gap",
-      "label": "Buttons gap",
-      "min": 5,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "arrow_padding_top",
-      "label": "Padding top (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "mobile_arrow_padding_top",
-      "label": "Padding top (Mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "color",
-      "id": "arrow_background",
-      "label": "Background color",
-      "default": "#141414"
-    },
-    {
-      "type": "color",
-      "id": "arrow_hover_background",
-      "label": "Hover background color",
-      "default": "#00a6fb"
-    },
-    {
-      "type": "color",
-      "id": "arrow_icon_color",
-      "label": "Icon color",
-      "default": "#f1f1f7"
-    },
-    {
-      "type": "color",
-      "id": "arrow_icon_hover_color",
-      "label": "Icon hover color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "header",
-      "content": "Autoplay Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "autoplay_enabled",
-      "label": "Enable autoplay",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "autoplay_interval",
-      "label": "Autoplay interval",
-      "min": 1000,
-      "max": 9000,
-      "step": 1000,
-      "unit": "ms",
-      "default": 5000
-    },
-    {
-      "type": "header",
-      "content": "Spacing (Desktop)"
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_top",
-      "label": "Top padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_bottom",
-      "label": "Bottom padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_left",
-      "label": "Left padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_right",
-      "label": "Right padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "header",
-      "content": "Spacing (Mobile)"
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_top",
-      "label": "Top padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_bottom",
-      "label": "Bottom padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_left",
-      "label": "Left padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_right",
-      "label": "Right padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "header",
-      "content": "Margin"
-    },
     {
       "type": "range",
       "id": "margin_top",
@@ -763,6 +223,403 @@
       "unit": "px",
       "default": 30
     },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max Width",
+      "min": 800,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid Gap (Desktop)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_grid_gap",
+      "label": "Grid Gap (Mobile)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Image Height (Desktop)",
+      "min": 200,
+      "max": 800,
+      "step": 25,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "label": "Image Height (Mobile)",
+      "min": 150,
+      "max": 500,
+      "step": 25,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "shadow_enabled",
+      "label": "Enable Section Shadow",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "image_shadow_enabled",
+      "label": "Enable Image Shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_right",
+      "label": "Right Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_left",
+      "label": "Left Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_right",
+      "label": "Right Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "label": "Left Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Name Styling"
+    },
+    {
+      "type": "range",
+      "id": "name_font_size",
+      "label": "Font Size (Desktop)",
+      "min": 14,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_name_font_size",
+      "label": "Font Size (Mobile)",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "name_font_weight",
+      "label": "Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "name_margin_bottom",
+      "label": "Margin Bottom",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Designation Styling"
+    },
+    {
+      "type": "range",
+      "id": "designation_font_size",
+      "label": "Font Size (Desktop)",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_designation_font_size",
+      "label": "Font Size (Mobile)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "designation_color",
+      "label": "Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "designation_margin_bottom",
+      "label": "Margin Bottom",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Quote Styling"
+    },
+    {
+      "type": "range",
+      "id": "quote_font_size",
+      "label": "Font Size (Desktop)",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_quote_font_size",
+      "label": "Font Size (Mobile)",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Color",
+      "default": "#444444"
+    },
+    {
+      "type": "range",
+      "id": "quote_line_height",
+      "label": "Line Height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "default": 1.6
+    },
+    {
+      "type": "header",
+      "content": "Arrow Buttons"
+    },
+    {
+      "type": "select",
+      "id": "arrow_position",
+      "label": "Arrow Position",
+      "options": [
+        {
+          "value": "bottom",
+          "label": "Below Content"
+        },
+        {
+          "value": "right",
+          "label": "Right Side"
+        }
+      ],
+      "default": "bottom"
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Button Size",
+      "min": 30,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "arrow_icon_size",
+      "label": "Icon Size",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "arrow_gap",
+      "label": "Buttons Gap",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "arrow_padding_top",
+      "label": "Top Padding (Desktop)",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_arrow_padding_top",
+      "label": "Top Padding (Mobile)",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "arrow_background",
+      "label": "Background Color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_background",
+      "label": "Hover Background",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "arrow_icon_color",
+      "label": "Icon Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "arrow_icon_hover_color",
+      "label": "Icon Hover Color",
+      "default": "#000000"
+    }
   ],
   "blocks": [
     {
@@ -784,44 +641,36 @@
           "type": "text",
           "id": "designation",
           "label": "Designation",
-          "default": "Happy Customer"
+          "default": "CEO, Company Inc."
         },
         {
           "type": "textarea",
           "id": "quote",
-          "label": "Quote",
-          "default": "This is an amazing product. I've never seen anything like it before. The quality is outstanding and the service was exceptional."
+          "label": "Testimonial Text",
+          "default": "This product has completely transformed my daily routine. The quality is exceptional and I would recommend it to anyone looking for a premium solution."
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "RW Animated Testimonials",
+      "name": "PC Testimonial Slider",
       "category": "Custom",
       "blocks": [
         {
           "type": "testimonial",
           "settings": {
-            "name": "Tamar Mendelson",
-            "designation": "Restaurant Critic",
-            "quote": "I was impressed by the food — every dish is bursting with flavor! And I could really tell that they use high-quality ingredients. The staff was friendly and attentive, going the extra mile. I'll definitely be back for more!"
+            "name": "Sarah Johnson",
+            "designation": "Marketing Director",
+            "quote": "The customer service was outstanding and the product exceeded all my expectations. Will definitely purchase again!"
           }
         },
         {
           "type": "testimonial",
           "settings": {
-            "name": "Joe Charlescraft",
-            "designation": "Frequent Visitor",
-            "quote": "This place exceeded all expectations! The atmosphere is inviting, and the staff truly goes above and beyond to ensure a fantastic visit. I'll definitely keep returning for more exceptional dining experience."
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "name": "Martina Edelweist",
-            "designation": "Satisfied Customer",
-            "quote": "Shining Yam is a hidden gem! From the moment I walked in, I knew I was in for a treat. The impeccable service and overall attention to detail created a memorable experience. I highly recommend it!"
+            "name": "Michael Chen",
+            "designation": "Product Designer",
+            "quote": "I've tried many similar products but this one stands out for its attention to detail and innovative features."
           }
         }
       ]
@@ -829,3 +678,79 @@
   ]
 }
 {% endschema %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sliderId = '{{ last_part }}';
+  const container = document.querySelector(`pc-testimonial-slider-${sliderId}`);
+  const imageContainer = document.getElementById(`pc-image-container-${sliderId}`);
+  const nameElement = document.getElementById(`pc-name-${sliderId}`);
+  const designationElement = document.getElementById(`pc-designation-${sliderId}`);
+  const quoteElement = document.getElementById(`pc-quote-${sliderId}`);
+  const prevButton = document.getElementById(`pc-prev-button-${sliderId}`);
+  const nextButton = document.getElementById(`pc-next-button-${sliderId}`);
+  const images = imageContainer.querySelectorAll('.pc-testimonial-image');
+  
+  let currentIndex = 0;
+  const testimonials = [
+    {%- for block in section.blocks -%}
+      {
+        name: {{ block.settings.name | json }},
+        designation: {{ block.settings.designation | json }},
+        quote: {{ block.settings.quote | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ];
+  
+  // Initialize
+  updateTestimonial();
+  setActiveImage();
+  
+  // Event listeners
+  prevButton.addEventListener('click', showPrevTestimonial);
+  nextButton.addEventListener('click', showNextTestimonial);
+  
+  // Keyboard navigation
+  container.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') {
+      showPrevTestimonial();
+    } else if (e.key === 'ArrowRight') {
+      showNextTestimonial();
+    }
+  });
+  
+  // Functions
+  function showPrevTestimonial() {
+    currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+    updateTestimonial();
+    setActiveImage();
+  }
+  
+  function showNextTestimonial() {
+    currentIndex = (currentIndex + 1) % testimonials.length;
+    updateTestimonial();
+    setActiveImage();
+  }
+  
+  function updateTestimonial() {
+    const testimonial = testimonials[currentIndex];
+    nameElement.textContent = testimonial.name;
+    designationElement.textContent = testimonial.designation;
+    quoteElement.textContent = testimonial.quote;
+  }
+  
+  function setActiveImage() {
+    images.forEach((img, index) => {
+      if (index === currentIndex) {
+        img.style.opacity = '1';
+        img.style.transform = 'translateZ(0)';
+        img.style.zIndex = '1';
+      } else {
+        img.style.opacity = '0';
+        img.style.transform = index < currentIndex ? 'translateZ(-100px)' : 'translateZ(100px)';
+        img.style.zIndex = '0';
+      }
+    });
+  }
+});
+</script>
