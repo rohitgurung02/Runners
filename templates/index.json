@@ -487,12 +487,22 @@
             "text": "This is the third slide of your carousel",
             "author": "Author Three"
           }
+        },
+        "slide_e6kqRz": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg",
+            "title": "Slide Title",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "author": "Author Name"
+          }
         }
       },
       "block_order": [
         "slide_Xz9KhB",
         "slide_e4UEfU",
-        "slide_eikgmC"
+        "slide_eikgmC",
+        "slide_e6kqRz"
       ],
       "name": "RW Dynamic Carousel #1",
       "settings": {
