@@ -401,7 +401,7 @@
       ],
       "name": "RW Animated Testimonials",
       "settings": {
-        "max_width": 1000,
+        "max_width": 1100,
         "grid_gap": 50,
         "mobile_grid_gap": 30,
         "arrow_position": "side",
