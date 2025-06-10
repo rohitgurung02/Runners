@@ -144,6 +144,38 @@
     color: {{ section.settings.footer_color }};
   }
 
+  /* overlay */
+  {{ sec_id }} .pc-overlay-{{ last_part }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, 
+      rgba(0, 0, 0, {{ section.settings.overlay_opacity | times: 0.8 }}), 
+      rgba(0, 0, 0, {{ section.settings.overlay_opacity | times: 0.4 }}), 
+      rgba(0, 0, 0, {{ section.settings.overlay_opacity | times: 0.1 }}));
+    z-index: 1; /* Changed from 0 to 1 to ensure it's above the image but below content */
+    pointer-events: none; /* Allows clicks to pass through to underlying elements */
+  }
+
+  {{ sec_id }} .pc-slide-image-{{ last_part }} {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0; /* Ensure image is below overlay */
+  }
+
+  {{ sec_id }} .pc-slide-content-{{ last_part }} {
+    position: relative; /* Changed to relative to establish new stacking context */
+    z-index: 2; /* Higher than overlay */
+    padding: 2rem;
+    max-width: 700px;
+    margin-bottom: 30px;
+  }
+  /* overlay */
+
   @media (max-width: 768px) {
     {{ sec_id }} .pc-carousel-slider-{{ last_part }} {
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
@@ -615,6 +647,15 @@
       "unit": "px",
       "default": 18
     },
+    {
+  "type": "range",
+  "id": "overlay_opacity",
+  "label": "Overlay Opacity",
+  "min": 0,
+  "max": 1,
+  "step": 0.1,
+  "default": 0.7
+}
   ],
   "blocks": [
     {
