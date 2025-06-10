@@ -6,7 +6,6 @@
   {{ sec_id }} .pc-testimonial-slider {
     width: 100%;
     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
-    background-color: {{ section.settings.background_color }};
     {% if section.settings.shadow_enabled %}
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     {% endif %}
@@ -350,12 +349,6 @@
     {
       "type": "header",
       "content": "Background"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background color",
-      "default": "#f1f1f7"
     },
     {
       "type": "checkbox",
