@@ -161,21 +161,15 @@
     <div class="pc-testimonial-grid">
       <div class="pc-image-container" id="pc-image-container-{{ last_part }}">
         {%- for block in section.blocks -%}
-  {%- if block.settings.image -%}
-    <img 
-      src="{{ block.settings.image | image_url: width: section.settings.image_width, height: section.settings.image_height }}" 
-      alt="{{ block.settings.image.alt | escape }}" 
-      loading="lazy" 
-      class="pc-testimonial-image" 
-      data-index="{{ forloop.index0 }}"
-      width="{{ section.settings.image_width }}"
-      height="{{ section.settings.image_height }}"
-    >
-  {%- else -%}
-    {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'pc-testimonial-image' }}
-  {%- endif -%}
-{%- endfor -%}
-
+          {%- if block.settings.image -%}
+            {{- block.settings.image
+                  | image_url: width: 800
+                  | image_tag: loading: 'lazy', class: 'pc-testimonial-image', data-index: forloop.index0
+            -}}
+          {%- else -%}
+            {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'pc-testimonial-image' }}
+          {%- endif -%}
+        {%- endfor -%}
       </div>
       <div class="pc-testimonial-content">
         <div>
