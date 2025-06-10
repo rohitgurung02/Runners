@@ -535,7 +535,8 @@
         "mobile_padding_left": 15,
         "mobile_title_font_size": 24,
         "mobile_text_font_size": 14,
-        "mobile_small_title_font_size": 18
+        "mobile_small_title_font_size": 18,
+        "overlay_opacity": 1
       }
     }
   },
