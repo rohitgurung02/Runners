@@ -438,7 +438,7 @@
         "autoplay_interval": 5000,
         "desktop_padding_top": 0,
         "desktop_padding_bottom": 0,
-        "desktop_padding_left": 20,
+        "desktop_padding_left": 40,
         "desktop_padding_right": 20,
         "mobile_padding_top": 30,
         "mobile_padding_bottom": 30,
