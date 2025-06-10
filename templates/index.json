@@ -402,7 +402,7 @@
       "name": "PC Testimonial Slider",
       "settings": {
         "margin_top": 100,
-        "margin_bottom": 30,
+        "margin_bottom": 100,
         "max_width": 1200,
         "grid_gap": 40,
         "mobile_grid_gap": 20,
