@@ -504,7 +504,7 @@
         "mobile_height": 400,
         "auto_slide": true,
         "auto_slide_interval": 5,
-        "desktop_padding_top": 30,
+        "desktop_padding_top": 20,
         "desktop_padding_right": 20,
         "desktop_padding_bottom": 20,
         "desktop_padding_left": 20,
