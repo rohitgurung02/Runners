@@ -496,9 +496,9 @@
         "title_font_size": 30,
         "title_color": "#ffffff",
         "text_font_size": 18,
-        "text_color": "#25763c",
+        "text_color": "#ffffff",
         "author_font_size": 14,
-        "author_color": "#a700ff",
+        "author_color": "#ffffff",
         "active_dot_color": "#60a5fa",
         "desktop_height": 360,
         "mobile_height": 400,
@@ -514,10 +514,7 @@
         "mobile_padding_left": 15,
         "mobile_title_font_size": 24,
         "mobile_text_font_size": 14,
-        "mobile_small_title_font_size": 18,
-        "footer_font_size": 15,
-        "footer_margin_top": 20,
-        "footer_color": "#0073e6"
+        "mobile_small_title_font_size": 18
       }
     }
   },
