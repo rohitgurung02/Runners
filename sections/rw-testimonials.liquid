@@ -1,6 +1,814 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} .pc-testimonial-slider {
+    width: 100%;
+    padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
+    background-color: {{ section.settings.background_color }};
+    {% if section.settings.shadow_enabled %}
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    {% endif %}
   }
+
+  {{ sec_id }} .pc-testimonial-container {
+    width: 100%;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  {{ sec_id }} .pc-testimonial-grid {
+    display: grid;
+    gap: {{ section.settings.grid_gap }}px;
+  }
+
+  {{ sec_id }} .pc-image-container {
+    position: relative;
+    width: 100%;
+    height: {{ section.settings.image_height }}px;
+    perspective: 1000px;
+  }
+
+  {{ sec_id }} .pc-testimonial-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: {{ section.settings.image_border_radius }}px;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    {% if section.settings.image_shadow_enabled %}
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    {% endif %}
+  }
+
+  {{ sec_id }} .pc-testimonial-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  {{ sec_id }} .pc-name {
+    font-size: {{ section.settings.name_font_size }}px;
+    font-weight: {{ section.settings.name_font_weight }};
+    color: {{ section.settings.name_color }};
+    margin-bottom: {{ section.settings.name_margin_bottom }}px;
+  }
+
+  {{ sec_id }} .pc-designation {
+    font-size: {{ section.settings.designation_font_size }}px;
+    color: {{ section.settings.designation_color }};
+    margin-bottom: {{ section.settings.designation_margin_bottom }}px;
+  }
+
+  {{ sec_id }} .pc-quote {
+    font-size: {{ section.settings.quote_font_size }}px;
+    color: {{ section.settings.quote_color }};
+    line-height: {{ section.settings.quote_line_height }};
+  }
+
+  {{ sec_id }} .pc-arrow-buttons {
+    display: flex;
+    gap: {{ section.settings.arrow_gap }}px;
+    padding-top: {{ section.settings.arrow_padding_top }}px;
+  }
+
+  {{ sec_id }} .pc-arrow-button {
+    width: {{ section.settings.arrow_size }}px;
+    height: {{ section.settings.arrow_size }}px;
+    border-radius: 50%;
+    background-color: {{ section.settings.arrow_background }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+  }
+
+  {{ sec_id }} .pc-arrow-button:hover {
+    background-color: {{ section.settings.arrow_hover_background }};
+  }
+
+  {{ sec_id }} .pc-arrow-button svg {
+    width: {{ section.settings.arrow_icon_size }}px;
+    height: {{ section.settings.arrow_icon_size }}px;
+    fill: {{ section.settings.arrow_icon_color }};
+    transition: transform 0.3s;
+  }
+
+  {{ sec_id }} .pc-arrow-button:hover svg {
+    fill: {{ section.settings.arrow_icon_hover_color }};
+  }
+
+  {{ sec_id }} .pc-prev-button:hover svg {
+    transform: rotate(-12deg);
+  }
+
+  {{ sec_id }} .pc-next-button:hover svg {
+    transform: rotate(12deg);
+  }
+
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-testimonial-slider {
+      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+    }
+
+    {{ sec_id }} .pc-testimonial-grid {
+      gap: {{ section.settings.mobile_grid_gap }}px;
+    }
+
+    {{ sec_id }} .pc-image-container {
+      height: {{ section.settings.mobile_image_height }}px;
+    }
+
+    {{ sec_id }} .pc-name {
+      font-size: {{ section.settings.mobile_name_font_size }}px;
+    }
+
+    {{ sec_id }} .pc-designation {
+      font-size: {{ section.settings.mobile_designation_font_size }}px;
+    }
+
+    {{ sec_id }} .pc-quote {
+      font-size: {{ section.settings.mobile_quote_font_size }}px;
+    }
+
+    {{ sec_id }} .pc-arrow-buttons {
+      padding-top: {{ section.settings.mobile_arrow_padding_top }}px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    {{ sec_id }} .pc-testimonial-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    {% if section.settings.arrow_position == 'bottom' %}
+      {{ sec_id }} .pc-arrow-buttons {
+        padding-top: {{ section.settings.arrow_padding_top }}px;
+      }
+    {% else %}
+      {{ sec_id }} .pc-arrow-buttons {
+        padding-top: 0;
+      }
+    {% endif %}
+  }
+</style>
+
+<pc-testimonial-slider-{{ last_part }} class="pc-testimonial-slider">
+  <div class="pc-testimonial-container">
+    <div class="pc-testimonial-grid">
+      <div class="pc-image-container" id="pc-image-container-{{ last_part }}">
+        {%- for block in section.blocks -%}
+  {%- if block.settings.image -%}
+    <img 
+      src="{{ block.settings.image | image_url: width: section.settings.image_width, height: section.settings.image_height }}" 
+      alt="{{ block.settings.image.alt | escape }}" 
+      loading="lazy" 
+      class="pc-testimonial-image" 
+      data-index="{{ forloop.index0 }}"
+      width="{{ section.settings.image_width }}"
+      height="{{ section.settings.image_height }}"
+    >
+  {%- else -%}
+    {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'pc-testimonial-image' }}
+  {%- endif -%}
+{%- endfor -%}
+
+      </div>
+      <div class="pc-testimonial-content">
+        <div>
+          <h3 class="pc-name" id="pc-name-{{ last_part }}"></h3>
+          <p class="pc-designation" id="pc-designation-{{ last_part }}"></p>
+          <p class="pc-quote" id="pc-quote-{{ last_part }}"></p>
+        </div>
+        <div class="pc-arrow-buttons">
+          <button class="pc-arrow-button pc-prev-button" id="pc-prev-button-{{ last_part }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+          </button>
+          <button class="pc-arrow-button pc-next-button" id="pc-next-button-{{ last_part }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</pc-testimonial-slider-{{ last_part }}>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const testimonials = [
+      {%- for block in section.blocks -%}
+        {
+          quote: {{ block.settings.quote | json }},
+          name: {{ block.settings.name | json }},
+          designation: {{ block.settings.designation | json }},
+          src: {{ block.settings.image | image_url: width: section.settings.image_width, height: section.settings.image_height | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ];
+
+    if (testimonials.length > 0) {
+      const lastPart = '{{ last_part }}';
+      let activeIndex = 0;
+      const imageContainer = document.getElementById(`pc-image-container-${lastPart}`);
+      const nameElement = document.getElementById(`pc-name-${lastPart}`);
+      const designationElement = document.getElementById(`pc-designation-${lastPart}`);
+      const quoteElement = document.getElementById(`pc-quote-${lastPart}`);
+      const prevButton = document.getElementById(`pc-prev-button-${lastPart}`);
+      const nextButton = document.getElementById(`pc-next-button-${lastPart}`);
+
+      function updateTestimonial(direction) {
+        const oldIndex = activeIndex;
+        activeIndex = (activeIndex + direction + testimonials.length) % testimonials.length;
+
+        testimonials.forEach((testimonial, index) => {
+          let img = imageContainer.querySelector(`[data-index="${index}"]`);
+          if (!img) return;
+
+          const offset = index - activeIndex;
+          const absOffset = Math.abs(offset);
+          const zIndex = testimonials.length - absOffset;
+          const opacity = index === activeIndex ? 1 : 0.7;
+          const scale = 1 - (absOffset * 0.15);
+          const translateY = offset === -1 ? '-20%' : offset === 1 ? '20%' : '0%';
+          const rotateY = offset === -1 ? '15deg' : offset === 1 ? '-15deg' : '0deg';
+
+          img.style.zIndex = zIndex;
+          img.style.opacity = opacity;
+          img.style.transform = `translateY(${translateY}) scale(${scale}) rotateY(${rotateY})`;
+        });
+
+        nameElement.textContent = testimonials[activeIndex].name;
+        designationElement.textContent = testimonials[activeIndex].designation;
+        quoteElement.innerHTML = testimonials[activeIndex].quote.split(' ').map(word => `<span class="word">${word}</span>`).join(' ');
+
+        animateWords();
+      }
+
+      function animateWords() {
+        const words = quoteElement.querySelectorAll('.word');
+        words.forEach((word, index) => {
+          word.style.opacity = '0';
+          word.style.transform = 'translateY(10px)';
+          word.style.filter = 'blur(10px)';
+          setTimeout(() => {
+            word.style.transition = 'opacity 0.2s ease-in-out, transform 0.2s ease-in-out, filter 0.2s ease-in-out';
+            word.style.opacity = '1';
+            word.style.transform = 'translateY(0)';
+            word.style.filter = 'blur(0)';
+          }, index * 20);
+        });
+      }
+
+      function handleNext() {
+        updateTestimonial(1);
+      }
+
+      function handlePrev() {
+        updateTestimonial(-1);
+      }
+
+      prevButton.addEventListener('click', handlePrev);
+      nextButton.addEventListener('click', handleNext);
+
+      // Initial setup
+      updateTestimonial(0);
+
+      // Autoplay functionality
+      let autoplayInterval;
+      if ({{ section.settings.autoplay_enabled }}) {
+        autoplayInterval = setInterval(handleNext, {{ section.settings.autoplay_interval }});
+      }
+
+      // Stop autoplay on user interaction
+      [prevButton, nextButton].forEach(button => {
+        button.addEventListener('click', () => {
+          if (autoplayInterval) clearInterval(autoplayInterval);
+        });
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "RW Animated Testimonials",
+  "class": "shopify-section--testimonials",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max width",
+      "min": 800,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid gap (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_grid_gap",
+      "label": "Grid gap (Mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "arrow_position",
+      "label": "Arrow position (Desktop)",
+      "options": [
+        {
+          "value": "side",
+          "label": "Side"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "side"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f1f1f7"
+    },
+    {
+      "type": "checkbox",
+      "id": "shadow_enabled",
+      "label": "Enable section shadow",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Image width",
+      "min": 200,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Image height (Desktop)",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "label": "Image height (Mobile)",
+      "min": 200,
+      "max": 600,
+      "step": 50,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "checkbox",
+      "id": "image_shadow_enabled",
+      "label": "Enable image shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Name Settings"
+    },
+    {
+      "type": "range",
+      "id": "name_font_size",
+      "label": "Font size (Desktop)",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_name_font_size",
+      "label": "Font size (Mobile)",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "name_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "name_margin_bottom",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Designation Settings"
+    },
+    {
+      "type": "range",
+      "id": "designation_font_size",
+      "label": "Font size (Desktop)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_designation_font_size",
+      "label": "Font size (Mobile)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "designation_color",
+      "label": "Color",
+      "default": "#6b7280"
+    },
+    {
+      "type": "range",
+      "id": "designation_margin_bottom",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Quote Settings"
+    },
+    {
+      "type": "range",
+      "id": "quote_font_size",
+      "label": "Font size (Desktop)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_quote_font_size",
+      "label": "Font size (Mobile)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Color",
+      "default": "#4b5563"
+    },
+    {
+      "type": "range",
+      "id": "quote_line_height",
+      "label": "Line height",
+      "min": 1.2,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.6
+    },
+    {
+      "type": "header",
+      "content": "Arrow Settings"
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Button size",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "arrow_icon_size",
+      "label": "Icon size",
+      "min": 12,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "arrow_gap",
+      "label": "Buttons gap",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "arrow_padding_top",
+      "label": "Padding top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_arrow_padding_top",
+      "label": "Padding top (Mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "arrow_background",
+      "label": "Background color",
+      "default": "#141414"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_background",
+      "label": "Hover background color",
+      "default": "#00a6fb"
+    },
+    {
+      "type": "color",
+      "id": "arrow_icon_color",
+      "label": "Icon color",
+      "default": "#f1f1f7"
+    },
+    {
+      "type": "color",
+      "id": "arrow_icon_hover_color",
+      "label": "Icon hover color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Autoplay Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay_enabled",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_interval",
+      "label": "Autoplay interval",
+      "min": 1000,
+      "max": 9000,
+      "step": 1000,
+      "unit": "ms",
+      "default": 5000
+    },
+    {
+      "type": "header",
+      "content": "Spacing (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_left",
+      "label": "Left padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_right",
+      "label": "Right padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Spacing (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "label": "Left padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_right",
+      "label": "Right padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "John Doe"
+        },
+        {
+          "type": "text",
+          "id": "designation",
+          "label": "Designation",
+          "default": "Happy Customer"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "This is an amazing product. I've never seen anything like it before. The quality is outstanding and the service was exceptional."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RW Animated Testimonials",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Tamar Mendelson",
+            "designation": "Restaurant Critic",
+            "quote": "I was impressed by the food — every dish is bursting with flavor! And I could really tell that they use high-quality ingredients. The staff was friendly and attentive, going the extra mile. I'll definitely be back for more!"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Joe Charlescraft",
+            "designation": "Frequent Visitor",
+            "quote": "This place exceeded all expectations! The atmosphere is inviting, and the staff truly goes above and beyond to ensure a fantastic visit. I'll definitely keep returning for more exceptional dining experience."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Martina Edelweist",
+            "designation": "Satisfied Customer",
+            "quote": "Shining Yam is a hidden gem! From the moment I walked in, I knew I was in for a treat. The impeccable service and overall attention to detail created a memorable experience. I highly recommend it!"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
