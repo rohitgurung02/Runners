@@ -515,9 +515,9 @@
         "mobile_title_font_size": 24,
         "mobile_text_font_size": 14,
         "mobile_small_title_font_size": 18,
-        "footer_font_size": 14,
+        "footer_font_size": 15,
         "footer_margin_top": 20,
-        "footer_color": "#ffffff"
+        "footer_color": "#0073e6"
       }
     }
   },
