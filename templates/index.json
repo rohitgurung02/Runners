@@ -596,6 +596,12 @@
       ],
       "name": "RW Tabs",
       "settings": {
+        "heading": "Carousel",
+        "heading_font_size": 34,
+        "heading_margin_bottom": 0,
+        "heading_color": "#e34d4d",
+        "heading_background_color": "#ffffff",
+        "enable_shadow": true,
         "container_width": 90,
         "container_max_width": 1000,
         "container_height": 400,
