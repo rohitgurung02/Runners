@@ -615,7 +615,7 @@
         "tab_font_size": 16,
         "mobile_tab_font_size": 14,
         "tab_font_weight": "500",
-        "tab_color": "#cccccc",
+        "tab_color": "#bcaa5f",
         "tab_active_color": "#b84de5",
         "tab_active_border_color": "#b84de5",
         "tab_border_color": "#f0f0f0",
