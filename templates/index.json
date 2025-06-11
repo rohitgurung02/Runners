@@ -619,7 +619,7 @@
         "button_hover_background": "#9c3bce",
         "button_text_color": "#ffffff",
         "button_border_radius": 50,
-        "input_border_color": "#ffffff",
+        "input_border_color": "#121212",
         "input_focus_border_color": "#b84de5",
         "desktop_margin_top": 40,
         "desktop_margin_bottom": 0,
