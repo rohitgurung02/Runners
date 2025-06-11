@@ -215,13 +215,6 @@
             {% endif %}
           
           {% when 'contact' %}
-          <style>
-    .pc-contact-form-{{ last_part }} input:focus,
-    .pc-contact-form-{{ last_part }} textarea:focus {
-      outline: none;
-      box-shadow: none;
-    }
-  </style>
             <h2>{{ block.settings.heading }}</h2>
             <form class="pc-contact-form-{{ last_part }}">
               <label for="pc-name-{{ last_part }}">{{ block.settings.name_label }}</label>
