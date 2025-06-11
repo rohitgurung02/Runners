@@ -629,7 +629,7 @@
         "input_focus_border_color": "#b84de5",
         "desktop_margin_top": 20,
         "desktop_margin_bottom": 0,
-        "desktop_padding_top": 80,
+        "desktop_padding_top": 25,
         "desktop_padding_right": 20,
         "desktop_padding_bottom": 20,
         "desktop_padding_left": 20,
