@@ -142,6 +142,13 @@
     font-weight: 600;
   }
 
+
+  .pc-contact-form-{{ last_part }} input:focus,
+.pc-contact-form-{{ last_part }} textarea:focus {
+  outline: none;
+}
+  
+
   @media screen and (max-width: 768px) {
     {{ sec_id }} .pc-tabs-container-{{ last_part }} {
       width: {{ section.settings.mobile_container_width }}%;
