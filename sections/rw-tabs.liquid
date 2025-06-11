@@ -9,6 +9,13 @@
     margin: 0 auto;
   }
 
+   {{ sec_id }} .pc-tabs-heading-{{ last_part }} {
+    text-align: center;
+    font-size: {{ section.settings.heading_font_size }}px;
+    margin-bottom: {{ section.settings.heading_margin_bottom }}px;
+    color: {{ section.settings.heading_color }};
+  }
+
   {{ sec_id }} .pc-tabs-{{ last_part }} {
     position: relative;
     width: 100%;
