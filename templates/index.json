@@ -508,7 +508,7 @@
       "settings": {
         "heading": "Carousel",
         "heading_font_size": 32,
-        "heading_margin_bottom": 20,
+        "heading_margin_bottom": 0,
         "heading_color": "#255a8e",
         "background_color": "#ffffff",
         "enable_shadow": true,
