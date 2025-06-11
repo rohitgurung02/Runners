@@ -89,8 +89,8 @@
   {{ sec_id }} .pc-slide-text-{{ last_part }} {
     font-size: {{ section.settings.text_font_size }}px;
     color: {{ section.settings.text_color }};
-    margin-top: 9px;
-    margin-bottom: 0;
+    margin-top: {{ section.settings.margin_top }}px;;
+    margin-bottom: {{ section.settings.margin_bottom }}px;;
   }
 
   {{ sec_id }} .pc-slide-author-{{ last_part }} {
