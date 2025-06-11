@@ -513,7 +513,7 @@
         "active_dot_color": "#60A5FA",
         "margin_top": 5,
         "margin_bottom": 5,
-        "desktop_height": 340,
+        "desktop_height": 300,
         "mobile_height": 300,
         "auto_slide": true,
         "auto_slide_interval": 5,
