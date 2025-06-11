@@ -521,6 +521,8 @@
         "author_font_size": 17,
         "author_color": "#ffffff",
         "active_dot_color": "#0073e6",
+        "margin_top": 0,
+        "margin_bottom": 0,
         "desktop_height": 380,
         "mobile_height": 400,
         "auto_slide": true,
