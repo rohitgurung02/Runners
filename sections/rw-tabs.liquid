@@ -3,9 +3,17 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
+  {{ sec_id }} .pc-tabs-container-{{ last_part }} {
+    width: {{ section.settings.container_width }}%;
+    max-width: {{ section.settings.container_max_width }}px;
+    margin: 0 auto;
+  }
+
   {{ sec_id }} .pc-tabs-{{ last_part }} {
     position: relative;
     width: 100%;
+    height: {{ section.settings.container_height }}px;
+    min-height: {{ section.settings.container_min_height }}px;
     overflow: hidden;
     background-color: {{ section.settings.background_color }};
     border-radius: {{ section.settings.border_radius }}px;
@@ -60,6 +68,8 @@
   {{ sec_id }} .pc-tab-content-{{ last_part }} {
     display: none;
     animation: pc-fadeInUp-{{ last_part }} 0.5s ease;
+    height: calc(100% - 60px);
+    overflow-y: auto;
   }
 
   {{ sec_id }} .pc-tab-content-{{ last_part }}.active {
@@ -133,7 +143,13 @@
   }
 
   @media screen and (max-width: 768px) {
+    {{ sec_id }} .pc-tabs-container-{{ last_part }} {
+      width: {{ section.settings.mobile_container_width }}%;
+    }
+
     {{ sec_id }} .pc-tabs-{{ last_part }} {
+      height: auto;
+      min-height: {{ section.settings.mobile_container_min_height }}px;
       margin-top: {{ section.settings.mobile_margin_top }}px;
       margin-bottom: {{ section.settings.mobile_margin_bottom }}px;
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
@@ -150,11 +166,15 @@
       padding: 15px 0;
       font-size: {{ section.settings.mobile_tab_font_size }}px;
     }
+
+    {{ sec_id }} .pc-tab-content-{{ last_part }} {
+      height: auto;
+    }
   }
 </style>
 
-<div class="pc-tabs-{{ last_part }}">
-  <div class="pc-tabs-container-{{ last_part }}">
+<div class="pc-tabs-container-{{ last_part }}">
+  <div class="pc-tabs-{{ last_part }}">
     <div class="pc-tab-links-{{ last_part }}">
       {% for block in section.blocks %}
         <button class="pc-tab-link-{{ last_part }} {% if forloop.first %}active{% endif %}" data-tab="pc-tab-{{ last_part }}-{{ forloop.index }}">
@@ -242,8 +262,72 @@
 
 {% schema %}
 {
-  "name": "PWC - Tabs",
+  "name": "PWC Tabs",
   "settings": [
+    {
+      "type": "header",
+      "content": "Container Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container Width (%)",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "container_max_width",
+      "label": "Container Max Width (px)",
+      "min": 500,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "container_height",
+      "label": "Container Height (px)",
+      "min": 200,
+      "max": 1500,
+      "step": 50,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "container_min_height",
+      "label": "Container Min Height (px)",
+      "min": 100,
+      "max": 1000,
+      "step": 25,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_width",
+      "label": "Mobile Container Width (%)",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 95
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_min_height",
+      "label": "Mobile Container Min Height (px)",
+      "min": 100,
+      "max": 1000,
+      "step": 25,
+      "unit": "px",
+      "default": 400
+    },
     {
       "type": "header",
       "content": "General Settings"
@@ -628,7 +712,7 @@
           "type": "text",
           "id": "detail_5",
           "label": "Detail 5",
-          "default": "Detail 5"
+          "default": "detail 5"
         },
         {
           "type": "text",
@@ -797,7 +881,7 @@
   ],
   "presets": [
     {
-      "name": "PWC - Tabs",
+      "name": "PWC Tabs",
       "category": "Custom",
       "blocks": [
         {
