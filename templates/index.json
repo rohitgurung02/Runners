@@ -527,118 +527,6 @@
         "mobile_small_title_font_size": 18,
         "overlay_opacity": 0.7
       }
-    },
-    "rw_tabs_amFeHD": {
-      "type": "rw-tabs",
-      "blocks": {
-        "overview_4RzwGJ": {
-          "type": "overview",
-          "settings": {
-            "tab_title": "Overview",
-            "heading": "Overview",
-            "content": "<p>Welcome to our modern tabbed interface! Enjoy smooth transitions, vibrant gradients, and responsive design. Whether you're browsing on mobile or desktop, everything adapts seamlessly.</p>",
-            "button_label": "Learn More"
-          }
-        },
-        "details_yACQyY": {
-          "type": "details",
-          "settings": {
-            "tab_title": "Details",
-            "heading": "Details",
-            "detail_1": "Responsive across all devices",
-            "detail_2": "Smooth animations and transitions",
-            "detail_3": "Modern, gradient-based design",
-            "detail_4": "Clean, easy-to-read fonts",
-            "detail_5": "detail 5",
-            "button_label": "Get Started"
-          }
-        },
-        "contact_dyDW9i": {
-          "type": "contact",
-          "settings": {
-            "tab_title": "Contact",
-            "heading": "Contact Us",
-            "name_label": "Name:",
-            "name_placeholder": "Your Name",
-            "email_label": "Email:",
-            "email_placeholder": "Your Email",
-            "message_label": "Message:",
-            "message_placeholder": "Your Message",
-            "button_label": "Submit"
-          }
-        },
-        "faq_ttn9Yg": {
-          "type": "faq",
-          "settings": {
-            "tab_title": "FAQ",
-            "heading": "Frequently Asked Questions",
-            "intro_text": "Here are some common questions we get asked:",
-            "question_1": "What is this component for?",
-            "answer_1": "It's a modern, interactive tab interface for websites.",
-            "question_2": "Is it responsive?",
-            "answer_2": "Yes! It's built to work perfectly on any screen size.",
-            "question_3": "question 3",
-            "answer_3": "answer 3",
-            "question_4": "question 4",
-            "answer_4": "answer 4",
-            "question_5": "question 5",
-            "answer_5": "answer 5",
-            "question_6": "question 6",
-            "answer_6": "answer 6"
-          }
-        }
-      },
-      "block_order": [
-        "overview_4RzwGJ",
-        "details_yACQyY",
-        "contact_dyDW9i",
-        "faq_ttn9Yg"
-      ],
-      "name": "RW Tabs",
-      "settings": {
-        "heading": "Carousel",
-        "heading_font_size": 34,
-        "heading_margin_bottom": 0,
-        "heading_color": "#e34d4d",
-        "heading_background_color": "#ffffff",
-        "enable_shadow": true,
-        "container_width": 90,
-        "container_max_width": 1000,
-        "container_height": 400,
-        "container_min_height": 300,
-        "mobile_container_width": 95,
-        "mobile_container_min_height": 400,
-        "background_color": "#ffffff",
-        "border_radius": 20,
-        "shadow_enable": true,
-        "tab_font_size": 16,
-        "mobile_tab_font_size": 14,
-        "tab_font_weight": "500",
-        "tab_color": "#cccccc",
-        "tab_active_color": "#b84de5",
-        "tab_active_border_color": "#b84de5",
-        "tab_border_color": "#ffffff",
-        "tab_links_justify": "space-between",
-        "tab_content_spacing": 20,
-        "button_background": "#b84de5",
-        "button_hover_background": "#9c3bce",
-        "button_text_color": "#ffffff",
-        "button_border_radius": 50,
-        "input_border_color": "#b84de5",
-        "input_focus_border_color": "#0073e6",
-        "desktop_margin_top": 40,
-        "desktop_margin_bottom": 0,
-        "desktop_padding_top": 20,
-        "desktop_padding_right": 20,
-        "desktop_padding_bottom": 20,
-        "desktop_padding_left": 20,
-        "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_padding_top": 15,
-        "mobile_padding_right": 15,
-        "mobile_padding_bottom": 15,
-        "mobile_padding_left": 15
-      }
     }
   },
   "order": [
@@ -647,7 +535,6 @@
     "rw_pricing_plans_U7cd9L",
     "rw_interactive_text_NLRF3G",
     "rw_testimonials_9zDfAJ",
-    "rw_carousel_wFzhNJ",
-    "rw_tabs_amFeHD"
+    "rw_carousel_wFzhNJ"
   ]
 }
