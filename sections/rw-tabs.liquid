@@ -1,6 +1,819 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} .pc-tabs-{{ last_part }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: {{ section.settings.background_color }};
+    border-radius: {{ section.settings.border_radius }}px;
+    {% if section.settings.shadow_enable %}
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    {% endif %}
+    margin-top: {{ section.settings.desktop_margin_top }}px;
+    margin-bottom: {{ section.settings.desktop_margin_bottom }}px;
+    padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
   }
+
+  {{ sec_id }} .pc-tab-links-{{ last_part }} {
+    display: flex;
+    justify-content: {{ section.settings.tab_links_justify }};
+    border-bottom: 1px solid {{ section.settings.tab_border_color }};
+    margin-bottom: {{ section.settings.tab_content_spacing }}px;
+  }
+
+  {{ sec_id }} .pc-tab-link-{{ last_part }} {
+    background: none;
+    border: none;
+    font-size: {{ section.settings.tab_font_size }}px;
+    font-weight: {{ section.settings.tab_font_weight }};
+    padding: 15px 30px;
+    color: {{ section.settings.tab_color }};
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  {{ sec_id }} .pc-tab-link-{{ last_part }}.active,
+  {{ sec_id }} .pc-tab-link-{{ last_part }}:hover {
+    color: {{ section.settings.tab_active_color }};
+  }
+
+  {{ sec_id }} .pc-tab-link-{{ last_part }}::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -1px;
+    left: 50%;
+    background: {{ section.settings.tab_active_border_color }};
+    transition: all 0.4s ease;
+  }
+
+  {{ sec_id }} .pc-tab-link-{{ last_part }}.active::after {
+    width: 100%;
+    left: 0;
+  }
+
+  {{ sec_id }} .pc-tab-content-{{ last_part }} {
+    display: none;
+    animation: pc-fadeInUp-{{ last_part }} 0.5s ease;
+  }
+
+  {{ sec_id }} .pc-tab-content-{{ last_part }}.active {
+    display: block;
+  }
+
+  @keyframes pc-fadeInUp-{{ last_part }} {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  {{ sec_id }} .pc-cta-btn-{{ last_part }} {
+    display: inline-block;
+    padding: 12px 25px;
+    background: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    border: none;
+    border-radius: {{ section.settings.button_border_radius }}px;
+    cursor: pointer;
+    transition: background 0.4s ease;
+    font-weight: 500;
+    margin-top: 20px;
+  }
+
+  {{ sec_id }} .pc-cta-btn-{{ last_part }}:hover {
+    background: {{ section.settings.button_hover_background }};
+  }
+
+  {{ sec_id }} .pc-contact-form-{{ last_part }} {
+    display: flex;
+    flex-direction: column;
+  }
+
+  {{ sec_id }} .pc-contact-form-{{ last_part }} label {
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  {{ sec_id }} .pc-contact-form-{{ last_part }} input,
+  {{ sec_id }} .pc-contact-form-{{ last_part }} textarea {
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid {{ section.settings.input_border_color }};
+    border-radius: 10px;
+    transition: border 0.3s ease;
+  }
+
+  {{ sec_id }} .pc-contact-form-{{ last_part }} input:focus,
+  {{ sec_id }} .pc-contact-form-{{ last_part }} textarea:focus {
+    border-color: {{ section.settings.input_focus_border_color }};
+    outline: none;
+  }
+
+  {{ sec_id }} .pc-faq-list-{{ last_part }} {
+    padding: 0;
+    list-style: none;
+  }
+
+  {{ sec_id }} .pc-faq-list-{{ last_part }} li {
+    margin-bottom: 10px;
+  }
+
+  {{ sec_id }} .pc-faq-list-{{ last_part }} li strong {
+    font-weight: 600;
+  }
+
+  @media screen and (max-width: 768px) {
+    {{ sec_id }} .pc-tabs-{{ last_part }} {
+      margin-top: {{ section.settings.mobile_margin_top }}px;
+      margin-bottom: {{ section.settings.mobile_margin_bottom }}px;
+      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+    }
+
+    {{ sec_id }} .pc-tab-links-{{ last_part }} {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    {{ sec_id }} .pc-tab-link-{{ last_part }} {
+      text-align: center;
+      width: 100%;
+      padding: 15px 0;
+      font-size: {{ section.settings.mobile_tab_font_size }}px;
+    }
+  }
+</style>
+
+<div class="pc-tabs-{{ last_part }}">
+  <div class="pc-tabs-container-{{ last_part }}">
+    <div class="pc-tab-links-{{ last_part }}">
+      {% for block in section.blocks %}
+        <button class="pc-tab-link-{{ last_part }} {% if forloop.first %}active{% endif %}" data-tab="pc-tab-{{ last_part }}-{{ forloop.index }}">
+          {{ block.settings.tab_title }}
+        </button>
+      {% endfor %}
+    </div>
+
+    {% for block in section.blocks %}
+      <div class="pc-tab-content-{{ last_part }} {% if forloop.first %}active{% endif %}" id="pc-tab-{{ last_part }}-{{ forloop.index }}">
+        {% case block.type %}
+          {% when 'overview' %}
+            <h2>{{ block.settings.heading }}</h2>
+            <p>{{ block.settings.content }}</p>
+            {% if block.settings.button_label != blank %}
+              <button class="pc-cta-btn-{{ last_part }}">{{ block.settings.button_label }}</button>
+            {% endif %}
+          
+          {% when 'details' %}
+            <h2>{{ block.settings.heading }}</h2>
+            <ul class="pc-details-list-{{ last_part }}">
+              {% for i in (1..5) %}
+                {% assign detail_key = 'detail_' | append: i %}
+                {% if block.settings[detail_key] != blank %}
+                  <li>{{ block.settings[detail_key] }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            {% if block.settings.button_label != blank %}
+              <button class="pc-cta-btn-{{ last_part }}">{{ block.settings.button_label }}</button>
+            {% endif %}
+          
+          {% when 'contact' %}
+            <h2>{{ block.settings.heading }}</h2>
+            <form class="pc-contact-form-{{ last_part }}">
+              <label for="pc-name-{{ last_part }}">{{ block.settings.name_label }}</label>
+              <input type="text" id="pc-name-{{ last_part }}" placeholder="{{ block.settings.name_placeholder }}">
+              
+              <label for="pc-email-{{ last_part }}">{{ block.settings.email_label }}</label>
+              <input type="email" id="pc-email-{{ last_part }}" placeholder="{{ block.settings.email_placeholder }}">
+              
+              <label for="pc-message-{{ last_part }}">{{ block.settings.message_label }}</label>
+              <textarea id="pc-message-{{ last_part }}" placeholder="{{ block.settings.message_placeholder }}"></textarea>
+
+              <button type="submit" class="pc-cta-btn-{{ last_part }}">{{ block.settings.button_label }}</button>
+            </form>
+          
+          {% when 'faq' %}
+            <h2>{{ block.settings.heading }}</h2>
+            <p>{{ block.settings.intro_text }}</p>
+            <ul class="pc-faq-list-{{ last_part }}">
+              {% for i in (1..6) %}
+                {% assign question_key = 'question_' | append: i %}
+                {% assign answer_key = 'answer_' | append: i %}
+                {% if block.settings[question_key] != blank %}
+                  <li><strong>Q:</strong> {{ block.settings[question_key] }}</li>
+                  <li><strong>A:</strong> {{ block.settings[answer_key] }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+        {% endcase %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabLinks = document.querySelectorAll('{{ sec_id }} .pc-tab-link-{{ last_part }}');
+    const tabContents = document.querySelectorAll('{{ sec_id }} .pc-tab-content-{{ last_part }}');
+
+    tabLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        tabLinks.forEach(link => link.classList.remove('active'));
+        link.classList.add('active');
+
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        const targetTab = document.getElementById(link.dataset.tab);
+        targetTab.classList.add('active');
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "PWC - Tabs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "shadow_enable",
+      "label": "Enable Shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Tab Settings"
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size",
+      "label": "Tab Font Size (Desktop)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_tab_font_size",
+      "label": "Tab Font Size (Mobile)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "tab_font_weight",
+      "label": "Tab Font Weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "color",
+      "id": "tab_color",
+      "label": "Tab Color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_color",
+      "label": "Tab Active Color",
+      "default": "#b84de5"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_border_color",
+      "label": "Tab Active Border Color",
+      "default": "#b84de5"
+    },
+    {
+      "type": "color",
+      "id": "tab_border_color",
+      "label": "Tab Border Color",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "select",
+      "id": "tab_links_justify",
+      "label": "Tab Links Alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        },
+        {
+          "value": "space-between",
+          "label": "Space Between"
+        }
+      ],
+      "default": "space-between"
+    },
+    {
+      "type": "range",
+      "id": "tab_content_spacing",
+      "label": "Tab Content Spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button Background",
+      "default": "#b84de5"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button Hover Background",
+      "default": "#9c3bce"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Form Settings"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input Border Color",
+      "default": "#dddddd"
+    },
+    {
+      "type": "color",
+      "id": "input_focus_border_color",
+      "label": "Input Focus Border Color",
+      "default": "#b84de5"
+    },
+    {
+      "type": "header",
+      "content": "Spacing (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "desktop_margin_top",
+      "label": "Margin Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "desktop_margin_bottom",
+      "label": "Margin Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_right",
+      "label": "Padding Right (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_left",
+      "label": "Padding Left (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Spacing (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_margin_top",
+      "label": "Margin Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_margin_bottom",
+      "label": "Margin Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_right",
+      "label": "Padding Right (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "label": "Padding Left (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "overview",
+      "name": "Overview Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "Overview"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Overview"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Welcome to our modern tabbed interface! Enjoy smooth transitions, vibrant gradients, and responsive design. Whether you're browsing on mobile or desktop, everything adapts seamlessly.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Learn More"
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "name": "Details Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "Details"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Details"
+        },
+        {
+          "type": "text",
+          "id": "detail_1",
+          "label": "Detail 1",
+          "default": "Responsive across all devices"
+        },
+        {
+          "type": "text",
+          "id": "detail_2",
+          "label": "Detail 2",
+          "default": "Smooth animations and transitions"
+        },
+        {
+          "type": "text",
+          "id": "detail_3",
+          "label": "Detail 3",
+          "default": "Modern, gradient-based design"
+        },
+        {
+          "type": "text",
+          "id": "detail_4",
+          "label": "Detail 4",
+          "default": "Clean, easy-to-read fonts"
+        },
+        {
+          "type": "text",
+          "id": "detail_5",
+          "label": "Detail 5",
+          "default": "Detail 5"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Get Started"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Contact Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "Contact"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Contact Us"
+        },
+        {
+          "type": "text",
+          "id": "name_label",
+          "label": "Name Label",
+          "default": "Name:"
+        },
+        {
+          "type": "text",
+          "id": "name_placeholder",
+          "label": "Name Placeholder",
+          "default": "Your Name"
+        },
+        {
+          "type": "text",
+          "id": "email_label",
+          "label": "Email Label",
+          "default": "Email:"
+        },
+        {
+          "type": "text",
+          "id": "email_placeholder",
+          "label": "Email Placeholder",
+          "default": "Your Email"
+        },
+        {
+          "type": "text",
+          "id": "message_label",
+          "label": "Message Label",
+          "default": "Message:"
+        },
+        {
+          "type": "text",
+          "id": "message_placeholder",
+          "label": "Message Placeholder",
+          "default": "Your Message"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Submit"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "FAQ"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Frequently Asked Questions"
+        },
+        {
+          "type": "text",
+          "id": "intro_text",
+          "label": "Introduction Text",
+          "default": "Here are some common questions we get asked:"
+        },
+        {
+          "type": "text",
+          "id": "question_1",
+          "label": "Question 1",
+          "default": "What is this component for?"
+        },
+        {
+          "type": "text",
+          "id": "answer_1",
+          "label": "Answer 1",
+          "default": "It's a modern, interactive tab interface for websites."
+        },
+        {
+          "type": "text",
+          "id": "question_2",
+          "label": "Question 2",
+          "default": "Is it responsive?"
+        },
+        {
+          "type": "text",
+          "id": "answer_2",
+          "label": "Answer 2",
+          "default": "Yes! It's built to work perfectly on any screen size."
+        },
+        {
+          "type": "text",
+          "id": "question_3",
+          "label": "Question 3",
+          "default": "question 3"
+        },
+        {
+          "type": "text",
+          "id": "answer_3",
+          "label": "Answer 3",
+          "default": "answer 3"
+        },
+        {
+          "type": "text",
+          "id": "question_4",
+          "label": "Question 4",
+          "default": "question 4"
+        },
+        {
+          "type": "text",
+          "id": "answer_4",
+          "label": "Answer 4",
+          "default": "answer 4"
+        },
+        {
+          "type": "text",
+          "id": "question_5",
+          "label": "Question 5",
+          "default": "question 5"
+        },
+        {
+          "type": "text",
+          "id": "answer_5",
+          "label": "Answer 5",
+          "default": "answer 5"
+        },
+        {
+          "type": "text",
+          "id": "question_6",
+          "label": "Question 6",
+          "default": "question 6"
+        },
+        {
+          "type": "text",
+          "id": "answer_6",
+          "label": "Answer 6",
+          "default": "answer 6"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - Tabs",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "overview"
+        },
+        {
+          "type": "details"
+        },
+        {
+          "type": "contact"
+        },
+        {
+          "type": "faq"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
