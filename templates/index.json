@@ -464,6 +464,7 @@
         "slide_xrCxxa": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/1011-1200x800.jpg",
             "title": "First Slide",
             "text": "This is the first slide of your carousel",
             "author": "Author One"
@@ -472,6 +473,7 @@
         "slide_bMmVqQ": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/1025-1200x800.jpg",
             "title": "Second Slide",
             "text": "This is the second slide of your carousel",
             "author": "Author Two"
@@ -480,6 +482,7 @@
         "slide_n9zPey": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/1024-1200x800.jpg",
             "title": "Third Slide",
             "text": "This is the third slide of your carousel",
             "author": "Author Three"
@@ -511,7 +514,7 @@
         "margin_top": 5,
         "margin_bottom": 5,
         "desktop_height": 400,
-        "mobile_height": 400,
+        "mobile_height": 360,
         "auto_slide": true,
         "auto_slide_interval": 5,
         "desktop_padding_top": 20,
