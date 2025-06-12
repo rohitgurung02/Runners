@@ -15,7 +15,7 @@
     <div class="pc-right-col">
       <div class="pc-theme-switch-wrapper">
         <label class="pc-theme-switch" for="pc-checkbox-{{ last_part }}">
-          <input type="checkbox" id="pc-checkbox-{{ last_part }}" disabled />
+          <input type="checkbox" id="pc-checkbox-{{ last_part }}" />
           <div class="pc-slider pc-round"></div>
         </label>
         <div class="pc-description">{{ section.settings.dark_mode_label }}</div>
@@ -42,6 +42,7 @@
     </div>
   </div>
 </pc-contact-form-{{ last_part }}>
+
 <style>
   {{ sec_id }} .pc-contact-form {
     --pc-primary-color: {{ section.settings.primary_color }};
@@ -1372,7 +1373,7 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 16
+      "default": 20
     },
     {
       "type": "range",
