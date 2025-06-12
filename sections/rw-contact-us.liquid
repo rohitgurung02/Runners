@@ -3,217 +3,150 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-contact-form-{{ last_part }} class="pc-contact-form">
-  <div class="pc-contact-container">
-    <div class="pc-left-col">
-      {%- if section.settings.image != blank -%}
-        {{- section.settings.image | image_url: width: section.settings.image.width, height: section.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt -}}
-      {%- else -%}
-        {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-image' }}
-      {%- endif -%}
-    </div>
-    <div class="pc-right-col">
-      <div class="pc-theme-switch-wrapper">
-        <label class="pc-theme-switch" for="pc-checkbox-{{ last_part }}">
-          <input type="checkbox" id="pc-checkbox-{{ last_part }}" />
-          <div class="pc-slider pc-round"></div>
-        </label>
-        <div class="pc-description">{{ section.settings.dark_mode_label }}</div>
-      </div>
-      
-      <h1 class="pc-heading">{{ section.settings.heading }}</h1>
-      <p class="pc-subheading">{{ section.settings.subheading }}</p>
-      
-      <form id="pc-contact-form-{{ last_part }}" class="pc-contact-form" method="post">
-        <label for="pc-name-{{ last_part }}">{{ section.settings.name_label }}</label>
-        <input type="text" id="pc-name-{{ last_part }}" name="name" placeholder="{{ section.settings.name_placeholder }}" required>
-        
-        <label for="pc-email-{{ last_part }}">{{ section.settings.email_label }}</label>
-        <input type="email" id="pc-email-{{ last_part }}" name="email" placeholder="{{ section.settings.email_placeholder }}" required>
-        
-        <label for="pc-message-{{ last_part }}">{{ section.settings.message_label }}</label>
-        <textarea rows="6" id="pc-message-{{ last_part }}" name="message" placeholder="{{ section.settings.message_placeholder }}" required></textarea>
-        
-        <button type="submit" id="pc-submit-{{ last_part }}" name="submit">{{ section.settings.button_text }}</button>
-      </form>
-      
-      <div id="pc-error-{{ last_part }}" class="pc-error"></div>
-      <div id="pc-success-msg-{{ last_part }}" class="pc-success-msg"></div>
-    </div>
-  </div>
-</pc-contact-form-{{ last_part }}>
-
 <style>
-  {{ sec_id }} .pc-contact-form {
-    --pc-primary-color: {{ section.settings.primary_color }};
-    --pc-secondary-color: {{ section.settings.secondary_color }};
-    --pc-bg-color: {{ section.settings.bg_color }};
-    --pc-button-color: {{ section.settings.button_color }};
-    --pc-h1-color: {{ section.settings.heading_color }};
-    --pc-dark-primary-color: {{ section.settings.dark_primary_color }};
-    --pc-dark-secondary-color: {{ section.settings.dark_secondary_color }};
-    --pc-dark-bg-color: {{ section.settings.dark_bg_color }};
-    --pc-dark-button-color: {{ section.settings.dark_button_color }};
-    --pc-dark-h1-color: {{ section.settings.dark_heading_color }};
+  {{ sec_id }} .pc-contact-form-{{ last_part }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
   }
 
-  {{ sec_id }} [data-theme="dark"] {
-    --pc-primary-color: var(--pc-dark-primary-color);
-    --pc-secondary-color: var(--pc-dark-secondary-color);
-    --pc-bg-color: var(--pc-dark-bg-color);
-    --pc-button-color: var(--pc-dark-button-color);
-    --pc-h1-color: var(--pc-dark-h1-color);
-  }
-
-  {{ sec_id }} .pc-contact-form * {
-    margin: 0;
-    box-sizing: border-box;
-    transition: all 0.3s ease-in-out;
-  }
-
-  {{ sec_id }} .pc-contact-container {
+  {{ sec_id }} .pc-contact-container-{{ last_part }} {
     display: flex;
     width: 100%;
-    background: var(--pc-bg-color);
-    {% if section.settings.shadow_enabled %}
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    {% endif %}
+    min-height: 100vh;
+    background: var(--pc-bg-color-{{ last_part }});
   }
 
-  {{ sec_id }} .pc-left-col {
-    width: {{ section.settings.image_width_desktop }}%;
+  {{ sec_id }} .pc-left-col-{{ last_part }} {
+    width: 45%;
+    min-height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
-    display: flex;
-    align-items: flex-start;
+    background-position: center;
   }
 
-  {{ sec_id }} .pc-left-col img,
-  {{ sec_id }} .pc-placeholder-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  {{ sec_id }} .pc-logo-{{ last_part }} {
+    width: 10rem;
+    padding: 1.5rem;
   }
 
-  {{ sec_id }} .pc-right-col {
-    background: var(--pc-bg-color);
-    width: {{ 100 | minus: section.settings.image_width_desktop }}%;
-    padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
+  {{ sec_id }} .pc-right-col-{{ last_part }} {
+    background: var(--pc-bg-color-{{ last_part }});
+    width: 55%;
+    padding: 5rem 3.5rem;
   }
 
-  {{ sec_id }} .pc-heading {
-    color: var(--pc-h1-color);
+  {{ sec_id }} h1.pc-heading-{{ last_part }},
+  {{ sec_id }} label.pc-label-{{ last_part }},
+  {{ sec_id }} button.pc-button-{{ last_part }},
+  {{ sec_id }} .pc-description-{{ last_part }} {
+    font-family: inherit;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+  }
+
+  {{ sec_id }} h1.pc-heading-{{ last_part }} {
+    color: var(--pc-heading-color-{{ last_part }});
     text-transform: uppercase;
-    font-size: {{ section.settings.heading_font_size_desktop }}px;
-    letter-spacing: {{ section.settings.heading_letter_spacing_desktop }}px;
-    font-weight: {{ section.settings.heading_font_weight }};
-    margin-bottom: {{ section.settings.heading_margin_bottom_desktop }}px;
+    font-size: 2.5rem;
+    letter-spacing: 0.5rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
   }
 
-  {{ sec_id }} .pc-subheading {
-    color: var(--pc-secondary-color);
-    font-size: {{ section.settings.subheading_font_size_desktop }}px;
-    letter-spacing: {{ section.settings.subheading_letter_spacing_desktop }}px;
+  {{ sec_id }} .pc-description-{{ last_part }} {
+    color: var(--pc-secondary-color-{{ last_part }});
+    font-size: 0.9rem;
+    letter-spacing: 0.01rem;
     width: 100%;
-    margin: {{ section.settings.subheading_margin_top_desktop }}px 0 {{ section.settings.subheading_margin_bottom_desktop }}px;
-    line-height: {{ section.settings.subheading_line_height_desktop }};
+    margin: 0.25rem 0 2rem;
+    line-height: 1.5;
   }
 
-  {{ sec_id }} label,
-  {{ sec_id }} .pc-description {
-    color: var(--pc-secondary-color);
+  {{ sec_id }} label.pc-label-{{ last_part }},
+  {{ sec_id }} .pc-description-{{ last_part }} {
+    color: var(--pc-secondary-color-{{ last_part }});
     text-transform: uppercase;
-    font-size: {{ section.settings.label_font_size_desktop }}px;
-  }
-
-  {{ sec_id }} form {
-    width: 100%;
-    position: relative;
-    margin-top: {{ section.settings.form_margin_top_desktop }}px;
-    padding: {{ section.settings.form_padding_top_desktop }}px 0;
-  }
-
-  {{ sec_id }} input,
-  {{ sec_id }} textarea,
-  {{ sec_id }} label {
-    width: 100%;
+    font-size: 0.625rem;
+    margin-bottom: 0.5rem;
     display: block;
   }
 
-  {{ sec_id }} input::placeholder,
-  {{ sec_id }} textarea::placeholder {
-    color: var(--pc-primary-color);
+  {{ sec_id }} .pc-form-{{ last_part }} {
+    width: 100%;
+    position: relative;
+    margin-top: 2rem;
+    padding: 1rem 0;
   }
 
-  {{ sec_id }} input,
-  {{ sec_id }} textarea {
-    color: var(--pc-primary-color);
-    font-weight: {{ section.settings.input_font_weight }};
-    background: var(--pc-bg-color);
+  {{ sec_id }} .pc-input-{{ last_part }},
+  {{ sec_id }} .pc-textarea-{{ last_part }} {
+    color: var(--pc-primary-color-{{ last_part }});
+    font-weight: 500;
+    background: var(--pc-bg-color-{{ last_part }});
     border: none;
-    border-bottom: 1px solid var(--pc-secondary-color);
-    padding: {{ section.settings.input_padding_top_desktop }}px 0;
-    margin-bottom: {{ section.settings.input_margin_bottom_desktop }}px;
+    border-bottom: 1px solid var(--pc-secondary-color-{{ last_part }});
+    padding: 0.5rem 0;
+    margin-bottom: 1.5rem;
     outline: none;
-    font-size: {{ section.settings.input_font_size_desktop }}px;
+    width: 100%;
+    font-family: inherit;
   }
 
-  {{ sec_id }} textarea {
+  {{ sec_id }} .pc-textarea-{{ last_part }} {
     resize: none;
   }
 
-  {{ sec_id }} button {
+  {{ sec_id }} .pc-button-{{ last_part }} {
     text-transform: uppercase;
-    font-weight: {{ section.settings.button_font_weight }};
-    background: var(--pc-button-color);
-    color: var(--pc-bg-color);
-    width: {{ section.settings.button_width_desktop }}px;
-    height: {{ section.settings.button_height_desktop }}px;
+    font-weight: 300;
+    background: var(--pc-button-color-{{ last_part }});
+    color: var(--pc-bg-color-{{ last_part }});
+    width: 10rem;
+    height: 2.25rem;
     border: none;
-    border-radius: {{ section.settings.button_border_radius }}px;
+    border-radius: 2px;
     outline: none;
     cursor: pointer;
-    font-size: {{ section.settings.button_font_size_desktop }}px;
-    margin-top: {{ section.settings.button_margin_top_desktop }}px;
+    margin-top: 1rem;
   }
 
-  {{ sec_id }} input:hover,
-  {{ sec_id }} textarea:hover,
-  {{ sec_id }} button:hover {
+  {{ sec_id }} .pc-input-{{ last_part }}:hover,
+  {{ sec_id }} .pc-textarea-{{ last_part }}:hover,
+  {{ sec_id }} .pc-button-{{ last_part }}:hover {
     opacity: 0.5;
   }
 
-  {{ sec_id }} button:active {
+  {{ sec_id }} .pc-button-{{ last_part }}:active {
     opacity: 0.8;
   }
 
-  {{ sec_id }} .pc-theme-switch-wrapper {
+  {{ sec_id }} .pc-theme-switch-wrapper-{{ last_part }} {
     display: flex;
     align-items: center;
     text-align: center;
-    width: {{ section.settings.theme_switch_width_desktop }}px;
+    width: 160px;
     position: absolute;
-    top: {{ section.settings.theme_switch_top_desktop }}px;
+    top: 0.5rem;
     right: 0;
   }
 
-  {{ sec_id }} .pc-description {
-    margin-left: {{ section.settings.theme_label_margin_left_desktop }}px;
-    font-size: {{ section.settings.theme_label_font_size_desktop }}px;
+  {{ sec_id }} .pc-description-{{ last_part }} {
+    margin-left: 1.25rem;
   }
 
-  {{ sec_id }} .pc-theme-switch {
+  {{ sec_id }} .pc-theme-switch-{{ last_part }} {
     display: inline-block;
-    height: {{ section.settings.theme_switch_height_desktop }}px;
+    height: 34px;
     position: relative;
-    width: {{ section.settings.theme_switch_width_desktop }}px;
+    width: 60px;
   }
 
-  {{ sec_id }} .pc-theme-switch input {
+  {{ sec_id }} .pc-theme-switch-{{ last_part }} input {
     display: none;
   }
 
-  {{ sec_id }} .pc-slider {
+  {{ sec_id }} .pc-slider-{{ last_part }} {
     background-color: #ccc;
     bottom: 0;
     cursor: pointer;
@@ -224,208 +157,192 @@
     transition: .4s;
   }
 
-  {{ sec_id }} .pc-slider:before {
+  {{ sec_id }} .pc-slider-{{ last_part }}:before {
     background-color: #fff;
-    bottom: {{ section.settings.theme_switch_knob_offset_desktop }}px;
+    bottom: 0.25rem;
     content: "";
-    width: {{ section.settings.theme_switch_knob_size_desktop }}px;
-    height: {{ section.settings.theme_switch_knob_size_desktop }}px;
-    left: {{ section.settings.theme_switch_knob_offset_desktop }}px;
+    width: 26px;
+    height: 26px;
+    left: 0.25rem;
     position: absolute;
     transition: .4s;
   }
 
-  {{ sec_id }} input:checked + .pc-slider {
-    background-color: var(--pc-button-color);
+  {{ sec_id }} .pc-theme-switch-{{ last_part }} input:checked + .pc-slider-{{ last_part }} {
+    background-color: var(--pc-button-color-{{ last_part }});
   }
 
-  {{ sec_id }} input:checked + .pc-slider:before {
-    transform: translateX({{ section.settings.theme_switch_knob_translate_desktop }}px);
+  {{ sec_id }} .pc-theme-switch-{{ last_part }} input:checked + .pc-slider-{{ last_part }}:before {
+    transform: translateX(26px);
   }
 
-  {{ sec_id }} .pc-slider.pc-round {
-    border-radius: {{ section.settings.theme_switch_border_radius_desktop }}px;
+  {{ sec_id }} .pc-slider-{{ last_part }}.pc-round-{{ last_part }} {
+    border-radius: 34px;
   }
 
-  {{ sec_id }} .pc-slider.pc-round:before {
+  {{ sec_id }} .pc-slider-{{ last_part }}.pc-round-{{ last_part }}:before {
     border-radius: 50%;
   }
 
-  {{ sec_id }} .pc-error,
-  {{ sec_id }} .pc-success-msg {
+  {{ sec_id }} .pc-error-{{ last_part }},
+  {{ sec_id }} .pc-success-msg-{{ last_part }} {
     width: 100%;
-    margin: {{ section.settings.message_margin_top_desktop }}px 0;
-    font-size: {{ section.settings.message_font_size_desktop }}px;
+    margin: 0.125rem 0;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    color: var(--pc-secondary-color);
+    font-family: inherit;
+    color: var(--pc-secondary-color-{{ last_part }});
   }
 
-  {{ sec_id }} .pc-success-msg {
+  {{ sec_id }} .pc-success-msg-{{ last_part }} {
     transition-delay: 3s;
   }
 
-  @media only screen and (max-width: 768px) {
-    {{ sec_id }} .pc-contact-container {
+  @media only screen and (max-width: 950px) {
+    {{ sec_id }} .pc-contact-container-{{ last_part }} {
       flex-direction: column;
     }
 
-    {{ sec_id }} .pc-left-col {
+    {{ sec_id }} .pc-left-col-{{ last_part }},
+    {{ sec_id }} .pc-right-col-{{ last_part }} {
       width: 100%;
-      height: {{ section.settings.image_height_mobile }}px;
+      min-height: auto;
     }
 
-    {{ sec_id }} .pc-right-col {
-      width: 100%;
-      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+    {{ sec_id }} .pc-left-col-{{ last_part }} {
+      height: 40vh;
     }
 
-    {{ sec_id }} .pc-heading {
-      font-size: {{ section.settings.heading_font_size_mobile }}px;
-      letter-spacing: {{ section.settings.heading_letter_spacing_mobile }}px;
-      margin-bottom: {{ section.settings.heading_margin_bottom_mobile }}px;
+    {{ sec_id }} .pc-right-col-{{ last_part }} {
+      padding: 3rem 1.5rem;
     }
 
-    {{ sec_id }} .pc-subheading {
-      font-size: {{ section.settings.subheading_font_size_mobile }}px;
-      letter-spacing: {{ section.settings.subheading_letter_spacing_mobile }}px;
-      margin: {{ section.settings.subheading_margin_top_mobile }}px 0 {{ section.settings.subheading_margin_bottom_mobile }}px;
-      line-height: {{ section.settings.subheading_line_height_mobile }};
+    {{ sec_id }} h1.pc-heading-{{ last_part }} {
+      font-size: 1.75rem;
     }
 
-    {{ sec_id }} label,
-    {{ sec_id }} .pc-description {
-      font-size: {{ section.settings.label_font_size_mobile }}px;
+    {{ sec_id }} .pc-description-{{ last_part }} {
+      font-size: 0.8rem;
     }
 
-    {{ sec_id }} form {
-      margin-top: {{ section.settings.form_margin_top_mobile }}px;
-      padding: {{ section.settings.form_padding_top_mobile }}px 0;
+    {{ sec_id }} .pc-theme-switch-wrapper-{{ last_part }} {
+      width: 120px;
     }
 
-    {{ sec_id }} input,
-    {{ sec_id }} textarea {
-      padding: {{ section.settings.input_padding_top_mobile }}px 0;
-      margin-bottom: {{ section.settings.input_margin_bottom_mobile }}px;
-      font-size: {{ section.settings.input_font_size_mobile }}px;
+    {{ sec_id }} .pc-theme-switch-{{ last_part }} {
+      height: 28px;
+      width: 50px;
     }
 
-    {{ sec_id }} button {
-      width: {{ section.settings.button_width_mobile }}px;
-      height: {{ section.settings.button_height_mobile }}px;
-      font-size: {{ section.settings.button_font_size_mobile }}px;
-      margin-top: {{ section.settings.button_margin_top_mobile }}px;
+    {{ sec_id }} .pc-slider-{{ last_part }}:before {
+      width: 20px;
+      height: 20px;
     }
 
-    {{ sec_id }} .pc-theme-switch-wrapper {
-      width: {{ section.settings.theme_switch_width_mobile }}px;
-      top: {{ section.settings.theme_switch_top_mobile }}px;
-    }
-
-    {{ sec_id }} .pc-description {
-      margin-left: {{ section.settings.theme_label_margin_left_mobile }}px;
-      font-size: {{ section.settings.theme_label_font_size_mobile }}px;
-    }
-
-    {{ sec_id }} .pc-theme-switch {
-      height: {{ section.settings.theme_switch_height_mobile }}px;
-      width: {{ section.settings.theme_switch_width_mobile }}px;
-    }
-
-    {{ sec_id }} .pc-slider:before {
-      bottom: {{ section.settings.theme_switch_knob_offset_mobile }}px;
-      width: {{ section.settings.theme_switch_knob_size_mobile }}px;
-      height: {{ section.settings.theme_switch_knob_size_mobile }}px;
-      left: {{ section.settings.theme_switch_knob_offset_mobile }}px;
-    }
-
-    {{ sec_id }} input:checked + .pc-slider:before {
-      transform: translateX({{ section.settings.theme_switch_knob_translate_mobile }}px);
-    }
-
-    {{ sec_id }} .pc-slider.pc-round {
-      border-radius: {{ section.settings.theme_switch_border_radius_mobile }}px;
-    }
-
-    {{ sec_id }} .pc-error,
-    {{ sec_id }} .pc-success-msg {
-      margin: {{ section.settings.message_margin_top_mobile }}px 0;
-      font-size: {{ section.settings.message_font_size_mobile }}px;
+    {{ sec_id }} .pc-theme-switch-{{ last_part }} input:checked + .pc-slider-{{ last_part }}:before {
+      transform: translateX(16px);
     }
   }
 </style>
 
+<pc-contact-form-{{ last_part }} class="pc-contact-form-{{ last_part }}">
+  <div class="pc-contact-container-{{ last_part }}">
+    <div class="pc-left-col-{{ last_part }}" style="background-image: url('{{ section.settings.image | image_url: width: 1500 }}');">
+      {%- if section.settings.logo -%}
+        <img class="pc-logo-{{ last_part }}" src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ section.settings.logo.alt | escape }}">
+      {%- endif -%}
+    </div>
+    <div class="pc-right-col-{{ last_part }}">
+      <div class="pc-theme-switch-wrapper-{{ last_part }}">
+        <label class="pc-theme-switch-{{ last_part }}" for="pc-checkbox-{{ last_part }}">
+          <input type="checkbox" id="pc-checkbox-{{ last_part }}" class="pc-theme-toggle-{{ last_part }}">
+          <div class="pc-slider-{{ last_part }} pc-round-{{ last_part }}"></div>
+        </label>
+        <div class="pc-description-{{ last_part }}">Dark Mode</div>
+      </div>
+      
+      <h1 class="pc-heading-{{ last_part }}">{{ section.settings.heading }}</h1>
+      <p class="pc-description-{{ last_part }}">{{ section.settings.description }}</p>
+      
+      <form id="pc-contact-form-{{ last_part }}" class="pc-form-{{ last_part }}" method="post">
+        <label for="pc-name-{{ last_part }}" class="pc-label-{{ last_part }}">Full name</label>
+        <input type="text" id="pc-name-{{ last_part }}" class="pc-input-{{ last_part }}" name="name" placeholder="{{ section.settings.name_placeholder }}" required>
+        
+        <label for="pc-email-{{ last_part }}" class="pc-label-{{ last_part }}">Email Address</label>
+        <input type="email" id="pc-email-{{ last_part }}" class="pc-input-{{ last_part }}" name="email" placeholder="{{ section.settings.email_placeholder }}" required>
+        
+        <label for="pc-message-{{ last_part }}" class="pc-label-{{ last_part }}">Message</label>
+        <textarea rows="6" id="pc-message-{{ last_part }}" class="pc-textarea-{{ last_part }}" name="message" placeholder="{{ section.settings.message_placeholder }}" required></textarea>
+        
+        <button type="submit" id="pc-submit-{{ last_part }}" class="pc-button-{{ last_part }}">{{ section.settings.button_text }}</button>
+      </form>
+      
+      <div id="pc-error-{{ last_part }}" class="pc-error-{{ last_part }}"></div>
+      <div id="pc-success-msg-{{ last_part }}" class="pc-success-msg-{{ last_part }}"></div>
+    </div>
+  </div>
+</pc-contact-form-{{ last_part }}>
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const toggleSwitch = document.querySelector('{{ sec_id }} .pc-theme-switch input[type="checkbox"]');
-    const currentTheme = localStorage.getItem('theme');
-
-    if (currentTheme) {
-      document.documentElement.setAttribute('data-theme', currentTheme);
-      if (currentTheme === 'dark') {
-        toggleSwitch.checked = true;
-      }
-    }
+    const toggleSwitch = document.querySelector('#{{ sec_id }} .pc-theme-toggle-{{ last_part }}');
+    const form = document.getElementById('pc-contact-form-{{ last_part }}');
+    const errorElement = document.getElementById('pc-error-{{ last_part }}');
+    const successMsg = document.getElementById('pc-success-msg-{{ last_part }}');
+    const submitBtn = document.getElementById('pc-submit-{{ last_part }}');
 
     function switchTheme(e) {
       if (e.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
+        document.documentElement.setAttribute('data-pc-theme-{{ last_part }}', 'dark');
       } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-      }    
+        document.documentElement.setAttribute('data-pc-theme-{{ last_part }}', 'light');
+      }
     }
 
     if (toggleSwitch) {
       toggleSwitch.addEventListener('change', switchTheme, false);
     }
 
-    const contactForm = document.getElementById('pc-contact-form-{{ last_part }}');
-    const errorElement = document.getElementById('pc-error-{{ last_part }}');
-    const successMsg = document.getElementById('pc-success-msg-{{ last_part }}');
-    const submitBtn = document.getElementById('pc-submit-{{ last_part }}');
+    function emailIsValid(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
 
-    if (contactForm && submitBtn) {
-      const validate = (e) => {
-        e.preventDefault();
-        const name = document.getElementById('pc-name-{{ last_part }}');
-        const email = document.getElementById('pc-email-{{ last_part }}');
-        const message = document.getElementById('pc-message-{{ last_part }}');
-        
-        errorElement.innerHTML = '';
-        successMsg.innerHTML = '';
+    function validate(e) {
+      e.preventDefault();
+      errorElement.textContent = '';
+      successMsg.textContent = '';
 
-        if (name.value.length < 3) {
-          errorElement.innerHTML = '{{ section.settings.name_error_message }}';
-          return false;
-        } 
-        
-        if (!(email.value.includes('.') && (email.value.includes('@')))) {
-          errorElement.innerHTML = '{{ section.settings.email_error_message }}';
-          return false;
-        } 
+      const name = document.getElementById('pc-name-{{ last_part }}').value;
+      const email = document.getElementById('pc-email-{{ last_part }}').value;
+      const message = document.getElementById('pc-message-{{ last_part }}').value;
 
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-          errorElement.innerHTML = '{{ section.settings.email_error_message }}';
-          return false;
-        }
-
-        if (message.value.length < 15) {
-          errorElement.innerHTML = '{{ section.settings.message_error_message }}';
-          return false;
-        }
-
-        successMsg.innerHTML = '{{ section.settings.success_message }}';
-
-        setTimeout(function () {
-          successMsg.innerHTML = '';
-          contactForm.reset();
-        }, 6000);
-
-        return true;
+      if (name.length < 3) {
+        errorElement.textContent = '{{ section.settings.name_error }}';
+        return false;
       }
 
-      submitBtn.addEventListener('click', validate);
+      if (!emailIsValid(email)) {
+        errorElement.textContent = '{{ section.settings.email_error }}';
+        return false;
+      }
+
+      if (message.length < 15) {
+        errorElement.textContent = '{{ section.settings.message_error }}';
+        return false;
+      }
+
+      successMsg.textContent = '{{ section.settings.success_message }}';
+
+      setTimeout(function() {
+        successMsg.textContent = '';
+        form.reset();
+      }, 6000);
+
+      return true;
+    }
+
+    if (form && submitBtn) {
+      form.addEventListener('submit', validate);
     }
   });
 </script>
@@ -433,39 +350,23 @@
 {% schema %}
 {
   "name": "RW Contact Form",
+  "tag": "section",
+  "class": "shopify-section--contact-form",
   "settings": [
     {
       "type": "header",
-      "content": "Image Settings"
+      "content": "Content"
     },
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Left Side Image"
+      "label": "Background Image",
+      "info": "Recommended size: 1500x1000px"
     },
     {
-      "type": "range",
-      "id": "image_width_desktop",
-      "label": "Image Width (Desktop)",
-      "min": 20,
-      "max": 80,
-      "step": 5,
-      "unit": "%",
-      "default": 45
-    },
-    {
-      "type": "range",
-      "id": "image_height_mobile",
-      "label": "Image Height (Mobile)",
-      "min": 200,
-      "max": 800,
-      "step": 50,
-      "unit": "px",
-      "default": 400
-    },
-    {
-      "type": "header",
-      "content": "Content Settings"
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
     },
     {
       "type": "text",
@@ -475,15 +376,9 @@
     },
     {
       "type": "textarea",
-      "id": "subheading",
-      "label": "Subheading",
+      "id": "description",
+      "label": "Description",
       "default": "Planning to visit Indonesia soon? Get insider tips on where to go, things to do and find best deals for your next adventure."
-    },
-    {
-      "type": "text",
-      "id": "name_label",
-      "label": "Name Label",
-      "default": "Full name"
     },
     {
       "type": "text",
@@ -493,21 +388,9 @@
     },
     {
       "type": "text",
-      "id": "email_label",
-      "label": "Email Label",
-      "default": "Email Address"
-    },
-    {
-      "type": "text",
       "id": "email_placeholder",
       "label": "Email Placeholder",
       "default": "Your Email Address"
-    },
-    {
-      "type": "text",
-      "id": "message_label",
-      "label": "Message Label",
-      "default": "Message"
     },
     {
       "type": "text",
@@ -523,814 +406,183 @@
     },
     {
       "type": "text",
-      "id": "dark_mode_label",
-      "label": "Dark Mode Label",
-      "default": "Dark Mode"
-    },
-    {
-      "type": "text",
-      "id": "name_error_message",
+      "id": "name_error",
       "label": "Name Error Message",
       "default": "Your name should be at least 3 characters long."
     },
     {
       "type": "text",
-      "id": "email_error_message",
+      "id": "email_error",
       "label": "Email Error Message",
       "default": "Please enter a valid email address."
     },
     {
       "type": "text",
-      "id": "message_error_message",
+      "id": "message_error",
       "label": "Message Error Message",
-      "default": "Please write a longer message."
+      "default": "Please write a longer message (at least 15 characters)."
     },
     {
       "type": "text",
       "id": "success_message",
       "label": "Success Message",
-      "default": "Thank you! I will get back to you as soon as possible."
+      "default": "Thank you! We will get back to you as soon as possible."
     },
     {
       "type": "header",
-      "content": "Color Settings"
+      "content": "Colors (Light Mode)"
     },
     {
       "type": "color",
-      "id": "primary_color",
+      "id": "primary_color_light",
       "label": "Primary Color",
       "default": "#010712"
     },
     {
       "type": "color",
-      "id": "secondary_color",
+      "id": "secondary_color_light",
       "label": "Secondary Color",
       "default": "#818386"
     },
     {
       "type": "color",
-      "id": "bg_color",
+      "id": "bg_color_light",
       "label": "Background Color",
       "default": "#FCFDFD"
     },
     {
       "type": "color",
-      "id": "button_color",
+      "id": "button_color_light",
       "label": "Button Color",
       "default": "#3B3636"
     },
     {
       "type": "color",
-      "id": "heading_color",
+      "id": "heading_color_light",
       "label": "Heading Color",
       "default": "#3F444C"
     },
     {
+      "type": "header",
+      "content": "Colors (Dark Mode)"
+    },
+    {
       "type": "color",
-      "id": "dark_primary_color",
-      "label": "Dark Mode Primary Color",
+      "id": "primary_color_dark",
+      "label": "Primary Color",
       "default": "#FCFDFD"
     },
     {
       "type": "color",
-      "id": "dark_secondary_color",
-      "label": "Dark Mode Secondary Color",
+      "id": "secondary_color_dark",
+      "label": "Secondary Color",
       "default": "#818386"
     },
     {
       "type": "color",
-      "id": "dark_bg_color",
-      "label": "Dark Mode Background Color",
+      "id": "bg_color_dark",
+      "label": "Background Color",
       "default": "#010712"
     },
     {
       "type": "color",
-      "id": "dark_button_color",
-      "label": "Dark Mode Button Color",
+      "id": "button_color_dark",
+      "label": "Button Color",
       "default": "#818386"
     },
     {
       "type": "color",
-      "id": "dark_heading_color",
-      "label": "Dark Mode Heading Color",
+      "id": "heading_color_dark",
+      "label": "Heading Color",
       "default": "#FCFDFD"
     },
     {
-      "type": "checkbox",
-      "id": "shadow_enabled",
-      "label": "Enable Shadow",
-      "default": true
-    },
-    {
       "type": "header",
-      "content": "Typography Settings - Desktop"
-    },
-    {
-      "type": "range",
-      "id": "heading_font_size_desktop",
-      "label": "Heading Font Size (Desktop)",
-      "min": 16,
-      "max": 72,
-      "step": 2,
-      "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "heading_letter_spacing_desktop",
-      "label": "Heading Letter Spacing (Desktop)",
-      "min": 0,
-      "max": 10,
-      "step": 0.5,
-      "unit": "px",
-      "default": 2
-    },
-    {
-      "type": "range",
-      "id": "heading_font_weight",
-      "label": "Heading Font Weight",
-      "min": 100,
-      "max": 900,
-      "step": 100,
-      "default": 300
-    },
-    {
-      "type": "range",
-      "id": "heading_margin_bottom_desktop",
-      "label": "Heading Margin Bottom (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "subheading_font_size_desktop",
-      "label": "Subheading Font Size (Desktop)",
-      "min": 10,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "subheading_letter_spacing_desktop",
-      "label": "Subheading Letter Spacing (Desktop)",
-      "min": 0,
-      "max": 5,
-      "step": 0.1,
-      "unit": "px",
-      "default": 0.5
-    },
-    {
-      "type": "range",
-      "id": "subheading_line_height_desktop",
-      "label": "Subheading Line Height (Desktop)",
-      "min": 1,
-      "max": 2,
-      "step": 0.1,
-      "default": 1.5
-    },
-    {
-      "type": "range",
-      "id": "subheading_margin_top_desktop",
-      "label": "Subheading Margin Top (Desktop)",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "subheading_margin_bottom_desktop",
-      "label": "Subheading Margin Bottom (Desktop)",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "label_font_size_desktop",
-      "label": "Label Font Size (Desktop)",
-      "min": 8,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "input_font_size_desktop",
-      "label": "Input Font Size (Desktop)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "input_font_weight",
-      "label": "Input Font Weight",
-      "min": 100,
-      "max": 900,
-      "step": 100,
-      "default": 500
-    },
-    {
-      "type": "range",
-      "id": "button_font_size_desktop",
-      "label": "Button Font Size (Desktop)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "button_font_weight",
-      "label": "Button Font Weight",
-      "min": 100,
-      "max": 900,
-      "step": 100,
-      "default": 400
-    },
-    {
-      "type": "range",
-      "id": "message_font_size_desktop",
-      "label": "Message Font Size (Desktop)",
-      "min": 8,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "theme_label_font_size_desktop",
-      "label": "Theme Label Font Size (Desktop)",
-      "min": 8,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "header",
-      "content": "Spacing Settings - Desktop"
+      "content": "Spacing (Desktop)"
     },
     {
       "type": "range",
       "id": "desktop_padding_top",
-      "label": "Top Padding (Desktop)",
+      "label": "Top Padding",
       "min": 0,
-      "max": 200,
+      "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_right",
-      "label": "Right Padding (Desktop)",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 60
+      "default": 0
     },
     {
       "type": "range",
       "id": "desktop_padding_bottom",
-      "label": "Bottom Padding (Desktop)",
+      "label": "Bottom Padding",
       "min": 0,
-      "max": 200,
+      "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 80
+      "default": 0
     },
     {
       "type": "range",
       "id": "desktop_padding_left",
-      "label": "Left Padding (Desktop)",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "form_margin_top_desktop",
-      "label": "Form Margin Top (Desktop)",
+      "label": "Left Padding",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 40
+      "default": 0
     },
     {
       "type": "range",
-      "id": "form_padding_top_desktop",
-      "label": "Form Padding Top (Desktop)",
+      "id": "desktop_padding_right",
+      "label": "Right Padding",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "input_padding_top_desktop",
-      "label": "Input Padding Top (Desktop)",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "input_margin_bottom_desktop",
-      "label": "Input Margin Bottom (Desktop)",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "button_width_desktop",
-      "label": "Button Width (Desktop)",
-      "min": 80,
-      "max": 400,
-      "step": 10,
-      "unit": "px",
-      "default": 160
-    },
-    {
-      "type": "range",
-      "id": "button_height_desktop",
-      "label": "Button Height (Desktop)",
-      "min": 20,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "button_margin_top_desktop",
-      "label": "Button Margin Top (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "button_border_radius",
-      "label": "Button Border Radius",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 2
-    },
-    {
-      "type": "range",
-      "id": "message_margin_top_desktop",
-      "label": "Message Margin Top (Desktop)",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_width_desktop",
-      "label": "Theme Switch Width (Desktop)",
-      "min": 40,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "default": 120
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_height_desktop",
-      "label": "Theme Switch Height (Desktop)",
-      "min": 20,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "default": 34
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_top_desktop",
-      "label": "Theme Switch Top Position (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "theme_label_margin_left_desktop",
-      "label": "Theme Label Margin Left (Desktop)",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_knob_size_desktop",
-      "label": "Theme Switch Knob Size (Desktop)",
-      "min": 10,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "default": 26
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_knob_offset_desktop",
-      "label": "Theme Switch Knob Offset (Desktop)",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_knob_translate_desktop",
-      "label": "Theme Switch Knob Translate (Desktop)",
-      "min": 10,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "default": 26
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_border_radius_desktop",
-      "label": "Theme Switch Border Radius (Desktop)",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 34
+      "default": 0
     },
     {
       "type": "header",
-      "content": "Typography Settings - Mobile"
-    },
-    {
-      "type": "range",
-      "id": "heading_font_size_mobile",
-      "label": "Heading Font Size (Mobile)",
-      "min": 12,
-      "max": 48,
-      "step": 2,
-      "unit": "px",
-      "default": 28
-    },
-    {
-      "type": "range",
-      "id": "heading_letter_spacing_mobile",
-      "label": "Heading Letter Spacing (Mobile)",
-      "min": 0,
-      "max": 10,
-      "step": 0.5,
-      "unit": "px",
-      "default": 1
-    },
-    {
-      "type": "range",
-      "id": "heading_margin_bottom_mobile",
-      "label": "Heading Margin Bottom (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "subheading_font_size_mobile",
-      "label": "Subheading Font Size (Mobile)",
-      "min": 8,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "subheading_letter_spacing_mobile",
-      "label": "Subheading Letter Spacing (Mobile)",
-      "min": 0,
-      "max": 5,
-      "step": 0.1,
-      "unit": "px",
-      "default": 0.3
-    },
-    {
-      "type": "range",
-      "id": "subheading_line_height_mobile",
-      "label": "Subheading Line Height (Mobile)",
-      "min": 1,
-      "max": 2,
-      "step": 0.1,
-      "default": 1.3
-    },
-    {
-      "type": "range",
-      "id": "subheading_margin_top_mobile",
-      "label": "Subheading Margin Top (Mobile)",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "subheading_margin_bottom_mobile",
-      "label": "Subheading Margin Bottom (Mobile)",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "label_font_size_mobile",
-      "label": "Label Font Size (Mobile)",
-      "min": 6,
-      "max": 18,
-      "step": 1,
-      "unit": "px",
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "input_font_size_mobile",
-      "label": "Input Font Size (Mobile)",
-      "min": 10,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "button_font_size_mobile",
-      "label": "Button Font Size (Mobile)",
-      "min": 10,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "message_font_size_mobile",
-      "label": "Message Font Size (Mobile)",
-      "min": 6,
-      "max": 18,
-      "step": 1,
-      "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "theme_label_font_size_mobile",
-      "label": "Theme Label Font Size (Mobile)",
-      "min": 6,
-      "max": 18,
-      "step": 1,
-      "unit": "px",
-      "default": 8
-    },
-    {
-      "type": "header",
-      "content": "Spacing Settings - Mobile"
+      "content": "Spacing (Mobile)"
     },
     {
       "type": "range",
       "id": "mobile_padding_top",
-      "label": "Top Padding (Mobile)",
+      "label": "Top Padding",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_right",
-      "label": "Right Padding (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
+      "default": 0
     },
     {
       "type": "range",
       "id": "mobile_padding_bottom",
-      "label": "Bottom Padding (Mobile)",
+      "label": "Bottom Padding",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 40
+      "default": 0
     },
     {
       "type": "range",
       "id": "mobile_padding_left",
-      "label": "Left Padding (Mobile)",
+      "label": "Left Padding",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 30
+      "default": 0
     },
     {
       "type": "range",
-      "id": "form_margin_top_mobile",
-      "label": "Form Margin Top (Mobile)",
+      "id": "mobile_padding_right",
+      "label": "Right Padding",
       "min": 0,
-      "max": 80,
+      "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "form_padding_top_mobile",
-      "label": "Form Padding Top (Mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "input_padding_top_mobile",
-      "label": "Input Padding Top (Mobile)",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 6
-    },
-    {
-      "type": "range",
-      "id": "input_margin_bottom_mobile",
-      "label": "Input Margin Bottom (Mobile)",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "button_width_mobile",
-      "label": "Button Width (Mobile)",
-      "min": 60,
-      "max": 300,
-      "step": 10,
-      "unit": "px",
-      "default": 120
-    },
-    {
-      "type": "range",
-      "id": "button_height_mobile",
-      "label": "Button Height (Mobile)",
-      "min": 15,
-      "max": 80,
-      "step": 1,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "button_margin_top_mobile",
-      "label": "Button Margin Top (Mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "message_margin_top_mobile",
-      "label": "Message Margin Top (Mobile)",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 6
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_width_mobile",
-      "label": "Theme Switch Width (Mobile)",
-      "min": 30,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "default": 90
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_height_mobile",
-      "label": "Theme Switch Height (Mobile)",
-      "min": 15,
-      "max": 80,
-      "step": 1,
-      "unit": "px",
-      "default": 28
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_top_mobile",
-      "label": "Theme Switch Top Position (Mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "theme_label_margin_left_mobile",
-      "label": "Theme Label Margin Left (Mobile)",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_knob_size_mobile",
-      "label": "Theme Switch Knob Size (Mobile)",
-      "min": 8,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_knob_offset_mobile",
-      "label": "Theme Switch Knob Offset (Mobile)",
-      "min": 0,
-      "max": 15,
-      "step": 1,
-      "unit": "px",
-      "default": 3
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_knob_translate_mobile",
-      "label": "Theme Switch Knob Translate (Mobile)",
-      "min": 8,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_border_radius_mobile",
-      "label": "Theme Switch Border Radius (Mobile)",
-      "min": 0,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "default": 28
+      "default": 0
     }
   ],
   "presets": [
@@ -1341,3 +593,37 @@
   ]
 }
 {% endschema %}
+
+<style>
+  :root {
+    --pc-primary-color-{{ last_part }}: {{ section.settings.primary_color_light }};
+    --pc-secondary-color-{{ last_part }}: {{ section.settings.secondary_color_light }};
+    --pc-bg-color-{{ last_part }}: {{ section.settings.bg_color_light }};
+    --pc-button-color-{{ last_part }}: {{ section.settings.button_color_light }};
+    --pc-heading-color-{{ last_part }}: {{ section.settings.heading_color_light }};
+  }
+
+  [data-pc-theme-{{ last_part }}="dark"] {
+    --pc-primary-color-{{ last_part }}: {{ section.settings.primary_color_dark }};
+    --pc-secondary-color-{{ last_part }}: {{ section.settings.secondary_color_dark }};
+    --pc-bg-color-{{ last_part }}: {{ section.settings.bg_color_dark }};
+    --pc-button-color-{{ last_part }}: {{ section.settings.button_color_dark }};
+    --pc-heading-color-{{ last_part }}: {{ section.settings.heading_color_dark }};
+  }
+
+  {{ sec_id }} {
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+    padding-left: {{ section.settings.desktop_padding_left }}px;
+    padding-right: {{ section.settings.desktop_padding_right }}px;
+  }
+
+  @media screen and (max-width: 768px) {
+    {{ sec_id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      padding-left: {{ section.settings.mobile_padding_left }}px;
+      padding-right: {{ section.settings.mobile_padding_right }}px;
+    }
+  }
+</style>
