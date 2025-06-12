@@ -73,7 +73,10 @@
 
   {{ sec_id }} .pc-contact-container {
     display: flex;
-    width: 100%;
+    width: {{ section.settings.container_width_desktop }}%;
+    max-width: {{ section.settings.container_max_width_desktop }}px;
+    height: {{ section.settings.container_height_desktop }}px;
+    margin: 0 auto;
     background: var(--pc-bg-color);
     {% if section.settings.shadow_enabled %}
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -99,6 +102,7 @@
     background: var(--pc-bg-color);
     width: {{ 100 | minus: section.settings.image_width_desktop }}%;
     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
+    position: relative;
   }
 
   {{ sec_id }} .pc-heading {
@@ -194,7 +198,7 @@
     width: {{ section.settings.theme_switch_width_desktop }}px;
     position: absolute;
     top: {{ section.settings.theme_switch_top_desktop }}px;
-    right: 0;
+    right: {{ section.settings.theme_switch_right_desktop }}px;
   }
 
   {{ sec_id }} .pc-description {
@@ -267,6 +271,10 @@
   @media only screen and (max-width: 768px) {
     {{ sec_id }} .pc-contact-container {
       flex-direction: column;
+      width: {{ section.settings.container_width_mobile }}%;
+      max-width: {{ section.settings.container_max_width_mobile }}px;
+      height: auto;
+      min-height: {{ section.settings.container_height_mobile }}px;
     }
 
     {{ sec_id }} .pc-left-col {
@@ -319,6 +327,7 @@
     {{ sec_id }} .pc-theme-switch-wrapper {
       width: {{ section.settings.theme_switch_width_mobile }}px;
       top: {{ section.settings.theme_switch_top_mobile }}px;
+      right: {{ section.settings.theme_switch_right_mobile }}px;
     }
 
     {{ sec_id }} .pc-description {
@@ -434,6 +443,70 @@
 {
   "name": "RW Contact Form",
   "settings": [
+    {
+      "type": "header",
+      "content": "Container Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width_desktop",
+      "label": "Container Width (Desktop)",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "container_max_width_desktop",
+      "label": "Container Max Width (Desktop)",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "container_height_desktop",
+      "label": "Container Height (Desktop)",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "container_width_mobile",
+      "label": "Container Width (Mobile)",
+      "min": 80,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 95
+    },
+    {
+      "type": "range",
+      "id": "container_max_width_mobile",
+      "label": "Container Max Width (Mobile)",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "container_height_mobile",
+      "label": "Container Height (Mobile)",
+      "min": 600,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 800
+    },
     {
       "type": "header",
       "content": "Image Settings"
@@ -947,6 +1020,16 @@
     },
     {
       "type": "range",
+      "id": "theme_switch_right_desktop",
+      "label": "Theme Switch Right Position (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
       "id": "theme_label_margin_left_desktop",
       "label": "Theme Label Margin Left (Desktop)",
       "min": 0,
@@ -961,7 +1044,7 @@
       "label": "Theme Switch Knob Size (Desktop)",
       "min": 10,
       "max": 50,
-      "step": 2,
+      "step": 1,
       "unit": "px",
       "default": 26
     },
@@ -979,9 +1062,9 @@
       "type": "range",
       "id": "theme_switch_knob_translate_desktop",
       "label": "Theme Switch Knob Translate (Desktop)",
-      "min": 10,
-      "max": 50,
-      "step": 2,
+      "min": 0,
+      "max": 100,
+      "step": 1,
       "unit": "px",
       "default": 26
     },
@@ -1003,7 +1086,7 @@
       "type": "range",
       "id": "heading_font_size_mobile",
       "label": "Heading Font Size (Mobile)",
-      "min": 12,
+      "min": 14,
       "max": 48,
       "step": 2,
       "unit": "px",
@@ -1027,13 +1110,13 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 15
+      "default": 0
     },
     {
       "type": "range",
       "id": "subheading_font_size_mobile",
       "label": "Subheading Font Size (Mobile)",
-      "min": 8,
+      "min": 10,
       "max": 24,
       "step": 1,
       "unit": "px",
@@ -1056,7 +1139,7 @@
       "min": 1,
       "max": 2,
       "step": 0.1,
-      "default": 1.3
+      "default": 1.4
     },
     {
       "type": "range",
@@ -1076,17 +1159,17 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 15
+      "default": 16
     },
     {
       "type": "range",
       "id": "label_font_size_mobile",
       "label": "Label Font Size (Mobile)",
-      "min": 6,
-      "max": 18,
+      "min": 8,
+      "max": 20,
       "step": 1,
       "unit": "px",
-      "default": 8
+      "default": 10
     },
     {
       "type": "range",
@@ -1112,8 +1195,8 @@
       "type": "range",
       "id": "message_font_size_mobile",
       "label": "Message Font Size (Mobile)",
-      "min": 6,
-      "max": 18,
+      "min": 8,
+      "max": 20,
       "step": 1,
       "unit": "px",
       "default": 10
@@ -1122,11 +1205,11 @@
       "type": "range",
       "id": "theme_label_font_size_mobile",
       "label": "Theme Label Font Size (Mobile)",
-      "min": 6,
-      "max": 18,
+      "min": 8,
+      "max": 20,
       "step": 1,
       "unit": "px",
-      "default": 8
+      "default": 10
     },
     {
       "type": "header",
@@ -1137,7 +1220,7 @@
       "id": "mobile_padding_top",
       "label": "Top Padding (Mobile)",
       "min": 0,
-      "max": 100,
+      "max": 150,
       "step": 5,
       "unit": "px",
       "default": 40
@@ -1147,17 +1230,17 @@
       "id": "mobile_padding_right",
       "label": "Right Padding (Mobile)",
       "min": 0,
-      "max": 100,
+      "max": 150,
       "step": 5,
       "unit": "px",
-      "default": 30
+      "default": 20
     },
     {
       "type": "range",
       "id": "mobile_padding_bottom",
       "label": "Bottom Padding (Mobile)",
       "min": 0,
-      "max": 100,
+      "max": 150,
       "step": 5,
       "unit": "px",
       "default": 40
@@ -1167,37 +1250,37 @@
       "id": "mobile_padding_left",
       "label": "Left Padding (Mobile)",
       "min": 0,
-      "max": 100,
+      "max": 150,
       "step": 5,
       "unit": "px",
-      "default": 30
+      "default": 20
     },
     {
       "type": "range",
       "id": "form_margin_top_mobile",
       "label": "Form Margin Top (Mobile)",
       "min": 0,
-      "max": 80,
+      "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 30
+      "default": 20
     },
     {
       "type": "range",
       "id": "form_padding_top_mobile",
       "label": "Form Padding Top (Mobile)",
       "min": 0,
-      "max": 80,
+      "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 15
+      "default": 0
     },
     {
       "type": "range",
       "id": "input_padding_top_mobile",
       "label": "Input Padding Top (Mobile)",
       "min": 0,
-      "max": 30,
+      "max": 50,
       "step": 1,
       "unit": "px",
       "default": 6
@@ -1207,7 +1290,7 @@
       "id": "input_margin_bottom_mobile",
       "label": "Input Margin Bottom (Mobile)",
       "min": 0,
-      "max": 30,
+      "max": 50,
       "step": 1,
       "unit": "px",
       "default": 12
@@ -1226,49 +1309,39 @@
       "type": "range",
       "id": "button_height_mobile",
       "label": "Button Height (Mobile)",
-      "min": 15,
+      "min": 20,
       "max": 80,
-      "step": 1,
+      "step": 2,
       "unit": "px",
-      "default": 30
+      "default": 32
     },
     {
       "type": "range",
       "id": "button_margin_top_mobile",
       "label": "Button Margin Top (Mobile)",
       "min": 0,
-      "max": 80,
+      "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "message_margin_top_mobile",
-      "label": "Message Margin Top (Mobile)",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 6
+      "default": 0
     },
     {
       "type": "range",
       "id": "theme_switch_width_mobile",
       "label": "Theme Switch Width (Mobile)",
-      "min": 30,
+      "min": 40,
       "max": 150,
-      "step": 5,
+      "step": 10,
       "unit": "px",
-      "default": 90
+      "default": 100
     },
     {
       "type": "range",
       "id": "theme_switch_height_mobile",
       "label": "Theme Switch Height (Mobile)",
-      "min": 15,
+      "min": 20,
       "max": 80,
-      "step": 1,
+      "step": 2,
       "unit": "px",
       "default": 28
     },
@@ -1277,26 +1350,36 @@
       "id": "theme_switch_top_mobile",
       "label": "Theme Switch Top Position (Mobile)",
       "min": 0,
-      "max": 80,
+      "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 15
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "theme_switch_right_mobile",
+      "label": "Theme Switch Right Position (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
     },
     {
       "type": "range",
       "id": "theme_label_margin_left_mobile",
       "label": "Theme Label Margin Left (Mobile)",
       "min": 0,
-      "max": 30,
+      "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 15
+      "default": 16
     },
     {
       "type": "range",
       "id": "theme_switch_knob_size_mobile",
       "label": "Theme Switch Knob Size (Mobile)",
-      "min": 8,
+      "min": 10,
       "max": 40,
       "step": 1,
       "unit": "px",
@@ -1307,17 +1390,17 @@
       "id": "theme_switch_knob_offset_mobile",
       "label": "Theme Switch Knob Offset (Mobile)",
       "min": 0,
-      "max": 15,
+      "max": 20,
       "step": 1,
       "unit": "px",
-      "default": 3
+      "default": 4
     },
     {
       "type": "range",
       "id": "theme_switch_knob_translate_mobile",
       "label": "Theme Switch Knob Translate (Mobile)",
-      "min": 8,
-      "max": 40,
+      "min": 0,
+      "max": 100,
       "step": 1,
       "unit": "px",
       "default": 20
@@ -1327,10 +1410,20 @@
       "id": "theme_switch_border_radius_mobile",
       "label": "Theme Switch Border Radius (Mobile)",
       "min": 0,
-      "max": 40,
+      "max": 50,
       "step": 1,
       "unit": "px",
       "default": 28
+    },
+    {
+      "type": "range",
+      "id": "message_margin_top_mobile",
+      "label": "Message Margin Top (Mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 6
     }
   ],
   "presets": [
