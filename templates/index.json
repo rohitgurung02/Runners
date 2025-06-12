@@ -648,8 +648,9 @@
       "type": "rw-contact-us",
       "name": "PC Contact Form",
       "settings": {
-        "container_max_width": 1200,
+        "container_max_width": 1100,
         "shadow_enabled": true,
+        "image": "shopify://shop_images/4-4-05_RunnersAthletics_Look50065_533x_3838d948-95f5-4510-95dd-704f4bbd5893.webp",
         "image_width_desktop": 50,
         "image_height_mobile": 300,
         "heading": "Contact Us",
