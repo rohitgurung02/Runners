@@ -654,6 +654,8 @@
         "container_width_mobile": 95,
         "container_max_width_mobile": 500,
         "container_height_mobile": 800,
+        "container_margin_top_desktop": 33,
+        "container_margin_bottom_desktop": 20,
         "image": "shopify://shop_images/1040-1200x800.jpg",
         "image_width_desktop": 45,
         "image_height_mobile": 400,
