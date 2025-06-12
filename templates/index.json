@@ -648,6 +648,7 @@
       "type": "rw-contact-us",
       "name": "RW Contact Form",
       "settings": {
+        "image": "shopify://shop_images/1040-1200x800.jpg",
         "heading": "Contact us",
         "description": "Planning to visit Indonesia soon? Get insider tips on where to go, things to do and find best deals for your next adventure.",
         "name_placeholder": "Your Full Name",
