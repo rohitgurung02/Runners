@@ -650,7 +650,7 @@
       "settings": {
         "container_width_desktop": 90,
         "container_max_width_desktop": 1100,
-        "container_height_desktop": 600,
+        "container_height_desktop": 500,
         "container_width_mobile": 95,
         "container_max_width_mobile": 500,
         "container_height_mobile": 800,
