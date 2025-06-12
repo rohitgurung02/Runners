@@ -646,6 +646,7 @@
     },
     "rw_contact_us_XKkCrW": {
       "type": "rw-contact-us",
+      "disabled": true,
       "name": "RW Contact Form",
       "settings": {
         "container_width_desktop": 90,
