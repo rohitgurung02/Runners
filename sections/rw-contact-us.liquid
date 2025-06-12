@@ -57,7 +57,7 @@
     --pc-dark-h1-color: {{ section.settings.dark_heading_color }};
   }
 
-  {{ sec_id }} [data-theme="dark"] {
+  {{ sec_id }} .pc-contact-form.dark-mode {
     --pc-primary-color: var(--pc-dark-primary-color);
     --pc-secondary-color: var(--pc-dark-secondary-color);
     --pc-bg-color: var(--pc-dark-bg-color);
@@ -366,35 +366,37 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const toggleSwitch = document.querySelector('{{ sec_id }} .pc-theme-switch input[type="checkbox"]');
+    const contactForm = document.querySelector('pc-contact-form-{{ last_part }}');
     const currentTheme = localStorage.getItem('theme');
 
-    if (currentTheme) {
-      document.documentElement.setAttribute('data-theme', currentTheme);
-      if (currentTheme === 'dark') {
-        toggleSwitch.checked = true;
-      }
+    // Apply saved theme if it exists
+    if (currentTheme === 'dark') {
+      contactForm.classList.add('dark-mode');
+      if (toggleSwitch) toggleSwitch.checked = true;
     }
 
+    // Theme switch functionality
     function switchTheme(e) {
       if (e.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
+        contactForm.classList.add('dark-mode');
         localStorage.setItem('theme', 'dark');
       } else {
-        document.documentElement.setAttribute('data-theme', 'light');
+        contactForm.classList.remove('dark-mode');
         localStorage.setItem('theme', 'light');
-      }    
+      }
     }
 
     if (toggleSwitch) {
       toggleSwitch.addEventListener('change', switchTheme, false);
     }
 
-    const contactForm = document.getElementById('pc-contact-form-{{ last_part }}');
+    // Form validation
+    const contactFormElement = document.getElementById('pc-contact-form-{{ last_part }}');
     const errorElement = document.getElementById('pc-error-{{ last_part }}');
     const successMsg = document.getElementById('pc-success-msg-{{ last_part }}');
     const submitBtn = document.getElementById('pc-submit-{{ last_part }}');
 
-    if (contactForm && submitBtn) {
+    if (contactFormElement && submitBtn) {
       const validate = (e) => {
         e.preventDefault();
         const name = document.getElementById('pc-name-{{ last_part }}');
@@ -428,7 +430,7 @@
 
         setTimeout(function () {
           successMsg.innerHTML = '';
-          contactForm.reset();
+          contactFormElement.reset();
         }, 6000);
 
         return true;
