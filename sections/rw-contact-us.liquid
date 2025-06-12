@@ -42,7 +42,6 @@
     </div>
   </div>
 </pc-contact-form-{{ last_part }}>
-
 <style>
   {{ sec_id }} .pc-contact-form {
     --pc-primary-color: {{ section.settings.primary_color }};
@@ -52,7 +51,7 @@
     --pc-h1-color: {{ section.settings.heading_color }};
     --pc-dark-primary-color: {{ section.settings.dark_primary_color }};
     --pc-dark-secondary-color: {{ section.settings.dark_secondary_color }};
-    --pc-dark-bg-color: #000000; /* Updated to black for dark mode */
+    --pc-dark-bg-color: {{ section.settings.dark_bg_color }};
     --pc-dark-button-color: {{ section.settings.dark_button_color }};
     --pc-dark-h1-color: {{ section.settings.dark_heading_color }};
   }
@@ -365,20 +364,34 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('pc-contact-form-{{ last_part }}');
-    const errorElement = document.getElementById('pc-error-{{ last_part }}');
-    const successMsg = document.getElementById('pc-success-msg-{{ last_part }}');
-    const submitBtn = document.getElementById('pc-submit-{{ last_part }}');
     const toggleSwitch = document.querySelector('{{ sec_id }} .pc-theme-switch input[type="checkbox"]');
-
-    // Initialize theme from localStorage
     const currentTheme = localStorage.getItem('theme');
+
     if (currentTheme) {
       document.documentElement.setAttribute('data-theme', currentTheme);
       if (currentTheme === 'dark') {
         toggleSwitch.checked = true;
       }
     }
+
+    function switchTheme(e) {
+      if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }    
+    }
+
+    if (toggleSwitch) {
+      toggleSwitch.addEventListener('change', switchTheme, false);
+    }
+
+    const contactForm = document.getElementById('pc-contact-form-{{ last_part }}');
+    const errorElement = document.getElementById('pc-error-{{ last_part }}');
+    const successMsg = document.getElementById('pc-success-msg-{{ last_part }}');
+    const submitBtn = document.getElementById('pc-submit-{{ last_part }}');
 
     if (contactForm && submitBtn) {
       const validate = (e) => {
@@ -409,11 +422,6 @@
           errorElement.innerHTML = '{{ section.settings.message_error_message }}';
           return false;
         }
-
-        // Enable dark mode and set checkbox to checked
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        toggleSwitch.checked = true;
 
         successMsg.innerHTML = '{{ section.settings.success_message }}';
 
@@ -717,6 +725,391 @@
       "max": 900,
       "step": 100,
       "default": 300
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom_desktop",
+      "label": "Heading Margin Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "subheading_font_size_desktop",
+      "label": "Subheading Font Size (Desktop)",
+      "min": 10,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "subheading_letter_spacing_desktop",
+      "label": "Subheading Letter Spacing (Desktop)",
+      "min": 0,
+      "max": 5,
+      "step": 0.1,
+      "unit": "px",
+      "default": 0.5
+    },
+    {
+      "type": "range",
+      "id": "subheading_line_height_desktop",
+      "label": "Subheading Line Height (Desktop)",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "subheading_margin_top_desktop",
+      "label": "Subheading Margin Top (Desktop)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "subheading_margin_bottom_desktop",
+      "label": "Subheading Margin Bottom (Desktop)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "label_font_size_desktop",
+      "label": "Label Font Size (Desktop)",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "input_font_size_desktop",
+      "label": "Input Font Size (Desktop)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "input_font_weight",
+      "label": "Input Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "button_font_size_desktop",
+      "label": "Button Font Size (Desktop)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_font_weight",
+      "label": "Button Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "message_font_size_desktop",
+      "label": "Message Font Size (Desktop)",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "theme_label_font_size_desktop",
+      "label": "Theme Label Font Size (Desktop)",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top Padding (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_right",
+      "label": "Right Padding (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_left",
+      "label": "Left Padding (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "form_margin_top_desktop",
+      "label": "Form Margin Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "form_padding_top_desktop",
+      "label": "Form Padding Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "input_padding_top_desktop",
+      "label": "Input Padding Top (Desktop)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "input_margin_bottom_desktop",
+      "label": "Input Margin Bottom (Desktop)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_width_desktop",
+      "label": "Button Width (Desktop)",
+      "min": 80,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "button_height_desktop",
+      "label": "Button Height (Desktop)",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "button_margin_top_desktop",
+      "label": "Button Margin Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "message_margin_top_desktop",
+      "label": "Message Margin Top (Desktop)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "theme_switch_width_desktop",
+      "label": "Theme Switch Width (Desktop)",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "theme_switch_height_desktop",
+      "label": "Theme Switch Height (Desktop)",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "theme_switch_top_desktop",
+      "label": "Theme Switch Top Position (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "theme_switch_right_desktop",
+      "label": "Theme Switch Right Position (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "theme_label_margin_left_desktop",
+      "label": "Theme Label Margin Left (Desktop)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "theme_switch_knob_size_desktop",
+      "label": "Theme Switch Knob Size (Desktop)",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "theme_switch_knob_offset_desktop",
+      "label": "Theme Switch Knob Offset (Desktop)",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "theme_switch_knob_translate_desktop",
+      "label": "Theme Switch Knob Translate (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "theme_switch_border_radius_desktop",
+      "label": "Theme Switch Border Radius (Desktop)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Heading Font Size (Mobile)",
+      "min": 14,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing_mobile",
+      "label": "Heading Letter Spacing (Mobile)",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom_mobile",
+      "label": "Heading Margin Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "range",
