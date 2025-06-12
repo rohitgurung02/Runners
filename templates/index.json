@@ -664,7 +664,7 @@
         "email_label": "Email Address",
         "message_label": "Message",
         "button_text": "Send",
-        "dark_mode_label": "",
+        "dark_mode_label": "Dark Mode",
         "name_error_message": "Your name should be at least 3 characters long.",
         "email_error_message": "Please enter a valid email address.",
         "message_error_message": "Please write a longer message.",
