@@ -695,7 +695,7 @@
         "desktop_padding_top": 40,
         "desktop_padding_right": 60,
         "desktop_padding_bottom": 80,
-        "desktop_padding_left": 60,
+        "desktop_padding_left": 40,
         "form_margin_top_desktop": 40,
         "form_padding_top_desktop": 20,
         "input_padding_top_desktop": 8,
