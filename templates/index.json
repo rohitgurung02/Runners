@@ -648,7 +648,7 @@
       "name": "RW Contact Form",
       "settings": {
         "container_width_desktop": 90,
-        "container_max_width_desktop": 1150,
+        "container_max_width_desktop": 1100,
         "container_height_desktop": 550,
         "container_width_mobile": 95,
         "container_max_width_mobile": 500,
