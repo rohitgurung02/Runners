@@ -598,6 +598,7 @@
       "name": "RW Tabs",
       "settings": {
         "heading": "Tabs",
+        "heading_alignment": "center",
         "heading_font_size": 32,
         "heading_margin_bottom": 20,
         "heading_color": "#000000",
