@@ -1,11 +1,10 @@
-
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 {%- assign parts = sec_id | split: '_' -%}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
 <pc-contact-form-{{ last_part }} class="pc-contact-form">
-  <div class="pc-contact-container" style="max-width: {{ section.settings.container_max_width }}px;">
+  <div class="pc-contact-container">
     <div class="pc-left-col">
       {%- if section.settings.image != blank -%}
         {{- section.settings.image | image_url: width: section.settings.image.width, height: section.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt -}}
@@ -16,23 +15,8 @@
     <div class="pc-right-col">
       <div class="pc-theme-switch-wrapper">
         <label class="pc-theme-switch" for="pc-checkbox-{{ last_part }}">
-          <input type="checkbox" id="pc-checkbox-{{ last_part }}" {% if section.settings.default_dark_mode %}checked{% endif %} />
-          <div class="pc-slider pc-round">
-            <svg class="pc-moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-            <svg class="pc-sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-          </div>
+          <input type="checkbox" id="pc-checkbox-{{ last_part }}" />
+          <div class="pc-slider pc-round"></div>
         </label>
         <div class="pc-description">{{ section.settings.dark_mode_label }}</div>
       </div>
@@ -50,17 +34,7 @@
         <label for="pc-message-{{ last_part }}">{{ section.settings.message_label }}</label>
         <textarea rows="6" id="pc-message-{{ last_part }}" name="message" placeholder="{{ section.settings.message_placeholder }}" required></textarea>
         
-        <button type="submit" id="pc-submit-{{ last_part }}" name="submit" class="pc-submit-button">
-          <span class="pc-button-text">{{ section.settings.button_text }}</span>
-          <span class="pc-button-loader" hidden>
-            <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/>
-              <path d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z">
-                <animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12" repeatCount="indefinite"/>
-              </path>
-            </svg>
-          </span>
-        </button>
+        <button type="submit" id="pc-submit-{{ last_part }}" name="submit">{{ section.settings.button_text }}</button>
       </form>
       
       <div id="pc-error-{{ last_part }}" class="pc-error"></div>
@@ -75,16 +49,12 @@
     --pc-secondary-color: {{ section.settings.secondary_color }};
     --pc-bg-color: {{ section.settings.bg_color }};
     --pc-button-color: {{ section.settings.button_color }};
-    --pc-button-text-color: {{ section.settings.button_text_color }};
     --pc-h1-color: {{ section.settings.heading_color }};
     --pc-dark-primary-color: {{ section.settings.dark_primary_color }};
     --pc-dark-secondary-color: {{ section.settings.dark_secondary_color }};
     --pc-dark-bg-color: {{ section.settings.dark_bg_color }};
     --pc-dark-button-color: {{ section.settings.dark_button_color }};
-    --pc-dark-button-text-color: {{ section.settings.dark_button_text_color }};
     --pc-dark-h1-color: {{ section.settings.dark_heading_color }};
-    --pc-dark-toggle-icon-color: {{ section.settings.dark_toggle_icon_color }};
-    --pc-light-toggle-icon-color: {{ section.settings.light_toggle_icon_color }};
   }
 
   {{ sec_id }} [data-theme="dark"] {
@@ -92,7 +62,6 @@
     --pc-secondary-color: var(--pc-dark-secondary-color);
     --pc-bg-color: var(--pc-dark-bg-color);
     --pc-button-color: var(--pc-dark-button-color);
-    --pc-button-text-color: var(--pc-dark-button-text-color);
     --pc-h1-color: var(--pc-dark-h1-color);
   }
 
@@ -105,8 +74,6 @@
   {{ sec_id }} .pc-contact-container {
     display: flex;
     width: 100%;
-    max-width: {{ section.settings.container_max_width }}px;
-    margin: 0 auto;
     background: var(--pc-bg-color);
     {% if section.settings.shadow_enabled %}
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -132,7 +99,6 @@
     background: var(--pc-bg-color);
     width: {{ 100 | minus: section.settings.image_width_desktop }}%;
     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
-    position: relative;
   }
 
   {{ sec_id }} .pc-heading {
@@ -177,7 +143,6 @@
   {{ sec_id }} input::placeholder,
   {{ sec_id }} textarea::placeholder {
     color: var(--pc-primary-color);
-    opacity: 0.7;
   }
 
   {{ sec_id }} input,
@@ -197,11 +162,11 @@
     resize: none;
   }
 
-  {{ sec_id }} .pc-submit-button {
+  {{ sec_id }} button {
     text-transform: uppercase;
     font-weight: {{ section.settings.button_font_weight }};
     background: var(--pc-button-color);
-    color: var(--pc-button-text-color);
+    color: var(--pc-bg-color);
     width: {{ section.settings.button_width_desktop }}px;
     height: {{ section.settings.button_height_desktop }}px;
     border: none;
@@ -210,41 +175,16 @@
     cursor: pointer;
     font-size: {{ section.settings.button_font_size_desktop }}px;
     margin-top: {{ section.settings.button_margin_top_desktop }}px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    position: relative;
   }
 
-  {{ sec_id }} .pc-submit-button:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
+  {{ sec_id }} input:hover,
+  {{ sec_id }} textarea:hover,
+  {{ sec_id }} button:hover {
+    opacity: 0.5;
   }
 
-  {{ sec_id }} .pc-submit-button:active {
+  {{ sec_id }} button:active {
     opacity: 0.8;
-    transform: translateY(0);
-  }
-
-  {{ sec_id }} .pc-submit-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  {{ sec_id }} .pc-button-loader {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  {{ sec_id }} .pc-button-loader svg {
-    fill: var(--pc-button-text-color);
-  }
-
-  {{ sec_id }} .pc-button-loader path[opacity=".25"] {
-    fill: var(--pc-button-text-color);
-    opacity: 0.25;
   }
 
   {{ sec_id }} .pc-theme-switch-wrapper {
@@ -293,30 +233,6 @@
     left: {{ section.settings.theme_switch_knob_offset_desktop }}px;
     position: absolute;
     transition: .4s;
-    z-index: 2;
-  }
-
-  {{ sec_id }} .pc-moon-icon,
-  {{ sec_id }} .pc-sun-icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: {{ section.settings.theme_icon_size_desktop }}px;
-    height: {{ section.settings.theme_icon_size_desktop }}px;
-    z-index: 1;
-    transition: all 0.3s ease;
-  }
-
-  {{ sec_id }} .pc-moon-icon {
-    left: {{ section.settings.theme_icon_offset_desktop }}px;
-    color: var(--pc-dark-toggle-icon-color);
-    opacity: 0;
-  }
-
-  {{ sec_id }} .pc-sun-icon {
-    right: {{ section.settings.theme_icon_offset_desktop }}px;
-    color: var(--pc-light-toggle-icon-color);
-    opacity: 1;
   }
 
   {{ sec_id }} input:checked + .pc-slider {
@@ -325,14 +241,6 @@
 
   {{ sec_id }} input:checked + .pc-slider:before {
     transform: translateX({{ section.settings.theme_switch_knob_translate_desktop }}px);
-  }
-
-  {{ sec_id }} input:checked + .pc-slider .pc-moon-icon {
-    opacity: 1;
-  }
-
-  {{ sec_id }} input:checked + .pc-slider .pc-sun-icon {
-    opacity: 0;
   }
 
   {{ sec_id }} .pc-slider.pc-round {
@@ -359,7 +267,6 @@
   @media only screen and (max-width: 768px) {
     {{ sec_id }} .pc-contact-container {
       flex-direction: column;
-      max-width: 100%;
     }
 
     {{ sec_id }} .pc-left-col {
@@ -402,7 +309,7 @@
       font-size: {{ section.settings.input_font_size_mobile }}px;
     }
 
-    {{ sec_id }} .pc-submit-button {
+    {{ sec_id }} button {
       width: {{ section.settings.button_width_mobile }}px;
       height: {{ section.settings.button_height_mobile }}px;
       font-size: {{ section.settings.button_font_size_mobile }}px;
@@ -431,20 +338,6 @@
       left: {{ section.settings.theme_switch_knob_offset_mobile }}px;
     }
 
-    {{ sec_id }} .pc-moon-icon,
-    {{ sec_id }} .pc-sun-icon {
-      width: {{ section.settings.theme_icon_size_mobile }}px;
-      height: {{ section.settings.theme_icon_size_mobile }}px;
-    }
-
-    {{ sec_id }} .pc-moon-icon {
-      left: {{ section.settings.theme_icon_offset_mobile }}px;
-    }
-
-    {{ sec_id }} .pc-sun-icon {
-      right: {{ section.settings.theme_icon_offset_mobile }}px;
-    }
-
     {{ sec_id }} input:checked + .pc-slider:before {
       transform: translateX({{ section.settings.theme_switch_knob_translate_mobile }}px);
     }
@@ -465,20 +358,14 @@
   document.addEventListener('DOMContentLoaded', function() {
     const toggleSwitch = document.querySelector('{{ sec_id }} .pc-theme-switch input[type="checkbox"]');
     const currentTheme = localStorage.getItem('theme');
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    
-    // Set initial theme
+
     if (currentTheme) {
       document.documentElement.setAttribute('data-theme', currentTheme);
       if (currentTheme === 'dark') {
-        if (toggleSwitch) toggleSwitch.checked = true;
+        toggleSwitch.checked = true;
       }
-    } else if ({{ section.settings.default_dark_mode }} && prefersDarkScheme.matches) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      if (toggleSwitch) toggleSwitch.checked = true;
     }
 
-    // Theme switch function
     function switchTheme(e) {
       if (e.target.checked) {
         document.documentElement.setAttribute('data-theme', 'dark');
@@ -489,31 +376,14 @@
       }    
     }
 
-    // Add event listener to toggle switch
     if (toggleSwitch) {
       toggleSwitch.addEventListener('change', switchTheme, false);
     }
 
-    // Listen for system color scheme changes
-    prefersDarkScheme.addEventListener('change', e => {
-      if (!localStorage.getItem('theme')) {
-        if (e.matches) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-          if (toggleSwitch) toggleSwitch.checked = true;
-        } else {
-          document.documentElement.setAttribute('data-theme', 'light');
-          if (toggleSwitch) toggleSwitch.checked = false;
-        }
-      }
-    });
-
-    // Form handling
     const contactForm = document.getElementById('pc-contact-form-{{ last_part }}');
     const errorElement = document.getElementById('pc-error-{{ last_part }}');
     const successMsg = document.getElementById('pc-success-msg-{{ last_part }}');
     const submitBtn = document.getElementById('pc-submit-{{ last_part }}');
-    const buttonText = submitBtn ? submitBtn.querySelector('.pc-button-text') : null;
-    const buttonLoader = submitBtn ? submitBtn.querySelector('.pc-button-loader') : null;
 
     if (contactForm && submitBtn) {
       const validate = (e) => {
@@ -525,59 +395,34 @@
         errorElement.innerHTML = '';
         successMsg.innerHTML = '';
 
-        // Show loading state
-        if (buttonText && buttonLoader) {
-          buttonText.hidden = true;
-          buttonLoader.hidden = false;
-        }
-        submitBtn.disabled = true;
-
-        // Simple validation
         if (name.value.length < 3) {
           errorElement.innerHTML = '{{ section.settings.name_error_message }}';
-          resetButtonState();
           return false;
         } 
         
         if (!(email.value.includes('.') && (email.value.includes('@')))) {
           errorElement.innerHTML = '{{ section.settings.email_error_message }}';
-          resetButtonState();
           return false;
         } 
 
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
           errorElement.innerHTML = '{{ section.settings.email_error_message }}';
-          resetButtonState();
           return false;
         }
 
         if (message.value.length < 15) {
           errorElement.innerHTML = '{{ section.settings.message_error_message }}';
-          resetButtonState();
           return false;
         }
 
-        // Simulate form submission (replace with actual form submission)
-        setTimeout(() => {
-          successMsg.innerHTML = '{{ section.settings.success_message }}';
-          resetButtonState();
-          
-          // Reset form after delay
-          setTimeout(() => {
-            successMsg.innerHTML = '';
-            contactForm.reset();
-          }, 6000);
-        }, 1500);
+        successMsg.innerHTML = '{{ section.settings.success_message }}';
+
+        setTimeout(function () {
+          successMsg.innerHTML = '';
+          contactForm.reset();
+        }, 6000);
 
         return true;
-      }
-
-      function resetButtonState() {
-        if (buttonText && buttonLoader) {
-          buttonText.hidden = false;
-          buttonLoader.hidden = true;
-        }
-        submitBtn.disabled = false;
       }
 
       submitBtn.addEventListener('click', validate);
