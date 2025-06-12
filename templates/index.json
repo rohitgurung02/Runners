@@ -643,42 +643,6 @@
         "mobile_padding_bottom": 15,
         "mobile_padding_left": 15
       }
-    },
-    "rw_contact_us_eUy9gn": {
-      "type": "rw-contact-us",
-      "name": "RW Contact Form",
-      "settings": {
-        "image": "shopify://shop_images/1040-1200x800.jpg",
-        "logo": "shopify://shop_images/BlissThera-Forest-Medicine-Logo-1.87mb.webp",
-        "heading": "Contact us",
-        "description": "Planning to visit Indonesia soon? Get insider tips on where to go, things to do and find best deals for your next adventure.",
-        "name_placeholder": "Your Full Name",
-        "email_placeholder": "Your Email Address",
-        "message_placeholder": "Your Message",
-        "button_text": "Send",
-        "name_error": "Your name should be at least 3 characters long.",
-        "email_error": "Please enter a valid email address.",
-        "message_error": "Please write a longer message (at least 15 characters).",
-        "success_message": "Thank you! We will get back to you as soon as possible.",
-        "primary_color_light": "#010712",
-        "secondary_color_light": "#818386",
-        "bg_color_light": "#FCFDFD",
-        "button_color_light": "#3B3636",
-        "heading_color_light": "#3F444C",
-        "primary_color_dark": "#FCFDFD",
-        "secondary_color_dark": "#818386",
-        "bg_color_dark": "#010712",
-        "button_color_dark": "#818386",
-        "heading_color_dark": "#FCFDFD",
-        "desktop_padding_top": 0,
-        "desktop_padding_bottom": 0,
-        "desktop_padding_left": 0,
-        "desktop_padding_right": 0,
-        "mobile_padding_top": 0,
-        "mobile_padding_bottom": 0,
-        "mobile_padding_left": 0,
-        "mobile_padding_right": 0
-      }
     }
   },
   "order": [
@@ -688,7 +652,6 @@
     "rw_interactive_text_NLRF3G",
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
-    "rw_tabs_nFraJM",
-    "rw_contact_us_eUy9gn"
+    "rw_tabs_nFraJM"
   ]
 }
