@@ -695,7 +695,7 @@
         "button_font_weight": 400,
         "message_font_size_desktop": 12,
         "theme_label_font_size_desktop": 10,
-        "desktop_padding_top": 40,
+        "desktop_padding_top": 60,
         "desktop_padding_right": 60,
         "desktop_padding_bottom": 80,
         "desktop_padding_left": 60,
