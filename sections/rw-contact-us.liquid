@@ -29,10 +29,10 @@
         <input type="text" id="pc-name-{{ last_part }}" name="name" required>
         
         <label for="pc-email-{{ last_part }}">{{ section.settings.email_label }}</label>
-        <input type="email" id="pc-email-{{ last_part }}" name="email" placeholder="{{ section.settings.email_placeholder }}" required>
+        <input type="email" id="pc-email-{{ last_part }}" name="email" required>
         
         <label for="pc-message-{{ last_part }}">{{ section.settings.message_label }}</label>
-        <textarea rows="6" id="pc-message-{{ last_part }}" name="message" placeholder="{{ section.settings.message_placeholder }}" required></textarea>
+        <textarea rows="6" id="pc-message-{{ last_part }}" name="message" required></textarea>
         
         <button type="submit" id="pc-submit-{{ last_part }}" name="submit">{{ section.settings.button_text }}</button>
       </form>
@@ -562,33 +562,15 @@
     },
     {
       "type": "text",
-      "id": "name_placeholder",
-      "label": "Name Placeholder",
-      "default": "Your Full Name"
-    },
-    {
-      "type": "text",
       "id": "email_label",
       "label": "Email Label",
       "default": "Email Address"
     },
     {
       "type": "text",
-      "id": "email_placeholder",
-      "label": "Email Placeholder",
-      "default": "Your Email Address"
-    },
-    {
-      "type": "text",
       "id": "message_label",
       "label": "Message Label",
       "default": "Message"
-    },
-    {
-      "type": "text",
-      "id": "message_placeholder",
-      "label": "Message Placeholder",
-      "default": "Your Message"
     },
     {
       "type": "text",
