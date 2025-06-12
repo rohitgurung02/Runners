@@ -3,46 +3,6 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-contact-form-{{ last_part }} class="pc-contact-form">
-  <div class="pc-contact-container">
-    <div class="pc-left-col">
-      {%- if section.settings.image != blank -%}
-        {{- section.settings.image | image_url: width: section.settings.image.width, height: section.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt -}}
-      {%- else -%}
-        {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-image' }}
-      {%- endif -%}
-    </div>
-    <div class="pc-right-col">
-      <div class="pc-theme-switch-wrapper">
-        <label class="pc-theme-switch" for="pc-checkbox-{{ last_part }}">
-          <input type="checkbox" id="pc-checkbox-{{ last_part }}" />
-          <div class="pc-slider pc-round"></div>
-        </label>
-        <div class="pc-description">{{ section.settings.dark_mode_label }}</div>
-      </div>
-      
-      <h1 class="pc-heading">{{ section.settings.heading }}</h1>
-      <p class="pc-subheading">{{ section.settings.subheading }}</p>
-      
-      <form id="pc-contact-form-{{ last_part }}" class="pc-contact-form" method="post">
-        <label for="pc-name-{{ last_part }}">{{ section.settings.name_label }}</label>
-        <input type="text" id="pc-name-{{ last_part }}" name="name" required>
-        
-        <label for="pc-email-{{ last_part }}">{{ section.settings.email_label }}</label>
-        <input type="email" id="pc-email-{{ last_part }}" name="email" required>
-        
-        <label for="pc-message-{{ last_part }}">{{ section.settings.message_label }}</label>
-        <textarea rows="5" id="pc-message-{{ last_part }}" name="message" required></textarea>
-        
-        <button type="submit" id="pc-submit-{{ last_part }}" name="submit">{{ section.settings.button_text }}</button>
-      </form>
-      
-      <div id="pc-error-{{ last_part }}" class="pc-error"></div>
-      <div id="pc-success-msg-{{ last_part }}" class="pc-success-msg"></div>
-    </div>
-  </div>
-</pc-contact-form-{{ last_part }}>
-
 <style>
   {{ sec_id }} .pc-contact-form {
     --pc-primary-color: {{ section.settings.primary_color }};
@@ -362,6 +322,46 @@
     }
   }
 </style>
+
+<pc-contact-form-{{ last_part }} class="pc-contact-form">
+  <div class="pc-contact-container">
+    <div class="pc-left-col">
+      {%- if section.settings.image != blank -%}
+        {{- section.settings.image | image_url: width: section.settings.image.width, height: section.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt -}}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-image' }}
+      {%- endif -%}
+    </div>
+    <div class="pc-right-col">
+      <div class="pc-theme-switch-wrapper">
+        <label class="pc-theme-switch" for="pc-checkbox-{{ last_part }}">
+          <input type="checkbox" id="pc-checkbox-{{ last_part }}" />
+          <div class="pc-slider pc-round"></div>
+        </label>
+        <div class="pc-description">{{ section.settings.dark_mode_label }}</div>
+      </div>
+      
+      <h1 class="pc-heading">{{ section.settings.heading }}</h1>
+      <p class="pc-subheading">{{ section.settings.subheading }}</p>
+      
+      <form id="pc-contact-form-{{ last_part }}" class="pc-contact-form" method="post">
+        <label for="pc-name-{{ last_part }}">{{ section.settings.name_label }}</label>
+        <input type="text" id="pc-name-{{ last_part }}" name="name" required>
+        
+        <label for="pc-email-{{ last_part }}">{{ section.settings.email_label }}</label>
+        <input type="email" id="pc-email-{{ last_part }}" name="email" required>
+        
+        <label for="pc-message-{{ last_part }}">{{ section.settings.message_label }}</label>
+        <textarea rows="5" id="pc-message-{{ last_part }}" name="message" required></textarea>
+        
+        <button type="submit" id="pc-submit-{{ last_part }}" name="submit">{{ section.settings.button_text }}</button>
+      </form>
+      
+      <div id="pc-error-{{ last_part }}" class="pc-error"></div>
+      <div id="pc-success-msg-{{ last_part }}" class="pc-success-msg"></div>
+    </div>
+  </div>
+</pc-contact-form-{{ last_part }}>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
