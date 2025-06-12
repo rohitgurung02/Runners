@@ -711,7 +711,7 @@
         "theme_switch_width_desktop": 120,
         "theme_switch_height_desktop": 34,
         "theme_switch_top_desktop": 20,
-        "theme_switch_right_desktop": 20,
+        "theme_switch_right_desktop": 100,
         "theme_label_margin_left_desktop": 20,
         "theme_switch_knob_size_desktop": 26,
         "theme_switch_knob_offset_desktop": 4,
