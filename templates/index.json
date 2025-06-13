@@ -749,7 +749,7 @@
       "settings": {
         "container_width": 100,
         "container_height": 500,
-        "wave_height": 150,
+        "wave_height": 350,
         "background_color": "#FFFFFF",
         "wave_color_1": "#3379B7",
         "wave_color_2": "#1B3F5F",
