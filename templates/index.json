@@ -740,6 +740,67 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 6
       }
+    },
+    "rw_branding_carousel_n7D3zW": {
+      "type": "rw-branding-carousel",
+      "blocks": {
+        "logo_97kLfH": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg"
+          }
+        },
+        "logo_wdWKRn": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/1025-1200x800.jpg"
+          }
+        },
+        "logo_9CGapb": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/1011-1200x800.jpg"
+          }
+        },
+        "logo_Ker3pp": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/1024-1200x800.jpg"
+          }
+        },
+        "logo_WetxcN": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_97kLfH",
+        "logo_wdWKRn",
+        "logo_9CGapb",
+        "logo_Ker3pp",
+        "logo_WetxcN"
+      ],
+      "name": "PWC - Logo Carousel #1",
+      "settings": {
+        "logo_width": 100,
+        "logo_height": 100,
+        "logo_border_radius": 4,
+        "logo_grayscale": 100,
+        "logo_grayscale_hover": 0,
+        "logos_per_block": 4,
+        "logo_gap": 100,
+        "carousel_padding": 20,
+        "gradient_width": 100,
+        "gradient_color": "#FFFFFF",
+        "animation_duration": 10,
+        "mobile_logo_width": 80,
+        "mobile_logo_height": 80,
+        "mobile_logo_gap": 50,
+        "mobile_carousel_padding": 10,
+        "mobile_gradient_width": 50
+      }
     }
   },
   "order": [
@@ -750,6 +811,7 @@
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
-    "rw_contact_us_a9E9FG"
+    "rw_contact_us_a9E9FG",
+    "rw_branding_carousel_n7D3zW"
   ]
 }
