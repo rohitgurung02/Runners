@@ -1,123 +1,180 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '-' -%}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} .pc-svg-wave {
+  {{ sec_id }} .pc-wave-banner-{{ last_part }} {
+    position: relative;
     width: {{ section.settings.container_width }}%;
     height: {{ section.settings.container_height }}px;
     margin: {{ section.settings.desktop_margin_top }}px auto {{ section.settings.desktop_margin_bottom }}px;
+    background: {{ section.settings.background_gradient }};
     background-color: {{ section.settings.background_color }};
     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
-  }
-
-  {{ sec_id }} .pc-svg-wave__container {
-    width: 100%;
-    height: {{ section.settings.wave_height }}px;
+    {% if section.settings.enable_shadow %}
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    {% endif %}
     overflow: hidden;
   }
 
-  {{ sec_id }} .pc-svg-wave__curve {
-    stroke-linecap: round;
-    stroke-opacity: 0.7;
+  {{ sec_id }} .pc-wave-banner__waves-{{ last_part }} {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: {{ section.settings.wave_height }}px;
   }
 
-  {{ sec_id }} .pc-svg-wave__curve path {
-    transform-origin: center;
+  {{ sec_id }} .pc-wave-banner__waves-svg-{{ last_part }} {
+    width: 100%;
+    height: 100%;
   }
 
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 1) {
-    stroke: {{ section.settings.wave_color_1 }};
+  {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use {
+    animation: pc-wave-move-{{ last_part }} 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
   }
 
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 2) {
-    stroke: {{ section.settings.wave_color_2 }};
-  }
-
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 3) {
-    stroke: {{ section.settings.wave_color_3 }};
-  }
-
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 4) {
-    stroke: {{ section.settings.wave_color_4 }};
-  }
-
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(1) {
-    stroke-width: {{ section.settings.wave_1_stroke_width }};
-    {% if section.settings.enable_animation %}
-      animation: pc-curve-animation-{{ last_part }} {{ section.settings.animation_duration }}s linear 1.4s infinite;
-    {% endif %}
-  }
-
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(2) {
-    stroke-width: {{ section.settings.wave_2_stroke_width }};
-    {% if section.settings.enable_animation %}
-      animation: pc-curve-animation-{{ last_part }} {{ section.settings.animation_duration }}s linear 2.8s infinite;
-    {% endif %}
-  }
-
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(3) {
-    stroke-width: {{ section.settings.wave_3_stroke_width }};
-    {% if section.settings.enable_animation %}
-      animation: pc-curve-animation-{{ last_part }} {{ section.settings.animation_duration }}s linear 4.2s infinite;
-    {% endif %}
-  }
-
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4) {
-    stroke-width: {{ section.settings.wave_4_stroke_width }};
-    {% if section.settings.enable_animation %}
-      animation: pc-curve-animation-{{ last_part }} {{ section.settings.animation_duration }}s linear 5.6s infinite;
-    {% endif %}
-  }
-
-  @keyframes pc-curve-animation-{{ last_part }} {
+  @keyframes pc-wave-move-{{ last_part }} {
     0% {
-      transform: rotateX(0deg) skewY(0deg);
-      stroke-opacity: 0.7;
-    }
-    50% {
-      transform: rotateX(360deg) skewY(8deg);
-      stroke-opacity: 1;
+      transform: translate3d(-90px, 0, 0);
     }
     100% {
-      transform: rotateX(0deg) skewY(0deg);
-      stroke-opacity: 0.7;
+      transform: translate3d(85px, 0, 0);
     }
+  }
+
+  {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+    fill: {{ section.settings.wave_color_1 }};
+  }
+
+  {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+    fill: {{ section.settings.wave_color_2 }};
+  }
+
+  {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+    fill: {{ section.settings.wave_color_3 }};
+  }
+
+  {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+    fill: {{ section.settings.wave_color_4 }};
+  }
+
+  {{ sec_id }} .pc-wave-banner__content-{{ last_part }} {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: {{ section.settings.text_color }};
+  }
+
+  {{ sec_id }} .pc-wave-banner__title-{{ last_part }} {
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: {{ section.settings.title_font_weight }};
+    margin-bottom: {{ section.settings.title_margin_bottom }}px;
+  }
+
+  {{ sec_id }} .pc-wave-banner__subtitle-{{ last_part }} {
+    font-size: {{ section.settings.subtitle_font_size }}px;
+    font-weight: {{ section.settings.subtitle_font_weight }};
+    margin-bottom: {{ section.settings.subtitle_margin_bottom }}px;
   }
 
   @media (max-width: 768px) {
-    {{ sec_id }} .pc-svg-wave {
+    {{ sec_id }} .pc-wave-banner-{{ last_part }} {
       width: {{ section.settings.mobile_container_width }}%;
       height: {{ section.settings.mobile_container_height }}px;
       margin: {{ section.settings.mobile_margin_top }}px auto {{ section.settings.mobile_margin_bottom }}px;
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
     }
 
-    {{ sec_id }} .pc-svg-wave__container {
+    {{ sec_id }} .pc-wave-banner__title-{{ last_part }} {
+      font-size: {{ section.settings.mobile_title_font_size }}px;
+    }
+
+    {{ sec_id }} .pc-wave-banner__subtitle-{{ last_part }} {
+      font-size: {{ section.settings.mobile_subtitle_font_size }}px;
+    }
+
+    {{ sec_id }} .pc-wave-banner__waves-{{ last_part }} {
       height: {{ section.settings.mobile_wave_height }}px;
     }
   }
 </style>
 
-<pc-svg-wave-{{ last_part }} class="pc-svg-wave">
-  <div class="pc-svg-wave__container">
-    <svg width="100%" height="100%" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <g class="pc-svg-wave__curve" fill="none">
-        <path d="M 0, 60 S 300, -60, 600, 60, 800, -120, 1200 60" />
-        <path d="M 0, 60 S 200, -60, 400, 60, 900, -120, 1200 60" />
-        <path d="M 0, 60 S 200, -70, 400, 70, 800, -120, 1200 60" />
-        <path d="M 0, 60 S 200, -60, 400, 80, 600, -120, 1200 60" />
+<pc-wave-banner-{{ last_part }} class="pc-wave-banner-{{ last_part }}">
+  <div class="pc-wave-banner__content-{{ last_part }}">
+    {%- if section.settings.title != blank -%}
+      <h2 class="pc-wave-banner__title-{{ last_part }}">{{ section.settings.title }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subtitle != blank -%}
+      <p class="pc-wave-banner__subtitle-{{ last_part }}">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+    {%- if section.settings.image != blank -%}
+      <div class="pc-wave-banner__image-{{ last_part }}">
+        {{- section.settings.image | image_url: width: section.settings.image.width, height: section.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt -}}
+      </div>
+    {%- else -%}
+      <div class="pc-wave-banner__image-{{ last_part }}">
+        {{ 'product-1' | placeholder_svg_tag }}
+      </div>
+    {%- endif -%}
+  </div>
+  <div class="pc-wave-banner__waves-{{ last_part }}">
+    <svg class="pc-wave-banner__waves-svg-{{ last_part }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="pc-gentle-wave-{{ last_part }}" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="pc-wave-banner__parallax-{{ last_part }}">
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="0" />
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="3" />
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="5" />
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="7" />
       </g>
     </svg>
   </div>
-</pc-svg-wave-{{ last_part }}>
+</pc-wave-banner-{{ last_part }}>
 
 {% schema %}
 {
-  "name": "PWC - Wave Animation #1",
+  "name": "RW - Wave Banner #1",
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Wave Banner Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Beautiful animated wave effect"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
     {
       "type": "header",
       "content": "Container Settings"
@@ -136,123 +193,140 @@
       "type": "range",
       "id": "container_height",
       "label": "Container Height (Desktop)",
-      "min": 50,
+      "min": 100,
       "max": 1000,
       "step": 10,
       "unit": "px",
-      "default": 300
-    },
-    {
-      "type": "header",
-      "content": "Wave Settings"
+      "default": 500
     },
     {
       "type": "range",
       "id": "wave_height",
       "label": "Wave Height (Desktop)",
       "min": 50,
-      "max": 500,
+      "max": 300,
       "step": 10,
       "unit": "px",
-      "default": 300
+      "default": 100
     },
     {
       "type": "header",
-      "content": "Color Settings"
+      "content": "Background Settings"
     },
     {
       "type": "color",
       "id": "background_color",
       "label": "Background Color",
-      "default": "#FFFFFF"
+      "default": "#1a73e8"
+    },
+    {
+      "type": "text",
+      "id": "background_gradient",
+      "label": "Background Gradient (Optional)",
+      "info": "Example: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%)",
+      "default": "linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Shadow",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Wave Colors"
     },
     {
       "type": "color",
       "id": "wave_color_1",
       "label": "Wave Color 1",
-      "default": "#3379B7"
+      "default": "rgba(255,255,255,0.7)"
     },
     {
       "type": "color",
       "id": "wave_color_2",
       "label": "Wave Color 2",
-      "default": "#1B3F5F"
+      "default": "rgba(255,255,255,0.5)"
     },
     {
       "type": "color",
       "id": "wave_color_3",
       "label": "Wave Color 3",
-      "default": "#67A1D5"
+      "default": "rgba(255,255,255,0.3)"
     },
     {
       "type": "color",
       "id": "wave_color_4",
       "label": "Wave Color 4",
-      "default": "#BFE2FF"
+      "default": "#ffffff"
     },
     {
       "type": "header",
-      "content": "Stroke Settings"
+      "content": "Text Settings"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
     },
     {
       "type": "range",
-      "id": "wave_1_stroke_width",
-      "label": "Wave 1 Stroke Width",
-      "min": 1,
-      "max": 50,
+      "id": "title_font_size",
+      "label": "Title Font Size (Desktop)",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "title_font_weight",
+      "label": "Title Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "label": "Title Margin Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size",
+      "label": "Subtitle Font Size (Desktop)",
+      "min": 10,
+      "max": 60,
       "step": 1,
       "unit": "px",
       "default": 24
     },
     {
       "type": "range",
-      "id": "wave_2_stroke_width",
-      "label": "Wave 2 Stroke Width",
-      "min": 1,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 21
+      "id": "subtitle_font_weight",
+      "label": "Subtitle Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
     },
     {
       "type": "range",
-      "id": "wave_3_stroke_width",
-      "label": "Wave 3 Stroke Width",
-      "min": 1,
-      "max": 50,
+      "id": "subtitle_margin_bottom",
+      "label": "Subtitle Margin Bottom",
+      "min": 0,
+      "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "wave_4_stroke_width",
-      "label": "Wave 4 Stroke Width",
-      "min": 1,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 41
-    },
-    {
-      "type": "header",
-      "content": "Animation Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_animation",
-      "label": "Enable Animation",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "animation_duration",
-      "label": "Animation Duration",
-      "min": 5,
-      "max": 60,
-      "step": 5,
-      "unit": "s",
-      "default": 35
+      "default": 30
     },
     {
       "type": "header",
@@ -264,7 +338,7 @@
       "label": "Top Margin",
       "min": 0,
       "max": 200,
-      "step": 10,
+      "step": 5,
       "unit": "px",
       "default": 0
     },
@@ -274,7 +348,7 @@
       "label": "Bottom Margin",
       "min": 0,
       "max": 200,
-      "step": 10,
+      "step": 5,
       "unit": "px",
       "default": 0
     },
@@ -284,9 +358,9 @@
       "label": "Top Padding",
       "min": 0,
       "max": 200,
-      "step": 10,
+      "step": 5,
       "unit": "px",
-      "default": 0
+      "default": 50
     },
     {
       "type": "range",
@@ -294,9 +368,9 @@
       "label": "Right Padding",
       "min": 0,
       "max": 200,
-      "step": 10,
+      "step": 5,
       "unit": "px",
-      "default": 0
+      "default": 20
     },
     {
       "type": "range",
@@ -304,9 +378,9 @@
       "label": "Bottom Padding",
       "min": 0,
       "max": 200,
-      "step": 10,
+      "step": 5,
       "unit": "px",
-      "default": 0
+      "default": 50
     },
     {
       "type": "range",
@@ -314,9 +388,9 @@
       "label": "Left Padding",
       "min": 0,
       "max": 200,
-      "step": 10,
+      "step": 5,
       "unit": "px",
-      "default": 0
+      "default": 20
     },
     {
       "type": "header",
@@ -336,21 +410,41 @@
       "type": "range",
       "id": "mobile_container_height",
       "label": "Container Height (Mobile)",
-      "min": 50,
-      "max": 500,
+      "min": 100,
+      "max": 800,
       "step": 10,
       "unit": "px",
-      "default": 200
+      "default": 400
     },
     {
       "type": "range",
       "id": "mobile_wave_height",
       "label": "Wave Height (Mobile)",
       "min": 30,
-      "max": 300,
-      "step": 10,
+      "max": 200,
+      "step": 5,
       "unit": "px",
-      "default": 150
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "label": "Title Font Size (Mobile)",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mobile_subtitle_font_size",
+      "label": "Subtitle Font Size (Mobile)",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
     },
     {
       "type": "range",
@@ -380,7 +474,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 0
+      "default": 30
     },
     {
       "type": "range",
@@ -390,7 +484,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 0
+      "default": 15
     },
     {
       "type": "range",
@@ -400,7 +494,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 0
+      "default": 30
     },
     {
       "type": "range",
@@ -410,12 +504,12 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 0
+      "default": 15
     }
   ],
   "presets": [
     {
-      "name": "PWC - Wave Animation #1",
+      "name": "RW - Wave Banner #1",
       "category": "Custom"
     }
   ]
