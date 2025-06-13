@@ -1,6 +1,407 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<pc-product-highlight-{{ last_part }} class="pc-product-highlight">
+  <div class="pc-product-highlight__container">
+    <div class="pc-product-highlight__first">
+      {{ section.settings.first_text }}
+      <div class="pc-product-highlight__first-decoration"></div>
+    </div>
+    <h2 class="pc-product-highlight__title">{{ section.settings.title }}</h2>
+    <div class="pc-product-highlight__second">{{ section.settings.description }}</div>
+  </div>
+</pc-product-highlight-{{ last_part }}>
+
+<style>
+  {{ sec_id }} .pc-product-highlight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
+    background-color: {{ section.settings.background_color }};
+    {% if section.settings.shadow_enabled %}
+      box-shadow: 5px 5px 10px #ddd inset, -5px -5px 10px #ddd inset;
+    {% endif %}
   }
+
+  {{ sec_id }} .pc-product-highlight__container {
+    width: {{ section.settings.container_width }}%;
+    max-width: 100%;
+    height: auto;
+    padding: 20px;
+    margin: 50px auto;
+    border: 1px solid {{ section.settings.border_color }};
+    text-align: center;
+    background-color: {{ section.settings.container_background }};
+  }
+
+  {{ sec_id }} .pc-product-highlight__first,
+  {{ sec_id }} .pc-product-highlight__title {
+    background-color: {{ section.settings.highlight_color }};
+    position: relative;
+    left: -40px;
+    color: {{ section.settings.highlight_text_color }};
+    font-weight: {{ section.settings.highlight_font_weight }};
+  }
+
+  {{ sec_id }} .pc-product-highlight__first {
+    width: 200px;
+    padding: 10px 0;
+    font-size: {{ section.settings.first_text_size }}px;
+  }
+
+  {{ sec_id }} .pc-product-highlight__first-decoration::after {
+    content: "";
+    height: 100%;
+    width: 10px;
+    position: absolute;
+    right: -6px;
+    top: 0;
+    background-color: {{ section.settings.highlight_accent_color }};
+    transform: skew(10deg);
+  }
+
+  {{ sec_id }} .pc-product-highlight__first-decoration::before,
+  {{ sec_id }} .pc-product-highlight__title::after,
+  {{ sec_id }} .pc-product-highlight__title::before {
+    content: "";
+    border: 10px solid;
+    border-color: {{ section.settings.highlight_accent_color }} {{ section.settings.highlight_accent_color }} transparent transparent;
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+  }
+
+  {{ sec_id }} .pc-product-highlight__title {
+    margin: 40px 0;
+    padding: 20px;
+    width: calc(100% + 80px);
+    font-size: {{ section.settings.title_size }}px;
+  }
+
+  {{ sec_id }} .pc-product-highlight__title::after {
+    left: auto;
+    right: 0;
+    border-color: {{ section.settings.highlight_accent_color }} transparent transparent {{ section.settings.highlight_accent_color }};
+  }
+
+  {{ sec_id }} .pc-product-highlight__second {
+    line-height: 1.6;
+    font-size: {{ section.settings.description_size }}px;
+    font-style: {{ section.settings.description_style }};
+    color: {{ section.settings.description_color }};
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} .pc-product-highlight {
+      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+    }
+    
+    {{ sec_id }} .pc-product-highlight__container {
+      width: 90%;
+    }
+    
+    {{ sec_id }} .pc-product-highlight__first {
+      font-size: {{ section.settings.mobile_first_text_size }}px;
+    }
+    
+    {{ sec_id }} .pc-product-highlight__title {
+      font-size: {{ section.settings.mobile_title_size }}px;
+    }
+    
+    {{ sec_id }} .pc-product-highlight__second {
+      font-size: {{ section.settings.mobile_description_size }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "RW - Wavy Layout #1",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "first_text",
+      "label": "First Text",
+      "default": "NEW ARRIVAL"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "SUMMER COLLECTION"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Discover our new summer collection with fresh colors and comfortable fabrics.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container Width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Desktop Styles"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_right",
+      "label": "Right Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_left",
+      "label": "Left Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f1f1f1"
+    },
+    {
+      "type": "color",
+      "id": "container_background",
+      "label": "Container Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#dddddd"
+    },
+    {
+      "type": "checkbox",
+      "id": "shadow_enabled",
+      "label": "Enable Shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Typography (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "first_text_size",
+      "label": "First Text Size",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Size",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description Size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "description_style",
+      "label": "Description Style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        }
+      ],
+      "default": "italic"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#00bcd4"
+    },
+    {
+      "type": "color",
+      "id": "highlight_text_color",
+      "label": "Highlight Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "highlight_accent_color",
+      "label": "Highlight Accent Color",
+      "default": "#196d78"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#444444"
+    },
+    {
+      "type": "select",
+      "id": "highlight_font_weight",
+      "label": "Highlight Font Weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        }
+      ],
+      "default": "bold"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_right",
+      "label": "Right Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "label": "Left Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_first_text_size",
+      "label": "First Text Size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_size",
+      "label": "Title Size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_size",
+      "label": "Description Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "RW - Wavy Layout #1",
+      "category": "Custom"
+    }
+  ]
+}
 {% endschema %}
