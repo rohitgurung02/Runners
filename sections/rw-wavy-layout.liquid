@@ -68,6 +68,10 @@
     fill: {{ section.settings.wave_color_4 }};
   }
 
+  {{ sec_id }} .pc-wave-banner__content- {
+    
+  }
+
   {{ sec_id }} .pc-wave-banner__content-{{ last_part }} {
     position: relative;
     z-index: 1;
@@ -331,6 +335,16 @@
     {
       "type": "header",
       "content": "Spacing (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Top Margin",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "range",
