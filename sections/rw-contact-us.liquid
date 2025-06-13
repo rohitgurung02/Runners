@@ -158,16 +158,16 @@
   {{ sec_id }} .pc-theme-switch-wrapper {
     display: flex;
     align-items: center;
+    text-align: center;
+    width: {{ section.settings.theme_switch_width_desktop }}px;
     position: absolute;
     top: {{ section.settings.theme_switch_top_desktop }}px;
     right: {{ section.settings.theme_switch_right_desktop }}px;
-    gap: 10px;
   }
 
   {{ sec_id }} .pc-description {
     margin-left: {{ section.settings.theme_label_margin_left_desktop }}px;
     font-size: {{ section.settings.theme_label_font_size_desktop }}px;
-    white-space: nowrap;
   }
 
   {{ sec_id }} .pc-theme-switch {
@@ -205,10 +205,6 @@
 
   {{ sec_id }} input:checked + .pc-slider {
     background-color: var(--pc-button-color);
-  }
-
-  {{ sec_id }} input:checked + .pc-slider:before {
-    transform: translateX({{ section.settings.theme_switch_width_desktop | minus: section.settings.theme_switch_knob_size_desktop | minus: section.settings.theme_switch_knob_offset_desktop | times: 2 }}px);
   }
 
   {{ sec_id }} .pc-slider.pc-round {
@@ -288,7 +284,7 @@
     }
 
     {{ sec_id }} .pc-theme-switch-wrapper {
-      width: auto;
+      width: {{ section.settings.theme_switch_width_mobile }}px;
       top: {{ section.settings.theme_switch_top_mobile }}px;
       right: {{ section.settings.theme_switch_right_mobile }}px;
     }
@@ -311,7 +307,7 @@
     }
 
     {{ sec_id }} input:checked + .pc-slider:before {
-      transform: translateX({{ section.settings.theme_switch_width_mobile | minus: section.settings.theme_switch_knob_size_mobile | minus: section.settings.theme_switch_knob_offset_mobile | times: 2 }}px);
+      transform: translateX({{ section.settings.theme_switch_knob_translate_mobile }}px);
     }
 
     {{ sec_id }} .pc-slider.pc-round {
@@ -341,7 +337,7 @@
           <input type="checkbox" id="pc-checkbox-{{ last_part }}" />
           <div class="pc-slider pc-round"></div>
         </label>
-        <span class="pc-description">{{ section.settings.dark_mode_label }}</span>
+        <div class="pc-description">{{ section.settings.dark_mode_label }}</div>
       </div>
       
       <h1 class="pc-heading">{{ section.settings.heading }}</h1>
@@ -370,18 +366,13 @@
   document.addEventListener('DOMContentLoaded', function() {
     const toggleSwitch = document.querySelector('{{ sec_id }} .pc-theme-switch input[type="checkbox"]');
     const contactForm = document.querySelector('pc-contact-form-{{ last_part }}');
-    
-    // Check for saved theme preference or use system preference
-    const currentTheme = localStorage.getItem('theme') || 
-                        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    
-    // Apply the current theme
+    const currentTheme = localStorage.getItem('theme');
+
     if (currentTheme === 'dark') {
       contactForm.classList.add('dark-mode');
       if (toggleSwitch) toggleSwitch.checked = true;
     }
 
-    // Theme switch functionality
     function switchTheme(e) {
       if (e.target.checked) {
         contactForm.classList.add('dark-mode');
