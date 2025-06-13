@@ -2,237 +2,119 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-wave-layout-{{ last_part }} class="pc-wave-layout">
-  <div class="pc-wave-layout__container">
-    <div class="pc-wave-layout__content">
-      {{ section.settings.content }}
-    </div>
-    <div class="pc-wave pc-wave--primary"></div>
-    <div class="pc-wave pc-wave--secondary"></div>
+<pc-svg-wave-{{ last_part }} class="pc-svg-wave">
+  <div class="pc-svg-wave__container">
+    <svg width="100%" height="100%" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <g class="pc-svg-wave__curve" fill="none">
+        <path d="M 0, 60 S 300, -60, 600, 60, 800, -120, 1200 60" />
+        <path d="M 0, 60 S 200, -60, 400, 60, 900, -120, 1200 60" />
+        <path d="M 0, 60 S 200, -70, 400, 70, 800, -120, 1200 60" />
+        <path d="M 0, 60 S 200, -60, 400, 80, 600, -120, 1200 60" />
+      </g>
+    </svg>
   </div>
-</pc-wave-layout-{{ last_part }}>
+</pc-svg-wave-{{ last_part }}>
 
 <style>
-  {{ sec_id }} .pc-wave-layout {
-    position: relative;
+  {{ sec_id }} .pc-svg-wave {
     width: 100%;
+    background-color: {{ section.settings.background_color }};
     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
     margin-bottom: {{ section.settings.desktop_margin_bottom }}px;
-    display: flex;
-    justify-content: center;
   }
 
-  {{ sec_id }} .pc-wave-layout__container {
-    position: relative;
-    width: {{ section.settings.container_width }}%;
-    max-width: {{ section.settings.container_max_width }}px;
-    min-height: {{ section.settings.container_min_height }}px;
-    height: {{ section.settings.container_height }}px;
-    overflow: hidden;
-    background-color: {{ section.settings.background_color }};
-    border-radius: {{ section.settings.container_border_radius }}px;
-    {% if section.settings.container_shadow %}
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    {% endif %}
-  }
-
-  {{ sec_id }} .pc-wave-layout__content {
-    position: relative;
-    z-index: 10;
-    width: {{ section.settings.content_width }}%;
-    margin: 0 auto;
-    padding: {{ section.settings.content_padding }}px;
-    color: {{ section.settings.text_color }};
-    text-align: {{ section.settings.text_alignment }};
-    height: calc(100% - {{ section.settings.wave_height }}px);
-  }
-
-  {{ sec_id }} .pc-wave {
-    position: absolute;
+  {{ sec_id }} .pc-svg-wave__container {
     width: 100%;
     height: {{ section.settings.wave_height }}px;
-    bottom: 0;
-    left: 0;
-    transform-origin: center bottom;
+    overflow: hidden;
   }
 
-  {{ sec_id }} .pc-wave--primary {
-    background-color: {{ section.settings.primary_wave_color }};
-    z-index: 5;
+  {{ sec_id }} .pc-svg-wave__curve {
+    stroke-linecap: round;
+    stroke-opacity: 0.7;
+  }
+
+  {{ sec_id }} .pc-svg-wave__curve path {
+    transform-origin: center;
+  }
+
+  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 1) {
+    stroke: {{ section.settings.wave_color_1 }};
+  }
+
+  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 2) {
+    stroke: {{ section.settings.wave_color_2 }};
+  }
+
+  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 3) {
+    stroke: {{ section.settings.wave_color_3 }};
+  }
+
+  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 4) {
+    stroke: {{ section.settings.wave_color_4 }};
+  }
+
+  {{ sec_id }} .pc-svg-wave__curve path:nth-child(1) {
+    stroke-width: {{ section.settings.wave_1_stroke_width }};
     {% if section.settings.enable_animation %}
-      animation: pc-wave-animation-{{ last_part }} 8s ease-in-out infinite alternate;
+      animation: pc-curve-animation-{{ last_part }} {{ section.settings.animation_duration }}s linear 1.4s infinite;
     {% endif %}
   }
 
-  {{ sec_id }} .pc-wave--secondary {
-    background-color: {{ section.settings.secondary_wave_color }};
-    z-index: 1;
+  {{ sec_id }} .pc-svg-wave__curve path:nth-child(2) {
+    stroke-width: {{ section.settings.wave_2_stroke_width }};
     {% if section.settings.enable_animation %}
-      animation: pc-wave-animation-{{ last_part }} 10s ease-in-out infinite alternate-reverse;
+      animation: pc-curve-animation-{{ last_part }} {{ section.settings.animation_duration }}s linear 2.8s infinite;
     {% endif %}
-    opacity: 0.7;
-    height: {{ section.settings.wave_height | times: 0.8 }}px;
   }
 
-  @keyframes pc-wave-animation-{{ last_part }} {
+  {{ sec_id }} .pc-svg-wave__curve path:nth-child(3) {
+    stroke-width: {{ section.settings.wave_3_stroke_width }};
+    {% if section.settings.enable_animation %}
+      animation: pc-curve-animation-{{ last_part }} {{ section.settings.animation_duration }}s linear 4.2s infinite;
+    {% endif %}
+  }
+
+  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4) {
+    stroke-width: {{ section.settings.wave_4_stroke_width }};
+    {% if section.settings.enable_animation %}
+      animation: pc-curve-animation-{{ last_part }} {{ section.settings.animation_duration }}s linear 5.6s infinite;
+    {% endif %}
+  }
+
+  @keyframes pc-curve-animation-{{ last_part }} {
     0% {
-      transform: scaleX(1) skew(0, -8deg);
-      border-radius: 50% 50% 0 0;
+      transform: rotateX(0deg) skewY(0deg);
+      stroke-opacity: 0.7;
     }
     50% {
-      transform: scaleX(1.2) skew(10deg, 0);
-      border-radius: 40% 60% 0 0;
+      transform: rotateX(360deg) skewY(8deg);
+      stroke-opacity: 1;
     }
     100% {
-      transform: scaleX(1) skew(0, 8deg);
-      border-radius: 60% 40% 0 0;
+      transform: rotateX(0deg) skewY(0deg);
+      stroke-opacity: 0.7;
     }
   }
 
   @media (max-width: 768px) {
-    {{ sec_id }} .pc-wave-layout {
+    {{ sec_id }} .pc-svg-wave {
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
       margin-bottom: {{ section.settings.mobile_margin_bottom }}px;
     }
 
-    {{ sec_id }} .pc-wave-layout__container {
-      width: {{ section.settings.mobile_container_width }}%;
-      min-height: {{ section.settings.mobile_container_min_height }}px;
-      height: {{ section.settings.mobile_container_height }}px;
-    }
-
-    {{ sec_id }} .pc-wave-layout__content {
-      width: 90%;
-      padding: {{ section.settings.mobile_content_padding }}px;
-    }
-
-    {{ sec_id }} .pc-wave {
+    {{ sec_id }} .pc-svg-wave__container {
       height: {{ section.settings.mobile_wave_height }}px;
-    }
-
-    {{ sec_id }} .pc-wave--secondary {
-      height: {{ section.settings.mobile_wave_height | times: 0.8 }}px;
     }
   }
 </style>
 
 {% schema %}
 {
-  "name": "PWC - Wave Layout #1",
+  "name": "PWC - Wave Animation #1",
   "tag": "section",
   "class": "section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Content"
-    },
-    {
-      "type": "richtext",
-      "id": "content",
-      "label": "Content",
-      "default": "<p>Your content here</p>"
-    },
-    {
-      "type": "range",
-      "id": "content_width",
-      "label": "Content Width",
-      "min": 50,
-      "max": 100,
-      "step": 5,
-      "unit": "%",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "content_padding",
-      "label": "Content Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "select",
-      "id": "text_alignment",
-      "label": "Text Alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "header",
-      "content": "Container Settings"
-    },
-    {
-      "type": "range",
-      "id": "container_width",
-      "label": "Container Width (Desktop)",
-      "min": 30,
-      "max": 100,
-      "step": 5,
-      "unit": "%",
-      "default": 90
-    },
-    {
-      "type": "range",
-      "id": "container_max_width",
-      "label": "Container Max Width (Desktop)",
-      "min": 500,
-      "max": 2000,
-      "step": 50,
-      "unit": "px",
-      "default": 1200
-    },
-    {
-      "type": "range",
-      "id": "container_height",
-      "label": "Container Height (Desktop)",
-      "min": 200,
-      "max": 1500,
-      "step": 50,
-      "unit": "px",
-      "default": 500,
-      "info": "Set to 0 for auto height"
-    },
-    {
-      "type": "range",
-      "id": "container_min_height",
-      "label": "Container Min Height (Desktop)",
-      "min": 100,
-      "max": 1000,
-      "step": 50,
-      "unit": "px",
-      "default": 400
-    },
-    {
-      "type": "range",
-      "id": "container_border_radius",
-      "label": "Container Border Radius",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "checkbox",
-      "id": "container_shadow",
-      "label": "Container Shadow",
-      "default": false
-    },
     {
       "type": "header",
       "content": "Wave Settings"
@@ -242,10 +124,10 @@
       "id": "wave_height",
       "label": "Wave Height (Desktop)",
       "min": 50,
-      "max": 300,
+      "max": 500,
       "step": 10,
       "unit": "px",
-      "default": 150
+      "default": 300
     },
     {
       "type": "header",
@@ -255,25 +137,95 @@
       "type": "color",
       "id": "background_color",
       "label": "Background Color",
-      "default": "#f8f9fa"
+      "default": "#FFFFFF"
     },
     {
       "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#333333"
+      "id": "wave_color_1",
+      "label": "Wave Color 1",
+      "default": "#3379B7"
     },
     {
       "type": "color",
-      "id": "primary_wave_color",
-      "label": "Primary Wave Color",
-      "default": "#005196"
+      "id": "wave_color_2",
+      "label": "Wave Color 2",
+      "default": "#1B3F5F"
     },
     {
       "type": "color",
-      "id": "secondary_wave_color",
-      "label": "Secondary Wave Color",
-      "default": "#6192bc"
+      "id": "wave_color_3",
+      "label": "Wave Color 3",
+      "default": "#67A1D5"
+    },
+    {
+      "type": "color",
+      "id": "wave_color_4",
+      "label": "Wave Color 4",
+      "default": "#BFE2FF"
+    },
+    {
+      "type": "header",
+      "content": "Stroke Settings"
+    },
+    {
+      "type": "range",
+      "id": "wave_1_stroke_width",
+      "label": "Wave 1 Stroke Width",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "wave_2_stroke_width",
+      "label": "Wave 2 Stroke Width",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 21
+    },
+    {
+      "type": "range",
+      "id": "wave_3_stroke_width",
+      "label": "Wave 3 Stroke Width",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "wave_4_stroke_width",
+      "label": "Wave 4 Stroke Width",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 41
+    },
+    {
+      "type": "header",
+      "content": "Animation Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "Enable Animation",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "label": "Animation Duration",
+      "min": 5,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "default": 35
     },
     {
       "type": "header",
@@ -287,7 +239,7 @@
       "max": 200,
       "step": 10,
       "unit": "px",
-      "default": 50
+      "default": 0
     },
     {
       "type": "range",
@@ -297,7 +249,7 @@
       "max": 200,
       "step": 10,
       "unit": "px",
-      "default": 50
+      "default": 0
     },
     {
       "type": "range",
@@ -307,7 +259,7 @@
       "max": 200,
       "step": 10,
       "unit": "px",
-      "default": 100
+      "default": 0
     },
     {
       "type": "range",
@@ -317,7 +269,7 @@
       "max": 200,
       "step": 10,
       "unit": "px",
-      "default": 50
+      "default": 0
     },
     {
       "type": "range",
@@ -335,54 +287,13 @@
     },
     {
       "type": "range",
-      "id": "mobile_container_width",
-      "label": "Container Width (Mobile)",
-      "min": 50,
-      "max": 100,
-      "step": 5,
-      "unit": "%",
-      "default": 95
-    },
-    {
-      "type": "range",
-      "id": "mobile_container_height",
-      "label": "Container Height (Mobile)",
-      "min": 200,
-      "max": 1000,
-      "step": 50,
-      "unit": "px",
-      "default": 400,
-      "info": "Set to 0 for auto height"
-    },
-    {
-      "type": "range",
-      "id": "mobile_container_min_height",
-      "label": "Container Min Height (Mobile)",
-      "min": 100,
-      "max": 800,
-      "step": 50,
-      "unit": "px",
-      "default": 300
-    },
-    {
-      "type": "range",
       "id": "mobile_wave_height",
       "label": "Wave Height (Mobile)",
       "min": 30,
-      "max": 200,
+      "max": 300,
       "step": 10,
       "unit": "px",
-      "default": 100
-    },
-    {
-      "type": "range",
-      "id": "mobile_content_padding",
-      "label": "Content Padding (Mobile)",
-      "min": 0,
-      "max": 50,
-      "step": 5,
-      "unit": "px",
-      "default": 15
+      "default": 150
     },
     {
       "type": "range",
@@ -392,7 +303,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 30
+      "default": 0
     },
     {
       "type": "range",
@@ -402,7 +313,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 20
+      "default": 0
     },
     {
       "type": "range",
@@ -412,7 +323,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 80
+      "default": 0
     },
     {
       "type": "range",
@@ -422,7 +333,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 20
+      "default": 0
     },
     {
       "type": "range",
@@ -433,21 +344,11 @@
       "step": 5,
       "unit": "px",
       "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Animation Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_animation",
-      "label": "Enable Wave Animation",
-      "default": true
     }
   ],
   "presets": [
     {
-      "name": "PWC - Wave Layout #1",
+      "name": "PWC - Wave Animation #1",
       "category": "Custom"
     }
   ]
