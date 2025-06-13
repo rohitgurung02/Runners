@@ -119,9 +119,6 @@
     {%- if section.settings.title != blank -%}
       <h2 class="pc-wave-banner__title-{{ last_part }}">{{ section.settings.title }}</h2>
     {%- endif -%}
-    {%- if section.settings.subtitle != blank -%}
-      <p class="pc-wave-banner__subtitle-{{ last_part }}">{{ section.settings.subtitle }}</p>
-    {%- endif -%}
     {%- if section.settings.image != blank -%}
       <div class="pc-wave-banner__image-{{ last_part }}">
         {{- section.settings.image | image_url: width: section.settings.image.width, height: section.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt -}}
