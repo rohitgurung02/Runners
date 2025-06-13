@@ -368,13 +368,11 @@
     const contactForm = document.querySelector('pc-contact-form-{{ last_part }}');
     const currentTheme = localStorage.getItem('theme');
 
-    // Apply saved theme if it exists
     if (currentTheme === 'dark') {
       contactForm.classList.add('dark-mode');
       if (toggleSwitch) toggleSwitch.checked = true;
     }
 
-    // Theme switch functionality
     function switchTheme(e) {
       if (e.target.checked) {
         contactForm.classList.add('dark-mode');
@@ -389,7 +387,6 @@
       toggleSwitch.addEventListener('change', switchTheme, false);
     }
 
-    // Form validation
     const contactFormElement = document.getElementById('pc-contact-form-{{ last_part }}');
     const errorElement = document.getElementById('pc-error-{{ last_part }}');
     const successMsg = document.getElementById('pc-success-msg-{{ last_part }}');
