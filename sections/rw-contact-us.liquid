@@ -122,7 +122,6 @@
     border: none;
     border-bottom: 1px solid var(--pc-secondary-color);
     padding: {{ section.settings.input_padding_top_desktop }}px 0;
-    margin-bottom: {{ section.settings.input_margin_bottom_desktop }}px;
     outline: none;
     font-size: {{ section.settings.input_font_size_desktop }}px;
   }
@@ -208,10 +207,6 @@
     background-color: var(--pc-button-color);
   }
 
-  {{ sec_id }} input:checked + .pc-slider:before {
-    transform: translateX({{ section.settings.theme_switch_knob_translate_desktop }}px);
-  }
-
   {{ sec_id }} .pc-slider.pc-round {
     border-radius: {{ section.settings.theme_switch_border_radius_desktop }}px;
   }
@@ -223,7 +218,6 @@
   {{ sec_id }} .pc-error,
   {{ sec_id }} .pc-success-msg {
     width: 100%;
-    margin: {{ section.settings.message_margin_top_desktop }}px 0;
     font-size: {{ section.settings.message_font_size_desktop }}px;
     text-transform: uppercase;
     color: var(--pc-secondary-color);
@@ -930,16 +924,6 @@
     },
     {
       "type": "range",
-      "id": "input_margin_bottom_desktop",
-      "label": "Input Margin Bottom (Desktop)",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
       "id": "button_width_desktop",
       "label": "Button Width (Desktop)",
       "min": 80,
@@ -977,16 +961,6 @@
       "step": 1,
       "unit": "px",
       "default": 2
-    },
-    {
-      "type": "range",
-      "id": "message_margin_top_desktop",
-      "label": "Message Margin Top (Desktop)",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 8
     },
     {
       "type": "range",
@@ -1057,16 +1031,6 @@
       "step": 1,
       "unit": "px",
       "default": 4
-    },
-    {
-      "type": "range",
-      "id": "theme_switch_knob_translate_desktop",
-      "label": "Theme Switch Knob Translate (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 26
     },
     {
       "type": "range",
