@@ -1,6 +1,308 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} .pc-carousel-{{ last_part }} {
+    display: flex;
+    overflow: clip;
+    position: relative;
+    gap: {{ section.settings.logo_gap }}px;
+    width: 100%;
+    padding: {{ section.settings.carousel_padding }}px;
   }
+
+  {{ sec_id }} .pc-carousel-{{ last_part }}::before,
+  {{ sec_id }} .pc-carousel-{{ last_part }}::after {
+    content: "";
+    background: linear-gradient(
+      to right,
+      {{ section.settings.gradient_color }} 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    position: absolute;
+    height: 100%;
+    width: {{ section.settings.gradient_width }}px;
+    z-index: 2;
+  }
+
+  {{ sec_id }} .pc-carousel-{{ last_part }}::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  {{ sec_id }} .pc-carousel-{{ last_part }}::before {
+    left: 0;
+    top: 0;
+  }
+
+  @keyframes pc-scroll-{{ last_part }} {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-{{ section.settings.logo_width }}px * {{ section.settings.logos_per_block }} * 2));
+    }
+  }
+
+  {{ sec_id }} .pc-logo-{{ last_part }} {
+    object-fit: contain;
+    cursor: pointer;
+    min-height: {{ section.settings.logo_height }}px;
+    max-height: {{ section.settings.logo_height }}px;
+    max-width: {{ section.settings.logo_width }}px;
+    border-radius: {{ section.settings.logo_border_radius }}px;
+    filter: grayscale({{ section.settings.logo_grayscale }}%);
+    animation: pc-scroll-{{ last_part }} {{ section.settings.animation_duration }}s linear infinite;
+  }
+
+  {{ sec_id }} .pc-logo-{{ last_part }}:hover {
+    filter: grayscale({{ section.settings.logo_grayscale_hover }}%);
+  }
+
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-carousel-{{ last_part }} {
+      gap: {{ section.settings.mobile_logo_gap }}px;
+      padding: {{ section.settings.mobile_carousel_padding }}px;
+    }
+
+    {{ sec_id }} .pc-logo-{{ last_part }} {
+      min-height: {{ section.settings.mobile_logo_height }}px;
+      max-height: {{ section.settings.mobile_logo_height }}px;
+      max-width: {{ section.settings.mobile_logo_width }}px;
+    }
+
+    {{ sec_id }} .pc-carousel-{{ last_part }}::before,
+    {{ sec_id }} .pc-carousel-{{ last_part }}::after {
+      width: {{ section.settings.mobile_gradient_width }}px;
+    }
+  }
+</style>
+
+<div class="pc-logocarousel-{{ last_part }}">
+  <div class="pc-carousel-{{ last_part }}">
+    {% for block in section.blocks %}
+      {% if block.settings.image != blank %}
+        {{ block.settings.image | image_url: width: section.settings.logo_width, height: section.settings.logo_height | image_tag: class: 'pc-logo-' | append: last_part, loading: 'lazy', alt: block.settings.image.alt }}
+      {% else %}
+        {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'pc-logo-' | append: last_part }}
+      {% endif %}
+    {% endfor %}
+    {% for block in section.blocks %}
+      {% if block.settings.image != blank %}
+        {{ block.settings.image | image_url: width: section.settings.logo_width, height: section.settings.logo_height | image_tag: class: 'pc-logo-' | append: last_part, loading: 'lazy', alt: block.settings.image.alt }}
+      {% else %}
+        {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'pc-logo-' | append: last_part }}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "PWC - Logo Carousel #1",
+  "tag": "section",
+  "class": "pc-logocarousel-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo Settings"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo Width (Desktop)",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Logo Height (Desktop)",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "logo_border_radius",
+      "label": "Logo Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "logo_grayscale",
+      "label": "Logo Grayscale (%)",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "logo_grayscale_hover",
+      "label": "Logo Grayscale on Hover (%)",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "logos_per_block",
+      "label": "Number of Logos in One Block",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Carousel Settings"
+    },
+    {
+      "type": "range",
+      "id": "logo_gap",
+      "label": "Space Between Logos (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "carousel_padding",
+      "label": "Carousel Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "gradient_width",
+      "label": "Gradient Width (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "gradient_color",
+      "label": "Gradient Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "label": "Animation Duration",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "unit": "s",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_width",
+      "label": "Logo Width (Mobile)",
+      "min": 30,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_height",
+      "label": "Logo Height (Mobile)",
+      "min": 30,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_gap",
+      "label": "Space Between Logos (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_carousel_padding",
+      "label": "Carousel Padding (Mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_gradient_width",
+      "label": "Gradient Width (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - Logo Carousel #1",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
