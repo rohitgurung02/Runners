@@ -742,35 +742,6 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 0
       }
-    },
-    "rw_wavy_layout_7DrrLP": {
-      "type": "rw-wavy-layout",
-      "name": "PWC - Wave Animation #1",
-      "settings": {
-        "wave_height": 140,
-        "background_color": "#FFFFFF",
-        "wave_color_1": "#3379B7",
-        "wave_color_2": "#1B3F5F",
-        "wave_color_3": "#67A1D5",
-        "wave_color_4": "#BFE2FF",
-        "wave_1_stroke_width": 24,
-        "wave_2_stroke_width": 21,
-        "wave_3_stroke_width": 48,
-        "wave_4_stroke_width": 41,
-        "enable_animation": true,
-        "animation_duration": 35,
-        "desktop_padding_top": 140,
-        "desktop_padding_right": 0,
-        "desktop_padding_bottom": 0,
-        "desktop_padding_left": 0,
-        "desktop_margin_bottom": 0,
-        "mobile_wave_height": 150,
-        "mobile_padding_top": 0,
-        "mobile_padding_right": 0,
-        "mobile_padding_bottom": 0,
-        "mobile_padding_left": 0,
-        "mobile_margin_bottom": 0
-      }
     }
   },
   "order": [
@@ -781,7 +752,6 @@
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
-    "rw_contact_us_XKkCrW",
-    "rw_wavy_layout_7DrrLP"
+    "rw_contact_us_XKkCrW"
   ]
 }
