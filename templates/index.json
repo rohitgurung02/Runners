@@ -694,7 +694,7 @@
         "desktop_padding_left": 60,
         "form_padding_top_desktop": 0,
         "input_padding_top_desktop": 4,
-        "input_margin_bottom_desktop": 20,
+        "input_margin_bottom_desktop": 50,
         "button_width_desktop": 160,
         "button_height_desktop": 36,
         "button_margin_top_desktop": 30,
