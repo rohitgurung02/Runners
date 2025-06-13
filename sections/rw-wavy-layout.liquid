@@ -10,7 +10,6 @@
     height: {{ section.settings.container_height }}px;
     background: {{ section.settings.background_gradient }};
     background-color: {{ section.settings.background_color }};
-    padding: {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_left }}px;
     {% if section.settings.enable_shadow %}
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     {% endif %}
@@ -345,26 +344,6 @@
       "step": 5,
       "unit": "px",
       "default": 90
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_right",
-      "label": "Right Padding",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_left",
-      "label": "Left Padding",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 20
     },
     {
       "type": "header",
