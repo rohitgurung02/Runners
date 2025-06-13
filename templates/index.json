@@ -648,6 +648,7 @@
         "container_height_mobile": 800,
         "container_margin_top_desktop": 20,
         "container_margin_bottom_desktop": 20,
+        "image": "shopify://shop_images/1025-1200x800.jpg",
         "image_width_desktop": 45,
         "image_height_mobile": 400,
         "heading": "Contact us",
