@@ -1,6 +1,5 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
-{%- assign last_lower = parts | last -%}
-{%- assign last_part = last_lower | downcase -%}
+{%- assign last_part = section.id | split: '-' | last | downcase -%}
 
 <style>
   {{ sec_id }} .pc-svg-wave {
@@ -22,54 +21,43 @@
   }
 
   {{ sec_id }} .pc-svg-wave__curve {
-    stroke-linecap: round;
-    stroke-opacity: 0.7;
     width: 100%;
     height: 100%;
   }
 
   {{ sec_id }} .pc-svg-wave__curve path {
+    stroke-linecap: round;
+    stroke-opacity: 0.7;
     transform-origin: center;
+    fill: none;
   }
 
   {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 1) {
     stroke: {{ section.settings.wave_color_1 }};
-  }
-
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 2) {
-    stroke: {{ section.settings.wave_color_2 }};
-  }
-
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 3) {
-    stroke: {{ section.settings.wave_color_3 }};
-  }
-
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 4) {
-    stroke: {{ section.settings.wave_color_4 }};
-  }
-
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(1) {
     stroke-width: {{ section.settings.wave_1_stroke_width }};
     {% if section.settings.enable_animation %}
       animation: pc-curve-animation-{{ last_part }} {{ section.settings.animation_duration }}s linear 1.4s infinite;
     {% endif %}
   }
 
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(2) {
+  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 2) {
+    stroke: {{ section.settings.wave_color_2 }};
     stroke-width: {{ section.settings.wave_2_stroke_width }};
     {% if section.settings.enable_animation %}
       animation: pc-curve-animation-{{ last_part }} {{ section.settings.animation_duration }}s linear 2.8s infinite;
     {% endif %}
   }
 
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(3) {
+  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 3) {
+    stroke: {{ section.settings.wave_color_3 }};
     stroke-width: {{ section.settings.wave_3_stroke_width }};
     {% if section.settings.enable_animation %}
       animation: pc-curve-animation-{{ last_part }} {{ section.settings.animation_duration }}s linear 4.2s infinite;
     {% endif %}
   }
 
-  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4) {
+  {{ sec_id }} .pc-svg-wave__curve path:nth-child(4n + 4) {
+    stroke: {{ section.settings.wave_color_4 }};
     stroke-width: {{ section.settings.wave_4_stroke_width }};
     {% if section.settings.enable_animation %}
       animation: pc-curve-animation-{{ last_part }} {{ section.settings.animation_duration }}s linear 5.6s infinite;
@@ -78,15 +66,15 @@
 
   @keyframes pc-curve-animation-{{ last_part }} {
     0% {
-      transform: rotateX(0deg) skewY(0deg);
+      transform: scaleY(1) skewY(0deg);
       stroke-opacity: 0.7;
     }
     50% {
-      transform: rotateX(360deg) skewY(8deg);
+      transform: scaleY(1.2) skewY(8deg);
       stroke-opacity: 1;
     }
     100% {
-      transform: rotateX(0deg) skewY(0deg);
+      transform: scaleY(1) skewY(0deg);
       stroke-opacity: 0.7;
     }
   }
@@ -101,18 +89,16 @@
   }
 </style>
 
-<pc-svg-wave-{{ last_part }} class="pc-svg-wave">
+<div class="pc-svg-wave">
   <div class="pc-svg-wave__container">
-    <svg class="pc-svg-wave__curve" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none">
-        <path d="M 0, 60 S 300, -60, 600, 60, 800, -120, 1200 60" />
-        <path d="M 0, 60 S 200, -60, 400, 60, 900, -120, 1200 60" />
-        <path d="M 0, 60 S 200, -70, 400, 70, 800, -120, 1200 60" />
-        <path d="M 0, 60 S 200, -60, 400, 80, 600, -120, 1200 60" />
-      </g>
+    <svg class="pc-svg-wave__curve" viewBox="0 0 1200 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 0,100 C 150,50 300,150 450,100 S 600,50 750,100 S 900,150 1050,100 S 1200,50 1200,100" />
+      <path d="M 0,100 C 200,30 300,170 500,100 S 600,30 800,100 S 900,170 1100,100 S 1200,30 1200,100" />
+      <path d="M 0,100 C 100,70 400,130 500,100 S 700,70 800,100 S 1000,130 1100,100 S 1200,70 1200,100" />
+      <path d="M 0,100 C 250,20 350,180 600,100 S 650,20 900,100 S 950,180 1200,100" />
     </svg>
   </div>
-</pc-svg-wave-{{ last_part }}>
+</div>
 
 {% schema %}
 {
