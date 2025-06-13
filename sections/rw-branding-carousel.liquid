@@ -85,14 +85,16 @@
   <div class="pc-carousel-{{ last_part }}">
     {% for block in section.blocks %}
       {% if block.settings.image != blank %}
-        {{ block.settings.image | image_url: width: section.settings.logo_width, height: section.settings.logo_height | image_tag: class: 'pc-logo-' | append: last_part, loading: 'lazy', alt: block.settings.image.alt }}
+        {% assign image_url = block.settings.image | image_url: width: section.settings.logo_width, height: section.settings.logo_height %}
+        <img class="pc-logo-{{ last_part }}" src="{{ image_url }}" loading="lazy" alt="{{ block.settings.image.alt | escape }}">
       {% else %}
         {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'pc-logo-' | append: last_part }}
       {% endif %}
     {% endfor %}
     {% for block in section.blocks %}
       {% if block.settings.image != blank %}
-        {{ block.settings.image | image_url: width: section.settings.logo_width, height: section.settings.logo_height | image_tag: class: 'pc-logo-' | append: last_part, loading: 'lazy', alt: block.settings.image.alt }}
+        {% assign image_url = block.settings.image | image_url: width: section.settings.logo_width, height: section.settings.logo_height %}
+        <img class="pc-logo-{{ last_part }}" src="{{ image_url }}" loading="lazy" alt="{{ block.settings.image.alt | escape }}">
       {% else %}
         {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'pc-logo-' | append: last_part }}
       {% endif %}
@@ -102,7 +104,7 @@
 
 {% schema %}
 {
-  "name": "RW - Logo Carousel #1",
+  "name": "PWC - Logo Carousel #1",
   "tag": "section",
   "class": "pc-logocarousel-section",
   "settings": [
@@ -287,7 +289,7 @@
   ],
   "presets": [
     {
-      "name": "RW- Logo Carousel #1",
+      "name": "PWC - Logo Carousel #1",
       "blocks": [
         {
           "type": "logo"
