@@ -207,6 +207,11 @@
     background-color: var(--pc-button-color);
   }
 
+  {{ sec_id }} input:checked + .pc-slider:before {
+  transform: translateX({{ section.settings.theme_switch_knob_translate_desktop }}px);
+}
+
+
   {{ sec_id }} .pc-slider.pc-round {
     border-radius: {{ section.settings.theme_switch_border_radius_desktop }}px;
   }
