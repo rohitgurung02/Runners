@@ -1,19 +1,6 @@
-{%- assign parts = sec_id | split: '_' -%}
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
-
-<pc-svg-wave-{{ last_part }} class="pc-svg-wave">
-  <div class="pc-svg-wave__container">
-    <svg width="100%" height="100%" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <g class="pc-svg-wave__curve" fill="none">
-        <path d="M 0, 60 S 300, -60, 600, 60, 800, -120, 1200 60" />
-        <path d="M 0, 60 S 200, -60, 400, 60, 900, -120, 1200 60" />
-        <path d="M 0, 60 S 200, -70, 400, 70, 800, -120, 1200 60" />
-        <path d="M 0, 60 S 200, -60, 400, 80, 600, -120, 1200 60" />
-      </g>
-    </svg>
-  </div>
-</pc-svg-wave-{{ last_part }}>
 
 <style>
   {{ sec_id }} .pc-svg-wave {
@@ -108,6 +95,19 @@
     }
   }
 </style>
+
+<pc-svg-wave-{{ last_part }} class="pc-svg-wave">
+  <div class="pc-svg-wave__container">
+    <svg width="100%" height="100%" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <g class="pc-svg-wave__curve" fill="none">
+        <path d="M 0, 60 S 300, -60, 600, 60, 800, -120, 1200 60" />
+        <path d="M 0, 60 S 200, -60, 400, 60, 900, -120, 1200 60" />
+        <path d="M 0, 60 S 200, -70, 400, 70, 800, -120, 1200 60" />
+        <path d="M 0, 60 S 200, -60, 400, 80, 600, -120, 1200 60" />
+      </g>
+    </svg>
+  </div>
+</pc-svg-wave-{{ last_part }}>
 
 {% schema %}
 {
