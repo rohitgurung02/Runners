@@ -8,10 +8,9 @@
     position: relative;
     width: {{ section.settings.container_width }}%;
     height: {{ section.settings.container_height }}px;
-    margin: {{ section.settings.desktop_margin_top }}px auto {{ section.settings.desktop_margin_bottom }}px;
     background: {{ section.settings.background_gradient }};
     background-color: {{ section.settings.background_color }};
-    padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
+    padding: {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_left }}px;
     {% if section.settings.enable_shadow %}
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     {% endif %}
@@ -292,7 +291,7 @@
       "min": 100,
       "max": 900,
       "step": 100,
-      "default": 700
+      "default": 400
     },
     {
       "type": "range",
@@ -302,7 +301,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 20
+      "default": 10
     },
     {
       "type": "range",
@@ -349,36 +348,6 @@
     },
     {
       "type": "range",
-      "id": "desktop_margin_top",
-      "label": "Top Margin",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_margin_bottom",
-      "label": "Bottom Margin",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_top",
-      "label": "Top Padding",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 50
-    },
-    {
-      "type": "range",
       "id": "desktop_padding_right",
       "label": "Right Padding",
       "min": 0,
@@ -386,16 +355,6 @@
       "step": 5,
       "unit": "px",
       "default": 20
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_bottom",
-      "label": "Bottom Padding",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 50
     },
     {
       "type": "range",
