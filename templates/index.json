@@ -752,7 +752,7 @@
         "container_height": 430,
         "wave_height": 100,
         "background_color": "#ffffff",
-        "background_gradient": "",
+        "background_gradient": "linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%)",
         "enable_shadow": true,
         "wave_color_1": "#3379b7",
         "wave_color_2": "#1b3f5f",
