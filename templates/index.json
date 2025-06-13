@@ -670,7 +670,7 @@
         "dark_secondary_color": "#818386",
         "dark_bg_color": "#010712",
         "dark_button_color": "#818386",
-        "dark_heading_color": "#c12a2a",
+        "dark_heading_color": "#fefefe",
         "shadow_enabled": true,
         "heading_font_size_desktop": 40,
         "heading_letter_spacing_desktop": 2,
