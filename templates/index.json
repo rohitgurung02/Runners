@@ -742,6 +742,34 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 0
       }
+    },
+    "rw_wavy_layout_jdGGAm": {
+      "type": "rw-wavy-layout",
+      "name": "PWC - Wave Layout #1",
+      "settings": {
+        "content": "<p>Your content here</p>",
+        "content_width": 100,
+        "text_alignment": "left",
+        "min_height": 650,
+        "wave_height": 150,
+        "desktop_padding_top": 50,
+        "desktop_padding_right": 50,
+        "desktop_padding_bottom": 100,
+        "desktop_padding_left": 50,
+        "desktop_margin_bottom": 0,
+        "background_color": "#f8f9fa",
+        "text_color": "#333333",
+        "primary_wave_color": "#005196",
+        "secondary_wave_color": "#6192bc",
+        "mobile_min_height": 300,
+        "mobile_wave_height": 100,
+        "mobile_padding_top": 30,
+        "mobile_padding_right": 20,
+        "mobile_padding_bottom": 80,
+        "mobile_padding_left": 20,
+        "mobile_margin_bottom": 0,
+        "enable_animation": true
+      }
     }
   },
   "order": [
@@ -752,6 +780,7 @@
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
-    "rw_contact_us_XKkCrW"
+    "rw_contact_us_XKkCrW",
+    "rw_wavy_layout_jdGGAm"
   ]
 }
