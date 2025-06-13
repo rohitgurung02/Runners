@@ -740,56 +740,6 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 6
       }
-    },
-    "rw_branding_carousel_X4Abqm": {
-      "type": "rw-branding-carousel",
-      "blocks": {
-        "logo_aUq6wV": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/1040-1200x800.jpg"
-          }
-        },
-        "logo_r4mkLg": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/1011-1200x800.jpg"
-          }
-        },
-        "logo_RHyi3D": {
-          "type": "logo",
-          "settings": {}
-        },
-        "logo_aK7dwn": {
-          "type": "logo",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "logo_aUq6wV",
-        "logo_r4mkLg",
-        "logo_RHyi3D",
-        "logo_aK7dwn"
-      ],
-      "name": "RW- Logo Carousel #1",
-      "settings": {
-        "logo_width": 100,
-        "logo_height": 100,
-        "logo_border_radius": 4,
-        "logo_grayscale": 100,
-        "logo_grayscale_hover": 0,
-        "logos_per_block": 4,
-        "logo_gap": 100,
-        "carousel_padding": 20,
-        "gradient_width": 100,
-        "gradient_color": "#FFFFFF",
-        "animation_duration": 10,
-        "mobile_logo_width": 80,
-        "mobile_logo_height": 80,
-        "mobile_logo_gap": 50,
-        "mobile_carousel_padding": 10,
-        "mobile_gradient_width": 50
-      }
     }
   },
   "order": [
@@ -800,7 +750,6 @@
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
-    "rw_contact_us_a9E9FG",
-    "rw_branding_carousel_X4Abqm"
+    "rw_contact_us_a9E9FG"
   ]
 }
