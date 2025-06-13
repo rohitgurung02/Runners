@@ -747,7 +747,7 @@
       "type": "rw-wavy-layout",
       "name": "RW - Wavy Layout #1",
       "settings": {
-        "title": "wave layout",
+        "title": "Wavy Layout",
         "container_width": 100,
         "container_height": 400,
         "wave_height": 100,
@@ -758,7 +758,7 @@
         "wave_color_2": "#c12a2a",
         "wave_color_3": "#0073e6",
         "wave_color_4": "#cd5fea",
-        "title_font_size": 42,
+        "title_font_size": 37,
         "title_font_weight": 200,
         "title_margin_bottom": 153,
         "margin_top": 15,
