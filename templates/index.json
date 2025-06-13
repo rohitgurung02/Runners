@@ -12,7 +12,6 @@
     "featured_collection_copy_kaw7iD": {
       "type": "featured-collection-copy",
       "disabled": true,
-      "name": "PWC - Featuted-Collection #1",
       "settings": {
         "announcement_compact": false
       }
@@ -95,7 +94,6 @@
         "column_ypxftU",
         "column_V6UUki"
       ],
-      "name": "Three Column Features",
       "settings": {
         "title": "Featured columns",
         "heading_size": "h1",
@@ -282,7 +280,6 @@
         "plan_tYtkA3"
       ],
       "disabled": true,
-      "name": "RW Pricing Plans",
       "settings": {
         "heading": "Pricing Plans",
         "heading_size": 32,
@@ -305,7 +302,6 @@
     },
     "rw_interactive_text_NLRF3G": {
       "type": "rw-interactive-text",
-      "name": "RWC Animated Text Rotator",
       "settings": {
         "prefix": "you are",
         "word_1": "awesome",
@@ -410,7 +406,6 @@
         "testimonial_3yJcgF"
       ],
       "disabled": true,
-      "name": "RW Animated Testimonials",
       "settings": {
         "max_width": 1100,
         "grid_gap": 50,
@@ -492,7 +487,6 @@
         "slide_zMRCUe"
       ],
       "disabled": true,
-      "name": "RW Carousel",
       "settings": {
         "heading": "Carousel",
         "heading_font_size": 32,
@@ -595,7 +589,6 @@
         "contact_DVjVNy",
         "faq_beMDfJ"
       ],
-      "name": "RW Tabs",
       "settings": {
         "heading": "Tabs",
         "heading_alignment": "center",
@@ -645,7 +638,6 @@
     },
     "rw_contact_us_XKkCrW": {
       "type": "rw-contact-us",
-      "name": "RW Contact Form",
       "settings": {
         "container_width_desktop": 90,
         "container_max_width_desktop": 1100,
@@ -678,7 +670,7 @@
         "dark_secondary_color": "#818386",
         "dark_bg_color": "#010712",
         "dark_button_color": "#818386",
-        "dark_heading_color": "#fcfdfd",
+        "dark_heading_color": "#c12a2a",
         "shadow_enabled": true,
         "heading_font_size_desktop": 40,
         "heading_letter_spacing_desktop": 2,
