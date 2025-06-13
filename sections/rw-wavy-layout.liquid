@@ -2,125 +2,97 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-product-highlight-{{ last_part }} class="pc-product-highlight">
-  <div class="pc-product-highlight__container">
-    <div class="pc-product-highlight__first">
-      {{ section.settings.first_text }}
-      <div class="pc-product-highlight__first-decoration"></div>
-    </div>
-    <h2 class="pc-product-highlight__title">{{ section.settings.title }}</h2>
-    <div class="pc-product-highlight__second">{{ section.settings.description }}</div>
+<pc-wave-layout-{{ last_part }} class="pc-wave-layout">
+  <div class="pc-wave-layout__content">
+    {{ section.settings.content }}
   </div>
-</pc-product-highlight-{{ last_part }}>
+  <div class="pc-wave pc-wave--primary"></div>
+  <div class="pc-wave pc-wave--secondary"></div>
+</pc-wave-layout-{{ last_part }}>
 
 <style>
-  {{ sec_id }} .pc-product-highlight {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  {{ sec_id }} .pc-wave-layout {
+    position: relative;
     width: 100%;
-    margin: 0 auto;
+    min-height: {{ section.settings.min_height }}px;
+    overflow: hidden;
     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
     background-color: {{ section.settings.background_color }};
-    {% if section.settings.shadow_enabled %}
-      box-shadow: 5px 5px 10px #ddd inset, -5px -5px 10px #ddd inset;
-    {% endif %}
+    margin-bottom: {{ section.settings.desktop_margin_bottom }}px;
   }
 
-  {{ sec_id }} .pc-product-highlight__container {
-    width: {{ section.settings.container_width }}%;
-    max-width: 100%;
-    height: auto;
-    padding: 20px;
-    margin: 50px auto;
-    border: 1px solid {{ section.settings.border_color }};
-    text-align: center;
-    background-color: {{ section.settings.container_background }};
-  }
-
-  {{ sec_id }} .pc-product-highlight__first,
-  {{ sec_id }} .pc-product-highlight__title {
-    background-color: {{ section.settings.highlight_color }};
+  {{ sec_id }} .pc-wave-layout__content {
     position: relative;
-    left: -40px;
-    color: {{ section.settings.highlight_text_color }};
-    font-weight: {{ section.settings.highlight_font_weight }};
-  }
-
-  {{ sec_id }} .pc-product-highlight__first {
-    width: 200px;
-    padding: 10px 0;
-    font-size: {{ section.settings.first_text_size }}px;
-  }
-
-  {{ sec_id }} .pc-product-highlight__first-decoration::after {
-    content: "";
-    height: 100%;
-    width: 10px;
-    position: absolute;
-    right: -6px;
-    top: 0;
-    background-color: {{ section.settings.highlight_accent_color }};
-    transform: skew(10deg);
-  }
-
-  {{ sec_id }} .pc-product-highlight__first-decoration::before,
-  {{ sec_id }} .pc-product-highlight__title::after,
-  {{ sec_id }} .pc-product-highlight__title::before {
-    content: "";
-    border: 10px solid;
-    border-color: {{ section.settings.highlight_accent_color }} {{ section.settings.highlight_accent_color }} transparent transparent;
-    position: absolute;
-    left: 0;
-    bottom: -20px;
-  }
-
-  {{ sec_id }} .pc-product-highlight__title {
-    margin: 40px 0;
+    z-index: 10;
+    max-width: {{ section.settings.content_width }}%;
+    margin: 0 auto;
     padding: 20px;
-    width: calc(100% + 80px);
-    font-size: {{ section.settings.title_size }}px;
+    color: {{ section.settings.text_color }};
+    text-align: {{ section.settings.text_alignment }};
   }
 
-  {{ sec_id }} .pc-product-highlight__title::after {
-    left: auto;
-    right: 0;
-    border-color: {{ section.settings.highlight_accent_color }} transparent transparent {{ section.settings.highlight_accent_color }};
+  {{ sec_id }} .pc-wave {
+    position: absolute;
+    width: 100%;
+    height: {{ section.settings.wave_height }}px;
+    bottom: 0;
+    left: 0;
+    transform-origin: center bottom;
   }
 
-  {{ sec_id }} .pc-product-highlight__second {
-    line-height: 1.6;
-    font-size: {{ section.settings.description_size }}px;
-    font-style: {{ section.settings.description_style }};
-    color: {{ section.settings.description_color }};
+  {{ sec_id }} .pc-wave--primary {
+    background-color: {{ section.settings.primary_wave_color }};
+    z-index: 5;
+    animation: pc-wave-animation-{{ last_part }} 8s ease-in-out infinite alternate;
+  }
+
+  {{ sec_id }} .pc-wave--secondary {
+    background-color: {{ section.settings.secondary_wave_color }};
+    z-index: 1;
+    animation: pc-wave-animation-{{ last_part }} 10s ease-in-out infinite alternate-reverse;
+    opacity: 0.7;
+    height: {{ section.settings.wave_height | times: 0.8 }}px;
+  }
+
+  @keyframes pc-wave-animation-{{ last_part }} {
+    0% {
+      transform: scaleX(1) skew(0, -8deg);
+      border-radius: 50% 50% 0 0;
+    }
+    50% {
+      transform: scaleX(1.2) skew(10deg, 0);
+      border-radius: 40% 60% 0 0;
+    }
+    100% {
+      transform: scaleX(1) skew(0, 8deg);
+      border-radius: 60% 40% 0 0;
+    }
   }
 
   @media (max-width: 768px) {
-    {{ sec_id }} .pc-product-highlight {
+    {{ sec_id }} .pc-wave-layout {
+      min-height: {{ section.settings.mobile_min_height }}px;
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+      margin-bottom: {{ section.settings.mobile_margin_bottom }}px;
     }
-    
-    {{ sec_id }} .pc-product-highlight__container {
-      width: 90%;
+
+    {{ sec_id }} .pc-wave-layout__content {
+      max-width: 90%;
     }
-    
-    {{ sec_id }} .pc-product-highlight__first {
-      font-size: {{ section.settings.mobile_first_text_size }}px;
+
+    {{ sec_id }} .pc-wave {
+      height: {{ section.settings.mobile_wave_height }}px;
     }
-    
-    {{ sec_id }} .pc-product-highlight__title {
-      font-size: {{ section.settings.mobile_title_size }}px;
-    }
-    
-    {{ sec_id }} .pc-product-highlight__second {
-      font-size: {{ section.settings.mobile_description_size }}px;
+
+    {{ sec_id }} .pc-wave--secondary {
+      height: {{ section.settings.mobile_wave_height | times: 0.8 }}px;
     }
   }
 </style>
 
 {% schema %}
 {
-  "name": "RW - Wavy Layout #1",
+  "name": "PWC - Wave Layout #1",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -129,31 +101,15 @@
       "content": "Content"
     },
     {
-      "type": "text",
-      "id": "first_text",
-      "label": "First Text",
-      "default": "NEW ARRIVAL"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Title",
-      "default": "SUMMER COLLECTION"
-    },
-    {
       "type": "richtext",
-      "id": "description",
-      "label": "Description",
-      "default": "<p>Discover our new summer collection with fresh colors and comfortable fabrics.</p>"
-    },
-    {
-      "type": "header",
-      "content": "Layout Settings"
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Your content here</p>"
     },
     {
       "type": "range",
-      "id": "container_width",
-      "label": "Container Width",
+      "id": "content_width",
+      "label": "Content Width",
       "min": 50,
       "max": 100,
       "step": 5,
@@ -161,122 +117,98 @@
       "default": 80
     },
     {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
       "type": "header",
-      "content": "Desktop Styles"
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Minimum Height (Desktop)",
+      "min": 100,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "wave_height",
+      "label": "Wave Height (Desktop)",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 150
     },
     {
       "type": "range",
       "id": "desktop_padding_top",
-      "label": "Top Padding",
+      "label": "Top Padding (Desktop)",
       "min": 0,
-      "max": 100,
-      "step": 5,
+      "max": 200,
+      "step": 10,
       "unit": "px",
-      "default": 20
+      "default": 50
     },
     {
       "type": "range",
       "id": "desktop_padding_right",
-      "label": "Right Padding",
+      "label": "Right Padding (Desktop)",
       "min": 0,
-      "max": 100,
-      "step": 5,
+      "max": 200,
+      "step": 10,
       "unit": "px",
-      "default": 20
+      "default": 50
     },
     {
       "type": "range",
       "id": "desktop_padding_bottom",
-      "label": "Bottom Padding",
+      "label": "Bottom Padding (Desktop)",
       "min": 0,
-      "max": 100,
-      "step": 5,
+      "max": 200,
+      "step": 10,
       "unit": "px",
-      "default": 20
+      "default": 100
     },
     {
       "type": "range",
       "id": "desktop_padding_left",
-      "label": "Left Padding",
+      "label": "Left Padding (Desktop)",
       "min": 0,
-      "max": 100,
-      "step": 5,
+      "max": 200,
+      "step": 10,
       "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#f1f1f1"
-    },
-    {
-      "type": "color",
-      "id": "container_background",
-      "label": "Container Background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "border_color",
-      "label": "Border Color",
-      "default": "#dddddd"
-    },
-    {
-      "type": "checkbox",
-      "id": "shadow_enabled",
-      "label": "Enable Shadow",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Typography (Desktop)"
+      "default": 50
     },
     {
       "type": "range",
-      "id": "first_text_size",
-      "label": "First Text Size",
-      "min": 10,
-      "max": 50,
-      "step": 1,
+      "id": "desktop_margin_bottom",
+      "label": "Bottom Margin (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 10,
       "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "title_size",
-      "label": "Title Size",
-      "min": 10,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "description_size",
-      "label": "Description Size",
-      "min": 10,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "select",
-      "id": "description_style",
-      "label": "Description Style",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
-        },
-        {
-          "value": "italic",
-          "label": "Italic"
-        }
-      ],
-      "default": "italic"
+      "default": 0
     },
     {
       "type": "header",
@@ -284,43 +216,27 @@
     },
     {
       "type": "color",
-      "id": "highlight_color",
-      "label": "Highlight Color",
-      "default": "#00bcd4"
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f8f9fa"
     },
     {
       "type": "color",
-      "id": "highlight_text_color",
-      "label": "Highlight Text Color",
-      "default": "#ffffff"
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
     },
     {
       "type": "color",
-      "id": "highlight_accent_color",
-      "label": "Highlight Accent Color",
-      "default": "#196d78"
+      "id": "primary_wave_color",
+      "label": "Primary Wave Color",
+      "default": "#005196"
     },
     {
       "type": "color",
-      "id": "description_color",
-      "label": "Description Color",
-      "default": "#444444"
-    },
-    {
-      "type": "select",
-      "id": "highlight_font_weight",
-      "label": "Highlight Font Weight",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
-        },
-        {
-          "value": "bold",
-          "label": "Bold"
-        }
-      ],
-      "default": "bold"
+      "id": "secondary_wave_color",
+      "label": "Secondary Wave Color",
+      "default": "#6192bc"
     },
     {
       "type": "header",
@@ -328,78 +244,88 @@
     },
     {
       "type": "range",
+      "id": "mobile_min_height",
+      "label": "Minimum Height (Mobile)",
+      "min": 100,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "mobile_wave_height",
+      "label": "Wave Height (Mobile)",
+      "min": 30,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
       "id": "mobile_padding_top",
-      "label": "Top Padding",
+      "label": "Top Padding (Mobile)",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 15
+      "default": 30
     },
     {
       "type": "range",
       "id": "mobile_padding_right",
-      "label": "Right Padding",
+      "label": "Right Padding (Mobile)",
       "min": 0,
       "max": 100,
       "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_bottom",
-      "label": "Bottom Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_left",
-      "label": "Left Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "mobile_first_text_size",
-      "label": "First Text Size",
-      "min": 10,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "mobile_title_size",
-      "label": "Title Size",
-      "min": 10,
-      "max": 30,
-      "step": 1,
       "unit": "px",
       "default": 20
     },
     {
       "type": "range",
-      "id": "mobile_description_size",
-      "label": "Description Size",
-      "min": 10,
-      "max": 24,
-      "step": 1,
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
       "unit": "px",
-      "default": 16
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "label": "Left Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_margin_bottom",
+      "label": "Bottom Margin (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Animation Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "Enable Wave Animation",
+      "default": true
     }
   ],
   "presets": [
     {
-      "name": "RW - Wavy Layout #1",
+      "name": "PWC - Wave Layout #1",
       "category": "Custom"
     }
   ]
