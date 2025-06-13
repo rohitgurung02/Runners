@@ -98,7 +98,7 @@
   {{ sec_id }} form {
     width: 100%;
     position: relative;
-    margin-top: {{ section.settings.form_margin_top_desktop }}px;
+    padding-top: {{ section.settings.form_padding_top_desktop }}px;
     padding: {{ section.settings.form_padding_top_desktop }}px 0;
   }
 
@@ -907,16 +907,6 @@
       "step": 5,
       "unit": "px",
       "default": 60
-    },
-    {
-      "type": "range",
-      "id": "form_margin_top_desktop",
-      "label": "Form Margin Top (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 40
     },
     {
       "type": "range",
