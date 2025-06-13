@@ -742,40 +742,6 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 0
       }
-    },
-    "rw_wavy_layout_xEEDkm": {
-      "type": "rw-wavy-layout",
-      "name": "RW - Wavy Layout #1",
-      "settings": {
-        "first_text": "NEW ARRIVAL",
-        "title": "SUMMER COLLECTION",
-        "description": "<p>Discover our new summer collection with fresh colors and comfortable fabrics.</p>",
-        "container_width": 80,
-        "desktop_padding_top": 20,
-        "desktop_padding_right": 20,
-        "desktop_padding_bottom": 20,
-        "desktop_padding_left": 20,
-        "background_color": "#f1f1f1",
-        "container_background": "#ffffff",
-        "border_color": "#dddddd",
-        "shadow_enabled": true,
-        "first_text_size": 20,
-        "title_size": 24,
-        "description_size": 18,
-        "description_style": "italic",
-        "highlight_color": "#00bcd4",
-        "highlight_text_color": "#ffffff",
-        "highlight_accent_color": "#196d78",
-        "description_color": "#444444",
-        "highlight_font_weight": "bold",
-        "mobile_padding_top": 15,
-        "mobile_padding_right": 15,
-        "mobile_padding_bottom": 15,
-        "mobile_padding_left": 15,
-        "mobile_first_text_size": 16,
-        "mobile_title_size": 20,
-        "mobile_description_size": 16
-      }
     }
   },
   "order": [
@@ -786,7 +752,6 @@
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
-    "rw_contact_us_XKkCrW",
-    "rw_wavy_layout_xEEDkm"
+    "rw_contact_us_XKkCrW"
   ]
 }
