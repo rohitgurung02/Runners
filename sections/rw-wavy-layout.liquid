@@ -108,10 +108,6 @@
       font-size: {{ section.settings.mobile_title_font_size }}px;
     }
 
-    {{ sec_id }} .pc-wave-banner__subtitle-{{ last_part }} {
-      font-size: {{ section.settings.mobile_subtitle_font_size }}px;
-    }
-
     {{ sec_id }} .pc-wave-banner__waves-{{ last_part }} {
       height: {{ section.settings.mobile_wave_height }}px;
     }
@@ -301,16 +297,6 @@
       "step": 1,
       "unit": "px",
       "default": 10
-    },
-    {
-      "type": "range",
-      "id": "subtitle_font_size",
-      "label": "Subtitle Font Size (Desktop)",
-      "min": 10,
-      "max": 60,
-      "step": 1,
-      "unit": "px",
-      "default": 24
     },
     {
       "type": "range",
