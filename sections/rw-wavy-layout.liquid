@@ -113,15 +113,6 @@
     {%- if section.settings.title != blank -%}
       <h2 class="pc-wave-banner__title-{{ last_part }}">{{ section.settings.title }}</h2>
     {%- endif -%}
-    {%- if section.settings.image != blank -%}
-      <div class="pc-wave-banner__image-{{ last_part }}">
-        {{- section.settings.image | image_url: width: section.settings.image.width, height: section.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt -}}
-      </div>
-    {%- else -%}
-      <div class="pc-wave-banner__image-{{ last_part }}">
-        {{ 'product-1' | placeholder_svg_tag }}
-      </div>
-    {%- endif -%}
   </div>
   <div class="pc-wave-banner__waves-{{ last_part }}">
     <svg class="pc-wave-banner__waves-svg-{{ last_part }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
