@@ -742,36 +742,6 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 0
       }
-    },
-    "rw_wavy_layout_9rNifa": {
-      "type": "rw-wavy-layout",
-      "settings": {
-        "title": "wavy Layout",
-        "container_width": 100,
-        "container_height": 430,
-        "wave_height": 100,
-        "background_color": "#ffffff",
-        "background_gradient": "",
-        "enable_shadow": true,
-        "wave_color_1": "#3379b7",
-        "wave_color_2": "#1b3f5f",
-        "wave_color_3": "#67a1d5",
-        "wave_color_4": "#bfe2ff",
-        "title_font_size": 38,
-        "title_font_weight": 500,
-        "title_margin_bottom": 117,
-        "margin_top": 0,
-        "mobile_container_width": 100,
-        "mobile_container_height": 200,
-        "mobile_wave_height": 80,
-        "mobile_title_font_size": 32,
-        "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_padding_top": 0,
-        "mobile_padding_right": 0,
-        "mobile_padding_bottom": 0,
-        "mobile_padding_left": 0
-      }
     }
   },
   "order": [
@@ -782,7 +752,6 @@
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
-    "rw_contact_us_XKkCrW",
-    "rw_wavy_layout_9rNifa"
+    "rw_contact_us_XKkCrW"
   ]
 }
