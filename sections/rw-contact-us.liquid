@@ -1,10 +1,10 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
-{%- assign parts = sec_id | split: '_' -%}
+{%- assign parts = sec_id | split: '-' -%}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} .pc-contact-form {
+  {{ sec_id }} .pc-contact-form-{{ last_part }} {
     --pc-primary-color: {{ section.settings.primary_color }};
     --pc-secondary-color: {{ section.settings.secondary_color }};
     --pc-bg-color: {{ section.settings.bg_color }};
@@ -17,7 +17,7 @@
     --pc-dark-h1-color: {{ section.settings.dark_heading_color }};
   }
 
-  {{ sec_id }} .pc-contact-form.dark-mode {
+  {{ sec_id }} .pc-contact-form-{{ last_part }}.dark-mode {
     --pc-primary-color: var(--pc-dark-primary-color);
     --pc-secondary-color: var(--pc-dark-secondary-color);
     --pc-bg-color: var(--pc-dark-bg-color);
@@ -25,18 +25,18 @@
     --pc-h1-color: var(--pc-dark-h1-color);
   }
 
-  {{ sec_id }} .pc-contact-container {
-    margin-top: {{ section.settings.container_margin_top_desktop }}px !important;
-    margin-bottom: {{ section.settings.container_margin_top_bottom }}px !important;
+  {{ sec_id }} .pc-contact-container-{{ last_part }} {
+    margin-top: {{ section.settings.container_margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.container_margin_bottom_desktop }}px;
   }
 
-  {{ sec_id }} .pc-contact-form * {
+  {{ sec_id }} .pc-contact-form-{{ last_part }} * {
     margin: 0;
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
   }
 
-  {{ sec_id }} .pc-contact-container {
+  {{ sec_id }} .pc-contact-container-{{ last_part }} {
     display: flex;
     width: {{ section.settings.container_width_desktop }}%;
     max-width: {{ section.settings.container_max_width_desktop }}px;
@@ -48,7 +48,7 @@
     {% endif %}
   }
 
-  {{ sec_id }} .pc-left-col {
+  {{ sec_id }} .pc-left-col-{{ last_part }} {
     width: {{ section.settings.image_width_desktop }}%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -56,21 +56,21 @@
     align-items: flex-start;
   }
 
-  {{ sec_id }} .pc-left-col img,
-  {{ sec_id }} .pc-placeholder-image {
+  {{ sec_id }} .pc-left-col-{{ last_part }} img,
+  {{ sec_id }} .pc-placeholder-image-{{ last_part }} {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  {{ sec_id }} .pc-right-col {
+  {{ sec_id }} .pc-right-col-{{ last_part }} {
     background: var(--pc-bg-color);
     width: {{ 100 | minus: section.settings.image_width_desktop }}%;
     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
     position: relative;
   }
 
-  {{ sec_id }} .pc-heading {
+  {{ sec_id }} .pc-heading-{{ last_part }} {
     color: var(--pc-h1-color);
     text-transform: uppercase;
     font-size: {{ section.settings.heading_font_size_desktop }}px;
@@ -79,7 +79,7 @@
     margin-bottom: {{ section.settings.heading_margin_bottom_desktop }}px;
   }
 
-  {{ sec_id }} .pc-subheading {
+  {{ sec_id }} .pc-subheading-{{ last_part }} {
     color: var(--pc-secondary-color);
     font-size: {{ section.settings.subheading_font_size_desktop }}px;
     letter-spacing: {{ section.settings.subheading_letter_spacing_desktop }}px;
@@ -89,22 +89,21 @@
   }
 
   {{ sec_id }} label,
-  {{ sec_id }} .pc-description {
+  {{ sec_id }} .pc-description-{{ last_part }} {
     color: var(--pc-secondary-color);
     text-transform: uppercase;
     font-size: {{ section.settings.label_font_size_desktop }}px;
   }
 
-  {{ sec_id }} form {
+  {{ sec_id }} .pc-form-{{ last_part }} {
     width: 100%;
     position: relative;
-    padding-top: {{ section.settings.form_padding_top_desktop }}px;
     padding: {{ section.settings.form_padding_top_desktop }}px 0;
   }
 
-  {{ sec_id }} input,
-  {{ sec_id }} textarea,
-  {{ sec_id }} label {
+  {{ sec_id }} .pc-form-{{ last_part }} input,
+  {{ sec_id }} .pc-form-{{ last_part }} textarea,
+  {{ sec_id }} .pc-form-{{ last_part }} label {
     width: 100%;
     display: block;
   }
@@ -130,7 +129,7 @@
     resize: none;
   }
 
-  {{ sec_id }} button {
+  {{ sec_id }} .pc-button-{{ last_part }} {
     text-transform: uppercase;
     font-weight: {{ section.settings.button_font_weight }};
     background: var(--pc-button-color);
@@ -142,20 +141,20 @@
     outline: none;
     cursor: pointer;
     font-size: {{ section.settings.button_font_size_desktop }}px;
-    margin-top: {{ section.settings.button_margin_top_desktop }}px !important;
+    margin-top: {{ section.settings.button_margin_top_desktop }}px;
   }
 
   {{ sec_id }} input:hover,
   {{ sec_id }} textarea:hover,
-  {{ sec_id }} button:hover {
+  {{ sec_id }} .pc-button-{{ last_part }}:hover {
     opacity: 0.5;
   }
 
-  {{ sec_id }} button:active {
+  {{ sec_id }} .pc-button-{{ last_part }}:active {
     opacity: 0.8;
   }
 
-  {{ sec_id }} .pc-theme-switch-wrapper {
+  {{ sec_id }} .pc-theme-switch-wrapper-{{ last_part }} {
     display: flex;
     align-items: center;
     text-align: center;
@@ -165,23 +164,23 @@
     right: {{ section.settings.theme_switch_right_desktop }}px;
   }
 
-  {{ sec_id }} .pc-description {
+  {{ sec_id }} .pc-description-{{ last_part }} {
     margin-left: {{ section.settings.theme_label_margin_left_desktop }}px;
     font-size: {{ section.settings.theme_label_font_size_desktop }}px;
   }
 
-  {{ sec_id }} .pc-theme-switch {
+  {{ sec_id }} .pc-theme-switch-{{ last_part }} {
     display: inline-block;
     height: {{ section.settings.theme_switch_height_desktop }}px;
     position: relative;
     width: {{ section.settings.theme_switch_width_desktop }}px;
   }
 
-  {{ sec_id }} .pc-theme-switch input {
+  {{ sec_id }} .pc-theme-switch-{{ last_part }} input {
     display: none;
   }
 
-  {{ sec_id }} .pc-slider {
+  {{ sec_id }} .pc-slider-{{ last_part }} {
     background-color: #ccc;
     bottom: 0;
     cursor: pointer;
@@ -192,7 +191,7 @@
     transition: .4s;
   }
 
-  {{ sec_id }} .pc-slider:before {
+  {{ sec_id }} .pc-slider-{{ last_part }}:before {
     background-color: #fff;
     bottom: {{ section.settings.theme_switch_knob_offset_desktop }}px;
     content: "";
@@ -203,32 +202,32 @@
     transition: .4s;
   }
 
-  {{ sec_id }} input:checked + .pc-slider {
+  {{ sec_id }} input:checked + .pc-slider-{{ last_part }} {
     background-color: var(--pc-button-color);
   }
 
-  {{ sec_id }} .pc-slider.pc-round {
+  {{ sec_id }} .pc-slider-{{ last_part }}.pc-round-{{ last_part }} {
     border-radius: {{ section.settings.theme_switch_border_radius_desktop }}px;
   }
 
-  {{ sec_id }} .pc-slider.pc-round:before {
+  {{ sec_id }} .pc-slider-{{ last_part }}.pc-round-{{ last_part }}:before {
     border-radius: 50%;
   }
 
-  {{ sec_id }} .pc-error,
-  {{ sec_id }} .pc-success-msg {
+  {{ sec_id }} .pc-error-{{ last_part }},
+  {{ sec_id }} .pc-success-msg-{{ last_part }} {
     width: 100%;
     font-size: {{ section.settings.message_font_size_desktop }}px;
     text-transform: uppercase;
     color: var(--pc-secondary-color);
   }
 
-  {{ sec_id }} .pc-success-msg {
+  {{ sec_id }} .pc-success-msg-{{ last_part }} {
     transition-delay: 3s;
   }
 
   @media only screen and (max-width: 768px) {
-    {{ sec_id }} .pc-contact-container {
+    {{ sec_id }} .pc-contact-container-{{ last_part }} {
       flex-direction: column;
       width: {{ section.settings.container_width_mobile }}%;
       max-width: {{ section.settings.container_max_width_mobile }}px;
@@ -236,23 +235,23 @@
       min-height: {{ section.settings.container_height_mobile }}px;
     }
 
-    {{ sec_id }} .pc-left-col {
+    {{ sec_id }} .pc-left-col-{{ last_part }} {
       width: 100%;
       height: {{ section.settings.image_height_mobile }}px;
     }
 
-    {{ sec_id }} .pc-right-col {
+    {{ sec_id }} .pc-right-col-{{ last_part }} {
       width: 100%;
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
     }
 
-    {{ sec_id }} .pc-heading {
+    {{ sec_id }} .pc-heading-{{ last_part }} {
       font-size: {{ section.settings.heading_font_size_mobile }}px;
       letter-spacing: {{ section.settings.heading_letter_spacing_mobile }}px;
       margin-bottom: {{ section.settings.heading_margin_bottom_mobile }}px;
     }
 
-    {{ sec_id }} .pc-subheading {
+    {{ sec_id }} .pc-subheading-{{ last_part }} {
       font-size: {{ section.settings.subheading_font_size_mobile }}px;
       letter-spacing: {{ section.settings.subheading_letter_spacing_mobile }}px;
       margin: {{ section.settings.subheading_margin_top_mobile }}px 0 {{ section.settings.subheading_margin_bottom_mobile }}px;
@@ -260,11 +259,11 @@
     }
 
     {{ sec_id }} label,
-    {{ sec_id }} .pc-description {
+    {{ sec_id }} .pc-description-{{ last_part }} {
       font-size: {{ section.settings.label_font_size_mobile }}px;
     }
 
-    {{ sec_id }} form {
+    {{ sec_id }} .pc-form-{{ last_part }} {
       margin-top: {{ section.settings.form_margin_top_mobile }}px;
       padding: {{ section.settings.form_padding_top_mobile }}px 0;
     }
@@ -276,74 +275,74 @@
       font-size: {{ section.settings.input_font_size_mobile }}px;
     }
 
-    {{ sec_id }} button {
+    {{ sec_id }} .pc-button-{{ last_part }} {
       width: {{ section.settings.button_width_mobile }}px;
       height: {{ section.settings.button_height_mobile }}px;
       font-size: {{ section.settings.button_font_size_mobile }}px;
       margin-top: {{ section.settings.button_margin_top_mobile }}px;
     }
 
-    {{ sec_id }} .pc-theme-switch-wrapper {
+    {{ sec_id }} .pc-theme-switch-wrapper-{{ last_part }} {
       width: {{ section.settings.theme_switch_width_mobile }}px;
       top: {{ section.settings.theme_switch_top_mobile }}px;
       right: {{ section.settings.theme_switch_right_mobile }}px;
     }
 
-    {{ sec_id }} .pc-description {
+    {{ sec_id }} .pc-description-{{ last_part }} {
       margin-left: {{ section.settings.theme_label_margin_left_mobile }}px;
       font-size: {{ section.settings.theme_label_font_size_mobile }}px;
     }
 
-    {{ sec_id }} .pc-theme-switch {
+    {{ sec_id }} .pc-theme-switch-{{ last_part }} {
       height: {{ section.settings.theme_switch_height_mobile }}px;
       width: {{ section.settings.theme_switch_width_mobile }}px;
     }
 
-    {{ sec_id }} .pc-slider:before {
+    {{ sec_id }} .pc-slider-{{ last_part }}:before {
       bottom: {{ section.settings.theme_switch_knob_offset_mobile }}px;
       width: {{ section.settings.theme_switch_knob_size_mobile }}px;
       height: {{ section.settings.theme_switch_knob_size_mobile }}px;
       left: {{ section.settings.theme_switch_knob_offset_mobile }}px;
     }
 
-    {{ sec_id }} input:checked + .pc-slider:before {
+    {{ sec_id }} input:checked + .pc-slider-{{ last_part }}:before {
       transform: translateX({{ section.settings.theme_switch_knob_translate_mobile }}px);
     }
 
-    {{ sec_id }} .pc-slider.pc-round {
+    {{ sec_id }} .pc-slider-{{ last_part }}.pc-round-{{ last_part }} {
       border-radius: {{ section.settings.theme_switch_border_radius_mobile }}px;
     }
 
-    {{ sec_id }} .pc-error,
-    {{ sec_id }} .pc-success-msg {
+    {{ sec_id }} .pc-error-{{ last_part }},
+    {{ sec_id }} .pc-success-msg-{{ last_part }} {
       margin: {{ section.settings.message_margin_top_mobile }}px 0;
       font-size: {{ section.settings.message_font_size_mobile }}px;
     }
   }
 </style>
 
-<pc-contact-form-{{ last_part }} class="pc-contact-form">
-  <div class="pc-contact-container">
-    <div class="pc-left-col">
+<pc-contact-form-{{ last_part }} class="pc-contact-form-{{ last_part }}">
+  <div class="pc-contact-container-{{ last_part }}">
+    <div class="pc-left-col-{{ last_part }}">
       {%- if section.settings.image != blank -%}
-        {{- section.settings.image | image_url: width: section.settings.image.width, height: section.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt -}}
+        {{- section.settings.image | image_url: width: section.settings.image.width, height: section.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt, class: 'pc-image-' | append: last_part -}}
       {%- else -%}
-        {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-image' }}
+        {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-image-' | append: last_part }}
       {%- endif -%}
     </div>
-    <div class="pc-right-col">
-      <div class="pc-theme-switch-wrapper">
-        <label class="pc-theme-switch" for="pc-checkbox-{{ last_part }}">
+    <div class="pc-right-col-{{ last_part }}">
+      <div class="pc-theme-switch-wrapper-{{ last_part }}">
+        <label class="pc-theme-switch-{{ last_part }}" for="pc-checkbox-{{ last_part }}">
           <input type="checkbox" id="pc-checkbox-{{ last_part }}" />
-          <div class="pc-slider pc-round"></div>
+          <div class="pc-slider-{{ last_part }} pc-round-{{ last_part }}"></div>
         </label>
-        <div class="pc-description">{{ section.settings.dark_mode_label }}</div>
+        <div class="pc-description-{{ last_part }}">{{ section.settings.dark_mode_label }}</div>
       </div>
       
-      <h1 class="pc-heading">{{ section.settings.heading }}</h1>
-      <p class="pc-subheading">{{ section.settings.subheading }}</p>
+      <h1 class="pc-heading-{{ last_part }}">{{ section.settings.heading }}</h1>
+      <p class="pc-subheading-{{ last_part }}">{{ section.settings.subheading }}</p>
       
-      <form id="pc-contact-form-{{ last_part }}" class="pc-contact-form" method="post">
+      <form id="pc-form-{{ last_part }}" class="pc-form-{{ last_part }}" method="post">
         <label for="pc-name-{{ last_part }}">{{ section.settings.name_label }}</label>
         <input type="text" id="pc-name-{{ last_part }}" name="name" required>
         
@@ -353,20 +352,20 @@
         <label for="pc-message-{{ last_part }}">{{ section.settings.message_label }}</label>
         <textarea rows="5" id="pc-message-{{ last_part }}" name="message" required></textarea>
         
-        <button type="submit" id="pc-submit-{{ last_part }}" name="submit">{{ section.settings.button_text }}</button>
+        <button type="submit" class="pc-button-{{ last_part }}" id="pc-submit-{{ last_part }}" name="submit">{{ section.settings.button_text }}</button>
       </form>
       
-      <div id="pc-error-{{ last_part }}" class="pc-error"></div>
-      <div id="pc-success-msg-{{ last_part }}" class="pc-success-msg"></div>
+      <div id="pc-error-{{ last_part }}" class="pc-error-{{ last_part }}"></div>
+      <div id="pc-success-msg-{{ last_part }}" class="pc-success-msg-{{ last_part }}"></div>
     </div>
   </div>
 </pc-contact-form-{{ last_part }}>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const toggleSwitch = document.querySelector('{{ sec_id }} .pc-theme-switch input[type="checkbox"]');
+    const toggleSwitch = document.querySelector('{{ sec_id }} .pc-theme-switch-{{ last_part }} input[type="checkbox"]');
     const contactForm = document.querySelector('pc-contact-form-{{ last_part }}');
-    const currentTheme = localStorage.getItem('theme');
+    const currentTheme = localStorage.getItem('theme-{{ last_part }}');
 
     if (currentTheme === 'dark') {
       contactForm.classList.add('dark-mode');
@@ -376,10 +375,10 @@
     function switchTheme(e) {
       if (e.target.checked) {
         contactForm.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark');
+        localStorage.setItem('theme-{{ last_part }}', 'dark');
       } else {
         contactForm.classList.remove('dark-mode');
-        localStorage.setItem('theme', 'light');
+        localStorage.setItem('theme-{{ last_part }}', 'light');
       }
     }
 
@@ -387,13 +386,13 @@
       toggleSwitch.addEventListener('change', switchTheme, false);
     }
 
-    const contactFormElement = document.getElementById('pc-contact-form-{{ last_part }}');
+    const contactFormElement = document.getElementById('pc-form-{{ last_part }}');
     const errorElement = document.getElementById('pc-error-{{ last_part }}');
     const successMsg = document.getElementById('pc-success-msg-{{ last_part }}');
     const submitBtn = document.getElementById('pc-submit-{{ last_part }}');
 
     if (contactFormElement && submitBtn) {
-      const validate = (e) => {
+      contactFormElement.addEventListener('submit', function(e) {
         e.preventDefault();
         const name = document.getElementById('pc-name-{{ last_part }}');
         const email = document.getElementById('pc-email-{{ last_part }}');
@@ -403,44 +402,66 @@
         successMsg.innerHTML = '';
 
         if (name.value.length < 3) {
-          errorElement.innerHTML = '{{ section.settings.name_error_message }}';
+          errorElement.innerHTML = '{{ section.settings.name_error_message | escape }}';
           return false;
         } 
         
-        if (!(email.value.includes('.') && (email.value.includes('@')))) {
-          errorElement.innerHTML = '{{ section.settings.email_error_message }}';
-          return false;
-        } 
-
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-          errorElement.innerHTML = '{{ section.settings.email_error_message }}';
+          errorElement.innerHTML = '{{ section.settings.email_error_message | escape }}';
           return false;
         }
 
         if (message.value.length < 15) {
-          errorElement.innerHTML = '{{ section.settings.message_error_message }}';
+          errorElement.innerHTML = '{{ section.settings.message_error_message | escape }}';
           return false;
         }
 
-        successMsg.innerHTML = '{{ section.settings.success_message }}';
+        successMsg.innerHTML = '{{ section.settings.success_message | escape }}';
 
-        setTimeout(function () {
+        setTimeout(function() {
           successMsg.innerHTML = '';
           contactFormElement.reset();
         }, 6000);
 
         return true;
-      }
-
-      submitBtn.addEventListener('click', validate);
+      });
     }
   });
 </script>
 
 {% schema %}
 {
-  "name": "RW Contact Us",
+  "name": "PWC - Contact Form #1",
   "settings": [
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left Side Image"
+    },
+    {
+      "type": "range",
+      "id": "image_width_desktop",
+      "label": "Image Width (Desktop)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "label": "Image Height (Mobile)",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 400
+    },
     {
       "type": "header",
       "content": "Container Settings"
@@ -505,7 +526,7 @@
       "unit": "px",
       "default": 800
     },
-     {
+    {
       "type": "range",
       "id": "container_margin_top_desktop",
       "label": "Container Margin Top (Desktop)",
@@ -524,36 +545,6 @@
       "step": 1,
       "unit": "px",
       "default": 20
-    },
-    
-    {
-      "type": "header",
-      "content": "Image Settings"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Left Side Image"
-    },
-    {
-      "type": "range",
-      "id": "image_width_desktop",
-      "label": "Image Width (Desktop)",
-      "min": 20,
-      "max": 80,
-      "step": 5,
-      "unit": "%",
-      "default": 45
-    },
-    {
-      "type": "range",
-      "id": "image_height_mobile",
-      "label": "Image Height (Mobile)",
-      "min": 200,
-      "max": 800,
-      "step": 50,
-      "unit": "px",
-      "default": 400
     },
     {
       "type": "header",
@@ -795,7 +786,7 @@
       "max": 24,
       "step": 1,
       "unit": "px",
-      "default": 13
+      "default": 10
     },
     {
       "type": "range",
@@ -1389,7 +1380,7 @@
   ],
   "presets": [
     {
-      "name": "RW Contact Us",
+      "name": "PWC - Contact Form #1",
       "category": "Custom"
     }
   ]
