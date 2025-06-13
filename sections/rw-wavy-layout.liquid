@@ -4,10 +4,11 @@
 
 <style>
   {{ sec_id }} .pc-svg-wave {
-    width: 100%;
+    width: {{ section.settings.container_width }}%;
+    height: {{ section.settings.container_height }}px;
+    margin: {{ section.settings.desktop_margin_top }}px auto {{ section.settings.desktop_margin_bottom }}px;
     background-color: {{ section.settings.background_color }};
     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
-    margin-bottom: {{ section.settings.desktop_margin_bottom }}px;
   }
 
   {{ sec_id }} .pc-svg-wave__container {
@@ -86,8 +87,10 @@
 
   @media (max-width: 768px) {
     {{ sec_id }} .pc-svg-wave {
+      width: {{ section.settings.mobile_container_width }}%;
+      height: {{ section.settings.mobile_container_height }}px;
+      margin: {{ section.settings.mobile_margin_top }}px auto {{ section.settings.mobile_margin_bottom }}px;
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
-      margin-bottom: {{ section.settings.mobile_margin_bottom }}px;
     }
 
     {{ sec_id }} .pc-svg-wave__container {
@@ -115,6 +118,30 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Container Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container Width (Desktop)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "container_height",
+      "label": "Container Height (Desktop)",
+      "min": 50,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "default": 300
+    },
     {
       "type": "header",
       "content": "Wave Settings"
@@ -233,6 +260,26 @@
     },
     {
       "type": "range",
+      "id": "desktop_margin_top",
+      "label": "Top Margin",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "desktop_margin_bottom",
+      "label": "Bottom Margin",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
       "id": "desktop_padding_top",
       "label": "Top Padding",
       "min": 0,
@@ -272,18 +319,28 @@
       "default": 0
     },
     {
-      "type": "range",
-      "id": "desktop_margin_bottom",
-      "label": "Bottom Margin",
-      "min": 0,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "default": 0
-    },
-    {
       "type": "header",
       "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_width",
+      "label": "Container Width (Mobile)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_height",
+      "label": "Container Height (Mobile)",
+      "min": 50,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "default": 200
     },
     {
       "type": "range",
@@ -294,6 +351,26 @@
       "step": 10,
       "unit": "px",
       "default": 150
+    },
+    {
+      "type": "range",
+      "id": "mobile_margin_top",
+      "label": "Top Margin",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_margin_bottom",
+      "label": "Bottom Margin",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "range",
@@ -329,16 +406,6 @@
       "type": "range",
       "id": "mobile_padding_left",
       "label": "Left Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_margin_bottom",
-      "label": "Bottom Margin",
       "min": 0,
       "max": 100,
       "step": 5,
