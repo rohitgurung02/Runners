@@ -1,44 +1,7 @@
-{%- assign parts = sec_id | split: '_' -%}
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-timeline-{{ last_part }} class="pc-timeline-{{ last_part }}">
-  <div class="pc-timeline-container-{{ last_part }}">
-    <div class="pc-timeline-steps-{{ last_part }}">
-      {% for block in section.blocks %}
-        <div class="pc-timeline-step-{{ last_part }} {% if block.settings.alignment == 'left' %}pc-left-{{ last_part }}{% elsif block.settings.alignment == 'center' %}pc-center-{{ last_part }}{% endif %} {% if block.settings.background_color == 'orange' %}pc-bg-orange-{{ last_part }}{% else %}pc-bg-white-{{ last_part }}{% endif %}">
-          <div class="pc-timeline-content-{{ last_part }}">
-            {% if block.settings.year != blank %}
-              <div class="pc-timeline-year-{{ last_part }}">{{ block.settings.year }}</div>
-            {% endif %}
-            {% if block.settings.title != blank %}
-              <h2 class="pc-timeline-title-{{ last_part }}">{{ block.settings.title }}</h2>
-            {% endif %}
-            {% if block.settings.description != blank %}
-              <div class="pc-timeline-description-{{ last_part }}">{{ block.settings.description }}</div>
-            {% endif %}
-            {% if block.settings.image != blank %}
-              <div class="pc-timeline-hidden-box-{{ last_part }}">
-                <figure>
-                  {{ block.settings.image | image_url: width: block.settings.image.width, height: block.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt }}
-                </figure>
-              </div>
-            {% endif %}
-            <button class="pc-timeline-toggle-{{ last_part }}">
-              <svg class="pc-timeline-toggle-icon-{{ last_part }}" viewBox="0 0 24 24">
-                <path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" fill="none"/>
-              </svg>
-            </button>
-          </div>
-          <i class="pc-timeline-line-{{ last_part }}"></i>
-          {% if block.settings.date != blank %}
-            <div class="pc-timeline-date-{{ last_part }} {% if block.settings.date_size == 'small' %}pc-small-date-{{ last_part }}{% endif %}">{{ block.settings.date }}</div>
-          {% endif %}
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-</pc-timeline-{{ last_part }}>
 
 <style>
   {{ sec_id }} .pc-timeline-{{ last_part }} {
@@ -360,6 +323,45 @@
     }
   }
 </style>
+
+<pc-timeline-{{ last_part }} class="pc-timeline-{{ last_part }}">
+  <div class="pc-timeline-container-{{ last_part }}">
+    <div class="pc-timeline-steps-{{ last_part }}">
+      {% for block in section.blocks %}
+        <div class="pc-timeline-step-{{ last_part }} {% if block.settings.alignment == 'left' %}pc-left-{{ last_part }}{% elsif block.settings.alignment == 'center' %}pc-center-{{ last_part }}{% endif %} {% if block.settings.background_color == 'orange' %}pc-bg-orange-{{ last_part }}{% else %}pc-bg-white-{{ last_part }}{% endif %}">
+          <div class="pc-timeline-content-{{ last_part }}">
+            {% if block.settings.year != blank %}
+              <div class="pc-timeline-year-{{ last_part }}">{{ block.settings.year }}</div>
+            {% endif %}
+            {% if block.settings.title != blank %}
+              <h2 class="pc-timeline-title-{{ last_part }}">{{ block.settings.title }}</h2>
+            {% endif %}
+            {% if block.settings.description != blank %}
+              <div class="pc-timeline-description-{{ last_part }}">{{ block.settings.description }}</div>
+            {% endif %}
+            {% if block.settings.image != blank %}
+              <div class="pc-timeline-hidden-box-{{ last_part }}">
+                <figure>
+                  {{ block.settings.image | image_url: width: block.settings.image.width, height: block.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt }}
+                </figure>
+              </div>
+            {% endif %}
+            <button class="pc-timeline-toggle-{{ last_part }}">
+              <svg class="pc-timeline-toggle-icon-{{ last_part }}" viewBox="0 0 24 24">
+                <path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </button>
+          </div>
+          <i class="pc-timeline-line-{{ last_part }}"></i>
+          {% if block.settings.date != blank %}
+            <div class="pc-timeline-date-{{ last_part }} {% if block.settings.date_size == 'small' %}pc-small-date-{{ last_part }}{% endif %}">{{ block.settings.date }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</pc-timeline-{{ last_part }}>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
