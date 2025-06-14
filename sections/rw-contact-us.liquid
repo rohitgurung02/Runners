@@ -377,7 +377,7 @@
 </pc-contact-form-{{ last_part }}>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     const toggleSwitch = document.querySelector('{{ sec_id }} .pc-theme-switch input[type="checkbox"]');
     const contactForm = document.querySelector('pc-contact-form-{{ last_part }}');
     const currentTheme = localStorage.getItem('theme');
