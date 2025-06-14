@@ -745,6 +745,56 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 6
       }
+    },
+    "rw_countdown_icbn7Q": {
+      "type": "rw-countdown",
+      "blocks": {
+        "card_7aXVbe": {
+          "type": "card",
+          "settings": {
+            "subtitle": "The subtitle",
+            "title": "First card title",
+            "text": "This is the first card with supporting text below as a natural lead-in to additional content.",
+            "button_label": "Learn more",
+            "button_link": "",
+            "image": "shopify://shop_images/1040-1200x800.jpg"
+          }
+        },
+        "card_nHnbnF": {
+          "type": "card",
+          "settings": {
+            "subtitle": "Another subtitle",
+            "title": "Second card title",
+            "text": "This is the second card with different content and text.",
+            "button_label": "Read more",
+            "button_link": "",
+            "image": "shopify://shop_images/1024-1200x800.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "card_7aXVbe",
+        "card_nHnbnF"
+      ],
+      "name": "PWC - Card Carousel #1",
+      "settings": {
+        "container_margin_top": 20,
+        "mobile_container_margin_top": 20,
+        "gutter": 15,
+        "enable_shadow": true,
+        "card_bg": "#ffffff",
+        "title_font_size": 36,
+        "mobile_title_font_size": 24,
+        "title_color": "#000000",
+        "title_margin_bottom": 15,
+        "text_font_size": 16,
+        "mobile_text_font_size": 14,
+        "text_color": "#333333",
+        "text_margin_bottom": 20,
+        "arrow_color": "#ffffff",
+        "arrow_bg": "#000000",
+        "arrow_bg_hover": "#333333"
+      }
     }
   },
   "order": [
@@ -755,6 +805,7 @@
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
-    "rw_contact_us_wJWXNB"
+    "rw_contact_us_wJWXNB",
+    "rw_countdown_icbn7Q"
   ]
 }
