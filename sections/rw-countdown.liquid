@@ -6,6 +6,10 @@
 -%}
 
 <style>
+  {{ sec_id }} .pc-card-carousel{
+    box-shadow: 0px 0px 1px 1px #00000042;
+  }
+  
   {{ sec_id }} {
     --pc-spacer-{{ last_part }}: {{ section.settings.spacer }}px;
     --pc-card-bg-{{ last_part }}: {{ section.settings.card_bg }};
@@ -273,8 +277,7 @@
       if (newIndex >= cards.length) newIndex = 0;
       showCard(newIndex);
     });
-    
-    // Touch support for mobile
+ 
     let touchStartX = 0;
     let touchEndX = 0;
     
@@ -291,14 +294,12 @@
     
     function handleSwipe() {
       if (touchEndX < touchStartX - 50) {
-        // Swipe left - next
         let newIndex = currentIndex + 1;
         if (newIndex >= cards.length) newIndex = 0;
         showCard(newIndex);
       }
       
       if (touchEndX > touchStartX + 50) {
-        // Swipe right - previous
         let newIndex = currentIndex - 1;
         if (newIndex < 0) newIndex = cards.length - 1;
         showCard(newIndex);
