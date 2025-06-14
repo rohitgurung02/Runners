@@ -738,7 +738,7 @@
         "theme_label_margin_left_mobile": 20,
         "theme_switch_knob_size_mobile": 20,
         "theme_switch_knob_offset_mobile": 4,
-        "theme_switch_knob_translate_desktop": 100,
+        "theme_switch_knob_translate_desktop": 50,
         "theme_switch_knob_translate_mobile": 40,
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 6
