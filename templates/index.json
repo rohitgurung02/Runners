@@ -745,83 +745,6 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 6
       }
-    },
-    "rw_countdown_TWQB9j": {
-      "type": "rw-countdown",
-      "blocks": {
-        "days_block_GGBY9J": {
-          "type": "days_block",
-          "settings": {
-            "label": "DAYS"
-          }
-        },
-        "minutes_block_FHfPLx": {
-          "type": "minutes_block",
-          "settings": {
-            "label": "MINUTES"
-          }
-        },
-        "hours_block_tN6QgG": {
-          "type": "hours_block",
-          "settings": {
-            "label": "HOURS"
-          }
-        },
-        "seconds_block_wPFA3h": {
-          "type": "seconds_block",
-          "settings": {
-            "label": "SECONDS"
-          }
-        }
-      },
-      "block_order": [
-        "days_block_GGBY9J",
-        "minutes_block_FHfPLx",
-        "hours_block_tN6QgG",
-        "seconds_block_wPFA3h"
-      ],
-      "name": "PWC - Countdown Timer #2",
-      "settings": {
-        "date": "01/01/2026 00:00",
-        "blocks_gap": 10,
-        "block_min_width": 120,
-        "block_height": 120,
-        "block_border_radius": 12,
-        "block_padding": 10,
-        "block_shadow": true,
-        "days_background": "#00a3d0",
-        "days_text_color": "#ffffff",
-        "hours_background": "#00a3d0",
-        "hours_text_color": "#ffffff",
-        "minutes_background": "#d37575",
-        "minutes_text_color": "#fefefe",
-        "seconds_background": "#d37575",
-        "seconds_text_color": "#ffffff",
-        "separator_color": "#000000",
-        "circle_color": "#00a3d0",
-        "time_value_size": 44,
-        "time_value_weight": "400",
-        "time_label_size": 16,
-        "time_label_weight": "400",
-        "label_margin_top": 5,
-        "separator_padding": 5,
-        "desktop_padding_top": 20,
-        "desktop_padding_right": 20,
-        "desktop_padding_bottom": 20,
-        "desktop_padding_left": 20,
-        "mobile_blocks_gap": 5,
-        "mobile_block_min_width": 80,
-        "mobile_block_height": 80,
-        "mobile_time_value_size": 32,
-        "mobile_time_label_size": 14,
-        "mobile_padding_top": 20,
-        "mobile_padding_right": 10,
-        "mobile_padding_bottom": 20,
-        "mobile_padding_left": 10,
-        "show_circle": false,
-        "show_circle_mobile": false,
-        "show_cursor": true
-      }
     }
   },
   "order": [
@@ -832,7 +755,6 @@
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
-    "rw_contact_us_wJWXNB",
-    "rw_countdown_TWQB9j"
+    "rw_contact_us_wJWXNB"
   ]
 }
