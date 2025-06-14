@@ -745,6 +745,75 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 6
       }
+    },
+    "rw_countdown_ByCX7e": {
+      "type": "rw-countdown",
+      "blocks": {
+        "card_pDE7rn": {
+          "type": "card",
+          "settings": {
+            "subtitle": "THE SUBTITLE",
+            "title": "New title",
+            "text": "This is a wider card with supporting text below as a natural.",
+            "button_label": "Learn more",
+            "button_link": "",
+            "image": "shopify://shop_images/pexels-photo-991012.jpg"
+          }
+        },
+        "card_T8eaCj": {
+          "type": "card",
+          "settings": {
+            "subtitle": "ANOTHER SUBTITLE",
+            "title": "Second title",
+            "text": "Additional content with supporting text for another card.",
+            "button_label": "Read more",
+            "button_link": "",
+            "image": "shopify://shop_images/pexels-photo-921294.webp"
+          }
+        },
+        "card_bYHCXW": {
+          "type": "card",
+          "settings": {
+            "subtitle": "THE SUBTITLE",
+            "title": "New title",
+            "text": "This is a wider card with supporting text below as a natural.",
+            "button_label": "Learn more",
+            "button_link": "",
+            "image": "shopify://shop_images/1040-1200x800.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "card_pDE7rn",
+        "card_T8eaCj",
+        "card_bYHCXW"
+      ],
+      "name": "RW - Carousel #1",
+      "settings": {
+        "spacer": 20,
+        "card_radius": 8,
+        "enable_shadow": true,
+        "card_bg": "#ffffff",
+        "subtitle_size": 14,
+        "mobile_subtitle_size": 12,
+        "subtitle_weight": "600",
+        "subtitle_color": "#666666",
+        "title_size": 36,
+        "mobile_title_size": 28,
+        "title_weight": "600",
+        "title_color": "#000000",
+        "text_size": 16,
+        "mobile_text_size": 14,
+        "text_color": "#333333",
+        "button_radius": 4,
+        "button_weight": "500",
+        "button_color": "#ffffff",
+        "button_bg": "#000000",
+        "button_hover": "#333333",
+        "arrow_color": "#ffffff",
+        "arrow_bg": "#000000",
+        "arrow_hover": "#333333"
+      }
     }
   },
   "order": [
@@ -755,6 +824,7 @@
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
-    "rw_contact_us_wJWXNB"
+    "rw_contact_us_wJWXNB",
+    "rw_countdown_ByCX7e"
   ]
 }
