@@ -772,20 +772,13 @@
           "settings": {
             "label": "SECONDS"
           }
-        },
-        "separator_wrpAJa": {
-          "type": "separator",
-          "settings": {
-            "separator": ":"
-          }
         }
       },
       "block_order": [
         "days_block_GGBY9J",
         "minutes_block_FHfPLx",
         "hours_block_tN6QgG",
-        "seconds_block_wPFA3h",
-        "separator_wrpAJa"
+        "seconds_block_wPFA3h"
       ],
       "name": "PWC - Countdown Timer #2",
       "settings": {
