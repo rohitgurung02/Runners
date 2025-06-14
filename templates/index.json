@@ -647,6 +647,7 @@
         "container_height_mobile": 800,
         "container_margin_top_desktop": 20,
         "container_margin_bottom_desktop": 20,
+        "image": "shopify://shop_images/1040-1200x800.jpg",
         "image_width_desktop": 45,
         "image_height_mobile": 400,
         "heading": "Contact us",
@@ -736,6 +737,7 @@
         "theme_label_margin_left_mobile": 20,
         "theme_switch_knob_size_mobile": 20,
         "theme_switch_knob_offset_mobile": 4,
+        "theme_switch_knob_translate_desktop": 60,
         "theme_switch_knob_translate_mobile": 20,
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 6
