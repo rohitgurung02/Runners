@@ -2,730 +2,452 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-{%- capture countdown_date -%}
-  {%- if section.settings.date != blank -%}
-    {{ section.settings.date | date: "%b %d %Y %H:%M:%S" }}
-  {%- else -%}
-    Jan 01 2026 00:00:00
-  {%- endif -%}
-{%- endcapture -%}
-
-<pc-countdown-blocks-{{ last_part }} class="pc-countdown-blocks-{{ last_part }}">
-  {%- if section.settings.show_circle -%}
-    <div class="pc-circle-{{ last_part }}"></div>
-  {%- endif -%}
-  
-  {%- if section.settings.show_cursor -%}
-    <div class="pc-cursor-{{ last_part }}"></div>
-  {%- endif -%}
-  
-  <div class="pc-countdown-container-{{ last_part }}">
-    {%- for block in section.blocks -%}
-      {%- case block.type -%}
-        {%- when 'days_block' -%}
-          <div class="pc-countdown-block-{{ last_part }} pc-days-block-{{ last_part }}" {{ block.shopify_attributes }}>
-            <div class="pc-countdown-value-{{ last_part }}" id="pc-days-{{ last_part }}">DD</div>
-            <div class="pc-countdown-label-{{ last_part }}">{{ block.settings.label | default: 'DAYS' }}</div>
-          </div>
-        
-        {%- when 'hours_block' -%}
-          <div class="pc-countdown-block-{{ last_part }} pc-hours-block-{{ last_part }}" {{ block.shopify_attributes }}>
-            <div class="pc-countdown-value-{{ last_part }}" id="pc-hours-{{ last_part }}">HH</div>
-            <div class="pc-countdown-label-{{ last_part }}">{{ block.settings.label | default: 'HOURS' }}</div>
-          </div>
-        
-        {%- when 'minutes_block' -%}
-          <div class="pc-countdown-block-{{ last_part }} pc-minutes-block-{{ last_part }}" {{ block.shopify_attributes }}>
-            <div class="pc-countdown-value-{{ last_part }}" id="pc-minutes-{{ last_part }}">MM</div>
-            <div class="pc-countdown-label-{{ last_part }}">{{ block.settings.label | default: 'MINUTES' }}</div>
-          </div>
-        
-        {%- when 'seconds_block' -%}
-          <div class="pc-countdown-block-{{ last_part }} pc-seconds-block-{{ last_part }}" {{ block.shopify_attributes }}>
-            <div class="pc-countdown-value-{{ last_part }}" id="pc-seconds-{{ last_part }}">SS</div>
-            <div class="pc-countdown-label-{{ last_part }}">{{ block.settings.label | default: 'SECONDS' }}</div>
-          </div>
-        
-        {%- when 'separator' -%}
-          <div class="pc-countdown-separator-{{ last_part }}" {{ block.shopify_attributes }}>
-            {{ block.settings.separator }}
-          </div>
-      {%- endcase -%}
-    {%- endfor -%}
-  </div>
-</pc-countdown-blocks-{{ last_part }}>
+{%- liquid
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign parts = sec_id | split: '_'
+  assign last_lower = parts | last
+  assign last_part = last_lower | downcase
+-%}
 
 <style>
-  {{ sec_id }} .pc-countdown-blocks-{{ last_part }} {
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} {
     position: relative;
-    width: 100%;
+    display: flex;
+  }
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} {
+    display: inline-flex;
+    position: absolute;
     overflow: hidden;
+    transition: 0.4s all ease-in-out;
+    opacity: 0;
+    z-index: 0;
+    border: none;
+    box-shadow: {% if section.settings.enable_shadow %}var(--bs-box-shadow-lg){% else %}none{% endif %};
   }
-
-  {{ sec_id }} .pc-countdown-container-{{ last_part }} {
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} .pc-card-body-{{ last_part }} {
+    padding: calc(var(--pc-spacer-{{ last_part }}) * 3);
+    position: relative;
+    display: block;
+  }
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} .pc-card-body-{{ last_part }} .pc-card-title-{{ last_part }},
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} .pc-card-body-{{ last_part }} .pc-card-text-{{ last_part }},
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} .pc-card-body-{{ last_part }} a {
+    transform: translateY(25%);
+    opacity: 1;
+    visibility: hidden;
+    transition: 0.4s all ease-in-out;
+  }
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} img {
+    padding: calc(var(--pc-spacer-{{ last_part }}) / 1.5);
+    object-fit: cover;
+    transition: 0.4s all ease-in-out;
+    transform: translateX(100%);
+  }
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-active-{{ last_part }} {
+    position: relative;
+    opacity: 1;
+    z-index: 1;
+  }
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-active-{{ last_part }} img {
+    transform: translateX(0);
+  }
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-active-{{ last_part }} .pc-card-body-{{ last_part }} .pc-card-title-{{ last_part }},
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-active-{{ last_part }} .pc-card-body-{{ last_part }} .pc-card-text-{{ last_part }},
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-active-{{ last_part }} .pc-card-body-{{ last_part }} a {
+    transform: translateY(0);
+    opacity: 1;
+    transition: 0.4s all ease-in-out;
+    visibility: visible;
+  }
+  {{ sec_id }} .pc-card-carousel-nav-{{ last_part }} {
+    position: absolute;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: {{ section.settings.blocks_gap }}px;
-    padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
+    z-index: 2;
+    bottom: 0;
   }
-
-  {{ sec_id }} .pc-countdown-block-{{ last_part }} {
+  {{ sec_id }} .pc-card-carousel-nav-{{ last_part }} .pc-carousel-arrow-{{ last_part }} {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-width: {{ section.settings.block_min_width }}px;
-    height: {{ section.settings.block_height }}px;
-    border-radius: {{ section.settings.block_border_radius }}px;
-    {% if section.settings.block_shadow %}
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-    {% endif %}
-    padding: {{ section.settings.block_padding }}px;
+    position: relative;
+    cursor: pointer;
+    padding: calc(var(--pc-spacer-{{ last_part }}) / 2) var(--pc-spacer-{{ last_part }});
+    fill: {{ section.settings.arrow_color }};
+    background-color: {{ section.settings.arrow_bg }};
+    width: 25%;
   }
-
-  {{ sec_id }} .pc-days-block-{{ last_part }} {
-    background: {{ section.settings.days_background }};
-    color: {{ section.settings.days_text_color }};
+  {{ sec_id }} .pc-card-carousel-nav-{{ last_part }} .pc-carousel-arrow-{{ last_part }}:hover {
+    background-color: {{ section.settings.arrow_bg_hover }};
   }
-
-  {{ sec_id }} .pc-hours-block-{{ last_part }} {
-    background: {{ section.settings.hours_background }};
-    color: {{ section.settings.hours_text_color }};
+  {{ sec_id }} .pc-card-carousel-nav-{{ last_part }} .pc-carousel-arrow-{{ last_part }}:last-child {
+    margin-left: 1px;
   }
-
-  {{ sec_id }} .pc-minutes-block-{{ last_part }} {
-    background: {{ section.settings.minutes_background }};
-    color: {{ section.settings.minutes_text_color }};
+  {{ sec_id }} .pc-card-title-{{ last_part }} {
+    font-size: {{ section.settings.title_font_size }}px;
+    color: {{ section.settings.title_color }};
+    margin-bottom: {{ section.settings.title_margin_bottom }}px;
   }
-
-  {{ sec_id }} .pc-seconds-block-{{ last_part }} {
-    background: {{ section.settings.seconds_background }};
-    color: {{ section.settings.seconds_text_color }};
+  {{ sec_id }} .pc-card-text-{{ last_part }} {
+    font-size: {{ section.settings.text_font_size }}px;
+    color: {{ section.settings.text_color }};
+    margin-bottom: {{ section.settings.text_margin_bottom }}px;
   }
-
-  {{ sec_id }} .pc-countdown-value-{{ last_part }} {
-    font-size: {{ section.settings.time_value_size }}px;
-    font-weight: {{ section.settings.time_value_weight }};
-    line-height: 1;
+  {{ sec_id }} .pc-card-body-{{ last_part }} {
+    background-color: {{ section.settings.card_bg }};
   }
-
-  {{ sec_id }} .pc-countdown-label-{{ last_part }} {
-    font-size: {{ section.settings.time_label_size }}px;
-    font-weight: {{ section.settings.time_label_weight }};
-    margin-top: {{ section.settings.label_margin_top }}px;
+  {{ sec_id }} .pc-container-{{ last_part }} {
+    margin-top: {{ section.settings.container_margin_top }}px;
   }
-
-  {{ sec_id }} .pc-countdown-separator-{{ last_part }} {
-    display: flex;
-    align-items: center;
-    font-size: {{ section.settings.time_value_size | times: 0.6 }}px;
-    color: {{ section.settings.separator_color }};
-    padding: 0 {{ section.settings.separator_padding }}px;
+  {{ sec_id }} .pc-row-{{ last_part }} {
+    margin-left: -{{ section.settings.gutter }}px;
+    margin-right: -{{ section.settings.gutter }}px;
   }
-
-  {{ sec_id }} .pc-circle-{{ last_part }} {
-    position: fixed;
-    z-index: -1;
-    top: calc(50% - 237px);
-    left: calc(-50% + 474px);
-    width: 474px;
-    height: 474px;
-    border-radius: 100%;
-    border: 6px dashed {{ section.settings.circle_color }};
-    animation: pc-rotating-circle-{{ last_part }} infinite linear 60s;
+  {{ sec_id }} .pc-col-{{ last_part }} {
+    padding-left: {{ section.settings.gutter }}px;
+    padding-right: {{ section.settings.gutter }}px;
   }
-
-  @keyframes pc-rotating-circle-{{ last_part }} {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
+  @media (min-width: 768px) {
+    {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} img {
+      object-fit: contain;
     }
   }
-
-  {{ sec_id }} .pc-cursor-{{ last_part }} {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: transparent;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 100%;
-    pointer-events: none;
-    user-select: none;
-    backdrop-filter: invert(100%);
-  }
-
-  @media (max-width: 768px) {
-    {{ sec_id }} .pc-countdown-container-{{ last_part }} {
-      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
-      gap: {{ section.settings.mobile_blocks_gap }}px;
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-card-title-{{ last_part }} {
+      font-size: {{ section.settings.mobile_title_font_size }}px;
     }
-
-    {{ sec_id }} .pc-countdown-block-{{ last_part }} {
-      min-width: {{ section.settings.mobile_block_min_width }}px;
-      height: {{ section.settings.mobile_block_height }}px;
+    {{ sec_id }} .pc-card-text-{{ last_part }} {
+      font-size: {{ section.settings.mobile_text_font_size }}px;
     }
-
-    {{ sec_id }} .pc-countdown-value-{{ last_part }} {
-      font-size: {{ section.settings.mobile_time_value_size }}px;
-    }
-
-    {{ sec_id }} .pc-countdown-label-{{ last_part }} {
-      font-size: {{ section.settings.mobile_time_label_size }}px;
-    }
-
-    {{ sec_id }} .pc-countdown-separator-{{ last_part }} {
-      font-size: {{ section.settings.mobile_time_value_size | times: 0.6 }}px;
-    }
-
-    {{ sec_id }} .pc-circle-{{ last_part }} {
-      display: {{ section.settings.show_circle_mobile | json }};
+    {{ sec_id }} .pc-container-{{ last_part }} {
+      margin-top: {{ section.settings.mobile_container_margin_top }}px;
     }
   }
 </style>
 
+<div class="pc-container-{{ last_part }} container">
+  <div class="pc-row-{{ last_part }} row g-0">
+    <div class="pc-col-{{ last_part }} col pc-card-carousel-{{ last_part }}">
+      <div class="pc-card-carousel-nav-{{ last_part }} col-12 col-lg-4 g-2">
+        <span id="pc-moveLeft-{{ last_part }}" class="pc-carousel-arrow-{{ last_part }}">
+          <svg class="pc-carousel-icon-{{ last_part }}" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
+          </svg>
+        </span>
+        <span id="pc-moveRight-{{ last_part }}" class="pc-carousel-arrow-{{ last_part }}">
+          <svg class="pc-carousel-icon-{{ last_part }}" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
+          </svg>
+        </span>
+      </div>
+      
+      {% for block in section.blocks %}
+        <div class="pc-card-{{ last_part }}{% if forloop.first %} pc-active-{{ last_part }}{% endif %}">
+          <div class="row g-0">
+            <div class="pc-col-{{ last_part }} col-lg-4 d-flex align-items-center">
+              <div class="pc-card-body-{{ last_part }}">
+                {% if block.settings.subtitle != blank %}
+                  <h6 class="pc-card-subtitle-{{ last_part }} text-uppercase">{{ block.settings.subtitle }}</h6>
+                {% endif %}
+                {% if block.settings.title != blank %}
+                  <h3 class="pc-card-title-{{ last_part }}">{{ block.settings.title }}</h3>
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <p class="pc-card-text-{{ last_part }}">{{ block.settings.text }}</p>
+                {% endif %}
+                {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+                  <a href="{{ block.settings.button_link }}" class="pc-card-button-{{ last_part }} btn">{{ block.settings.button_label }}</a>
+                {% endif %}
+              </div>
+            </div>
+            <div class="pc-col-{{ last_part }} col-lg-8">
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: block.settings.image.width, height: block.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'img-fluid rounded-end' }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'img-fluid rounded-end' }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Countdown functionality
-    const daysEl = document.querySelector("#pc-days-{{ last_part }}");
-    const hoursEl = document.querySelector("#pc-hours-{{ last_part }}");
-    const minutesEl = document.querySelector("#pc-minutes-{{ last_part }}");
-    const secondsEl = document.querySelector("#pc-seconds-{{ last_part }}");
-    
-    const countdownDate = new Date("{{ countdown_date | strip }}").getTime();
-    
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = countdownDate - now;
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionId = '{{ last_part }}';
+    const items = document.querySelectorAll('{{ sec_id }} .pc-card-{{ last_part }}');
+    let current = 0;
+    const total = items.length;
+
+    function setSlide(prev, next) {
+      if (next >= total) next = 0;
+      if (next < 0) next = total - 1;
       
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      items[prev].classList.remove('pc-active-{{ last_part }}');
+      items[next].classList.add('pc-active-{{ last_part }}');
       
-      if (daysEl) daysEl.textContent = formatTime(days);
-      if (hoursEl) hoursEl.textContent = formatTime(hours);
-      if (minutesEl) minutesEl.textContent = formatTime(minutes);
-      if (secondsEl) secondsEl.textContent = formatTime(seconds);
+      current = next;
     }
-    
-    function formatTime(time) {
-      return time < 10 ? `0${time}` : time;
-    }
-    
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-    
-    // Cursor trail functionality
-    {% if section.settings.show_cursor %}
-    const cursorEl = document.querySelector(".pc-cursor-{{ last_part }}");
-    
-    document.addEventListener("mousemove", (ev) => {
-      const x = ev.clientX;
-      const y = ev.clientY;
-      
-      let animationFrame;
-      let startX = parseFloat(cursorEl.style.left) || 0;
-      let startY = parseFloat(cursorEl.style.top) || 0;
-      let progress = 0;
-      
-      const animateCursor = () => {
-        progress += 0.05;
-        if (progress >= 1) progress = 1;
-        
-        const currentX = startX + (x - startX) * progress;
-        const currentY = startY + (y - startY) * progress;
-        
-        cursorEl.style.left = `${currentX}px`;
-        cursorEl.style.top = `${currentY}px`;
-        
-        if (progress < 1) {
-          animationFrame = requestAnimationFrame(animateCursor);
-        }
-      };
-      
-      cancelAnimationFrame(animationFrame);
-      animateCursor();
+
+    document.getElementById('pc-moveRight-{{ last_part }}').addEventListener('click', function() {
+      const prev = current;
+      const next = current + 1;
+      setSlide(prev, next);
     });
-    {% endif %}
+
+    document.getElementById('pc-moveLeft-{{ last_part }}').addEventListener('click', function() {
+      const prev = current;
+      const next = current - 1;
+      setSlide(prev, next);
+    });
+
+    const cardCarousel = document.querySelector('{{ sec_id }} .pc-card-carousel-{{ last_part }}');
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    cardCarousel.addEventListener('touchstart', function(event) {
+      touchStartX = event.changedTouches[0].screenX;
+    });
+
+    cardCarousel.addEventListener('touchmove', function(event) {
+      touchEndX = event.changedTouches[0].screenX;
+    });
+
+    cardCarousel.addEventListener('touchend', function() {
+      if (touchEndX < touchStartX - 50) {
+        const prev = current;
+        const next = current + 1;
+        setSlide(prev, next);
+      }
+      if (touchEndX > touchStartX + 50) {
+        const prev = current;
+        const next = current - 1;
+        setSlide(prev, next);
+      }
+    });
   });
 </script>
 
 {% schema %}
 {
-  "name": "PWC - Countdown Blocks #1",
+  "name": "PWC - Card Carousel #1",
   "tag": "section",
-  "class": "section",
+  "class": "shopify-section--pc-card-carousel",
   "settings": [
     {
       "type": "header",
-      "content": "Countdown Settings"
-    },
-    {
-      "type": "text",
-      "id": "date",
-      "label": "Countdown End Date",
-      "info": "Format: MM/DD/YYYY HH:MM (e.g., 01/01/2026 00:00)",
-      "default": "01/01/2026 00:00"
+      "content": "General Settings"
     },
     {
       "type": "range",
-      "id": "blocks_gap",
-      "label": "Blocks Gap",
+      "id": "container_margin_top",
+      "label": "Container Top Margin (Desktop)",
       "min": 0,
-      "max": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_margin_top",
+      "label": "Container Top Margin (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "gutter",
+      "label": "Gutter Size",
+      "min": 0,
+      "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "block_min_width",
-      "label": "Block Min Width",
-      "min": 50,
-      "max": 300,
-      "step": 10,
-      "unit": "px",
-      "default": 120
-    },
-    {
-      "type": "range",
-      "id": "block_height",
-      "label": "Block Height",
-      "min": 50,
-      "max": 300,
-      "step": 10,
-      "unit": "px",
-      "default": 120
-    },
-    {
-      "type": "range",
-      "id": "block_border_radius",
-      "label": "Block Border Radius",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "block_padding",
-      "label": "Block Padding",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 10
+      "default": 15
     },
     {
       "type": "checkbox",
-      "id": "block_shadow",
-      "label": "Enable Block Shadow",
+      "id": "enable_shadow",
+      "label": "Enable Card Shadow",
       "default": true
     },
     {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#ffffff"
+    },
+    {
       "type": "header",
-      "content": "Colors"
+      "content": "Title Settings"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Font Size (Desktop)",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "label": "Font Size (Mobile)",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 24
     },
     {
       "type": "color",
-      "id": "days_background",
-      "label": "Days Background",
-      "default": "#00A3D0"
-    },
-    {
-      "type": "color",
-      "id": "days_text_color",
-      "label": "Days Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "hours_background",
-      "label": "Hours Background",
-      "default": "#00A3D0"
-    },
-    {
-      "type": "color",
-      "id": "hours_text_color",
-      "label": "Hours Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "minutes_background",
-      "label": "Minutes Background",
-      "default": "#1C1C1C"
-    },
-    {
-      "type": "color",
-      "id": "minutes_text_color",
-      "label": "Minutes Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "seconds_background",
-      "label": "Seconds Background",
-      "default": "#1C1C1C"
-    },
-    {
-      "type": "color",
-      "id": "seconds_text_color",
-      "label": "Seconds Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "separator_color",
-      "label": "Separator Color",
+      "id": "title_color",
+      "label": "Color",
       "default": "#000000"
     },
     {
-      "type": "color",
-      "id": "circle_color",
-      "label": "Circle Color",
-      "default": "#00A3D0"
+      "type": "range",
+      "id": "title_margin_bottom",
+      "label": "Margin Bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 15
     },
     {
       "type": "header",
-      "content": "Typography"
+      "content": "Text Settings"
     },
     {
       "type": "range",
-      "id": "time_value_size",
-      "label": "Time Value Size (Desktop)",
-      "min": 20,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "default": 44
-    },
-    {
-      "type": "select",
-      "id": "time_value_weight",
-      "label": "Time Value Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "400"
-    },
-    {
-      "type": "range",
-      "id": "time_label_size",
-      "label": "Time Label Size (Desktop)",
+      "id": "text_font_size",
+      "label": "Font Size (Desktop)",
       "min": 12,
-      "max": 40,
+      "max": 24,
       "step": 1,
       "unit": "px",
       "default": 16
     },
     {
-      "type": "select",
-      "id": "time_label_weight",
-      "label": "Time Label Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "400"
-    },
-    {
       "type": "range",
-      "id": "label_margin_top",
-      "label": "Label Margin Top",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 5
-    },
-    {
-      "type": "range",
-      "id": "separator_padding",
-      "label": "Separator Padding",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 5
-    },
-    {
-      "type": "header",
-      "content": "Spacing (Desktop)"
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_top",
-      "label": "Top Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_right",
-      "label": "Right Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_bottom",
-      "label": "Bottom Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_left",
-      "label": "Left Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
-    },
-    {
-      "type": "range",
-      "id": "mobile_blocks_gap",
-      "label": "Blocks Gap (Mobile)",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 5
-    },
-    {
-      "type": "range",
-      "id": "mobile_block_min_width",
-      "label": "Block Min Width (Mobile)",
-      "min": 40,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "mobile_block_height",
-      "label": "Block Height (Mobile)",
-      "min": 40,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "mobile_time_value_size",
-      "label": "Time Value Size (Mobile)",
-      "min": 16,
-      "max": 60,
-      "step": 2,
-      "unit": "px",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "mobile_time_label_size",
-      "label": "Time Label Size (Mobile)",
-      "min": 10,
-      "max": 30,
+      "id": "mobile_text_font_size",
+      "label": "Font Size (Mobile)",
+      "min": 12,
+      "max": 20,
       "step": 1,
       "unit": "px",
       "default": 14
     },
     {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color",
+      "default": "#333333"
+    },
+    {
       "type": "range",
-      "id": "mobile_padding_top",
-      "label": "Top Padding",
+      "id": "text_margin_bottom",
+      "label": "Margin Bottom",
       "min": 0,
-      "max": 100,
-      "step": 5,
+      "max": 50,
+      "step": 1,
       "unit": "px",
       "default": 20
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_right",
-      "label": "Right Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_bottom",
-      "label": "Bottom Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_left",
-      "label": "Left Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 10
     },
     {
       "type": "header",
-      "content": "Effects"
+      "content": "Navigation Arrows"
     },
     {
-      "type": "checkbox",
-      "id": "show_circle",
-      "label": "Show Rotating Circle",
-      "default": true
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Icon Color",
+      "default": "#ffffff"
     },
     {
-      "type": "checkbox",
-      "id": "show_circle_mobile",
-      "label": "Show Circle on Mobile",
-      "default": false
+      "type": "color",
+      "id": "arrow_bg",
+      "label": "Background Color",
+      "default": "#000000"
     },
     {
-      "type": "checkbox",
-      "id": "show_cursor",
-      "label": "Show Mouse Trail",
-      "default": true
+      "type": "color",
+      "id": "arrow_bg_hover",
+      "label": "Background Hover Color",
+      "default": "#333333"
     }
   ],
   "blocks": [
     {
-      "type": "days_block",
-      "name": "Days Block",
-      "limit": 1,
+      "type": "card",
+      "name": "Card",
       "settings": [
         {
           "type": "text",
-          "id": "label",
-          "label": "Custom Label",
-          "default": "DAYS",
-          "info": "Leave empty to use default"
-        }
-      ]
-    },
-    {
-      "type": "hours_block",
-      "name": "Hours Block",
-      "limit": 1,
-      "settings": [
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "The subtitle"
+        },
         {
           "type": "text",
-          "id": "label",
-          "label": "Custom Label",
-          "default": "HOURS",
-          "info": "Leave empty to use default"
-        }
-      ]
-    },
-    {
-      "type": "minutes_block",
-      "name": "Minutes Block",
-      "limit": 1,
-      "settings": [
+          "id": "title",
+          "label": "Title",
+          "default": "Card title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "This is a wider card with supporting text below as a natural lead-in to additional content."
+        },
         {
           "type": "text",
-          "id": "label",
-          "label": "Custom Label",
-          "default": "MINUTES",
-          "info": "Leave empty to use default"
-        }
-      ]
-    },
-    {
-      "type": "seconds_block",
-      "name": "Seconds Block",
-      "limit": 1,
-      "settings": [
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Learn more"
+        },
         {
-          "type": "text",
-          "id": "label",
-          "label": "Custom Label",
-          "default": "SECONDS",
-          "info": "Leave empty to use default"
-        }
-      ]
-    },
-    {
-      "type": "separator",
-      "name": "Separator",
-      "limit": 3,
-      "settings": [
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
         {
-          "type": "text",
-          "id": "separator",
-          "label": "Separator Text",
-          "default": ":",
-          "info": "Can be any character or text"
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "PWC - Countdown Blocks #1",
+      "name": "PWC - Card Carousel #1",
+      "category": "Custom",
       "blocks": [
         {
-          "type": "days_block"
+          "type": "card",
+          "settings": {
+            "subtitle": "The subtitle",
+            "title": "First card title",
+            "text": "This is the first card with supporting text below as a natural lead-in to additional content.",
+            "button_label": "Learn more"
+          }
         },
         {
-          "type": "separator"
-        },
-        {
-          "type": "hours_block"
-        },
-        {
-          "type": "separator"
-        },
-        {
-          "type": "minutes_block"
-        },
-        {
-          "type": "separator"
-        },
-        {
-          "type": "seconds_block"
+          "type": "card",
+          "settings": {
+            "subtitle": "Another subtitle",
+            "title": "Second card title",
+            "text": "This is the second card with different content and text.",
+            "button_label": "Read more"
+          }
         }
       ]
     }
