@@ -367,16 +367,19 @@
   document.addEventListener('DOMContentLoaded', function() {
     const toggles = document.querySelectorAll('{{ sec_id }} .pc-timeline-toggle-{{ last_part }}');
     
+    // Initialize all hidden boxes as hidden by default
+    document.querySelectorAll('{{ sec_id }} .pc-timeline-hidden-box-{{ last_part }}').forEach(box => {
+      box.style.display = 'none';
+    });
+    
     toggles.forEach(toggle => {
-      toggle.addEventListener('click', function() {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
         const hiddenBox = this.parentElement.querySelector('.pc-timeline-hidden-box-{{ last_part }}');
-        this.classList.toggle('active');
+        const isHidden = hiddenBox.style.display === 'none';
         
-        if (hiddenBox.style.display === 'block') {
-          hiddenBox.style.display = 'none';
-        } else {
-          hiddenBox.style.display = 'block';
-        }
+        this.classList.toggle('active');
+        hiddenBox.style.display = isHidden ? 'block' : 'none';
       });
     });
   });
