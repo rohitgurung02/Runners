@@ -207,9 +207,7 @@
     background-color: var(--pc-button-color);
   }
 
-  {{ sec_id }} input:checked + .pc-slider:before {
-  transform: translateX({{ section.settings.theme_switch_knob_translate_desktop }}px);
-}
+ 
 
 
   {{ sec_id }} .pc-slider.pc-round {
@@ -312,8 +310,17 @@
     }
 
     {{ sec_id }} input:checked + .pc-slider:before {
-      transform: translateX({{ section.settings.theme_switch_knob_translate_mobile }}px);
-    }
+  transform: translateX(calc({{ section.settings.theme_switch_width_desktop }}px - {{ section.settings.theme_switch_knob_size_desktop }}px - {{ section.settings.theme_switch_knob_offset_desktop }}px * 2));
+}
+
+@media only screen and (max-width: 768px) {
+  {{ sec_id }} input:checked + .pc-slider:before {
+    transform: translateX(calc({{ section.settings.theme_switch_width_mobile }}px - {{ section.settings.theme_switch_knob_size_mobile }}px - {{ section.settings.theme_switch_knob_offset_mobile }}px * 2));
+  }
+}
+  {{ sec_id }} .pc-theme-switch-wrapper {
+  z-index: 10;
+}
 
     {{ sec_id }} .pc-slider.pc-round {
       border-radius: {{ section.settings.theme_switch_border_radius_mobile }}px;
@@ -338,7 +345,7 @@
     </div>
     <div class="pc-right-col">
       <div class="pc-theme-switch-wrapper">
-        <label class="pc-theme-switch" for="pc-checkbox-{{ last_part }}">
+       <label class="pc-theme-switch" for="pc-checkbox-{{ last_part }}">
           <input type="checkbox" id="pc-checkbox-{{ last_part }}" />
           <div class="pc-slider pc-round"></div>
         </label>
@@ -1361,16 +1368,26 @@
       "unit": "px",
       "default": 4
     },
-    {
-      "type": "range",
-      "id": "theme_switch_knob_translate_mobile",
-      "label": "Theme Switch Knob Translate (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
+  {
+  "type": "range",
+  "id": "theme_switch_knob_translate_desktop",
+  "label": "Theme Switch Knob Translate (Desktop)",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "default": 60
+},
+{
+  "type": "range",
+  "id": "theme_switch_knob_translate_mobile",
+  "label": "Theme Switch Knob Translate (Mobile)",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "default": 40
+},
     {
       "type": "range",
       "id": "theme_switch_border_radius_mobile",
