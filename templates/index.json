@@ -746,10 +746,10 @@
         "message_margin_top_mobile": 6
       }
     },
-    "rw_countdown_ByCX7e": {
-      "type": "rw-countdown",
+    "rw_countdown_2_3GzKib": {
+      "type": "rw-countdown-2",
       "blocks": {
-        "card_pDE7rn": {
+        "card_iAwn7a": {
           "type": "card",
           "settings": {
             "subtitle": "THE SUBTITLE",
@@ -760,7 +760,7 @@
             "image": "shopify://shop_images/pexels-photo-991012.jpg"
           }
         },
-        "card_T8eaCj": {
+        "card_LnTxqP": {
           "type": "card",
           "settings": {
             "subtitle": "ANOTHER SUBTITLE",
@@ -770,29 +770,17 @@
             "button_link": "",
             "image": "shopify://shop_images/pexels-photo-921294.webp"
           }
-        },
-        "card_bYHCXW": {
-          "type": "card",
-          "settings": {
-            "subtitle": "THE SUBTITLE",
-            "title": "New title",
-            "text": "This is a wider card with supporting text below as a natural.",
-            "button_label": "Learn more",
-            "button_link": "",
-            "image": "shopify://shop_images/1040-1200x800.jpg"
-          }
         }
       },
       "block_order": [
-        "card_pDE7rn",
-        "card_T8eaCj",
-        "card_bYHCXW"
+        "card_iAwn7a",
+        "card_LnTxqP"
       ],
-      "name": "RW - Carousel #1",
+      "name": "RW - Carousel #2",
       "settings": {
-        "container_width": 100,
-        "container_max_width": 1100,
-        "container_height": 400,
+        "container_width": 90,
+        "container_max_width": 1200,
+        "container_height": 500,
         "container_padding": 20,
         "container_radius": 0,
         "mobile_container_width": 95,
@@ -837,6 +825,6 @@
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
     "rw_contact_us_wJWXNB",
-    "rw_countdown_ByCX7e"
+    "rw_countdown_2_3GzKib"
   ]
 }
