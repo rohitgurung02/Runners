@@ -825,7 +825,7 @@
         "mobile_padding_right": 10,
         "mobile_padding_bottom": 20,
         "mobile_padding_left": 10,
-        "show_circle": true,
+        "show_circle": false,
         "show_circle_mobile": false,
         "show_cursor": true
       }
