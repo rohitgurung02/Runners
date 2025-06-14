@@ -1,7 +1,3 @@
-{%- assign parts = sec_id | split: '_' -%}
-{%- assign last_lower = parts | last -%}
-{%- assign last_part = last_lower | downcase -%}
-
 {%- liquid
   assign sec_id = '#shopify-section-' | append: section.id
   assign parts = sec_id | split: '_'
@@ -12,75 +8,21 @@
 <style>
   {{ sec_id }} .pc-card-carousel-{{ last_part }} {
     position: relative;
-    display: flex;
-  }
-  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} {
-    display: inline-flex;
-    position: absolute;
+    width: 100%;
     overflow: hidden;
-    transition: 0.4s all ease-in-out;
-    opacity: 0;
-    z-index: 0;
+  }
+  {{ sec_id }} .pc-card-{{ last_part }} {
     border: none;
     box-shadow: {% if section.settings.enable_shadow %}var(--bs-box-shadow-lg){% else %}none{% endif %};
+    margin-bottom: {{ section.settings.card_margin_bottom }}px;
   }
-  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} .pc-card-body-{{ last_part }} {
-    padding: calc(var(--pc-spacer-{{ last_part }}) * 3);
-    position: relative;
-    display: block;
+  {{ sec_id }} .pc-card-body-{{ last_part }} {
+    padding: {{ section.settings.card_padding }}px;
   }
-  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} .pc-card-body-{{ last_part }} .pc-card-title-{{ last_part }},
-  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} .pc-card-body-{{ last_part }} .pc-card-text-{{ last_part }},
-  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} .pc-card-body-{{ last_part }} a {
-    transform: translateY(25%);
-    opacity: 1;
-    visibility: hidden;
-    transition: 0.4s all ease-in-out;
-  }
-  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} img {
-    padding: calc(var(--pc-spacer-{{ last_part }}) / 1.5);
-    object-fit: cover;
-    transition: 0.4s all ease-in-out;
-    transform: translateX(100%);
-  }
-  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-active-{{ last_part }} {
-    position: relative;
-    opacity: 1;
-    z-index: 1;
-  }
-  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-active-{{ last_part }} img {
-    transform: translateX(0);
-  }
-  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-active-{{ last_part }} .pc-card-body-{{ last_part }} .pc-card-title-{{ last_part }},
-  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-active-{{ last_part }} .pc-card-body-{{ last_part }} .pc-card-text-{{ last_part }},
-  {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-active-{{ last_part }} .pc-card-body-{{ last_part }} a {
-    transform: translateY(0);
-    opacity: 1;
-    transition: 0.4s all ease-in-out;
-    visibility: visible;
-  }
-  {{ sec_id }} .pc-card-carousel-nav-{{ last_part }} {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    z-index: 2;
-    bottom: 0;
-  }
-  {{ sec_id }} .pc-card-carousel-nav-{{ last_part }} .pc-carousel-arrow-{{ last_part }} {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    cursor: pointer;
-    padding: calc(var(--pc-spacer-{{ last_part }}) / 2) var(--pc-spacer-{{ last_part }});
-    fill: {{ section.settings.arrow_color }};
-    background-color: {{ section.settings.arrow_bg }};
-    width: 25%;
-  }
-  {{ sec_id }} .pc-card-carousel-nav-{{ last_part }} .pc-carousel-arrow-{{ last_part }}:hover {
-    background-color: {{ section.settings.arrow_bg_hover }};
-  }
-  {{ sec_id }} .pc-card-carousel-nav-{{ last_part }} .pc-carousel-arrow-{{ last_part }}:last-child {
-    margin-left: 1px;
+  {{ sec_id }} .pc-card-subtitle-{{ last_part }} {
+    font-size: {{ section.settings.subtitle_font_size }}px;
+    color: {{ section.settings.subtitle_color }};
+    margin-bottom: {{ section.settings.subtitle_margin_bottom }}px;
   }
   {{ sec_id }} .pc-card-title-{{ last_part }} {
     font-size: {{ section.settings.title_font_size }}px;
@@ -92,49 +34,65 @@
     color: {{ section.settings.text_color }};
     margin-bottom: {{ section.settings.text_margin_bottom }}px;
   }
-  {{ sec_id }} .pc-card-body-{{ last_part }} {
-    background-color: {{ section.settings.card_bg }};
+  {{ sec_id }} .pc-card-carousel-nav-{{ last_part }} {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    bottom: 0;
+    width: 100%;
   }
-  {{ sec_id }} .pc-container-{{ last_part }} {
-    margin-top: {{ section.settings.container_margin_top }}px;
+  {{ sec_id }} .pc-carousel-arrow-{{ last_part }} {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    fill: {{ section.settings.arrow_color }};
+    background-color: {{ section.settings.arrow_bg }};
+    width: 50px;
+    margin: 0 2px;
   }
-  {{ sec_id }} .pc-row-{{ last_part }} {
-    margin-left: -{{ section.settings.gutter }}px;
-    margin-right: -{{ section.settings.gutter }}px;
+  {{ sec_id }} .pc-carousel-arrow-{{ last_part }}:hover {
+    background-color: {{ section.settings.arrow_bg_hover }};
   }
-  {{ sec_id }} .pc-col-{{ last_part }} {
-    padding-left: {{ section.settings.gutter }}px;
-    padding-right: {{ section.settings.gutter }}px;
+  {{ sec_id }} .pc-carousel-icon-{{ last_part }} {
+    width: 24px;
+    height: 24px;
+  }
+  {{ sec_id }} .pc-card-{{ last_part }} img {
+    padding: 15px;
+    object-fit: cover;
   }
   @media (min-width: 768px) {
-    {{ sec_id }} .pc-card-carousel-{{ last_part }} .pc-card-{{ last_part }} img {
+    {{ sec_id }} .pc-card-{{ last_part }} img {
       object-fit: contain;
     }
   }
   @media (max-width: 767px) {
+    {{ sec_id }} .pc-card-subtitle-{{ last_part }} {
+      font-size: {{ section.settings.mobile_subtitle_font_size }}px;
+    }
     {{ sec_id }} .pc-card-title-{{ last_part }} {
       font-size: {{ section.settings.mobile_title_font_size }}px;
     }
     {{ sec_id }} .pc-card-text-{{ last_part }} {
       font-size: {{ section.settings.mobile_text_font_size }}px;
     }
-    {{ sec_id }} .pc-container-{{ last_part }} {
-      margin-top: {{ section.settings.mobile_container_margin_top }}px;
-    }
   }
 </style>
 
-<div class="pc-container-{{ last_part }} container">
+<div class="pc-container-{{ last_part }} container mt-5">
   <div class="pc-row-{{ last_part }} row g-0">
     <div class="pc-col-{{ last_part }} col pc-card-carousel-{{ last_part }}">
       <div class="pc-card-carousel-nav-{{ last_part }} col-12 col-lg-4 g-2">
         <span id="pc-moveLeft-{{ last_part }}" class="pc-carousel-arrow-{{ last_part }}">
-          <svg class="pc-carousel-icon-{{ last_part }}" width="24" height="24" viewBox="0 0 24 24">
+          <svg class="pc-carousel-icon-{{ last_part }}" viewBox="0 0 24 24">
             <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
           </svg>
         </span>
         <span id="pc-moveRight-{{ last_part }}" class="pc-carousel-arrow-{{ last_part }}">
-          <svg class="pc-carousel-icon-{{ last_part }}" width="24" height="24" viewBox="0 0 24 24">
+          <svg class="pc-carousel-icon-{{ last_part }}" viewBox="0 0 24 24">
             <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
           </svg>
         </span>
@@ -146,16 +104,16 @@
             <div class="pc-col-{{ last_part }} col-lg-4 d-flex align-items-center">
               <div class="pc-card-body-{{ last_part }}">
                 {% if block.settings.subtitle != blank %}
-                  <h6 class="pc-card-subtitle-{{ last_part }} text-uppercase">{{ block.settings.subtitle }}</h6>
+                  <h6 class="pc-card-subtitle-{{ last_part }} text-uppercase fs-6">{{ block.settings.subtitle }}</h6>
                 {% endif %}
                 {% if block.settings.title != blank %}
-                  <h3 class="pc-card-title-{{ last_part }}">{{ block.settings.title }}</h3>
+                  <h3 class="pc-card-title-{{ last_part }} display-4">{{ block.settings.title }}</h3>
                 {% endif %}
                 {% if block.settings.text != blank %}
                   <p class="pc-card-text-{{ last_part }}">{{ block.settings.text }}</p>
                 {% endif %}
                 {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-                  <a href="{{ block.settings.button_link }}" class="pc-card-button-{{ last_part }} btn">{{ block.settings.button_label }}</a>
+                  <a href="{{ block.settings.button_link }}" class="pc-card-button-{{ last_part }} btn btn-primary">{{ block.settings.button_label }}</a>
                 {% endif %}
               </div>
             </div>
@@ -180,12 +138,32 @@
     let current = 0;
     const total = items.length;
 
+    function initCarousel() {
+      items.forEach((item, index) => {
+        item.style.position = 'absolute';
+        item.style.opacity = '0';
+        item.style.zIndex = '0';
+        item.style.transition = '0.4s all ease-in-out';
+        
+        if (index === 0) {
+          item.style.position = 'relative';
+          item.style.opacity = '1';
+          item.style.zIndex = '1';
+        }
+      });
+    }
+
     function setSlide(prev, next) {
       if (next >= total) next = 0;
       if (next < 0) next = total - 1;
       
-      items[prev].classList.remove('pc-active-{{ last_part }}');
-      items[next].classList.add('pc-active-{{ last_part }}');
+      items[prev].style.position = 'absolute';
+      items[prev].style.opacity = '0';
+      items[prev].style.zIndex = '0';
+      
+      items[next].style.position = 'relative';
+      items[next].style.opacity = '1';
+      items[next].style.zIndex = '1';
       
       current = next;
     }
@@ -226,6 +204,8 @@
         setSlide(prev, next);
       }
     });
+
+    initCarousel();
   });
 </script>
 
@@ -237,37 +217,7 @@
   "settings": [
     {
       "type": "header",
-      "content": "General Settings"
-    },
-    {
-      "type": "range",
-      "id": "container_margin_top",
-      "label": "Container Top Margin (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "mobile_container_margin_top",
-      "label": "Container Top Margin (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "gutter",
-      "label": "Gutter Size",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 15
+      "content": "Card Settings"
     },
     {
       "type": "checkbox",
@@ -276,10 +226,64 @@
       "default": true
     },
     {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card Padding",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "card_margin_bottom",
+      "label": "Card Margin Bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Subtitle Settings"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size",
+      "label": "Font Size (Desktop)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_subtitle_font_size",
+      "label": "Font Size (Mobile)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
       "type": "color",
-      "id": "card_bg",
-      "label": "Card Background",
-      "default": "#ffffff"
+      "id": "subtitle_color",
+      "label": "Color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_margin_bottom",
+      "label": "Margin Bottom",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 10
     },
     {
       "type": "header",
@@ -289,21 +293,21 @@
       "type": "range",
       "id": "title_font_size",
       "label": "Font Size (Desktop)",
-      "min": 12,
+      "min": 16,
       "max": 72,
       "step": 1,
       "unit": "px",
-      "default": 36
+      "default": 48
     },
     {
       "type": "range",
       "id": "mobile_title_font_size",
       "label": "Font Size (Mobile)",
-      "min": 12,
+      "min": 16,
       "max": 48,
       "step": 1,
       "unit": "px",
-      "default": 24
+      "default": 32
     },
     {
       "type": "color",
@@ -319,7 +323,7 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 15
+      "default": 20
     },
     {
       "type": "header",
@@ -359,7 +363,7 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 20
+      "default": 25
     },
     {
       "type": "header",
@@ -436,7 +440,7 @@
           "settings": {
             "subtitle": "The subtitle",
             "title": "First card title",
-            "text": "This is the first card with supporting text below as a natural lead-in to additional content.",
+            "text": "This is a wider card with supporting text below as a natural lead-in to additional content.",
             "button_label": "Learn more"
           }
         },
