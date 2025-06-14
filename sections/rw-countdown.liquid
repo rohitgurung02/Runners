@@ -6,127 +6,199 @@
 -%}
 
 <style>
+  {{ sec_id }} {
+    --pc-spacer-{{ last_part }}: {{ section.settings.spacer }}px;
+    --pc-card-bg-{{ last_part }}: {{ section.settings.card_bg }};
+    --pc-subtitle-color-{{ last_part }}: {{ section.settings.subtitle_color }};
+    --pc-title-color-{{ last_part }}: {{ section.settings.title_color }};
+    --pc-text-color-{{ last_part }}: {{ section.settings.text_color }};
+    --pc-button-color-{{ last_part }}: {{ section.settings.button_color }};
+    --pc-button-bg-{{ last_part }}: {{ section.settings.button_bg }};
+    --pc-button-hover-{{ last_part }}: {{ section.settings.button_hover }};
+    --pc-arrow-color-{{ last_part }}: {{ section.settings.arrow_color }};
+    --pc-arrow-bg-{{ last_part }}: {{ section.settings.arrow_bg }};
+    --pc-arrow-hover-{{ last_part }}: {{ section.settings.arrow_hover }};
+  }
+
   {{ sec_id }} .pc-card-carousel-{{ last_part }} {
     position: relative;
     width: 100%;
     overflow: hidden;
   }
+
   {{ sec_id }} .pc-card-{{ last_part }} {
-    border: none;
-    box-shadow: {% if section.settings.enable_shadow %}var(--bs-box-shadow-lg){% else %}none{% endif %};
-    margin-bottom: {{ section.settings.card_margin_bottom }}px;
+    display: none;
+    background: var(--pc-card-bg-{{ last_part }});
+    box-shadow: {% if section.settings.enable_shadow %}0 4px 6px rgba(0, 0, 0, 0.1){% else %}none{% endif %};
+    border-radius: {{ section.settings.card_radius }}px;
   }
-  {{ sec_id }} .pc-card-body-{{ last_part }} {
-    padding: {{ section.settings.card_padding }}px;
+
+  {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
+    display: flex;
   }
+
+  {{ sec_id }} .pc-card-content-{{ last_part }} {
+    padding: calc(var(--pc-spacer-{{ last_part }}) * 2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   {{ sec_id }} .pc-card-subtitle-{{ last_part }} {
-    font-size: {{ section.settings.subtitle_font_size }}px;
-    color: {{ section.settings.subtitle_color }};
-    margin-bottom: {{ section.settings.subtitle_margin_bottom }}px;
+    font-size: {{ section.settings.subtitle_size }}px;
+    color: var(--pc-subtitle-color-{{ last_part }});
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: calc(var(--pc-spacer-{{ last_part }}) / 2);
+    font-weight: {{ section.settings.subtitle_weight }};
   }
+
   {{ sec_id }} .pc-card-title-{{ last_part }} {
-    font-size: {{ section.settings.title_font_size }}px;
-    color: {{ section.settings.title_color }};
-    margin-bottom: {{ section.settings.title_margin_bottom }}px;
+    font-size: {{ section.settings.title_size }}px;
+    color: var(--pc-title-color-{{ last_part }});
+    margin-bottom: var(--pc-spacer-{{ last_part }});
+    font-weight: {{ section.settings.title_weight }};
+    line-height: 1.2;
   }
+
   {{ sec_id }} .pc-card-text-{{ last_part }} {
-    font-size: {{ section.settings.text_font_size }}px;
-    color: {{ section.settings.text_color }};
-    margin-bottom: {{ section.settings.text_margin_bottom }}px;
+    font-size: {{ section.settings.text_size }}px;
+    color: var(--pc-text-color-{{ last_part }});
+    margin-bottom: calc(var(--pc-spacer-{{ last_part }}) * 1.5);
+    line-height: 1.6;
   }
-  {{ sec_id }} .pc-card-carousel-nav-{{ last_part }} {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    z-index: 2;
-    bottom: 0;
+
+  {{ sec_id }} .pc-card-button-{{ last_part }} {
+    display: inline-block;
+    padding: 12px 24px;
+    background: var(--pc-button-bg-{{ last_part }});
+    color: var(--pc-button-color-{{ last_part }});
+    text-decoration: none;
+    border-radius: {{ section.settings.button_radius }}px;
+    font-weight: {{ section.settings.button_weight }};
+    transition: all 0.3s ease;
+    align-self: flex-start;
+  }
+
+  {{ sec_id }} .pc-card-button-{{ last_part }}:hover {
+    background: var(--pc-button-hover-{{ last_part }});
+    transform: translateY(-2px);
+  }
+
+  {{ sec_id }} .pc-card-image-{{ last_part }} {
+    flex-shrink: 0;
+  }
+
+  {{ sec_id }} .pc-card-image-{{ last_part }} img {
     width: 100%;
-  }
-  {{ sec_id }} .pc-carousel-arrow-{{ last_part }} {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    cursor: pointer;
-    padding: 10px;
-    fill: {{ section.settings.arrow_color }};
-    background-color: {{ section.settings.arrow_bg }};
-    width: 50px;
-    margin: 0 2px;
-  }
-  {{ sec_id }} .pc-carousel-arrow-{{ last_part }}:hover {
-    background-color: {{ section.settings.arrow_bg_hover }};
-  }
-  {{ sec_id }} .pc-carousel-icon-{{ last_part }} {
-    width: 24px;
-    height: 24px;
-  }
-  {{ sec_id }} .pc-card-{{ last_part }} img {
-    padding: 15px;
+    height: 100%;
     object-fit: cover;
+    border-radius: 0 {{ section.settings.card_radius }}px {{ section.settings.card_radius }}px 0;
   }
-  @media (min-width: 768px) {
-    {{ sec_id }} .pc-card-{{ last_part }} img {
-      object-fit: contain;
-    }
+
+  {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
   }
+
+  {{ sec_id }} .pc-carousel-arrow-{{ last_part }} {
+    width: 40px;
+    height: 40px;
+    background: var(--pc-arrow-bg-{{ last_part }});
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  {{ sec_id }} .pc-carousel-arrow-{{ last_part }}:hover {
+    background: var(--pc-arrow-hover-{{ last_part }});
+  }
+
+  {{ sec_id }} .pc-carousel-arrow-{{ last_part }} svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--pc-arrow-color-{{ last_part }});
+  }
+
   @media (max-width: 767px) {
+    {{ sec_id }} .pc-card-{{ last_part }} {
+      flex-direction: column;
+    }
+
+    {{ sec_id }} .pc-card-content-{{ last_part }} {
+      padding: var(--pc-spacer-{{ last_part }});
+    }
+
+    {{ sec_id }} .pc-card-image-{{ last_part }} img {
+      border-radius: 0 0 {{ section.settings.card_radius }}px {{ section.settings.card_radius }}px;
+      height: 300px;
+    }
+
     {{ sec_id }} .pc-card-subtitle-{{ last_part }} {
-      font-size: {{ section.settings.mobile_subtitle_font_size }}px;
+      font-size: {{ section.settings.mobile_subtitle_size }}px;
     }
+
     {{ sec_id }} .pc-card-title-{{ last_part }} {
-      font-size: {{ section.settings.mobile_title_font_size }}px;
+      font-size: {{ section.settings.mobile_title_size }}px;
     }
+
     {{ sec_id }} .pc-card-text-{{ last_part }} {
-      font-size: {{ section.settings.mobile_text_font_size }}px;
+      font-size: {{ section.settings.mobile_text_size }}px;
     }
   }
 </style>
 
-<div class="pc-container-{{ last_part }} container mt-5">
-  <div class="pc-row-{{ last_part }} row g-0">
-    <div class="pc-col-{{ last_part }} col pc-card-carousel-{{ last_part }}">
-      <div class="pc-card-carousel-nav-{{ last_part }} col-12 col-lg-4 g-2">
-        <span id="pc-moveLeft-{{ last_part }}" class="pc-carousel-arrow-{{ last_part }}">
-          <svg class="pc-carousel-icon-{{ last_part }}" viewBox="0 0 24 24">
-            <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
-          </svg>
-        </span>
-        <span id="pc-moveRight-{{ last_part }}" class="pc-carousel-arrow-{{ last_part }}">
-          <svg class="pc-carousel-icon-{{ last_part }}" viewBox="0 0 24 24">
-            <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
-          </svg>
-        </span>
+<div class="pc-card-carousel-{{ last_part }}">
+  {% for block in section.blocks %}
+    <div class="pc-card-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}">
+      <div class="pc-card-content-{{ last_part }}">
+        {% if block.settings.subtitle != blank %}
+          <div class="pc-card-subtitle-{{ last_part }}">{{ block.settings.subtitle }}</div>
+        {% endif %}
+        
+        {% if block.settings.title != blank %}
+          <h2 class="pc-card-title-{{ last_part }}">{{ block.settings.title }}</h2>
+        {% endif %}
+        
+        {% if block.settings.text != blank %}
+          <p class="pc-card-text-{{ last_part }}">{{ block.settings.text }}</p>
+        {% endif %}
+        
+        {% if block.settings.button_label != blank %}
+          <a href="{{ block.settings.button_link | default: '#' }}" class="pc-card-button-{{ last_part }}">
+            {{ block.settings.button_label }}
+          </a>
+        {% endif %}
       </div>
       
-      {% for block in section.blocks %}
-        <div class="pc-card-{{ last_part }}{% if forloop.first %} pc-active-{{ last_part }}{% endif %}">
-          <div class="row g-0">
-            <div class="pc-col-{{ last_part }} col-lg-4 d-flex align-items-center">
-              <div class="pc-card-body-{{ last_part }}">
-                {% if block.settings.subtitle != blank %}
-                  <h6 class="pc-card-subtitle-{{ last_part }} text-uppercase fs-6">{{ block.settings.subtitle }}</h6>
-                {% endif %}
-                {% if block.settings.title != blank %}
-                  <h3 class="pc-card-title-{{ last_part }} display-4">{{ block.settings.title }}</h3>
-                {% endif %}
-                {% if block.settings.text != blank %}
-                  <p class="pc-card-text-{{ last_part }}">{{ block.settings.text }}</p>
-                {% endif %}
-                {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-                  <a href="{{ block.settings.button_link }}" class="pc-card-button-{{ last_part }} btn btn-primary">{{ block.settings.button_label }}</a>
-                {% endif %}
-              </div>
-            </div>
-            <div class="pc-col-{{ last_part }} col-lg-8">
-              {% if block.settings.image != blank %}
-                {{ block.settings.image | image_url: width: block.settings.image.width, height: block.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'img-fluid rounded-end' }}
-              {% else %}
-                {{ 'product-1' | placeholder_svg_tag: 'img-fluid rounded-end' }}
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      {% endfor %}
+      <div class="pc-card-image-{{ last_part }}">
+        {% if block.settings.image != blank %}
+          {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.image.alt | escape }}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+  
+  <div class="pc-carousel-nav-{{ last_part }}">
+    <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveLeft-{{ last_part }}">
+      <svg viewBox="0 0 24 24">
+        <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+      </svg>
+    </div>
+    <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveRight-{{ last_part }}">
+      <svg viewBox="0 0 24 24">
+        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+      </svg>
     </div>
   </div>
 </div>
@@ -134,90 +206,90 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const sectionId = '{{ last_part }}';
-    const items = document.querySelectorAll('{{ sec_id }} .pc-card-{{ last_part }}');
-    let current = 0;
-    const total = items.length;
-
-    function initCarousel() {
-      items.forEach((item, index) => {
-        item.style.position = 'absolute';
-        item.style.opacity = '0';
-        item.style.zIndex = '0';
-        item.style.transition = '0.4s all ease-in-out';
-        
-        if (index === 0) {
-          item.style.position = 'relative';
-          item.style.opacity = '1';
-          item.style.zIndex = '1';
-        }
+    const cards = document.querySelectorAll('{{ sec_id }} .pc-card-{{ last_part }}');
+    let currentIndex = 0;
+    
+    function showCard(index) {
+      cards.forEach((card, i) => {
+        card.classList.toggle('pc-active-{{ last_part }}', i === index);
       });
+      currentIndex = index;
     }
-
-    function setSlide(prev, next) {
-      if (next >= total) next = 0;
-      if (next < 0) next = total - 1;
-      
-      items[prev].style.position = 'absolute';
-      items[prev].style.opacity = '0';
-      items[prev].style.zIndex = '0';
-      
-      items[next].style.position = 'relative';
-      items[next].style.opacity = '1';
-      items[next].style.zIndex = '1';
-      
-      current = next;
-    }
-
-    document.getElementById('pc-moveRight-{{ last_part }}').addEventListener('click', function() {
-      const prev = current;
-      const next = current + 1;
-      setSlide(prev, next);
-    });
-
+    
     document.getElementById('pc-moveLeft-{{ last_part }}').addEventListener('click', function() {
-      const prev = current;
-      const next = current - 1;
-      setSlide(prev, next);
+      let newIndex = currentIndex - 1;
+      if (newIndex < 0) newIndex = cards.length - 1;
+      showCard(newIndex);
     });
-
-    const cardCarousel = document.querySelector('{{ sec_id }} .pc-card-carousel-{{ last_part }}');
+    
+    document.getElementById('pc-moveRight-{{ last_part }}').addEventListener('click', function() {
+      let newIndex = currentIndex + 1;
+      if (newIndex >= cards.length) newIndex = 0;
+      showCard(newIndex);
+    });
+    
+    // Touch support for mobile
     let touchStartX = 0;
     let touchEndX = 0;
-
-    cardCarousel.addEventListener('touchstart', function(event) {
-      touchStartX = event.changedTouches[0].screenX;
-    });
-
-    cardCarousel.addEventListener('touchmove', function(event) {
-      touchEndX = event.changedTouches[0].screenX;
-    });
-
-    cardCarousel.addEventListener('touchend', function() {
+    
+    const carousel = document.querySelector('{{ sec_id }} .pc-card-carousel-{{ last_part }}');
+    
+    carousel.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+    
+    carousel.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, {passive: true});
+    
+    function handleSwipe() {
       if (touchEndX < touchStartX - 50) {
-        const prev = current;
-        const next = current + 1;
-        setSlide(prev, next);
+        // Swipe left - next
+        let newIndex = currentIndex + 1;
+        if (newIndex >= cards.length) newIndex = 0;
+        showCard(newIndex);
       }
+      
       if (touchEndX > touchStartX + 50) {
-        const prev = current;
-        const next = current - 1;
-        setSlide(prev, next);
+        // Swipe right - previous
+        let newIndex = currentIndex - 1;
+        if (newIndex < 0) newIndex = cards.length - 1;
+        showCard(newIndex);
       }
-    });
-
-    initCarousel();
+    }
   });
 </script>
 
 {% schema %}
 {
-  "name": "PWC - Card Carousel #1",
+  "name": "RW - Carousel #1",
   "tag": "section",
-  "class": "shopify-section--pc-card-carousel",
+  "class": "shopify-section--pc-minimal-card-carousel",
   "settings": [
     {
       "type": "header",
-      "content": "Card Settings"
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "spacer",
+      "label": "Spacing",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card Border Radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 8
     },
     {
       "type": "checkbox",
@@ -226,32 +298,18 @@
       "default": true
     },
     {
-      "type": "range",
-      "id": "card_padding",
-      "label": "Card Padding",
-      "min": 10,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "card_margin_bottom",
-      "label": "Card Margin Bottom",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 30
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#ffffff"
     },
     {
       "type": "header",
-      "content": "Subtitle Settings"
+      "content": "Subtitle"
     },
     {
       "type": "range",
-      "id": "subtitle_font_size",
+      "id": "subtitle_size",
       "label": "Font Size (Desktop)",
       "min": 10,
       "max": 24,
@@ -261,7 +319,7 @@
     },
     {
       "type": "range",
-      "id": "mobile_subtitle_font_size",
+      "id": "mobile_subtitle_size",
       "label": "Font Size (Mobile)",
       "min": 10,
       "max": 20,
@@ -270,44 +328,58 @@
       "default": 12
     },
     {
+      "type": "select",
+      "id": "subtitle_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
       "type": "color",
       "id": "subtitle_color",
       "label": "Color",
-      "default": "#6c757d"
-    },
-    {
-      "type": "range",
-      "id": "subtitle_margin_bottom",
-      "label": "Margin Bottom",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 10
+      "default": "#666666"
     },
     {
       "type": "header",
-      "content": "Title Settings"
+      "content": "Title"
     },
     {
       "type": "range",
-      "id": "title_font_size",
+      "id": "title_size",
       "label": "Font Size (Desktop)",
-      "min": 16,
-      "max": 72,
+      "min": 20,
+      "max": 60,
       "step": 1,
       "unit": "px",
-      "default": 48
+      "default": 36
     },
     {
       "type": "range",
-      "id": "mobile_title_font_size",
+      "id": "mobile_title_size",
       "label": "Font Size (Mobile)",
-      "min": 16,
-      "max": 48,
+      "min": 18,
+      "max": 40,
       "step": 1,
       "unit": "px",
-      "default": 32
+      "default": 28
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
     },
     {
       "type": "color",
@@ -316,22 +388,12 @@
       "default": "#000000"
     },
     {
-      "type": "range",
-      "id": "title_margin_bottom",
-      "label": "Margin Bottom",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
       "type": "header",
-      "content": "Text Settings"
+      "content": "Text"
     },
     {
       "type": "range",
-      "id": "text_font_size",
+      "id": "text_size",
       "label": "Font Size (Desktop)",
       "min": 12,
       "max": 24,
@@ -341,7 +403,7 @@
     },
     {
       "type": "range",
-      "id": "mobile_text_font_size",
+      "id": "mobile_text_size",
       "label": "Font Size (Mobile)",
       "min": 12,
       "max": 20,
@@ -356,14 +418,48 @@
       "default": "#333333"
     },
     {
+      "type": "header",
+      "content": "Button"
+    },
+    {
       "type": "range",
-      "id": "text_margin_bottom",
-      "label": "Margin Bottom",
+      "id": "button_radius",
+      "label": "Border Radius",
       "min": 0,
-      "max": 50,
+      "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 25
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "button_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover",
+      "label": "Hover Background",
+      "default": "#333333"
     },
     {
       "type": "header",
@@ -383,8 +479,8 @@
     },
     {
       "type": "color",
-      "id": "arrow_bg_hover",
-      "label": "Background Hover Color",
+      "id": "arrow_hover",
+      "label": "Hover Background",
       "default": "#333333"
     }
   ],
@@ -397,19 +493,19 @@
           "type": "text",
           "id": "subtitle",
           "label": "Subtitle",
-          "default": "The subtitle"
+          "default": "THE SUBTITLE"
         },
         {
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Card title"
+          "default": "New title"
         },
         {
           "type": "textarea",
           "id": "text",
           "label": "Text",
-          "default": "This is a wider card with supporting text below as a natural lead-in to additional content."
+          "default": "This is a wider card with supporting text below as a natural."
         },
         {
           "type": "text",
@@ -432,24 +528,24 @@
   ],
   "presets": [
     {
-      "name": "PWC - Card Carousel #1",
+      "name": "RW - Carousel #1",
       "category": "Custom",
       "blocks": [
         {
           "type": "card",
           "settings": {
-            "subtitle": "The subtitle",
-            "title": "First card title",
-            "text": "This is a wider card with supporting text below as a natural lead-in to additional content.",
+            "subtitle": "THE SUBTITLE",
+            "title": "New title",
+            "text": "This is a wider card with supporting text below as a natural.",
             "button_label": "Learn more"
           }
         },
         {
           "type": "card",
           "settings": {
-            "subtitle": "Another subtitle",
-            "title": "Second card title",
-            "text": "This is the second card with different content and text.",
+            "subtitle": "ANOTHER SUBTITLE",
+            "title": "Second title",
+            "text": "Additional content with supporting text for another card.",
             "button_label": "Read more"
           }
         }
