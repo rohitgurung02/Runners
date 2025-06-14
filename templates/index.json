@@ -780,7 +780,7 @@
       "settings": {
         "container_width": 90,
         "container_max_width": 1200,
-        "container_height": 500,
+        "container_height": 400,
         "container_padding": 20,
         "container_radius": 0,
         "mobile_container_width": 95,
