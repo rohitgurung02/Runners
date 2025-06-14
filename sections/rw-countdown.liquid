@@ -6,10 +6,6 @@
 -%}
 
 <style>
-   {{ sec_id }} .pc-card-image-bycx7e {
-    width: 48%;
-}
-  
   {{ sec_id }} {
     --pc-spacer-{{ last_part }}: {{ section.settings.spacer }}px;
     --pc-card-bg-{{ last_part }}: {{ section.settings.card_bg }};
@@ -24,16 +20,30 @@
     --pc-arrow-hover-{{ last_part }}: {{ section.settings.arrow_hover }};
     --pc-image-width-{{ last_part }}: {{ section.settings.image_width }}%;
     --pc-image-height-{{ last_part }}: {{ section.settings.image_height }}px;
+    --pc-container-width-{{ last_part }}: {{ section.settings.container_width }}%;
+    --pc-container-max-width-{{ last_part }}: {{ section.settings.container_max_width }}px;
+    --pc-container-height-{{ last_part }}: {{ section.settings.container_height }}px;
+    --pc-mobile-container-height-{{ last_part }}: {{ section.settings.mobile_container_height }}px;
+  }
+
+  {{ sec_id }} .pc-section-container-{{ last_part }} {
+    width: var(--pc-container-width-{{ last_part }});
+    max-width: var(--pc-container-max-width-{{ last_part }});
+    margin: 0 auto;
+    padding: {{ section.settings.container_padding }}px;
   }
 
   {{ sec_id }} .pc-card-carousel-{{ last_part }} {
     position: relative;
     width: 100%;
+    height: var(--pc-container-height-{{ last_part }});
     overflow: hidden;
+    border-radius: {{ section.settings.container_radius }}px;
   }
 
   {{ sec_id }} .pc-card-{{ last_part }} {
     display: none;
+    height: 100%;
     background: var(--pc-card-bg-{{ last_part }});
     box-shadow: {% if section.settings.enable_shadow %}0 4px 6px rgba(0, 0, 0, 0.1){% else %}none{% endif %};
     border-radius: {{ section.settings.card_radius }}px;
@@ -54,6 +64,7 @@
     flex-direction: column;
     justify-content: center;
     width: calc(100% - var(--pc-image-width-{{ last_part }}));
+    height: 100%;
   }
 
   {{ sec_id }} .pc-card-subtitle-{{ last_part }} {
@@ -100,7 +111,7 @@
   {{ sec_id }} .pc-card-image-{{ last_part }} {
     flex-shrink: 0;
     width: var(--pc-image-width-{{ last_part }});
-    height: var(--pc-image-height-{{ last_part }});
+    height: 100%;
   }
 
   {{ sec_id }} .pc-card-image-{{ last_part }} img {
@@ -147,6 +158,15 @@
   }
 
   @media (max-width: 767px) {
+    {{ sec_id }} .pc-section-container-{{ last_part }} {
+      width: {{ section.settings.mobile_container_width }}%;
+      padding: {{ section.settings.mobile_container_padding }}px;
+    }
+
+    {{ sec_id }} .pc-card-carousel-{{ last_part }} {
+      height: var(--pc-mobile-container-height-{{ last_part }});
+    }
+
     {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
       flex-direction: column;
     }
@@ -154,6 +174,7 @@
     {{ sec_id }} .pc-card-content-{{ last_part }} {
       padding: var(--pc-spacer-{{ last_part }});
       width: 100%;
+      height: auto;
     }
 
     {{ sec_id }} .pc-card-image-{{ last_part }} {
@@ -179,49 +200,51 @@
   }
 </style>
 
-<div class="pc-card-carousel-{{ last_part }}">
-  {% for block in section.blocks %}
-    <div class="pc-card-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}">
-      <div class="pc-card-content-{{ last_part }}">
-        {% if block.settings.subtitle != blank %}
-          <div class="pc-card-subtitle-{{ last_part }}">{{ block.settings.subtitle }}</div>
-        {% endif %}
+<div class="pc-section-container-{{ last_part }}">
+  <div class="pc-card-carousel-{{ last_part }}">
+    {% for block in section.blocks %}
+      <div class="pc-card-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}">
+        <div class="pc-card-content-{{ last_part }}">
+          {% if block.settings.subtitle != blank %}
+            <div class="pc-card-subtitle-{{ last_part }}">{{ block.settings.subtitle }}</div>
+          {% endif %}
+          
+          {% if block.settings.title != blank %}
+            <h2 class="pc-card-title-{{ last_part }}">{{ block.settings.title }}</h2>
+          {% endif %}
+          
+          {% if block.settings.text != blank %}
+            <p class="pc-card-text-{{ last_part }}">{{ block.settings.text }}</p>
+          {% endif %}
+          
+          {% if block.settings.button_label != blank %}
+            <a href="{{ block.settings.button_link | default: '#' }}" class="pc-card-button-{{ last_part }}">
+              {{ block.settings.button_label }}
+            </a>
+          {% endif %}
+        </div>
         
-        {% if block.settings.title != blank %}
-          <h2 class="pc-card-title-{{ last_part }}">{{ block.settings.title }}</h2>
-        {% endif %}
-        
-        {% if block.settings.text != blank %}
-          <p class="pc-card-text-{{ last_part }}">{{ block.settings.text }}</p>
-        {% endif %}
-        
-        {% if block.settings.button_label != blank %}
-          <a href="{{ block.settings.button_link | default: '#' }}" class="pc-card-button-{{ last_part }}">
-            {{ block.settings.button_label }}
-          </a>
-        {% endif %}
+        <div class="pc-card-image-{{ last_part }}">
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.image.alt | escape }}
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
       </div>
-      
-      <div class="pc-card-image-{{ last_part }}">
-        {% if block.settings.image != blank %}
-          {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.image.alt | escape }}
-        {% else %}
-          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-        {% endif %}
+    {% endfor %}
+    
+    <div class="pc-carousel-nav-{{ last_part }}">
+      <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveLeft-{{ last_part }}">
+        <svg viewBox="0 0 24 24">
+          <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+        </svg>
       </div>
-    </div>
-  {% endfor %}
-  
-  <div class="pc-carousel-nav-{{ last_part }}">
-    <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveLeft-{{ last_part }}">
-      <svg viewBox="0 0 24 24">
-        <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
-      </svg>
-    </div>
-    <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveRight-{{ last_part }}">
-      <svg viewBox="0 0 24 24">
-        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-      </svg>
+      <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveRight-{{ last_part }}">
+        <svg viewBox="0 0 24 24">
+          <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+        </svg>
+      </div>
     </div>
   </div>
 </div>
@@ -292,39 +315,87 @@
   "settings": [
     {
       "type": "header",
-      "content": "Layout"
+      "content": "Container Settings"
     },
     {
       "type": "range",
-      "id": "spacer",
-      "label": "Spacing",
-      "min": 10,
-      "max": 50,
+      "id": "container_width",
+      "label": "Container Width (Desktop)",
+      "min": 50,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "container_max_width",
+      "label": "Maximum Container Width",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "container_height",
+      "label": "Container Height (Desktop)",
+      "min": 300,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "label": "Container Padding (Desktop)",
+      "min": 0,
+      "max": 100,
       "step": 1,
       "unit": "px",
       "default": 20
     },
     {
       "type": "range",
-      "id": "card_radius",
-      "label": "Card Border Radius",
+      "id": "container_radius",
+      "label": "Container Border Radius",
       "min": 0,
-      "max": 30,
+      "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 8
+      "default": 0
     },
     {
-      "type": "checkbox",
-      "id": "enable_shadow",
-      "label": "Enable Card Shadow",
-      "default": true
+      "type": "range",
+      "id": "mobile_container_width",
+      "label": "Container Width (Mobile)",
+      "min": 50,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 95
     },
     {
-      "type": "color",
-      "id": "card_bg",
-      "label": "Card Background",
-      "default": "#ffffff"
+      "type": "range",
+      "id": "mobile_container_height",
+      "label": "Container Height (Mobile)",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_padding",
+      "label": "Container Padding (Mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 10
     },
     {
       "type": "header",
@@ -369,6 +440,42 @@
       "step": 10,
       "unit": "px",
       "default": 300
+    },
+    {
+      "type": "header",
+      "content": "Card Settings"
+    },
+    {
+      "type": "range",
+      "id": "spacer",
+      "label": "Spacing",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card Border Radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Card Shadow",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#ffffff"
     },
     {
       "type": "header",
