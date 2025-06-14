@@ -705,7 +705,7 @@
         "theme_label_margin_left_desktop": 20,
         "theme_switch_knob_size_desktop": 26,
         "theme_switch_knob_offset_desktop": 4,
-        "theme_switch_border_radius_desktop": 29,
+        "theme_switch_border_radius_desktop": 38,
         "heading_font_size_mobile": 28,
         "heading_letter_spacing_mobile": 1,
         "heading_margin_bottom_mobile": 0,
@@ -739,7 +739,7 @@
         "theme_switch_knob_offset_mobile": 4,
         "theme_switch_knob_translate_desktop": 60,
         "theme_switch_knob_translate_mobile": 40,
-        "theme_switch_border_radius_mobile": 25,
+        "theme_switch_border_radius_mobile": 38,
         "message_margin_top_mobile": 29
       }
     }
