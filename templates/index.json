@@ -743,6 +743,105 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 6
       }
+    },
+    "rw_timline_1_p4p8ta": {
+      "type": "rw-timline-1",
+      "blocks": {
+        "timeline_item_brzePF": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2021",
+            "title": "Lorem ipsum dolor",
+            "description": "<p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>",
+            "date": "2000",
+            "date_size": "normal",
+            "background_color": "orange",
+            "alignment": "right"
+          }
+        },
+        "timeline_item_PwHyhF": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "1996",
+            "title": "Lorem ipsum dolor",
+            "description": "<p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>",
+            "date": "1996",
+            "date_size": "small",
+            "background_color": "white",
+            "alignment": "left"
+          }
+        },
+        "timeline_item_fk8JUN": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2000",
+            "title": "Lorem ipsum dolor",
+            "description": "<p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>",
+            "date": "2000",
+            "date_size": "normal",
+            "background_color": "orange",
+            "alignment": "right"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_item_brzePF",
+        "timeline_item_PwHyhF",
+        "timeline_item_fk8JUN"
+      ],
+      "name": "RW - Timeline #1",
+      "settings": {
+        "primary_color": "#FE5000",
+        "secondary_color": "#FFFFFF",
+        "text_color": "#6E6E6E",
+        "line_color": "#FE5000",
+        "date_bg_color": "#FE5000",
+        "date_text_color": "#FFFFFF",
+        "small_date_bg_color": "#FFFFFF",
+        "small_date_text_color": "#FE5000",
+        "container_width": 1200,
+        "content_width": 460,
+        "line_width": 16,
+        "connector_width": 50,
+        "connector_height": 21,
+        "connector_margin_top": 41,
+        "date_size": 100,
+        "small_date_size": 46,
+        "year_font_size": 16,
+        "year_font_weight": "700",
+        "year_letter_spacing": 0.4,
+        "year_margin_bottom": 16,
+        "title_font_size": 25,
+        "title_font_weight": "700",
+        "title_letter_spacing": 0,
+        "title_line_height": 1.2,
+        "title_margin_bottom": 18,
+        "description_font_size": 13,
+        "description_line_height": 1.8,
+        "date_font_size": 30,
+        "date_font_weight": "900",
+        "small_date_font_size": 14,
+        "step_padding_top": 50,
+        "content_padding": 24,
+        "content_margin_bottom": 0,
+        "steps_margin_top": 0,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "desktop_padding_top": 0,
+        "desktop_padding_bottom": 0,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_content_padding": 16,
+        "mobile_year_font_size": 14,
+        "mobile_title_font_size": 20,
+        "mobile_description_font_size": 12,
+        "mobile_date_font_size": 24,
+        "mobile_date_size": 80,
+        "mobile_small_date_font_size": 12,
+        "mobile_small_date_size": 40
+      }
     }
   },
   "order": [
@@ -753,6 +852,7 @@
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
-    "rw_contact_us_wJWXNB"
+    "rw_contact_us_wJWXNB",
+    "rw_timline_1_p4p8ta"
   ]
 }
