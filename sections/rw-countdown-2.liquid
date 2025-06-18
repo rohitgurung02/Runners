@@ -231,21 +231,23 @@
     margin-top: 10px;
   }
 
-   {{ sec_id }} {
-    /* Add this to your existing variables */
-    --pc-nav-position: {% if section.settings.image_position == 'right' %}10%{% else %}90%{% endif %};
-  }
-
-  {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
+   {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
     position: absolute;
     bottom: 20px;
-    left: var(--pc-nav-position);
+    left: calc(100% - var(--pc-image-width-{{ last_part }}) / 2);
     transform: translateX(-50%);
     display: flex;
     gap: 10px;
     z-index: 10;
   }
-  
+
+  /* For mobile view */
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
+      left: 50%; /* Center on mobile */
+    }
+  }
+
   {{ sec_id }} .pc-carousel-arrow-{{ last_part }} {
     width: 32px;
     height: 32px;
