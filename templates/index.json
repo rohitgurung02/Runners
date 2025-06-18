@@ -811,7 +811,7 @@
         "button_bg": "transparent",
         "button_hover": "#000000",
         "arrow_color": "#ffffff",
-        "arrow_bg": "#000000",
+        "arrow_bg": "#0073e6",
         "arrow_hover": "#333333"
       }
     }
