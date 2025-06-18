@@ -277,6 +277,19 @@
               {{ block.settings.button_label }}
             </a>
           {% endif %}
+
+            <div class="pc-carousel-nav-{{ last_part }}">
+      <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveLeft-{{ last_part }}">
+        <svg viewBox="0 0 24 24">
+          <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+        </svg>
+      </div>
+      <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveRight-{{ last_part }}">
+        <svg viewBox="0 0 24 24">
+          <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+        </svg>
+      </div>
+    </div>
         </div>
         
         <div class="pc-card-image-{{ last_part }}">
@@ -289,18 +302,7 @@
       </div>
     {% endfor %}
     
-    <div class="pc-carousel-nav-{{ last_part }}">
-      <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveLeft-{{ last_part }}">
-        <svg viewBox="0 0 24 24">
-          <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
-        </svg>
-      </div>
-      <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveRight-{{ last_part }}">
-        <svg viewBox="0 0 24 24">
-          <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-        </svg>
-      </div>
-    </div>
+  
   </div>
 </div>
 
