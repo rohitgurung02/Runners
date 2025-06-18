@@ -796,7 +796,7 @@
       ],
       "name": "PWC - Logo Slider #1",
       "settings": {
-        "animation_speed": 40,
+        "animation_speed": 30,
         "logo_width": 250,
         "logo_height": 100,
         "mobile_logo_width": 150,
