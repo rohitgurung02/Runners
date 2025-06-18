@@ -746,90 +746,89 @@
         "message_margin_top_mobile": 6
       }
     },
-    "rw_countdown_2_PYDhPn": {
-      "type": "rw-countdown-2",
+    "rw_reviews_y6KdyM": {
+      "type": "rw-reviews",
       "blocks": {
-        "card_TF6RcM": {
-          "type": "card",
+        "review_tNhkjU": {
+          "type": "review",
           "settings": {
-            "subtitle": "THE SUBTITLE",
-            "title": "New title",
-            "text": "This is a wider card with supporting text below as a natural.",
-            "button_label": "Learn more",
-            "button_link": "",
-            "image": "shopify://shop_images/pexels-photo-991012.jpg"
+            "image": "shopify://shop_images/pexels-photo-991012.jpg",
+            "title": "“Excellent Team with Creative Mindset”",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien. Feugiat faucibus gravida sed adipiscing odio. Condimentum purus varius non</p>",
+            "author": "CEO of SomeCompany"
           }
         },
-        "card_wBEKU6": {
-          "type": "card",
+        "review_VX9RXP": {
+          "type": "review",
           "settings": {
-            "subtitle": "ANOTHER SUBTITLE",
-            "title": "Second title",
-            "text": "Additional content with supporting text for another card.",
-            "button_label": "Read more",
-            "button_link": "",
-            "image": "shopify://shop_images/pexels-photo-921294.webp"
+            "image": "shopify://shop_images/pexels-photo-921294.webp",
+            "title": "“Great Quality Work”",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien. Feugiat faucibus gravida sed adipiscing odio. Condimentum purus varius non</p>",
+            "author": "Marketing Director"
           }
         },
-        "card_p6QUTC": {
-          "type": "card",
+        "review_PPtARy": {
+          "type": "review",
           "settings": {
-            "subtitle": "THE SUBTITLE",
-            "title": "New title",
-            "text": "This is a wider card with supporting text below as a natural.",
-            "button_label": "Learn more",
-            "button_link": "",
-            "image": "shopify://shop_images/1040-1200x800.jpg"
+            "image": "shopify://shop_images/1011-1200x800.jpg",
+            "title": "“Highly Recommended”",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien. Feugiat faucibus gravida sed adipiscing odio. Condimentum purus varius non</p>",
+            "author": "Product Manager"
           }
         }
       },
       "block_order": [
-        "card_TF6RcM",
-        "card_wBEKU6",
-        "card_p6QUTC"
+        "review_tNhkjU",
+        "review_VX9RXP",
+        "review_PPtARy"
       ],
-      "name": "RW - Carousel #2",
+      "name": "RW - Reviews Slider #1",
       "settings": {
-        "container_width": 90,
-        "container_max_width": 1100,
-        "container_height": 420,
-        "container_padding": 20,
-        "container_radius": 0,
-        "mobile_container_width": 95,
-        "mobile_container_height": 600,
-        "mobile_container_padding": 10,
-        "image_position": "right",
-        "image_width": 50,
-        "image_height": 500,
-        "mobile_image_height": 300,
-        "image_border_radius": 4,
-        "spacer": 20,
-        "card_radius": 0,
-        "enable_shadow": false,
-        "card_bg": "#ffffff",
-        "subtitle_size": 14,
-        "mobile_subtitle_size": 12,
-        "subtitle_weight": "600",
-        "subtitle_color": "#666666",
-        "title_size": 36,
-        "mobile_title_size": 28,
-        "title_weight": "400",
+        "heading": "Reviews",
+        "animation_speed": 20,
+        "section_margin_top": 100,
+        "section_margin_bottom": 100,
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "section_margin_top_mobile": 50,
+        "section_margin_bottom_mobile": 50,
+        "section_padding_top_mobile": 0,
+        "section_padding_bottom_mobile": 0,
+        "heading_font": "playfair_display_n4",
+        "heading_font_weight": "400",
+        "heading_font_size": 50,
+        "heading_font_size_mobile": 30,
+        "heading_color": "#ffffff",
+        "heading_margin_bottom": 70,
+        "card_width": 300,
+        "content_width": 480,
+        "card_height": 200,
+        "card_width_mobile": 300,
+        "card_gap": 20,
+        "row_gap": 20,
+        "card_shadow": false,
+        "card_bg_color": "#ffffff",
+        "section_bg_color": "#000000",
+        "card_padding_top": 20,
+        "card_padding_right": 40,
+        "card_padding_bottom": 20,
+        "card_padding_left": 40,
+        "card_padding_top_mobile": 10,
+        "card_padding_right_mobile": 20,
+        "card_padding_bottom_mobile": 10,
+        "card_padding_left_mobile": 20,
+        "title_font_weight": "800",
+        "title_font_size": 20,
+        "title_font_size_mobile": 16,
         "title_color": "#000000",
-        "title_padding_top": 5,
-        "title_padding_bottom": 5,
-        "text_size": 16,
-        "mobile_text_size": 14,
-        "text_color": "#333333",
-        "text_padding_top": 5,
-        "text_padding_bottom": 5,
-        "button_radius": 0,
-        "button_weight": "500",
-        "button_color": "#000000",
-        "button_bg": "transparent",
-        "button_hover": "#000000",
-        "arrow_color": "#ffffff",
-        "arrow_bg": "#000000",
-        "arrow_hover": "#333333"
+        "title_margin_bottom": 10,
+        "text_font_size": 16,
+        "text_font_size_mobile": 14,
+        "text_color": "#000000",
+        "text_margin_bottom": 8,
+        "author_font_size": 16,
+        "author_font_size_mobile": 14,
+        "author_color": "#000000"
       }
     }
   },
@@ -842,6 +841,6 @@
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
     "rw_contact_us_wJWXNB",
-    "rw_countdown_2_PYDhPn"
+    "rw_reviews_y6KdyM"
   ]
 }
