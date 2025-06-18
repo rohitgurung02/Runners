@@ -752,6 +752,7 @@
         "testimonial_YYigXP": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg",
             "title": "“Excellent Team with Creative Mindset”",
             "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien.</p>",
             "author": "– CEO of SomeCompany"
@@ -760,6 +761,7 @@
         "testimonial_7Gf8Hh": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/pexels-photo-92733.jpg",
             "title": "“Great Quality Work”",
             "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien.</p>",
             "author": "– Marketing Director"
