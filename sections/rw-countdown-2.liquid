@@ -57,24 +57,6 @@
     border-radius: {{ section.settings.card_radius }}px;
   }
 
-  {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
-    display: flex;
-    {% if section.settings.image_position == 'right' %}
-      flex-direction: row;
-    {% else %}
-      flex-direction: row-reverse;
-    {% endif %}
-  }
-
-   {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
-    display: flex;
-    {% if section.settings.image_position == 'left' %}
-      flex-direction: row;
-    {% else %}
-      flex-direction: row-reverse;
-    {% endif %}
-  }
-
   {{ sec_id }} .pc-card-content-{{ last_part }} {
     padding: calc(var(--pc-spacer-{{ last_part }}) * 2);
     display: flex;
@@ -464,16 +446,6 @@
     {
       "type": "header",
       "content": "Image Settings"
-    },
-    {
-      "type": "select",
-      "id": "image_position",
-      "label": "Image Position",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "right"
     },
     {
       "type": "range",
