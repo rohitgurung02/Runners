@@ -767,13 +767,26 @@
             "title": "Second title",
             "text": "Additional content with supporting text for another card.",
             "button_label": "Read more",
-            "button_link": ""
+            "button_link": "",
+            "image": "shopify://shop_images/pexels-photo-92733.jpg"
+          }
+        },
+        "card_qrAxGK": {
+          "type": "card",
+          "settings": {
+            "subtitle": "THE SUBTITLE",
+            "title": "New title",
+            "text": "This is a wider card with supporting text below as a natural.",
+            "button_label": "Learn more",
+            "button_link": "",
+            "image": "shopify://shop_images/1040-1200x800.jpg"
           }
         }
       },
       "block_order": [
         "card_CaW8f6",
-        "card_NgAJ6X"
+        "card_NgAJ6X",
+        "card_qrAxGK"
       ],
       "name": "RW - Carousel #2",
       "settings": {
