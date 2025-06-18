@@ -775,7 +775,9 @@
         },
         "logo_bBPeT7": {
           "type": "logo",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/1011-1200x800.jpg"
+          }
         }
       },
       "block_order": [
