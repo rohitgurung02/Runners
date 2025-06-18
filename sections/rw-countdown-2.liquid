@@ -212,6 +212,7 @@
     {{ sec_id }} .pc-card-text-{{ last_part }} {
       font-size: {{ section.settings.mobile_text_size }}px;
       max-width: 100%;
+      
     }
   }
 </style>
@@ -621,6 +622,24 @@
       "id": "text_color",
       "label": "Color",
       "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "text_padding_top",
+      "label": "Padding Top (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "text_padding_bottom",
+      "label": "Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
     },
     {
       "type": "header",
