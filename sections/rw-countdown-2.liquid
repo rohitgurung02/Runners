@@ -66,6 +66,15 @@
     {% endif %}
   }
 
+   {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
+    display: flex;
+    {% if section.settings.image_position == 'left' %}
+      flex-direction: row;
+    {% else %}
+      flex-direction: row-reverse;
+    {% endif %}
+  }
+
   {{ sec_id }} .pc-card-content-{{ last_part }} {
     padding: calc(var(--pc-spacer-{{ last_part }}) * 2);
     display: flex;
@@ -254,15 +263,6 @@
   }
 }
 
- {{ sec_id }} .pc-carousel-nav- {
-    position: absolute;
-    bottom: 20px;
-    right: 10%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-    z-index: 10;
-}
 </style>
 
 <div class="pc-section-container-{{ last_part }}">
