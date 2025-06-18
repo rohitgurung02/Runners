@@ -745,76 +745,6 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 6
       }
-    },
-    "rw_reviews_GqzWxR": {
-      "type": "rw-reviews",
-      "blocks": {
-        "testimonial_YYigXP": {
-          "type": "testimonial",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-991012.jpg",
-            "title": "“Excellent Team with Creative Mindset”",
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien.</p>",
-            "author": "– CEO of SomeCompany"
-          }
-        },
-        "testimonial_7Gf8Hh": {
-          "type": "testimonial",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-92733.jpg",
-            "title": "“Great Quality Work”",
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien.</p>",
-            "author": "– Marketing Director"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_YYigXP",
-        "testimonial_7Gf8Hh"
-      ],
-      "name": "RW- Testimonials Grid #1",
-      "settings": {
-        "heading": "Testimonials",
-        "section_max_width": 1200,
-        "columns_desktop": 2,
-        "columns_mobile": 1,
-        "section_bg_color": "#ffffff",
-        "section_padding_top": 80,
-        "section_padding_right": 20,
-        "section_padding_bottom": 80,
-        "section_padding_left": 20,
-        "section_padding_top_mobile": 40,
-        "section_padding_right_mobile": 15,
-        "section_padding_bottom_mobile": 40,
-        "section_padding_left_mobile": 15,
-        "heading_font": "helvetica_n4",
-        "heading_font_weight": "700",
-        "heading_font_size": 36,
-        "heading_font_size_mobile": 28,
-        "heading_letter_spacing": 0,
-        "heading_color": "#000000",
-        "heading_margin_bottom": 40,
-        "grid_margin_top": 30,
-        "card_gap": 30,
-        "card_padding": 30,
-        "card_border_radius": 0,
-        "card_bg_color": "#ffffff",
-        "card_shadow": false,
-        "quote_color": "#cccccc",
-        "title_font_weight": "500",
-        "title_font_size": 18,
-        "title_font_size_mobile": 16,
-        "title_color": "#000000",
-        "title_margin_bottom": 15,
-        "text_font_size": 16,
-        "text_font_size_mobile": 14,
-        "text_color": "#333333",
-        "text_margin_bottom": 20,
-        "author_font_size": 14,
-        "author_font_size_mobile": 13,
-        "author_color": "#000000",
-        "author_font_weight": "600"
-      }
     }
   },
   "order": [
@@ -825,7 +755,6 @@
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
-    "rw_contact_us_wJWXNB",
-    "rw_reviews_GqzWxR"
+    "rw_contact_us_wJWXNB"
   ]
 }
