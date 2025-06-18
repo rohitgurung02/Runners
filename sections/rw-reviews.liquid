@@ -1,6 +1,842 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<pc-reviews-{{ last_part }} class="pc-reviews-{{ last_part }}">
+  <div class="pc-reviews__container">
+    {%- if section.settings.heading != blank -%}
+      <div class="pc-reviews__heading">
+        <h2 class="pc-reviews__title">{{ section.settings.heading }}</h2>
+      </div>
+    {%- endif -%}
+    
+    <div class="pc-reviews__slider">
+      {%- for block in section.blocks -%}
+        <div class="pc-review__card" {{ block.shopify_attributes }}>
+          <div class="pc-review__image-container">
+            {%- if block.settings.image != blank -%}
+              {{- block.settings.image | image_url: width: 400 | image_tag: 
+                loading: 'lazy', 
+                class: 'pc-review__image',
+                alt: block.settings.image.alt | escape 
+              -}}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'pc-review__image pc-review__placeholder' }}
+            {%- endif -%}
+          </div>
+          <div class="pc-review__content">
+            {%- if block.settings.title != blank -%}
+              <h3 class="pc-review__title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+            
+            {%- if block.settings.text != blank -%}
+              <div class="pc-review__text">{{ block.settings.text }}</div>
+            {%- endif -%}
+            
+            {%- if block.settings.author != blank -%}
+              <div class="pc-review__author">
+                <svg width="9" height="2" viewBox="0 0 9 2" fill="none" class="pc-review__author-line">
+                  <path d="M0.526123 1.13867H8.25949" stroke="currentColor" stroke-width="0.822209" />
+                </svg>
+                <span>{{ block.settings.author }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</pc-reviews-{{ last_part }}>
+
+<style>
+  {{ sec_id }} .pc-reviews-{{ last_part }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: {{ section.settings.section_margin_top }}px;
+    margin-bottom: {{ section.settings.section_margin_bottom }}px;
+    padding-top: {{ section.settings.section_padding_top }}px;
+    padding-bottom: {{ section.settings.section_padding_bottom }}px;
+    {% if section.settings.section_bg_color != blank %}
+      background-color: {{ section.settings.section_bg_color }};
+    {% endif %}
   }
+
+  {{ sec_id }} .pc-reviews__container {
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  {{ sec_id }} .pc-reviews__heading {
+    text-align: center;
+    margin-bottom: {{ section.settings.heading_margin_bottom }}px;
+  }
+
+  {{ sec_id }} .pc-reviews__title {
+    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    font-weight: {{ section.settings.heading_font_weight }};
+    font-size: {{ section.settings.heading_font_size }}px;
+    color: {{ section.settings.heading_color }};
+    line-height: 1.2;
+  }
+
+  {{ sec_id }} .pc-reviews__slider {
+    display: flex;
+    gap: {{ section.settings.card_gap }}px;
+    width: max-content;
+  }
+
+  {{ sec_id }} .pc-review__card {
+    display: grid;
+    grid-template-columns: 1fr {{ section.settings.content_width }}px;
+    width: {{ section.settings.card_width }}px;
+    {% if section.settings.card_shadow %}
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    {% endif %}
+  }
+
+  {{ sec_id }} .pc-review__image-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  {{ sec_id }} .pc-review__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  {{ sec_id }} .pc-review__placeholder {
+    width: 300px;
+    height: 300px;
+    background: #f5f5f5;
+  }
+
+  {{ sec_id }} .pc-review__content {
+    background-color: {{ section.settings.card_bg_color }};
+    padding: {{ section.settings.card_padding_top }}px {{ section.settings.card_padding_right }}px {{ section.settings.card_padding_bottom }}px {{ section.settings.card_padding_left }}px;
+    height: {{ section.settings.card_height }}px;
+    overflow: hidden;
+  }
+
+  {{ sec_id }} .pc-review__title {
+    font-weight: {{ section.settings.title_font_weight }};
+    font-size: {{ section.settings.title_font_size }}px;
+    color: {{ section.settings.title_color }};
+    line-height: 1.2;
+    margin-bottom: {{ section.settings.title_margin_bottom }}px;
+  }
+
+  {{ sec_id }} .pc-review__text {
+    font-size: {{ section.settings.text_font_size }}px;
+    color: {{ section.settings.text_color }};
+    line-height: 1.5;
+    margin-bottom: {{ section.settings.text_margin_bottom }}px;
+  }
+
+  {{ sec_id }} .pc-review__author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: {{ section.settings.author_font_size }}px;
+    color: {{ section.settings.author_color }};
+  }
+
+  {{ sec_id }} .pc-review__author-line {
+    color: currentColor;
+  }
+
+  {{ sec_id }} .row-first,
+  {{ sec_id }} .row-third {
+    animation: move-first-{{ last_part }} {{ section.settings.animation_speed }}s linear infinite;
+    margin-bottom: {{ section.settings.row_gap }}px;
+  }
+
+  {{ sec_id }} .row-second {
+    transform: translateX(-1000px);
+    animation: move-second-{{ last_part }} {{ section.settings.animation_speed }}s linear infinite;
+    margin-bottom: {{ section.settings.row_gap }}px;
+  }
+
+  @keyframes move-first-{{ last_part }} {
+    50% {
+      transform: translateX(-1000px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes move-second-{{ last_part }} {
+    50% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-1000px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} .pc-reviews-{{ last_part }} {
+      margin-top: {{ section.settings.section_margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.section_margin_bottom_mobile }}px;
+      padding-top: {{ section.settings.section_padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.section_padding_bottom_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-reviews__title {
+      font-size: {{ section.settings.heading_font_size_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-review__card {
+      grid-template-columns: 1fr;
+      width: {{ section.settings.card_width_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-review__content {
+      padding: {{ section.settings.card_padding_top_mobile }}px {{ section.settings.card_padding_right_mobile }}px {{ section.settings.card_padding_bottom_mobile }}px {{ section.settings.card_padding_left_mobile }}px;
+      height: auto;
+      width: {{ section.settings.card_width_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-review__title {
+      font-size: {{ section.settings.title_font_size_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-review__text {
+      font-size: {{ section.settings.text_font_size_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-review__author {
+      font-size: {{ section.settings.author_font_size_mobile }}px;
+    }
+
+    {{ sec_id }} .row-second,
+    {{ sec_id }} .row-third {
+      display: none;
+    }
+
+    {{ sec_id }} .row-first {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  class PCReviews{{ last_part | capitalize }} extends HTMLElement {
+    constructor() {
+      super();
+      this.slider = this.querySelector('.pc-reviews__slider');
+      this.animationSpeed = {{ section.settings.animation_speed }} * 1000;
+      
+      if (window.innerWidth > 768) {
+        this.cloneSlides();
+        this.setupAnimation();
+      }
+      
+      window.addEventListener('resize', this.handleResize.bind(this));
+    }
+    
+    cloneSlides() {
+      const slides = this.querySelectorAll('.pc-review__card');
+      slides.forEach(slide => {
+        const clone = slide.cloneNode(true);
+        this.slider.appendChild(clone);
+      });
+    }
+    
+    setupAnimation() {
+      this.animation = this.slider.animate(
+        [
+          { transform: 'translateX(0)' },
+          { transform: 'translateX(-50%)' }
+        ],
+        {
+          duration: this.animationSpeed,
+          iterations: Infinity
+        }
+      );
+    }
+    
+    handleResize() {
+      if (window.innerWidth <= 768) {
+        if (this.animation) {
+          this.animation.cancel();
+        }
+      } else {
+        if (!this.animation || this.animation.playState === 'finished') {
+          this.setupAnimation();
+        }
+      }
+    }
+  }
+  
+  customElements.define('pc-reviews-{{ last_part }}', PCReviews{{ last_part | capitalize }});
+</script>
+
+{% schema %}
+{
+  "name": "PWC - Reviews Slider #1",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Reviews"
+    },
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "label": "Animation Speed (seconds)",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "default": 20,
+      "unit": "s"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "section_margin_top",
+      "label": "Margin Top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "section_margin_bottom",
+      "label": "Margin Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "section_margin_top_mobile",
+      "label": "Margin Top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "section_margin_bottom_mobile",
+      "label": "Margin Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Heading Settings"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Font Family",
+      "default": "playfair_display_n4"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        },
+        {
+          "value": "800",
+          "label": "Extra Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Font Size (Desktop)",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Font Size (Mobile)",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "label": "Margin Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "Card Layout"
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "Card Width (Desktop)",
+      "min": 300,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content Width (Desktop)",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 480
+    },
+    {
+      "type": "range",
+      "id": "card_height",
+      "label": "Card Height (Desktop)",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "card_width_mobile",
+      "label": "Card Width (Mobile)",
+      "min": 200,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Card Gap",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "label": "Row Gap",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "card_shadow",
+      "label": "Enable Card Shadow",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Card Padding (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_padding_right",
+      "label": "Right Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_padding_left",
+      "label": "Left Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Card Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_top_mobile",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "card_padding_right_mobile",
+      "label": "Right Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_padding_bottom_mobile",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "card_padding_left_mobile",
+      "label": "Left Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Title Settings"
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        },
+        {
+          "value": "800",
+          "label": "Extra Bold"
+        }
+      ],
+      "default": "800"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Font Size (Desktop)",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "label": "Font Size (Mobile)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "label": "Margin Bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size",
+      "label": "Font Size (Desktop)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_font_size_mobile",
+      "label": "Font Size (Mobile)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "text_margin_bottom",
+      "label": "Margin Bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Author Settings"
+    },
+    {
+      "type": "range",
+      "id": "author_font_size",
+      "label": "Font Size (Desktop)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "author_font_size_mobile",
+      "label": "Font Size (Mobile)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "author_color",
+      "label": "Color",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "“Excellent Team with Creative Mindset”"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien. Feugiat faucibus gravida sed adipiscing odio. Condimentum purus varius non</p>"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "CEO of SomeCompany"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - Reviews Slider #1",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "title": "“Excellent Team with Creative Mindset”",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien. Feugiat faucibus gravida sed adipiscing odio. Condimentum purus varius non</p>",
+            "author": "CEO of SomeCompany"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "title": "“Great Quality Work”",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien. Feugiat faucibus gravida sed adipiscing odio. Condimentum purus varius non</p>",
+            "author": "Marketing Director"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "title": "“Highly Recommended”",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien. Feugiat faucibus gravida sed adipiscing odio. Condimentum purus varius non</p>",
+            "author": "Product Manager"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
