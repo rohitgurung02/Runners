@@ -93,22 +93,25 @@
     color: var(--pc-text-color-{{ last_part }});
     margin-bottom: calc(var(--pc-spacer-{{ last_part }}) * 1.5);
     line-height: 1.6;
+    max-width: 80%;
   }
 
   {{ sec_id }} .pc-card-button-{{ last_part }} {
     display: inline-block;
     padding: 12px 24px;
-    background: var(--pc-button-bg-{{ last_part }});
+    background: transparent;
     color: var(--pc-button-color-{{ last_part }});
     text-decoration: none;
     border-radius: {{ section.settings.button_radius }}px;
     font-weight: {{ section.settings.button_weight }};
     transition: all 0.3s ease;
     align-self: flex-start;
+    border: 1px solid var(--pc-button-color-{{ last_part }});
   }
 
   {{ sec_id }} .pc-card-button-{{ last_part }}:hover {
-    background: var(--pc-button-hover-{{ last_part }});
+    background: var(--pc-button-color-{{ last_part }});
+    color: white;
     transform: translateY(-2px);
   }
 
@@ -200,6 +203,7 @@
 
     {{ sec_id }} .pc-card-text-{{ last_part }} {
       font-size: {{ section.settings.mobile_text_size }}px;
+      max-width: 100%;
     }
   }
 </style>
@@ -346,7 +350,7 @@
       "max": 1000,
       "step": 10,
       "unit": "px",
-      "default": 400
+      "default": 500
     },
     {
       "type": "range",
@@ -430,7 +434,7 @@
       "max": 800,
       "step": 10,
       "unit": "px",
-      "default": 400
+      "default": 500
     },
     {
       "type": "range",
@@ -464,13 +468,13 @@
       "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 8
+      "default": 0
     },
     {
       "type": "checkbox",
       "id": "enable_shadow",
       "label": "Enable Card Shadow",
-      "default": true
+      "default": false
     },
     {
       "type": "color",
@@ -554,7 +558,7 @@
         { "value": "600", "label": "Semi Bold" },
         { "value": "700", "label": "Bold" }
       ],
-      "default": "600"
+      "default": "400"
     },
     {
       "type": "color",
@@ -604,7 +608,7 @@
       "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 4
+      "default": 0
     },
     {
       "type": "select",
@@ -622,19 +626,19 @@
       "type": "color",
       "id": "button_color",
       "label": "Text Color",
-      "default": "#ffffff"
+      "default": "#000000"
     },
     {
       "type": "color",
       "id": "button_bg",
       "label": "Background Color",
-      "default": "#000000"
+      "default": "transparent"
     },
     {
       "type": "color",
       "id": "button_hover",
       "label": "Hover Background",
-      "default": "#333333"
+      "default": "#000000"
     },
     {
       "type": "header",
