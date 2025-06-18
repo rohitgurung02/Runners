@@ -140,6 +140,11 @@
     {% else %}
       border-radius: {{ section.settings.image_border_radius }}px 0 0 {{ section.settings.image_border_radius }}px;
     {% endif %}
+    {% if section.settings.image_position == 'left' %}
+      border-radius: 0 {{ section.settings.image_border_radius }}px {{ section.settings.image_border_radius }}px 0;
+    {% else %}
+      border-radius: {{ section.settings.image_border_radius }}px 0 0 {{ section.settings.image_border_radius }}px;
+    {% endif %}
   }
 
   {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
