@@ -745,65 +745,6 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 6
       }
-    },
-    "rw_reviews_YbfFEw": {
-      "type": "rw-reviews",
-      "blocks": {
-        "testimonial_Qa9PtV": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Excellent Team with Creative Mindset",
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien. Feugiat faucibus gravida sed adipiscing odio. Condimentum purus varius non</p>",
-            "author": "– CEO of SomeCompany"
-          }
-        },
-        "testimonial_ktr3CV": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Great Quality Work",
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare eu odio pretium sed amet, pulvinar nunc fringilla lectus.</p><p>Adipiscing gravida rhoncus nunc, massa id. Et vestibulum scelerisque morbi porttitor sapien. Feugiat faucibus gravida sed adipiscing odio. Condimentum purus varius non</p>",
-            "author": "– Marketing Director"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_Qa9PtV",
-        "testimonial_ktr3CV"
-      ],
-      "name": "RW- Testimonial Slider #1",
-      "settings": {
-        "heading": "Testimonials",
-        "section_max_width": 1200,
-        "section_bg_color": "#ffffff",
-        "section_padding_top": 80,
-        "section_padding_bottom": 80,
-        "section_padding_top_mobile": 50,
-        "section_padding_bottom_mobile": 50,
-        "heading_font": "helvetica_n4",
-        "heading_font_weight": "700",
-        "heading_font_size": 36,
-        "heading_font_size_mobile": 28,
-        "heading_color": "#000000",
-        "heading_margin_bottom": 40,
-        "card_bg_color": "#ffffff",
-        "card_border_radius": 0,
-        "card_shadow": false,
-        "quote_font_weight": "500",
-        "quote_font_size": 24,
-        "quote_font_size_mobile": 20,
-        "quote_color": "#000000",
-        "quote_margin_bottom": 20,
-        "text_font_size": 16,
-        "text_font_size_mobile": 14,
-        "text_color": "#333333",
-        "text_margin_bottom": 30,
-        "author_font_size": 14,
-        "author_font_size_mobile": 13,
-        "author_color": "#000000",
-        "author_font_weight": "600",
-        "nav_color": "#000000",
-        "dot_color": "#000000"
-      }
     }
   },
   "order": [
@@ -814,7 +755,6 @@
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
-    "rw_contact_us_wJWXNB",
-    "rw_reviews_YbfFEw"
+    "rw_contact_us_wJWXNB"
   ]
 }
