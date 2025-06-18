@@ -286,32 +286,43 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const sectionId = '{{ last_part }}';
+    const carousel = document.querySelector('{{ sec_id }} .pc-card-carousel-{{ last_part }}');
     const cards = document.querySelectorAll('{{ sec_id }} .pc-card-{{ last_part }}');
     let currentIndex = 0;
     
+    // Initially show the first card
+    showCard(currentIndex);
+    
     function showCard(index) {
-      cards.forEach((card, i) => {
-        card.classList.toggle('pc-active-{{ last_part }}', i === index);
-      });
+      // Update current index
       currentIndex = index;
+      
+      // Hide all cards
+      cards.forEach(card => {
+        card.classList.remove('pc-active-{{ last_part }}');
+      });
+      
+      // Show the current card
+      cards[currentIndex].classList.add('pc-active-{{ last_part }}');
     }
     
+    // Left arrow click handler
     document.getElementById('pc-moveLeft-{{ last_part }}').addEventListener('click', function() {
       let newIndex = currentIndex - 1;
       if (newIndex < 0) newIndex = cards.length - 1;
       showCard(newIndex);
     });
     
+    // Right arrow click handler
     document.getElementById('pc-moveRight-{{ last_part }}').addEventListener('click', function() {
       let newIndex = currentIndex + 1;
       if (newIndex >= cards.length) newIndex = 0;
       showCard(newIndex);
     });
  
+    // Touch swipe functionality
     let touchStartX = 0;
     let touchEndX = 0;
-    
-    const carousel = document.querySelector('{{ sec_id }} .pc-card-carousel-{{ last_part }}');
     
     carousel.addEventListener('touchstart', function(e) {
       touchStartX = e.changedTouches[0].screenX;
@@ -324,12 +335,14 @@
     
     function handleSwipe() {
       if (touchEndX < touchStartX - 50) {
+        // Swipe left - go to next card
         let newIndex = currentIndex + 1;
         if (newIndex >= cards.length) newIndex = 0;
         showCard(newIndex);
       }
       
       if (touchEndX > touchStartX + 50) {
+        // Swipe right - go to previous card
         let newIndex = currentIndex - 1;
         if (newIndex < 0) newIndex = cards.length - 1;
         showCard(newIndex);
