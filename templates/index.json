@@ -752,31 +752,37 @@
         "logo_xRLHmX": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/pexels-photo-991012.jpg"
+            "image": "shopify://shop_images/1.png"
           }
         },
         "logo_8kxfy7": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/pexels-photo-92733.jpg"
+            "image": "shopify://shop_images/2.png"
           }
         },
         "logo_J8yTjT": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/pexels-photo-921294.webp"
+            "image": "shopify://shop_images/3.png"
           }
         },
         "logo_N3DiyY": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/1040-1200x800.jpg"
+            "image": "shopify://shop_images/4.png"
           }
         },
         "logo_bBPeT7": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/1011-1200x800.jpg"
+            "image": "shopify://shop_images/5.png"
+          }
+        },
+        "logo_yyAEL8": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/6.png"
           }
         }
       },
@@ -785,7 +791,8 @@
         "logo_8kxfy7",
         "logo_J8yTjT",
         "logo_N3DiyY",
-        "logo_bBPeT7"
+        "logo_bBPeT7",
+        "logo_yyAEL8"
       ],
       "name": "PWC - Logo Slider #1",
       "settings": {
