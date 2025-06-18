@@ -756,7 +756,8 @@
             "title": "New title",
             "text": "This is a wider card with supporting text below as a natural.",
             "button_label": "Learn more",
-            "button_link": ""
+            "button_link": "",
+            "image": "shopify://shop_images/pexels-photo-991012.jpg"
           }
         },
         "card_dxxxDT": {
@@ -766,13 +767,26 @@
             "title": "Second title",
             "text": "Additional content with supporting text for another card.",
             "button_label": "Read more",
-            "button_link": ""
+            "button_link": "",
+            "image": "shopify://shop_images/pexels-photo-921294.webp"
+          }
+        },
+        "card_7QEdkY": {
+          "type": "card",
+          "settings": {
+            "subtitle": "THE SUBTITLE",
+            "title": "New title",
+            "text": "This is a wider card with supporting text below as a natural.",
+            "button_label": "Learn more",
+            "button_link": "",
+            "image": "shopify://shop_images/pexels-photo-921294.webp"
           }
         }
       },
       "block_order": [
         "card_GQnzH4",
-        "card_dxxxDT"
+        "card_dxxxDT",
+        "card_7QEdkY"
       ],
       "name": "RW - Carousel #2",
       "settings": {
