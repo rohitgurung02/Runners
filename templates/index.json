@@ -756,7 +756,8 @@
             "title": "New title",
             "text": "This is a wider card with supporting text below as a natural.",
             "button_label": "Learn more",
-            "button_link": ""
+            "button_link": "",
+            "image": "shopify://shop_images/pexels-photo-991012.jpg"
           }
         },
         "card_NgAJ6X": {
@@ -784,7 +785,7 @@
         "mobile_container_width": 95,
         "mobile_container_height": 600,
         "mobile_container_padding": 10,
-        "image_position": "left",
+        "image_position": "right",
         "image_width": 50,
         "image_height": 500,
         "mobile_image_height": 300,
