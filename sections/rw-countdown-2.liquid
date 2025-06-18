@@ -6,10 +6,6 @@
 -%}
 
 <style>
-  {{ sec_id }} .pc-card-carousel{
-    box-shadow: 0px 0px 1px 1px #00000042;
-  }
-  
   {{ sec_id }} {
     --pc-spacer-{{ last_part }}: {{ section.settings.spacer }}px;
     --pc-card-bg-{{ last_part }}: {{ section.settings.card_bg }};
@@ -28,10 +24,6 @@
     --pc-container-max-width-{{ last_part }}: {{ section.settings.container_max_width }}px;
     --pc-container-height-{{ last_part }}: {{ section.settings.container_height }}px;
     --pc-mobile-container-height-{{ last_part }}: {{ section.settings.mobile_container_height }}px;
-  }
-
-  {{ sec_id }} .pc-card-content .pc-card-title {
-    margin: 0;
   }
 
   {{ sec_id }} .pc-section-container-{{ last_part }} {
@@ -59,15 +51,6 @@
 
   {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
     display: flex;
-    {% if section.settings.image_position == 'right' %}
-      flex-direction: row;
-    {% else %}
-      flex-direction: row-reverse;
-    {% endif %}
-  }
-
-   {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
-    display: flex;
     {% if section.settings.image_position == 'left' %}
       flex-direction: row;
     {% else %}
@@ -82,6 +65,7 @@
     justify-content: center;
     width: calc(100% - var(--pc-image-width-{{ last_part }}));
     height: 100%;
+    position: relative;
   }
 
   {{ sec_id }} .pc-card-subtitle-{{ last_part }} {
@@ -140,7 +124,7 @@
     height: 100%;
   }
 
-   {{ sec_id }} .pc-card-image-{{ last_part }} img {
+  {{ sec_id }} .pc-card-image-{{ last_part }} img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -150,11 +134,12 @@
   {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
     position: absolute;
     bottom: 20px;
-    left: 10%;
+    left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 10px;
     z-index: 10;
+    width: calc(100% - var(--pc-image-width-{{ last_part }}));
   }
 
   {{ sec_id }} .pc-carousel-arrow-{{ last_part }} {
@@ -179,90 +164,74 @@
     fill: var(--pc-arrow-color-{{ last_part }});
   }
 
- @media (max-width: 767px) {
-  {{ sec_id }} .pc-section-container-{{ last_part }} {
-    width: {{ section.settings.mobile_container_width }}%;
-    padding: {{ section.settings.mobile_container_padding }}px;
-    box-sizing: border-box;
-  }
-
-  {{ sec_id }} .pc-card-carousel-{{ last_part }} {
-    height: var(--pc-mobile-container-height-{{ last_part }});
-  }
-
-  {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
-    flex-direction: column;
-    height: 100%;
-  }
-
-  {{ sec_id }} .pc-card-content-{{ last_part }} {
-    padding: calc(var(--pc-spacer-{{ last_part }}) * 1.5);
-    width: 100%;
-    height: auto;
-    box-sizing: border-box;
-  }
-
-  {{ sec_id }} .pc-card-image-{{ last_part }} {
-    width: 100%;
-    height: {{ section.settings.mobile_image_height }}px;
-    order: -1; /* Image first on mobile */
-  }
-
-  {{ sec_id }} .pc-card-image-{{ last_part }} img {
-    border-radius: {{ section.settings.image_border_radius }}px {{ section.settings.image_border_radius }}px 0 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  {{ sec_id }} .pc-card-subtitle-{{ last_part }} {
-    font-size: {{ section.settings.mobile_subtitle_size }}px;
-    margin-bottom: 8px;
-  }
-
-  {{ sec_id }} .pc-card-title-{{ last_part }} {
-    font-size: {{ section.settings.mobile_title_size }}px;
-    padding-top: {{ section.settings.title_padding_top | divided_by: 2 }}px;
-    padding-bottom: {{ section.settings.title_padding_bottom | divided_by: 2 }}px;
-  }
-
-  {{ sec_id }} .pc-card-text-{{ last_part }} {
-    font-size: {{ section.settings.mobile_text_size }}px;
-    max-width: 100%;
-    padding-top: {{ section.settings.text_padding_top | divided_by: 2 }}px;
-    padding-bottom: {{ section.settings.text_padding_bottom | divided_by: 2 }}px;
-    margin-bottom: 16px;
-  }
-
-  {{ sec_id }} .pc-card-button-{{ last_part }} {
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
-  }
-
-   {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
-    position: absolute;
-    bottom: 20px;
-    left: 10%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-    z-index: 10;
-  }
-
-  /* For mobile view */
   @media (max-width: 767px) {
+    {{ sec_id }} .pc-section-container-{{ last_part }} {
+      width: {{ section.settings.mobile_container_width }}%;
+      padding: {{ section.settings.mobile_container_padding }}px;
+      box-sizing: border-box;
+    }
+
+    {{ sec_id }} .pc-card-carousel-{{ last_part }} {
+      height: var(--pc-mobile-container-height-{{ last_part }});
+    }
+
+    {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
+      flex-direction: column;
+      height: 100%;
+    }
+
+    {{ sec_id }} .pc-card-content-{{ last_part }} {
+      padding: calc(var(--pc-spacer-{{ last_part }}) * 1.5);
+      width: 100%;
+      height: auto;
+      box-sizing: border-box;
+    }
+
+    {{ sec_id }} .pc-card-image-{{ last_part }} {
+      width: 100%;
+      height: {{ section.settings.mobile_image_height }}px;
+      order: -1;
+    }
+
+    {{ sec_id }} .pc-card-image-{{ last_part }} img {
+      border-radius: {{ section.settings.image_border_radius }}px {{ section.settings.image_border_radius }}px 0 0;
+    }
+
+    {{ sec_id }} .pc-card-subtitle-{{ last_part }} {
+      font-size: {{ section.settings.mobile_subtitle_size }}px;
+      margin-bottom: 8px;
+    }
+
+    {{ sec_id }} .pc-card-title-{{ last_part }} {
+      font-size: {{ section.settings.mobile_title_size }}px;
+      padding-top: {{ section.settings.title_padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.title_padding_bottom | divided_by: 2 }}px;
+    }
+
+    {{ sec_id }} .pc-card-text-{{ last_part }} {
+      font-size: {{ section.settings.mobile_text_size }}px;
+      max-width: 100%;
+      padding-top: {{ section.settings.text_padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.text_padding_bottom | divided_by: 2 }}px;
+      margin-bottom: 16px;
+    }
+
+    {{ sec_id }} .pc-card-button-{{ last_part }} {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+    }
+
     {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
-      left: 50%; /* Center on mobile */
+      left: 50%;
+      width: 100%;
+    }
+
+    {{ sec_id }} .pc-carousel-arrow-{{ last_part }} {
+      width: 32px;
+      height: 32px;
     }
   }
-
-  {{ sec_id }} .pc-carousel-arrow-{{ last_part }} {
-    width: 32px;
-    height: 32px;
-  }
-}
-
 </style>
 
 <div class="pc-section-container-{{ last_part }}">
@@ -288,18 +257,18 @@
             </a>
           {% endif %}
 
-            <div class="pc-carousel-nav-{{ last_part }}">
-      <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveLeft-{{ last_part }}">
-        <svg viewBox="0 0 24 24">
-          <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
-        </svg>
-      </div>
-      <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveRight-{{ last_part }}">
-        <svg viewBox="0 0 24 24">
-          <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-        </svg>
-      </div>
-    </div>
+          <div class="pc-carousel-nav-{{ last_part }}">
+            <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveLeft-{{ last_part }}">
+              <svg viewBox="0 0 24 24">
+                <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+              </svg>
+            </div>
+            <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveRight-{{ last_part }}">
+              <svg viewBox="0 0 24 24">
+                <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+              </svg>
+            </div>
+          </div>
         </div>
         
         <div class="pc-card-image-{{ last_part }}">
@@ -311,8 +280,6 @@
         </div>
       </div>
     {% endfor %}
-    
-  
   </div>
 </div>
 
@@ -505,14 +472,14 @@
       "unit": "px",
       "default": 300
     },
-     {
+    {
       "type": "range",
       "id": "image_border_radius",
       "min": 0,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Input border radius",
+      "label": "Image Border Radius",
       "default": 4
     },
     {
