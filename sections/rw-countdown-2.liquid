@@ -231,10 +231,18 @@
     margin-top: 10px;
   }
 
-  {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
-    bottom: 10px;
-    left: 50%;
-    gap: 20px;
+   {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
+    position: absolute;
+    bottom: 20px;
+    {% if section.settings.image_position == 'right' %}
+      left: 10%;
+    {% else %}
+      left: 90%;
+    {% endif %}
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
   }
 
   {{ sec_id }} .pc-carousel-arrow-{{ last_part }} {
