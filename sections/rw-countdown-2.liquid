@@ -42,14 +42,21 @@
   }
 
   {{ sec_id }} .pc-card-{{ last_part }} {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
     background: var(--pc-card-bg-{{ last_part }});
     box-shadow: {% if section.settings.enable_shadow %}0 4px 6px rgba(0, 0, 0, 0.1){% else %}none{% endif %};
     border-radius: {{ section.settings.card_radius }}px;
   }
 
-  {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
+
+   {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
+    opacity: 1;
     display: flex;
     {% if section.settings.image_position == 'left' %}
       flex-direction: row;
