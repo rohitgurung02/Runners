@@ -289,25 +289,34 @@
     const cards = document.querySelectorAll('{{ sec_id }} .pc-card-{{ last_part }}');
     let currentIndex = 0;
     
+    // Show initial card
+    showCard(currentIndex);
+    
     function showCard(index) {
       cards.forEach((card, i) => {
-        card.classList.toggle('pc-active-{{ last_part }}', i === index);
+        card.classList.remove('pc-active-{{ last_part }}');
+        if (i === index) {
+          card.classList.add('pc-active-{{ last_part }}');
+        }
       });
       currentIndex = index;
     }
     
+    // Left arrow click
     document.getElementById('pc-moveLeft-{{ last_part }}').addEventListener('click', function() {
       let newIndex = currentIndex - 1;
       if (newIndex < 0) newIndex = cards.length - 1;
       showCard(newIndex);
     });
     
+    // Right arrow click
     document.getElementById('pc-moveRight-{{ last_part }}').addEventListener('click', function() {
       let newIndex = currentIndex + 1;
       if (newIndex >= cards.length) newIndex = 0;
       showCard(newIndex);
     });
  
+    // Touch swipe functionality
     let touchStartX = 0;
     let touchEndX = 0;
     
@@ -324,12 +333,14 @@
     
     function handleSwipe() {
       if (touchEndX < touchStartX - 50) {
+        // Swipe left - go to next slide
         let newIndex = currentIndex + 1;
         if (newIndex >= cards.length) newIndex = 0;
         showCard(newIndex);
       }
       
       if (touchEndX > touchStartX + 50) {
+        // Swipe right - go to previous slide
         let newIndex = currentIndex - 1;
         if (newIndex < 0) newIndex = cards.length - 1;
         showCard(newIndex);
