@@ -293,6 +293,36 @@
   </div>
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sectionId = "{{ last_part }}";
+    const cards = document.querySelectorAll(".pc-card-" + sectionId);
+    const leftArrow = document.getElementById("pc-moveLeft-" + sectionId);
+    const rightArrow = document.getElementById("pc-moveRight-" + sectionId);
+
+    let current = 0;
+
+    function showCard(index) {
+      cards.forEach((card, i) => {
+        if (i === index) {
+          card.classList.add("pc-active-" + sectionId);
+        } else {
+          card.classList.remove("pc-active-" + sectionId);
+        }
+      });
+    }
+
+    leftArrow.addEventListener("click", () => {
+      current = (current - 1 + cards.length) % cards.length;
+      showCard(current);
+    });
+
+    rightArrow.addEventListener("click", () => {
+      current = (current + 1) % cards.length;
+      showCard(current);
+    });
+  });
+</script>
 
 
 {% schema %}
