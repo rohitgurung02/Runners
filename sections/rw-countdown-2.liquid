@@ -30,6 +30,10 @@
     --pc-mobile-container-height-{{ last_part }}: {{ section.settings.mobile_container_height }}px;
   }
 
+  {{ sec_id }} .pc-card-content h2 {
+    margin: 0;
+  }
+
   {{ sec_id }} .pc-section-container-{{ last_part }} {
     width: var(--pc-container-width-{{ last_part }});
     max-width: var(--pc-container-max-width-{{ last_part }});
