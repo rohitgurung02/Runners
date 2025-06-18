@@ -241,54 +241,56 @@
   }
 </style>
 
-<div class="pc-card-carousel-{{ last_part }}">
-  {% for block in section.blocks %}
-    <div class="pc-card-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}">
-      <div class="pc-card-content-{{ last_part }}">
-        {% if block.settings.subtitle != blank %}
-          <div class="pc-card-subtitle-{{ last_part }}">{{ block.settings.subtitle }}</div>
-        {% endif %}
-        
-        {% if block.settings.title != blank %}
-          <h2 class="pc-card-title-{{ last_part }}">{{ block.settings.title }}</h2>
-        {% endif %}
-        
-        {% if block.settings.text != blank %}
-          <p class="pc-card-text-{{ last_part }}">{{ block.settings.text }}</p>
-        {% endif %}
-        
-        {% if block.settings.button_label != blank %}
-          <a href="{{ block.settings.button_link | default: '#' }}" class="pc-card-button-{{ last_part }}">
-            {{ block.settings.button_label }}
-          </a>
-        {% endif %}
-      </div>
+<div class="pc-section-container-{{ last_part }}">
+  <div class="pc-card-carousel-{{ last_part }}">
+    {% for block in section.blocks %}
+      <div class="pc-card-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}">
+        <div class="pc-card-content-{{ last_part }}">
+          {% if block.settings.subtitle != blank %}
+            <div class="pc-card-subtitle-{{ last_part }}">{{ block.settings.subtitle }}</div>
+          {% endif %}
+          
+          {% if block.settings.title != blank %}
+            <h2 class="pc-card-title-{{ last_part }}">{{ block.settings.title }}</h2>
+          {% endif %}
+          
+          {% if block.settings.text != blank %}
+            <p class="pc-card-text-{{ last_part }}">{{ block.settings.text }}</p>
+          {% endif %}
+          
+          {% if block.settings.button_label != blank %}
+            <a href="{{ block.settings.button_link | default: '#' }}" class="pc-card-button-{{ last_part }}">
+              {{ block.settings.button_label }}
+            </a>
+          {% endif %}
 
-      <div class="pc-card-image-{{ last_part }}">
-        {% if block.settings.image != blank %}
-          {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.image.alt | escape }}
-        {% else %}
-          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-        {% endif %}
-      </div>
-    </div>
-  {% endfor %}
+          
+        </div>
 
-  <!-- 🔥 Carousel Arrows moved outside the loop -->
-  <div class="pc-carousel-nav-{{ last_part }}">
-    <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveLeft-{{ last_part }}">
-      <svg viewBox="0 0 24 24">
-        <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
-      </svg>
-    </div>
-    <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveRight-{{ last_part }}">
-      <svg viewBox="0 0 24 24">
-        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-      </svg>
-    </div>
+        <div class="pc-carousel-nav-{{ last_part }}">
+            <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveLeft-{{ last_part }}">
+              <svg viewBox="0 0 24 24">
+                <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+              </svg>
+            </div>
+            <div class="pc-carousel-arrow-{{ last_part }}" id="pc-moveRight-{{ last_part }}">
+              <svg viewBox="0 0 24 24">
+                <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+              </svg>
+            </div>
+          </div>
+        
+        <div class="pc-card-image-{{ last_part }}">
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.image.alt | escape }}
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
   </div>
 </div>
-
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
