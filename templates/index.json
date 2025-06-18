@@ -756,7 +756,8 @@
             "title": "New title",
             "text": "This is a wider card with supporting text below as a natural.",
             "button_label": "Learn more",
-            "button_link": ""
+            "button_link": "",
+            "image": "shopify://shop_images/pexels-photo-991012.jpg"
           }
         },
         "card_jxYcxi": {
@@ -766,7 +767,8 @@
             "title": "Second title",
             "text": "Additional content with supporting text for another card.",
             "button_label": "Read more",
-            "button_link": ""
+            "button_link": "",
+            "image": "shopify://shop_images/pexels-photo-92733.jpg"
           }
         }
       },
