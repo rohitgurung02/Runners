@@ -138,14 +138,23 @@
     border-radius: {{ section.settings.image_border_radius }}px;
   }
 
-  {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
+   {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
     position: absolute;
     bottom: 20px;
-    left: 10%;
-    transform: translateX(-50%);
+    z-index: 10;
     display: flex;
     gap: 10px;
-    z-index: 10;
+  }
+
+  {{ sec_id }} .pc-align-right .pc-carousel-nav-{{ last_part }} {
+    left: 10%;
+    transform: translateX(0);
+  }
+
+  {{ sec_id }} .pc-align-left .pc-carousel-nav-{{ last_part }} {
+    right: 10%;
+    left: auto;
+    transform: translateX(0);
   }
 
   {{ sec_id }} .pc-carousel-arrow-{{ last_part }} {
@@ -168,6 +177,16 @@
     width: 20px;
     height: 20px;
     fill: var(--pc-arrow-color-{{ last_part }});
+  }
+
+   @media (max-width: 767px) {
+    {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
+      bottom: 10px;
+      left: 50% !important;
+      right: auto !important;
+      transform: translateX(-50%) !important;
+      gap: 20px;
+    }
   }
 
  @media (max-width: 767px) {
@@ -245,7 +264,7 @@
 </style>
 
 <div class="pc-section-container-{{ last_part }}">
-  <div class="pc-card-carousel-{{ last_part }}">
+  <div class="pc-card-carousel-{{ last_part }} pc-align-{{ section.settings.image_position }}">
     {% for block in section.blocks %}
       <div class="pc-card-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}">
         <div class="pc-card-content-{{ last_part }}">
