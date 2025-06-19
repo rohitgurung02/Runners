@@ -918,7 +918,7 @@
       "settings": {
         "video": "shopify://files/videos/9218c4836a5c40429127819258a50242.HD-1080p-4.8Mbps-25897980.mp4",
         "container_width": 1200,
-        "desktop_height": 500,
+        "desktop_height": 600,
         "container_border_radius": 10,
         "video_border_radius": 10,
         "mobile_container_width": 400,
