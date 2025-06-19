@@ -921,7 +921,7 @@
         "overlay_opacity": 0.3,
         "heading": "NATURAL WINE",
         "text_color": "#ffffff",
-        "heading_font_size": 60,
+        "heading_font_size": 40,
         "mobile_heading_font_size": 40,
         "heading_font_weight": "600",
         "heading_spacing": 30,
