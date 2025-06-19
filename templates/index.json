@@ -811,6 +811,95 @@
         "mobile_padding_top": 15,
         "mobile_padding_bottom": 15
       }
+    },
+    "rw_timeline_8VAwHz": {
+      "type": "rw-timeline",
+      "blocks": {
+        "item_cY73ma": {
+          "type": "item",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet",
+            "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "time": "1970-01-01 Saturday"
+          }
+        },
+        "item_AMAzW6": {
+          "type": "item",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet",
+            "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "time": "1970-01-01 Saturday"
+          }
+        },
+        "item_mAXjmt": {
+          "type": "item",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet",
+            "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "time": "1970-01-01 Saturday"
+          }
+        },
+        "item_eEPEzM": {
+          "type": "item",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet",
+            "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "time": "1970-01-01 Saturday"
+          }
+        },
+        "item_YXDVK9": {
+          "type": "item",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet",
+            "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "time": "1970-01-01 Saturday"
+          }
+        }
+      },
+      "block_order": [
+        "item_cY73ma",
+        "item_AMAzW6",
+        "item_mAXjmt",
+        "item_eEPEzM",
+        "item_YXDVK9"
+      ],
+      "name": "PWC - Timeline #1",
+      "settings": {
+        "heading": "Our Timeline",
+        "heading_alignment": "center",
+        "heading_font_size": 32,
+        "mobile_heading_font_size": 24,
+        "heading_font_weight": "700",
+        "heading_color": "#000000",
+        "mobile_heading_padding_top": 10,
+        "mobile_heading_padding_right": 10,
+        "mobile_heading_padding_bottom": 10,
+        "mobile_heading_padding_left": 10,
+        "line_width": 1,
+        "line_color": "#313131",
+        "line_opacity": 0.5,
+        "item_border_radius": 5,
+        "enable_shadow": true,
+        "title_color": "#ffffff",
+        "title_background": "#000000",
+        "title_font_size": 18,
+        "mobile_title_font_size": 16,
+        "title_font_weight": "600",
+        "text_color": "#333333",
+        "content_background": "#ffffff",
+        "text_font_size": 14,
+        "mobile_text_font_size": 12,
+        "icon_color": "#0055ff",
+        "icon_background": "#ffffff",
+        "enble_icon_shadow": true,
+        "time_color": "#333333",
+        "time_font_size": 14,
+        "mobile_time_font_size": 12,
+        "mobile_column_margin_top": 10,
+        "mobile_column_margin_right": 10,
+        "mobile_column_margin_bottom": 10,
+        "mobile_column_margin_left": 10
+      }
     }
   },
   "order": [
@@ -822,6 +911,7 @@
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
     "rw_contact_us_wJWXNB",
-    "rw_reviews_eNfMNB"
+    "rw_reviews_eNfMNB",
+    "rw_timeline_8VAwHz"
   ]
 }
