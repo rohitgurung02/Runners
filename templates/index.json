@@ -820,7 +820,7 @@
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
             "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "time": "1970-01-01 Saturday"
+            "time": "19-06-2025 Thursday"
           }
         },
         "item_AMAzW6": {
@@ -828,7 +828,7 @@
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
             "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "time": "1970-01-01 Saturday"
+            "time": "19-06-2025 Thursday"
           }
         },
         "item_mAXjmt": {
@@ -836,7 +836,7 @@
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
             "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "time": "1970-01-01 Saturday"
+            "time": "19-06-2025 Thursday"
           }
         },
         "item_eEPEzM": {
@@ -844,7 +844,7 @@
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
             "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "time": "1970-01-01 Saturday"
+            "time": "19-06-2025 Thursday"
           }
         },
         "item_YXDVK9": {
@@ -852,7 +852,15 @@
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
             "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "time": "1970-01-01 Saturday"
+            "time": "19-06-2025 Thursday"
+          }
+        },
+        "item_RQhRbL": {
+          "type": "item",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet",
+            "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "time": "19-06-2025 Thursday"
           }
         }
       },
@@ -861,7 +869,8 @@
         "item_AMAzW6",
         "item_mAXjmt",
         "item_eEPEzM",
-        "item_YXDVK9"
+        "item_YXDVK9",
+        "item_RQhRbL"
       ],
       "name": "PWC - Timeline #1",
       "settings": {
@@ -869,30 +878,30 @@
         "heading_alignment": "center",
         "heading_font_size": 32,
         "mobile_heading_font_size": 24,
-        "heading_font_weight": "700",
+        "heading_font_weight": "400",
         "heading_color": "#000000",
         "mobile_heading_padding_top": 10,
         "mobile_heading_padding_right": 10,
         "mobile_heading_padding_bottom": 10,
         "mobile_heading_padding_left": 10,
         "line_width": 1,
-        "line_color": "#313131",
+        "line_color": "#e34d4d",
         "line_opacity": 0.5,
         "item_border_radius": 5,
         "enable_shadow": true,
         "title_color": "#ffffff",
-        "title_background": "#000000",
+        "title_background": "#3a788f",
         "title_font_size": 18,
         "mobile_title_font_size": 16,
-        "title_font_weight": "600",
+        "title_font_weight": "400",
         "text_color": "#333333",
         "content_background": "#ffffff",
         "text_font_size": 14,
         "mobile_text_font_size": 12,
-        "icon_color": "#0055ff",
+        "icon_color": "#57942b",
         "icon_background": "#ffffff",
-        "enble_icon_shadow": true,
-        "time_color": "#333333",
+        "enble_icon_shadow": false,
+        "time_color": "#5b3a8f",
         "time_font_size": 14,
         "mobile_time_font_size": 12,
         "mobile_column_margin_top": 10,
