@@ -4,343 +4,162 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} .pc-timeline-{{ last_part }} h1 {
-    text-align: center;
-    font-weight: {{ section.settings.heading_font_weight }};
-    color: {{ section.settings.heading_color }};
-    font-size: {{ section.settings.heading_font_size }}px;
-    margin-bottom: {{ section.settings.heading_margin_bottom }}px;
-  }
-
-  {{ sec_id }} .pc-timeline-{{ last_part }} h1 span {
-    font-weight: {{ section.settings.heading_span_font_weight }};
-  }
-
-  {{ sec_id }} .pc-timeline-{{ last_part }} {
+  {{ sec_id }} {
+    background-color: {{ section.settings.background_color }};
+    padding: {{ section.settings.desktop_padding_top }}px 0 {{ section.settings.desktop_padding_bottom }}px;
     margin: {{ section.settings.desktop_margin_top }}px 0 {{ section.settings.desktop_margin_bottom }}px;
-    padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
-    background: {{ section.settings.background_color }};
     {% if section.settings.shadow_enabled %}
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     {% endif %}
   }
 
-  {{ sec_id }} .pc-timeline-container-{{ last_part }} {
-    display: flex;
-    flex-direction: column;
-  }
-
-  {{ sec_id }} .pc-timeline-item-{{ last_part }} {
-    width: calc(50% + 1px);
-    padding: 0.5rem 2rem;
+  {{ sec_id }} .pc-timeline-{{ last_part }} {
     position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  {{ sec_id }} .pc-timeline-item-right-{{ last_part }} {
-    align-self: flex-end;
-    border-left: {{ section.settings.timeline_line_width }}px solid {{ section.settings.timeline_line_color }};
+  {{ sec_id }} .pc-timeline-{{ last_part }}::after {
+    content: '';
+    position: absolute;
+    width: {{ section.settings.timeline_line_width }}px;
+    background-color: {{ section.settings.timeline_line_color }};
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -{{ section.settings.timeline_line_width | divided_by: 2 }}px;
+    z-index: 1;
   }
 
-  {{ sec_id }} .pc-timeline-item-left-{{ last_part }} {
-    align-self: flex-start;
-    border-right: {{ section.settings.timeline_line_width }}px solid {{ section.settings.timeline_line_color }};
+  {{ sec_id }} .pc-timeline-container-{{ last_part }} {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
   }
 
-  {{ sec_id }} .pc-timeline-item-{{ last_part }}::after {
-    content: "";
+  {{ sec_id }} .pc-timeline-left-{{ last_part }} {
+    left: 0;
+  }
+
+  {{ sec_id }} .pc-timeline-right-{{ last_part }} {
+    left: 50%;
+  }
+
+  {{ sec_id }} .pc-timeline-container-{{ last_part }}::after {
+    content: '';
     position: absolute;
     width: {{ section.settings.marker_size }}px;
     height: {{ section.settings.marker_size }}px;
-    border-radius: 50%;
-    border: {{ section.settings.marker_border_width }}px solid {{ section.settings.marker_border_color }};
-    background: {{ section.settings.marker_color }};
-    z-index: 9999;
-    top: 1.35rem;
-  }
-
-  {{ sec_id }} .pc-timeline-item-right-{{ last_part }}::after {
-    left: -{{ section.settings.marker_position }}px;
-  }
-
-  {{ sec_id }} .pc-timeline-item-left-{{ last_part }}::after {
     right: -{{ section.settings.marker_position }}px;
+    background-color: {{ section.settings.marker_bg_color }};
+    border: {{ section.settings.marker_border_width }}px solid {{ section.settings.marker_border_color }};
+    top: 15px;
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  {{ sec_id }} .pc-timeline-right-{{ last_part }}::after {
+    left: -{{ section.settings.marker_position | minus: 1 }}px;
+  }
+
+  {{ sec_id }} .pc-timeline-left-{{ last_part }}::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: {{ section.settings.arrow_position }}px;
+    border: medium solid {{ section.settings.content_bg_color }};
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent {{ section.settings.content_bg_color }};
+  }
+
+  {{ sec_id }} .pc-timeline-right-{{ last_part }}::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: {{ section.settings.arrow_position }}px;
+    border: medium solid {{ section.settings.content_bg_color }};
+    border-width: 10px 10px 10px 0;
+    border-color: transparent {{ section.settings.content_bg_color }} transparent transparent;
   }
 
   {{ sec_id }} .pc-timeline-content-{{ last_part }} {
-    width: 95%;
-    padding: 0 15px;
-    color: {{ section.settings.content_color }};
-    display: flex;
-    flex-direction: column;
+    padding: 20px 30px;
+    background-color: {{ section.settings.content_bg_color }};
+    position: relative;
+    border-radius: {{ section.settings.content_border_radius }}px;
   }
 
-  {{ sec_id }} .pc-timeline-content-{{ last_part }} h3 {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: {{ section.settings.item_heading_font_size }}px;
-    font-weight: {{ section.settings.item_heading_font_weight }};
-    color: {{ section.settings.item_heading_color }};
+  {{ sec_id }} .pc-timeline-year-{{ last_part }} {
+    font-size: {{ section.settings.year_font_size }}px;
+    font-weight: {{ section.settings.year_font_weight }};
+    color: {{ section.settings.year_color }};
+    margin-bottom: 10px;
   }
 
-  {{ sec_id }} .pc-timeline-item-left-{{ last_part }} * {
-    text-align: end;
+  {{ sec_id }} .pc-timeline-text-{{ last_part }} {
+    font-size: {{ section.settings.text_font_size }}px;
+    line-height: 1.5;
+    color: {{ section.settings.text_color }};
   }
 
-  {{ sec_id }} .pc-timeline-content-{{ last_part }} span {
-    font-size: {{ section.settings.item_subheading_font_size }}px;
-    color: {{ section.settings.item_subheading_color }};
-  }
-
-  {{ sec_id }} .pc-timeline-content-{{ last_part }} p {
-    font-size: {{ section.settings.item_text_font_size }}px;
-    line-height: 1.5em;
-    word-spacing: 1px;
-    color: {{ section.settings.item_text_color }};
-  }
-
-  @media screen and (max-width: 1024px) {
-    {{ sec_id }} .pc-timeline-{{ last_part }} {
+  @media screen and (max-width: 600px) {
+    {{ sec_id }} {
+      padding: {{ section.settings.mobile_padding_top }}px 0 {{ section.settings.mobile_padding_bottom }}px;
       margin: {{ section.settings.mobile_margin_top }}px 0 {{ section.settings.mobile_margin_bottom }}px;
-      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
     }
 
-    {{ sec_id }} .pc-timeline-item-{{ last_part }} {
+    {{ sec_id }} .pc-timeline-{{ last_part }}::after {
+      left: 31px;
+    }
+
+    {{ sec_id }} .pc-timeline-container-{{ last_part }} {
       width: 100%;
-      padding: 1.35rem 2rem;
-      border-right: none;
-      border-left: {{ section.settings.timeline_line_width }}px solid {{ section.settings.timeline_line_color }};
+      padding-left: 70px;
+      padding-right: 25px;
     }
 
-    {{ sec_id }} .pc-timeline-item-right-{{ last_part }} {
-      align-self: flex-start;
+    {{ sec_id }} .pc-timeline-container-{{ last_part }}::before {
+      left: 60px;
+      border: medium solid {{ section.settings.content_bg_color }};
+      border-width: 10px 10px 10px 0;
+      border-color: transparent {{ section.settings.content_bg_color }} transparent transparent;
     }
 
-    {{ sec_id }} .pc-timeline-item-left-{{ last_part }} * {
-      text-align: start;
+    {{ sec_id }} .pc-timeline-left-{{ last_part }}::after,
+    {{ sec_id }} .pc-timeline-right-{{ last_part }}::after {
+      left: 15px;
     }
 
-    {{ sec_id }} .pc-timeline-item-left-{{ last_part }}::after {
-      right: auto;
-      left: -{{ section.settings.marker_position }}px;
-    }
-
-    {{ sec_id }} .pc-timeline-item-{{ last_part }}::after {
-      top: 2rem;
+    {{ sec_id }} .pc-timeline-right-{{ last_part }} {
+      left: 0%;
     }
   }
 </style>
 
 <div class="pc-timeline-{{ last_part }}">
-  <h1>{{ section.settings.heading | replace: '[span]', '<span>' | replace: '[/span]', '</span>' }}</h1>
-
-  <div class="pc-timeline-container-{{ last_part }}">
-    {% for block in section.blocks %}
-      <div class="pc-timeline-item-{{ last_part }} {% cycle 'pc-timeline-item-left-{{ last_part }}', 'pc-timeline-item-right-{{ last_part }}' %}" {{ block.shopify_attributes }}>
-        <div class="pc-timeline-content-{{ last_part }}">
-          {%- if block.settings.image != blank -%}
-            <div class="pc-timeline-image-{{ last_part }}">
-              {{- block.settings.image | image_url: width: block.settings.image.width, height: block.settings.image.height | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt -}}
-            </div>
-          {%- endif -%}
-          <h3>{{ block.settings.title }}</h3>
-          <span>{{ block.settings.subtitle }}</span>
-          <p>{{ block.settings.description }}</p>
-        </div>
+  {% for block in section.blocks %}
+    <div class="pc-timeline-container-{{ last_part }} {% cycle 'pc-timeline-left-{{ last_part }}', 'pc-timeline-right-{{ last_part }}' %}" {{ block.shopify_attributes }}>
+      <div class="pc-timeline-content-{{ last_part }}">
+        <h2 class="pc-timeline-year-{{ last_part }}">{{ block.settings.year }}</h2>
+        <p class="pc-timeline-text-{{ last_part }}">{{ block.settings.text }}</p>
       </div>
-    {% endfor %}
-  </div>
+    </div>
+  {% endfor %}
 </div>
 
 {% schema %}
 {
-  "name": "RW - Timeline #1",
+  "name": "PWC - Timeline #2",
   "tag": "section",
   "class": "pc-timeline-section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Heading Settings"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Pure Css responsive [span]timeline[/span]",
-      "info": "Use [span] and [/span] to highlight parts of text"
-    },
-    {
-      "type": "range",
-      "id": "heading_font_size",
-      "label": "Heading Font Size (Desktop)",
-      "min": 10,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "heading_font_weight",
-      "label": "Heading Font Weight",
-      "min": 100,
-      "max": 900,
-      "step": 100,
-      "default": 300
-    },
-    {
-      "type": "range",
-      "id": "heading_span_font_weight",
-      "label": "Heading Span Font Weight",
-      "min": 100,
-      "max": 900,
-      "step": 100,
-      "default": 600
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
-      "default": "#777777"
-    },
-    {
-      "type": "range",
-      "id": "heading_margin_bottom",
-      "label": "Heading Margin Bottom",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "header",
-      "content": "Timeline Style"
-    },
-    {
-      "type": "range",
-      "id": "timeline_line_width",
-      "label": "Timeline Line Width",
-      "min": 1,
-      "max": 10,
-      "step": 1,
-      "unit": "px",
-      "default": 2
-    },
-    {
-      "type": "color",
-      "id": "timeline_line_color",
-      "label": "Timeline Line Color",
-      "default": "#ccd1d9"
-    },
-    {
-      "type": "range",
-      "id": "marker_size",
-      "label": "Marker Size",
-      "min": 5,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "marker_border_width",
-      "label": "Marker Border Width",
-      "min": 1,
-      "max": 5,
-      "step": 1,
-      "unit": "px",
-      "default": 2
-    },
-    {
-      "type": "color",
-      "id": "marker_color",
-      "label": "Marker Color",
-      "default": "#4fc1e9"
-    },
-    {
-      "type": "color",
-      "id": "marker_border_color",
-      "label": "Marker Border Color",
-      "default": "#f5f7fa"
-    },
-    {
-      "type": "range",
-      "id": "marker_position",
-      "label": "Marker Position",
-      "min": 5,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 11
-    },
-    {
-      "type": "header",
-      "content": "Content Style"
-    },
-    {
-      "type": "color",
-      "id": "content_color",
-      "label": "Content Color",
-      "default": "#666666"
-    },
-    {
-      "type": "range",
-      "id": "item_heading_font_size",
-      "label": "Item Heading Font Size",
-      "min": 10,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 25
-    },
-    {
-      "type": "range",
-      "id": "item_heading_font_weight",
-      "label": "Item Heading Font Weight",
-      "min": 100,
-      "max": 900,
-      "step": 100,
-      "default": 500
-    },
-    {
-      "type": "color",
-      "id": "item_heading_color",
-      "label": "Item Heading Color",
-      "default": "#666666"
-    },
-    {
-      "type": "range",
-      "id": "item_subheading_font_size",
-      "label": "Item Subheading Font Size",
-      "min": 10,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "color",
-      "id": "item_subheading_color",
-      "label": "Item Subheading Color",
-      "default": "#a4a4a4"
-    },
-    {
-      "type": "range",
-      "id": "item_text_font_size",
-      "label": "Item Text Font Size",
-      "min": 10,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "color",
-      "id": "item_text_color",
-      "label": "Item Text Color",
-      "default": "#888888"
-    },
     {
       "type": "header",
       "content": "Section Styling"
@@ -349,13 +168,154 @@
       "type": "color",
       "id": "background_color",
       "label": "Background Color",
-      "default": "#f1f2f6"
+      "default": "#252525"
     },
     {
       "type": "checkbox",
       "id": "shadow_enabled",
       "label": "Enable Shadow",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Timeline Line"
+    },
+    {
+      "type": "range",
+      "id": "timeline_line_width",
+      "label": "Line Width",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "color",
+      "id": "timeline_line_color",
+      "label": "Line Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Timeline Marker"
+    },
+    {
+      "type": "range",
+      "id": "marker_size",
+      "label": "Marker Size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "marker_border_width",
+      "label": "Marker Border Width",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "marker_bg_color",
+      "label": "Marker Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "marker_border_color",
+      "label": "Marker Border Color",
+      "default": "#FF9F55"
+    },
+    {
+      "type": "range",
+      "id": "marker_position",
+      "label": "Marker Position",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "arrow_position",
+      "label": "Arrow Position",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Content Box"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "content_border_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "year_font_size",
+      "label": "Year Font Size",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "year_font_weight",
+      "label": "Year Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "color",
+      "id": "year_color",
+      "label": "Year Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size",
+      "label": "Text Font Size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
     },
     {
       "type": "header",
@@ -389,17 +349,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_right",
-      "label": "Padding Right",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 80
+      "default": 50
     },
     {
       "type": "range",
@@ -409,17 +359,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_left",
-      "label": "Padding Left",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 80
+      "default": 50
     },
     {
       "type": "header",
@@ -457,16 +397,6 @@
     },
     {
       "type": "range",
-      "id": "mobile_padding_right",
-      "label": "Padding Right",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
       "id": "mobile_padding_bottom",
       "label": "Padding Bottom",
       "min": 0,
@@ -474,16 +404,6 @@
       "step": 1,
       "unit": "px",
       "default": 30
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_left",
-      "label": "Padding Left",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 20
     }
   ],
   "blocks": [
@@ -492,58 +412,44 @@
       "name": "Timeline Item",
       "settings": [
         {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image (Optional)"
-        },
-        {
           "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Timeline Item"
-        },
-        {
-          "type": "text",
-          "id": "subtitle",
-          "label": "Subtitle",
-          "default": "Some work experience"
+          "id": "year",
+          "label": "Year",
+          "default": "2023"
         },
         {
           "type": "textarea",
-          "id": "description",
-          "label": "Description",
-          "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+          "id": "text",
+          "label": "Text",
+          "default": "Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam."
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "RW - Timeline #1",
+      "name": "PWC - Timeline #2",
       "category": "Custom",
       "blocks": [
         {
           "type": "timeline_item",
           "settings": {
-            "title": "First Year",
-            "subtitle": "Some work experience",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            "year": "2023",
+            "text": "Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam."
           }
         },
         {
           "type": "timeline_item",
           "settings": {
-            "title": "Second Year",
-            "subtitle": "More work experience",
-            "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            "year": "2022",
+            "text": "Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto."
           }
         },
         {
           "type": "timeline_item",
           "settings": {
-            "title": "Third Year",
-            "subtitle": "Advanced experience",
-            "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+            "year": "2021",
+            "text": "Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto."
           }
         }
       ]
