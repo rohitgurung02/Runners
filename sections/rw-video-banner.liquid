@@ -95,7 +95,7 @@
 <section class="pc-video-banner-{{ last_part }}">
   {% if section.settings.video != blank %}
     <video autoplay muted loop playsinline>
-      <source src="{{ section.settings.video }}" type="video/mp4">
+      <source src="{{ section.settings.video | file_url }}" type="video/mp4">
     </video>
   {% else %}
     {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -118,10 +118,10 @@
       "content": "Video Settings"
     },
     {
-      "type": "text",
+      "type": "video",
       "id": "video",
-      "label": "Video URL",
-      "info": "Upload video to Files and paste URL here"
+      "label": "Video",
+      "info": "Upload a video file"
     },
     {
       "type": "range",
