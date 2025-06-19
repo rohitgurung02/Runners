@@ -36,13 +36,16 @@
     position: relative;
     background-color: inherit;
     width: 50%;
+    clear: both;
   }
 
   {{ sec_id }} .pc-timeline-left-{{ last_part }} {
+    float: left;
     left: 0;
   }
 
   {{ sec_id }} .pc-timeline-right-{{ last_part }} {
+    float: right;
     left: 50%;
   }
 
@@ -138,20 +141,31 @@
     }
 
     {{ sec_id }} .pc-timeline-right-{{ last_part }} {
+      float: none;
       left: 0%;
+    }
+    
+    {{ sec_id }} .pc-timeline-left-{{ last_part }} {
+      float: none;
     }
   }
 </style>
 
 <div class="pc-timeline-{{ last_part }}">
   {% for block in section.blocks %}
-    <div class="pc-timeline-container-{{ last_part }} {% cycle 'pc-timeline-left-{{ last_part }}', 'pc-timeline-right-{{ last_part }}' %}" {{ block.shopify_attributes }}>
+    {%- assign mod_result = forloop.index0 | modulo: 2 -%}
+    {%- if mod_result == 0 -%}
+      <div class="pc-timeline-container-{{ last_part }} pc-timeline-left-{{ last_part }}" {{ block.shopify_attributes }}>
+    {%- else -%}
+      <div class="pc-timeline-container-{{ last_part }} pc-timeline-right-{{ last_part }}" {{ block.shopify_attributes }}>
+    {%- endif -%}
       <div class="pc-timeline-content-{{ last_part }}">
         <h2 class="pc-timeline-year-{{ last_part }}">{{ block.settings.year }}</h2>
         <p class="pc-timeline-text-{{ last_part }}">{{ block.settings.text }}</p>
       </div>
     </div>
   {% endfor %}
+  <div style="clear:both;"></div>
 </div>
 
 {% schema %}
