@@ -811,6 +811,78 @@
         "mobile_padding_top": 15,
         "mobile_padding_bottom": 15
       }
+    },
+    "rw_timeline_4ja3BB": {
+      "type": "rw-timeline",
+      "blocks": {
+        "timeline_item_WMTqgt": {
+          "type": "timeline_item",
+          "settings": {
+            "title": "First Year",
+            "subtitle": "Some work experience",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          }
+        },
+        "timeline_item_HXGjif": {
+          "type": "timeline_item",
+          "settings": {
+            "title": "Second Year",
+            "subtitle": "More work experience",
+            "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+          }
+        },
+        "timeline_item_CWJCQz": {
+          "type": "timeline_item",
+          "settings": {
+            "title": "Third Year",
+            "subtitle": "Advanced experience",
+            "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          }
+        }
+      },
+      "block_order": [
+        "timeline_item_WMTqgt",
+        "timeline_item_HXGjif",
+        "timeline_item_CWJCQz"
+      ],
+      "name": "RW - Timeline #1",
+      "settings": {
+        "heading": "Pure Css responsive [span]timeline[/span]",
+        "heading_font_size": 30,
+        "heading_font_weight": 300,
+        "heading_span_font_weight": 600,
+        "heading_color": "#777777",
+        "heading_margin_bottom": 30,
+        "timeline_line_width": 2,
+        "timeline_line_color": "#ccd1d9",
+        "marker_size": 16,
+        "marker_border_width": 2,
+        "marker_color": "#4fc1e9",
+        "marker_border_color": "#f5f7fa",
+        "marker_position": 11,
+        "content_color": "#666666",
+        "item_heading_font_size": 25,
+        "item_heading_font_weight": 500,
+        "item_heading_color": "#666666",
+        "item_subheading_font_size": 15,
+        "item_subheading_color": "#a4a4a4",
+        "item_text_font_size": 14,
+        "item_text_color": "#888888",
+        "background_color": "#f1f2f6",
+        "shadow_enabled": false,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "desktop_padding_top": 40,
+        "desktop_padding_right": 80,
+        "desktop_padding_bottom": 40,
+        "desktop_padding_left": 80,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0,
+        "mobile_padding_top": 30,
+        "mobile_padding_right": 20,
+        "mobile_padding_bottom": 30,
+        "mobile_padding_left": 20
+      }
     }
   },
   "order": [
@@ -822,6 +894,7 @@
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
     "rw_contact_us_wJWXNB",
-    "rw_reviews_eNfMNB"
+    "rw_reviews_eNfMNB",
+    "rw_timeline_4ja3BB"
   ]
 }
