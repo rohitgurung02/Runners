@@ -917,8 +917,8 @@
       "name": "RW - Video Banner #1",
       "settings": {
         "video": "shopify://files/videos/a6cc51260b324888b676e57ab24f3524.mp4",
-        "container_width": 1100,
-        "desktop_height": 600,
+        "container_width": 1200,
+        "desktop_height": 500,
         "container_border_radius": 0,
         "video_border_radius": 0,
         "mobile_container_width": 400,
