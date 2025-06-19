@@ -914,7 +914,7 @@
       "type": "rw-video-banner",
       "name": "RW - Video Banner #2",
       "settings": {
-        "video": "https://www.youtube.com/watch?v=18MuzLKhseU",
+        "video": "shopify://files/videos/a6cc51260b324888b676e57ab24f3524.mp4",
         "desktop_height": 600,
         "mobile_height": 400,
         "overlay_color": "#000000",
