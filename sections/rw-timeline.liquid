@@ -1,329 +1,461 @@
-{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 {%- assign parts = sec_id | split: '_' -%}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<style>
-  {{ sec_id }} {
-    background-color: {{ section.settings.background_color }};
-    padding: {{ section.settings.desktop_padding_top }}px 0 {{ section.settings.desktop_padding_bottom }}px;
-    margin: {{ section.settings.desktop_margin_top }}px 0 {{ section.settings.desktop_margin_bottom }}px;
-    {% if section.settings.shadow_enabled %}
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    {% endif %}
-  }
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
+<style>
   {{ sec_id }} .pc-timeline-{{ last_part }} {
-    position: relative;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
   }
 
-  {{ sec_id }} .pc-timeline-{{ last_part }}::after {
-    content: '';
-    position: absolute;
-    width: {{ section.settings.timeline_line_width }}px;
-    background-color: {{ section.settings.timeline_line_color }};
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -{{ section.settings.timeline_line_width | divided_by: 2 }}px;
-    z-index: 1;
+  {{ sec_id }} .pc-timeline-{{ last_part }} > h3 {
+    text-align: {{ section.settings.heading_alignment }};
+    text-transform: capitalize;
+    font-size: {{ section.settings.heading_font_size }}px;
+    font-weight: {{ section.settings.heading_font_weight }};
+    padding: 1rem;
+    color: {{ section.settings.heading_color }};
   }
 
-  {{ sec_id }} .pc-timeline-container-{{ last_part }} {
-    padding: 10px 40px;
+  {{ sec_id }} .pc-timeline-column-{{ last_part }} {
+    display: flex;
+    flex-direction: column;
     position: relative;
-    background-color: inherit;
-    width: 50%;
-    clear: both;
+    margin: 1rem;
   }
 
-  {{ sec_id }} .pc-timeline-left-{{ last_part }} {
-    float: left;
-    left: 0;
-  }
-
-  {{ sec_id }} .pc-timeline-right-{{ last_part }} {
-    float: right;
+  {{ sec_id }} .pc-timeline-column-{{ last_part }}::before {
+    content: "";
+    display: block;
+    position: absolute;
     left: 50%;
+    transform: translatex(-50%);
+    border: {{ section.settings.line_width }}px solid {{ section.settings.line_color | color_modify: 'alpha', section.settings.line_opacity }};
+    height: calc(100% / {{ section.blocks.size }} * {{ section.blocks.size | minus: 1 }});
+    z-index: -1;
   }
 
-  {{ sec_id }} .pc-timeline-container-{{ last_part }}::after {
-    content: '';
-    position: absolute;
-    width: {{ section.settings.marker_size }}px;
-    height: {{ section.settings.marker_size }}px;
-    right: -{{ section.settings.marker_position }}px;
-    background-color: {{ section.settings.marker_bg_color }};
-    border: {{ section.settings.marker_border_width }}px solid {{ section.settings.marker_border_color }};
-    top: 15px;
-    border-radius: 50%;
-    z-index: 2;
-  }
-
-  {{ sec_id }} .pc-timeline-right-{{ last_part }}::after {
-    left: -{{ section.settings.marker_position | minus: 1 }}px;
-  }
-
-  {{ sec_id }} .pc-timeline-left-{{ last_part }}::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    right: {{ section.settings.arrow_position }}px;
-    border: medium solid {{ section.settings.content_bg_color }};
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent {{ section.settings.content_bg_color }};
-  }
-
-  {{ sec_id }} .pc-timeline-right-{{ last_part }}::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    left: {{ section.settings.arrow_position }}px;
-    border: medium solid {{ section.settings.content_bg_color }};
-    border-width: 10px 10px 10px 0;
-    border-color: transparent {{ section.settings.content_bg_color }} transparent transparent;
-  }
-
-  {{ sec_id }} .pc-timeline-content-{{ last_part }} {
-    padding: 20px 30px;
-    background-color: {{ section.settings.content_bg_color }};
-    position: relative;
-    border-radius: {{ section.settings.content_border_radius }}px;
-  }
-
-  {{ sec_id }} .pc-timeline-year-{{ last_part }} {
-    font-size: {{ section.settings.year_font_size }}px;
-    font-weight: {{ section.settings.year_font_weight }};
-    color: {{ section.settings.year_color }};
-    margin-bottom: 10px;
+  {{ sec_id }} .pc-timeline-row-{{ last_part }} {
+    display: flex;
   }
 
   {{ sec_id }} .pc-timeline-text-{{ last_part }} {
-    font-size: {{ section.settings.text_font_size }}px;
-    line-height: 1.5;
-    color: {{ section.settings.text_color }};
+    flex: 1 1 calc(50% - 50px);
+    position: relative;
+    {% if section.settings.enable_shadow %}
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    {% endif %}
+    border-radius: {{ section.settings.item_border_radius }}px;
+    background: {{ section.settings.content_background }};
   }
 
-  @media screen and (max-width: 600px) {
-    {{ sec_id }} {
-      padding: {{ section.settings.mobile_padding_top }}px 0 {{ section.settings.mobile_padding_bottom }}px;
-      margin: {{ section.settings.mobile_margin_top }}px 0 {{ section.settings.mobile_margin_bottom }}px;
+  {{ sec_id }} .pc-timeline-text-{{ last_part }} h3 {
+    color: {{ section.settings.title_color }};
+    background-color: {{ section.settings.title_background }};
+    padding: 1rem;
+    border-top-left-radius: {{ section.settings.item_border_radius }}px;
+    border-top-right-radius: {{ section.settings.item_border_radius }}px;
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: {{ section.settings.title_font_weight }};
+  }
+
+  {{ sec_id }} .pc-timeline-text-{{ last_part }} p {
+    padding: 1rem;
+    color: {{ section.settings.text_color }};
+    border-bottom-left-radius: {{ section.settings.item_border_radius }}px;
+    border-bottom-right-radius: {{ section.settings.item_border_radius }}px;
+    font-size: {{ section.settings.text_font_size }}px;
+    line-height: 1.5;
+  }
+
+  {{ sec_id }} .pc-timeline-icon-{{ last_part }} {
+    flex: 1 1 100px;
+  }
+
+  {{ sec_id }} .pc-timeline-icon-{{ last_part }} > div {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: auto;
+    background: {{ section.settings.icon_background }};
+    {% if section.settings.enable_icon_shadow %}
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
+    {% endif %}
+    position: relative;
+  }
+
+  {{ sec_id }} .pc-timeline-icon-{{ last_part }} svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: {{ section.settings.icon_color }};
+  }
+
+  {{ sec_id }} .pc-timeline-time-{{ last_part }} {
+    flex: 1 1 calc(50% - 50px);
+    padding-top: 1rem;
+    color: {{ section.settings.time_color }};
+    font-size: {{ section.settings.time_font_size }}px;
+  }
+
+  {{ sec_id }} .pc-timeline-row-{{ last_part }}:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  {{ sec_id }} .pc-timeline-row-{{ last_part }}:nth-child(even) > .pc-timeline-time-{{ last_part }} {
+    text-align: end;
+  }
+
+  {{ sec_id }} .pc-timeline-row-{{ last_part }}:nth-child(even) h3::before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    border: 10px solid rgba(0, 0, 0, 0);
+    border-right-color: {{ section.settings.title_background }};
+  }
+
+  {{ sec_id }} .pc-timeline-row-{{ last_part }}:nth-child(odd) h3::after {
+    content: "";
+    position: absolute;
+    right: -20px;
+    border: 10px solid rgba(0, 0, 0, 0);
+    border-left-color: {{ section.settings.title_background }};
+  }
+
+  @media screen and (max-width: 768px) {
+    {{ sec_id }} .pc-timeline-{{ last_part }} > h3 {
+      font-size: {{ section.settings.mobile_heading_font_size }}px;
+      padding: {{ section.settings.mobile_heading_padding_top }}px {{ section.settings.mobile_heading_padding_right }}px {{ section.settings.mobile_heading_padding_bottom }}px {{ section.settings.mobile_heading_padding_left }}px;
     }
 
-    {{ sec_id }} .pc-timeline-{{ last_part }}::after {
-      left: 31px;
+    {{ sec_id }} .pc-timeline-column-{{ last_part }}::before {
+      left: 50px;
+      height: calc(100% / {{ section.blocks.size }} * {{ section.blocks.size | minus: 1 }});
+      top: 50px;
     }
 
-    {{ sec_id }} .pc-timeline-container-{{ last_part }} {
-      width: 100%;
-      padding-left: 70px;
-      padding-right: 25px;
+    {{ sec_id }} .pc-timeline-column-{{ last_part }} {
+      margin: {{ section.settings.mobile_column_margin_top }}px {{ section.settings.mobile_column_margin_right }}px {{ section.settings.mobile_column_margin_bottom }}px {{ section.settings.mobile_column_margin_left }}px;
     }
 
-    {{ sec_id }} .pc-timeline-container-{{ last_part }}::before {
-      left: 60px;
-      border: medium solid {{ section.settings.content_bg_color }};
-      border-width: 10px 10px 10px 0;
-      border-color: transparent {{ section.settings.content_bg_color }} transparent transparent;
+    {{ sec_id }} .pc-timeline-row-{{ last_part }} {
+      flex-flow: column wrap;
+      height: 250px;
     }
 
-    {{ sec_id }} .pc-timeline-left-{{ last_part }}::after,
-    {{ sec_id }} .pc-timeline-right-{{ last_part }}::after {
-      left: 15px;
+    {{ sec_id }} .pc-timeline-row-{{ last_part }}:nth-child(even) {
+      flex-direction: column;
     }
 
-    {{ sec_id }} .pc-timeline-right-{{ last_part }} {
-      float: none;
-      left: 0%;
+    {{ sec_id }} .pc-timeline-row-{{ last_part }}:nth-child(even) > .pc-timeline-time-{{ last_part }} {
+      text-align: start;
     }
-    
-    {{ sec_id }} .pc-timeline-left-{{ last_part }} {
-      float: none;
+
+    {{ sec_id }} .pc-timeline-icon-{{ last_part }} {
+      order: 1;
+      flex: 1 1 100%;
+      padding-top: 50px;
+      width: 100px;
+    }
+
+    {{ sec_id }} .pc-timeline-time-{{ last_part }} {
+      order: 2;
+      flex: 1 1 50px;
+      width: calc(100% - 100px);
+      font-size: {{ section.settings.mobile_time_font_size }}px;
+    }
+
+    {{ sec_id }} .pc-timeline-text-{{ last_part }} {
+      order: 3;
+      flex: 1 1 calc(100% - 50px);
+      width: calc(100% - 100px);
+    }
+
+    {{ sec_id }} .pc-timeline-text-{{ last_part }} h3 {
+      font-size: {{ section.settings.mobile_title_font_size }}px;
+    }
+
+    {{ sec_id }} .pc-timeline-text-{{ last_part }} p {
+      font-size: {{ section.settings.mobile_text_font_size }}px;
+    }
+
+    {{ sec_id }} .pc-timeline-row-{{ last_part }}:nth-child(odd) h3::before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      border: 10px solid rgba(0, 0, 0, 0);
+      border-right-color: {{ section.settings.title_background }};
+    }
+
+    {{ sec_id }} .pc-timeline-row-{{ last_part }}:nth-child(odd) h3::after {
+      border: none;
     }
   }
 </style>
 
-<div class="pc-timeline-{{ last_part }}">
-  {% for block in section.blocks %}
-    {%- assign mod_result = forloop.index0 | modulo: 2 -%}
-    {%- if mod_result == 0 -%}
-      <div class="pc-timeline-container-{{ last_part }} pc-timeline-left-{{ last_part }}" {{ block.shopify_attributes }}>
-    {%- else -%}
-      <div class="pc-timeline-container-{{ last_part }} pc-timeline-right-{{ last_part }}" {{ block.shopify_attributes }}>
-    {%- endif -%}
-      <div class="pc-timeline-content-{{ last_part }}">
-        <h2 class="pc-timeline-year-{{ last_part }}">{{ block.settings.year }}</h2>
-        <p class="pc-timeline-text-{{ last_part }}">{{ block.settings.text }}</p>
+<section class="pc-timeline-{{ last_part }}">
+  <h3>{{ section.settings.heading }}</h3>
+  <div class="pc-timeline-column-{{ last_part }}">
+    {% for block in section.blocks %}
+      <div class="pc-timeline-row-{{ last_part }}" {{ block.shopify_attributes }}>
+        <div class="pc-timeline-text-{{ last_part }}">
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.description }}</p>
+        </div>
+        <div class="pc-timeline-icon-{{ last_part }}">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="pc-timeline-time-{{ last_part }}">
+          <time>{{ block.settings.time }}</time>
+        </div>
       </div>
-    </div>
-  {% endfor %}
-  <div style="clear:both;"></div>
-</div>
+    {% endfor %}
+  </div>
+</section>
 
 {% schema %}
 {
-  "name": "PWC - Timeline #2",
-  "tag": "section",
-  "class": "pc-timeline-section",
+  "name": "PWC - Timeline #1",
   "settings": [
     {
-      "type": "header",
-      "content": "Section Styling"
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Timeline"
     },
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#252525"
-    },
-    {
-      "type": "checkbox",
-      "id": "shadow_enabled",
-      "label": "Enable Shadow",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "Timeline Line"
-    },
-    {
-      "type": "range",
-      "id": "timeline_line_width",
-      "label": "Line Width",
-      "min": 1,
-      "max": 10,
-      "step": 1,
-      "unit": "px",
-      "default": 6
-    },
-    {
-      "type": "color",
-      "id": "timeline_line_color",
-      "label": "Line Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "header",
-      "content": "Timeline Marker"
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
     },
     {
       "type": "range",
-      "id": "marker_size",
-      "label": "Marker Size",
+      "id": "heading_font_size",
+      "label": "Heading Font Size (Desktop)",
       "min": 10,
-      "max": 40,
+      "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 25
+      "default": 32
     },
     {
       "type": "range",
-      "id": "marker_border_width",
-      "label": "Marker Border Width",
-      "min": 1,
-      "max": 10,
-      "step": 1,
-      "unit": "px",
-      "default": 4
-    },
-    {
-      "type": "color",
-      "id": "marker_bg_color",
-      "label": "Marker Background Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "marker_border_color",
-      "label": "Marker Border Color",
-      "default": "#FF9F55"
-    },
-    {
-      "type": "range",
-      "id": "marker_position",
-      "label": "Marker Position",
+      "id": "mobile_heading_font_size",
+      "label": "Heading Font Size (Mobile)",
       "min": 10,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 17
-    },
-    {
-      "type": "range",
-      "id": "arrow_position",
-      "label": "Arrow Position",
-      "min": 10,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "header",
-      "content": "Content Box"
-    },
-    {
-      "type": "color",
-      "id": "content_bg_color",
-      "label": "Background Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "range",
-      "id": "content_border_radius",
-      "label": "Border Radius",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 6
-    },
-    {
-      "type": "header",
-      "content": "Typography"
-    },
-    {
-      "type": "range",
-      "id": "year_font_size",
-      "label": "Year Font Size",
-      "min": 12,
-      "max": 50,
+      "max": 60,
       "step": 1,
       "unit": "px",
       "default": 24
     },
     {
-      "type": "range",
-      "id": "year_font_weight",
-      "label": "Year Font Weight",
-      "min": 100,
-      "max": 900,
-      "step": 100,
-      "default": 700
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "700"
     },
     {
       "type": "color",
-      "id": "year_color",
-      "label": "Year Color",
+      "id": "heading_color",
+      "label": "Heading Color",
       "default": "#000000"
     },
     {
       "type": "range",
-      "id": "text_font_size",
-      "label": "Text Font Size",
+      "id": "mobile_heading_padding_top",
+      "label": "Heading Top Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_padding_right",
+      "label": "Heading Right Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_padding_bottom",
+      "label": "Heading Bottom Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_padding_left",
+      "label": "Heading Left Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Timeline Line Settings"
+    },
+    {
+      "type": "range",
+      "id": "line_width",
+      "label": "Line Width",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Line Color",
+      "default": "#313131"
+    },
+    {
+      "type": "range",
+      "id": "line_opacity",
+      "label": "Line Opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.5
+    },
+    {
+      "type": "header",
+      "content": "Item Settings"
+    },
+    {
+      "type": "range",
+      "id": "item_border_radius",
+      "label": "Item Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Item Shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Title Settings"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_background",
+      "label": "Title Background",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Title Font Size (Desktop)",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "label": "Title Font Size (Mobile)",
       "min": 10,
       "max": 30,
       "step": 1,
       "unit": "px",
       "default": 16
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
     },
     {
       "type": "color",
@@ -332,139 +464,167 @@
       "default": "#333333"
     },
     {
-      "type": "header",
-      "content": "Desktop Spacing"
+      "type": "color",
+      "id": "content_background",
+      "label": "Content Background",
+      "default": "#ffffff"
     },
     {
       "type": "range",
-      "id": "desktop_margin_top",
-      "label": "Margin Top",
-      "min": 0,
-      "max": 100,
+      "id": "text_font_size",
+      "label": "Text Font Size (Desktop)",
+      "min": 10,
+      "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 0
+      "default": 14
     },
     {
       "type": "range",
-      "id": "desktop_margin_bottom",
-      "label": "Margin Bottom",
-      "min": 0,
-      "max": 100,
+      "id": "mobile_text_font_size",
+      "label": "Text Font Size (Mobile)",
+      "min": 10,
+      "max": 20,
       "step": 1,
       "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_top",
-      "label": "Padding Top",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 50
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_bottom",
-      "label": "Padding Bottom",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 50
+      "default": 12
     },
     {
       "type": "header",
-      "content": "Mobile Spacing"
+      "content": "Icon Settings"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#0055ff"
+    },
+    {
+      "type": "color",
+      "id": "icon_background",
+      "label": "Icon Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "enble_icon_shadow",
+      "label": "Enable Icon Shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Time Settings"
+    },
+    {
+      "type": "color",
+      "id": "time_color",
+      "label": "Time Color",
+      "default": "#333333"
     },
     {
       "type": "range",
-      "id": "mobile_margin_top",
-      "label": "Margin Top",
+      "id": "time_font_size",
+      "label": "Time Font Size (Desktop)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_time_font_size",
+      "label": "Time Font Size (Mobile)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Mobile Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_column_margin_top",
+      "label": "Column Top Margin (Mobile)",
       "min": 0,
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 0
+      "default": 10
     },
     {
       "type": "range",
-      "id": "mobile_margin_bottom",
-      "label": "Margin Bottom",
+      "id": "mobile_column_margin_right",
+      "label": "Column Right Margin (Mobile)",
       "min": 0,
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 0
+      "default": 10
     },
     {
       "type": "range",
-      "id": "mobile_padding_top",
-      "label": "Padding Top",
+      "id": "mobile_column_margin_bottom",
+      "label": "Column Bottom Margin (Mobile)",
       "min": 0,
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 30
+      "default": 10
     },
     {
       "type": "range",
-      "id": "mobile_padding_bottom",
-      "label": "Padding Bottom",
+      "id": "mobile_column_margin_left",
+      "label": "Column Left Margin (Mobile)",
       "min": 0,
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 30
+      "default": 10
     }
   ],
   "blocks": [
     {
-      "type": "timeline_item",
+      "type": "item",
       "name": "Timeline Item",
       "settings": [
         {
           "type": "text",
-          "id": "year",
-          "label": "Year",
-          "default": "2023"
+          "id": "title",
+          "label": "Title",
+          "default": "Lorem ipsum dolor sit amet"
         },
         {
           "type": "textarea",
-          "id": "text",
-          "label": "Text",
-          "default": "Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam."
+          "id": "description",
+          "label": "Description",
+          "default": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "text",
+          "id": "time",
+          "label": "Time",
+          "default": "1970-01-01 Saturday"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "PWC - Timeline #2",
+      "name": "PWC - Timeline #1",
       "category": "Custom",
       "blocks": [
         {
-          "type": "timeline_item",
-          "settings": {
-            "year": "2023",
-            "text": "Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam."
-          }
+          "type": "item"
         },
         {
-          "type": "timeline_item",
-          "settings": {
-            "year": "2022",
-            "text": "Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto."
-          }
+          "type": "item"
         },
         {
-          "type": "timeline_item",
-          "settings": {
-            "year": "2021",
-            "text": "Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto."
-          }
+          "type": "item"
         }
       ]
     }
