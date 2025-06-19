@@ -8,11 +8,14 @@
   {{ sec_id }} .pc-video-banner-{{ last_part }} {
     position: relative;
     width: 100%;
+    max-width: {{ section.settings.container_width }}px;
     height: {{ section.settings.desktop_height }}px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
+    border-radius: {{ section.settings.container_border_radius }}px;
   }
 
   {{ sec_id }} .pc-video-banner-{{ last_part }} video {
@@ -21,6 +24,7 @@
     height: 100%;
     object-fit: cover;
     z-index: 0;
+    border-radius: {{ section.settings.video_border_radius }}px;
   }
 
   {{ sec_id }} .pc-video-content-{{ last_part }} {
@@ -73,11 +77,22 @@
     background-color: {{ section.settings.overlay_color }};
     opacity: {{ section.settings.overlay_opacity }};
     z-index: 0;
+    border-radius: {{ section.settings.video_border_radius }}px;
   }
 
   @media screen and (max-width: 768px) {
     {{ sec_id }} .pc-video-banner-{{ last_part }} {
       height: {{ section.settings.mobile_height }}px;
+      max-width: {{ section.settings.mobile_container_width }}px;
+      border-radius: {{ section.settings.mobile_container_border_radius }}px;
+    }
+
+    {{ sec_id }} .pc-video-banner-{{ last_part }} video {
+      border-radius: {{ section.settings.mobile_video_border_radius }}px;
+    }
+
+    {{ sec_id }} .pc-video-overlay-{{ last_part }} {
+      border-radius: {{ section.settings.mobile_video_border_radius }}px;
     }
 
     {{ sec_id }} .pc-video-heading-{{ last_part }} {
@@ -123,9 +138,23 @@
       "info": "Upload a video file"
     },
     {
+      "type": "header",
+      "content": "Container Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container Width (Desktop)",
+      "min": 1000,
+      "max": 2000,
+      "step": 10,
+      "unit": "px",
+      "default": 1000
+    },
+    {
       "type": "range",
       "id": "desktop_height",
-      "label": "Desktop Height",
+      "label": "Container Height (Desktop)",
       "min": 300,
       "max": 1000,
       "step": 10,
@@ -134,13 +163,63 @@
     },
     {
       "type": "range",
+      "id": "container_border_radius",
+      "label": "Container Border Radius (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "video_border_radius",
+      "label": "Video Border Radius (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_width",
+      "label": "Container Width (Mobile)",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
       "id": "mobile_height",
-      "label": "Mobile Height",
+      "label": "Container Height (Mobile)",
       "min": 200,
       "max": 800,
       "step": 10,
       "unit": "px",
       "default": 400
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_border_radius",
+      "label": "Container Border Radius (Mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_video_border_radius",
+      "label": "Video Border Radius (Mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "header",
