@@ -956,6 +956,48 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
+    },
+    "rw_test_9bjPgV": {
+      "type": "rw-test",
+      "blocks": {
+        "testimonial_BY9M9h": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "I'll definitely be shopping here again!"
+          }
+        },
+        "testimonial_VVFxWq": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "The quality of these products is amazing!"
+          }
+        },
+        "testimonial_8HQUVT": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "Fast shipping and excellent customer service!"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_BY9M9h",
+        "testimonial_VVFxWq",
+        "testimonial_8HQUVT"
+      ],
+      "name": "PWC - Glow Slider",
+      "settings": {
+        "autoplay_speed": 5,
+        "desktop_padding_top": 60,
+        "desktop_padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "text_color": "#e34d4d",
+        "glow_color": "#0073e6",
+        "card_bg": "#b13d3d05",
+        "card_border": "#e34d4d",
+        "text_size_desktop": 24,
+        "text_size_mobile": 18
+      }
     }
   },
   "order": [
@@ -969,6 +1011,7 @@
     "rw_contact_us_wJWXNB",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA"
+    "rw_video_banner_f88XdA",
+    "rw_test_9bjPgV"
   ]
 }
