@@ -956,6 +956,50 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
+    },
+    "rw_test_fkXgcc": {
+      "type": "rw-test",
+      "blocks": {
+        "testimonial_RmK83C": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "felt so soft and ||I'm absolutely in love!||"
+          }
+        },
+        "testimonial_CVWYic": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "This serum is a hydration ||game-changer!||"
+          }
+        },
+        "testimonial_BnhWT7": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "My skin has never felt so ||hydrated.||"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_RmK83C",
+        "testimonial_CVWYic",
+        "testimonial_BnhWT7"
+      ],
+      "name": "PWC - Glow Slider #1",
+      "settings": {
+        "slides_to_show": 3,
+        "autoplay_speed": 5,
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 40,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30,
+        "text_color": "#FFFFFF",
+        "highlight_color": "#FFD700",
+        "glow_color": "#FFFFFF",
+        "card_bg": "rgba(255, 255, 255, 0.1)",
+        "card_border": "rgba(255, 255, 255, 0.2)",
+        "text_size_desktop": 18,
+        "text_size_mobile": 16
+      }
     }
   },
   "order": [
@@ -969,6 +1013,7 @@
     "rw_contact_us_wJWXNB",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA"
+    "rw_video_banner_f88XdA",
+    "rw_test_fkXgcc"
   ]
 }
