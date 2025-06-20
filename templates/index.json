@@ -965,7 +965,7 @@
           "settings": {
             "image": "shopify://shop_images/3-03_RunnersAthletics_Look30048_533x_02af8b28-96b4-4f28-b4af-f0e52fe2af16.webp",
             "title": "Product Title",
-            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             "button_label": "Shop Now",
             "button_link": ""
           }
