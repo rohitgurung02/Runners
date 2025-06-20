@@ -956,6 +956,51 @@
         "mobile_column_margin_bottom": 10,
         "mobile_column_margin_left": 10
       }
+    },
+    "rw_test_aAUgTm": {
+      "type": "rw-test",
+      "blocks": {
+        "product_ErD4Ua": {
+          "type": "product",
+          "settings": {
+            "title": "Product Title",
+            "description": "Product Description",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "product_cC7Nan": {
+          "type": "product",
+          "settings": {
+            "title": "Product Title",
+            "description": "Product Description",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_ErD4Ua",
+        "product_cC7Nan"
+      ],
+      "name": "RW - Product Slider #2",
+      "settings": {
+        "heading": "All Products",
+        "heading_alignment": "center",
+        "heading_font_size": 28,
+        "heading_color": "#333333",
+        "bg_color": "#f9f9f9",
+        "shadow": true,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "padding_side": 20,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30,
+        "mobile_padding_side": 15,
+        "mobile_heading_font_size": 24,
+        "button_color": "#222222",
+        "title_font_size": 20
+      }
     }
   },
   "order": [
@@ -969,6 +1014,7 @@
     "rw_tabs_nFraJM",
     "rw_contact_us_wJWXNB",
     "rw_reviews_eNfMNB",
-    "rw_timeline_8VAwHz"
+    "rw_timeline_8VAwHz",
+    "rw_test_aAUgTm"
   ]
 }
