@@ -6,22 +6,16 @@
 -%}
 
 <style>
-  {{ sec_id }} {
-    --pc-slider-gap: 30px;
-    --pc-slider-padding: 40px;
-  }
-
   {{ sec_id }} .pc-organic-slider-{{ last_part }} {
-    position: relative;
-    width: 100%;
-    padding: 40px 0;
-    background-color: {{ section.settings.background_color }};
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    padding: 50px 0;
+    background-color: #f9f9f9;
   }
 
   {{ sec_id }} .pc-slider-container-{{ last_part }} {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--pc-slider-padding);
+    padding: 0 20px;
   }
 
   {{ sec_id }} .pc-section-header-{{ last_part }} {
@@ -30,97 +24,91 @@
   }
 
   {{ sec_id }} .pc-section-header-{{ last_part }} h2 {
-    font-size: 32px;
-    color: {{ section.settings.heading_color }};
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #333;
     text-transform: uppercase;
-    letter-spacing: 2px;
     margin-bottom: 10px;
   }
 
-  {{ sec_id }} .pc-section-header-{{ last_part }} .pc-divider-{{ last_part }} {
-    width: 80px;
+  {{ sec_id }} .pc-section-divider-{{ last_part }} {
+    width: 60px;
     height: 2px;
-    background-color: {{ section.settings.divider_color }};
+    background-color: #333;
     margin: 0 auto;
   }
 
   {{ sec_id }} .pc-slider-wrapper-{{ last_part }} {
     position: relative;
-    overflow: hidden;
   }
 
   {{ sec_id }} .pc-slider-track-{{ last_part }} {
     display: flex;
+    gap: 30px;
     transition: transform 0.5s ease;
-    gap: var(--pc-slider-gap);
   }
 
   {{ sec_id }} .pc-slide-{{ last_part }} {
-    flex: 0 0 calc(50% - (var(--pc-slider-gap)/2));
-    min-width: 0;
+    flex: 0 0 calc(50% - 15px);
   }
 
   {{ sec_id }} .pc-product-card-{{ last_part }} {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
     background: white;
-    border-radius: 8px;
+    border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    height: 100%;
   }
 
-  {{ sec_id }} .pc-image-container-{{ last_part }} {
-    position: relative;
+  {{ sec_id }} .pc-product-image-{{ last_part }} {
     width: 100%;
-    padding-top: 100%;
+    height: 300px;
     overflow: hidden;
   }
 
-  {{ sec_id }} .pc-image-container-{{ last_part }} img {
-    position: absolute;
-    top: 0;
-    left: 0;
+  {{ sec_id }} .pc-product-image-{{ last_part }} img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  {{ sec_id }} .pc-content-container-{{ last_part }} {
+  {{ sec_id }} .pc-product-content-{{ last_part }} {
     padding: 25px;
     text-align: center;
   }
 
-  {{ sec_id }} .pc-content-container-{{ last_part }} h3 {
-    font-size: 22px;
-    color: {{ section.settings.product_title_color }};
+  {{ sec_id }} .pc-product-title-{{ last_part }} {
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
     margin-bottom: 15px;
     text-transform: capitalize;
   }
 
-  {{ sec_id }} .pc-content-container-{{ last_part }} p {
-    font-size: 16px;
-    color: {{ section.settings.product_text_color }};
-    margin-bottom: 20px;
+  {{ sec_id }} .pc-product-description-{{ last_part }} {
+    font-size: 15px;
+    color: #666;
     line-height: 1.5;
+    margin-bottom: 20px;
   }
 
   {{ sec_id }} .pc-shop-button-{{ last_part }} {
     display: inline-block;
-    padding: 10px 25px;
-    background-color: transparent;
-    color: {{ section.settings.button_text_color }};
-    border: 2px solid {{ section.settings.button_border_color }};
-    border-radius: 4px;
-    text-transform: uppercase;
+    padding: 8px 25px;
+    background: transparent;
+    color: #222;
+    border: 2px solid #222;
+    border-radius: 3px;
     font-weight: 600;
+    text-transform: uppercase;
     letter-spacing: 1px;
     text-decoration: none;
     transition: all 0.3s ease;
   }
 
   {{ sec_id }} .pc-shop-button-{{ last_part }}:hover {
-    background-color: {{ section.settings.button_border_color }};
+    background: #222;
     color: white;
   }
 
@@ -132,7 +120,7 @@
     transform: translateY(-50%);
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 10px;
     pointer-events: none;
     z-index: 2;
   }
@@ -144,43 +132,24 @@
     border-radius: 50%;
     background: white;
     border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  {{ sec_id }} .pc-slider-button-{{ last_part }}:hover {
-    transform: scale(1.1);
-  }
-
-  {{ sec_id }} .pc-slider-button-{{ last_part }} svg {
-    width: 20px;
-    height: 20px;
   }
 
   @media (max-width: 767px) {
-    {{ sec_id }} {
-      --pc-slider-gap: 20px;
-      --pc-slider-padding: 20px;
-    }
-
     {{ sec_id }} .pc-slide-{{ last_part }} {
       flex: 0 0 100%;
     }
-
+    
+    {{ sec_id }} .pc-product-image-{{ last_part }} {
+      height: 250px;
+    }
+    
     {{ sec_id }} .pc-section-header-{{ last_part }} h2 {
       font-size: 24px;
-    }
-
-    {{ sec_id }} .pc-content-container-{{ last_part }} h3 {
-      font-size: 18px;
-    }
-
-    {{ sec_id }} .pc-content-container-{{ last_part }} p {
-      font-size: 14px;
     }
   }
 </style>
@@ -188,20 +157,20 @@
 <section class="pc-organic-slider-{{ last_part }}">
   <div class="pc-slider-container-{{ last_part }}">
     <div class="pc-section-header-{{ last_part }}">
-      <h2>{{ section.settings.heading }}</h2>
-      <div class="pc-divider-{{ last_part }}"></div>
+      <h2>{{ section.settings.heading | default: 'ORGANIC PRODUCT SLIDER' }}</h2>
+      <div class="pc-section-divider-{{ last_part }}"></div>
     </div>
     
     <div class="pc-slider-wrapper-{{ last_part }}">
       <div class="pc-slider-nav-{{ last_part }}">
         <button class="pc-slider-button-{{ last_part }} pc-prev-{{ last_part }}">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="{{ section.settings.arrow_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
         <button class="pc-slider-button-{{ last_part }} pc-next-{{ last_part }}">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 18L15 12L9 6" stroke="{{ section.settings.arrow_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
@@ -210,17 +179,17 @@
         {% for block in section.blocks %}
           <div class="pc-slide-{{ last_part }}">
             <div class="pc-product-card-{{ last_part }}">
-              <div class="pc-image-container-{{ last_part }}">
+              <div class="pc-product-image-{{ last_part }}">
                 {% if block.settings.image != blank %}
-                  {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.image.alt }}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.title }}
                 {% else %}
-                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
                 {% endif %}
               </div>
-              <div class="pc-content-container-{{ last_part }}">
-                <h3>{{ block.settings.title }}</h3>
-                <p>{{ block.settings.description }}</p>
-                <a href="{{ block.settings.button_url }}" class="pc-shop-button-{{ last_part }}">{{ block.settings.button_text }}</a>
+              <div class="pc-product-content-{{ last_part }}">
+                <h3 class="pc-product-title-{{ last_part }}">{{ block.settings.title | default: 'Fresh And Healthy Vegetable' }}</h3>
+                <p class="pc-product-description-{{ last_part }}">{{ block.settings.description | default: 'Daily updates of all special deals. Bookmark this page & come back often.' }}</p>
+                <a href="{{ block.settings.button_url | default: '#' }}" class="pc-shop-button-{{ last_part }}">{{ block.settings.button_text | default: 'Shop Now' }}</a>
               </div>
             </div>
           </div>
@@ -239,14 +208,13 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (slides.length > 0) {
     let currentIndex = 0;
-    const slideWidth = slides[0].offsetWidth + parseInt(getComputedStyle(slides[0]).marginRight);
-    const visibleSlides = 2;
-    const maxIndex = Math.max(slides.length - visibleSlides, 0);
+    const slideWidth = slides[0].offsetWidth + 30;
+    const maxIndex = slides.length - 2;
     
     function updateSlider() {
       sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-      prevBtn.disabled = currentIndex === 0;
-      nextBtn.disabled = currentIndex >= maxIndex;
+      prevBtn.style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
+      nextBtn.style.visibility = currentIndex >= maxIndex ? 'hidden' : 'visible';
     }
     
     prevBtn.addEventListener('click', () => {
@@ -260,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     window.addEventListener('resize', function() {
-      const newSlideWidth = slides[0].offsetWidth + parseInt(getComputedStyle(slides[0]).marginRight);
+      const newSlideWidth = slides[0].offsetWidth + 30;
       if (newSlideWidth !== slideWidth) {
         slideWidth = newSlideWidth;
         updateSlider();
@@ -274,61 +242,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {% schema %}
 {
-  "name": "PWC - Product Slider #1",
+  "name": "PWC - Product Slider",
   "settings": [
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
       "default": "ORGANIC PRODUCT SLIDER"
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "divider_color",
-      "label": "Divider Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#f8f8f8"
-    },
-    {
-      "type": "color",
-      "id": "product_title_color",
-      "label": "Product Title Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "product_text_color",
-      "label": "Product Text Color",
-      "default": "#555555"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "button_border_color",
-      "label": "Button Border Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "arrow_color",
-      "label": "Arrow Color",
-      "default": "#000000"
     }
   ],
   "blocks": [
@@ -369,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ],
   "presets": [
     {
-      "name": "PWC - Product Slider #1",
+      "name": "PWC - Product Slider",
       "category": "Custom",
       "blocks": [
         {
