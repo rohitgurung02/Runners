@@ -960,38 +960,41 @@
     "rw_test_KNkPUM": {
       "type": "rw-test",
       "blocks": {
-        "product_card_wk8xyp": {
-          "type": "product_card",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-92733.jpg",
-            "title": "Fresh Organic Product",
-            "description": "This is a great organic item.",
-            "button_label": "Shop Now"
-          }
-        },
-        "product_card_UJQ8nC": {
-          "type": "product_card",
+        "product_aFDeT7": {
+          "type": "product",
           "settings": {
             "image": "shopify://shop_images/pexels-photo-991012.jpg",
-            "title": "Fresh Organic Product",
-            "description": "This is a great organic item.",
-            "button_label": "Shop Now"
+            "title": "Fresh And Healthy Vegetable",
+            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
+            "button_label": "Shop Now",
+            "button_link": ""
           }
         },
-        "product_card_qe9Fhj": {
-          "type": "product_card",
+        "product_4LtGnX": {
+          "type": "product",
           "settings": {
             "image": "shopify://shop_images/pexels-photo-921294.webp",
-            "title": "Fresh Organic Product",
-            "description": "This is a great organic item.",
-            "button_label": "Shop Now"
+            "title": "Fresh And Healthy Vegetable",
+            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "product_eMTGKa": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-921294.webp",
+            "title": "Fresh And Healthy Vegetable",
+            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
+            "button_label": "Shop Now",
+            "button_link": ""
           }
         }
       },
       "block_order": [
-        "product_card_wk8xyp",
-        "product_card_UJQ8nC",
-        "product_card_qe9Fhj"
+        "product_aFDeT7",
+        "product_4LtGnX",
+        "product_eMTGKa"
       ],
       "name": "PWC - Product Slider #1",
       "settings": {
@@ -1007,7 +1010,7 @@
         "mobile_padding_bottom": 20,
         "mobile_padding_side": 15,
         "mobile_heading_font_size": 20,
-        "button_color": "#000",
+        "button_color": "#000000",
         "title_font_size": 16
       }
     }
