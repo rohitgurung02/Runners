@@ -9,7 +9,6 @@
   {{ sec_id }} .pc-product-slider-{{ last_part }} {
     background-color: {{ section.settings.bg_color }};
     padding: {{ section.settings.padding_top }}px {{ section.settings.padding_side }}px {{ section.settings.padding_bottom }}px;
-    text-align: {{ section.settings.heading_alignment }};
   }
 
   {{ sec_id }} .pc-container-{{ last_part }} {
@@ -53,7 +52,6 @@
   {{ sec_id }} .pc-slider-wrapper-{{ last_part }} {
     position: relative;
     overflow: hidden;
-    text-align: {{ section.settings.heading_alignment }};
   }
 
   {{ sec_id }} .pc-slider-{{ last_part }} {
@@ -66,12 +64,9 @@
     flex: 0 0 calc(50% - 10px);
   }
 
-  {{ sec_id }} .pc-product-card-{{ last_part }}{
-    display: flex;
-    align-items:  center;
-  }
-
   {{ sec_id }} .pc-product-card-{{ last_part }} {
+    display: flex;
+    align-items: center;
     background: white;
     border-radius: 4px;
     overflow: hidden;
@@ -147,26 +142,12 @@
       height: 250px;
     }
   }
-
- {{ sec_id }} .pc-align-{{ last_part }} {
-    width: 100% !important;
-  }
-
-
-{{ sec_id }} .pc-section-header-{{ last_part }}.pc-align-left {
-  justify-content: flex-start;
-}
-
-{{ sec_id }} .pc-section-header-{{ last_part }}.pc-align-center {
-  justify-content: center;
-}
-
 </style>
 
 <section class="pc-product-slider-{{ last_part }}">
   <div class="pc-container-{{ last_part }}">
     <div class="pc-section-header-{{ last_part }}">
-      <div class="pc-align-{{ last_part }} {{ section.settings.heading_alignment }}">
+      <div>
         <h2 class="pc-heading-{{ last_part }}">{{ section.settings.heading }}</h2>
       </div>
       <div class="pc-slider-controls-{{ last_part }}">
@@ -251,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {% schema %}
 {
-  "name": "PWC - Product Slider #1",
+  "name": "RW - Product Slider #2",
   "tag": "section",
   "settings": [
     {
@@ -259,22 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "heading",
       "label": "Section Heading",
       "default": "ORGANIC PRODUCT SLIDER"
-    },
-      {
-      "type": "select",
-      "id": "heading_alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-      ],
-      "default": "center",
-      "label": "Center"
     },
     {
       "type": "range",
@@ -429,7 +394,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ],
   "presets": [
     {
-      "name": "PWC - Product Slider #1",
+      "name": "RW - Product Slider #2",
       "category": "Custom",
       "blocks": [
         {
