@@ -154,7 +154,7 @@
   margin-bottom: 30px;
 }
 
- {{ sec_id }} .pc-align- {
+ {{ sec_id }} .pc-align-{{ last_part }} {
     width: 100% !important;
   }
 
@@ -176,7 +176,7 @@
 <section class="pc-product-slider-{{ last_part }}">
   <div class="pc-container-{{ last_part }}">
     <div class="pc-section-header-{{ last_part }}">
-      <div class="pc-align-{{ section.settings.heading_alignment }}">
+      <div class="pc-align-{{ last_part }}{{ section.settings.heading_alignment }}">
         <h2 class="pc-heading-{{ last_part }}">{{ section.settings.heading }}</h2>
       </div>
       <div class="pc-slider-controls-{{ last_part }}">
