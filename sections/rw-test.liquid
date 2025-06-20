@@ -6,8 +6,7 @@
 -%}
 
 <style>
-
-    {{ sec_id }} .pc-product-slider-{{ last_part }} {
+  {{ sec_id }} .pc-product-slider-{{ last_part }} {
     background-color: {{ section.settings.bg_color }};
     padding: {{ section.settings.padding_top }}px {{ section.settings.padding_side }}px {{ section.settings.padding_bottom }}px;
   }
@@ -22,11 +21,17 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    text-align: {{ section.settings.heading_alignment }};
+    {% if section.settings.heading_alignment == 'center' %}
+      flex-direction: column;
+      gap: 20px;
+    {% endif %}
   }
 
   {{ sec_id }} .pc-heading-wrapper-{{ last_part }} {
     text-align: {{ section.settings.heading_alignment }};
+    {% if section.settings.heading_alignment == 'center' %}
+      width: 100%;
+    {% endif %}
   }
 
   {{ sec_id }} .pc-heading-{{ last_part }} {
@@ -49,43 +54,13 @@
       margin-left: auto;
     {% endif %}
   }
-  
-  {{ sec_id }} .pc-product-slider-{{ last_part }} {
-    background-color: {{ section.settings.bg_color }};
-    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_side }}px {{ section.settings.padding_bottom }}px;
-    text-align: {{ section.settings.heading_alignment }};
-  }
-
-  {{ sec_id }} .pc-container-{{ last_part }} {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  {{ sec_id }} .pc-section-header-{{ last_part }} {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-
-  {{ sec_id }} .pc-heading-{{ last_part }} {
-    font-size: {{ section.settings.heading_font_size }}px;
-    color: {{ section.settings.heading_color }};
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 0;
-  }
-
-  {{ sec_id }} .pc-divider-{{ last_part }} {
-    width: 60px;
-    height: 2px;
-    background-color: {{ section.settings.heading_color }};
-    margin-top: 10px;
-  }
 
   {{ sec_id }} .pc-slider-controls-{{ last_part }} {
     display: flex;
     gap: 10px;
+    {% if section.settings.heading_alignment == 'center' %}
+      margin-top: 10px;
+    {% endif %}
   }
 
   {{ sec_id }} .pc-slider-btn-{{ last_part }} {
@@ -104,7 +79,6 @@
   {{ sec_id }} .pc-slider-wrapper-{{ last_part }} {
     position: relative;
     overflow: hidden;
-    text-align: {{ section.settings.heading_alignment }};
   }
 
   {{ sec_id }} .pc-slider-{{ last_part }} {
@@ -115,11 +89,6 @@
 
   {{ sec_id }} .pc-slider-item-{{ last_part }} {
     flex: 0 0 calc(50% - 10px);
-  }
-
-  {{ sec_id }} .pc-product-card-{{ last_part }}{
-    display: flex;
-    align-items:  center;
   }
 
   {{ sec_id }} .pc-product-card-{{ last_part }} {
@@ -197,17 +166,54 @@
     {{ sec_id }} .pc-product-image-{{ last_part }} {
       height: 250px;
     }
+    
+    {{ sec_id }} .pc-section-header-{{ last_part }} {
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    {{ sec_id }} .pc-heading-wrapper-{{ last_part }} {
+      text-align: center;
+      width: 100%;
+    }
+    
+    {{ sec_id }} .pc-divider-{{ last_part }} {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    {{ sec_id }} .pc-slider-controls-{{ last_part }} {
+      align-self: center;
+    }
   }
 </style>
 
 <section class="pc-product-slider-{{ last_part }}">
   <div class="pc-container-{{ last_part }}">
     <div class="pc-section-header-{{ last_part }}">
-      <div>
+      <div class="pc-heading-wrapper-{{ last_part }}">
         <h2 class="pc-heading-{{ last_part }}">{{ section.settings.heading }}</h2>
         <div class="pc-divider-{{ last_part }}"></div>
       </div>
-      <div class="pc-slider-controls-{{ last_part }}">
+      
+      {% unless section.settings.heading_alignment == 'center' %}
+        <div class="pc-slider-controls-{{ last_part }}">
+          <button class="pc-slider-btn-{{ last_part }} pc-prev-btn-{{ last_part }}" aria-label="Previous">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="pc-slider-btn-{{ last_part }} pc-next-btn-{{ last_part }}" aria-label="Next">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      {% endunless %}
+    </div>
+    
+    {% if section.settings.heading_alignment == 'center' %}
+      <div class="pc-slider-controls-{{ last_part }}" style="text-align: center; margin-bottom: 20px;">
         <button class="pc-slider-btn-{{ last_part }} pc-prev-btn-{{ last_part }}" aria-label="Previous">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -219,7 +225,7 @@
           </svg>
         </button>
       </div>
-    </div>
+    {% endif %}
     
     <div class="pc-slider-wrapper-{{ last_part }}">
       <div class="pc-slider-{{ last_part }}">
@@ -298,9 +304,10 @@ document.addEventListener('DOMContentLoaded', function() {
       "label": "Section Heading",
       "default": "ORGANIC PRODUCT SLIDER"
     },
-      {
+    {
       "type": "select",
       "id": "heading_alignment",
+      "label": "Heading Alignment",
       "options": [
         {
           "value": "left",
@@ -315,8 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
           "label": "Right"
         }
       ],
-      "default": "center",
-      "label": "Center"
+      "default": "left"
     },
     {
       "type": "range",
