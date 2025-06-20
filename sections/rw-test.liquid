@@ -1,177 +1,239 @@
-{% assign sec_id = '#shopify-section-' | append: section.id %}
-{% assign parts = sec_id | split: '_' %}
-{% assign last_lower = parts | last %}
-{% assign last_part = last_lower | downcase %}
-
-<pc-product-slider-{{ last_part }} id="pc-product-slider-{{ last_part }}">
-  <section class="pc-product__slider-{{ last_part }}">
-    <div class="pc-container-{{ last_part }}">
-      <div class="pc-section__header-{{ last_part }}">
-        <h3 class="pc-heading-{{ last_part }}">{{ section.settings.heading }}</h3>
-        <div id="slider-controls-{{ last_part }}" class="pc-slider__controls-{{ last_part }}">
-          <button class="pc-prev-btn-{{ last_part }}" aria-label="Previous">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M15 6l-6 6 6 6" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="pc-next-btn-{{ last_part }}" aria-label="Next">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 6l6 6-6 6" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-      </div>
-      <div class="pc-slider__wrapper-{{ last_part }}">
-        <div class="pc-slider-{{ last_part }}">
-          {% for block in section.blocks %}
-            <div class="pc-slider__item-{{ last_part }}">
-              <div class="pc-card-{{ last_part }}">
-                <div class="pc-card__image-{{ last_part }}">
-                  {% if block.settings.image %}
-                    {{- block.settings.image
-                      | image_url: width: block.settings.image.width, height: block.settings.image.height
-                      | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt
-                    -}}
-                  {% else %}
-                    {{ 'product-1' | placeholder_svg_tag }}
-                  {% endif %}
-                </div>
-                <div class="pc-card__content-{{ last_part }}">
-                  <h4 class="pc-card__title-{{ last_part }}">{{ block.settings.title }}</h4>
-                  <p class="pc-card__desc-{{ last_part }}">{{ block.settings.description }}</p>
-                  <a href="{{ block.settings.button_link }}" class="pc-card__btn-{{ last_part }}">{{ block.settings.button_label }}</a>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </section>
-</pc-product-slider-{{ last_part }}>
+{%- liquid
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign parts = sec_id | split: '_'
+  assign last_lower = parts | last
+  assign last_part = last_lower | downcase
+-%}
 
 <style>
-  {{ sec_id }} .pc-product__slider-{{ last_part }} {
+  {{ sec_id }} .pc-product-slider-{{ last_part }} {
     background-color: {{ section.settings.bg_color }};
     padding: {{ section.settings.padding_top }}px {{ section.settings.padding_side }}px {{ section.settings.padding_bottom }}px;
+  }
+
+  {{ sec_id }} .pc-container-{{ last_part }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  {{ sec_id }} .pc-section-header-{{ last_part }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
   }
 
   {{ sec_id }} .pc-heading-{{ last_part }} {
     font-size: {{ section.settings.heading_font_size }}px;
     color: {{ section.settings.heading_color }};
     font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
   }
 
-  {{ sec_id }} .pc-section__header-{{ last_part }} {
+  {{ sec_id }} .pc-divider-{{ last_part }} {
+    width: 60px;
+    height: 2px;
+    background-color: {{ section.settings.heading_color }};
+    margin-top: 10px;
+  }
+
+  {{ sec_id }} .pc-slider-controls-{{ last_part }} {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
+  }
+
+  {{ sec_id }} .pc-slider-btn-{{ last_part }} {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
     align-items: center;
-    margin-bottom: 20px;
-  }
-
-  {{ sec_id }} .pc-slider__controls-{{ last_part }} {
-    display: flex;
-    gap: 8px;
-  }
-
-  {{ sec_id }} .pc-prev-btn-{{ last_part }},
-  {{ sec_id }} .pc-next-btn-{{ last_part }} {
-    border: 1px solid #000;
-    background: #fff;
-    padding: 5px;
-    border-radius: 4px;
+    justify-content: center;
     cursor: pointer;
+  }
+
+  {{ sec_id }} .pc-slider-wrapper-{{ last_part }} {
+    position: relative;
+    overflow: hidden;
   }
 
   {{ sec_id }} .pc-slider-{{ last_part }} {
     display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
     gap: 20px;
+    transition: transform 0.5s ease;
   }
 
-  {{ sec_id }} .pc-slider__item-{{ last_part }} {
-    flex: 0 0 auto;
-    width: calc(50% - 10px);
+  {{ sec_id }} .pc-slider-item-{{ last_part }} {
+    flex: 0 0 calc(50% - 10px);
   }
 
-  {{ sec_id }} .pc-card-{{ last_part }} {
-    display: flex;
-    background: #fff;
-    border-radius: 10px;
+  {{ sec_id }} .pc-product-card-{{ last_part }} {
+    background: white;
+    border-radius: 4px;
     overflow: hidden;
-    border: 1px solid #ddd;
-    box-shadow: {% if section.settings.shadow %}0 2px 8px rgba(0,0,0,0.1){% else %}none{% endif %};
+    box-shadow: {% if section.settings.shadow %}0 3px 10px rgba(0,0,0,0.05){% else %}none{% endif %};
+    height: 100%;
   }
 
-  {{ sec_id }} .pc-card__image-{{ last_part }} {
-    flex: 0 0 45%;
+  {{ sec_id }} .pc-product-image-{{ last_part }} {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
   }
 
-  {{ sec_id }} .pc-card__image-{{ last_part }} img {
+  {{ sec_id }} .pc-product-image-{{ last_part }} img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
   }
 
-  {{ sec_id }} .pc-card__content-{{ last_part }} {
-    padding: 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  {{ sec_id }} .pc-product-content-{{ last_part }} {
+    padding: 25px;
+    text-align: center;
   }
 
-  {{ sec_id }} .pc-card__title-{{ last_part }} {
+  {{ sec_id }} .pc-product-title-{{ last_part }} {
     font-size: {{ section.settings.title_font_size }}px;
-    font-weight: bold;
-    margin: 0 0 10px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 15px;
+    text-transform: capitalize;
   }
 
-  {{ sec_id }} .pc-card__desc-{{ last_part }} {
-    font-size: 14px;
-    opacity: 0.8;
+  {{ sec_id }} .pc-product-description-{{ last_part }} {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 20px;
   }
 
-  {{ sec_id }} .pc-card__btn-{{ last_part }} {
-    margin-top: 15px;
-    padding: 8px 15px;
-    text-decoration: none;
-    border: 1px solid #000;
-    color: #000;
-    font-weight: bold;
+  {{ sec_id }} .pc-shop-button-{{ last_part }} {
     display: inline-block;
-    width: fit-content;
+    padding: 8px 25px;
+    background: transparent;
+    color: {{ section.settings.button_color }};
+    border: 2px solid {{ section.settings.button_color }};
+    border-radius: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s ease;
   }
 
-  @media screen and (max-width: 749px) {
-    {{ sec_id }} .pc-slider__item-{{ last_part }} {
-      width: 100%;
-    }
+  {{ sec_id }} .pc-shop-button-{{ last_part }}:hover {
+    background: {{ section.settings.button_color }};
+    color: white;
+  }
 
-    {{ sec_id }} .pc-card-{{ last_part }} {
-      flex-direction: column;
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-product-slider-{{ last_part }} {
+      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_side }}px {{ section.settings.mobile_padding_bottom }}px;
     }
-
-    {{ sec_id }} .pc-card__image-{{ last_part }} {
-      width: 100%;
+    
+    {{ sec_id }} .pc-heading-{{ last_part }} {
+      font-size: {{ section.settings.mobile_heading_font_size }}px;
+    }
+    
+    {{ sec_id }} .pc-slider-item-{{ last_part }} {
+      flex: 0 0 100%;
+    }
+    
+    {{ sec_id }} .pc-product-image-{{ last_part }} {
+      height: 250px;
     }
   }
 </style>
 
+<section class="pc-product-slider-{{ last_part }}">
+  <div class="pc-container-{{ last_part }}">
+    <div class="pc-section-header-{{ last_part }}">
+      <div>
+        <h2 class="pc-heading-{{ last_part }}">{{ section.settings.heading }}</h2>
+        <div class="pc-divider-{{ last_part }}"></div>
+      </div>
+      <div class="pc-slider-controls-{{ last_part }}">
+        <button class="pc-slider-btn-{{ last_part }} pc-prev-btn-{{ last_part }}" aria-label="Previous">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="pc-slider-btn-{{ last_part }} pc-next-btn-{{ last_part }}" aria-label="Next">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <div class="pc-slider-wrapper-{{ last_part }}">
+      <div class="pc-slider-{{ last_part }}">
+        {% for block in section.blocks %}
+          <div class="pc-slider-item-{{ last_part }}">
+            <div class="pc-product-card-{{ last_part }}">
+              <div class="pc-product-image-{{ last_part }}">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.title }}
+                {% else %}
+                  {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </div>
+              <div class="pc-product-content-{{ last_part }}">
+                <h3 class="pc-product-title-{{ last_part }}">{{ block.settings.title }}</h3>
+                <p class="pc-product-description-{{ last_part }}">{{ block.settings.description }}</p>
+                <a href="{{ block.settings.button_link }}" class="pc-shop-button-{{ last_part }}">{{ block.settings.button_label }}</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const container = document.querySelector('.pc-slider-{{ last_part }}');
-    const prev = document.querySelector('.pc-prev-btn-{{ last_part }}');
-    const next = document.querySelector('.pc-next-btn-{{ last_part }}');
-
-    const scrollStep = container.offsetWidth;
-
-    next.addEventListener('click', () => {
-      container.scrollBy({ left: scrollStep, behavior: 'smooth' });
+document.addEventListener('DOMContentLoaded', function() {
+  const sliderTrack = document.querySelector('{{ sec_id }} .pc-slider-{{ last_part }}');
+  const slides = document.querySelectorAll('{{ sec_id }} .pc-slider-item-{{ last_part }}');
+  const prevBtn = document.querySelector('{{ sec_id }} .pc-prev-btn-{{ last_part }}');
+  const nextBtn = document.querySelector('{{ sec_id }} .pc-next-btn-{{ last_part }}');
+  
+  if (slides.length > 0) {
+    let currentIndex = 0;
+    const slideWidth = slides[0].offsetWidth + 20; // width + gap
+    const maxIndex = slides.length - 2;
+    
+    function updateSlider() {
+      sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex >= maxIndex;
+    }
+    
+    prevBtn.addEventListener('click', () => {
+      currentIndex = Math.max(0, currentIndex - 1);
+      updateSlider();
     });
-
-    prev.addEventListener('click', () => {
-      container.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+    
+    nextBtn.addEventListener('click', () => {
+      currentIndex = Math.min(maxIndex, currentIndex + 1);
+      updateSlider();
     });
-  });
+    
+    window.addEventListener('resize', function() {
+      const newSlideWidth = slides[0].offsetWidth + 20;
+      if (newSlideWidth !== slideWidth) {
+        slideWidth = newSlideWidth;
+        updateSlider();
+      }
+    });
+    
+    updateSlider();
+  }
+});
 </script>
 
 {% schema %}
@@ -183,7 +245,7 @@
       "type": "text",
       "id": "heading",
       "label": "Section Heading",
-      "default": "Organic Product Slider"
+      "default": "ORGANIC PRODUCT SLIDER"
     },
     {
       "type": "range",
@@ -193,19 +255,19 @@
       "max": 48,
       "step": 1,
       "unit": "px",
-      "default": 24
+      "default": 28
     },
     {
       "type": "color",
       "id": "heading_color",
       "label": "Heading Color",
-      "default": "#000000"
+      "default": "#333333"
     },
     {
       "type": "color",
       "id": "bg_color",
       "label": "Background Color",
-      "default": "#f5f5f5"
+      "default": "#f9f9f9"
     },
     {
       "type": "checkbox",
@@ -221,7 +283,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 40
+      "default": 50
     },
     {
       "type": "range",
@@ -231,7 +293,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 40
+      "default": 50
     },
     {
       "type": "range",
@@ -251,7 +313,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 20
+      "default": 30
     },
     {
       "type": "range",
@@ -261,7 +323,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 20
+      "default": 30
     },
     {
       "type": "range",
@@ -281,67 +343,81 @@
       "max": 36,
       "step": 1,
       "unit": "px",
-      "default": 20
+      "default": 24
     },
     {
       "type": "color",
       "id": "button_color",
       "label": "Button Color",
-      "default": "#000"
+      "default": "#222222"
     },
     {
       "type": "range",
       "id": "title_font_size",
-      "label": "Card Title Font Size",
+      "label": "Product Title Font Size",
       "min": 12,
       "max": 28,
       "step": 1,
       "unit": "px",
-      "default": 16
+      "default": 20
     }
   ],
   "blocks": [
     {
-      "type": "product_card",
-      "name": "Product Card",
+      "type": "product",
+      "name": "Product",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Product Image"
+          "label": "Image"
         },
         {
           "type": "text",
           "id": "title",
-          "label": "Product Title",
-          "default": "Fresh Organic Product"
+          "label": "Title",
+          "default": "Fresh And Healthy Vegetable"
         },
         {
           "type": "textarea",
           "id": "description",
-          "label": "Product Description",
-          "default": "This is a great organic item."
+          "label": "Description",
+          "default": "Daily updates of all special deals. Bookmark this page & come back often."
         },
         {
           "type": "text",
           "id": "button_label",
-          "label": "Button Label",
+          "label": "Button Text",
           "default": "Shop Now"
         },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button URL"
+        }
       ]
     }
   ],
-  "max_blocks": 10,
   "presets": [
     {
       "name": "PWC - Product Slider #1",
-      "category": "Products",
+      "category": "Custom",
       "blocks": [
         {
-          "type": "product_card"
+          "type": "product",
+          "settings": {
+            "title": "Fresh And Healthy Vegetable",
+            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
+            "button_label": "Shop Now"
+          }
         },
         {
-          "type": "product_card"
+          "type": "product",
+          "settings": {
+            "title": "Pure Black Grape Bucket",
+            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
+            "button_label": "Shop Now"
+          }
         }
       ]
     }
