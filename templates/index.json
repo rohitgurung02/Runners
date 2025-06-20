@@ -956,6 +956,51 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
+    },
+    "rw_test_EFmYPw": {
+      "type": "rw-test",
+      "blocks": {
+        "testimonial_JYTExK": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "This serum is a hydration game-changer!",
+            "author": "Sarah M."
+          }
+        },
+        "testimonial_BTWM9x": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "My skin has never felt so soft and hydrated.",
+            "author": "Jessica T."
+          }
+        },
+        "testimonial_JHMW4w": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "My skin looks brighter and more even-toned.",
+            "author": "Alex K."
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_JYTExK",
+        "testimonial_BTWM9x",
+        "testimonial_JHMW4w"
+      ],
+      "name": "RW - Glow Slider #1",
+      "settings": {
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 40,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30,
+        "text_color": "#FFFFFF",
+        "glow_color": "#FFFFFF",
+        "show_shadow": true,
+        "text_size_desktop": 18,
+        "text_size_mobile": 16,
+        "author_size_desktop": 16,
+        "author_size_mobile": 14
+      }
     }
   },
   "order": [
@@ -969,6 +1014,7 @@
     "rw_contact_us_wJWXNB",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA"
+    "rw_video_banner_f88XdA",
+    "rw_test_EFmYPw"
   ]
 }
