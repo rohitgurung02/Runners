@@ -1,330 +1,312 @@
-{%- liquid
-  assign sec_id = '#shopify-section-' | append: section.id
-  assign parts = sec_id | split: '_'
-  assign last_lower = parts | last
-  assign last_part = last_lower | downcase
--%}
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+{% assign parts = sec_id | split: '_' %}
+{% assign last_lower = parts | last %}
+{% assign last_part = last_lower | downcase %}
+
+<pc-product-slider-{{ last_part }} id="pc-product-slider-{{ last_part }}">
+  <section class="pc-product__slider-{{ last_part }}">
+    <div class="pc-container-{{ last_part }}">
+      <div class="pc-section__header-{{ last_part }}">
+        <h3 class="pc-heading-{{ last_part }}">{{ section.settings.heading }}</h3>
+        <div id="slider-controls-{{ last_part }}" class="pc-slider__controls-{{ last_part }}">
+          <button class="pc-prev-btn-{{ last_part }}" aria-label="Previous">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M15 6l-6 6 6 6" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="pc-next-btn-{{ last_part }}" aria-label="Next">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M9 6l6 6-6 6" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="pc-slider__wrapper-{{ last_part }}">
+        <div class="pc-slider-{{ last_part }}">
+          {% for block in section.blocks %}
+            <div class="pc-slider__item-{{ last_part }}">
+              <div class="pc-card-{{ last_part }}">
+                <div class="pc-card__image-{{ last_part }}">
+                  {% if block.settings.image %}
+                    {{- block.settings.image
+                      | image_url: width: block.settings.image.width, height: block.settings.image.height
+                      | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt
+                    -}}
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  {% endif %}
+                </div>
+                <div class="pc-card__body-{{ last_part }}">
+                  <h4 class="pc-card__title-{{ last_part }}">{{ block.settings.title }}</h4>
+                  <p class="pc-card__description-{{ last_part }}">{{ block.settings.description }}</p>
+                  <a href="{{ block.settings.button_link }}" class="pc-card__button-{{ last_part }}">{{ block.settings.button_label }}</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+</pc-product-slider-{{ last_part }}>
 
 <style>
-  {{ sec_id }} .pc-organic-slider-{{ last_part }} {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    padding: 50px 0;
-    background-color: #f9f9f9;
+  {{ sec_id }} .pc-product__slider-{{ last_part }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_side }}px {{ section.settings.padding_bottom }}px;
   }
 
-  {{ sec_id }} .pc-slider-container-{{ last_part }} {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  {{ sec_id }} .pc-section-header-{{ last_part }} {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-
-  {{ sec_id }} .pc-section-title-{{ last_part }} {
-    text-align: left;
-  }
-
-  {{ sec_id }} .pc-section-title-{{ last_part }} h2 {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #333;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  {{ sec_id }} .pc-section-divider-{{ last_part }} {
-    width: 60px;
-    height: 2px;
-    background-color: #333;
-    margin: 0;
-  }
-
-  {{ sec_id }} .pc-slider-nav-{{ last_part }} {
-    display: flex;
-    gap: 10px;
-  }
-
-  {{ sec_id }} .pc-slider-button-{{ last_part }} {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: white;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  {{ sec_id }} .pc-slider-button-{{ last_part }}:hover {
-    transform: scale(1.05);
-  }
-
-  {{ sec_id }} .pc-slider-button-{{ last_part }} svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  {{ sec_id }} .pc-slider-wrapper-{{ last_part }} {
-    position: relative;
-  }
-
-  {{ sec_id }} .pc-slider-track-{{ last_part }} {
-    display: flex;
-    gap: 30px;
-    transition: transform 0.5s ease;
-  }
-
-  {{ sec_id }} .pc-slide-{{ last_part }} {
-    flex: 0 0 calc(50% - 15px);
-  }
-
-  {{ sec_id }} .pc-product-card-{{ last_part }} {
-    background: white;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    height: 100%;
-  }
-
-  {{ sec_id }} .pc-product-image-{{ last_part }} {
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-  }
-
-  {{ sec_id }} .pc-product-image-{{ last_part }} img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  {{ sec_id }} .pc-product-content-{{ last_part }} {
-    padding: 25px;
+  {{ sec_id }} .pc-heading-{{ last_part }} {
+    font-size: {{ section.settings.heading_font_size }}px;
+    color: {{ section.settings.heading_color }};
     text-align: center;
   }
 
-  {{ sec_id }} .pc-product-title-{{ last_part }} {
-    font-size: 20px;
-    font-weight: 600;
-    color: #222;
-    margin-bottom: 15px;
-    text-transform: capitalize;
+  {{ sec_id }} .pc-slider__controls-{{ last_part }} {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
   }
 
-  {{ sec_id }} .pc-product-description-{{ last_part }} {
-    font-size: 15px;
-    color: #666;
-    line-height: 1.5;
-    margin-bottom: 20px;
+  {{ sec_id }} .pc-slider__item-{{ last_part }} {
+    padding: 10px;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 300px;
   }
 
-  {{ sec_id }} .pc-shop-button-{{ last_part }} {
+  {{ sec_id }} .pc-card-{{ last_part }} {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    transition: box-shadow 0.3s ease;
+    {% if section.settings.shadow %}box-shadow: 0 2px 8px rgba(0,0,0,0.1);{% endif %}
+  }
+
+  {{ sec_id }} .pc-card__image-{{ last_part }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  {{ sec_id }} .pc-card__body-{{ last_part }} {
+    padding: 15px;
+  }
+
+  {{ sec_id }} .pc-card__title-{{ last_part }} {
+    font-size: {{ section.settings.title_font_size }}px;
+    margin: 0 0 10px;
+  }
+
+  {{ sec_id }} .pc-card__description-{{ last_part }} {
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  {{ sec_id }} .pc-card__button-{{ last_part }} {
     display: inline-block;
-    padding: 8px 25px;
-    background: transparent;
-    color: #222;
-    border: 2px solid #222;
-    border-radius: 3px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin-top: 10px;
     text-decoration: none;
-    transition: all 0.3s ease;
+    color: {{ section.settings.button_color }};
+    font-weight: bold;
   }
 
-  {{ sec_id }} .pc-shop-button-{{ last_part }}:hover {
-    background: #222;
-    color: white;
-  }
+  @media screen and (max-width: 749px) {
+    {{ sec_id }} .pc-product__slider-{{ last_part }} {
+      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_side }}px {{ section.settings.mobile_padding_bottom }}px;
+    }
 
-  @media (max-width: 767px) {
-    {{ sec_id }} .pc-slide-{{ last_part }} {
-      flex: 0 0 100%;
-    }
-    
-    {{ sec_id }} .pc-product-image-{{ last_part }} {
-      height: 250px;
-    }
-    
-    {{ sec_id }} .pc-section-title-{{ last_part }} h2 {
-      font-size: 24px;
-    }
-    
-    {{ sec_id }} .pc-section-header-{{ last_part }} {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 20px;
-    }
-    
-    {{ sec_id }} .pc-slider-nav-{{ last_part }} {
-      align-self: flex-end;
+    {{ sec_id }} .pc-heading-{{ last_part }} {
+      font-size: {{ section.settings.mobile_heading_font_size }}px;
     }
   }
 </style>
 
-<section class="pc-organic-slider-{{ last_part }}">
-  <div class="pc-slider-container-{{ last_part }}">
-    <div class="pc-section-header-{{ last_part }}">
-      <div class="pc-section-title-{{ last_part }}">
-        <h2>{{ section.settings.heading | default: 'ORGANIC PRODUCT SLIDER' }}</h2>
-        <div class="pc-section-divider-{{ last_part }}"></div>
-      </div>
-      <div class="pc-slider-nav-{{ last_part }}">
-        <button class="pc-slider-button-{{ last_part }} pc-prev-{{ last_part }}">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <button class="pc-slider-button-{{ last_part }} pc-next-{{ last_part }}">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 18L15 12L9 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-    
-    <div class="pc-slider-wrapper-{{ last_part }}">
-      <div class="pc-slider-track-{{ last_part }}">
-        {% for block in section.blocks %}
-          <div class="pc-slide-{{ last_part }}">
-            <div class="pc-product-card-{{ last_part }}">
-              <div class="pc-product-image-{{ last_part }}">
-                {% if block.settings.image != blank %}
-                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.title }}
-                {% else %}
-                  {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
-                {% endif %}
-              </div>
-              <div class="pc-product-content-{{ last_part }}">
-                <h3 class="pc-product-title-{{ last_part }}">{{ block.settings.title | default: 'Fresh And Healthy Vegetable' }}</h3>
-                <p class="pc-product-description-{{ last_part }}">{{ block.settings.description | default: 'Daily updates of all special deals. Bookmark this page & come back often.' }}</p>
-                <a href="{{ block.settings.button_url | default: '#' }}" class="pc-shop-button-{{ last_part }}">{{ block.settings.button_text | default: 'Shop Now' }}</a>
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</section>
-
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const sliderTrack = document.querySelector('{{ sec_id }} .pc-slider-track-{{ last_part }}');
-  const slides = document.querySelectorAll('{{ sec_id }} .pc-slide-{{ last_part }}');
-  const prevBtn = document.querySelector('{{ sec_id }} .pc-prev-{{ last_part }}');
-  const nextBtn = document.querySelector('{{ sec_id }} .pc-next-{{ last_part }}');
-  
-  if (slides.length > 0) {
-    let currentIndex = 0;
-    const slideWidth = slides[0].offsetWidth + 30;
-    const maxIndex = slides.length - 2;
-    
-    function updateSlider() {
-      sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-      prevBtn.disabled = currentIndex === 0;
-      nextBtn.disabled = currentIndex >= maxIndex;
-    }
-    
-    prevBtn.addEventListener('click', () => {
-      currentIndex = Math.max(0, currentIndex - 1);
-      updateSlider();
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.pc-slider-{{ last_part }}');
+    const prev = document.querySelector('.pc-prev-btn-{{ last_part }}');
+    const next = document.querySelector('.pc-next-btn-{{ last_part }}');
+
+    let scrollAmount = 0;
+    const scrollStep = 320;
+
+    next.addEventListener('click', () => {
+      container.scrollBy({ left: scrollStep, behavior: 'smooth' });
     });
-    
-    nextBtn.addEventListener('click', () => {
-      currentIndex = Math.min(maxIndex, currentIndex + 1);
-      updateSlider();
+
+    prev.addEventListener('click', () => {
+      container.scrollBy({ left: -scrollStep, behavior: 'smooth' });
     });
-    
-    window.addEventListener('resize', function() {
-      const newSlideWidth = slides[0].offsetWidth + 30;
-      if (newSlideWidth !== slideWidth) {
-        slideWidth = newSlideWidth;
-        updateSlider();
-      }
-    });
-    
-    updateSlider();
-  }
-});
+  });
 </script>
+
 
 {% schema %}
 {
-  "name": "PWC - Product Slider",
+  "name": "PWC - Product Slider #1",
+  "tag": "section",
   "settings": [
     {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
-      "default": "ORGANIC PRODUCT SLIDER"
+      "label": "Section Heading",
+      "default": "Organic Product Slider"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading Font Size",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "checkbox",
+      "id": "shadow",
+      "label": "Enable Card Shadow",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_side",
+      "label": "Side Padding (Desktop)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_side",
+      "label": "Side Padding (Mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_font_size",
+      "label": "Heading Font Size (Mobile)",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Card Title Font Size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 16
     }
   ],
   "blocks": [
     {
-      "type": "product",
-      "name": "Product",
+      "type": "product_card",
+      "name": "Product Card",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
+          "label": "Product Image"
         },
         {
           "type": "text",
           "id": "title",
-          "label": "Title",
-          "default": "Fresh And Healthy Vegetable"
+          "label": "Product Title",
+          "default": "Fresh Organic Product"
         },
         {
           "type": "textarea",
           "id": "description",
-          "label": "Description",
-          "default": "Daily updates of all special deals. Bookmark this page & come back often."
+          "label": "Product Description",
+          "default": "This is a great organic item."
         },
         {
           "type": "text",
-          "id": "button_text",
-          "label": "Button Text",
+          "id": "button_label",
+          "label": "Button Label",
           "default": "Shop Now"
         },
-        {
-          "type": "url",
-          "id": "button_url",
-          "label": "Button URL"
-        }
       ]
     }
   ],
+  "max_blocks": 10,
   "presets": [
     {
-      "name": "PWC - Product Slider",
-      "category": "Custom",
+      "name": "PWC - Product Slider #1",
+      "category": "Products",
       "blocks": [
         {
-          "type": "product",
-          "settings": {
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_text": "Shop Now"
-          }
+          "type": "product_card"
         },
         {
-          "type": "product",
-          "settings": {
-            "title": "Pure Black Grape Bucket",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_text": "Shop Now"
-          }
+          "type": "product_card"
         }
       ]
     }
