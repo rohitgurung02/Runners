@@ -6,47 +6,6 @@
 -%}
 
 <style>
-
-    {{ sec_id }} .pc-product-slider-{{ last_part }} {
-    background-color: {{ section.settings.bg_color }};
-    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_side }}px {{ section.settings.padding_bottom }}px;
-  }
-
-  {{ sec_id }} .pc-container-{{ last_part }} {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  {{ sec_id }} .pc-section-header-{{ last_part }} {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    text-align: {{ section.settings.heading_alignment }};
-  }
-
-  {{ sec_id }} .pc-heading-wrapper-{{ last_part }} {
-    text-align: {{ section.settings.heading_alignment }};
-  }
-
-  {{ sec_id }} .pc-heading-{{ last_part }} {
-    font-size: {{ section.settings.heading_font_size }}px;
-    color: {{ section.settings.heading_color }};
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 0;
-  }
-
-  {{ sec_id }}.pc-product-slider-{{ last_part }} {
-    margin-top: 10px;
-    {% if section.settings.heading_alignment == 'center' %}
-      margin-left: auto;
-      margin-right: auto;
-    {% elsif section.settings.heading_alignment == 'right' %}
-      margin-left: auto;
-    {% endif %}
-  }
-  
   {{ sec_id }} .pc-product-slider-{{ last_part }} {
     background-color: {{ section.settings.bg_color }};
     padding: {{ section.settings.padding_top }}px {{ section.settings.padding_side }}px {{ section.settings.padding_bottom }}px;
@@ -71,6 +30,13 @@
     font-weight: 700;
     text-transform: uppercase;
     margin: 0;
+  }
+
+  {{ sec_id }} .pc-divider-{{ last_part }} {
+    width: 60px;
+    height: 2px;
+    background-color: {{ section.settings.heading_color }};
+    margin-top: 10px;
   }
 
   {{ sec_id }} .pc-slider-controls-{{ last_part }} {
