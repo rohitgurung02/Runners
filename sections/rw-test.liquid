@@ -1,181 +1,53 @@
-{%- liquid
-  assign sec_id = '#shopify-section-' | append: section.id
-  assign parts = sec_id | split: '_'
-  assign last_lower = parts | last
-  assign last_part = last_lower | downcase
--%}
-
 <style>
-  {{ sec_id }} .pc-product-slider-{{ last_part }} {
-    position: relative;
-    width: 100%;
-    padding-top: {{ section.settings.desktop_padding_top }}px;
-    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
-    background-color: {{ section.settings.background_color }};
-  }
-
-  {{ sec_id }} .pc-container-{{ last_part }} {
-    position: relative;
-    width: max(350px, calc(100% - 30px));
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  {{ sec_id }} .pc-section-header-{{ last_part }} {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  {{ sec_id }} .pc-section-header-{{ last_part }} h3 {
-    text-transform: uppercase;
-    font-size: {{ section.settings.heading_font_size }}px;
-    color: {{ section.settings.heading_color }};
-    font-weight: {{ section.settings.heading_font_weight }};
-    margin: 0;
-  }
-
-  {{ sec_id }} .pc-slider-controls-{{ last_part }} {
-    display: flex;
-    justify-content: start;
-    gap: 10px;
-  }
-
-  {{ sec_id }} .pc-btn-{{ last_part }} {
-    padding: 5px 12px;
-    background-color: {{ section.settings.button_bg_color }};
-    border: 2px solid {{ section.settings.button_border_color }};
-    border-radius: 3px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  {{ sec_id }} .pc-slider-wrapper-{{ last_part }},
-  {{ sec_id }} .pc-slider-{{ last_part }} {
-    position: relative;
-    width: 100%;
-  }
-
   {{ sec_id }} .pc-slider-item-{{ last_part }} {
     position: relative;
-    width: auto;
-    height: 350px;
+    height: 100%;
   }
 
   {{ sec_id }} .pc-item-content-{{ last_part }} {
-    width: 100%;
-    height: 100%;
     display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 5px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    overflow: hidden;
-    {% if section.settings.item_shadow %}
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    {% endif %}
+    flex-direction: column;
+    height: 100%;
   }
 
   {{ sec_id }} .pc-img-box-{{ last_part }} {
     position: relative;
     width: 100%;
-    height: 100%;
-  }
-
-  {{ sec_id }} .pc-img-box-{{ last_part }} img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    aspect-ratio: 1/1;
+    flex-shrink: 0;
   }
 
   {{ sec_id }} .pc-slider-body-{{ last_part }} {
+    padding: 20px;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding-inline: 10px;
-  }
-
-  {{ sec_id }} .pc-slider-body-{{ last_part }} h3 {
-    font-size: calc(1rem + 0.5vw);
-    font-weight: 700;
-    text-transform: capitalize;
-    color: {{ section.settings.product_title_color }};
-  }
-
-  {{ sec_id }} .pc-slider-body-{{ last_part }} p {
-    color: {{ section.settings.product_text_color }};
-    font-size: {{ section.settings.product_text_size }}px;
   }
 
   {{ sec_id }} .pc-slider-body-{{ last_part }} a {
-    border: 2px solid {{ section.settings.link_border_color }};
-    padding: 8px 15px;
-    text-transform: capitalize;
-    font-size: 1rem;
-    width: max-content;
-    text-decoration: none;
-    user-select: none;
-    border-radius: 2px;
-    margin-block-start: 20px;
-    color: {{ section.settings.link_text_color }};
-    font-weight: 500;
-    background-color: {{ section.settings.link_bg_color }};
+    margin-top: auto;
+    align-self: flex-start;
   }
 
-  {{ sec_id }} .pc-tns-nav-{{ last_part }} {
-    text-align: center;
-    margin-block-start: 20px;
+  {{ sec_id }} .pc-slider-{{ last_part }} {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - ({{ section.settings.items_per_view_mobile | minus: 1 }} * 15px)) / {{ section.settings.items_per_view_mobile }});
+    gap: 15px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
   }
 
-  {{ sec_id }} .pc-tns-nav-{{ last_part }} button {
-    background-color: #b8b6b6;
-    border: none;
-    padding: 5px;
-    margin-right: 10px;
-    border-radius: 50%;
-  }
-
-  {{ sec_id }} .pc-tns-nav-active-{{ last_part }} {
-    background-color: #000;
-  }
-
-  @media (max-width: 767px) {
-    {{ sec_id }} .pc-product-slider-{{ last_part }} {
-      padding-top: {{ section.settings.mobile_padding_top }}px;
-      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
-    }
-
-    {{ sec_id }} .pc-section-header-{{ last_part }} h3 {
-      font-size: {{ section.settings.mobile_heading_font_size }}px;
-    }
-
-    {{ sec_id }} .pc-slider-item-{{ last_part }} {
-      height: 300px;
+  @media (min-width: 768px) {
+    {{ sec_id }} .pc-slider-{{ last_part }} {
+      grid-auto-columns: calc((100% - ({{ section.settings.items_per_view_tablet | minus: 1 }} * 15px)) / {{ section.settings.items_per_view_tablet }});
     }
   }
 
-  @media (min-width: 640px) {
-    {{ sec_id }} .pc-container-{{ last_part }} {
-      width: 90%;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    {{ sec_id }} .pc-container-{{ last_part }} {
-      width: 80%;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    {{ sec_id }} .pc-container-{{ last_part }} {
-      width: 75%;
+  @media (min-width: 992px) {
+    {{ sec_id }} .pc-slider-{{ last_part }} {
+      grid-auto-columns: calc((100% - ({{ section.settings.items_per_view_desktop | minus: 1 }} * 15px)) / {{ section.settings.items_per_view_desktop }});
     }
   }
 </style>
@@ -223,33 +95,48 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const sliderContainer = document.querySelector('{{ sec_id }} .pc-slider-{{ last_part }}');
+document.addEventListener('DOMContentLoaded', function() {
+  const slider = document.querySelector('{{ sec_id }} .pc-slider-{{ last_part }}');
+  const prevBtn = document.querySelector('{{ sec_id }} .pc-previous-{{ last_part }}');
+  const nextBtn = document.querySelector('{{ sec_id }} .pc-next-{{ last_part }}');
+  
+  if (slider) {
+    let currentIndex = 0;
+    const itemWidth = slider.firstElementChild.offsetWidth + 15; // width + gap
     
-    if (sliderContainer && sliderContainer.children.length > 0) {
-      const slider = tns({
-        container: '{{ sec_id }} .pc-slider-{{ last_part }}',
-        items: {{ section.settings.items_per_view_mobile }},
-        gutter: 15,
-        slideBy: 1,
-        nav: true,
-        navContainer: '{{ sec_id }} .pc-tns-nav-{{ last_part }}',
-        navPosition: 'bottom',
-        speed: 400,
-        controlsContainer: '{{ sec_id }} .pc-slider-controls-{{ last_part }}',
-        prevButton: '{{ sec_id }} .pc-previous-{{ last_part }}',
-        nextButton: '{{ sec_id }} .pc-next-{{ last_part }}',
-        responsive: {
-          768: {
-            items: {{ section.settings.items_per_view_tablet }}
-          },
-          992: {
-            items: {{ section.settings.items_per_view_desktop }}
-          }
-        }
+    const updateSlider = () => {
+      slider.scrollTo({
+        left: currentIndex * itemWidth,
+        behavior: 'smooth'
       });
+    };
+    
+    prevBtn.addEventListener('click', () => {
+      currentIndex = Math.max(0, currentIndex - 1);
+      updateSlider();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      currentIndex = Math.min(
+        slider.children.length - getVisibleItems(), 
+        currentIndex + 1
+      );
+      updateSlider();
+    });
+    
+    function getVisibleItems() {
+      if (window.innerWidth >= 992) return {{ section.settings.items_per_view_desktop }};
+      if (window.innerWidth >= 768) return {{ section.settings.items_per_view_tablet }};
+      return {{ section.settings.items_per_view_mobile }};
     }
-  });
+    
+    // Handle responsive changes
+    window.addEventListener('resize', () => {
+      itemWidth = slider.firstElementChild.offsetWidth + 15;
+      updateSlider();
+    });
+  }
+});
 </script>
 
 {% schema %}
