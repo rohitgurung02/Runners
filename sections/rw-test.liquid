@@ -6,38 +6,31 @@
 -%}
 
 <style>
-  {{ sec_id }} {
-    --pc-text-color: {{ section.settings.text_color }};
-    --pc-glow-color: {{ section.settings.glow_color }};
-    --pc-card-bg: {{ section.settings.card_bg }};
-    --pc-card-border: {{ section.settings.card_border }};
-  }
-
-  {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
+  [data-section-id="{{ section.id }}"] .pc-testimonial-container {
     position: relative;
     width: 100%;
     padding: {{ section.settings.desktop_padding_top }}px 0 {{ section.settings.desktop_padding_bottom }}px;
     overflow: hidden;
   }
 
-  {{ sec_id }} .pc-testimonial-slider-{{ last_part }} {
+  [data-section-id="{{ section.id }}"] .pc-testimonial-slider {
     display: flex;
     transition: transform 0.5s ease;
     width: 100%;
   }
 
-  {{ sec_id }} pc-testimonial-card-{{ last_part }} {
-    display: block;
+  [data-section-id="{{ section.id }}"] .pc-testimonial-card {
     min-width: 100%;
     padding: 0 15px;
     box-sizing: border-box;
+    flex-shrink: 0;
   }
 
-  {{ sec_id }} .pc-testimonial-inner-{{ last_part }} {
-    background: var(--pc-card-bg);
+  [data-section-id="{{ section.id }}"] .pc-testimonial-inner {
+    background: {{ section.settings.card_bg }};
     border-radius: 16px;
     padding: 40px;
-    border: 1px solid var(--pc-card-border);
+    border: 1px solid {{ section.settings.card_border }};
     position: relative;
     overflow: hidden;
     height: 100%;
@@ -46,37 +39,37 @@
     margin: 0 auto;
   }
 
-  {{ sec_id }} .pc-testimonial-inner-{{ last_part }}::before {
+  [data-section-id="{{ section.id }}"] .pc-testimonial-inner::before {
     content: '';
     position: absolute;
     top: -50%;
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, var(--pc-glow-color) 0%, transparent 70%);
+    background: radial-gradient(circle, {{ section.settings.glow_color }} 0%, transparent 70%);
     opacity: 0.15;
     z-index: 0;
   }
 
-  {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
+  [data-section-id="{{ section.id }}"] .pc-testimonial-text {
     font-size: {{ section.settings.text_size_desktop }}px;
     line-height: 1.5;
     margin: 0 auto 20px;
     position: relative;
     z-index: 2;
-    color: var(--pc-text-color);
+    color: {{ section.settings.text_color }};
     max-width: 600px;
     font-style: italic;
   }
 
-  {{ sec_id }} .pc-slider-nav-{{ last_part }} {
+  [data-section-id="{{ section.id }}"] .pc-slider-nav {
     display: flex;
     justify-content: center;
     margin-top: 30px;
     gap: 10px;
   }
 
-  {{ sec_id }} .pc-slider-dot-{{ last_part }} {
+  [data-section-id="{{ section.id }}"] .pc-slider-dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -85,12 +78,12 @@
     transition: all 0.3s ease;
   }
 
-  {{ sec_id }} .pc-slider-dot-{{ last_part }}.active {
-    background: var(--pc-glow-color);
+  [data-section-id="{{ section.id }}"] .pc-slider-dot.active {
+    background: {{ section.settings.glow_color }};
     transform: scale(1.2);
   }
 
-  {{ sec_id }} .pc-slider-arrows-{{ last_part }} {
+  [data-section-id="{{ section.id }}"] .pc-slider-arrows {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -102,7 +95,7 @@
     z-index: 3;
   }
 
-  {{ sec_id }} .pc-slider-arrow-{{ last_part }} {
+  [data-section-id="{{ section.id }}"] .pc-slider-arrow {
     background: rgba(255,255,255,0.2);
     width: 40px;
     height: 40px;
@@ -117,83 +110,92 @@
     border: 1px solid rgba(255,255,255,0.3);
   }
 
-  {{ sec_id }} .pc-slider-arrow-{{ last_part }}:hover {
+  [data-section-id="{{ section.id }}"] .pc-slider-arrow:hover {
     background: rgba(255,255,255,0.4);
   }
 
-  {{ sec_id }} .pc-slider-arrow-icon-{{ last_part }} {
+  [data-section-id="{{ section.id }}"] .pc-slider-arrow svg {
     width: 16px;
     height: 16px;
-    color: var(--pc-text-color);
+    color: {{ section.settings.text_color }};
   }
 
   @media (max-width: 767px) {
-    {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
+    [data-section-id="{{ section.id }}"] .pc-testimonial-container {
       padding: {{ section.settings.mobile_padding_top }}px 0 {{ section.settings.mobile_padding_bottom }}px;
     }
 
-    {{ sec_id }} .pc-testimonial-inner-{{ last_part }} {
+    [data-section-id="{{ section.id }}"] .pc-testimonial-inner {
       padding: 30px 20px;
     }
 
-    {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
+    [data-section-id="{{ section.id }}"] .pc-testimonial-text {
       font-size: {{ section.settings.text_size_mobile }}px;
     }
 
-    {{ sec_id }} .pc-slider-arrows-{{ last_part }} {
+    [data-section-id="{{ section.id }}"] .pc-slider-arrows {
       width: calc(100% - 30px);
       left: 15px;
     }
 
-    {{ sec_id }} .pc-slider-arrow-{{ last_part }} {
+    [data-section-id="{{ section.id }}"] .pc-slider-arrow {
       width: 30px;
       height: 30px;
     }
   }
 </style>
 
-<div class="pc-testimonial-container-{{ last_part }}">
-  <div class="pc-slider-arrows-{{ last_part }}">
-    <div class="pc-slider-arrow-{{ last_part }} prev-arrow-{{ last_part }}">
-      <svg class="pc-slider-arrow-icon-{{ last_part }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<div class="pc-testimonial-container" data-section-id="{{ section.id }}">
+  <div class="pc-slider-arrows">
+    <div class="pc-slider-arrow prev-arrow">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
-    <div class="pc-slider-arrow-{{ last_part }} next-arrow-{{ last_part }}">
-      <svg class="pc-slider-arrow-icon-{{ last_part }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="pc-slider-arrow next-arrow">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
   </div>
 
-  <div class="pc-testimonial-slider-{{ last_part }}">
+  <div class="pc-testimonial-slider">
     {% for block in section.blocks %}
-      <pc-testimonial-card-{{ last_part }}>
-        <div class="pc-testimonial-inner-{{ last_part }}">
-          <div class="pc-testimonial-text-{{ last_part }}">{{ block.settings.testimonial }}</div>
+      <div class="pc-testimonial-card">
+        <div class="pc-testimonial-inner">
+          <div class="pc-testimonial-text">{{ block.settings.testimonial }}</div>
         </div>
-      </pc-testimonial-card-{{ last_part }}>
+      </div>
     {% endfor %}
   </div>
 
-  <div class="pc-slider-nav-{{ last_part }}">
+  <div class="pc-slider-nav">
     {% for block in section.blocks %}
-      <div class="pc-slider-dot-{{ last_part }} {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
+      <div class="pc-slider-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
     {% endfor %}
   </div>
 </div>
 
 <script>
-  class PCTestimonialSlider{{ last_part | capitalize }} extends HTMLElement {
-    constructor() {
-      super();
-      this.slider = this.querySelector('.pc-testimonial-slider-{{ last_part }}');
-      this.dots = this.querySelectorAll('.pc-slider-dot-{{ last_part }}');
-      this.prevBtn = this.querySelector('.prev-arrow-{{ last_part }}');
-      this.nextBtn = this.querySelector('.next-arrow-{{ last_part }}');
+document.addEventListener('DOMContentLoaded', function() {
+  const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+  if (!section) return;
+
+  class TestimonialSlider {
+    constructor(container) {
+      this.container = container;
+      this.slider = container.querySelector('.pc-testimonial-slider');
+      this.dots = container.querySelectorAll('.pc-slider-dot');
+      this.prevBtn = container.querySelector('.prev-arrow');
+      this.nextBtn = container.querySelector('.next-arrow');
       this.currentIndex = 0;
-      this.totalSlides = this.querySelectorAll('pc-testimonial-card-{{ last_part }}').length;
+      this.totalSlides = container.querySelectorAll('.pc-testimonial-card').length;
+      this.autoplaySpeed = {{ section.settings.autoplay_speed }} * 1000;
       
+      this.init();
+    }
+    
+    init() {
       this.prevBtn.addEventListener('click', () => this.prevSlide());
       this.nextBtn.addEventListener('click', () => this.nextSlide());
       
@@ -203,7 +205,9 @@
         });
       });
       
-      this.initAutoPlay();
+      if (this.totalSlides > 1) {
+        this.initAutoPlay();
+      }
     }
     
     updateSlider() {
@@ -231,7 +235,7 @@
     }
     
     initAutoPlay() {
-      this.autoPlayInterval = setInterval(() => this.nextSlide(), {{ section.settings.autoplay_speed }}000);
+      this.autoPlayInterval = setInterval(() => this.nextSlide(), this.autoplaySpeed);
     }
     
     resetAutoPlay() {
@@ -240,19 +244,16 @@
     }
   }
 
-  customElements.define('pc-testimonial-slider-{{ last_part }}', PCTestimonialSlider{{ last_part | capitalize }});
+  new TestimonialSlider(section);
+});
 </script>
 
 {% schema %}
 {
-  "name": "PWC - Glow Slider #1",
+  "name": "PWC - Glow Slider",
   "tag": "section",
   "class": "section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Slider Settings"
-    },
     {
       "type": "range",
       "id": "autoplay_speed",
@@ -261,10 +262,6 @@
       "max": 10,
       "step": 1,
       "default": 5
-    },
-    {
-      "type": "header",
-      "content": "Layout Settings"
     },
     {
       "type": "range",
@@ -307,10 +304,6 @@
       "default": 40
     },
     {
-      "type": "header",
-      "content": "Color Settings"
-    },
-    {
       "type": "color",
       "id": "text_color",
       "label": "Text Color",
@@ -333,10 +326,6 @@
       "id": "card_border",
       "label": "Card Border",
       "default": "rgba(255, 255, 255, 0.2)"
-    },
-    {
-      "type": "header",
-      "content": "Typography"
     },
     {
       "type": "range",
@@ -375,7 +364,7 @@
   ],
   "presets": [
     {
-      "name": "PWC - Glow Slider #1",
+      "name": "PWC - Glow Slider",
       "blocks": [
         {
           "type": "testimonial",
