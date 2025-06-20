@@ -956,72 +956,6 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
-    },
-    "rw_test_9bjPgV": {
-      "type": "rw-test",
-      "blocks": {
-        "product_rrKzDK": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-991012.jpg",
-            "title": "Product Title",
-            "text": "Product description goes here",
-            "link_text": "Shop Now",
-            "link_url": ""
-          }
-        },
-        "product_YnG7FU": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/location_one.webp",
-            "title": "Product Title",
-            "text": "Product description goes here",
-            "link_text": "Shop Now",
-            "link_url": ""
-          }
-        },
-        "product_gEUJjF": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-921294.webp",
-            "title": "Product Title",
-            "text": "Product description goes here",
-            "link_text": "Shop Now",
-            "link_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_rrKzDK",
-        "product_YnG7FU",
-        "product_gEUJjF"
-      ],
-      "name": "PWC - Glow Slider",
-      "settings": {
-        "heading": "Organic Product Slider",
-        "heading_font_size": 20,
-        "mobile_heading_font_size": 18,
-        "heading_font_weight": "600",
-        "heading_color": "#000000",
-        "background_color": "#edf2f4",
-        "product_title_color": "#000000",
-        "product_text_color": "#333333",
-        "product_text_size": 14,
-        "link_text_color": "#000000",
-        "link_border_color": "#000000",
-        "link_bg_color": "#ffffff",
-        "button_bg_color": "#ffffff",
-        "button_border_color": "#000000",
-        "arrow_color": "#000000",
-        "item_shadow": true,
-        "items_per_view_mobile": 1,
-        "items_per_view_tablet": 2,
-        "items_per_view_desktop": 3,
-        "desktop_padding_top": 60,
-        "desktop_padding_bottom": 60,
-        "mobile_padding_top": 40,
-        "mobile_padding_bottom": 40
-      }
     }
   },
   "order": [
@@ -1035,7 +969,6 @@
     "rw_contact_us_wJWXNB",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA",
-    "rw_test_9bjPgV"
+    "rw_video_banner_f88XdA"
   ]
 }
