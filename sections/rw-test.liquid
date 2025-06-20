@@ -1,6 +1,402 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- liquid
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign parts = sec_id | split: '_'
+  assign last_lower = parts | last
+  assign last_part = last_lower | downcase
+-%}
+
+<style>
+  {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
+    position: relative;
+    width: 100%;
+    padding: 40px 0;
+    overflow: hidden;
   }
+
+  {{ sec_id }} .pc-testimonial-slider-{{ last_part }} {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+  }
+
+  {{ sec_id }} pc-testimonial-card-{{ last_part }} {
+    display: block;
+    min-width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+
+  {{ sec_id }} .pc-testimonial-inner-{{ last_part }} {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    border-radius: 16px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  {{ sec_id }} .pc-testimonial-inner-{{ last_part }}::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  {{ sec_id }} .pc-testimonial-inner-{{ last_part }}:hover::before {
+    opacity: 1;
+  }
+
+  {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  {{ sec_id }} .pc-testimonial-author-{{ last_part }} {
+    font-weight: 600;
+    font-size: 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  {{ sec_id }} .pc-slider-nav-{{ last_part }} {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 10px;
+  }
+
+  {{ sec_id }} .pc-slider-dot-{{ last_part }} {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  {{ sec_id }} .pc-slider-dot-{{ last_part }}.active {
+    background: rgba(255,255,255,0.9);
+    transform: scale(1.2);
+  }
+
+  {{ sec_id }} .pc-slider-arrows-{{ last_part }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  {{ sec_id }} .pc-slider-arrow-{{ last_part }} {
+    background: rgba(255,255,255,0.2);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: all;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  {{ sec_id }} .pc-slider-arrow-{{ last_part }}:hover {
+    background: rgba(255,255,255,0.4);
+  }
+
+  {{ sec_id }} .pc-slider-arrow-icon-{{ last_part }} {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-testimonial-inner-{{ last_part }} {
+      padding: 20px;
+    }
+
+    {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
+      font-size: 16px;
+    }
+
+    {{ sec_id }} .pc-testimonial-author-{{ last_part }} {
+      font-size: 14px;
+    }
+
+    {{ sec_id }} .pc-slider-arrow-{{ last_part }} {
+      width: 30px;
+      height: 30px;
+    }
+  }
+</style>
+
+<div class="pc-testimonial-container-{{ last_part }}">
+  <div class="pc-slider-arrows-{{ last_part }}">
+    <div class="pc-slider-arrow-{{ last_part }} prev-arrow-{{ last_part }}">
+      <svg class="pc-slider-arrow-icon-{{ last_part }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="pc-slider-arrow-{{ last_part }} next-arrow-{{ last_part }}">
+      <svg class="pc-slider-arrow-icon-{{ last_part }}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="pc-testimonial-slider-{{ last_part }}">
+    {% for block in section.blocks %}
+      <pc-testimonial-card-{{ last_part }}>
+        <div class="pc-testimonial-inner-{{ last_part }}">
+          <div class="pc-testimonial-text-{{ last_part }}">{{ block.settings.testimonial }}</div>
+          <div class="pc-testimonial-author-{{ last_part }}">{{ block.settings.author }}</div>
+        </div>
+      </pc-testimonial-card-{{ last_part }}>
+    {% endfor %}
+  </div>
+
+  <div class="pc-slider-nav-{{ last_part }}">
+    {% for block in section.blocks %}
+      <div class="pc-slider-dot-{{ last_part }} {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  class PCTestimonialSlider{{ last_part | capitalize }} extends HTMLElement {
+    constructor() {
+      super();
+      this.slider = this.querySelector('.pc-testimonial-slider-{{ last_part }}');
+      this.dots = this.querySelectorAll('.pc-slider-dot-{{ last_part }}');
+      this.prevBtn = this.querySelector('.prev-arrow-{{ last_part }}');
+      this.nextBtn = this.querySelector('.next-arrow-{{ last_part }}');
+      this.currentIndex = 0;
+      this.totalSlides = this.querySelectorAll('pc-testimonial-card-{{ last_part }}').length;
+      
+      this.prevBtn.addEventListener('click', () => this.prevSlide());
+      this.nextBtn.addEventListener('click', () => this.nextSlide());
+      
+      this.dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          this.goToSlide(parseInt(dot.dataset.index));
+        });
+      });
+      
+      this.initAutoPlay();
+    }
+    
+    updateSlider() {
+      this.slider.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+      this.dots.forEach(dot => dot.classList.remove('active'));
+      this.dots[this.currentIndex].classList.add('active');
+    }
+    
+    prevSlide() {
+      this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
+      this.updateSlider();
+      this.resetAutoPlay();
+    }
+    
+    nextSlide() {
+      this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
+      this.updateSlider();
+      this.resetAutoPlay();
+    }
+    
+    goToSlide(index) {
+      this.currentIndex = index;
+      this.updateSlider();
+      this.resetAutoPlay();
+    }
+    
+    initAutoPlay() {
+      this.autoPlayInterval = setInterval(() => this.nextSlide(), 5000);
+    }
+    
+    resetAutoPlay() {
+      clearInterval(this.autoPlayInterval);
+      this.initAutoPlay();
+    }
+  }
+
+  customElements.define('pc-testimonial-slider-{{ last_part }}', PCTestimonialSlider{{ last_part | capitalize }});
+</script>
+
+{% schema %}
+{
+  "name": "RW - Glow Slider #1",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "glow_color",
+      "label": "Glow Color",
+      "default": "#FFFFFF",
+      "info": "Color of the glow effect on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shadow",
+      "label": "Show Card Shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "label": "Text Size (Desktop)",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text Size (Mobile)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "author_size_desktop",
+      "label": "Author Size (Desktop)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "author_size_mobile",
+      "label": "Author Size (Mobile)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "testimonial",
+          "label": "Testimonial Text",
+          "default": "This product changed my life! I'm absolutely in love with the results."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Happy Customer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RW - Glow Slider #1",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "This serum is a hydration game-changer!",
+            "author": "Sarah M."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "My skin has never felt so soft and hydrated.",
+            "author": "Jessica T."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "My skin looks brighter and more even-toned.",
+            "author": "Alex K."
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
