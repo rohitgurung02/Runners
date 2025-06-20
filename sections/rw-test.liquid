@@ -203,28 +203,11 @@
 <section class="pc-product-slider-{{ last_part }}">
   <div class="pc-container-{{ last_part }}">
     <div class="pc-section-header-{{ last_part }}">
-      <div class="pc-heading-wrapper-{{ last_part }}">
+      <div>
         <h2 class="pc-heading-{{ last_part }}">{{ section.settings.heading }}</h2>
         <div class="pc-divider-{{ last_part }}"></div>
       </div>
-      {% if section.settings.heading_alignment != 'center' %}
-        <div class="pc-slider-controls-{{ last_part }}">
-          <button class="pc-slider-btn-{{ last_part }} pc-prev-btn-{{ last_part }}" aria-label="Previous">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <button class="pc-slider-btn-{{ last_part }} pc-next-btn-{{ last_part }}" aria-label="Next">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-      {% endif %}
-    </div>
-    
-    {% if section.settings.heading_alignment == 'center' %}
-      <div class="pc-slider-controls-{{ last_part }}" style="text-align: center; margin-bottom: 20px;">
+      <div class="pc-slider-controls-{{ last_part }}">
         <button class="pc-slider-btn-{{ last_part }} pc-prev-btn-{{ last_part }}" aria-label="Previous">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -236,7 +219,19 @@
           </svg>
         </button>
       </div>
-    {% endif %}
+    </div>
+    
+    <div class="pc-slider-wrapper-{{ last_part }}">
+      <div class="pc-slider-{{ last_part }}">
+        {% for block in section.blocks %}
+          <div class="pc-slider-item-{{ last_part }}">
+            <div class="pc-product-card-{{ last_part }}">
+              <div class="pc-product-image-{{ last_part }}">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.title }}
+                {% else %}
+                  {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
               </div>
               <div class="pc-product-content-{{ last_part }}">
                 <h3 class="pc-product-title-{{ last_part }}">{{ block.settings.title }}</h3>
@@ -245,7 +240,7 @@
               </div>
             </div>
           </div>
-      
+        {% endfor %}
       </div>
     </div>
   </div>
