@@ -956,6 +956,39 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
+    },
+    "rw_test_JYNkwQ": {
+      "type": "rw-test",
+      "blocks": {
+        "product_bGpfDD": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg",
+            "title": "Fresh And Healthy Vegetable",
+            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
+            "button_text": "Shop Now",
+            "button_url": ""
+          }
+        },
+        "product_QTbknL": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-92733.jpg",
+            "title": "Pure Black Grape Bucket",
+            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
+            "button_text": "Shop Now",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_bGpfDD",
+        "product_QTbknL"
+      ],
+      "name": "PWC - Product Slider",
+      "settings": {
+        "heading": "ORGANIC PRODUCT SLIDER"
+      }
     }
   },
   "order": [
@@ -969,6 +1002,7 @@
     "rw_contact_us_wJWXNB",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA"
+    "rw_video_banner_f88XdA",
+    "rw_test_JYNkwQ"
   ]
 }
