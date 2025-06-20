@@ -956,64 +956,6 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
-    },
-    "rw_test_KNkPUM": {
-      "type": "rw-test",
-      "blocks": {
-        "product_aFDeT7": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/3-2-06_RunnersAthletics_Look60005_533x_428740a1-cdf1-497b-9a6e-d640338459e0.webp",
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
-        },
-        "product_4LtGnX": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/3-07_RunnersAthletics_Look70032_533x_fce79475-9088-47d8-8489-7148411c1d2c.webp",
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
-        },
-        "product_eMTGKa": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/3-03_RunnersAthletics_Look30048_533x_02af8b28-96b4-4f28-b4af-f0e52fe2af16.webp",
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_aFDeT7",
-        "product_4LtGnX",
-        "product_eMTGKa"
-      ],
-      "name": "PWC - Product Slider #1",
-      "settings": {
-        "heading": "Organic Product Slider",
-        "heading_alignment": "center",
-        "heading_font_size": 24,
-        "heading_color": "#000000",
-        "bg_color": "#f5f5f5",
-        "shadow": true,
-        "padding_top": 40,
-        "padding_bottom": 40,
-        "padding_side": 20,
-        "mobile_padding_top": 20,
-        "mobile_padding_bottom": 20,
-        "mobile_padding_side": 15,
-        "mobile_heading_font_size": 20,
-        "button_color": "#000000",
-        "title_font_size": 16
-      }
     }
   },
   "order": [
@@ -1027,7 +969,6 @@
     "rw_contact_us_wJWXNB",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA",
-    "rw_test_KNkPUM"
+    "rw_video_banner_f88XdA"
   ]
 }
