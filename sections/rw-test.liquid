@@ -32,13 +32,6 @@
     margin: 0;
   }
 
-  {{ sec_id }} .pc-divider-{{ last_part }} {
-    width: 60px;
-    height: 2px;
-    background-color: {{ section.settings.heading_color }};
-    margin-top: 10px;
-  }
-
   {{ sec_id }} .pc-slider-controls-{{ last_part }} {
     display: flex;
     gap: 10px;
@@ -154,6 +147,10 @@
       height: 250px;
     }
   }
+
+   {{ sec_id }} .pc-heading- {
+    text-align: {{ section.settings.heading_alignment }};
+  }
 </style>
 
 <section class="pc-product-slider-{{ last_part }}">
@@ -161,7 +158,6 @@
     <div class="pc-section-header-{{ last_part }}">
       <div>
         <h2 class="pc-heading-{{ last_part }}">{{ section.settings.heading }}</h2>
-        <div class="pc-divider-{{ last_part }}"></div>
       </div>
       <div class="pc-slider-controls-{{ last_part }}">
         <button class="pc-slider-btn-{{ last_part }} pc-prev-btn-{{ last_part }}" aria-label="Previous">
