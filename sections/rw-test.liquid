@@ -1,53 +1,106 @@
+{%- liquid
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign parts = sec_id | split: '_'
+  assign last_lower = parts | last
+  assign last_part = last_lower | downcase
+-%}
+
 <style>
-  {{ sec_id }} .pc-slider-item-{{ last_part }} {
-    position: relative;
-    height: 100%;
+  {{ sec_id }} {
+    --pc-item-gap: 15px;
+    --pc-item-width: calc((100% - (var(--pc-item-count) - 1) * var(--pc-item-gap)) / var(--pc-item-count));
   }
 
-  {{ sec_id }} .pc-item-content-{{ last_part }} {
+  {{ sec_id }} .pc-slider-container-{{ last_part }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  {{ sec_id }} .pc-slider-track-{{ last_part }} {
+    display: flex;
+    gap: var(--pc-item-gap);
+    transition: transform 0.5s ease;
+  }
+
+  {{ sec_id }} .pc-slider-item-{{ last_part }} {
+    min-width: var(--pc-item-width);
+    flex: 0 0 var(--pc-item-width);
+  }
+
+  {{ sec_id }} .pc-product-card-{{ last_part }} {
     display: flex;
     flex-direction: column;
     height: 100%;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: {{ section.settings.item_shadow | default: '0 4px 12px rgba(0,0,0,0.1)' }};
   }
 
-  {{ sec_id }} .pc-img-box-{{ last_part }} {
+  {{ sec_id }} .pc-image-wrapper-{{ last_part }} {
     position: relative;
     width: 100%;
-    aspect-ratio: 1/1;
-    flex-shrink: 0;
+    padding-top: 100%; /* 1:1 Aspect Ratio */
+    overflow: hidden;
   }
 
-  {{ sec_id }} .pc-slider-body-{{ last_part }} {
+  {{ sec_id }} .pc-image-wrapper-{{ last_part }} img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  {{ sec_id }} .pc-content-wrapper-{{ last_part }} {
     padding: 20px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
   }
 
-  {{ sec_id }} .pc-slider-body-{{ last_part }} a {
-    margin-top: auto;
+  {{ sec_id }} .pc-content-wrapper-{{ last_part }} h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: {{ section.settings.product_title_color }};
+  }
+
+  {{ sec_id }} .pc-content-wrapper-{{ last_part }} p {
+    margin: 0 0 15px;
+    font-size: 14px;
+    color: {{ section.settings.product_text_color }};
+    flex-grow: 1;
+  }
+
+  {{ sec_id }} .pc-content-wrapper-{{ last_part }} a {
+    display: inline-block;
+    padding: 8px 15px;
+    background: {{ section.settings.link_bg_color }};
+    color: {{ section.settings.link_text_color }};
+    border: 1px solid {{ section.settings.link_border_color }};
+    border-radius: 4px;
+    text-decoration: none;
     align-self: flex-start;
   }
 
-  {{ sec_id }} .pc-slider-{{ last_part }} {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: calc((100% - ({{ section.settings.items_per_view_mobile | minus: 1 }} * 15px)) / {{ section.settings.items_per_view_mobile }});
-    gap: 15px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+  /* Responsive Settings */
+  @media (max-width: 767px) {
+    {{ sec_id }} {
+      --pc-item-count: {{ section.settings.items_per_view_mobile }};
+    }
   }
 
-  @media (min-width: 768px) {
-    {{ sec_id }} .pc-slider-{{ last_part }} {
-      grid-auto-columns: calc((100% - ({{ section.settings.items_per_view_tablet | minus: 1 }} * 15px)) / {{ section.settings.items_per_view_tablet }});
+  @media (min-width: 768px) and (max-width: 991px) {
+    {{ sec_id }} {
+      --pc-item-count: {{ section.settings.items_per_view_tablet }};
     }
   }
 
   @media (min-width: 992px) {
-    {{ sec_id }} .pc-slider-{{ last_part }} {
-      grid-auto-columns: calc((100% - ({{ section.settings.items_per_view_desktop | minus: 1 }} * 15px)) / {{ section.settings.items_per_view_desktop }});
+    {{ sec_id }} {
+      --pc-item-count: {{ section.settings.items_per_view_desktop }};
     }
   }
 </style>
@@ -57,7 +110,7 @@
     <div class="pc-section-header-{{ last_part }}">
       <h3>{{ section.settings.heading }}</h3>
       <div class="pc-slider-controls-{{ last_part }}">
-        <button class="pc-btn-{{ last_part }} pc-previous-{{ last_part }}">
+        <button class="pc-btn-{{ last_part }} pc-prev-{{ last_part }}">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke="{{ section.settings.arrow_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -69,19 +122,20 @@
         </button>
       </div>
     </div>
-    <div class="pc-slider-wrapper-{{ last_part }}">
-      <div class="pc-slider-{{ last_part }}">
+    
+    <div class="pc-slider-container-{{ last_part }}">
+      <div class="pc-slider-track-{{ last_part }}">
         {% for block in section.blocks %}
           <div class="pc-slider-item-{{ last_part }}">
-            <div class="pc-item-content-{{ last_part }}">
-              <div class="pc-img-box-{{ last_part }}">
+            <div class="pc-product-card-{{ last_part }}">
+              <div class="pc-image-wrapper-{{ last_part }}">
                 {% if block.settings.image != blank %}
                   {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.image.alt }}
                 {% else %}
                   {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 {% endif %}
               </div>
-              <div class="pc-slider-body-{{ last_part }}">
+              <div class="pc-content-wrapper-{{ last_part }}">
                 <h3>{{ block.settings.title }}</h3>
                 <p>{{ block.settings.text }}</p>
                 <a href="{{ block.settings.link_url }}">{{ block.settings.link_text }}</a>
@@ -96,45 +150,69 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const slider = document.querySelector('{{ sec_id }} .pc-slider-{{ last_part }}');
-  const prevBtn = document.querySelector('{{ sec_id }} .pc-previous-{{ last_part }}');
+  const sliderContainer = document.querySelector('{{ sec_id }} .pc-slider-container-{{ last_part }}');
+  const sliderTrack = document.querySelector('{{ sec_id }} .pc-slider-track-{{ last_part }}');
+  const prevBtn = document.querySelector('{{ sec_id }} .pc-prev-{{ last_part }}');
   const nextBtn = document.querySelector('{{ sec_id }} .pc-next-{{ last_part }}');
+  const items = document.querySelectorAll('{{ sec_id }} .pc-slider-item-{{ last_part }}');
   
-  if (slider) {
-    let currentIndex = 0;
-    const itemWidth = slider.firstElementChild.offsetWidth + 15; // width + gap
+  if (sliderTrack && items.length > 0) {
+    let currentPosition = 0;
+    let itemWidth = items[0].offsetWidth + parseInt(getComputedStyle(items[0]).marginRight);
+    let visibleItems = getVisibleItemsCount();
     
-    const updateSlider = () => {
-      slider.scrollTo({
-        left: currentIndex * itemWidth,
-        behavior: 'smooth'
+    function updateSlider() {
+      sliderTrack.style.transform = `translateX(-${currentPosition}px)`;
+    }
+    
+    function getVisibleItemsCount() {
+      const containerWidth = sliderContainer.offsetWidth;
+      return Math.floor(containerWidth / itemWidth);
+    }
+    
+    function updateItemSizes() {
+      const containerWidth = sliderContainer.offsetWidth;
+      const gap = parseInt(getComputedStyle(sliderTrack).gap) || 15;
+      let itemCount;
+      
+      if (window.innerWidth >= 992) {
+        itemCount = {{ section.settings.items_per_view_desktop }};
+      } else if (window.innerWidth >= 768) {
+        itemCount = {{ section.settings.items_per_view_tablet }};
+      } else {
+        itemCount = {{ section.settings.items_per_view_mobile }};
+      }
+      
+      const newItemWidth = (containerWidth - (itemCount - 1) * gap) / itemCount;
+      
+      items.forEach(item => {
+        item.style.minWidth = `${newItemWidth}px`;
+        item.style.flex = `0 0 ${newItemWidth}px`;
       });
-    };
+      
+      itemWidth = newItemWidth + gap;
+      visibleItems = getVisibleItemsCount();
+    }
     
     prevBtn.addEventListener('click', () => {
-      currentIndex = Math.max(0, currentIndex - 1);
+      const containerWidth = sliderContainer.offsetWidth;
+      currentPosition = Math.max(0, currentPosition - (itemWidth * visibleItems));
       updateSlider();
     });
     
     nextBtn.addEventListener('click', () => {
-      currentIndex = Math.min(
-        slider.children.length - getVisibleItems(), 
-        currentIndex + 1
-      );
+      const maxPosition = sliderTrack.scrollWidth - sliderContainer.offsetWidth;
+      currentPosition = Math.min(maxPosition, currentPosition + (itemWidth * visibleItems));
       updateSlider();
     });
     
-    function getVisibleItems() {
-      if (window.innerWidth >= 992) return {{ section.settings.items_per_view_desktop }};
-      if (window.innerWidth >= 768) return {{ section.settings.items_per_view_tablet }};
-      return {{ section.settings.items_per_view_mobile }};
-    }
-    
-    // Handle responsive changes
     window.addEventListener('resize', () => {
-      itemWidth = slider.firstElementChild.offsetWidth + 15;
+      updateItemSizes();
       updateSlider();
     });
+    
+    // Initialize
+    updateItemSizes();
   }
 });
 </script>
