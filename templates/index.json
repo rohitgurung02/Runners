@@ -956,61 +956,6 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
-    },
-    "rw_test_BPqd9z": {
-      "type": "rw-test",
-      "blocks": {
-        "product_BaEmk8": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-991012.jpg",
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_text": "Shop Now",
-            "button_url": ""
-          }
-        },
-        "product_JA7XgF": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-92733.jpg",
-            "title": "Pure Black Grape Bucket",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_text": "Shop Now",
-            "button_url": ""
-          }
-        },
-        "product_Kb3jx7": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-921294.webp",
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_text": "Shop Now",
-            "button_url": ""
-          }
-        },
-        "product_3jTLfQ": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/1040-1200x800.jpg",
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_text": "Shop Now",
-            "button_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_BaEmk8",
-        "product_JA7XgF",
-        "product_Kb3jx7",
-        "product_3jTLfQ"
-      ],
-      "name": "PWC - Product Slider",
-      "settings": {
-        "heading": "ORGANIC PRODUCT SLIDER"
-      }
     }
   },
   "order": [
@@ -1024,7 +969,6 @@
     "rw_contact_us_wJWXNB",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA",
-    "rw_test_BPqd9z"
+    "rw_video_banner_f88XdA"
   ]
 }
