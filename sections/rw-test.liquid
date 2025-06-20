@@ -6,10 +6,18 @@
 -%}
 
 <style>
+  {{ sec_id }} {
+    --pc-text-color: {{ section.settings.text_color }};
+    --pc-glow-color: {{ section.settings.glow_color }};
+    --pc-highlight-color: {{ section.settings.highlight_color }};
+    --pc-card-bg: {{ section.settings.card_bg }};
+    --pc-card-border: {{ section.settings.card_border }};
+  }
+
   {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
     position: relative;
     width: 100%;
-    padding: 40px 0;
+    padding: {{ section.settings.desktop_padding_top }}px 0 {{ section.settings.desktop_padding_bottom }}px;
     overflow: hidden;
   }
 
@@ -21,21 +29,20 @@
 
   {{ sec_id }} pc-testimonial-card-{{ last_part }} {
     display: block;
-    min-width: 100%;
+    min-width: calc(100% / {{ section.settings.slides_to_show }});
     padding: 0 15px;
     box-sizing: border-box;
   }
 
   {{ sec_id }} .pc-testimonial-inner-{{ last_part }} {
-    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-    border-radius: 16px;
+    background: var(--pc-card-bg);
+    border-radius: 12px;
     padding: 30px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border: 1px solid var(--pc-card-border);
     position: relative;
     overflow: hidden;
     height: 100%;
+    transition: all 0.3s ease;
   }
 
   {{ sec_id }} .pc-testimonial-inner-{{ last_part }}::before {
@@ -45,28 +52,28 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--pc-glow-color) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.5s ease;
+    z-index: 0;
   }
 
   {{ sec_id }} .pc-testimonial-inner-{{ last_part }}:hover::before {
-    opacity: 1;
+    opacity: 0.3;
   }
 
   {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
-    font-size: 18px;
-    line-height: 1.5;
-    margin-bottom: 20px;
+    font-size: {{ section.settings.text_size_desktop }}px;
+    line-height: 1.4;
+    margin-bottom: 15px;
     position: relative;
     z-index: 2;
+    color: var(--pc-text-color);
   }
 
-  {{ sec_id }} .pc-testimonial-author-{{ last_part }} {
-    font-weight: 600;
-    font-size: 16px;
-    position: relative;
-    z-index: 2;
+  {{ sec_id }} .pc-testimonial-highlight-{{ last_part }} {
+    color: var(--pc-highlight-color);
+    font-weight: 700;
   }
 
   {{ sec_id }} .pc-slider-nav-{{ last_part }} {
@@ -77,8 +84,8 @@
   }
 
   {{ sec_id }} .pc-slider-dot-{{ last_part }} {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: rgba(255,255,255,0.3);
     cursor: pointer;
@@ -86,7 +93,7 @@
   }
 
   {{ sec_id }} .pc-slider-dot-{{ last_part }}.active {
-    background: rgba(255,255,255,0.9);
+    background: var(--pc-highlight-color);
     transform: scale(1.2);
   }
 
@@ -94,7 +101,8 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 100%;
+    width: calc(100% - 60px);
+    left: 30px;
     display: flex;
     justify-content: space-between;
     pointer-events: none;
@@ -113,6 +121,7 @@
     pointer-events: all;
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.3);
   }
 
   {{ sec_id }} .pc-slider-arrow-{{ last_part }}:hover {
@@ -122,19 +131,29 @@
   {{ sec_id }} .pc-slider-arrow-icon-{{ last_part }} {
     width: 16px;
     height: 16px;
+    color: var(--pc-text-color);
   }
 
   @media (max-width: 767px) {
+    {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
+      padding: {{ section.settings.mobile_padding_top }}px 0 {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    {{ sec_id }} pc-testimonial-card-{{ last_part }} {
+      min-width: 100%;
+    }
+
     {{ sec_id }} .pc-testimonial-inner-{{ last_part }} {
       padding: 20px;
     }
 
     {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
-      font-size: 16px;
+      font-size: {{ section.settings.text_size_mobile }}px;
     }
 
-    {{ sec_id }} .pc-testimonial-author-{{ last_part }} {
-      font-size: 14px;
+    {{ sec_id }} .pc-slider-arrows-{{ last_part }} {
+      width: calc(100% - 40px);
+      left: 20px;
     }
 
     {{ sec_id }} .pc-slider-arrow-{{ last_part }} {
@@ -162,8 +181,16 @@
     {% for block in section.blocks %}
       <pc-testimonial-card-{{ last_part }}>
         <div class="pc-testimonial-inner-{{ last_part }}">
-          <div class="pc-testimonial-text-{{ last_part }}">{{ block.settings.testimonial }}</div>
-          <div class="pc-testimonial-author-{{ last_part }}">{{ block.settings.author }}</div>
+          <div class="pc-testimonial-text-{{ last_part }}">
+            {% assign text_parts = block.settings.testimonial | split: '||' %}
+            {% for part in text_parts %}
+              {% if forloop.index0 == 1 %}
+                <span class="pc-testimonial-highlight-{{ last_part }}">{{ part }}</span>
+              {% else %}
+                {{ part }}
+              {% endif %}
+            {% endfor %}
+          </div>
         </div>
       </pc-testimonial-card-{{ last_part }}>
     {% endfor %}
@@ -186,6 +213,7 @@
       this.nextBtn = this.querySelector('.next-arrow-{{ last_part }}');
       this.currentIndex = 0;
       this.totalSlides = this.querySelectorAll('pc-testimonial-card-{{ last_part }}').length;
+      this.slidesToShow = {{ section.settings.slides_to_show }};
       
       this.prevBtn.addEventListener('click', () => this.prevSlide());
       this.nextBtn.addEventListener('click', () => this.nextSlide());
@@ -197,10 +225,12 @@
       });
       
       this.initAutoPlay();
+      this.updateSlider();
     }
     
     updateSlider() {
-      this.slider.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+      const slideWidth = 100 / this.slidesToShow;
+      this.slider.style.transform = `translateX(-${this.currentIndex * slideWidth}%)`;
       this.dots.forEach(dot => dot.classList.remove('active'));
       this.dots[this.currentIndex].classList.add('active');
     }
@@ -224,7 +254,7 @@
     }
     
     initAutoPlay() {
-      this.autoPlayInterval = setInterval(() => this.nextSlide(), 5000);
+      this.autoPlayInterval = setInterval(() => this.nextSlide(), {{ section.settings.autoplay_speed }}000);
     }
     
     resetAutoPlay() {
@@ -238,13 +268,31 @@
 
 {% schema %}
 {
-  "name": "RW - Glow Slider #1",
+  "name": "PWC - Glow Slider #1",
   "tag": "section",
   "class": "section",
   "settings": [
     {
       "type": "header",
       "content": "Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "slides_to_show",
+      "label": "Slides to Show",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay Speed (seconds)",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 5
     },
     {
       "type": "range",
@@ -287,6 +335,10 @@
       "default": 30
     },
     {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
       "type": "color",
       "id": "text_color",
       "label": "Text Color",
@@ -294,16 +346,27 @@
     },
     {
       "type": "color",
-      "id": "glow_color",
-      "label": "Glow Color",
-      "default": "#FFFFFF",
-      "info": "Color of the glow effect on hover"
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#FFD700"
     },
     {
-      "type": "checkbox",
-      "id": "show_shadow",
-      "label": "Show Card Shadow",
-      "default": true
+      "type": "color",
+      "id": "glow_color",
+      "label": "Glow Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "rgba(255, 255, 255, 0.1)"
+    },
+    {
+      "type": "color",
+      "id": "card_border",
+      "label": "Card Border",
+      "default": "rgba(255, 255, 255, 0.2)"
     },
     {
       "type": "header",
@@ -328,26 +391,6 @@
       "step": 1,
       "unit": "px",
       "default": 16
-    },
-    {
-      "type": "range",
-      "id": "author_size_desktop",
-      "label": "Author Size (Desktop)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "author_size_mobile",
-      "label": "Author Size (Mobile)",
-      "min": 12,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 14
     }
   ],
   "blocks": [
@@ -359,40 +402,32 @@
           "type": "textarea",
           "id": "testimonial",
           "label": "Testimonial Text",
-          "default": "This product changed my life! I'm absolutely in love with the results."
-        },
-        {
-          "type": "text",
-          "id": "author",
-          "label": "Author",
-          "default": "Happy Customer"
+          "info": "Use '||' to separate regular text from highlighted text (e.g., 'This product is ||amazing||')",
+          "default": "felt so soft and ||I'm absolutely in love!||"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "RW - Glow Slider #1",
+      "name": "PWC - Glow Slider #1",
       "blocks": [
         {
           "type": "testimonial",
           "settings": {
-            "testimonial": "This serum is a hydration game-changer!",
-            "author": "Sarah M."
+            "testimonial": "felt so soft and ||I'm absolutely in love!||"
           }
         },
         {
           "type": "testimonial",
           "settings": {
-            "testimonial": "My skin has never felt so soft and hydrated.",
-            "author": "Jessica T."
+            "testimonial": "This serum is a hydration ||game-changer!||"
           }
         },
         {
           "type": "testimonial",
           "settings": {
-            "testimonial": "My skin looks brighter and more even-toned.",
-            "author": "Alex K."
+            "testimonial": "My skin has never felt so ||hydrated.||"
           }
         }
       ]
