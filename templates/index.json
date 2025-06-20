@@ -960,34 +960,45 @@
     "rw_test_JYNkwQ": {
       "type": "rw-test",
       "blocks": {
-        "product_bGpfDD": {
-          "type": "product",
+        "product_card_4q3tRj": {
+          "type": "product_card",
           "settings": {
             "image": "shopify://shop_images/pexels-photo-991012.jpg",
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_text": "Shop Now",
-            "button_url": ""
+            "title": "Fresh Organic Product",
+            "description": "This is a great organic item.",
+            "button_label": "Shop Now"
           }
         },
-        "product_QTbknL": {
-          "type": "product",
+        "product_card_8WHWff": {
+          "type": "product_card",
           "settings": {
             "image": "shopify://shop_images/pexels-photo-92733.jpg",
-            "title": "Pure Black Grape Bucket",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_text": "Shop Now",
-            "button_url": ""
+            "title": "Fresh Organic Product",
+            "description": "This is a great organic item.",
+            "button_label": "Shop Now"
           }
         }
       },
       "block_order": [
-        "product_bGpfDD",
-        "product_QTbknL"
+        "product_card_4q3tRj",
+        "product_card_8WHWff"
       ],
       "name": "PWC - Product Slider",
       "settings": {
-        "heading": "ORGANIC PRODUCT SLIDER"
+        "heading": "ORGANIC PRODUCT SLIDER",
+        "heading_font_size": 24,
+        "heading_color": "#000000",
+        "bg_color": "#f5f5f5",
+        "shadow": true,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_side": 20,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20,
+        "mobile_padding_side": 15,
+        "mobile_heading_font_size": 20,
+        "button_color": "#000000",
+        "title_font_size": 16
       }
     }
   },
