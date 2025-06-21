@@ -14,13 +14,13 @@
           </div>
         {% endfor %}
       </div>
-      <div class="pc-right-slide">
+      <div class="pc-right-slide" style="background-color: {{ section.settings.right_slide_bg }};">
         {% for block in section.blocks %}
           <div class="pc-slide-image">
             {%- if block.settings.image != blank -%}
               {{- block.settings.image
                 | image_url: width: 2000
-                | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt
+                | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-slide-image-tag'
               -}}
             {%- else -%}
               {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder' }}
@@ -83,6 +83,7 @@
     top: 0;
     left: 0;
     transition: transform {{ section.settings.transition_speed }}ms ease-in-out;
+    z-index: 2;
   }
 
   {{ sec_id }} .pc-slide-content {
@@ -120,18 +121,22 @@
     left: {{ section.settings.left_slide_width }}%;
     width: calc(100% - {{ section.settings.left_slide_width }}%);
     transition: transform {{ section.settings.transition_speed }}ms ease-in-out;
+    background-color: {{ section.settings.right_slide_bg }};
   }
 
   {{ sec_id }} .pc-slide-image {
     height: 100%;
     width: 100%;
+    position: relative;
   }
 
-  {{ sec_id }} .pc-slide-image img,
+  {{ sec_id }} .pc-slide-image-tag,
   {{ sec_id }} .pc-slide-image svg {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: relative;
+    z-index: 1;
   }
 
   {{ sec_id }} .pc-placeholder {
@@ -154,6 +159,7 @@
     border-radius: 50%;
     box-shadow: {% if section.settings.button_shadow %}0 2px 5px rgba(0,0,0,0.2){% else %}none{% endif %};
     transition: all 0.3s ease;
+    z-index: 3;
   }
 
   {{ sec_id }} .pc-action-buttons button:hover {
@@ -200,6 +206,7 @@
       left: 0;
       width: 100%;
       height: 70%;
+      background-color: {{ section.settings.right_slide_bg_mobile | default: section.settings.right_slide_bg }};
     }
 
     {{ sec_id }} .pc-slide-heading {
@@ -298,7 +305,7 @@
 
 {% schema %}
 {
-  "name": "RW - Vertical Slider #1",
+  "name": "PWC - Vertical Slider #1",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -459,6 +466,20 @@
       "default": "#ffffff"
     },
     {
+      "type": "color",
+      "id": "right_slide_bg",
+      "label": "Right Slide Background",
+      "default": "rgba(0,0,0,0)",
+      "info": "Visible when no image is selected"
+    },
+    {
+      "type": "color",
+      "id": "right_slide_bg_mobile",
+      "label": "Right Slide Background (Mobile)",
+      "default": "rgba(0,0,0,0)",
+      "info": "Optional different background for mobile"
+    },
+    {
       "type": "header",
       "content": "Heading Settings"
     },
@@ -614,7 +635,7 @@
         {
           "type": "color",
           "id": "bg_color",
-          "label": "Background Color",
+          "label": "Left Side Background Color",
           "default": "#000000"
         }
       ]
@@ -622,7 +643,7 @@
   ],
   "presets": [
     {
-      "name": "RW - Vertical Slider #1",
+      "name": "PWC - Vertical Slider #1",
       "blocks": [
         {
           "type": "slide",
