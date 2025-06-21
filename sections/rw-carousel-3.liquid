@@ -6,15 +6,15 @@
 <pc-vertical-slider-{{ last_part }} class="pc-vertical-slider">
   <div class="pc-slider-outer" style="max-width: {{ section.settings.container_width }}px;">
     <div class="pc-slider-container">
-      <div class="pc-left-slide">
+      <div class="pc-left-slide" style="background-color: {{ section.settings.left_slide_bg }};">
         {% for block in section.blocks %}
-          <div class="pc-slide-content" style="background-color: {{ block.settings.bg_color }};">
+          <div class="pc-slide-content">
             <h2 class="pc-slide-heading">{{ block.settings.heading }}</h2>
             <p class="pc-slide-text">{{ block.settings.text }}</p>
           </div>
         {% endfor %}
       </div>
-      <div class="pc-right-slide" style="background-color: {{ section.settings.right_slide_bg }};">
+      <div class="pc-right-slide">
         {% for block in section.blocks %}
           <div class="pc-slide-image">
             {%- if block.settings.image != blank -%}
@@ -121,7 +121,6 @@
     left: {{ section.settings.left_slide_width }}%;
     width: calc(100% - {{ section.settings.left_slide_width }}%);
     transition: transform {{ section.settings.transition_speed }}ms ease-in-out;
-    background-color: {{ section.settings.right_slide_bg }};
   }
 
   {{ sec_id }} .pc-slide-image {
@@ -200,13 +199,13 @@
       height: 30%;
       top: auto;
       bottom: 0;
+      background-color: {{ section.settings.left_slide_bg_mobile | default: section.settings.left_slide_bg }};
     }
 
     {{ sec_id }} .pc-right-slide {
       left: 0;
       width: 100%;
       height: 70%;
-      background-color: {{ section.settings.right_slide_bg_mobile | default: section.settings.right_slide_bg }};
     }
 
     {{ sec_id }} .pc-slide-heading {
@@ -461,23 +460,22 @@
     },
     {
       "type": "color",
+      "id": "left_slide_bg",
+      "label": "Left Slide Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "left_slide_bg_mobile",
+      "label": "Left Slide Background (Mobile)",
+      "default": "#000000",
+      "info": "Optional different background for mobile"
+    },
+    {
+      "type": "color",
       "id": "text_color",
       "label": "Text Color",
       "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "right_slide_bg",
-      "label": "Right Slide Background",
-      "default": "rgba(0,0,0,0)",
-      "info": "Visible when no image is selected"
-    },
-    {
-      "type": "color",
-      "id": "right_slide_bg_mobile",
-      "label": "Right Slide Background (Mobile)",
-      "default": "rgba(0,0,0,0)",
-      "info": "Optional different background for mobile"
     },
     {
       "type": "header",
@@ -631,12 +629,6 @@
           "id": "text",
           "label": "Text",
           "default": "Slide description text goes here."
-        },
-        {
-          "type": "color",
-          "id": "bg_color",
-          "label": "Left Side Background Color",
-          "default": "#000000"
         }
       ]
     }
@@ -644,37 +636,37 @@
   "presets": [
     {
       "name": "PWC - Vertical Slider #1",
+      "settings": {
+        "left_slide_bg": "#000000",
+        "left_slide_bg_mobile": "#000000"
+      },
       "blocks": [
         {
           "type": "slide",
           "settings": {
             "heading": "Nature Flower",
-            "text": "All in pink",
-            "bg_color": "#7f7856"
+            "text": "All in pink"
           }
         },
         {
           "type": "slide",
           "settings": {
             "heading": "Beautiful Scene",
-            "text": "Enjoy the view",
-            "bg_color": "#6d6b9f"
+            "text": "Enjoy the view"
           }
         },
         {
           "type": "slide",
           "settings": {
             "heading": "Mountain View",
-            "text": "Fresh air",
-            "bg_color": "#252e33"
+            "text": "Fresh air"
           }
         },
         {
           "type": "slide",
           "settings": {
             "heading": "Nature Garden",
-            "text": "All in Green",
-            "bg_color": "#739c10"
+            "text": "All in Green"
           }
         }
       ]
