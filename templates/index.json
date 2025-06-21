@@ -964,7 +964,7 @@
           "type": "product",
           "settings": {
             "image": "shopify://shop_images/3-03_RunnersAthletics_Look30048_533x_02af8b28-96b4-4f28-b4af-f0e52fe2af16.webp",
-            "title": "Product Title",
+            "title": "Product Title 1",
             "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             "button_label": "Shop Now",
             "button_link": ""
@@ -974,8 +974,8 @@
           "type": "product",
           "settings": {
             "image": "shopify://shop_images/3-07_RunnersAthletics_Look70032_533x_fce79475-9088-47d8-8489-7148411c1d2c.webp",
-            "title": "Product Title",
-            "description": "Product Description",
+            "title": "Product Title 2",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             "button_label": "Shop Now",
             "button_link": ""
           }
@@ -984,7 +984,7 @@
           "type": "product",
           "settings": {
             "image": "shopify://shop_images/4-4-05_RunnersAthletics_Look50065_533x_3838d948-95f5-4510-95dd-704f4bbd5893.webp",
-            "title": "Fresh And Healthy Vegetable",
+            "title": "Product Title 3",
             "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             "button_label": "Shop Now",
             "button_link": ""
@@ -994,8 +994,8 @@
           "type": "product",
           "settings": {
             "image": "shopify://shop_images/3-2-06_RunnersAthletics_Look60005_533x_428740a1-cdf1-497b-9a6e-d640338459e0.webp",
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
+            "title": "Product Title 4",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             "button_label": "Shop Now",
             "button_link": ""
           }
@@ -1004,7 +1004,7 @@
           "type": "product",
           "settings": {
             "image": "shopify://shop_images/7-03_RunnersAthletics_Look30111_533x_c25adeb2-2078-4e7c-9842-86292e1527fc.webp",
-            "title": "Fresh And Healthy Vegetable",
+            "title": "Product Title 5",
             "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             "button_label": "Shop Now",
             "button_link": ""
@@ -1014,7 +1014,7 @@
           "type": "product",
           "settings": {
             "image": "shopify://shop_images/5-6-07_RunnersAthletics_Look70062_533x_e51358d4-62f2-4f47-a3dc-5ff9aeb74a2c.webp",
-            "title": "Fresh And Healthy Vegetable",
+            "title": "Product Title 6",
             "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             "button_label": "Shop Now",
             "button_link": ""
