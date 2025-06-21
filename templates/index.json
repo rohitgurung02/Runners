@@ -1112,7 +1112,7 @@
         "container_radius": 0,
         "container_bg": "rgba(0,0,0,0)",
         "container_shadow": true,
-        "slider_height": 700,
+        "slider_height": 500,
         "slider_height_mobile": 500,
         "left_slide_width": 35,
         "transition_speed": 500,
