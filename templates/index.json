@@ -973,8 +973,49 @@
         "product_cC7Nan": {
           "type": "product",
           "settings": {
+            "image": "shopify://shop_images/3-07_RunnersAthletics_Look70032_533x_fce79475-9088-47d8-8489-7148411c1d2c.webp",
             "title": "Product Title",
             "description": "Product Description",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "product_cEmUCJ": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/4-4-05_RunnersAthletics_Look50065_533x_3838d948-95f5-4510-95dd-704f4bbd5893.webp",
+            "title": "Fresh And Healthy Vegetable",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "product_CnzBRr": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/3-2-06_RunnersAthletics_Look60005_533x_428740a1-cdf1-497b-9a6e-d640338459e0.webp",
+            "title": "Fresh And Healthy Vegetable",
+            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "product_BQL6kf": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/7-03_RunnersAthletics_Look30111_533x_c25adeb2-2078-4e7c-9842-86292e1527fc.webp",
+            "title": "Fresh And Healthy Vegetable",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "product_MCKxXq": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/5-6-07_RunnersAthletics_Look70062_533x_e51358d4-62f2-4f47-a3dc-5ff9aeb74a2c.webp",
+            "title": "Fresh And Healthy Vegetable",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             "button_label": "Shop Now",
             "button_link": ""
           }
@@ -982,7 +1023,11 @@
       },
       "block_order": [
         "product_ErD4Ua",
-        "product_cC7Nan"
+        "product_cC7Nan",
+        "product_cEmUCJ",
+        "product_CnzBRr",
+        "product_BQL6kf",
+        "product_MCKxXq"
       ],
       "name": "RW - Product Slider #2",
       "settings": {
