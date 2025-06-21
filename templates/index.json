@@ -1096,7 +1096,7 @@
       ],
       "name": "RW - Vertical Slider #1",
       "settings": {
-        "section_bg": "#090909",
+        "section_bg": "rgba(0,0,0,0)",
         "section_padding_top": 0,
         "section_padding_bottom": 0,
         "section_padding_top_mobile": 0,
