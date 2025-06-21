@@ -1047,76 +1047,6 @@
         "button_color": "#222222",
         "title_font_size": 20
       }
-    },
-    "rw_carousel_3_7aHtYr": {
-      "type": "rw-carousel-3",
-      "blocks": {
-        "brand_QazmVB": {
-          "type": "brand",
-          "settings": {
-            "image": "shopify://shop_images/4.png"
-          }
-        },
-        "brand_86fnbC": {
-          "type": "brand",
-          "settings": {
-            "image": "shopify://shop_images/3.png"
-          }
-        },
-        "brand_JU9RTV": {
-          "type": "brand",
-          "settings": {
-            "image": "shopify://shop_images/6.png"
-          }
-        },
-        "brand_xkREUK": {
-          "type": "brand",
-          "settings": {
-            "image": "shopify://shop_images/5.png"
-          }
-        },
-        "brand_nFQJkb": {
-          "type": "brand",
-          "settings": {
-            "image": "shopify://shop_images/1.png"
-          }
-        },
-        "brand_cwRnQE": {
-          "type": "brand",
-          "settings": {
-            "image": "shopify://shop_images/2.png"
-          }
-        }
-      },
-      "block_order": [
-        "brand_QazmVB",
-        "brand_86fnbC",
-        "brand_JU9RTV",
-        "brand_xkREUK",
-        "brand_nFQJkb",
-        "brand_cwRnQE"
-      ],
-      "name": "PWC - Brand Carousel #1",
-      "settings": {
-        "animation_duration": 15,
-        "reverse_direction": false,
-        "desktop_item_width": 120,
-        "desktop_item_height": 60,
-        "mobile_item_width": 80,
-        "mobile_item_height": 40,
-        "heading": "Trusted by these brands",
-        "show_heading": false,
-        "heading_color": "#000000",
-        "heading_font_size_desktop": 24,
-        "heading_font_size_mobile": 18,
-        "heading_margin_bottom": 20,
-        "heading_shadow": false,
-        "background_color": "#ffffff",
-        "desktop_padding_top": 40,
-        "desktop_padding_bottom": 40,
-        "mobile_padding_top": 20,
-        "mobile_padding_bottom": 20
-      }
     }
   },
   "order": [
@@ -1131,7 +1061,6 @@
     "rw_contact_us_wJWXNB",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_test_aAUgTm",
-    "rw_carousel_3_7aHtYr"
+    "rw_test_aAUgTm"
   ]
 }
