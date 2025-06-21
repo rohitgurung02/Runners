@@ -1,30 +1,40 @@
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 {%- assign parts = sec_id | split: '_' -%}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
+  {{ sec_id }} {
+    background-color: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+  }
+
   {{ sec_id }} .pc-carousel-{{ last_part }} {
     position: relative;
     width: 100%;
+    height: calc(var(--pc-item-height) + 20px);
     overflow: hidden;
     mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
+    margin: 0 auto;
   }
 
   {{ sec_id }} .pc-carousel-container-{{ last_part }} {
     display: flex;
-    width: 100%;
-    min-width: calc(var(--pc-item-width) * var(--pc-item-quantity));
+    width: max-content;
+    height: 100%;
     position: relative;
   }
 
   {{ sec_id }} .pc-carousel-item-{{ last_part }} {
     width: var(--pc-item-width);
     height: var(--pc-item-height);
-    position: absolute;
-    left: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    position: absolute;
+    left: 100%;
     animation: pc-slide-{{ last_part }} var(--pc-animation-duration) linear infinite;
     animation-delay: calc((var(--pc-animation-duration) / var(--pc-item-quantity)) * (var(--pc-item-position) - var(--pc-item-quantity)));
   }
@@ -38,9 +48,10 @@
   }
 
   {{ sec_id }} .pc-carousel-img-{{ last_part }} {
-    width: 100%;
+    width: auto;
     height: auto;
-    max-height: var(--pc-item-height);
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
     filter: grayscale(100%);
     opacity: 0.7;
@@ -71,6 +82,11 @@
   }
 
   @media (max-width: 749px) {
+    {{ sec_id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+    
     {{ sec_id }} .pc-carousel-{{ last_part }} {
       --pc-item-width: {{ section.settings.mobile_item_width }}px;
       --pc-item-height: {{ section.settings.mobile_item_height }}px;
@@ -85,24 +101,40 @@
   }
 </style>
 
-<div class="pc-carousel-{{ last_part }}" 
-     data-reverse="{{ section.settings.reverse_direction }}"
-     style="--pc-item-quantity: {{ section.settings.brands.size }}; 
-            --pc-animation-duration: {{ section.settings.animation_duration }}s">
-  <div class="pc-carousel-container-{{ last_part }}">
-    {% for brand in section.settings.brands %}
-      <div class="pc-carousel-item-{{ last_part }}" style="--pc-item-position: {{ forloop.index }}">
-        {% if brand.image != blank %}
-          {{ brand.image | image_url: width: 200 | image_tag: 
-            class: 'pc-carousel-img-' | append: last_part, 
-            loading: 'lazy', 
-            alt: brand.image.alt | escape 
-          }}
+<div class="pc-carousel-wrapper-{{ last_part }}">
+  {% if section.settings.show_heading and section.settings.heading != blank %}
+    <h2 class="pc-carousel-heading-{{ last_part }}" style="
+      font-size: {{ section.settings.heading_font_size_desktop }}px;
+      color: {{ section.settings.heading_color }};
+      margin-bottom: {{ section.settings.heading_margin_bottom }}px;
+      {% if section.settings.heading_shadow %}text-shadow: 1px 1px 3px rgba(0,0,0,0.3);{% endif %}
+      text-align: center;
+    ">
+      {{ section.settings.heading }}
+    </h2>
+  {% endif %}
+  
+  <div class="pc-carousel-{{ last_part }}" 
+       data-reverse="{{ section.settings.reverse_direction }}"
+       style="--pc-item-quantity: {{ section.blocks.size }}; 
+              --pc-animation-duration: {{ section.settings.animation_duration }}s">
+    <div class="pc-carousel-container-{{ last_part }}">
+      {% for block in section.blocks %}
+        {% if block.settings.image != blank %}
+          <div class="pc-carousel-item-{{ last_part }}" style="--pc-item-position: {{ forloop.index }}">
+            {{ block.settings.image | image_url: width: 400 | image_tag: 
+              class: 'pc-carousel-img-' | append: last_part, 
+              loading: 'lazy', 
+              alt: block.settings.image.alt | escape 
+            }}
+          </div>
         {% else %}
-          {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'pc-carousel-img-' | append: last_part }}
+          <div class="pc-carousel-item-{{ last_part }}" style="--pc-item-position: {{ forloop.index }}">
+            {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'pc-carousel-img-' | append: last_part }}
+          </div>
         {% endif %}
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
 </div>
 
@@ -177,13 +209,25 @@
     },
     {
       "type": "header",
-      "content": "Brand Logos"
+      "content": "Content Settings"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
       "default": "Trusted by these brands"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show Heading",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
     },
     {
       "type": "range",
@@ -204,18 +248,6 @@
       "step": 1,
       "unit": "px",
       "default": 18
-    },
-    {
-      "type": "checkbox",
-      "id": "show_heading",
-      "label": "Show Heading",
-      "default": false
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
-      "default": "#000000"
     },
     {
       "type": "range",
