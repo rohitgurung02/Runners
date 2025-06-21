@@ -1,66 +1,48 @@
-{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 {%- assign parts = sec_id | split: '_' -%}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<style>
-  {{ sec_id }} {
-    background-color: {{ section.settings.background_color }};
-    padding-top: {{ section.settings.desktop_padding_top }}px;
-    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
-  }
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
+<style>
   {{ sec_id }} .pc-carousel-{{ last_part }} {
-    position: relative;
     width: 100%;
-    height: calc(var(--pc-item-height) + 20px);
+    height: var(--pc-height);
     overflow: hidden;
     mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
-    margin: 0 auto;
+    margin-top: {{ section.settings.desktop_margin_top }}px;
+    margin-bottom: {{ section.settings.desktop_margin_bottom }}px;
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+    {% if section.settings.shadow_enabled %}
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    {% endif %}
+    background-color: {{ section.settings.background_color }};
   }
 
-  {{ sec_id }} .pc-carousel-container-{{ last_part }} {
+  {{ sec_id }} .pc-carousel-{{ last_part }}:hover .pc-carousel__item-{{ last_part }} {
+    animation-play-state: paused !important;
+  }
+
+  {{ sec_id }} .pc-carousel__list-{{ last_part }} {
     display: flex;
-    width: max-content;
-    height: 100%;
+    width: 100%;
+    min-width: calc(var(--pc-width) * var(--pc-quantity));
     position: relative;
   }
 
-  {{ sec_id }} .pc-carousel-item-{{ last_part }} {
-    width: var(--pc-item-width);
-    height: var(--pc-item-height);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+  {{ sec_id }} .pc-carousel__item-{{ last_part }} {
+    width: var(--pc-width);
+    height: var(--pc-height);
     position: absolute;
     left: 100%;
-    animation: pc-slide-{{ last_part }} var(--pc-animation-duration) linear infinite;
-    animation-delay: calc((var(--pc-animation-duration) / var(--pc-item-quantity)) * (var(--pc-item-position) - var(--pc-item-quantity)));
+    text-align: center;
+    animation: pc-slide-{{ last_part }} var(--pc-duration) linear infinite;
+    animation-delay: calc((var(--pc-duration) / var(--pc-quantity)) * (var(--pc-position) - var(--pc-quantity))) !important;
   }
 
-  {{ sec_id }} .pc-carousel-{{ last_part }}[data-reverse="true"] .pc-carousel-item-{{ last_part }} {
-    animation: pc-slide-reverse-{{ last_part }} var(--pc-animation-duration) linear infinite;
-  }
-
-  {{ sec_id }} .pc-carousel-{{ last_part }}:hover .pc-carousel-item-{{ last_part }} {
-    animation-play-state: paused;
-  }
-
-  {{ sec_id }} .pc-carousel-img-{{ last_part }} {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.7;
-    transition: all 0.3s ease;
-  }
-
-  {{ sec_id }} .pc-carousel-img-{{ last_part }}:hover {
-    filter: grayscale(0%);
-    opacity: 1;
+  {{ sec_id }} [data-reverse="true"] .pc-carousel__item-{{ last_part }} {
+    animation: pc-slide-reverse-{{ last_part }} var(--pc-duration) linear infinite;
   }
 
   @keyframes pc-slide-{{ last_part }} {
@@ -68,284 +50,252 @@
       left: 100%;
     }
     to {
-      left: calc(var(--pc-item-width) * -1);
+      left: calc(var(--pc-width) * -1);
     }
   }
 
   @keyframes pc-slide-reverse-{{ last_part }} {
     from {
-      left: calc(var(--pc-item-width) * -1);
+      left: calc(var(--pc-width) * -1);
     }
     to {
       left: 100%;
     }
   }
 
-  @media (max-width: 749px) {
-    {{ sec_id }} {
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-carousel-{{ last_part }} {
+      margin-top: {{ section.settings.mobile_margin_top }}px;
+      margin-bottom: {{ section.settings.mobile_margin_bottom }}px;
       padding-top: {{ section.settings.mobile_padding_top }}px;
       padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
-    }
-    
-    {{ sec_id }} .pc-carousel-{{ last_part }} {
-      --pc-item-width: {{ section.settings.mobile_item_width }}px;
-      --pc-item-height: {{ section.settings.mobile_item_height }}px;
-    }
-  }
-
-  @media (min-width: 750px) {
-    {{ sec_id }} .pc-carousel-{{ last_part }} {
-      --pc-item-width: {{ section.settings.desktop_item_width }}px;
-      --pc-item-height: {{ section.settings.desktop_item_height }}px;
     }
   }
 </style>
 
-<div class="pc-carousel-wrapper-{{ last_part }}">
-  {% if section.settings.show_heading and section.settings.heading != blank %}
-    <h2 class="pc-carousel-heading-{{ last_part }}" style="
-      font-size: {{ section.settings.heading_font_size_desktop }}px;
-      color: {{ section.settings.heading_color }};
-      margin-bottom: {{ section.settings.heading_margin_bottom }}px;
-      {% if section.settings.heading_shadow %}text-shadow: 1px 1px 3px rgba(0,0,0,0.3);{% endif %}
-      text-align: center;
-    ">
-      {{ section.settings.heading }}
-    </h2>
-  {% endif %}
+<pc-carousel-{{ last_part }} class="pc-carousel-{{ last_part }}" style="
+  --pc-width: {{ section.settings.item_width }}px;
+  --pc-height: {{ section.settings.item_height }}px;
+  --pc-quantity: {{ section.settings.items | size }};
+  --pc-duration: {{ section.settings.animation_duration }}s">
   
-  <div class="pc-carousel-{{ last_part }}" 
-       data-reverse="{{ section.settings.reverse_direction }}"
-       style="--pc-item-quantity: {{ section.blocks.size }}; 
-              --pc-animation-duration: {{ section.settings.animation_duration }}s">
-    <div class="pc-carousel-container-{{ last_part }}">
-      {% for block in section.blocks %}
-        {% if block.settings.image != blank %}
-          <div class="pc-carousel-item-{{ last_part }}" style="--pc-item-position: {{ forloop.index }}">
-            {{ block.settings.image | image_url: width: 400 | image_tag: 
-              class: 'pc-carousel-img-' | append: last_part, 
-              loading: 'lazy', 
-              alt: block.settings.image.alt | escape 
-            }}
-          </div>
+  <div class="pc-carousel__list-{{ last_part }}">
+    {% for item in section.settings.items %}
+      <div class="pc-carousel__item-{{ last_part }}" style="--pc-position: {{ forloop.index }}">
+        {% if item.image != blank %}
+          {{ item.image | image_url: width: section.settings.item_width, height: section.settings.item_height | image_tag: loading: 'lazy', alt: item.image.alt }}
         {% else %}
-          <div class="pc-carousel-item-{{ last_part }}" style="--pc-item-position: {{ forloop.index }}">
-            {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'pc-carousel-img-' | append: last_part }}
-          </div>
+          {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
         {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</pc-carousel-{{ last_part }}>
+
+{% if section.settings.show_reverse_slider %}
+  <pc-carousel-{{ last_part }} class="pc-carousel-{{ last_part }}" data-reverse="true" style="
+    --pc-width: {{ section.settings.item_width }}px;
+    --pc-height: {{ section.settings.item_height }}px;
+    --pc-quantity: {{ section.settings.items | size }};
+    --pc-duration: {{ section.settings.animation_duration }}s">
+    
+    <div class="pc-carousel__list-{{ last_part }}">
+      {% for item in section.settings.items %}
+        <div class="pc-carousel__item-{{ last_part }}" style="--pc-position: {{ forloop.index }}">
+          {% if item.image != blank %}
+            {{ item.image | image_url: width: section.settings.item_width, height: section.settings.item_height | image_tag: loading: 'lazy', alt: item.image.alt }}
+          {% else %}
+            {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
       {% endfor %}
     </div>
-  </div>
-</div>
+  </pc-carousel-{{ last_part }}>
+{% endif %}
 
 {% schema %}
 {
-  "name": "PWC - Brand Carousel #1",
+  "name": "PWC - Logo Carousel #1",
   "tag": "section",
-  "class": "section",
+  "class": "pc-logo-carousel",
   "settings": [
     {
-      "type": "range",
-      "id": "animation_duration",
-      "label": "Animation Duration (seconds)",
-      "min": 5,
-      "max": 60,
-      "step": 1,
-      "default": 15
-    },
-    {
-      "type": "checkbox",
-      "id": "reverse_direction",
-      "label": "Reverse Animation Direction",
-      "default": false
-    },
-    {
       "type": "header",
-      "content": "Desktop Settings"
+      "content": "Carousel Settings"
     },
     {
       "type": "range",
-      "id": "desktop_item_width",
-      "label": "Item Width (Desktop)",
+      "id": "item_width",
+      "label": "Item Width",
       "min": 50,
       "max": 300,
       "step": 10,
       "unit": "px",
-      "default": 120
+      "default": 110
     },
     {
       "type": "range",
-      "id": "desktop_item_height",
-      "label": "Item Height (Desktop)",
-      "min": 20,
+      "id": "item_height",
+      "label": "Item Height",
+      "min": 30,
       "max": 200,
       "step": 5,
       "unit": "px",
-      "default": 60
-    },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
+      "default": 50
     },
     {
       "type": "range",
-      "id": "mobile_item_width",
-      "label": "Item Width (Mobile)",
-      "min": 40,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "mobile_item_height",
-      "label": "Item Height (Mobile)",
-      "min": 15,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "header",
-      "content": "Content Settings"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Trusted by these brands"
+      "id": "animation_duration",
+      "label": "Animation Duration",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "unit": "s",
+      "default": 15
     },
     {
       "type": "checkbox",
-      "id": "show_heading",
-      "label": "Show Heading",
-      "default": false
+      "id": "show_reverse_slider",
+      "label": "Show Reverse Slider",
+      "default": true
     },
     {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "heading_font_size_desktop",
-      "label": "Heading Font Size (Desktop)",
-      "min": 12,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "heading_font_size_mobile",
-      "label": "Heading Font Size (Mobile)",
-      "min": 10,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "heading_margin_bottom",
-      "label": "Heading Bottom Margin",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "checkbox",
-      "id": "heading_shadow",
-      "label": "Heading Text Shadow",
-      "default": false
+      "type": "header",
+      "content": "Style Settings"
     },
     {
       "type": "color",
       "id": "background_color",
       "label": "Background Color",
-      "default": "#ffffff"
+      "default": "transparent"
+    },
+    {
+      "type": "checkbox",
+      "id": "shadow_enabled",
+      "label": "Enable Shadow",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "desktop_margin_top",
+      "label": "Top Margin",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_margin_bottom",
+      "label": "Bottom Margin",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
     },
     {
       "type": "range",
       "id": "desktop_padding_top",
-      "label": "Top Padding (Desktop)",
+      "label": "Top Padding",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 40
+      "default": 0
     },
     {
       "type": "range",
       "id": "desktop_padding_bottom",
-      "label": "Bottom Padding (Desktop)",
+      "label": "Bottom Padding",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 40
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "mobile_margin_top",
+      "label": "Top Margin",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_margin_bottom",
+      "label": "Bottom Margin",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
     },
     {
       "type": "range",
       "id": "mobile_padding_top",
-      "label": "Top Padding (Mobile)",
+      "label": "Top Padding",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 20
+      "default": 0
     },
     {
       "type": "range",
       "id": "mobile_padding_bottom",
-      "label": "Bottom Padding (Mobile)",
+      "label": "Bottom Padding",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 20
+      "default": 0
     }
   ],
   "blocks": [
     {
-      "type": "brand",
-      "name": "Brand",
+      "type": "logo",
+      "name": "Logo",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Brand Logo"
+          "label": "Logo Image"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "PWC - Brand Carousel #1",
+      "name": "PWC - Logo Carousel #1",
+      "category": "Custom",
       "blocks": [
         {
-          "type": "brand"
+          "type": "logo"
         },
         {
-          "type": "brand"
+          "type": "logo"
         },
         {
-          "type": "brand"
+          "type": "logo"
         },
         {
-          "type": "brand"
+          "type": "logo"
         },
         {
-          "type": "brand"
-        },
-        {
-          "type": "brand"
+          "type": "logo"
         }
       ]
     }
