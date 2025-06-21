@@ -1047,6 +1047,93 @@
         "button_color": "#222222",
         "title_font_size": 20
       }
+    },
+    "rw_carousel_3_qkdhDe": {
+      "type": "rw-carousel-3",
+      "blocks": {
+        "slide_a9bRa4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg",
+            "heading": "Nature Flower",
+            "text": "All in pink"
+          }
+        },
+        "slide_7MhcNC": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-921294.webp",
+            "heading": "Beautiful Scene",
+            "text": "Enjoy the view"
+          }
+        },
+        "slide_GDahyW": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1011-1200x800.jpg",
+            "heading": "Mountain View",
+            "text": "Fresh air"
+          }
+        },
+        "slide_RNwXRc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1024-1200x800.jpg",
+            "heading": "Nature Garden",
+            "text": "All in Green"
+          }
+        },
+        "slide_mbkR7c": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/2148643275.webp",
+            "heading": "Slide Heading",
+            "text": "Slide description text goes here."
+          }
+        }
+      },
+      "block_order": [
+        "slide_a9bRa4",
+        "slide_7MhcNC",
+        "slide_GDahyW",
+        "slide_RNwXRc",
+        "slide_mbkR7c"
+      ],
+      "name": "PWC - Vertical Slider #1",
+      "settings": {
+        "section_bg": "rgba(0,0,0,0)",
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "section_padding_top_mobile": 0,
+        "section_padding_bottom_mobile": 0,
+        "container_width": 1200,
+        "container_padding": 20,
+        "container_padding_mobile": 10,
+        "container_radius": 0,
+        "container_bg": "rgba(0,0,0,0)",
+        "container_shadow": false,
+        "slider_height": 700,
+        "slider_height_mobile": 500,
+        "left_slide_width": 35,
+        "transition_speed": 500,
+        "left_slide_bg": "#d18842",
+        "left_slide_bg_mobile": "#000000",
+        "text_color": "#ffffff",
+        "heading_size": 40,
+        "heading_size_mobile": 24,
+        "heading_weight": 600,
+        "heading_spacing": 10,
+        "text_size": 16,
+        "text_size_mobile": 14,
+        "text_weight": 400,
+        "button_size": 40,
+        "icon_size": 16,
+        "button_bg": "#ffffff",
+        "button_color": "#333333",
+        "button_hover_bg": "#f0f0f0",
+        "button_hover_color": "#000000",
+        "button_shadow": true
+      }
     }
   },
   "order": [
@@ -1061,6 +1148,7 @@
     "rw_contact_us_wJWXNB",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_test_aAUgTm"
+    "rw_test_aAUgTm",
+    "rw_carousel_3_qkdhDe"
   ]
 }
