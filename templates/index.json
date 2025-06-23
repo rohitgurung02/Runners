@@ -746,6 +746,126 @@
         "message_margin_top_mobile": 6
       }
     },
+    "rw_test_aezBCg": {
+      "type": "rw-test",
+      "blocks": {
+        "filter_DcM8Yc": {
+          "type": "filter",
+          "settings": {
+            "filter_tag": "Bollywood"
+          }
+        },
+        "filter_GjtQf6": {
+          "type": "filter",
+          "settings": {
+            "filter_tag": "Hollywood"
+          }
+        },
+        "filter_tqBMpX": {
+          "type": "filter",
+          "settings": {
+            "filter_tag": "TV Shows"
+          }
+        },
+        "gallery_item_cCKnX9": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/location_three.webp",
+            "filter_tag": "Bollywood"
+          }
+        },
+        "gallery_item_77cKph": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg",
+            "filter_tag": "Bollywood"
+          }
+        },
+        "gallery_item_pT4iqr": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-92733.jpg",
+            "filter_tag": "Bollywood"
+          }
+        },
+        "gallery_item_UFDjWh": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-921294.webp",
+            "filter_tag": "Bollywood"
+          }
+        },
+        "gallery_item_iJQyrA": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/1024-1200x800.jpg",
+            "filter_tag": "Hollywood"
+          }
+        },
+        "gallery_item_diEAP6": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
+            "filter_tag": "Hollywood"
+          }
+        }
+      },
+      "block_order": [
+        "filter_DcM8Yc",
+        "filter_GjtQf6",
+        "filter_tqBMpX",
+        "gallery_item_cCKnX9",
+        "gallery_item_77cKph",
+        "gallery_item_pT4iqr",
+        "gallery_item_UFDjWh",
+        "gallery_item_iJQyrA",
+        "gallery_item_diEAP6"
+      ],
+      "disabled": true,
+      "name": "PWC - Filter Gallery #1",
+      "settings": {
+        "max_width": 1320,
+        "background_color": "#ffffff",
+        "desktop_padding_top": 80,
+        "desktop_padding_bottom": 80,
+        "tablet_padding_top": 70,
+        "tablet_padding_bottom": 70,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 0,
+        "heading": "Our Products",
+        "heading_font": "playfair_display_n4",
+        "heading_size": 46,
+        "mobile_heading_size": 36,
+        "heading_weight": "700",
+        "heading_color": "#f44336",
+        "heading_bottom_margin": 10,
+        "subheading": "Some Random Photos Lorem ipsum, dolor sit.",
+        "subheading_size": 16,
+        "subheading_color": "#4c4c4c",
+        "subheading_max_width": 600,
+        "title_bottom_margin": 20,
+        "filter_font_size": 16,
+        "filter_font_weight": "500",
+        "filter_text_color": "#000033",
+        "filter_bg_color": "#eeeeee",
+        "filter_border_color": "#f44336",
+        "filter_active_text_color": "#ffffff",
+        "filter_active_bg_color": "#f44336",
+        "filter_border_radius": 10,
+        "filter_vertical_padding": 10,
+        "filter_horizontal_padding": 20,
+        "filter_bottom_margin": 25,
+        "gallery_top_margin": 25,
+        "image_width": 200,
+        "image_height": 220,
+        "mobile_image_width": 80,
+        "mobile_image_height": 80,
+        "small_mobile_image_width": 60,
+        "small_mobile_image_height": 180,
+        "image_border_radius": 12,
+        "image_margin": 10
+      }
+    },
     "rw_reviews_eNfMNB": {
       "type": "rw-reviews",
       "blocks": {
@@ -955,267 +1075,6 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
-    },
-    "rw_carousel_3_XyDxzF": {
-      "type": "rw-carousel-3",
-      "blocks": {
-        "slide_DhKWTk": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-991012.jpg",
-            "heading": "Nature Flower",
-            "text": "All in pink",
-            "bg_color": "#7f7856"
-          }
-        },
-        "slide_YmV3YT": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-921294.webp",
-            "heading": "Beautiful Scene",
-            "text": "Enjoy the view",
-            "bg_color": "#6d6b9f"
-          }
-        },
-        "slide_y77XQB": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1011-1200x800.jpg",
-            "heading": "Mountain View",
-            "text": "Fresh air",
-            "bg_color": "#0073e6"
-          }
-        },
-        "slide_zhey8E": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1024-1200x800.jpg",
-            "heading": "Nature Garden",
-            "text": "All in Green",
-            "bg_color": "#739c10"
-          }
-        }
-      },
-      "block_order": [
-        "slide_DhKWTk",
-        "slide_YmV3YT",
-        "slide_y77XQB",
-        "slide_zhey8E"
-      ],
-      "name": "PWC - Vertical Slider #1",
-      "settings": {
-        "section_bg": "rgba(0,0,0,0)",
-        "section_padding_top": 40,
-        "section_padding_bottom": 0,
-        "section_padding_top_mobile": 0,
-        "section_padding_bottom_mobile": 0,
-        "container_width": 1200,
-        "container_padding": 20,
-        "container_padding_mobile": 10,
-        "container_radius": 0,
-        "container_bg": "rgba(0,0,0,0)",
-        "container_shadow": true,
-        "slider_height": 500,
-        "slider_height_mobile": 500,
-        "left_slide_width": 35,
-        "transition_speed": 500,
-        "text_color": "#ffffff",
-        "heading_size": 40,
-        "heading_size_mobile": 24,
-        "heading_weight": 600,
-        "heading_spacing": 10,
-        "text_size": 16,
-        "text_size_mobile": 14,
-        "text_weight": 400,
-        "button_size": 40,
-        "icon_size": 16,
-        "button_bg": "#ffffff",
-        "button_color": "#333333",
-        "button_hover_bg": "#f0f0f0",
-        "button_hover_color": "#000000",
-        "button_shadow": true
-      }
-    },
-    "rw_image_gallery_8ptRi4": {
-      "type": "rw-image-gallery",
-      "blocks": {
-        "image_DRrBEN": {
-          "type": "image",
-          "settings": {}
-        },
-        "image_3qzWM6": {
-          "type": "image",
-          "settings": {}
-        },
-        "image_zx7beE": {
-          "type": "image",
-          "settings": {}
-        },
-        "image_bgiTF9": {
-          "type": "image",
-          "settings": {}
-        },
-        "image_7ThkKW": {
-          "type": "image",
-          "settings": {}
-        },
-        "image_jN8ewa": {
-          "type": "image",
-          "settings": {}
-        },
-        "image_qFKyNE": {
-          "type": "image",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "image_DRrBEN",
-        "image_3qzWM6",
-        "image_zx7beE",
-        "image_bgiTF9",
-        "image_7ThkKW",
-        "image_jN8ewa",
-        "image_qFKyNE"
-      ],
-      "name": "RW - Image Grid #1",
-      "settings": {
-        "max_width": 1200,
-        "columns_desktop": 5,
-        "columns_mobile": 3,
-        "row_height_desktop": 200,
-        "row_height_mobile": 120,
-        "gap_size": 8,
-        "image_border_radius": 8,
-        "image_shadow": true,
-        "padding_top": 20,
-        "padding_right": 20,
-        "padding_bottom": 20,
-        "padding_left": 20,
-        "mobile_padding_top": 15,
-        "mobile_padding_right": 15,
-        "mobile_padding_bottom": 15,
-        "mobile_padding_left": 15
-      }
-    },
-    "rw_test_aezBCg": {
-      "type": "rw-test",
-      "blocks": {
-        "filter_DcM8Yc": {
-          "type": "filter",
-          "settings": {
-            "filter_tag": "Bollywood"
-          }
-        },
-        "filter_GjtQf6": {
-          "type": "filter",
-          "settings": {
-            "filter_tag": "Hollywood"
-          }
-        },
-        "filter_tqBMpX": {
-          "type": "filter",
-          "settings": {
-            "filter_tag": "TV Shows"
-          }
-        },
-        "gallery_item_cCKnX9": {
-          "type": "gallery_item",
-          "settings": {
-            "image": "shopify://shop_images/location_three.webp",
-            "filter_tag": "Bollywood"
-          }
-        },
-        "gallery_item_77cKph": {
-          "type": "gallery_item",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-991012.jpg",
-            "filter_tag": "Bollywood"
-          }
-        },
-        "gallery_item_pT4iqr": {
-          "type": "gallery_item",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-92733.jpg",
-            "filter_tag": "Bollywood"
-          }
-        },
-        "gallery_item_UFDjWh": {
-          "type": "gallery_item",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-921294.webp",
-            "filter_tag": "Bollywood"
-          }
-        },
-        "gallery_item_iJQyrA": {
-          "type": "gallery_item",
-          "settings": {
-            "image": "shopify://shop_images/1024-1200x800.jpg",
-            "filter_tag": "Hollywood"
-          }
-        },
-        "gallery_item_diEAP6": {
-          "type": "gallery_item",
-          "settings": {
-            "image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
-            "filter_tag": "Hollywood"
-          }
-        }
-      },
-      "block_order": [
-        "filter_DcM8Yc",
-        "filter_GjtQf6",
-        "filter_tqBMpX",
-        "gallery_item_cCKnX9",
-        "gallery_item_77cKph",
-        "gallery_item_pT4iqr",
-        "gallery_item_UFDjWh",
-        "gallery_item_iJQyrA",
-        "gallery_item_diEAP6"
-      ],
-      "disabled": true,
-      "name": "PWC - Filter Gallery #1",
-      "settings": {
-        "max_width": 1320,
-        "background_color": "#ffffff",
-        "desktop_padding_top": 80,
-        "desktop_padding_bottom": 80,
-        "tablet_padding_top": 70,
-        "tablet_padding_bottom": 70,
-        "mobile_padding_top": 50,
-        "mobile_padding_bottom": 0,
-        "heading": "Our Products",
-        "heading_font": "playfair_display_n4",
-        "heading_size": 46,
-        "mobile_heading_size": 36,
-        "heading_weight": "700",
-        "heading_color": "#f44336",
-        "heading_bottom_margin": 10,
-        "subheading": "Some Random Photos Lorem ipsum, dolor sit.",
-        "subheading_size": 16,
-        "subheading_color": "#4c4c4c",
-        "subheading_max_width": 600,
-        "title_bottom_margin": 20,
-        "filter_font_size": 16,
-        "filter_font_weight": "500",
-        "filter_text_color": "#003",
-        "filter_bg_color": "#eee",
-        "filter_border_color": "#f44336",
-        "filter_active_text_color": "#fff",
-        "filter_active_bg_color": "#f44336",
-        "filter_border_radius": 10,
-        "filter_vertical_padding": 10,
-        "filter_horizontal_padding": 20,
-        "filter_bottom_margin": 25,
-        "gallery_top_margin": 25,
-        "image_width": 200,
-        "image_height": 220,
-        "mobile_image_width": 80,
-        "mobile_image_height": 80,
-        "small_mobile_image_width": 60,
-        "small_mobile_image_height": 180,
-        "image_border_radius": 12,
-        "image_margin": 10
-      }
     }
   },
   "order": [
@@ -1227,11 +1086,9 @@
     "rw_carousel_wFzhNJ",
     "rw_tabs_nFraJM",
     "rw_contact_us_wJWXNB",
+    "rw_test_aezBCg",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA",
-    "rw_carousel_3_XyDxzF",
-    "rw_image_gallery_8ptRi4",
-    "rw_test_aezBCg"
+    "rw_video_banner_f88XdA"
   ]
 }
