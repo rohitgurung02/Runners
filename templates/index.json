@@ -1152,23 +1152,33 @@
       "blocks": {
         "slide_JT7kVi": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg"
+          }
         },
         "slide_ekUibx": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-92733.jpg"
+          }
         },
         "slide_zCyHDP": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-921294.webp"
+          }
         },
         "slide_8dh64W": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg"
+          }
         },
         "slide_tQknht": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/1011-1200x800.jpg"
+          }
         }
       },
       "block_order": [
