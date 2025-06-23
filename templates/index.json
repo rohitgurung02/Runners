@@ -1085,6 +1085,145 @@
         "button_hover_color": "#000000",
         "button_shadow": true
       }
+    },
+    "rw_image_gallery_8ptRi4": {
+      "type": "rw-image-gallery",
+      "blocks": {
+        "image_DRrBEN": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_3qzWM6": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_zx7beE": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_bgiTF9": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_7ThkKW": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_jN8ewa": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_qFKyNE": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image_DRrBEN",
+        "image_3qzWM6",
+        "image_zx7beE",
+        "image_bgiTF9",
+        "image_7ThkKW",
+        "image_jN8ewa",
+        "image_qFKyNE"
+      ],
+      "name": "RW - Image Grid #1",
+      "settings": {
+        "max_width": 1200,
+        "columns_desktop": 5,
+        "columns_mobile": 3,
+        "row_height_desktop": 200,
+        "row_height_mobile": 120,
+        "gap_size": 8,
+        "image_border_radius": 8,
+        "image_shadow": true,
+        "padding_top": 20,
+        "padding_right": 20,
+        "padding_bottom": 20,
+        "padding_left": 20,
+        "mobile_padding_top": 15,
+        "mobile_padding_right": 15,
+        "mobile_padding_bottom": 15,
+        "mobile_padding_left": 15
+      }
+    },
+    "rw_test_RFJkPw": {
+      "type": "rw-test",
+      "blocks": {
+        "slide_JT7kVi": {
+          "type": "slide",
+          "settings": {}
+        },
+        "slide_ekUibx": {
+          "type": "slide",
+          "settings": {}
+        },
+        "slide_zCyHDP": {
+          "type": "slide",
+          "settings": {}
+        },
+        "slide_8dh64W": {
+          "type": "slide",
+          "settings": {}
+        },
+        "slide_tQknht": {
+          "type": "slide",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "slide_JT7kVi",
+        "slide_ekUibx",
+        "slide_zCyHDP",
+        "slide_8dh64W",
+        "slide_tQknht"
+      ],
+      "name": "PWC - Gallery Slider #1",
+      "settings": {
+        "max_width": 1390,
+        "inactive_width": 50,
+        "active_width": 200,
+        "slide_height": 200,
+        "desktop_gap": 40,
+        "grayscale_amount": 100,
+        "focus_border_color": "#b6b7b8",
+        "background_color": "transparent",
+        "shadow_enabled": false,
+        "desktop_padding_top": 0,
+        "desktop_padding_right": 0,
+        "desktop_padding_bottom": 0,
+        "desktop_padding_left": 0,
+        "desktop_margin_top": 0,
+        "desktop_margin_right": 0,
+        "desktop_margin_bottom": 0,
+        "desktop_margin_left": 0,
+        "tablet_inactive_width": 140,
+        "tablet_active_width": 300,
+        "tablet_gap": 20,
+        "tablet_padding_top": 0,
+        "tablet_padding_right": 0,
+        "tablet_padding_bottom": 0,
+        "tablet_padding_left": 0,
+        "tablet_margin_top": 0,
+        "tablet_margin_right": 0,
+        "tablet_margin_bottom": 0,
+        "tablet_margin_left": 0,
+        "mobile_inactive_width": 70,
+        "mobile_active_width": 180,
+        "mobile_slide_height": 300,
+        "mobile_gap": 10,
+        "mobile_padding_top": 0,
+        "mobile_padding_right": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_padding_left": 0,
+        "mobile_margin_top": 0,
+        "mobile_margin_right": 0,
+        "mobile_margin_bottom": 0,
+        "mobile_margin_left": 0,
+        "small_mobile_inactive_width": 70,
+        "small_mobile_active_width": 180,
+        "small_mobile_slide_height": 200
+      }
     }
   },
   "order": [
@@ -1100,6 +1239,8 @@
     "rw_timeline_8VAwHz",
     "rw_test_aAUgTm",
     "rw_video_banner_f88XdA",
-    "rw_carousel_3_XyDxzF"
+    "rw_carousel_3_XyDxzF",
+    "rw_image_gallery_8ptRi4",
+    "rw_test_RFJkPw"
   ]
 }
