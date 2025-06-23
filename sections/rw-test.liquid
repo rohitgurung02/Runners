@@ -1,18 +1,18 @@
 {%- assign sid = '#shopify-section-' | append: section.id -%}
- 
+
 {%- style -%}
   {{ sid }} {
     background-color: {{ section.settings.bg_color }};
     padding: 40px 20px;
   }
- 
+
   {{ sid }} .pc-comparison-table-container {
     max-width: 100%;
     overflow-x: auto;
     margin: 30px auto 0;
     -webkit-overflow-scrolling: touch;
   }
- 
+
   {{ sid }} .pc-comparison-table {
     width: 100%;
     border-collapse: collapse;
@@ -20,7 +20,7 @@
     border-radius: {{ section.settings.border_radius }}px;
     overflow: hidden;
   }
- 
+
   {{ sid }} .pc-comparison-table th,
   {{ sid }} .pc-comparison-table td {
     border: 1px solid {{ section.settings.border_color }};
@@ -28,17 +28,17 @@
     text-align: center;
     vertical-align: middle;
   }
- 
+
   {{ sid }} .pc-comparison-table th {
     background-color: {% if section.settings.highlight_header %}{{ section.settings.secondary_accent }}{% else %}transparent{% endif %};
     font-weight: 600;
     color: {{ section.settings.heading_color }};
   }
- 
+
   {{ sid }} .pc-comparison-table tr:nth-child(even) {
     background-color: {% if section.settings.zebra_striping %}{{ section.settings.secondary_accent | color_modify: 'alpha', 0.5 }}{% else %}transparent{% endif %};
   }
- 
+
   {{ sid }} .pc-comparison-table .pc-feature-cell {
     font-weight: 500;
     text-align: left;
@@ -49,23 +49,23 @@
     z-index: 1;
     {% endif %}
   }
- 
+
   {{ sid }} .pc-comparison-table .pc-important-feature {
     font-weight: 700;
     color: {{ section.settings.primary_accent }};
   }
- 
+
   {{ sid }} .pc-comparison-table .pc-featured-product {
     box-shadow: inset 0 0 0 2px {{ section.settings.primary_accent }};
   }
- 
+
   {{ sid }} .pc-section-heading {
     color: {{ section.settings.heading_color }};
     font-size: {{ section.settings.heading_size }}px;
     text-align: {{ section.settings.heading_alignment }};
     margin-bottom: 20px;
   }
- 
+
   {{ sid }} .pc-product-image {
     max-width: 100px;
     max-height: 100px;
@@ -73,57 +73,69 @@
     display: block;
     object-fit: contain;
   }
- 
+
   {{ sid }} .pc-product-title {
     font-weight: 600;
     margin-bottom: 5px;
     color: {{ section.settings.text_color }};
   }
- 
+
   {{ sid }} .pc-product-price {
     color: {{ section.settings.primary_accent }};
     font-weight: 700;
   }
- 
+
+  /* Features heading styles */
+  {{ sid }} .pc-features-heading {
+    color: {{ section.settings.features_text_color }};
+    font-size: {{ section.settings.features_text_size }}px;
+    font-weight: {{ section.settings.features_font_weight }};
+    text-align: left;
+  }
+
   /* Mobile-specific styles */
   @media (max-width: 767px) {
     {{ sid }} {
       padding: 20px 10px;
     }
- 
+
     {{ sid }} .pc-comparison-table {
       min-width: 100%;
     }
- 
+
     {{ sid }} .pc-comparison-table th,
     {{ sid }} .pc-comparison-table td {
       padding: 10px 8px;
       font-size: 14px;
     }
- 
+
     {{ sid }} .pc-section-heading {
       font-size: {{ section.settings.heading_size | times: 0.7 }}px;
       margin-bottom: 15px;
     }
- 
+
     {{ sid }} .pc-product-image {
       max-width: 60px;
       max-height: 60px;
     }
- 
+
     {{ sid }} .pc-product-title {
       font-size: 14px;
     }
- 
+
     {{ sid }} .pc-product-price {
       font-size: 14px;
     }
- 
+
     {{ sid }} .pc-comparison-table-container {
       margin: 20px auto 0;
     }
+
+    {{ sid }} .pc-features-heading {
+      font-size: {{ section.settings.features_text_size | times: 0.9 }}px;
+    }
   }
- 
+
   /* Small mobile devices */
   @media (max-width: 480px) {
     {{ sid }} .pc-comparison-table th,
@@ -131,41 +143,47 @@
       padding: 8px 5px;
       font-size: 12px;
     }
- 
+
     {{ sid }} .pc-product-image {
       max-width: 50px;
       max-height: 50px;
     }
- 
+
     {{ sid }} .pc-product-title {
       font-size: 12px;
     }
- 
+
     {{ sid }} .pc-product-price {
       font-size: 12px;
     }
+
+    {{ sid }} .pc-features-heading {
+      font-size: {{ section.settings.features_text_size | times: 0.8 }}px;
+    }
   }
 {%- endstyle -%}
- 
+
 <div class="page-width">
   {%- if section.settings.heading != blank -%}
-<h2 class="pc-section-heading">{{ section.settings.heading }}</h2>
+    <h2 class="pc-section-heading">{{ section.settings.heading }}</h2>
   {%- endif -%}
- 
+
   <div class="pc-comparison-table-container">
-<table class="pc-comparison-table">
-<thead>
-<tr>
-<th style="width: 200px;">Features</th>
+    <table class="pc-comparison-table">
+      <thead>
+        <tr>
+          <th style="width: 200px;" class="pc-features-heading">
+            {{ section.settings.features_heading_text }}
+          </th>
           {%- for block in section.blocks -%}
             {%- if block.type == 'product' and block.settings.product != blank -%}
               {%- assign product = all_products[block.settings.product] -%}
-<th
+              <th
                 style="width: {{ section.settings.column_width }}px;"
                 {% if block.settings.featured_product %}
                   class="pc-featured-product"
                 {% endif %}
->
+              >
                 {%- if product.featured_image -%}
                   {{
                     product.featured_image
@@ -174,33 +192,33 @@
                     | escape
                   }}
                 {%- endif -%}
-<div class="pc-product-title">{{ product.title }}</div>
-<div class="pc-product-price">{{ product.price | money }}</div>
-</th>
+                <div class="pc-product-title">{{ product.title }}</div>
+                <div class="pc-product-price">{{ product.price | money }}</div>
+              </th>
             {%- endif -%}
           {%- endfor -%}
-</tr>
-</thead>
-<tbody>
+        </tr>
+      </thead>
+      <tbody>
         {%- for block in section.blocks -%}
           {%- if block.type == 'feature' -%}
             {%- assign feature_values = block.settings.feature_values | split: ',' -%}
-<tr>
-<td class="pc-feature-cell {% if block.settings.is_important %}pc-important-feature{% endif %}">
+            <tr>
+              <td class="pc-feature-cell {% if block.settings.is_important %}pc-important-feature{% endif %}">
                 {{ block.settings.feature_name }}
-</td>
+              </td>
               {%- for value in feature_values -%}
-<td>{{ value | strip }}</td>
+                <td>{{ value | strip }}</td>
               {%- endfor -%}
-</tr>
+            </tr>
           {%- endif -%}
         {%- endfor -%}
-</tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
 </div>
-</div>
- 
-{%- schema -%}
+
+{% schema %}
 {
   "name": "PWC - Comparison Table #1",
   "class": "pc-comparison-section",
@@ -244,6 +262,56 @@
       "step": 1,
       "unit": "px",
       "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Features Column Settings"
+    },
+    {
+      "type": "text",
+      "id": "features_heading_text",
+      "label": "Features Column Heading",
+      "default": "Features"
+    },
+    {
+      "type": "color",
+      "id": "features_text_color",
+      "label": "Features Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "features_text_size",
+      "label": "Features Text Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "features_font_weight",
+      "label": "Features Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
     },
     {
       "type": "header",
@@ -384,4 +452,4 @@
     }
   ]
 }
-{%- endschema -%}
+{% endschema %}
