@@ -1159,6 +1159,12 @@
             "filter_tag": "Hollywood"
           }
         },
+        "filter_tqBMpX": {
+          "type": "filter",
+          "settings": {
+            "filter_tag": "TV Shows"
+          }
+        },
         "gallery_item_cCKnX9": {
           "type": "gallery_item",
           "settings": {
@@ -1205,6 +1211,7 @@
       "block_order": [
         "filter_DcM8Yc",
         "filter_GjtQf6",
+        "filter_tqBMpX",
         "gallery_item_cCKnX9",
         "gallery_item_77cKph",
         "gallery_item_pT4iqr",
