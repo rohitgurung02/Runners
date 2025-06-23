@@ -1198,7 +1198,7 @@
         "grayscale_amount": 100,
         "focus_border_color": "#b6b7b8",
         "background_color": "transparent",
-        "shadow_enabled": false,
+        "shadow_enabled": true,
         "desktop_padding_top": 0,
         "desktop_padding_right": 0,
         "desktop_padding_bottom": 0,
