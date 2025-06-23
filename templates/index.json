@@ -1058,6 +1058,81 @@
         "button_hover_color": "#000000",
         "button_shadow": true
       }
+    },
+    "rw_test_pTEFNH": {
+      "type": "rw-test",
+      "blocks": {
+        "image_LaJPen": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg"
+          }
+        },
+        "image_RjJf8G": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-92733.jpg"
+          }
+        },
+        "image_7jFYzd": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-921294.webp"
+          }
+        },
+        "image_LrAjpJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg"
+          }
+        },
+        "image_NGF8Re": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1011-1200x800.jpg"
+          }
+        },
+        "image_JtDAgR": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1024-1200x800.jpg"
+          }
+        },
+        "image_tGJPFP": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/location_three.webp"
+          }
+        }
+      },
+      "block_order": [
+        "image_LaJPen",
+        "image_RjJf8G",
+        "image_7jFYzd",
+        "image_LrAjpJ",
+        "image_NGF8Re",
+        "image_JtDAgR",
+        "image_tGJPFP"
+      ],
+      "name": "PWC - Image Grid #1",
+      "settings": {
+        "max_width": 1200,
+        "columns_desktop": 5,
+        "columns_mobile": 3,
+        "row_height_desktop": 200,
+        "row_height_mobile": 120,
+        "gap_size": 8,
+        "image_border_radius": 8,
+        "image_shadow": true,
+        "padding_top": 20,
+        "padding_right": 20,
+        "padding_bottom": 20,
+        "padding_left": 20,
+        "mobile_padding_top": 15,
+        "mobile_padding_right": 15,
+        "mobile_padding_bottom": 15,
+        "mobile_padding_left": 15
+      }
     }
   },
   "order": [
@@ -1073,6 +1148,7 @@
     "rw_timeline_8VAwHz",
     "rw_test_aAUgTm",
     "rw_video_banner_f88XdA",
-    "rw_carousel_3_XyDxzF"
+    "rw_carousel_3_XyDxzF",
+    "rw_test_pTEFNH"
   ]
 }
