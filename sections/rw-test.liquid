@@ -43,6 +43,25 @@
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
     }
   }
+
+   {{ sec_id }} .pc-placeholder-{{ last_part }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: {{ section.settings.image_border_radius }}px;
+    {% if section.settings.image_shadow %}
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    {% endif %}
+  }
+  
+  {{ sec_id }} .pc-placeholder-svg-{{ last_part }} {
+    width: 50%;
+    height: 50%;
+    opacity: 0.6;
+  }
 </style>
 
 <pc-interactive-grid-{{ last_part }} class="pc-grid-{{ last_part }}">
