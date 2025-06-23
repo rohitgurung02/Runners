@@ -1093,6 +1093,7 @@
         "slide_y77XQB",
         "slide_zhey8E"
       ],
+      "disabled": true,
       "name": "PWC - Vertical Slider #1",
       "settings": {
         "section_bg": "rgba(0,0,0,0)",
