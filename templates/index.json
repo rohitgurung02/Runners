@@ -914,76 +914,25 @@
     },
     "rw_test_aAUgTm": {
       "type": "rw-test",
-      "blocks": {
-        "product_ErD4Ua": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "featured_product": false
-          }
-        },
-        "product_cC7Nan": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "featured_product": false
-          }
-        },
-        "product_cEmUCJ": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "featured_product": false
-          }
-        },
-        "product_CnzBRr": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "featured_product": false
-          }
-        },
-        "product_BQL6kf": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "featured_product": false
-          }
-        },
-        "product_MCKxXq": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "featured_product": false
-          }
-        }
-      },
-      "block_order": [
-        "product_ErD4Ua",
-        "product_cC7Nan",
-        "product_cEmUCJ",
-        "product_CnzBRr",
-        "product_BQL6kf",
-        "product_MCKxXq"
-      ],
       "name": "RW - Product Slider #2",
       "settings": {
-        "heading": "All Products",
-        "heading_alignment": "center",
-        "heading_size": 32,
-        "features_heading_text": "Features",
-        "features_text_size": 16,
+        "title": "Discover our most popular products",
+        "title_font_size": 36,
+        "mobile_title_font_size": 24,
+        "title_font_weight": "700",
+        "title_color": "#000000",
+        "subtitle": "Made with love by frens",
+        "subtitle_font_size": 16,
+        "mobile_subtitle_font_size": 14,
+        "subtitle_color": "#666666",
+        "collection": "",
+        "product_limit": 4,
+        "desktop_columns": 4,
+        "mobile_columns": 2,
         "bg_color": "#f9f9f9",
-        "heading_color": "#333333",
-        "features_text_color": "#333333",
-        "border_color": "#e1e1e1",
-        "primary_accent": "#2563eb",
-        "secondary_accent": "#f8fafc",
-        "border_radius": 8,
-        "column_width": 200,
-        "sticky_first_column": true,
-        "highlight_header": true,
-        "zebra_striping": true
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20,
+        "enable_shadow": false
       }
     },
     "rw_video_banner_f88XdA": {
@@ -1110,28 +1059,6 @@
         "button_hover_color": "#000000",
         "button_shadow": true
       }
-    },
-    "rw_test_JKmwwq": {
-      "type": "rw-test",
-      "name": "PWC - Comparison Table #1",
-      "settings": {
-        "heading": "Compare Products",
-        "heading_alignment": "center",
-        "heading_size": 32,
-        "features_heading_text": "Features",
-        "features_text_size": 16,
-        "bg_color": "#ffffff",
-        "heading_color": "#e62626",
-        "features_text_color": "#0073e6",
-        "border_color": "#e1e1e1",
-        "primary_accent": "#2563eb",
-        "secondary_accent": "#f8fafc",
-        "border_radius": 8,
-        "column_width": 200,
-        "sticky_first_column": true,
-        "highlight_header": true,
-        "zebra_striping": true
-      }
     }
   },
   "order": [
@@ -1147,7 +1074,6 @@
     "rw_timeline_8VAwHz",
     "rw_test_aAUgTm",
     "rw_video_banner_f88XdA",
-    "rw_carousel_3_XyDxzF",
-    "rw_test_JKmwwq"
+    "rw_carousel_3_XyDxzF"
   ]
 }
