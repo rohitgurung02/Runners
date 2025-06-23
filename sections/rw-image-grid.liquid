@@ -1,0 +1,361 @@
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} .pc-grid-{{ last_part }} {
+    max-width: {{ section.settings.max_width }}px;
+    display: grid;
+    gap: {{ section.settings.gap_size }}px;
+    grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+    grid-auto-rows: {{ section.settings.row_height_mobile }}px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+  }
+
+  {{ sec_id }} .pc-item-{{ last_part }} > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: {{ section.settings.image_border_radius }}px;
+    {% if section.settings.image_shadow %}
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    {% endif %}
+  }
+
+  {{ sec_id }} .pc-item-{{ last_part }}[data-active="true"] {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+    z-index: 2;
+  }
+
+   {{ sec_id }} .pc-placeholder-{{ last_part }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+    {% if section.settings.image_shadow %}
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    {% endif %}
+  }
+  
+  {{ sec_id }} .pc-camera-icon-{{ last_part }} {
+    width: 40%;
+    height: 40%;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+  
+  {{ sec_id }} .pc-item-{{ last_part }}:hover .pc-camera-icon-{{ last_part }} {
+    opacity: 0.8;
+  }
+
+  @media (min-width: 750px) {
+    {{ sec_id }} .pc-grid-{{ last_part }} {
+      grid-auto-rows: {{ section.settings.row_height_desktop }}px;
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+    }
+  }
+
+  @media (max-width: 749px) {
+    {{ sec_id }} .pc-grid-{{ last_part }} {
+      grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
+      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+    }
+  }
+</style>
+
+<pc-interactive-grid-{{ last_part }} class="pc-grid-{{ last_part }}">
+{% for block in section.blocks %}
+    <div class="pc-item-{{ last_part }}" data-active="{% if forloop.first %}true{% else %}false{% endif %}">
+      {% if block.settings.image != blank %}
+        {{- block.settings.image
+          | image_url: width: block.settings.image.width, height: block.settings.image.height
+          | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt
+        -}}
+      {% else %}
+        <div class="pc-placeholder-{{ last_part }}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="pc-camera-icon-{{ last_part }}">
+            <rect width="100" height="100" fill="#f8f8f8" rx="{{ section.settings.image_border_radius | divided_by: 2.0 }}"/>
+            <g transform="translate(25 25) scale(1.5)">
+              <path d="M15,5h4l1.5-2h3L25,5h5c2.2,0,4,1.8,4,4v15c0,2.2-1.8,4-4,4H10c-2.2,0-4-1.8-4-4V9c0-2.2,1.8-4,4-4z" 
+                    fill="none" stroke="#d3d3d3" stroke-width="1.2"/>
+              <circle cx="20" cy="15" r="5.5" fill="none" stroke="#d3d3d3" stroke-width="1.2"/>
+              <circle cx="20" cy="15" r="2.5" fill="#d3d3d3"/>
+              <path d="M26,25l-3-5-3,5" fill="none" stroke="#d3d3d3" stroke-width="1.2" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</pc-interactive-grid-{{ last_part }}>
+
+<script>
+  class PCInteractiveGrid extends HTMLElement {
+    constructor() {
+      super();
+      this.items = Array.from(this.children);
+      this.activeItem = this.querySelector('.pc-item-{{ last_part }}[data-active="true"]') || this.children[0];
+      
+      this.items.forEach((item, index) => {
+        item.style.viewTransitionName = `item-${index}`;
+        item.addEventListener('click', this.handleClick.bind(this));
+      });
+    }
+
+    handleClick(event) {
+      const clickedItem = event.target.closest('.pc-item-{{ last_part }}');
+      if (!clickedItem || clickedItem === this.activeItem) return;
+
+      if (document.startViewTransition) {
+        document.startViewTransition(() => this.swapItems(clickedItem));
+      } else {
+        this.swapItems(clickedItem);
+      }
+    }
+
+    swapItems(clickedItem) {
+      if (clickedItem === this.activeItem) return;
+
+      const activeNext = this.activeItem.nextElementSibling;
+
+      if (clickedItem === activeNext) {
+        this.insertBefore(clickedItem, this.activeItem);
+      } else {
+        this.insertBefore(this.activeItem, clickedItem);
+        this.insertBefore(clickedItem, activeNext);
+      }
+
+      this.activeItem.removeAttribute('data-active');
+      clickedItem.setAttribute('data-active', 'true');
+      this.activeItem = clickedItem;
+    }
+  }
+
+  customElements.define('pc-interactive-grid-{{ last_part }}', PCInteractiveGrid);
+</script>
+
+{% schema %}
+{
+  "name": "RW - Image Grid #1",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum Width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns (Desktop)",
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "label": "Columns (Mobile)",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "row_height_desktop",
+      "label": "Row Height (Desktop)",
+      "min": 100,
+      "max": 400,
+      "step": 20,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "row_height_mobile",
+      "label": "Row Height (Mobile)",
+      "min": 80,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "gap_size",
+      "label": "Gap Between Items",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "image_shadow",
+      "label": "Enable Image Shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "label": "Right Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "label": "Left Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_right",
+      "label": "Right Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "label": "Left Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RW - Image Grid #1",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
