@@ -47,14 +47,15 @@
 
 <pc-interactive-grid-{{ last_part }} class="pc-grid-{{ last_part }}">
   {% for block in section.blocks %}
-    <div class="pc-item-{{ last_part }}" data-active="{{ forloop.first | default: 'false' }}">
+    <div class="pc-item-{{ last_part }}" data-active="{% if forloop.first %}true{% else %}false{% endif %}">
       {% if block.settings.image != blank %}
         {{- block.settings.image
           | image_url: width: block.settings.image.width, height: block.settings.image.height
           | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt
         -}}
       {% else %}
-        {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+        {% capture placeholder_class %}pc-placeholder-{{ last_part }}{% endcapture %}
+        {{ 'product' | placeholder_svg_tag: placeholder_class }}
       {% endif %}
     </div>
   {% endfor %}
