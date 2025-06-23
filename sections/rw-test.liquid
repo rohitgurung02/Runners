@@ -55,10 +55,11 @@
         -}}
       {% else %}
         <div class="pc-placeholder-{{ last_part }}">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-            <rect width="100" height="100" fill="#f5f5f5"/>
-            <path d="M30,30 L70,30 L70,70 L30,70 Z" stroke="#999" stroke-width="2" fill="none"/>
-            <path d="M30,30 L70,70 M70,30 L30,70" stroke="#999" stroke-width="2"/>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="pc-placeholder-svg-{{ last_part }}">
+            <rect width="100" height="100" fill="#f9f9f9"/>
+            <path d="M20,20 L80,20 L80,80 L20,80 Z" stroke="#e1e1e1" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+            <path d="M35,35 L50,50 M50,50 L65,35 M50,50 L65,65 M50,50 L35,65" stroke="#d0d0d0" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="50" cy="30" r="5" fill="#e1e1e1"/>
           </svg>
         </div>
       {% endif %}
