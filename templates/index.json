@@ -523,87 +523,6 @@
         "overlay_opacity": 0.7
       }
     },
-    "rw_carousel_3_XyDxzF": {
-      "type": "rw-carousel-3",
-      "blocks": {
-        "slide_DhKWTk": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-991012.jpg",
-            "heading": "Nature Flower",
-            "text": "All in pink",
-            "bg_color": "#7f7856"
-          }
-        },
-        "slide_YmV3YT": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-921294.webp",
-            "heading": "Beautiful Scene",
-            "text": "Enjoy the view",
-            "bg_color": "#6d6b9f"
-          }
-        },
-        "slide_y77XQB": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1011-1200x800.jpg",
-            "heading": "Mountain View",
-            "text": "Fresh air",
-            "bg_color": "#0073e6"
-          }
-        },
-        "slide_zhey8E": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1024-1200x800.jpg",
-            "heading": "Nature Garden",
-            "text": "All in Green",
-            "bg_color": "#739c10"
-          }
-        }
-      },
-      "block_order": [
-        "slide_DhKWTk",
-        "slide_YmV3YT",
-        "slide_y77XQB",
-        "slide_zhey8E"
-      ],
-      "disabled": true,
-      "name": "PWC - Vertical Slider #1",
-      "settings": {
-        "section_bg": "rgba(0,0,0,0)",
-        "section_padding_top": 0,
-        "section_padding_bottom": 0,
-        "section_padding_top_mobile": 0,
-        "section_padding_bottom_mobile": 0,
-        "container_width": 1200,
-        "container_padding": 20,
-        "container_padding_mobile": 10,
-        "container_radius": 0,
-        "container_bg": "rgba(0,0,0,0)",
-        "container_shadow": true,
-        "slider_height": 500,
-        "slider_height_mobile": 500,
-        "left_slide_width": 35,
-        "transition_speed": 500,
-        "text_color": "#ffffff",
-        "heading_size": 40,
-        "heading_size_mobile": 24,
-        "heading_weight": 600,
-        "heading_spacing": 10,
-        "text_size": 16,
-        "text_size_mobile": 14,
-        "text_weight": 400,
-        "button_size": 40,
-        "icon_size": 16,
-        "button_bg": "#ffffff",
-        "button_color": "#333333",
-        "button_hover_bg": "#f0f0f0",
-        "button_hover_color": "#000000",
-        "button_shadow": true
-      }
-    },
     "rw_tabs_nFraJM": {
       "type": "rw-tabs",
       "blocks": {
@@ -880,7 +799,7 @@
         "animation_speed": 30,
         "logo_width": 250,
         "logo_height": 130,
-        "mobile_logo_width": 150,
+        "mobile_logo_width": 250,
         "mobile_logo_height": 60,
         "logo_spacing": 20,
         "margin_top": 84,
@@ -1127,6 +1046,86 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
+    },
+    "rw_carousel_3_XyDxzF": {
+      "type": "rw-carousel-3",
+      "blocks": {
+        "slide_DhKWTk": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg",
+            "heading": "Nature Flower",
+            "text": "All in pink",
+            "bg_color": "#7f7856"
+          }
+        },
+        "slide_YmV3YT": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-921294.webp",
+            "heading": "Beautiful Scene",
+            "text": "Enjoy the view",
+            "bg_color": "#6d6b9f"
+          }
+        },
+        "slide_y77XQB": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1011-1200x800.jpg",
+            "heading": "Mountain View",
+            "text": "Fresh air",
+            "bg_color": "#0073e6"
+          }
+        },
+        "slide_zhey8E": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1024-1200x800.jpg",
+            "heading": "Nature Garden",
+            "text": "All in Green",
+            "bg_color": "#739c10"
+          }
+        }
+      },
+      "block_order": [
+        "slide_DhKWTk",
+        "slide_YmV3YT",
+        "slide_y77XQB",
+        "slide_zhey8E"
+      ],
+      "name": "PWC - Vertical Slider #1",
+      "settings": {
+        "section_bg": "rgba(0,0,0,0)",
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "section_padding_top_mobile": 0,
+        "section_padding_bottom_mobile": 0,
+        "container_width": 1200,
+        "container_padding": 20,
+        "container_padding_mobile": 10,
+        "container_radius": 0,
+        "container_bg": "rgba(0,0,0,0)",
+        "container_shadow": true,
+        "slider_height": 500,
+        "slider_height_mobile": 500,
+        "left_slide_width": 35,
+        "transition_speed": 500,
+        "text_color": "#ffffff",
+        "heading_size": 40,
+        "heading_size_mobile": 24,
+        "heading_weight": 600,
+        "heading_spacing": 10,
+        "text_size": 16,
+        "text_size_mobile": 14,
+        "text_weight": 400,
+        "button_size": 40,
+        "icon_size": 16,
+        "button_bg": "#ffffff",
+        "button_color": "#333333",
+        "button_hover_bg": "#f0f0f0",
+        "button_hover_color": "#000000",
+        "button_shadow": true
+      }
     }
   },
   "order": [
@@ -1136,12 +1135,12 @@
     "rw_interactive_text_NLRF3G",
     "rw_testimonials_9zDfAJ",
     "rw_carousel_wFzhNJ",
-    "rw_carousel_3_XyDxzF",
     "rw_tabs_nFraJM",
     "rw_contact_us_wJWXNB",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
     "rw_test_aAUgTm",
-    "rw_video_banner_f88XdA"
+    "rw_video_banner_f88XdA",
+    "rw_carousel_3_XyDxzF"
   ]
 }
