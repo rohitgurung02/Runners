@@ -1110,6 +1110,28 @@
         "button_hover_color": "#000000",
         "button_shadow": true
       }
+    },
+    "rw_test_JKmwwq": {
+      "type": "rw-test",
+      "name": "PWC - Comparison Table #1",
+      "settings": {
+        "heading": "Compare Products",
+        "heading_alignment": "center",
+        "heading_size": 32,
+        "features_heading_text": "Features",
+        "features_text_size": 16,
+        "bg_color": "#ffffff",
+        "heading_color": "#e62626",
+        "features_text_color": "#0073e6",
+        "border_color": "#e1e1e1",
+        "primary_accent": "#2563eb",
+        "secondary_accent": "#f8fafc",
+        "border_radius": 8,
+        "column_width": 200,
+        "sticky_first_column": true,
+        "highlight_header": true,
+        "zebra_striping": true
+      }
     }
   },
   "order": [
@@ -1125,6 +1147,7 @@
     "rw_timeline_8VAwHz",
     "rw_test_aAUgTm",
     "rw_video_banner_f88XdA",
-    "rw_carousel_3_XyDxzF"
+    "rw_carousel_3_XyDxzF",
+    "rw_test_JKmwwq"
   ]
 }
