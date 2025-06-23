@@ -1191,10 +1191,10 @@
       "name": "PWC - Gallery Slider #1",
       "settings": {
         "max_width": 1390,
-        "inactive_width": 50,
+        "inactive_width": 80,
         "active_width": 200,
-        "slide_height": 200,
-        "desktop_gap": 40,
+        "slide_height": 500,
+        "desktop_gap": 20,
         "grayscale_amount": 100,
         "focus_border_color": "#b6b7b8",
         "background_color": "transparent",
