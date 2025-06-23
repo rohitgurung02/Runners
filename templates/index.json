@@ -916,23 +916,50 @@
       "type": "rw-test",
       "name": "RW - Product Slider #2",
       "settings": {
-        "title": "Discover our most popular products",
-        "title_font_size": 36,
-        "mobile_title_font_size": 24,
-        "title_font_weight": "700",
-        "title_color": "#000000",
-        "subtitle": "Made with love by frens",
-        "subtitle_font_size": 16,
-        "mobile_subtitle_font_size": 14,
-        "subtitle_color": "#666666",
-        "collection": "",
-        "product_limit": 4,
-        "desktop_columns": 4,
-        "mobile_columns": 2,
-        "bg_color": "#f9f9f9",
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 40,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "desktop_background_color": "#ffffff",
+        "desktop_shadow": true,
+        "desktop_border_radius": 8,
         "mobile_padding_top": 20,
         "mobile_padding_bottom": 20,
-        "enable_shadow": false
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0,
+        "mobile_background_color": "#ffffff",
+        "mobile_shadow": true,
+        "mobile_border_radius": 8,
+        "show_heading": false,
+        "heading_text": "Our Latest Collection",
+        "desktop_heading_font_size": 36,
+        "desktop_heading_color": "#000000",
+        "desktop_heading_font_weight": "bold",
+        "desktop_heading_text_align": "center",
+        "desktop_heading_padding": 10,
+        "mobile_heading_font_size": 28,
+        "mobile_heading_color": "#000000",
+        "mobile_heading_font_weight": "bold",
+        "mobile_heading_text_align": "center",
+        "mobile_heading_padding": 5,
+        "show_subheading": false,
+        "subheading_text": "Discover our new arrivals and trendsetting styles.",
+        "desktop_subheading_font_size": 18,
+        "desktop_subheading_color": "#666666",
+        "desktop_subheading_font_weight": "normal",
+        "desktop_subheading_text_align": "center",
+        "desktop_subheading_padding": 10,
+        "mobile_subheading_font_size": 16,
+        "mobile_subheading_color": "#666666",
+        "mobile_subheading_font_weight": "normal",
+        "mobile_subheading_text_align": "center",
+        "mobile_subheading_padding": 5,
+        "desktop_image_padding": 10,
+        "mobile_image_padding": 5,
+        "desktop_min_grid_width": 150,
+        "desktop_grid_gap": 10,
+        "mobile_min_grid_width": 120,
+        "mobile_grid_gap": 5
       }
     },
     "rw_video_banner_f88XdA": {
@@ -1059,6 +1086,103 @@
         "button_hover_color": "#000000",
         "button_shadow": true
       }
+    },
+    "rw_test_QUGXmp": {
+      "type": "rw-test",
+      "blocks": {
+        "image_ctXLtm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg"
+          }
+        },
+        "image_UYLbCP": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-921294.webp"
+          }
+        },
+        "image_TT7EFj": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg"
+          }
+        },
+        "image_3xirWB": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1024-1200x800.jpg"
+          }
+        },
+        "image_M6K3Dn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/location_three.webp"
+          }
+        },
+        "image_PFdkFg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/location_two.webp"
+          }
+        }
+      },
+      "block_order": [
+        "image_ctXLtm",
+        "image_UYLbCP",
+        "image_TT7EFj",
+        "image_3xirWB",
+        "image_M6K3Dn",
+        "image_PFdkFg"
+      ],
+      "name": "PWC - Image Collage #1",
+      "settings": {
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 40,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "desktop_background_color": "#ffffff",
+        "desktop_shadow": true,
+        "desktop_border_radius": 8,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0,
+        "mobile_background_color": "#ffffff",
+        "mobile_shadow": true,
+        "mobile_border_radius": 8,
+        "show_heading": false,
+        "heading_text": "Our Latest Collection",
+        "desktop_heading_font_size": 36,
+        "desktop_heading_color": "#000000",
+        "desktop_heading_font_weight": "bold",
+        "desktop_heading_text_align": "center",
+        "desktop_heading_padding": 10,
+        "mobile_heading_font_size": 28,
+        "mobile_heading_color": "#000000",
+        "mobile_heading_font_weight": "bold",
+        "mobile_heading_text_align": "center",
+        "mobile_heading_padding": 5,
+        "show_subheading": false,
+        "subheading_text": "Discover our new arrivals and trendsetting styles.",
+        "desktop_subheading_font_size": 18,
+        "desktop_subheading_color": "#666666",
+        "desktop_subheading_font_weight": "normal",
+        "desktop_subheading_text_align": "center",
+        "desktop_subheading_padding": 10,
+        "mobile_subheading_font_size": 16,
+        "mobile_subheading_color": "#666666",
+        "mobile_subheading_font_weight": "normal",
+        "mobile_subheading_text_align": "center",
+        "mobile_subheading_padding": 5,
+        "main_image": "shopify://shop_images/1011-1200x800.jpg",
+        "desktop_image_padding": 10,
+        "mobile_image_padding": 5,
+        "desktop_min_grid_width": 150,
+        "desktop_grid_gap": 10,
+        "mobile_min_grid_width": 120,
+        "mobile_grid_gap": 5
+      }
     }
   },
   "order": [
@@ -1074,6 +1198,7 @@
     "rw_timeline_8VAwHz",
     "rw_test_aAUgTm",
     "rw_video_banner_f88XdA",
-    "rw_carousel_3_XyDxzF"
+    "rw_carousel_3_XyDxzF",
+    "rw_test_QUGXmp"
   ]
 }
