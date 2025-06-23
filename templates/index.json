@@ -918,61 +918,43 @@
         "product_ErD4Ua": {
           "type": "product",
           "settings": {
-            "image": "shopify://shop_images/3-03_RunnersAthletics_Look30048_533x_02af8b28-96b4-4f28-b4af-f0e52fe2af16.webp",
-            "title": "Product Title 1",
-            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            "button_label": "Shop Now",
-            "button_link": ""
+            "product": "",
+            "featured_product": false
           }
         },
         "product_cC7Nan": {
           "type": "product",
           "settings": {
-            "image": "shopify://shop_images/3-07_RunnersAthletics_Look70032_533x_fce79475-9088-47d8-8489-7148411c1d2c.webp",
-            "title": "Product Title 2",
-            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            "button_label": "Shop Now",
-            "button_link": ""
+            "product": "",
+            "featured_product": false
           }
         },
         "product_cEmUCJ": {
           "type": "product",
           "settings": {
-            "image": "shopify://shop_images/4-4-05_RunnersAthletics_Look50065_533x_3838d948-95f5-4510-95dd-704f4bbd5893.webp",
-            "title": "Product Title 3",
-            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            "button_label": "Shop Now",
-            "button_link": ""
+            "product": "",
+            "featured_product": false
           }
         },
         "product_CnzBRr": {
           "type": "product",
           "settings": {
-            "image": "shopify://shop_images/3-2-06_RunnersAthletics_Look60005_533x_428740a1-cdf1-497b-9a6e-d640338459e0.webp",
-            "title": "Product Title 4",
-            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            "button_label": "Shop Now",
-            "button_link": ""
+            "product": "",
+            "featured_product": false
           }
         },
         "product_BQL6kf": {
           "type": "product",
           "settings": {
-            "image": "shopify://shop_images/7-03_RunnersAthletics_Look30111_533x_c25adeb2-2078-4e7c-9842-86292e1527fc.webp",
-            "title": "Product Title 5",
-            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            "button_label": "Shop Now",
-            "button_link": ""
+            "product": "",
+            "featured_product": false
           }
         },
         "product_MCKxXq": {
           "type": "product",
           "settings": {
-            "image": "shopify://shop_images/5-6-07_RunnersAthletics_Look70062_533x_e51358d4-62f2-4f47-a3dc-5ff9aeb74a2c.webp",
-            "title": "Product Title 6",
-            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            "button_label": "Shop Now",
-            "button_link": ""
+            "product": "",
+            "featured_product": false
           }
         }
       },
@@ -988,19 +970,18 @@
       "settings": {
         "heading": "All Products",
         "heading_alignment": "center",
-        "heading_font_size": 28,
-        "heading_color": "#333333",
+        "heading_size": 32,
         "bg_color": "#f9f9f9",
-        "shadow": true,
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "padding_side": 20,
-        "mobile_padding_top": 30,
-        "mobile_padding_bottom": 30,
-        "mobile_padding_side": 15,
-        "mobile_heading_font_size": 24,
-        "button_color": "#222222",
-        "title_font_size": 20
+        "text_color": "#000000",
+        "heading_color": "#333333",
+        "border_color": "#e1e1e1",
+        "primary_accent": "#2563eb",
+        "secondary_accent": "#f8fafc",
+        "border_radius": 8,
+        "column_width": 200,
+        "sticky_first_column": true,
+        "highlight_header": true,
+        "zebra_striping": true
       }
     },
     "rw_video_banner_f88XdA": {
@@ -1127,6 +1108,26 @@
         "button_hover_color": "#000000",
         "button_shadow": true
       }
+    },
+    "rw_test_Lc96ht": {
+      "type": "rw-test",
+      "name": "PWC - Comparison Table #1",
+      "settings": {
+        "heading": "Compare Products",
+        "heading_alignment": "center",
+        "heading_size": 32,
+        "bg_color": "#ffffff",
+        "text_color": "#8e3030",
+        "heading_color": "#bc2828",
+        "border_color": "#e1e1e1",
+        "primary_accent": "#2563eb",
+        "secondary_accent": "#f8fafc",
+        "border_radius": 8,
+        "column_width": 200,
+        "sticky_first_column": true,
+        "highlight_header": true,
+        "zebra_striping": true
+      }
     }
   },
   "order": [
@@ -1142,6 +1143,7 @@
     "rw_timeline_8VAwHz",
     "rw_test_aAUgTm",
     "rw_video_banner_f88XdA",
-    "rw_carousel_3_XyDxzF"
+    "rw_carousel_3_XyDxzF",
+    "rw_test_Lc96ht"
   ]
 }
