@@ -3,47 +3,6 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-vertical-slider-{{ last_part }} class="pc-vertical-slider">
-  <div class="pc-slider-outer" style="max-width: {{ section.settings.container_width }}px;">
-    <div class="pc-slider-container">
-      <div class="pc-left-slide">
-        {% for block in section.blocks %}
-          <div class="pc-slide-content" style="background-color: {{ block.settings.bg_color }};">
-            <h2 class="pc-slide-heading">{{ block.settings.heading }}</h2>
-            <p class="pc-slide-text">{{ block.settings.text }}</p>
-          </div>
-        {% endfor %}
-      </div>
-      <div class="pc-right-slide">
-        {% for block in section.blocks %}
-          <div class="pc-slide-image">
-            {%- if block.settings.image != blank -%}
-              {{- block.settings.image
-                | image_url: width: 2000
-                | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-slide-image-tag'
-              -}}
-            {%- else -%}
-              {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder' }}
-            {%- endif -%}
-          </div>
-        {% endfor %}
-      </div>
-      <div class="pc-action-buttons">
-        <button class="pc-up-button" aria-label="Previous slide">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
-          </svg>
-        </button>
-        <button class="pc-down-button" aria-label="Next slide">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</pc-vertical-slider-{{ last_part }}>
-
 <style>
   {{ sec_id }} .pc-vertical-slider {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -228,6 +187,47 @@
     }
   }
 </style>
+
+<pc-vertical-slider-{{ last_part }} class="pc-vertical-slider">
+  <div class="pc-slider-outer" style="max-width: {{ section.settings.container_width }}px;">
+    <div class="pc-slider-container">
+      <div class="pc-left-slide">
+        {% for block in section.blocks %}
+          <div class="pc-slide-content" style="background-color: {{ block.settings.bg_color }};">
+            <h2 class="pc-slide-heading">{{ block.settings.heading }}</h2>
+            <p class="pc-slide-text">{{ block.settings.text }}</p>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="pc-right-slide">
+        {% for block in section.blocks %}
+          <div class="pc-slide-image">
+            {%- if block.settings.image != blank -%}
+              {{- block.settings.image
+                | image_url: width: 2000
+                | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-slide-image-tag'
+              -}}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder' }}
+            {%- endif -%}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="pc-action-buttons">
+        <button class="pc-up-button" aria-label="Previous slide">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+          </svg>
+        </button>
+        <button class="pc-down-button" aria-label="Next slide">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</pc-vertical-slider-{{ last_part }}>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
