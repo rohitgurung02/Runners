@@ -1096,7 +1096,7 @@
       "name": "PWC - Vertical Slider #1",
       "settings": {
         "section_bg": "rgba(0,0,0,0)",
-        "section_padding_top": 0,
+        "section_padding_top": 40,
         "section_padding_bottom": 0,
         "section_padding_top_mobile": 0,
         "section_padding_bottom_mobile": 0,
