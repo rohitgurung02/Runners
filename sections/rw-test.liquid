@@ -14,8 +14,7 @@
     padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
   }
 
-  {{ sec_id }} .pc-item-{{ last_part }} > img,
-  {{ sec_id }} .pc-item-{{ last_part }} .pc-placeholder-{{ last_part }} {
+  {{ sec_id }} .pc-item-{{ last_part }} > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -23,10 +22,6 @@
     {% if section.settings.image_shadow %}
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     {% endif %}
-  }
-
-  {{ sec_id }} .pc-placeholder-{{ last_part }} {
-    background-color: #f5f5f5;
   }
 
   {{ sec_id }} .pc-item-{{ last_part }}[data-active="true"] {
@@ -52,15 +47,14 @@
 
 <pc-interactive-grid-{{ last_part }} class="pc-grid-{{ last_part }}">
   {% for block in section.blocks %}
-    <div class="pc-item-{{ last_part }}" data-active="{% if forloop.first %}true{% else %}false{% endif %}">
+    <div class="pc-item-{{ last_part }}" data-active="{{ forloop.first | default: 'false' }}">
       {% if block.settings.image != blank %}
         {{- block.settings.image
           | image_url: width: block.settings.image.width, height: block.settings.image.height
           | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt
         -}}
       {% else %}
-        {% capture placeholder_class %}pc-placeholder-{{ last_part }}{% endcapture %}
-        {{ 'product' | placeholder_svg_tag: placeholder_class }}
+        {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
       {% endif %}
     </div>
   {% endfor %}
@@ -113,7 +107,7 @@
 
 {% schema %}
 {
-  "name": "RW - Image Grid #1",
+  "name": "PWC - Image Grid #1",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -303,7 +297,7 @@
   ],
   "presets": [
     {
-      "name": "RW - Image Grid #1",
+      "name": "PWC - Image Grid #1",
       "blocks": [
         {
           "type": "image"
