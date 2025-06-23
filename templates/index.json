@@ -1200,24 +1200,6 @@
             "image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
             "filter_tag": "Hollywood"
           }
-        },
-        "gallery_item_LqbjQW": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "TV Shows"
-          }
-        },
-        "gallery_item_RrhmiY": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "TV Shows"
-          }
-        },
-        "gallery_item_TF7KrY": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Bollywood"
-          }
         }
       },
       "block_order": [
@@ -1228,10 +1210,7 @@
         "gallery_item_pT4iqr",
         "gallery_item_UFDjWh",
         "gallery_item_iJQyrA",
-        "gallery_item_diEAP6",
-        "gallery_item_LqbjQW",
-        "gallery_item_RrhmiY",
-        "gallery_item_TF7KrY"
+        "gallery_item_diEAP6"
       ],
       "name": "PWC - Filter Gallery #1",
       "settings": {
