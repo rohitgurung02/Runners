@@ -3,49 +3,6 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-filterable-gallery-{{ last_part }} class="pc-filterable-gallery">
-  <div class="pc-container">
-    <!-- Section Title Start -->
-    <div class="pc-text-center">
-      {%- if section.settings.heading != blank -%}
-        <h2 class="pc-title">{{ section.settings.heading }}</h2>
-      {%- endif -%}
-      {%- if section.settings.subheading != blank -%}
-        <p class="pc-subtitle">{{ section.settings.subheading }}</p>
-      {%- endif -%}
-    </div>
-    <!-- Section Title End -->
-
-    <div id="pc-btncontainer-{{ last_part }}" class="pc-filter">
-      <a class="pc-btn pc-btn-active" href="#all">ALL</a>
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'filter' -%}
-          <a class="pc-btn" href="#{{ block.settings.filter_tag | handleize }}">{{ block.settings.filter_tag }}</a>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-
-    <!-- Gallery Section Start -->
-    <div class="pc-gallery pc-sets">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'gallery_item' -%}
-          <a class="pc-all pc-{{ block.settings.filter_tag | handleize }}">
-            {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 400 | image_tag: 
-                loading: 'lazy', 
-                class: 'pc-gallery-img',
-                alt: block.settings.image.alt | escape
-              }}
-            {%- else -%}
-              {{ 'product-1' | placeholder_svg_tag: 'pc-gallery-img' }}
-            {%- endif -%}
-          </a>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-  </div>
-</pc-filterable-gallery-{{ last_part }}>
-
 <style>
   {{ sec_id }} .pc-filterable-gallery {
     position: relative;
@@ -265,6 +222,49 @@
     }
   }
 </style>
+
+<pc-filterable-gallery-{{ last_part }} class="pc-filterable-gallery">
+  <div class="pc-container">
+    <!-- Section Title Start -->
+    <div class="pc-text-center">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="pc-title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="pc-subtitle">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+    <!-- Section Title End -->
+
+    <div id="pc-btncontainer-{{ last_part }}" class="pc-filter">
+      <a class="pc-btn pc-btn-active" href="#all">ALL</a>
+      {%- for block in section.blocks -%}
+        {%- if block.type == "filter" -%}
+          <a class="pc-btn" href="#{{ block.settings.filter_tag | handleize }}">{{ block.settings.filter_tag }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- Gallery Section Start -->
+    <div class="pc-gallery pc-sets">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'gallery_item' -%}
+          <a class="pc-all pc-{{ block.settings.filter_tag | handleize }}">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 400 | image_tag: 
+                loading: 'lazy', 
+                class: 'pc-gallery-img',
+                alt: block.settings.image.alt | escape
+              }}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'pc-gallery-img' }}
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</pc-filterable-gallery-{{ last_part }}>
 
 <script>
   class PCFilterableGallery{{ last_part | capitalize }} extends HTMLElement {
