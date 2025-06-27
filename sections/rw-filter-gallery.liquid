@@ -160,13 +160,6 @@
     color: black;
   }
 
-  @media (max-width: 1199px) {
-    {{ sec_id }} .pc-filterable-gallery {
-      padding-top: {{ section.settings.tablet_padding_top }}px;
-      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
-    }
-  }
-
   @media (max-width: 991px) {
     {{ sec_id }} .pc-filterable-gallery {
       margin-top: {{ section.settings.mobile_margin_top }}px;
@@ -226,7 +219,6 @@
 
 <div class="pc-filterable-gallery-{{ last_part }}">
   <div class="pc-container">
-    <!-- Section Title Start -->
     <div class="pc-text-center">
       {%- if section.settings.heading != blank -%}
         <h2 class="pc-title">{{ section.settings.heading }}</h2>
@@ -235,7 +227,6 @@
         <p class="pc-subtitle">{{ section.settings.subheading }}</p>
       {%- endif -%}
     </div>
-    <!-- Section Title End -->
 
     <div id="pc-btncontainer-{{ last_part }}" class="pc-filter">
       <a class="pc-btn pc-btn-active" href="#all">ALL</a>
@@ -246,7 +237,6 @@
       {%- endfor -%}
     </div>
 
-    <!-- Gallery Section Start -->
     <div class="pc-gallery pc-sets">
       {%- for block in section.blocks -%}
         {%- if block.type == 'gallery_item' -%}
@@ -275,7 +265,6 @@
     }
 
     initializeGallery() {
-      // Filter functionality
       const filterButtons = this.querySelectorAll(`#pc-btncontainer-${'{{ last_part }}'} .pc-btn`);
       filterButtons.forEach(button => {
         button.addEventListener('click', (e) => {
@@ -291,13 +280,11 @@
             }
           });
 
-          // Update active button
           filterButtons.forEach(btn => btn.classList.remove('pc-btn-active'));
           button.classList.add('pc-btn-active');
         });
       });
 
-      // Image preview functionality
       const images = this.querySelectorAll('.pc-gallery-img');
       images.forEach((img, index) => {
         img.addEventListener('click', (e) => {
