@@ -1100,42 +1100,49 @@
         "gallery_item_XJV6WA": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg",
             "filter_tag": "Product Image 1"
           }
         },
         "gallery_item_GYFPGx": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/pexels-photo-921294.webp",
             "filter_tag": "Product Image 2"
           }
         },
         "gallery_item_gBMbwh": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg",
             "filter_tag": "Product Image 3"
           }
         },
         "gallery_item_X8xQEf": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/1011-1200x800.jpg",
             "filter_tag": "Product Image 4"
           }
         },
         "gallery_item_DL7dhT": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
             "filter_tag": "Product Image 5"
           }
         },
         "gallery_item_WrH8Bw": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/1738323256__kannperformance__huge.jpg",
             "filter_tag": "Product Image 6"
           }
         },
         "gallery_item_JLTQKJ": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/1743000616__screenshot2025-03-26at34755pm__huge.jpg",
             "filter_tag": "Product Image"
           }
         }
@@ -1175,11 +1182,11 @@
         "title_bottom_margin": 10,
         "filter_font_size": 16,
         "filter_font_weight": "500",
-        "filter_text_color": "#003",
+        "filter_text_color": "#000033",
         "button_text_decoration": "none",
-        "filter_bg_color": "#eee",
+        "filter_bg_color": "#eeeeee",
         "filter_border_color": "#f44336",
-        "filter_active_text_color": "#fff",
+        "filter_active_text_color": "#ffffff",
         "filter_active_bg_color": "#f44336",
         "filter_border_radius": 10,
         "filter_vertical_padding": 10,
