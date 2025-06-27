@@ -833,7 +833,6 @@
         "mobile_padding_top": 50,
         "mobile_padding_bottom": 0,
         "heading": "Our Products",
-        "heading_font": "playfair_display_n4",
         "heading_size": 46,
         "mobile_heading_size": 36,
         "heading_weight": "700",
@@ -845,6 +844,7 @@
         "subheading_max_width": 600,
         "title_bottom_margin": 20,
         "filter_font_size": 16,
+        "button_text_decoration": "none",
         "filter_font_weight": "500",
         "filter_text_color": "#000033",
         "filter_bg_color": "#eeeeee",
@@ -1076,90 +1076,90 @@
         "mobile_button_padding_right": 20
       }
     },
-    "rw_test_TUzLqr": {
-      "type": "rw-test",
+    "rw_filter_gallery_eJ9LRP": {
+      "type": "rw-filter-gallery",
       "blocks": {
-        "filter_WPxaxx": {
+        "filter_dFMnKA": {
           "type": "filter",
           "settings": {
             "filter_tag": "JAVASCRIPT"
           }
         },
-        "filter_XhKFxn": {
+        "filter_4mmCd8": {
           "type": "filter",
           "settings": {
             "filter_tag": "REACT"
           }
         },
-        "filter_B9QpUn": {
+        "filter_Kmk4PB": {
           "type": "filter",
           "settings": {
             "filter_tag": "ANGULAR"
           }
         },
-        "gallery_item_VjJVhX": {
+        "gallery_item_NQ8HdK": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg",
             "filter_tag": "JAVASCRIPT"
           }
         },
-        "gallery_item_KzDbxx": {
+        "gallery_item_pzNr6q": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/pexels-photo-921294.webp",
             "filter_tag": "JAVASCRIPT"
           }
         },
-        "gallery_item_F8myAz": {
+        "gallery_item_MMcYjj": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg",
             "filter_tag": "JAVASCRIPT"
           }
         },
-        "gallery_item_Yj46nz": {
+        "gallery_item_qKgbfy": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/1011-1200x800.jpg",
             "filter_tag": "REACT"
           }
         },
-        "gallery_item_wNQdHw": {
+        "gallery_item_TJzHRw": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
             "filter_tag": "REACT"
           }
         },
-        "gallery_item_P3MhKL": {
+        "gallery_item_VDgJtL": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/1738323256__kannperformance__huge.jpg",
             "filter_tag": "ANGULAR"
           }
         },
-        "gallery_item_q4C7NX": {
+        "gallery_item_iM8FYr": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/bbb_533x_dcefeac7-8bb2-41c0-8e81-fa64239fd5c9.webp",
             "filter_tag": "ANGULAR"
-          }
-        },
-        "gallery_item_TWJkxB": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "JAVASCRIPT"
           }
         }
       },
       "block_order": [
-        "filter_WPxaxx",
-        "filter_XhKFxn",
-        "filter_B9QpUn",
-        "gallery_item_VjJVhX",
-        "gallery_item_KzDbxx",
-        "gallery_item_F8myAz",
-        "gallery_item_Yj46nz",
-        "gallery_item_wNQdHw",
-        "gallery_item_P3MhKL",
-        "gallery_item_q4C7NX",
-        "gallery_item_TWJkxB"
+        "filter_dFMnKA",
+        "filter_4mmCd8",
+        "filter_Kmk4PB",
+        "gallery_item_NQ8HdK",
+        "gallery_item_pzNr6q",
+        "gallery_item_MMcYjj",
+        "gallery_item_qKgbfy",
+        "gallery_item_TJzHRw",
+        "gallery_item_VDgJtL",
+        "gallery_item_iM8FYr"
       ],
-      "name": "PWC - Filter Gallery #1",
+      "name": "RW - Filter Gallery #2",
       "settings": {
         "max_width": 1320,
         "background_color": "#ffffff",
@@ -1170,7 +1170,6 @@
         "mobile_padding_top": 50,
         "mobile_padding_bottom": 50,
         "heading": "Our Gallery",
-        "heading_font": "playfair_display_n4",
         "heading_size": 46,
         "mobile_heading_size": 36,
         "heading_weight": "700",
@@ -1182,11 +1181,12 @@
         "subheading_max_width": 600,
         "title_bottom_margin": 10,
         "filter_font_size": 16,
+        "button_text_decoration": "none",
         "filter_font_weight": "500",
-        "filter_text_color": "#000033",
-        "filter_bg_color": "#eeeeee",
+        "filter_text_color": "#003",
+        "filter_bg_color": "#eee",
         "filter_border_color": "#f44336",
-        "filter_active_text_color": "#ffffff",
+        "filter_active_text_color": "#fff",
         "filter_active_bg_color": "#f44336",
         "filter_border_radius": 10,
         "filter_vertical_padding": 10,
@@ -1194,7 +1194,7 @@
         "filter_bottom_margin": 25,
         "gallery_top_margin": 25,
         "image_width": 200,
-        "image_height": 180,
+        "image_height": 220,
         "mobile_image_width": 80,
         "mobile_image_height": 80,
         "small_mobile_image_width": 60,
@@ -1217,6 +1217,6 @@
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
     "rw_video_banner_f88XdA",
-    "rw_test_TUzLqr"
+    "rw_filter_gallery_eJ9LRP"
   ]
 }
