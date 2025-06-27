@@ -1175,7 +1175,7 @@
         "mobile_heading_size": 36,
         "heading_weight": "700",
         "heading_color": "#f44336",
-        "heading_bottom_margin": 20,
+        "heading_bottom_margin": 0,
         "subheading": "Some Random Photos Lorem ipsum, dolor sit.",
         "subheading_size": 16,
         "subheading_color": "#4c4c4c",
