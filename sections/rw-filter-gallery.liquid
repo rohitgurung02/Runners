@@ -303,7 +303,7 @@
         });
       });
 
-      // Image preview functionality remains the same
+      // Image preview functionality
       const images = this.querySelectorAll('.pc-gallery-img');
       images.forEach((img, index) => {
         img.addEventListener('click', (e) => {
@@ -622,30 +622,30 @@
       "label": "Button Text Color",
       "default": "#003"
     },
-     {
-          "type": "select",
-          "id": "button_text_decoration",
-          "label": " Button Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
+    {
+      "type": "select",
+      "id": "button_text_decoration",
+      "label": "Button Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
         },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
     {
       "type": "color",
       "id": "filter_bg_color",
@@ -808,20 +808,20 @@
   "blocks": [
     {
       "type": "button",
-      "name": "Product",
+      "name": "Filter Button",
       "settings": [
         {
           "type": "text",
           "id": "filter_tag",
           "label": "Filter Tag",
           "info": "This will be used to filter gallery items",
-          "default": "Product Image"
+          "default": "Product"
         }
       ]
     },
     {
       "type": "gallery_item",
-      "name": "Product Image",
+      "name": "Gallery Image",
       "settings": [
         {
           "type": "image_picker",
@@ -833,149 +833,65 @@
           "id": "filter_tag",
           "label": "Filter Tag",
           "info": "Must match one of the filter tags exactly",
-          "default": "Product Image"
+          "default": "Product"
         }
       ]
     }
   ],
-"presets": [
-  {
-    "name": "RW - Filter Gallery #2",
-    "blocks": [
-      {
-        "type": "button",
-        "settings": {
-          "filter_tag": "Product One"
-        }
-      },
-      {
-        "type": "button",
-        "settings": {
-          "filter_tag": "Product Two"
-        }
-      },
-      {
-        "type": "button",
-        "settings": {
-          "filter_tag": "Product Three"
-        }
-      },
-      {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product One"
-        }
-      },
-      {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product One"
-        }
-      },
-       {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product One"
+  "presets": [
+    {
+      "name": "RW - Filter Gallery #2",
+      "blocks": [
+        {
+          "type": "button",
+          "settings": {
+            "filter_tag": "Product One"
+          }
         },
-      },
-       {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product One"
+        {
+          "type": "button",
+          "settings": {
+            "filter_tag": "Product Two"
+          }
         },
-      },
-      {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product One"
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "Product One"
+          }
         },
-      },
-       {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product One"
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "Product One"
+          }
         },
-      },
-      {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Two"
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "Product One"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "Product Two"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "Product Two"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "Product Two"
+          }
         }
-      },
-      {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Two"
-        }
-      },
-       {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Two"
-        }
-      },
-       {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Two"
-        }
-      },
-       {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Two"
-        }
-      },
-       {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Two"
-        }
-      },
-      {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Three"
-        }
-      },
-      {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Three"
-        }
-      },
-       {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Three"
-        }
-      },
-       {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Three"
-        }
-      },
-       {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Three"
-        }
-      },
-       {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Three"
-        }
-      },
-       {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product Three"
-        }
-      }
-    ]
-  }
-]
+      ]
+    }
+  ]
 }
 {% endschema %}
