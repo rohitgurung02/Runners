@@ -1179,7 +1179,7 @@
         "filter_horizontal_padding": 20,
         "filter_bottom_margin": 0,
         "gallery_top_margin": 0,
-        "image_width": 200,
+        "image_width": 400,
         "image_height": 220,
         "mobile_image_width": 80,
         "mobile_image_height": 80,
