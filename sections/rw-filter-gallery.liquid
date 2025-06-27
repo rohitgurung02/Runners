@@ -3,6 +3,49 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
+<pc-filterable-gallery-{{ last_part }} class="pc-filterable-gallery">
+  <div class="pc-container">
+    <!-- Section Title Start -->
+    <div class="pc-text-center">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="pc-title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="pc-subtitle">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+    <!-- Section Title End -->
+
+    <div id="pc-btncontainer-{{ last_part }}" class="pc-filter">
+      <a class="pc-btn pc-btn-active" href="#all">ALL</a>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'filter' -%}
+          <a class="pc-btn" href="#{{ block.settings.filter_tag | handleize }}">{{ block.settings.filter_tag }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- Gallery Section Start -->
+    <div class="pc-gallery pc-sets">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'gallery_item' -%}
+          <a class="pc-all pc-{{ block.settings.filter_tag | handleize }}">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 400 | image_tag: 
+                loading: 'lazy', 
+                class: 'pc-gallery-img',
+                alt: block.settings.image.alt | escape
+              }}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'pc-gallery-img' }}
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</pc-filterable-gallery-{{ last_part }}>
+
 <style>
   {{ sec_id }} .pc-filterable-gallery {
     position: relative;
@@ -48,8 +91,8 @@
     padding: {{ section.settings.filter_vertical_padding }}px {{ section.settings.filter_horizontal_padding }}px;
     margin: 5px 4px 4px 0;
     display: inline-block;
-    color: {{ section.settings.filter_text_color }};
     text-decoration: {{ section.settings.button_text_decoration }};
+    color: {{ section.settings.filter_text_color }};
     background: {{ section.settings.filter_bg_color }};
     border: 1px solid {{ section.settings.filter_border_color }};
     transition: all 0.4s;
@@ -224,49 +267,6 @@
   }
 </style>
 
-<pc-filterable-gallery-{{ last_part }} class="pc-filterable-gallery">
-  <div class="pc-container">
-    <!-- Section Title Start -->
-    <div class="pc-text-center">
-      {%- if section.settings.heading != blank -%}
-        <h2 class="pc-title">{{ section.settings.heading }}</h2>
-      {%- endif -%}
-      {%- if section.settings.subheading != blank -%}
-        <p class="pc-subtitle">{{ section.settings.subheading }}</p>
-      {%- endif -%}
-    </div>
-    <!-- Section Title End -->
-
-    <div id="pc-btncontainer-{{ last_part }}" class="pc-filter">
-      <a class="pc-btn pc-btn-active" href="#all">ALL</a>
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'button' -%}
-          <a class="pc-btn" href="#{{ block.settings.filter_tag | handleize }}">{{ block.settings.filter_tag }}</a>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-
-    <!-- Gallery Section Start -->
-    <div class="pc-gallery pc-sets">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'gallery_item' -%}
-          <a class="pc-all pc-{{ block.settings.filter_tag | handleize }}">
-            {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 400 | image_tag: 
-                loading: 'lazy', 
-                class: 'pc-gallery-img',
-                alt: block.settings.image.alt | escape
-              }}
-            {%- else -%}
-              {{ 'product-1' | placeholder_svg_tag: 'pc-gallery-img' }}
-            {%- endif -%}
-          </a>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-  </div>
-</pc-filterable-gallery-{{ last_part }}>
-
 <script>
   class PCFilterableGallery{{ last_part | capitalize }} extends HTMLElement {
     constructor() {
@@ -284,16 +284,10 @@
           const galleryItems = this.querySelectorAll('.pc-sets a');
           
           galleryItems.forEach(item => {
-            if (filterValue === "all") {
-              item.classList.remove('pc-hide');
+            if (!item.classList.contains(`pc-${filterValue}`) && filterValue !== "all") {
+              item.classList.add('pc-hide');
             } else {
-              // Check if item has the specific filter class
-              const hasClass = item.classList.contains(`pc-${filterValue}`);
-              if (hasClass) {
-                item.classList.remove('pc-hide');
-              } else {
-                item.classList.add('pc-hide');
-              }
+              item.classList.remove('pc-hide');
             }
           });
 
@@ -303,7 +297,7 @@
         });
       });
 
-      // Image preview functionality remains the same
+      // Image preview functionality
       const images = this.querySelectorAll('.pc-gallery-img');
       images.forEach((img, index) => {
         img.addEventListener('click', (e) => {
@@ -464,7 +458,7 @@
     },
     {
       "type": "header",
-      "content": "Title Settings"
+      "content": "Heading Settings"
     },
     {
       "type": "text",
@@ -530,7 +524,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 5
+      "default": 10
     },
     {
       "type": "header",
@@ -594,6 +588,30 @@
     },
     {
       "type": "select",
+      "id": "button_text_decoration",
+      "label": "Button Text Decoration",
+      "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "underline",
+            "label": "Underline"
+          },
+          {
+            "value": "overline",
+            "label": "Overline"
+          },
+          {
+            "value": "line-through",
+            "label": "Line Through"
+          }
+     ],
+        "default": "none"
+     },
+    {
+      "type": "select",
       "id": "filter_font_weight",
       "label": "Button Font Weight",
       "options": [
@@ -622,30 +640,6 @@
       "label": "Button Text Color",
       "default": "#003"
     },
-     {
-          "type": "select",
-          "id": "button_text_decoration",
-          "label": " Button Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
     {
       "type": "color",
       "id": "filter_bg_color",
@@ -661,13 +655,13 @@
     {
       "type": "color",
       "id": "filter_active_text_color",
-      "label": "Button Filter Text Color",
+      "label": " Active Button Filter Text Color",
       "default": "#fff"
     },
     {
       "type": "color",
       "id": "filter_active_bg_color",
-      "label": "Button Filter Background Color",
+      "label": "Active Button Background Color",
       "default": "#f44336"
     },
     {
@@ -708,7 +702,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 0
+      "default": 25
     },
     {
       "type": "header",
@@ -722,7 +716,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 0
+      "default": 25
     },
     {
       "type": "range",
@@ -742,7 +736,7 @@
       "max": 500,
       "step": 10,
       "unit": "px",
-      "default": 180
+      "default": 220
     },
     {
       "type": "range",
@@ -792,7 +786,7 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 10
+      "default": 12
     },
     {
       "type": "range",
@@ -807,8 +801,8 @@
   ],
   "blocks": [
     {
-      "type": "button",
-      "name": "Product",
+      "type": "filter",
+      "name": "Filter",
       "settings": [
         {
           "type": "text",
@@ -821,7 +815,7 @@
     },
     {
       "type": "gallery_item",
-      "name": "Product Image",
+      "name": "Gallery Item",
       "settings": [
         {
           "type": "image_picker",
@@ -833,29 +827,77 @@
           "id": "filter_tag",
           "label": "Filter Tag",
           "info": "Must match one of the filter tags exactly",
-          "default": "Product"
+          "default": "JAVASCRIPT"
         }
       ]
     }
   ],
-"presets": [
-  {
-    "name": "RW - Filter Gallery #2",
-    "blocks": [
+  "presets": [
     {
-        "type": "button",
-        "settings": {
-          "filter_tag": "Product"
+      "name": "RW - Filter Gallery #2",
+      "blocks": [
+        {
+          "type": "filter",
+          "settings": {
+            "filter_tag": "JAVASCRIPT"
+          }
+        },
+        {
+          "type": "filter",
+          "settings": {
+            "filter_tag": "REACT"
+          }
+        },
+        {
+          "type": "filter",
+          "settings": {
+            "filter_tag": "ANGULAR"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "JAVASCRIPT"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "JAVASCRIPT"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "JAVASCRIPT"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "REACT"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "REACT"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "ANGULAR"
+          }
+        },
+        {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "ANGULAR"
+          }
         }
-      },
-     {
-        "type": "gallery_item",
-        "settings": {
-          "filter_tag": "Product"
-        }
-      },
-    ]
-  }
-]
+      ]
+    }
+  ]
 }
 {% endschema %}
