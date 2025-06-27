@@ -1075,105 +1075,6 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
-    },
-    "rw_filterable_gallery_LbbCPz": {
-      "type": "rw-filterable-gallery",
-      "blocks": {
-        "filter_pywVBH": {
-          "type": "filter",
-          "settings": {
-            "filter_tag": "Bollywood"
-          }
-        },
-        "filter_g7G7FC": {
-          "type": "filter",
-          "settings": {
-            "filter_tag": "Bollywood"
-          }
-        },
-        "gallery_item_MJrnC8": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Gallery"
-          }
-        },
-        "gallery_item_zJQixk": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Gallery"
-          }
-        },
-        "gallery_item_9WNdQ4": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Gallery"
-          }
-        },
-        "gallery_item_qqg4HP": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Gallery"
-          }
-        },
-        "gallery_item_crhenT": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Gallery"
-          }
-        }
-      },
-      "block_order": [
-        "filter_pywVBH",
-        "filter_g7G7FC",
-        "gallery_item_MJrnC8",
-        "gallery_item_zJQixk",
-        "gallery_item_9WNdQ4",
-        "gallery_item_qqg4HP",
-        "gallery_item_crhenT"
-      ],
-      "name": "RW - Filter Gallery #1",
-      "settings": {
-        "max_width": 1320,
-        "background_color": "#ffffff",
-        "desktop_padding_top": 80,
-        "desktop_padding_bottom": 80,
-        "tablet_padding_top": 70,
-        "tablet_padding_bottom": 70,
-        "mobile_padding_top": 50,
-        "mobile_padding_bottom": 50,
-        "heading": "Our Gallery",
-        "heading_font": "playfair_display_n4",
-        "heading_size": 46,
-        "mobile_heading_size": 36,
-        "heading_weight": "700",
-        "heading_color": "#f44336",
-        "heading_bottom_margin": 0,
-        "subheading": "Some Random Photos Lorem ipsum, dolor sit.",
-        "subheading_size": 16,
-        "subheading_color": "#4c4c4c",
-        "subheading_max_width": 600,
-        "title_bottom_margin": 0,
-        "filter_font_size": 16,
-        "filter_font_weight": "500",
-        "filter_text_color": "#000033",
-        "filter_bg_color": "#eeeeee",
-        "filter_border_color": "#f44336",
-        "filter_active_text_color": "#ffffff",
-        "filter_active_bg_color": "#f44336",
-        "filter_border_radius": 10,
-        "filter_vertical_padding": 10,
-        "filter_horizontal_padding": 20,
-        "filter_bottom_margin": 25,
-        "gallery_top_margin": 25,
-        "image_width": 200,
-        "image_height": 220,
-        "mobile_image_width": 80,
-        "mobile_image_height": 80,
-        "small_mobile_image_width": 60,
-        "small_mobile_image_height": 180,
-        "image_border_radius": 12,
-        "image_margin": 10
-      }
     }
   },
   "order": [
@@ -1188,7 +1089,6 @@
     "rw_test_aezBCg",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA",
-    "rw_filterable_gallery_LbbCPz"
+    "rw_video_banner_f88XdA"
   ]
 }
