@@ -1085,18 +1085,6 @@
             "filter_tag": "Product Image 1"
           }
         },
-        "button_apQcgH": {
-          "type": "button",
-          "settings": {
-            "filter_tag": "Product Image 2"
-          }
-        },
-        "button_x7c4G9": {
-          "type": "button",
-          "settings": {
-            "filter_tag": "Product Image 3"
-          }
-        },
         "gallery_item_F9PURw": {
           "type": "gallery_item",
           "settings": {
@@ -1118,11 +1106,10 @@
             "filter_tag": "Product Image 3"
           }
         },
-        "gallery_item_hW3Fkw": {
-          "type": "gallery_item",
+        "button_apQcgH": {
+          "type": "button",
           "settings": {
-            "image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
-            "filter_tag": "Product Image"
+            "filter_tag": "Product Image 2"
           }
         },
         "gallery_item_MepJLB": {
@@ -1130,6 +1117,19 @@
           "settings": {
             "image": "shopify://shop_images/1743000616__screenshot2025-03-26at34755pm__huge.jpg",
             "filter_tag": "Product Image"
+          }
+        },
+        "gallery_item_hW3Fkw": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
+            "filter_tag": "Product Image"
+          }
+        },
+        "button_x7c4G9": {
+          "type": "button",
+          "settings": {
+            "filter_tag": "Product Image 3"
           }
         },
         "gallery_item_a9nkTz": {
@@ -1142,13 +1142,13 @@
       },
       "block_order": [
         "button_UUx8LY",
-        "button_apQcgH",
-        "button_x7c4G9",
         "gallery_item_F9PURw",
         "gallery_item_YcVhgx",
         "gallery_item_rWRGAL",
-        "gallery_item_hW3Fkw",
+        "button_apQcgH",
         "gallery_item_MepJLB",
+        "gallery_item_hW3Fkw",
+        "button_x7c4G9",
         "gallery_item_a9nkTz"
       ],
       "name": "RW - Filter Gallery #2",
