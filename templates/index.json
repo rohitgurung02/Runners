@@ -1132,6 +1132,12 @@
           "settings": {
             "filter_tag": "Product Image 6"
           }
+        },
+        "gallery_item_JLTQKJ": {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "Product Image"
+          }
         }
       },
       "block_order": [
@@ -1143,7 +1149,8 @@
         "gallery_item_gBMbwh",
         "gallery_item_X8xQEf",
         "gallery_item_DL7dhT",
-        "gallery_item_WrH8Bw"
+        "gallery_item_WrH8Bw",
+        "gallery_item_JLTQKJ"
       ],
       "name": "RW - Filter Gallery #2",
       "settings": {
