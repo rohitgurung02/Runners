@@ -224,7 +224,7 @@
   }
 </style>
 
-<pc-filterable-gallery-{{ last_part }} class="pc-filterable-gallery-{{ last_part }}">
+<div class="pc-filterable-gallery-{{ last_part }}">
   <div class="pc-container">
     <!-- Section Title Start -->
     <div class="pc-text-center">
@@ -265,7 +265,7 @@
       {%- endfor -%}
     </div>
   </div>
-</pc-filterable-gallery-{{ last_part }}>
+</div>
 
 <script>
   class PCFilterableGallery{{ last_part | capitalize }} extends HTMLElement {
