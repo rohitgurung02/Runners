@@ -1180,7 +1180,7 @@
         "subheading_size": 16,
         "subheading_color": "#4c4c4c",
         "subheading_max_width": 600,
-        "title_bottom_margin": 40,
+        "title_bottom_margin": 10,
         "filter_font_size": 16,
         "filter_font_weight": "500",
         "filter_text_color": "#000033",
