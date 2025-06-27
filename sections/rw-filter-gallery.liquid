@@ -284,10 +284,16 @@
           const galleryItems = this.querySelectorAll('.pc-sets a');
           
           galleryItems.forEach(item => {
-            if (!item.classList.contains(`pc-${filterValue}`) && filterValue !== "all") {
-              item.classList.add('pc-hide');
-            } else {
+            if (filterValue === "all") {
               item.classList.remove('pc-hide');
+            } else {
+              // Check if item has the specific filter class
+              const hasClass = item.classList.contains(`pc-${filterValue}`);
+              if (hasClass) {
+                item.classList.remove('pc-hide');
+              } else {
+                item.classList.add('pc-hide');
+              }
             }
           });
 
@@ -297,7 +303,7 @@
         });
       });
 
-      // Image preview functionality
+      // Image preview functionality remains the same
       const images = this.querySelectorAll('.pc-gallery-img');
       images.forEach((img, index) => {
         img.addEventListener('click', (e) => {
