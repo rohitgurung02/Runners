@@ -1142,6 +1142,7 @@
         "gallery_item_BqtqdU": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/3_533x_69515238-243a-4929-ad96-53333f2b3615.webp",
             "filter_tag": "Product Image 1"
           }
         }
