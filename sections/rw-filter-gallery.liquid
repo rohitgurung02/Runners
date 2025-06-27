@@ -3,12 +3,55 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
+<pc-filterable-gallery-{{ last_part }} class="pc-filterable-gallery">
+  <div class="pc-container">
+    <!-- Section Title Start -->
+    <div class="pc-text-center">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="pc-title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="pc-subtitle">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+    <!-- Section Title End -->
+
+    <div id="pc-btncontainer-{{ last_part }}" class="pc-filter">
+      <a class="pc-btn pc-btn-active" href="#all">ALL</a>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'filter' -%}
+          <a class="pc-btn" href="#{{ block.settings.filter_tag | handleize }}">{{ block.settings.filter_tag }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- Gallery Section Start -->
+    <div class="pc-gallery pc-sets">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'gallery_item' -%}
+          <a class="pc-all pc-{{ block.settings.filter_tag | handleize }}">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 400 | image_tag: 
+                loading: 'lazy', 
+                class: 'pc-gallery-img',
+                alt: block.settings.image.alt | escape
+              }}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'pc-gallery-img' }}
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</pc-filterable-gallery-{{ last_part }}>
+
 <style>
-  {{ sec_id }} .pc-filterable-gallery-{{ last_part }} {
+  {{ sec_id }} .pc-filterable-gallery {
     position: relative;
     z-index: 1;
-    margin-top: {{ section.settings.desktop_margin_top }}px;
-    margin-bottom: {{ section.settings.desktop_margin_bottom }}px;
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
     background-color: {{ section.settings.background_color }};
   }
 
@@ -48,7 +91,6 @@
     padding: {{ section.settings.filter_vertical_padding }}px {{ section.settings.filter_horizontal_padding }}px;
     margin: 5px 4px 4px 0;
     display: inline-block;
-    text-decoration: {{ section.settings.button_text_decoration }};
     color: {{ section.settings.filter_text_color }};
     background: {{ section.settings.filter_bg_color }};
     border: 1px solid {{ section.settings.filter_border_color }};
@@ -160,10 +202,17 @@
     color: black;
   }
 
+  @media (max-width: 1199px) {
+    {{ sec_id }} .pc-filterable-gallery {
+      padding-top: {{ section.settings.tablet_padding_top }}px;
+      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
+    }
+  }
+
   @media (max-width: 991px) {
     {{ sec_id }} .pc-filterable-gallery {
-      margin-top: {{ section.settings.mobile_margin_top }}px;
-      margin-bottom: {{ section.settings.mobile_margin_bottom }}px;
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
     }
   }
 
@@ -217,46 +266,6 @@
   }
 </style>
 
-<div class="pc-filterable-gallery-{{ last_part }}">
-  <div class="pc-container">
-    <div class="pc-text-center">
-      {%- if section.settings.heading != blank -%}
-        <h2 class="pc-title">{{ section.settings.heading }}</h2>
-      {%- endif -%}
-      {%- if section.settings.subheading != blank -%}
-        <p class="pc-subtitle">{{ section.settings.subheading }}</p>
-      {%- endif -%}
-    </div>
-
-    <div id="pc-btncontainer-{{ last_part }}" class="pc-filter">
-      <a class="pc-btn pc-btn-active" href="#all">ALL</a>
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'filter' -%}
-          <a class="pc-btn" href="#{{ block.settings.filter_tag | handleize }}">{{ block.settings.filter_tag }}</a>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-
-    <div class="pc-gallery pc-sets">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'gallery_item' -%}
-          <a class="pc-all pc-{{ block.settings.filter_tag | handleize }}">
-            {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 400 | image_tag: 
-                loading: 'lazy', 
-                class: 'pc-gallery-img',
-                alt: block.settings.image.alt | escape
-              }}
-            {%- else -%}
-              {{ 'product-1' | placeholder_svg_tag: 'pc-gallery-img' }}
-            {%- endif -%}
-          </a>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-  </div>
-</div>
-
 <script>
   class PCFilterableGallery{{ last_part | capitalize }} extends HTMLElement {
     constructor() {
@@ -265,6 +274,7 @@
     }
 
     initializeGallery() {
+      // Filter functionality
       const filterButtons = this.querySelectorAll(`#pc-btncontainer-${'{{ last_part }}'} .pc-btn`);
       filterButtons.forEach(button => {
         button.addEventListener('click', (e) => {
@@ -280,11 +290,13 @@
             }
           });
 
+          // Update active button
           filterButtons.forEach(btn => btn.classList.remove('pc-btn-active'));
           button.classList.add('pc-btn-active');
         });
       });
 
+      // Image preview functionality
       const images = this.querySelectorAll('.pc-gallery-img');
       images.forEach((img, index) => {
         img.addEventListener('click', (e) => {
@@ -347,7 +359,7 @@
 
 {% schema %}
 {
-  "name": "RW - Filter Gallery #2",
+  "name": "PWC - Filter Gallery #1",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -373,61 +385,91 @@
     },
     {
       "type": "header",
-      "content": "Section Margin (Desktop)"
+      "content": "Section Padding (Desktop)"
     },
     {
       "type": "range",
-      "id": "desktop_margin_top",
-      "label": "Top Margin",
+      "id": "desktop_padding_top",
+      "label": "Top Padding",
       "min": 0,
       "max": 200,
       "step": 5,
       "unit": "px",
-      "default": 5
+      "default": 80
     },
     {
       "type": "range",
-      "id": "desktop_margin_bottom",
-      "label": "Bottom Margin",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding",
       "min": 0,
       "max": 200,
       "step": 5,
       "unit": "px",
-      "default": 5
+      "default": 80
     },
     {
       "type": "header",
-      "content": "Section Margin (Mobile)"
+      "content": "Section Padding (Tablet)"
     },
     {
       "type": "range",
-      "id": "mobile_margin_top",
-      "label": "Top margin",
+      "id": "tablet_padding_top",
+      "label": "Top Padding",
       "min": 0,
       "max": 200,
       "step": 5,
       "unit": "px",
-      "default": 10
+      "default": 70
     },
     {
       "type": "range",
-      "id": "mobile_margin_bottom",
-      "label": "Bottom Margin",
+      "id": "tablet_padding_bottom",
+      "label": "Bottom Padding",
       "min": 0,
       "max": 200,
       "step": 5,
       "unit": "px",
-      "default": 10
+      "default": 70
     },
     {
       "type": "header",
-      "content": "Heading Settings"
+      "content": "Section Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Title Settings"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
       "default": "Our Gallery"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading Font",
+      "default": "playfair_display_n4"
     },
     {
       "type": "range",
@@ -487,7 +529,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 10
+      "default": 20
     },
     {
       "type": "header",
@@ -533,16 +575,16 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 10
+      "default": 40
     },
     {
       "type": "header",
-      "content": "Button Settings"
+      "content": "Filter Settings"
     },
     {
       "type": "range",
       "id": "filter_font_size",
-      "label": "Button Font Size",
+      "label": "Filter Font Size",
       "min": 12,
       "max": 24,
       "step": 1,
@@ -551,32 +593,8 @@
     },
     {
       "type": "select",
-      "id": "button_text_decoration",
-      "label": "Button Text Decoration",
-      "options": [
-          {
-            "value": "none",
-            "label": "None"
-          },
-          {
-            "value": "underline",
-            "label": "Underline"
-          },
-          {
-            "value": "overline",
-            "label": "Overline"
-          },
-          {
-            "value": "line-through",
-            "label": "Line Through"
-          }
-     ],
-        "default": "none"
-     },
-    {
-      "type": "select",
       "id": "filter_font_weight",
-      "label": "Button Font Weight",
+      "label": "Filter Font Weight",
       "options": [
         {
           "value": "400",
@@ -600,37 +618,37 @@
     {
       "type": "color",
       "id": "filter_text_color",
-      "label": "Button Text Color",
+      "label": "Filter Text Color",
       "default": "#003"
     },
     {
       "type": "color",
       "id": "filter_bg_color",
-      "label": "Button Background Color",
+      "label": "Filter Background Color",
       "default": "#eee"
     },
     {
       "type": "color",
       "id": "filter_border_color",
-      "label": "Button Border Color",
+      "label": "Filter Border Color",
       "default": "#f44336"
     },
     {
       "type": "color",
       "id": "filter_active_text_color",
-      "label": " Active Button Filter Text Color",
+      "label": "Active Filter Text Color",
       "default": "#fff"
     },
     {
       "type": "color",
       "id": "filter_active_bg_color",
-      "label": "Active Button Background Color",
+      "label": "Active Filter Background Color",
       "default": "#f44336"
     },
     {
       "type": "range",
       "id": "filter_border_radius",
-      "label": "Button Border Radius",
+      "label": "Filter Border Radius",
       "min": 0,
       "max": 50,
       "step": 1,
@@ -640,7 +658,7 @@
     {
       "type": "range",
       "id": "filter_vertical_padding",
-      "label": "Button Vertical Padding",
+      "label": "Filter Vertical Padding",
       "min": 5,
       "max": 30,
       "step": 1,
@@ -650,7 +668,7 @@
     {
       "type": "range",
       "id": "filter_horizontal_padding",
-      "label": "Button Horizontal Padding",
+      "label": "Filter Horizontal Padding",
       "min": 10,
       "max": 50,
       "step": 1,
@@ -660,7 +678,7 @@
     {
       "type": "range",
       "id": "filter_bottom_margin",
-      "label": "Button Bottom Margin",
+      "label": "Filter Bottom Margin",
       "min": 0,
       "max": 100,
       "step": 5,
@@ -679,7 +697,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 10
+      "default": 25
     },
     {
       "type": "range",
@@ -699,7 +717,27 @@
       "max": 500,
       "step": 10,
       "unit": "px",
-      "default": 180
+      "default": 220
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_width",
+      "label": "Image Width (Tablet)",
+      "min": 80,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "label": "Image Height (Tablet)",
+      "min": 80,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 80
     },
     {
       "type": "range",
@@ -770,73 +808,73 @@
           "id": "filter_tag",
           "label": "Filter Tag",
           "info": "Must match one of the filter tags exactly",
-          "default": "JAVASCRIPT"
+          "default": "Product Image"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "RW - Filter Gallery #2",
+      "name": "PWC - Filter Gallery #1",
       "blocks": [
         {
           "type": "filter",
           "settings": {
-            "filter_tag": "JAVASCRIPT"
+            "filter_tag": "Bollywood"
           }
         },
         {
           "type": "filter",
           "settings": {
-            "filter_tag": "REACT"
+            "filter_tag": "Hollywood"
           }
         },
         {
           "type": "filter",
           "settings": {
-            "filter_tag": "ANGULAR"
+            "filter_tag": "TV Shows"
           }
         },
         {
           "type": "gallery_item",
           "settings": {
-            "filter_tag": "JAVASCRIPT"
+            "filter_tag": "Bollywood"
           }
         },
         {
           "type": "gallery_item",
           "settings": {
-            "filter_tag": "JAVASCRIPT"
+            "filter_tag": "Bollywood"
           }
         },
         {
           "type": "gallery_item",
           "settings": {
-            "filter_tag": "JAVASCRIPT"
+            "filter_tag": "Bollywood"
           }
         },
         {
           "type": "gallery_item",
           "settings": {
-            "filter_tag": "REACT"
+            "filter_tag": "Hollywood"
           }
         },
         {
           "type": "gallery_item",
           "settings": {
-            "filter_tag": "REACT"
+            "filter_tag": "Hollywood"
           }
         },
         {
           "type": "gallery_item",
           "settings": {
-            "filter_tag": "ANGULAR"
+            "filter_tag": "TV Shows"
           }
         },
         {
           "type": "gallery_item",
           "settings": {
-            "filter_tag": "ANGULAR"
+            "filter_tag": "TV Shows"
           }
         }
       ]
