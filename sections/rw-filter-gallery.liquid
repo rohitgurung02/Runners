@@ -7,8 +7,8 @@
   {{ sec_id }} .pc-filterable-gallery {
     position: relative;
     z-index: 1;
-    padding-top: {{ section.settings.desktop_padding_top }}px !important;
-    padding-bottom: {{ section.settings.desktop_padding_bottom }}px !important;
+    margin-top: {{ section.settings.desktop_margin_top }}px;
+    margin-bottom: {{ section.settings.desktop_margin_bottom }}px;
     background-color: {{ section.settings.background_color }};
   }
 
@@ -390,7 +390,7 @@
     },
     {
       "type": "range",
-      "id": "desktop_padding_top",
+      "id": "desktop_margin_top",
       "label": "Top Padding",
       "min": 0,
       "max": 200,
@@ -400,7 +400,7 @@
     },
     {
       "type": "range",
-      "id": "desktop_padding_bottom",
+      "id": "desktop_margin_bottom",
       "label": "Bottom Padding",
       "min": 0,
       "max": 200,
