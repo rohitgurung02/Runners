@@ -19,7 +19,7 @@
     <div id="pc-btncontainer-{{ last_part }}" class="pc-filter">
       <a class="pc-btn pc-btn-active" href="#all">ALL</a>
       {%- for block in section.blocks -%}
-        {%- if block.type == 'product' -%}
+        {%- if block.type == 'filter' -%}
           <a class="pc-btn" href="#{{ block.settings.filter_tag | handleize }}">{{ block.settings.filter_tag }}</a>
         {%- endif -%}
       {%- endfor -%}
@@ -782,8 +782,8 @@
   ],
   "blocks": [
     {
-      "type": "product",
-      "name": "product",
+      "type": "filter",
+      "name": "Filter",
       "settings": [
         {
           "type": "text",
@@ -818,21 +818,21 @@
       "name": "PWC - Filter Gallery #1",
       "blocks": [
         {
-          "type": "product",
+          "type": "filter",
           "settings": {
-            "filter_tag": "Prouduct 1"
+            "filter_tag": "Bollywood"
           }
         },
         {
-          "type": "product",
+          "type": "filter",
           "settings": {
-            "filter_tag": "Prouduct 2"
+            "filter_tag": "Hollywood"
           }
         },
         {
-          "type": "product",
+          "type": "filter",
           "settings": {
-            "filter_tag": "Prouduct 3"
+            "filter_tag": "TV Shows"
           }
         },
         {
