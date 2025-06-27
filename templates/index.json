@@ -1075,6 +1075,133 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
+    },
+    "rw_test_TUzLqr": {
+      "type": "rw-test",
+      "blocks": {
+        "filter_WPxaxx": {
+          "type": "filter",
+          "settings": {
+            "filter_tag": "JAVASCRIPT"
+          }
+        },
+        "filter_XhKFxn": {
+          "type": "filter",
+          "settings": {
+            "filter_tag": "REACT"
+          }
+        },
+        "filter_B9QpUn": {
+          "type": "filter",
+          "settings": {
+            "filter_tag": "ANGULAR"
+          }
+        },
+        "gallery_item_VjJVhX": {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "JAVASCRIPT"
+          }
+        },
+        "gallery_item_KzDbxx": {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "JAVASCRIPT"
+          }
+        },
+        "gallery_item_F8myAz": {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "JAVASCRIPT"
+          }
+        },
+        "gallery_item_Yj46nz": {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "REACT"
+          }
+        },
+        "gallery_item_wNQdHw": {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "REACT"
+          }
+        },
+        "gallery_item_P3MhKL": {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "ANGULAR"
+          }
+        },
+        "gallery_item_q4C7NX": {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "ANGULAR"
+          }
+        },
+        "gallery_item_TWJkxB": {
+          "type": "gallery_item",
+          "settings": {
+            "filter_tag": "JAVASCRIPT"
+          }
+        }
+      },
+      "block_order": [
+        "filter_WPxaxx",
+        "filter_XhKFxn",
+        "filter_B9QpUn",
+        "gallery_item_VjJVhX",
+        "gallery_item_KzDbxx",
+        "gallery_item_F8myAz",
+        "gallery_item_Yj46nz",
+        "gallery_item_wNQdHw",
+        "gallery_item_P3MhKL",
+        "gallery_item_q4C7NX",
+        "gallery_item_TWJkxB"
+      ],
+      "name": "PWC - Filter Gallery #1",
+      "settings": {
+        "max_width": 1320,
+        "background_color": "#ffffff",
+        "desktop_padding_top": 80,
+        "desktop_padding_bottom": 80,
+        "tablet_padding_top": 70,
+        "tablet_padding_bottom": 70,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 50,
+        "heading": "Our Gallery",
+        "heading_font": "playfair_display_n4",
+        "heading_size": 46,
+        "mobile_heading_size": 36,
+        "heading_weight": "700",
+        "heading_color": "#f44336",
+        "heading_bottom_margin": 20,
+        "subheading": "Some Random Photos Lorem ipsum, dolor sit.",
+        "subheading_size": 16,
+        "subheading_color": "#4c4c4c",
+        "subheading_max_width": 600,
+        "title_bottom_margin": 40,
+        "filter_font_size": 16,
+        "filter_font_weight": "500",
+        "filter_text_color": "#003",
+        "filter_bg_color": "#eee",
+        "filter_border_color": "#f44336",
+        "filter_active_text_color": "#fff",
+        "filter_active_bg_color": "#f44336",
+        "filter_border_radius": 10,
+        "filter_vertical_padding": 10,
+        "filter_horizontal_padding": 20,
+        "filter_bottom_margin": 25,
+        "gallery_top_margin": 25,
+        "image_width": 200,
+        "image_height": 220,
+        "mobile_image_width": 80,
+        "mobile_image_height": 80,
+        "small_mobile_image_width": 60,
+        "small_mobile_image_height": 180,
+        "image_border_radius": 12,
+        "image_margin": 10
+      }
     }
   },
   "order": [
@@ -1089,6 +1216,7 @@
     "rw_test_aezBCg",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA"
+    "rw_video_banner_f88XdA",
+    "rw_test_TUzLqr"
   ]
 }
