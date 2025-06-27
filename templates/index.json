@@ -1040,7 +1040,7 @@
         "container_width": 1200,
         "desktop_height": 600,
         "container_border_radius": 10,
-        "video_border_radius": 50,
+        "video_border_radius": 20,
         "mobile_container_width": 400,
         "mobile_height": 400,
         "mobile_container_border_radius": 0,
