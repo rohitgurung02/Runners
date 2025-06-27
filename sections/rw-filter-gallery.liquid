@@ -26,7 +26,6 @@
   {{ sec_id }} .pc-title {
     font-size: {{ section.settings.heading_size }}px;
     font-weight: {{ section.settings.heading_weight }};
-    font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
     color: {{ section.settings.heading_color }};
     margin-bottom: {{ section.settings.heading_bottom_margin }}px;
   }
@@ -56,6 +55,7 @@
     border-radius: {{ section.settings.filter_border_radius }}px;
     font-size: {{ section.settings.filter_font_size }}px;
     font-weight: {{ section.settings.filter_font_weight }};
+    cursor: pointer;
   }
 
   {{ sec_id }} .pc-btn:hover,
@@ -68,14 +68,14 @@
   {{ sec_id }} .pc-gallery {
     display: flex;
     justify-content: center;
-    width: fit-content;
-    max-width: 1320px;
     flex-wrap: wrap;
     margin: {{ section.settings.gallery_top_margin }}px auto;
+    gap: {{ section.settings.image_gap }}px;
   }
 
-  {{ sec_id }} .pc-gallery a {
-    display: flex;
+  {{ sec_id }} .pc-gallery-item {
+    display: block;
+    transition: all 0.3s ease;
   }
 
   {{ sec_id }} .pc-gallery-img {
@@ -85,81 +85,91 @@
     transition: 0.3s ease-in-out;
     border-radius: {{ section.settings.image_border_radius }}px;
     overflow: hidden;
-    margin: {{ section.settings.image_margin }}px;
   }
 
-  {{ sec_id }} .pc-gallery-img:hover {
+  {{ sec_id }} .pc-gallery-item:hover .pc-gallery-img {
     transform: scale(1.1);
   }
 
-  {{ sec_id }} .pc-sets .pc-hide,
-  {{ sec_id }} .pc-sets .pc-pophide {
-    width: 0%;
-    opacity: 0;
+  {{ sec_id }} .pc-hide {
+    display: none !important;
   }
 
-  {{ sec_id }} .pc-closeBtn {
-    position: absolute;
-    font-size: 22px;
-    font-weight: 500;
-    right: 25px;
-    top: 25px;
-    color: white;
-    transition: 0.5s linear;
-    padding: 8px 40px;
-    border-radius: 25px;
-    background: red;
-    outline-offset: -6px;
-    outline: 2px solid #fff;
-  }
-
-  {{ sec_id }} .pc-closeBtn:hover {
-    cursor: pointer;
-    background: white;
-    color: black;
-    outline: 2px solid #000;
-  }
-
-  {{ sec_id }} .pc-openDiv {
-    width: 100%;
-    height: 100vh;
-    background: #000000e7;
+  /* Image preview modal styles */
+  {{ sec_id }} .pc-modal {
     position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    left: 0;
-    z-index: 9999;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
   }
 
-  {{ sec_id }} .pc-imgPreview {
-    width: 70%;
-    object-fit: scale-down;
-    max-height: 40vw;
-    height: auto;
+  {{ sec_id }} .pc-modal.active {
+    opacity: 1;
+    pointer-events: all;
   }
 
-  {{ sec_id }} .pc-prevButton,
-  {{ sec_id }} .pc-nextButton {
-    transition: 1s linear;
-    padding: 10px 35px;
-    font-size: 18px;
-    border: none;
+  {{ sec_id }} .pc-modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+  }
+
+  {{ sec_id }} .pc-modal-img {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+  }
+
+  {{ sec_id }} .pc-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
     color: white;
-    background: #0005;
-    border-radius: 10px;
-    border: 1px solid white;
-    margin: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
   }
 
-  {{ sec_id }} .pc-prevButton:hover,
-  {{ sec_id }} .pc-nextButton:hover {
-    background: #fff;
-    color: black;
+  {{ sec_id }} .pc-modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
   }
 
+  {{ sec_id }} .pc-modal-prev {
+    left: 15px;
+  }
+
+  {{ sec_id }} .pc-modal-next {
+    right: 15px;
+  }
+
+  /* Responsive styles */
   @media (max-width: 1199px) {
     {{ sec_id }} .pc-filterable-gallery {
       padding-top: {{ section.settings.tablet_padding_top }}px;
@@ -180,51 +190,20 @@
     }
 
     {{ sec_id }} .pc-gallery-img {
-      margin: 8px 8px;
       width: {{ section.settings.mobile_image_width }}px;
       height: {{ section.settings.mobile_image_height }}px;
-    }
-
-    {{ sec_id }} .pc-closeBtn {
-      padding: 6px 25px;
-    }
-
-    {{ sec_id }} .pc-prevButton,
-    {{ sec_id }} .pc-nextButton {
-      font-size: 18px;
-      padding: 8px 25px;
     }
   }
 
   @media (max-width: 540px) {
     {{ sec_id }} .pc-gallery-img {
-      margin: 8px 6px;
       width: {{ section.settings.small_mobile_image_width }}px;
       height: {{ section.settings.small_mobile_image_height }}px;
-    }
-
-    {{ sec_id }} .pc-closeBtn {
-      font-size: 18px;
-      border-radius: 15px;
-    }
-
-    {{ sec_id }} .pc-prevButton,
-    {{ sec_id }} .pc-nextButton {
-      font-size: 18px;
-      padding: 6px 20px;
-      border-radius: 10px;
-      margin: 5px;
-    }
-
-    {{ sec_id }} .pc-imgPreview {
-      width: 90%;
-      max-height: 50vh;
-      height: auto;
     }
   }
 </style>
 
-<pc-filterable-gallery-{{ last_part }} class="pc-filterable-gallery">
+<div class="pc-filterable-gallery">
   <div class="pc-container">
     <!-- Section Title Start -->
     <div class="pc-text-center">
@@ -237,138 +216,152 @@
     </div>
     <!-- Section Title End -->
 
-    <div id="pc-btncontainer-{{ last_part }}" class="pc-filter">
-      <a class="pc-btn pc-btn-active" href="#all">ALL</a>
+    <!-- Filter Buttons -->
+    <div class="pc-filter">
+      <button class="pc-btn pc-btn-active" data-filter="all">ALL</button>
       {%- for block in section.blocks -%}
-        {%- if block.type == 'button' -%}
-          <a class="pc-btn" href="#{{ block.settings.filter_tag | handleize }}">{{ block.settings.filter_tag }}</a>
+        {%- if block.type == 'filter_button' -%}
+          {%- assign filter_tag = block.settings.filter_tag | handleize -%}
+          <button class="pc-btn" data-filter="{{ filter_tag }}">{{ block.settings.filter_tag }}</button>
         {%- endif -%}
       {%- endfor -%}
     </div>
 
-    <!-- Gallery Section Start -->
-    <div class="pc-gallery pc-sets">
+    <!-- Gallery Items -->
+    <div class="pc-gallery">
       {%- for block in section.blocks -%}
         {%- if block.type == 'gallery_item' -%}
-          <a class="pc-all pc-{{ block.settings.filter_tag | handleize }}">
+          {%- assign item_filter_tags = block.settings.filter_tag | split: ',' -%}
+          {%- assign item_classes = '' -%}
+          {%- for tag in item_filter_tags -%}
+            {%- assign handleized_tag = tag | handleize -%}
+            {%- assign item_classes = item_classes | append: ' pc-' | append: handleized_tag -%}
+          {%- endfor -%}
+          
+          <div class="pc-gallery-item pc-all{{ item_classes }}" data-tags="{{ item_filter_tags | join: ',' | handleize }}">
             {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 400 | image_tag: 
-                loading: 'lazy', 
-                class: 'pc-gallery-img',
-                alt: block.settings.image.alt | escape
-              }}
+              <img class="pc-gallery-img" 
+                   src="{{ block.settings.image | img_url: '400x' }}" 
+                   alt="{{ block.settings.image.alt | escape }}" 
+                   loading="lazy">
             {%- else -%}
               {{ 'product-1' | placeholder_svg_tag: 'pc-gallery-img' }}
             {%- endif -%}
-          </a>
+          </div>
         {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
-</pc-filterable-gallery-{{ last_part }}>
+</div>
+
+<!-- Image Preview Modal -->
+<div class="pc-modal">
+  <div class="pc-modal-content">
+    <span class="pc-modal-close">&times;</span>
+    <img class="pc-modal-img" src="" alt="">
+    <div class="pc-modal-nav pc-modal-prev">&#10094;</div>
+    <div class="pc-modal-nav pc-modal-next">&#10095;</div>
+  </div>
+</div>
 
 <script>
-  class PCFilterableGallery{{ last_part | capitalize }} extends HTMLElement {
-    constructor() {
-      super();
-      this.initializeGallery();
-    }
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionId = '{{ sec_id }}';
+    const filterButtons = document.querySelectorAll(`${sectionId} .pc-btn`);
+    const galleryItems = document.querySelectorAll(`${sectionId} .pc-gallery-item`);
+    const modal = document.querySelector(`${sectionId} .pc-modal`);
+    const modalImg = document.querySelector(`${sectionId} .pc-modal-img`);
+    const closeBtn = document.querySelector(`${sectionId} .pc-modal-close`);
+    const prevBtn = document.querySelector(`${sectionId} .pc-modal-prev`);
+    const nextBtn = document.querySelector(`${sectionId} .pc-modal-next`);
+    
+    let currentImageIndex = 0;
+    let filteredItems = [];
 
-    initializeGallery() {
-      // Filter functionality
-      const filterButtons = this.querySelectorAll(`#pc-btncontainer-${'{{ last_part }}'} .pc-btn`);
-      filterButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-          e.preventDefault();
-          const filterValue = button.getAttribute('href').substr(1);
-          const galleryItems = this.querySelectorAll('.pc-sets a');
-          
-          galleryItems.forEach(item => {
-            if (filterValue === "all") {
+    // Filter functionality
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filterValue = button.dataset.filter;
+        
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('pc-btn-active'));
+        button.classList.add('pc-btn-active');
+        
+        // Filter items
+        galleryItems.forEach(item => {
+          if (filterValue === 'all') {
+            item.classList.remove('pc-hide');
+          } else {
+            const itemTags = item.dataset.tags.split(',');
+            if (itemTags.includes(filterValue)) {
               item.classList.remove('pc-hide');
             } else {
-              // Check if item has the specific filter class
-              const hasClass = item.classList.contains(`pc-${filterValue}`);
-              if (hasClass) {
-                item.classList.remove('pc-hide');
-              } else {
-                item.classList.add('pc-hide');
-              }
+              item.classList.add('pc-hide');
             }
-          });
-
-          // Update active button
-          filterButtons.forEach(btn => btn.classList.remove('pc-btn-active'));
-          button.classList.add('pc-btn-active');
-        });
-      });
-
-      // Image preview functionality remains the same
-      const images = this.querySelectorAll('.pc-gallery-img');
-      images.forEach((img, index) => {
-        img.addEventListener('click', (e) => {
-          if (e.target === img) {
-            let currentIndex = index;
-            const openDiv = document.createElement('div');
-            const imgPreview = document.createElement('img');
-            const buttonsSection = document.createElement('div');
-            buttonsSection.classList.add('pc-buttonsSection');
-            
-            const closeBtn = document.createElement('button');
-            const nextBtn = document.createElement('button');
-            const prevButton = document.createElement('button');
-            
-            prevButton.innerText = 'Previous';
-            nextBtn.innerText = 'Next';
-            nextBtn.classList.add('pc-nextButton');
-            prevButton.classList.add('pc-prevButton');
-            
-            nextBtn.addEventListener('click', () => {
-              if (currentIndex >= images.length - 1) {
-                currentIndex = 0;
-              } else {
-                currentIndex++;
-              }
-              imgPreview.src = images[currentIndex].src;
-            });
-
-            prevButton.addEventListener('click', () => {
-              if (currentIndex === 0) {
-                currentIndex = images.length - 1;
-              } else {
-                currentIndex--;
-              }
-              imgPreview.src = images[currentIndex].src;
-            });
-
-            closeBtn.classList.add('pc-closeBtn');
-            closeBtn.innerText = 'Close';
-            closeBtn.addEventListener('click', () => {
-              openDiv.remove();
-            });
-
-            imgPreview.classList.add('pc-imgPreview');
-            imgPreview.src = img.src;
-
-            buttonsSection.append(prevButton, nextBtn);
-            openDiv.append(imgPreview, buttonsSection, closeBtn);
-            openDiv.classList.add('pc-openDiv');
-
-            document.body.append(openDiv);
           }
         });
       });
-    }
-  }
+    });
 
-  customElements.define('pc-filterable-gallery-{{ last_part }}', PCFilterableGallery{{ last_part | capitalize }});
+    // Image preview functionality
+    galleryItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        if (img) {
+          currentImageIndex = index;
+          modalImg.src = img.src;
+          modalImg.alt = img.alt;
+          modal.classList.add('active');
+          
+          // Update filtered items array based on current filter
+          const activeFilter = document.querySelector(`${sectionId} .pc-btn-active`).dataset.filter;
+          filteredItems = Array.from(galleryItems).filter(item => {
+            if (activeFilter === 'all') return true;
+            const itemTags = item.dataset.tags.split(',');
+            return itemTags.includes(activeFilter) && !item.classList.contains('pc-hide');
+          });
+          
+          // Find the new index in filtered array
+          currentImageIndex = Array.from(filteredItems).indexOf(item);
+        }
+      });
+    });
+
+    // Modal navigation
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (filteredItems.length > 0) {
+        currentImageIndex = (currentImageIndex - 1 + filteredItems.length) % filteredItems.length;
+        const img = filteredItems[currentImageIndex].querySelector('img');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (filteredItems.length > 0) {
+        currentImageIndex = (currentImageIndex + 1) % filteredItems.length;
+        const img = filteredItems[currentImageIndex].querySelector('img');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+      }
+    });
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+  });
 </script>
 
 {% schema %}
 {
-  "name": "RW - Filter Gallery #2",
-  "tag": "section",
-  "class": "section",
+  "name": "RW - Filter Gallery",
   "settings": [
     {
       "type": "header",
@@ -389,6 +382,16 @@
       "id": "background_color",
       "label": "Background Color",
       "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "image_gap",
+      "label": "Image Gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 15
     },
     {
       "type": "header",
@@ -585,7 +588,7 @@
     {
       "type": "range",
       "id": "filter_font_size",
-      "label": "Product Font Size",
+      "label": "Filter Font Size",
       "min": 12,
       "max": 24,
       "step": 1,
@@ -622,30 +625,30 @@
       "label": "Filter Text Color",
       "default": "#003"
     },
-     {
-          "type": "select",
-          "id": "button_text_decoration",
-          "label": "Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
+    {
+      "type": "select",
+      "id": "button_text_decoration",
+      "label": "Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
         },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
     {
       "type": "color",
       "id": "filter_bg_color",
@@ -793,35 +796,25 @@
       "step": 1,
       "unit": "px",
       "default": 10
-    },
-    {
-      "type": "range",
-      "id": "image_margin",
-      "label": "Image Margin",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 10
     }
   ],
   "blocks": [
     {
-      "type": "button",
-      "name": "Product",
+      "type": "filter_button",
+      "name": "Filter Button",
       "settings": [
         {
           "type": "text",
           "id": "filter_tag",
           "label": "Filter Tag",
           "info": "This will be used to filter gallery items",
-          "default": "Product Image"
+          "default": "Product"
         }
       ]
     },
     {
       "type": "gallery_item",
-      "name": "Product Image",
+      "name": "Gallery Item",
       "settings": [
         {
           "type": "image_picker",
@@ -831,69 +824,63 @@
         {
           "type": "text",
           "id": "filter_tag",
-          "label": "Filter Tag",
-          "info": "Must match one of the filter tags exactly",
-          "default": "Product Image"
+          "label": "Filter Tags",
+          "info": "Comma separated list of tags that match filter buttons",
+          "default": "Product"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "RW - Filter Gallery #2",
+      "name": "RW - Filter Gallery",
       "blocks": [
         {
-          "type": "button",
+          "type": "filter_button",
           "settings": {
-            "filter_tag": "Product One"
+            "filter_tag": "Product"
           }
         },
         {
-          "type": "button",
+          "type": "filter_button",
           "settings": {
-            "filter_tag": "Product Two"
+            "filter_tag": "Nature"
           }
         },
         {
-          "type": "button",
+          "type": "filter_button",
           "settings": {
-            "filter_tag": "Product Three"
-          }
-        },
-        {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Product Image 1"
+            "filter_tag": "People"
           }
         },
         {
           "type": "gallery_item",
           "settings": {
-            "filter_tag": "Product Image 2"
+            "filter_tag": "Product"
           }
         },
         {
           "type": "gallery_item",
           "settings": {
-            "filter_tag": "Product Image 3"
+            "filter_tag": "Nature"
           }
         },
         {
           "type": "gallery_item",
           "settings": {
-            "filter_tag": "Product Image 4"
+            "filter_tag": "People"
           }
         },
         {
           "type": "gallery_item",
           "settings": {
-            "filter_tag": "Product Image 5"
+            "filter_tag": "Product,People"
           }
         },
         {
           "type": "gallery_item",
           "settings": {
-            "filter_tag": "Product Image 6"
+            "filter_tag": "Nature,People"
           }
         }
       ]
