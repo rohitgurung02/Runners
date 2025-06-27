@@ -169,8 +169,8 @@
 
   @media (max-width: 991px) {
     {{ sec_id }} .pc-filterable-gallery {
-      padding-top: {{ section.settings.mobile_padding_top }}px;
-      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      margin-top: {{ section.settings.mobile_margin__top }}px;
+      margin-bottom: {{ section.settings.mobile_margin_bottom }}px;
     }
   }
 
@@ -434,12 +434,12 @@
     },
     {
       "type": "header",
-      "content": "Section Padding (Mobile)"
+      "content": "Section Margin (Mobile)"
     },
     {
       "type": "range",
-      "id": "mobile_padding_top",
-      "label": "Top Padding",
+      "id": "mobile_margin_top",
+      "label": "Top margin",
       "min": 0,
       "max": 200,
       "step": 5,
@@ -448,8 +448,8 @@
     },
     {
       "type": "range",
-      "id": "mobile_padding_bottom",
-      "label": "Bottom Padding",
+      "id": "mobile_margin_bottom",
+      "label": "Bottom Margin",
       "min": 0,
       "max": 200,
       "step": 5,
