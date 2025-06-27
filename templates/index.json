@@ -1126,30 +1126,6 @@
           "settings": {
             "filter_tag": "REACT"
           }
-        },
-        "gallery_item_cbG6A8": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "ANGULAR"
-          }
-        },
-        "gallery_item_X37rCp": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "ANGULAR"
-          }
-        },
-        "gallery_item_TAzxG6": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Product Image"
-          }
-        },
-        "gallery_item_8jyBU8": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Product Image"
-          }
         }
       },
       "block_order": [
@@ -1160,11 +1136,7 @@
         "gallery_item_Hjmkq8",
         "gallery_item_LRAb4L",
         "gallery_item_YKHTAU",
-        "gallery_item_JqfUCi",
-        "gallery_item_cbG6A8",
-        "gallery_item_X37rCp",
-        "gallery_item_TAzxG6",
-        "gallery_item_8jyBU8"
+        "gallery_item_JqfUCi"
       ],
       "name": "PWC - Filter Gallery #1",
       "settings": {
@@ -1187,10 +1159,10 @@
         "title_bottom_margin": 40,
         "filter_font_size": 16,
         "filter_font_weight": "500",
-        "filter_text_color": "#003",
-        "filter_bg_color": "#eee",
+        "filter_text_color": "#000033",
+        "filter_bg_color": "#eeeeee",
         "filter_border_color": "#f44336",
-        "filter_active_text_color": "#fff",
+        "filter_active_text_color": "#ffffff",
         "filter_active_bg_color": "#f44336",
         "filter_border_radius": 10,
         "filter_vertical_padding": 10,
