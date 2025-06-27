@@ -94,7 +94,7 @@
 
   {{ sec_id }} .pc-sets .pc-hide,
   {{ sec_id }} .pc-sets .pc-pophide {
-    width: 0%;
+    display: none;
     opacity: 0;
   }
 
@@ -240,8 +240,8 @@
     <div id="pc-btncontainer-{{ last_part }}" class="pc-filter">
       <a class="pc-btn pc-btn-active" href="#all">ALL</a>
       {%- for block in section.blocks -%}
-        {%- if block.type == 'button' -%}
-          <a class="pc-btn" href="#{{ block.settings.filter_tag | handleize }}">{{ block.settings.filter_tag }}</a>
+        {%- if block.type == 'product' -%}
+          <a class="pc-btn" href="#{{ block.settings.product_name | handleize }}">{{ block.settings.product_name }}</a>
         {%- endif -%}
       {%- endfor -%}
     </div>
@@ -249,18 +249,19 @@
     <!-- Gallery Section Start -->
     <div class="pc-gallery pc-sets">
       {%- for block in section.blocks -%}
-        {%- if block.type == 'gallery_item' -%}
-          <a class="pc-all pc-{{ block.settings.filter_tag | handleize }}">
-            {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 400 | image_tag: 
-                loading: 'lazy', 
-                class: 'pc-gallery-img',
-                alt: block.settings.image.alt | escape
-              }}
-            {%- else -%}
-              {{ 'product-1' | placeholder_svg_tag: 'pc-gallery-img' }}
+        {%- if block.type == 'product' -%}
+          {%- for i in (1..5) -%}
+            {%- assign image_key = 'image_' | append: i -%}
+            {%- if block.settings[image_key] != blank -%}
+              <a class="pc-all pc-{{ block.settings.product_name | handleize }}">
+                {{ block.settings[image_key] | image_url: width: 400 | image_tag: 
+                  loading: 'lazy', 
+                  class: 'pc-gallery-img',
+                  alt: block.settings[image_key].alt | escape
+                }}
+              </a>
             {%- endif -%}
-          </a>
+          {%- endfor -%}
         {%- endif -%}
       {%- endfor -%}
     </div>
@@ -287,13 +288,8 @@
             if (filterValue === "all") {
               item.classList.remove('pc-hide');
             } else {
-              // Check if item has the specific filter class
               const hasClass = item.classList.contains(`pc-${filterValue}`);
-              if (hasClass) {
-                item.classList.remove('pc-hide');
-              } else {
-                item.classList.add('pc-hide');
-              }
+              item.classList.toggle('pc-hide', !hasClass);
             }
           });
 
@@ -324,20 +320,12 @@
             prevButton.classList.add('pc-prevButton');
             
             nextBtn.addEventListener('click', () => {
-              if (currentIndex >= images.length - 1) {
-                currentIndex = 0;
-              } else {
-                currentIndex++;
-              }
+              currentIndex = (currentIndex + 1) % images.length;
               imgPreview.src = images[currentIndex].src;
             });
 
             prevButton.addEventListener('click', () => {
-              if (currentIndex === 0) {
-                currentIndex = images.length - 1;
-              } else {
-                currentIndex--;
-              }
+              currentIndex = (currentIndex - 1 + images.length) % images.length;
               imgPreview.src = images[currentIndex].src;
             });
 
@@ -807,33 +795,39 @@
   ],
   "blocks": [
     {
-      "type": "button",
-      "name": "Filter Button",
+      "type": "product",
+      "name": "Product",
       "settings": [
         {
           "type": "text",
-          "id": "filter_tag",
-          "label": "Filter Tag",
-          "info": "This will be used to filter gallery items",
-          "default": "Product"
-        }
-      ]
-    },
-    {
-      "type": "gallery_item",
-      "name": "Gallery Image",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
+          "id": "product_name",
+          "label": "Product Name",
+          "default": "Product 1"
         },
         {
-          "type": "text",
-          "id": "filter_tag",
-          "label": "Filter Tag",
-          "info": "Must match one of the filter tags exactly",
-          "default": "Product"
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5",
+          "label": "Image 5"
         }
       ]
     }
@@ -843,51 +837,29 @@
       "name": "RW - Filter Gallery #2",
       "blocks": [
         {
-          "type": "button",
+          "type": "product",
           "settings": {
-            "filter_tag": "Product One"
+            "product_name": "Product 1",
+            "image_1": "shopify:\/\/shop_images\/product-1.jpg",
+            "image_2": "shopify:\/\/shop_images\/product-2.jpg",
+            "image_3": "shopify:\/\/shop_images\/product-3.jpg"
           }
         },
         {
-          "type": "button",
+          "type": "product",
           "settings": {
-            "filter_tag": "Product Two"
+            "product_name": "Product 2",
+            "image_1": "shopify:\/\/shop_images\/product-4.jpg",
+            "image_2": "shopify:\/\/shop_images\/product-5.jpg"
           }
         },
         {
-          "type": "gallery_item",
+          "type": "product",
           "settings": {
-            "filter_tag": "Product One"
-          }
-        },
-        {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Product One"
-          }
-        },
-        {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Product One"
-          }
-        },
-        {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Product Two"
-          }
-        },
-        {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Product Two"
-          }
-        },
-        {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "Product Two"
+            "product_name": "Product 3",
+            "image_1": "shopify:\/\/shop_images\/product-6.jpg",
+            "image_2": "shopify:\/\/shop_images\/product-7.jpg",
+            "image_3": "shopify:\/\/shop_images\/product-8.jpg"
           }
         }
       ]
