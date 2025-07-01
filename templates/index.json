@@ -1075,52 +1075,6 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
-    },
-    "rw_parallax_effect_xYhyYR": {
-      "type": "rw-parallax-effect",
-      "blocks": {
-        "content_RW3JXX": {
-          "type": "content",
-          "settings": {
-            "content": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis minima fuga debitis quasi eius aliquid sapiente? Cumque blanditiis quibusdam, ex totam aliquam provident alias culpa, sit illo, eum doloribus doloremque.</p>",
-            "parallax_title": "Beaches",
-            "image": "shopify://shop_images/pexels-photo-92733.jpg"
-          }
-        },
-        "content_fazwDC": {
-          "type": "content",
-          "settings": {
-            "content": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis minima fuga debitis quasi eius aliquid sapiente? Cumque blanditiis quibusdam, ex totam aliquam provident alias culpa, sit illo, eum doloribus doloremque.</p>",
-            "parallax_title": "Beaches",
-            "image": "shopify://shop_images/1040-1200x800.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "content_RW3JXX",
-        "content_fazwDC"
-      ],
-      "name": "PWC - Parallax Sections #1",
-      "settings": {
-        "title": "Forests",
-        "text_color": "#ffffff",
-        "title_size": 160,
-        "mobile_title_size": 60,
-        "title_weight": "100",
-        "title_shadow": true,
-        "desktop_padding_top": 100,
-        "desktop_padding_bottom": 100,
-        "content_margin_top": 50,
-        "content_margin_bottom": 50,
-        "content_margin_sides": 50,
-        "content_font_size": 16,
-        "mobile_padding_top": 60,
-        "mobile_padding_bottom": 60,
-        "mobile_content_margin_top": 30,
-        "mobile_content_margin_bottom": 30,
-        "mobile_content_margin_sides": 20,
-        "mobile_content_font_size": 14
-      }
     }
   },
   "order": [
@@ -1135,7 +1089,6 @@
     "rw_test_aezBCg",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA",
-    "rw_parallax_effect_xYhyYR"
+    "rw_video_banner_f88XdA"
   ]
 }
