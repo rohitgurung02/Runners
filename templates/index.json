@@ -1083,12 +1083,12 @@
           "type": "text",
           "settings": {
             "image": "shopify://shop_images/1040-1200x800.jpg",
-            "txt1-hd1": "",
+            "txt1-hd1": "First Heading",
             "parallax-h": "h2",
-            "txt1-hd2": "",
+            "txt1-hd2": "First Subheading",
             "parallax-subh": "h3",
             "par1_showbutton": true,
-            "par1_button_label": "",
+            "par1_button_label": "click here",
             "par1_button_link": ""
           }
         }
