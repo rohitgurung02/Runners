@@ -4,9 +4,11 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} .pc-filterable-gallery-{{ last_part }} {
+  #shopify-section-{{ section.id }} .pc-filterable-gallery { 
     position: relative;
     z-index: 1;
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
     background-color: {{ section.settings.background_color }};
   }
 
@@ -222,10 +224,7 @@
   }
 </style>
 
-<pc-filterable-gallery-{{ last_part }}  class="pc-filterable-gallery--{{ last_part }}" style="
-  padding-top: {{ section.settings.desktop_padding_top }}px;
-  padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
-  ">
+<div class="pc-filterable-gallery"
   <div class="pc-container">
     <!-- Section Title Start -->
     <div class="pc-text-center">
@@ -264,7 +263,7 @@
       {%- endfor -%}
     </div>
   </div>
-</pc-filterable-gallery-{{ last_part }}>
+</div>
 
 <script>
   class PCFilterableGallery{{ last_part | capitalize }} extends HTMLElement {
