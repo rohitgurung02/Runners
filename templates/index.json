@@ -1099,7 +1099,7 @@
       "name": "Parallax",
       "settings": {
         "paral-full": true,
-        "par_img_sz": "400",
+        "par_img_sz": "700",
         "par_hd_sz": "55",
         "par_subhd_sz": "25",
         "par_button_sz": "25",
