@@ -1099,7 +1099,7 @@
       "name": "Parallax",
       "settings": {
         "paral-full": true,
-        "par_img_sz": "400",
+        "par_img_sz": "600",
         "par_hd_sz": "55",
         "par_subhd_sz": "25",
         "par_button_sz": "25",
@@ -1107,8 +1107,8 @@
         "par_txt_align": "left",
         "par_txt_top_pos": "50",
         "par-en-over": true,
-        "color_over": "#000000",
-        "par_opacity": 50
+        "color_over": "#121212",
+        "par_opacity": 40
       }
     }
   },
