@@ -1,7 +1,4 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
-{%- assign parts = sec_id | split: '_' -%}
-{%- assign last_lower = parts | last -%}
-{%- assign last_part = last_lower | downcase -%}
 
 <style>
   {{ sec_id }} .pc-filter-section {
@@ -29,6 +26,7 @@
     font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
     color: {{ section.settings.heading_color }};
     margin-bottom: {{ section.settings.heading_bottom_margin }}px;
+    line-height: 1.2;
   }
 
   {{ sec_id }} .pc-subtitle {
@@ -36,17 +34,20 @@
     color: {{ section.settings.subheading_color }};
     max-width: {{ section.settings.subheading_max_width }}px;
     margin: 0 auto;
+    line-height: 1.4;
   }
 
   {{ sec_id }} .pc-filter {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
     max-width: 1050px;
     margin: 0 auto {{ section.settings.filter_bottom_margin }}px;
   }
 
   {{ sec_id }} .pc-btn {
     padding: {{ section.settings.filter_vertical_padding }}px {{ section.settings.filter_horizontal_padding }}px;
-    margin: 5px 4px 4px 0;
     display: inline-block;
     color: {{ section.settings.filter_text_color }};
     text-decoration: {{ section.settings.button_text_decoration }};
@@ -56,6 +57,7 @@
     border-radius: {{ section.settings.filter_border_radius }}px;
     font-size: {{ section.settings.filter_font_size }}px;
     font-weight: {{ section.settings.filter_font_weight }};
+    white-space: nowrap;
   }
 
   {{ sec_id }} .pc-btn:hover,
@@ -66,64 +68,114 @@
   }
 
   {{ sec_id }} .pc-gallery {
-    display: flex;
-    justify-content: center;
-    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax({{ section.settings.image_width }}px, 1fr));
+    gap: {{ section.settings.image_margin }}px;
     max-width: 1320px;
-    flex-wrap: wrap;
     margin: {{ section.settings.gallery_top_margin }}px auto;
+    padding: 0 15px;
   }
 
   {{ sec_id }} .pc-gallery a {
     display: flex;
+    justify-content: center;
   }
 
   {{ sec_id }} .pc-gallery-img {
-    width: {{ section.settings.image_width }}px;
+    width: 100%;
     height: {{ section.settings.image_height }}px;
     object-fit: cover;
-    transition: 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     border-radius: {{ section.settings.image_border_radius }}px;
     overflow: hidden;
-    margin: {{ section.settings.image_margin }}px;
   }
 
   {{ sec_id }} .pc-gallery-img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 
+  /* Mobile-specific styles */
+  @media (max-width: 991px) {
+    {{ sec_id }} .pc-filter-section {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+    
+    {{ sec_id }} .pc-title {
+      font-size: {{ section.settings.mobile_heading_size }}px;
+    }
+    
+    {{ sec_id }} .pc-filter {
+      gap: 6px;
+    }
+    
+    {{ sec_id }} .pc-btn {
+      padding: {{ section.settings.filter_vertical_padding | times: 0.8 }}px {{ section.settings.filter_horizontal_padding | times: 0.8 }}px;
+      font-size: {{ section.settings.filter_font_size | times: 0.9 }}px;
+    }
+    
+    {{ sec_id }} .pc-gallery {
+      grid-template-columns: repeat(auto-fill, minmax({{ section.settings.mobile_image_width }}px, 1fr));
+    }
+    
+    {{ sec_id }} .pc-gallery-img {
+      height: {{ section.settings.mobile_image_height }}px;
+    }
+  }
+
+  @media (max-width: 540px) {
+    {{ sec_id }} .pc-gallery {
+      grid-template-columns: repeat(auto-fill, minmax({{ section.settings.small_mobile_image_width }}px, 1fr));
+      gap: {{ section.settings.image_margin | divided_by: 2 }}px;
+    }
+    
+    {{ sec_id }} .pc-gallery-img {
+      height: {{ section.settings.small_mobile_image_height }}px;
+    }
+    
+    {{ sec_id }} .pc-filter {
+      gap: 4px;
+    }
+    
+    {{ sec_id }} .pc-btn {
+      padding: {{ section.settings.filter_vertical_padding | times: 0.6 }}px {{ section.settings.filter_horizontal_padding | times: 0.6 }}px;
+      font-size: {{ section.settings.filter_font_size | times: 0.8 }}px;
+    }
+  }
+
+  /* Modal styles */
   {{ sec_id }} .pc-sets .pc-hide,
   {{ sec_id }} .pc-sets .pc-pophide {
-    width: 0%;
-    opacity: 0;
+    display: none;
   }
 
   {{ sec_id }} .pc-closeBtn {
     position: absolute;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 500;
-    right: 25px;
-    top: 25px;
+    right: 15px;
+    top: 15px;
     color: white;
     transition: 0.5s linear;
-    padding: 8px 40px;
-    border-radius: 25px;
+    padding: 6px 20px;
+    border-radius: 20px;
     background: red;
-    outline-offset: -6px;
-    outline: 2px solid #fff;
+    outline-offset: -4px;
+    outline: 1px solid #fff;
+    z-index: 10;
   }
 
   {{ sec_id }} .pc-closeBtn:hover {
     cursor: pointer;
     background: white;
     color: black;
-    outline: 2px solid #000;
+    outline: 1px solid #000;
   }
 
   {{ sec_id }} .pc-openDiv {
     width: 100%;
     height: 100vh;
-    background: #000000e7;
+    background: rgba(0,0,0,0.9);
     position: fixed;
     top: 0;
     display: flex;
@@ -135,23 +187,28 @@
   }
 
   {{ sec_id }} .pc-imgPreview {
-    width: 70%;
-    object-fit: scale-down;
-    max-height: 40vw;
-    height: auto;
+    width: 90%;
+    max-width: 800px;
+    max-height: 70vh;
+    object-fit: contain;
+  }
+
+  {{ sec_id }} .pc-buttonsSection {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
   }
 
   {{ sec_id }} .pc-prevButton,
   {{ sec_id }} .pc-nextButton {
-    transition: 1s linear;
-    padding: 10px 35px;
-    font-size: 18px;
+    transition: all 0.3s;
+    padding: 8px 20px;
+    font-size: 16px;
     border: none;
     color: white;
-    background: #0005;
-    border-radius: 10px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 8px;
     border: 1px solid white;
-    margin: 10px;
   }
 
   {{ sec_id }} .pc-prevButton:hover,
@@ -160,65 +217,26 @@
     color: black;
   }
 
-
-  @media (max-width: 991px) {
-    {{ sec_id }} .pc-filter-section {
-      padding-top: {{ section.settings.mobile_padding_top }}px;
-      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
-    }
-  }
-
   @media (max-width: 767px) {
-    {{ sec_id }} .pc-title {
-      font-size: {{ section.settings.mobile_heading_size }}px;
-    }
-
-    {{ sec_id }} .pc-gallery-img {
-      margin: 8px 8px;
-      width: {{ section.settings.mobile_image_width }}px;
-      height: {{ section.settings.mobile_image_height }}px;
-    }
-
-    {{ sec_id }} .pc-closeBtn {
-      padding: 6px 25px;
-    }
-
-    {{ sec_id }} .pc-prevButton,
-    {{ sec_id }} .pc-nextButton {
-      font-size: 18px;
-      padding: 8px 25px;
-    }
-  }
-
-  @media (max-width: 540px) {
-    {{ sec_id }} .pc-gallery-img {
-      margin: 8px 6px;
-      width: {{ section.settings.small_mobile_image_width }}px;
-      height: {{ section.settings.small_mobile_image_height }}px;
-    }
-
-    {{ sec_id }} .pc-closeBtn {
-      font-size: 18px;
-      border-radius: 15px;
-    }
-
-    {{ sec_id }} .pc-prevButton,
-    {{ sec_id }} .pc-nextButton {
-      font-size: 18px;
-      padding: 6px 20px;
-      border-radius: 10px;
-      margin: 5px;
-    }
-
     {{ sec_id }} .pc-imgPreview {
-      width: 90%;
-      max-height: 50vh;
-      height: auto;
+      width: 95%;
+      max-height: 60vh;
+    }
+    
+    {{ sec_id }} .pc-closeBtn {
+      font-size: 14px;
+      padding: 5px 15px;
+    }
+    
+    {{ sec_id }} .pc-prevButton,
+    {{ sec_id }} .pc-nextButton {
+      padding: 6px 15px;
+      font-size: 14px;
     }
   }
 </style>
+
 <div class="pc-filter-section">
-<pc-filterable-gallery-{{ last_part }} class="pc-filterable-gallery-{{ last_part }}">
   <div class="pc-container">
     <!-- Section Title Start -->
     <div class="pc-text-center">
@@ -230,11 +248,11 @@
       {%- endif -%}
     </div>
 
-    <div id="pc-btncontainer-{{ last_part }}" class="pc-filter">
-      <a class="pc-btn pc-btn-active" href="#all">ALL</a>
+    <div class="pc-filter">
+      <button class="pc-btn pc-btn-active" data-filter="all">ALL</button>
       {%- for block in section.blocks -%}
         {%- if block.type == 'filter' -%}
-          <a class="pc-btn" href="#{{ block.settings.filter_tag | handleize }}">{{ block.settings.filter_tag }}</a>
+          <button class="pc-btn" data-filter="{{ block.settings.filter_tag | handleize }}">{{ block.settings.filter_tag }}</button>
         {%- endif -%}
       {%- endfor -%}
     </div>
@@ -242,9 +260,9 @@
     <div class="pc-gallery pc-sets">
       {%- for block in section.blocks -%}
         {%- if block.type == 'gallery_item' -%}
-          <a class="pc-all pc-{{ block.settings.filter_tag | handleize }}">
+          <a class="pc-gallery-item pc-all pc-{{ block.settings.filter_tag | handleize }}" data-category="{{ block.settings.filter_tag | handleize }}">
             {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 400 | image_tag: 
+              {{ block.settings.image | image_url: width: 800 | image_tag: 
                 loading: 'lazy', 
                 class: 'pc-gallery-img',
                 alt: block.settings.image.alt | escape
@@ -257,94 +275,91 @@
       {%- endfor -%}
     </div>
   </div>
-</pc-filterable-gallery-{{ last_part }}>
 </div>
 
 <script>
-  class PCFilterableGallery{{ last_part | capitalize }} extends HTMLElement {
-    constructor() {
-      super();
-      this.initializeGallery();
-    }
-
-    initializeGallery() {
-      const filterButtons = this.querySelectorAll(`#pc-btncontainer-${'{{ last_part }}'} .pc-btn`);
-      filterButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-          e.preventDefault();
-          const filterValue = button.getAttribute('href').substr(1);
-          const galleryItems = this.querySelectorAll('.pc-sets a');
-          
-          galleryItems.forEach(item => {
-            if (!item.classList.contains(`pc-${filterValue}`) && filterValue !== "all") {
-              item.classList.add('pc-hide');
-            } else {
-              item.classList.remove('pc-hide');
-            }
-          });
-
-          filterButtons.forEach(btn => btn.classList.remove('pc-btn-active'));
-          button.classList.add('pc-btn-active');
-        });
+document.addEventListener('DOMContentLoaded', function() {
+  const filterButtons = document.querySelectorAll('{{ sec_id }} .pc-btn');
+  const galleryItems = document.querySelectorAll('{{ sec_id }} .pc-gallery-item');
+  
+  // Filter functionality
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filterValue = button.dataset.filter;
+      
+      // Update active button
+      filterButtons.forEach(btn => btn.classList.remove('pc-btn-active'));
+      button.classList.add('pc-btn-active');
+      
+      // Filter items
+      galleryItems.forEach(item => {
+        if (filterValue === 'all' || item.dataset.category === filterValue) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
       });
-
-      const images = this.querySelectorAll('.pc-gallery-img');
-      images.forEach((img, index) => {
-        img.addEventListener('click', (e) => {
-          if (e.target === img) {
-            let currentIndex = index;
-            const openDiv = document.createElement('div');
-            const imgPreview = document.createElement('img');
-            const buttonsSection = document.createElement('div');
-            buttonsSection.classList.add('pc-buttonsSection');
-            
-            const closeBtn = document.createElement('button');
-            const nextBtn = document.createElement('button');
-            const prevButton = document.createElement('button');
-            
-            prevButton.innerText = 'Previous';
-            nextBtn.innerText = 'Next';
-            nextBtn.classList.add('pc-nextButton');
-            prevButton.classList.add('pc-prevButton');
-            
-            nextBtn.addEventListener('click', () => {
-              if (currentIndex >= images.length - 1) {
-                currentIndex = 0;
-              } else {
-                currentIndex++;
-              }
-              imgPreview.src = images[currentIndex].src;
-            });
-
-            prevButton.addEventListener('click', () => {
-              if (currentIndex === 0) {
-                currentIndex = images.length - 1;
-              } else {
-                currentIndex--;
-              }
-              imgPreview.src = images[currentIndex].src;
-            });
-
-            closeBtn.classList.add('pc-closeBtn');
-            closeBtn.innerText = 'Close';
-            closeBtn.addEventListener('click', () => {
-              openDiv.remove();
-            });
-
-            imgPreview.classList.add('pc-imgPreview');
-            imgPreview.src = img.src;
-
-            buttonsSection.append(prevButton, nextBtn);
-            openDiv.append(imgPreview, buttonsSection, closeBtn);
-            openDiv.classList.add('pc-openDiv');
-
-            document.body.append(openDiv);
-          }
-        });
+    });
+  });
+  
+  // Lightbox functionality
+  const images = document.querySelectorAll('{{ sec_id }} .pc-gallery-img');
+  images.forEach((img, index) => {
+    img.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const lightbox = document.createElement('div');
+      lightbox.className = 'pc-openDiv';
+      lightbox.innerHTML = `
+        <img class="pc-imgPreview" src="${img.src}" alt="${img.alt}">
+        <div class="pc-buttonsSection">
+          <button class="pc-prevButton">Previous</button>
+          <button class="pc-nextButton">Next</button>
+        </div>
+        <button class="pc-closeBtn">Close</button>
+      `;
+      
+      document.body.appendChild(lightbox);
+      document.body.style.overflow = 'hidden';
+      
+      // Close button
+      const closeBtn = lightbox.querySelector('.pc-closeBtn');
+      closeBtn.addEventListener('click', () => {
+        lightbox.remove();
+        document.body.style.overflow = '';
       });
-    }
-  }
-  customElements.define('pc-filterable-gallery-{{ last_part }}', PCFilterableGallery{{ last_part | capitalize }});
+      
+      // Navigation buttons
+      let currentIndex = index;
+      const prevBtn = lightbox.querySelector('.pc-prevButton');
+      const nextBtn = lightbox.querySelector('.pc-nextButton');
+      const previewImg = lightbox.querySelector('.pc-imgPreview');
+      
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        previewImg.src = images[currentIndex].src;
+        previewImg.alt = images[currentIndex].alt;
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        previewImg.src = images[currentIndex].src;
+        previewImg.alt = images[currentIndex].alt;
+      });
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', function handleKeyPress(e) {
+        if (e.key === 'ArrowLeft') {
+          prevBtn.click();
+        } else if (e.key === 'ArrowRight') {
+          nextBtn.click();
+        } else if (e.key === 'Escape') {
+          closeBtn.click();
+        }
+      });
+    });
+  });
+});
 </script>
 
 {% schema %}
