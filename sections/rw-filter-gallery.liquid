@@ -160,7 +160,6 @@
     color: black;
   }
 
-
   @media (max-width: 991px) {
     {{ sec_id }} .pc-filter-section {
       padding-top: {{ section.settings.mobile_padding_top }}px;
@@ -217,10 +216,10 @@
     }
   }
 </style>
+
 <div class="pc-filter-section">
 <pc-filterable-gallery-{{ last_part }} class="pc-filterable-gallery-{{ last_part }}">
   <div class="pc-container">
-    <!-- Section Title Start -->
     <div class="pc-text-center">
       {%- if section.settings.heading != blank -%}
         <h2 class="pc-title">{{ section.settings.heading }}</h2>
