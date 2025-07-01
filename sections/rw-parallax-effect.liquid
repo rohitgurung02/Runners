@@ -57,47 +57,55 @@
 {% endstyle %}
 
 <div class="small--hide {% if section.settings.paral-full == blank %} page-width {% endif %}">
-  {% for block in section.blocks limit: section.blocks.size %} 
-    {% if block.settings.image != blank %}
-      <div class="parallax--{{ section.id }} {% if section.settings.par-en-over %} parallax-over--{{ section.id }} {% endif %}">
+   {% for block in section.blocks limit: section.blocks.size %} 
+  {% if block.settings.image != blank %}
+   <div class="parallax--{{ section.id }} {% if section.settings.par-en-over %} parallax-over--{{ section.id }} {% endif %} lazyload" 
+      style="    
+      background-repeat: no-repeat;
+        background-attachment: fixed;       
+      background-position: center top;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;"     
+      data-expand="-40"
+        data-bgset="{{block.settings.image | img_url:''}}";
         {{- block.settings.image
           | image_url: width: block.settings.image.width, height: block.settings.image.height
           | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'parallax-image'
           | replace: '<img', '<img style="width:100%; height:auto; object-fit:cover; min-height:' | append: section.settings.par_img_sz | append: 'px;"'
         -}}
-        <div class="text-block--{{section.id}}">
-          {% if block.settings.txt1-hd1 != blank %}         
-            {% if block.settings.parallax-h == 'h1'%}
-              <h1 class="txt-par1-hd--{{ section.id }} {{block.settings.par1_hd}}"> {{block.settings.txt1-hd1}}</h1>
-            {% elsif block.settings.parallax-h == 'h2' %}
-              <h2 class="txt-par1-hd--{{ section.id }} {{block.settings.par1_hd}}"> {{block.settings.txt1-hd1}}</h2>      
-            {% else %}
-              <h3 class="txt-par1-hd--{{ section.id }} {{block.settings.par1_hd}}"> {{block.settings.txt1-hd1}}</h3>      
-            {% endif %}                                           
-          {% endif %}
-          
-          {% if block.settings.txt1-hd2 != blank %}
-            {% if block.settings.parallax-subh == 'h2'%}
-              <h2 class="txt-par1-subhd--{{section.id}} {{block.settings.par1_subhd}}"> {{block.settings.txt1-hd2}} </h2>      
-            {% else %}
-              <h3 class="txt-par1-subhd--{{section.id}} {{block.settings.par1_subhd}}"> {{block.settings.txt1-hd2}} </h3>      
-            {% endif %}                          
-          {% endif %}
-          
-          {% if block.settings.par1_showbutton %}   
+      <div class="text-block--{{section.id}}">
+         {% if block.settings.txt1-hd1 != blank %}         
+        {% if block.settings.parallax-h == 'h1'%}
+        <h1 class="txt-par1-hd--{{ section.id }} {{block.settings.par1_hd}}"> {{block.settings.txt1-hd1}}</h1>
+      {% elsif section.settings.parallax-h == 'h2' %}
+        <h2 class="txt-par1-hd--{{ section.id }} {{block.settings.par1_hd}}"> {{block.settings.txt1-hd1}}</h2>      
+      {% else %}
+        <h3 class="txt-par1-hd--{{ section.id }} {{block.settings.par1_hd}}"> {{block.settings.txt1-hd1}}</h3>      
+      {% endif %}                                           
+        {% endif %}
+         {% if block.settings.txt1-hd2 != blank %}
+        {% if section.settings.parallax-subh == 'h2'%}
+        <h2 class="txt-par1-subhd--{{section.id}} {{block.settings.par1_subhd}}"> {{block.settings.txt1-hd2}} </h2>      
+      {% else %}
+        <h3 class="txt-par1-subhd--{{section.id}} {{block.settings.par1_subhd}}"> {{block.settings.txt1-hd2}} </h3>      
+      {% endif %}                          
+        {% endif %}
+         {% if block.settings.par1_showbutton %}   
             <a class="par1_button--{{section.id}} btn btn--tertiary btn--small {{block.settings.par1_button_pos}}" href="{{ block.settings.par1_button_link }}" title="{{ block.settings.par1_button_link | truncate: 22 }}">
-              {{ block.settings.par1_button_label | escape }}
+            {{ block.settings.par1_button_label | escape }}
             </a> 
-          {% endif %}
-        </div>
+         {% endif %}
       </div>
-    {% else %}      
-      <span>
-        {% capture current %}{% cycle 1, 2 %}{% endcapture %}
-        {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-      </span>
+   </div>
+           {% else %}      
+    <span>
+          {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+          {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+        </span>
     {% endif %}
-  {% endfor %}
+   {% endfor %}
 </div>
 
 <script>
