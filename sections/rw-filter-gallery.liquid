@@ -4,12 +4,15 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} .pc-filterable-gallery-{{ last_part }} {
+  {{ sec_id }} .pc-filter-section {
     position: relative;
     z-index: 1;
     padding-top: {{ section.settings.desktop_padding_top }}px;
     padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
     background-color: {{ section.settings.background_color }};
+  }
+ .pc-filterable-gallery-{{ last_part }} {
+   
   }
 
   {{ sec_id }} .pc-container {
@@ -223,7 +226,7 @@
     }
   }
 </style>
-
+<div class="pc-filter-section">
 <pc-filterable-gallery-{{ last_part }} class="pc-filterable-gallery-{{ last_part }}">
   <div class="pc-container">
     <!-- Section Title Start -->
@@ -264,6 +267,7 @@
     </div>
   </div>
 </pc-filterable-gallery-{{ last_part }}>
+</div>
 
 <script>
   class PCFilterableGallery{{ last_part | capitalize }} extends HTMLElement {
