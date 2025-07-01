@@ -2,7 +2,11 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-parallax-{{ last_part }} class="pc-parallax">
+<pc-parallax-{{ last_part }} 
+  class="pc-parallax" 
+  data-index="main"
+  data-bg="{{ section.settings.image | image_url: width: 2000 }}">
+
   <div class="pc-parallax__inner">
     <h1 class="pc-parallax__title">{{ section.settings.title }}</h1>
   </div>
@@ -11,7 +15,11 @@
 {% for block in section.blocks %}
   <div class="pc-parallax__content">{{ block.settings.content }}</div>
   {% if forloop.last == false %}
-    <pc-parallax-{{ last_part }} class="pc-parallax pc-parallax--{{ forloop.index }}" data-index="{{ forloop.index }}">
+ <pc-parallax-{{ last_part }} 
+  class="pc-parallax pc-parallax--{{ forloop.index }}" 
+  data-index="{{ forloop.index }}"
+  data-bg="{{ block.settings.image | image_url: width: 2000 }}">
+
       <div class="pc-parallax__inner">
         <h1 class="pc-parallax__title">{{ block.settings.parallax_title }}</h1>
       </div>
@@ -82,7 +90,8 @@
         const imageSetting = index === 'main' ? 'image' : `image_${index}`;
         
         // Get the image URL from the section data
-        let imageUrl;
+        let imageUrl = this.dataset.bg;
+
         if (index === 'main') {
           imageUrl = '{{ section.settings.image | image_url: width: 2000 }}';
         } else {
@@ -91,13 +100,12 @@
           imageUrl = block.settings.image ? '{{ block.settings.image | image_url: width: 2000 }}' : '';
         }
 
-        if (!imageUrl) {
-          imageUrl = '{{ 'product-1' | placeholder_svg_tag }}';
-          // For SVG placeholder, we need to set it as background image differently
-          this.style.backgroundImage = `url("data:image/svg+xml,${encodeURIComponent(imageUrl)}")`;
-        } else {
-          this.style.backgroundImage = `url(${imageUrl})`;
-        }
+    if (!imageUrl) {
+  imageUrl = '{{ 'product-1' | placeholder_svg_tag }}';
+  this.style.backgroundImage = `url("data:image/svg+xml,${encodeURIComponent(imageUrl)}")`;
+} else {
+  this.style.backgroundImage = `url(${imageUrl})`;
+}
       }
     }
 
