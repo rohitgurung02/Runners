@@ -1075,122 +1075,6 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
-    },
-    "rw_filter_gallery_LYmAiq": {
-      "type": "rw-filter-gallery",
-      "blocks": {
-        "filter_cVqmkJ": {
-          "type": "filter",
-          "settings": {
-            "filter_tag": "JAVASCRIPT"
-          }
-        },
-        "filter_AqFK6C": {
-          "type": "filter",
-          "settings": {
-            "filter_tag": "REACT"
-          }
-        },
-        "filter_qpNGHH": {
-          "type": "filter",
-          "settings": {
-            "filter_tag": "ANGULAR"
-          }
-        },
-        "gallery_item_NAjx7M": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "JAVASCRIPT"
-          }
-        },
-        "gallery_item_Hh4JNQ": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "JAVASCRIPT"
-          }
-        },
-        "gallery_item_bxKeUe": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "JAVASCRIPT"
-          }
-        },
-        "gallery_item_XeVrf7": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "REACT"
-          }
-        },
-        "gallery_item_rAy83t": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "REACT"
-          }
-        },
-        "gallery_item_FgeCxE": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "ANGULAR"
-          }
-        },
-        "gallery_item_RH8G4H": {
-          "type": "gallery_item",
-          "settings": {
-            "filter_tag": "ANGULAR"
-          }
-        }
-      },
-      "block_order": [
-        "filter_cVqmkJ",
-        "filter_AqFK6C",
-        "filter_qpNGHH",
-        "gallery_item_NAjx7M",
-        "gallery_item_Hh4JNQ",
-        "gallery_item_bxKeUe",
-        "gallery_item_XeVrf7",
-        "gallery_item_rAy83t",
-        "gallery_item_FgeCxE",
-        "gallery_item_RH8G4H"
-      ],
-      "name": "PWC - Filter Gallery #1",
-      "settings": {
-        "max_width": 1320,
-        "background_color": "#ffffff",
-        "desktop_padding_top": 20,
-        "desktop_padding_bottom": 20,
-        "mobile_padding_top": 10,
-        "mobile_padding_bottom": 10,
-        "heading": "Our Gallery",
-        "heading_size": 46,
-        "mobile_heading_size": 36,
-        "heading_weight": "700",
-        "heading_color": "#f44336",
-        "heading_bottom_margin": 5,
-        "subheading": "Some Random Photos Lorem ipsum, dolor sit.",
-        "subheading_size": 16,
-        "subheading_color": "#4c4c4c",
-        "subheading_max_width": 600,
-        "title_bottom_margin": 10,
-        "filter_font_size": 16,
-        "button_text_decoration": "none",
-        "filter_font_weight": "500",
-        "filter_text_color": "#003",
-        "filter_bg_color": "#eee",
-        "filter_border_color": "#f44336",
-        "filter_active_text_color": "#fff",
-        "filter_active_bg_color": "#f44336",
-        "filter_border_radius": 10,
-        "filter_vertical_padding": 10,
-        "filter_horizontal_padding": 20,
-        "filter_bottom_margin": 25,
-        "gallery_top_margin": 25,
-        "image_width": 200,
-        "image_height": 220,
-        "small_mobile_image_width": 60,
-        "small_mobile_image_height": 180,
-        "image_border_radius": 12,
-        "image_margin": 10
-      }
     }
   },
   "order": [
@@ -1205,7 +1089,6 @@
     "rw_test_aezBCg",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA",
-    "rw_filter_gallery_LYmAiq"
+    "rw_video_banner_f88XdA"
   ]
 }
