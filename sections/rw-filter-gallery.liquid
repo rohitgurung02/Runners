@@ -4,7 +4,7 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  #shopify-section-{{ section.id }} .pc-filterable-gallery { 
+  {{ section.id }} .pc-filterable-gallery { 
     position: relative;
     z-index: 1;
     padding-top: {{ section.settings.desktop_padding_top }}px;
