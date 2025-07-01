@@ -1183,7 +1183,7 @@
         "filter_border_radius": 5,
         "filter_vertical_padding": 5,
         "filter_horizontal_padding": 10,
-        "filter_bottom_margin": 0,
+        "filter_bottom_margin": 15,
         "gallery_top_margin": 0,
         "image_width": 200,
         "image_height": 220,
