@@ -68,8 +68,8 @@
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;"     
-      data-expand="-40"
-        data-bgset="{{block.settings.image | img_url:''}}";
+      data-expand="-40" 
+  
         {{- block.settings.image
           | image_url: width: block.settings.image.width, height: block.settings.image.height
           | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'parallax-image'
