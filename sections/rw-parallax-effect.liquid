@@ -2,7 +2,7 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-parallax-{{ last_part }} class="pc-parallax" data-image="{% if section.settings.image %}{{ section.settings.image | image_url: width: 2000 }}{% else %}{{ 'product-1' | placeholder_svg_tag | split: '"' | first | remove: '<svg' }}{% endif %}">
+<pc-parallax-{{ last_part }} class="pc-parallax">
   <div class="pc-parallax__inner">
     <h1 class="pc-parallax__title">{{ section.settings.title }}</h1>
   </div>
@@ -11,7 +11,7 @@
 {% for block in section.blocks %}
   <div class="pc-parallax__content">{{ block.settings.content }}</div>
   {% if forloop.last == false %}
-    <pc-parallax-{{ last_part }} class="pc-parallax pc-parallax--{{ forloop.index }}" data-index="{{ forloop.index }}" data-image="{% if block.settings.image %}{{ block.settings.image | image_url: width: 2000 }}{% else %}{{ 'product-1' | placeholder_svg_tag | split: '"' | first | remove: '<svg' }}{% endif %}">
+    <pc-parallax-{{ last_part }} class="pc-parallax pc-parallax--{{ forloop.index }}" data-index="{{ forloop.index }}">
       <div class="pc-parallax__inner">
         <h1 class="pc-parallax__title">{{ block.settings.parallax_title }}</h1>
       </div>
@@ -71,21 +71,46 @@
 </style>
 
 <script>
-  class PcParallax{{ last_part | capitalize }} extends HTMLElement {
-    constructor() {
-      super();
-      this.setBackground();
-    }
+  document.addEventListener('DOMContentLoaded', function() {
+    class PcParallax{{ last_part | capitalize }} extends HTMLElement {
+      connectedCallback() {
+        this.setBackground();
+      }
 
-    setBackground() {
-      const imageUrl = this.dataset.image;
-      if (imageUrl) {
-        this.style.backgroundImage = `url(${imageUrl})`;
+      setBackground() {
+        const index = this.dataset.index || 'main';
+        const imageSetting = index === 'main' ? 'image' : `image_${index}`;
+        
+        // Get the image URL from the section data
+        let imageUrl;
+        if (index === 'main') {
+          imageUrl = '{{ section.settings.image | image_url: width: 2000 }}';
+        } else {
+          const blockIndex = parseInt(index) - 1;
+          const block = {{ section.blocks | json }}[blockIndex];
+          imageUrl = block.settings.image ? '{{ block.settings.image | image_url: width: 2000 }}' : '';
+        }
+
+        if (!imageUrl) {
+          imageUrl = '{{ 'product-1' | placeholder_svg_tag }}';
+          // For SVG placeholder, we need to set it as background image differently
+          this.style.backgroundImage = `url("data:image/svg+xml,${encodeURIComponent(imageUrl)}")`;
+        } else {
+          this.style.backgroundImage = `url(${imageUrl})`;
+        }
       }
     }
-  }
 
-  customElements.define('pc-parallax-{{ last_part }}', PcParallax{{ last_part | capitalize }});
+    customElements.define('pc-parallax-{{ last_part }}', PcParallax{{ last_part | capitalize }});
+    
+    // Initialize all parallax elements
+    const parallaxElements = document.querySelectorAll('pc-parallax-{{ last_part }}');
+    parallaxElements.forEach(el => {
+      const instance = new PcParallax{{ last_part | capitalize }}();
+      Object.setPrototypeOf(el, instance);
+      el.connectedCallback();
+    });
+  });
 </script>
 
 {% schema %}
@@ -101,7 +126,8 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Main Background Image"
+      "label": "Main Background Image",
+      "info": "Recommended size: 2000px width"
     },
     {
       "type": "text",
@@ -303,7 +329,8 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Background Image"
+          "label": "Background Image",
+          "info": "Recommended size: 2000px width"
         }
       ]
     }
@@ -311,7 +338,23 @@
   "presets": [
     {
       "name": "PWC - Parallax Sections #1",
-      "category": "Custom"
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "content",
+          "settings": {
+            "parallax_title": "Beaches",
+            "content": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis minima fuga debitis quasi eius aliquid sapiente? Cumque blanditiis quibusdam, ex totam aliquam provident alias culpa, sit illo, eum doloribus doloremque.</p>"
+          }
+        },
+        {
+          "type": "content",
+          "settings": {
+            "parallax_title": "Mountains",
+            "content": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis minima fuga debitis quasi eius aliquid sapiente? Cumque blanditiis quibusdam, ex totam aliquam provident alias culpa, sit illo, eum doloribus doloremque.</p>"
+          }
+        }
+      ]
     }
   ]
 }
