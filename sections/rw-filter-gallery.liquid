@@ -7,8 +7,8 @@
   {{ sec_id }} .pc-filterable-gallery-{{ last_part }} {
     position: relative;
     z-index: 1;
-    padding-top: {{ section.settings.desktop_padding_top }}px;
-    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+    padding-top: {{ section.settings.desktop_padding_top }}px !important;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px !important;
     background-color: {{ section.settings.background_color }};
   }
 
@@ -224,7 +224,7 @@
   }
 </style>
 
-<pc-filterable-gallery-{{ last_part }}  class="pc-filterable-gallery-{{ last_part }}">
+<pc-filterable-gallery-{{ last_part }} class="pc-filterable-gallery-{{ last_part }}">
   <div class="pc-container">
     <!-- Section Title Start -->
     <div class="pc-text-center">
