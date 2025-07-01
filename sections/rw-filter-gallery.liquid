@@ -160,15 +160,9 @@
     color: black;
   }
 
-  @media (max-width: 1199px) {
-    {{ sec_id }} .pc-filterable-gallery {
-      padding-top: {{ section.settings.tablet_padding_top }}px;
-      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
-    }
-  }
 
   @media (max-width: 991px) {
-    {{ sec_id }} .pc-filterable-gallery {
+    {{ sec_id }} .pc-filter-section {
       padding-top: {{ section.settings.mobile_padding_top }}px;
       padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
     }
@@ -707,7 +701,7 @@
       "max": 500,
       "step": 10,
       "unit": "px",
-      "default": 220
+      "default": 200
     },
     {
       "type": "range",
