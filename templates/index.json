@@ -1106,10 +1106,10 @@
         "subheading_size": 25,
         "button_size": 25,
         "letter_spacing": 1,
-        "heading_margin": 10,
+        "heading_margin": 33,
         "enable_overlay": true,
         "overlay_color": "#000000",
-        "overlay_opacity": 50,
+        "overlay_opacity": 30,
         "mobile_heading_size": 30,
         "mobile_subheading_size": 18
       }
