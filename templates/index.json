@@ -1089,10 +1089,34 @@
             "button_label": "Shop Now",
             "button_link": ""
           }
+        },
+        "image_q93EEp": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-921294.webp",
+            "heading": "Parallax Heading",
+            "subheading": "Parallax subheading text",
+            "show_button": true,
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "image_8LHT3x": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg",
+            "heading": "Parallax Heading",
+            "subheading": "Parallax subheading text",
+            "show_button": true,
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
         }
       },
       "block_order": [
-        "image_zgpUgX"
+        "image_zgpUgX",
+        "image_q93EEp",
+        "image_8LHT3x"
       ],
       "name": "PWC - Parallax #1",
       "settings": {
