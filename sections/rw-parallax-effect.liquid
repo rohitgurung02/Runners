@@ -4,7 +4,7 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} .pc-parallax-container {
+  {{ sec_id }} .pc-parallax-section-container {
     overflow: hidden;
     {% if section.settings.container_width != 'full' %}
     max-width: {{ section.settings.custom_container_width }}px;
@@ -107,7 +107,7 @@
       max-width: 100%;
       padding: 0 15px;
       {% endif %}
-    }
+    }.
   }
 </style>
 
