@@ -6,6 +6,10 @@
 <style>
   {{ sec_id }} .pc-parallax-container {
     overflow: hidden;
+    {% if section.settings.container_width != 'full' %}
+    max-width: {{ section.settings.custom_container_width }}px;
+    margin: 0 auto;
+    {% endif %}
   }
   
   {{ sec_id }} .pc-parallax {
@@ -23,29 +27,55 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
+    text-align: {{ section.settings.text_alignment }};
   }
   
   {{ sec_id }} .pc-heading-{{ last_part }} {
     font-size: {{ section.settings.heading_size }}px;
-    letter-spacing: {{ section.settings.letter_spacing }}px;
-    font-weight: bold;
-    color: #fff;
+    letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+    font-weight: {{ section.settings.heading_font_weight }};
+    font-style: {{ section.settings.heading_font_style }};
+    color: {{ section.settings.heading_color }};
     text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.3);
     margin-bottom: {{ section.settings.heading_margin }}px;
+    padding-top: {{ section.settings.heading_padding_top }}px;
+    padding-bottom: {{ section.settings.heading_padding_bottom }}px;
+    text-decoration: {{ section.settings.heading_text_decoration }};
+    {% if section.settings.heading_text_decoration != 'none' %}
+    text-decoration-color: {{ section.settings.heading_text_decoration_color }};
+    {% endif %}
   }
   
   {{ sec_id }} .pc-subheading-{{ last_part }} {
     font-size: {{ section.settings.subheading_size }}px;
-    letter-spacing: {{ section.settings.letter_spacing }}px;
-    color: #fff;
+    letter-spacing: {{ section.settings.subheading_letter_spacing }}px;
+    color: {{ section.settings.subheading_color }};
+    font-weight: {{ section.settings.subheading_font_weight }};
+    font-style: {{ section.settings.subheading_font_style }};
+    padding-top: {{ section.settings.subheading_padding_top }}px;
+    padding-bottom: {{ section.settings.subheading_padding_bottom }}px;
+    text-decoration: {{ section.settings.subheading_text_decoration }};
+    {% if section.settings.subheading_text_decoration != 'none' %}
+    text-decoration-color: {{ section.settings.subheading_text_decoration_color }};
+    {% endif %}
   }
   
   {{ sec_id }} .pc-button-{{ last_part }} {
     font-size: {{ section.settings.button_size }}px;
     letter-spacing: {{ section.settings.letter_spacing }}px;
-    border-color: #fff;
+    border-color: {{ section.settings.button_border_color }};
     background: transparent;
-    color: #fff;
+    color: {{ section.settings.button_text_color }};
+    font-weight: {{ section.settings.button_font_weight }};
+    text-transform: {{ section.settings.button_text_transform }};
+    text-decoration: {{ section.settings.button_text_decoration }};
+    {% if section.settings.button_text_decoration != 'none' %}
+    text-decoration-color: {{ section.settings.button_text_decoration_color }};
+    {% endif %}
+    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
+    min-width: {{ section.settings.button_min_width }}px;
+    display: inline-block;
+    text-align: center;
   }
   
   {{ sec_id }} .pc-parallax-overlay-{{ last_part }}::before {
@@ -57,11 +87,6 @@
     left: 0;
     background-color: {{ section.settings.overlay_color }};
     opacity: {{ section.settings.overlay_opacity }}%;
-  }
-  
-  {{ sec_id }} .pc-page-width {
-    max-width: 1200px;
-    margin: 0 auto;
   }
   
   @media only screen and (max-width: 767px) {
@@ -76,10 +101,17 @@
     {{ sec_id }} .pc-subheading-{{ last_part }} {
       font-size: {{ section.settings.mobile_subheading_size }}px;
     }
+
+    {{ sec_id }} .pc-parallax-container {
+      {% if section.settings.container_width != 'full' %}
+      max-width: 100%;
+      padding: 0 15px;
+      {% endif %}
+    }
   }
 </style>
 
-<pc-parallax-{{ last_part }} class="pc-parallax-container {% unless section.settings.full_width %}pc-page-width{% endunless %}">
+<pc-parallax-{{ last_part }} class="pc-parallax-container {% if section.settings.full_width %}pc-full-width{% endif %}">
   {%- for block in section.blocks -%}
     {%- if block.settings.image != blank -%}
       <div class="pc-parallax pc-parallax-{{ forloop.index }} {% if section.settings.enable_overlay %}pc-parallax-overlay-{{ last_part }}{% endif %}"
@@ -88,7 +120,7 @@
           height: {{ section.settings.height }}px;
           background-position: center top;
         ">
-        <div class="pc-text-block-{{ last_part }}" style="text-align: {{ section.settings.text_alignment }};">
+        <div class="pc-text-block-{{ last_part }}">
           {%- if block.settings.heading != blank -%}
             <div class="pc-heading-{{ last_part }}">
               {{ block.settings.heading }}
@@ -133,6 +165,41 @@
       "default": true
     },
     {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "standard",
+          "label": "Standard (1200px)"
+        },
+        {
+          "value": "narrow",
+          "label": "Narrow (800px)"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "custom_container_width",
+      "label": "Custom container width",
+      "min": 500,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "default": 1200,
+      "info": "Only applies when container width is set to Custom"
+    },
+    {
       "type": "range",
       "id": "height",
       "label": "Section height",
@@ -172,10 +239,10 @@
       "unit": "%",
       "default": 50
     },
-      {
+    {
       "type": "range",
       "id": "letter_spacing",
-      "label": "Letter spacing",
+      "label": "Base letter spacing",
       "min": 0,
       "max": 10,
       "step": 0.5,
@@ -183,9 +250,9 @@
       "default": 1
     },
     {
-          "type": "header",
-          "content": "Heading Text Settings"
-        },
+      "type": "header",
+      "content": "Heading Text Settings"
+    },
     {
       "type": "range",
       "id": "heading_size",
@@ -196,133 +263,133 @@
       "unit": "px",
       "default": 55
     },
-     {
-          "type": "color",
-          "id": "heading_color",
-          "label": "Heading Color",
-          "default": "#000"
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading Font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
         },
         {
-          "type": "select",
-          "id": "heading_font_weight",
-          "label": "Heading Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
+          "value": "bold",
+          "label": "Bold"
         },
         {
-          "type": "select",
-          "id": "heading_font_style",
-          "label": "Heading Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
+          "value": "bolder",
+          "label": "Bolder"
         },
         {
-          "type": "range",
-          "id": "heading_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Heading Letter spacing",
-          "default": 0
+          "value": "lighter",
+          "label": "Lighter"
         },
         {
-          "type": "select",
-          "id": "heading_text_decoration",
-          "label": "Heading Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
+          "value": "100",
+          "label": "100"
         },
         {
-          "type": "color",
-          "id": "heading_text_decoration_color",
-          "label": "Heading Text Decoration Color",
-          "default": "#000"
+          "value": "200",
+          "label": "200"
         },
-         {
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "bold"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_style",
+      "label": "Heading Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Heading Letter spacing",
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "heading_text_decoration",
+      "label": "Heading Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "heading_text_decoration_color",
+      "label": "Heading Text Decoration Color",
+      "default": "#ffffff"
+    },
+    {
       "type": "range",
       "id": "heading_margin",
       "label": "Heading margin bottom",
@@ -332,28 +399,30 @@
       "unit": "px",
       "default": 10
     },
-        {
-          "type": "range",
-          "id": "Heading_padding_top",
-          "label": "Heading Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "heading_padding_bottom",
-          "label": "Heading Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
     {
-          "type": "header",
-          "content": "Subheading Text"
-        },
+      "type": "range",
+      "id": "heading_padding_top",
+      "label": "Heading Padding Top",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_padding_bottom",
+      "label": "Heading Padding Bottom",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Subheading Text"
+    },
     {
       "type": "range",
       "id": "subheading_size",
@@ -364,154 +433,156 @@
       "unit": "px",
       "default": 25
     },
-     {
-          "type": "color",
-          "id": "subheading_color",
-          "label": "Subheading Color",
-          "default": "#000"
-        },
-        {
-          "type": "select",
-          "id": "subheading_font_weight",
-          "label": "Subheading Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "select",
-          "id": "subheading_font_style",
-          "label": "Subheading Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "range",
-          "id": "subheading_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Subheading Letter spacing",
-          "default": 0
-        },
-        {
-          "type": "select",
-          "id": "subheading_text_decoration",
-          "label": "Subheading Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "subheading_text_decoration_color",
-          "label": "Subheading Text Decoration Color",
-          "default": "#000"
-        },
-        {
-          "type": "range",
-          "id": "subheading_padding_top",
-          "label": "Subheading Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "subheading_padding_bottom",
-          "label": "Subheading Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
     {
-          "type": "header",
-          "content": "Button"
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "subheading_font_weight",
+      "label": "Subheading Font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
         },
+        {
+          "value": "bold",
+          "label": "Bold"
+        },
+        {
+          "value": "bolder",
+          "label": "Bolder"
+        },
+        {
+          "value": "lighter",
+          "label": "Lighter"
+        },
+        {
+          "value": "100",
+          "label": "100"
+        },
+        {
+          "value": "200",
+          "label": "200"
+        },
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "subheading_font_style",
+      "label": "Subheading Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "subheading_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Subheading Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "subheading_text_decoration",
+      "label": "Subheading Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "subheading_text_decoration_color",
+      "label": "Subheading Text Decoration Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "subheading_padding_top",
+      "label": "Subheading Padding Top",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "subheading_padding_bottom",
+      "label": "Subheading Padding Bottom",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
     {
       "type": "range",
       "id": "button_size",
@@ -522,170 +593,170 @@
       "unit": "px",
       "default": 25
     },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Button Font weight",
+      "options": [
         {
-          "type": "select",
-          "id": "button_font_weight",
-          "label": "Button Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
+          "value": "normal",
+          "label": "Normal"
         },
         {
-          "type": "select",
-          "id": "button_text_transform",
-          "label": "Button Text Transform",
-          "default": "uppercase",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "capitalize",
-              "label": "Capitalize"
-            },
-            {
-              "value": "uppercase",
-              "label": "Uppercase"
-            },
-            {
-              "value": "lowercase",
-              "label": "Lowercase"
-            },
-            {
-              "value": "initial",
-              "label": "Initial"
-            },
-            {
-              "value": "inherit",
-              "label": "Inherit"
-            }
-          ]
+          "value": "bold",
+          "label": "Bold"
         },
         {
-          "type": "select",
-          "id": "button_text_decoration",
-          "label": "Button Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
+          "value": "bolder",
+          "label": "Bolder"
         },
         {
-          "type": "color",
-          "id": "button_text_decoration_color",
-          "label": "Button Text Decoration Color",
-          "default": "#000"
+          "value": "lighter",
+          "label": "Lighter"
         },
         {
-          "type": "color",
-          "id": "button_border_color",
-          "label": "Button Border Color",
-          "default": "#005bb5"
+          "value": "100",
+          "label": "100"
         },
         {
-          "type": "color",
-          "id": "button_text_color",
-          "label": "Button Text Color",
-          "default": "#ffffff"
+          "value": "200",
+          "label": "200"
         },
         {
-          "type": "range",
-          "id": "button_padding_vertical",
-          "min": 5,
-          "max": 100,
-          "step": 1,
-          "unit": "px",
-          "label": "Button Vertical Padding",
-          "default": 12
+          "value": "300",
+          "label": "300"
         },
         {
-          "type": "range",
-          "id": "button_padding_horizontal",
-          "min": 10,
-          "max": 100,
-          "step": 5,
-          "unit": "px",
-          "label": "Button Horizontal Padding",
-          "default": 30
+          "value": "400",
+          "label": "400"
         },
         {
-          "type": "range",
-          "id": "button_min_width",
-          "label": "Button Minimum Width (px)",
-          "min": 50,
-          "max": 500,
-          "step": 10,
-          "default": 160,
-          "unit": "px"
+          "value": "500",
+          "label": "500"
         },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "button_text_transform",
+      "label": "Button Text Transform",
+      "default": "uppercase",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "initial",
+          "label": "Initial"
+        },
+        {
+          "value": "inherit",
+          "label": "Inherit"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button_text_decoration",
+      "label": "Button Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "button_text_decoration_color",
+      "label": "Button Text Decoration Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 5,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "button_min_width",
+      "label": "Button Minimum Width",
+      "min": 50,
+      "max": 500,
+      "step": 10,
+      "default": 160,
+      "unit": "px"
+    },
     {
       "type": "header",
       "content": "Overlay Settings"
@@ -747,7 +818,7 @@
           "id": "image",
           "label": "Image"
         },
-          {
+        {
           "type": "header",
           "content": "Heading Settings"
         },
