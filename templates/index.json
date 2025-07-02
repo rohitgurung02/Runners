@@ -1098,7 +1098,7 @@
       "settings": {
         "full_width": false,
         "container_width": "narrow",
-        "custom_container_width": 1000,
+        "custom_container_width": 800,
         "height": 400,
         "text_alignment": "left",
         "text_position": 50,
