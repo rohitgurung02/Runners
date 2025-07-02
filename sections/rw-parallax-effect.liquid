@@ -3,43 +3,6 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-parallax-{{ last_part }} class="pc-parallax-container {% unless section.settings.full_width %}pc-page-width{% endunless %}">
-  {%- for block in section.blocks -%}
-    {%- if block.settings.image != blank -%}
-      <div class="pc-parallax pc-parallax-{{ forloop.index }} {% if section.settings.enable_overlay %}pc-parallax-overlay-{{ last_part }}{% endif %}"
-        style="
-          background-image: url('{{ block.settings.image | image_url: width: 2000 }}');
-          height: {{ section.settings.height }}px;
-          background-position: center top;
-        ">
-        <div class="pc-text-block-{{ last_part }}" style="text-align: {{ section.settings.text_alignment }};">
-          {%- if block.settings.heading != blank -%}
-            <div class="pc-heading-{{ last_part }}">
-              {{ block.settings.heading }}
-            </div>
-          {%- endif -%}
-          
-          {%- if block.settings.subheading != blank -%}
-            <div class="pc-subheading-{{ last_part }}">
-              {{ block.settings.subheading }}
-            </div>
-          {%- endif -%}
-          
-          {%- if block.settings.show_button -%}
-            <a href="{{ block.settings.button_link }}" class="pc-button-{{ last_part }} pc-btn pc-btn--tertiary pc-btn--small">
-              {{ block.settings.button_label | escape }}
-            </a>
-          {%- endif -%}
-        </div>
-      </div>
-    {%- else -%}
-      <span class="pc-placeholder">
-        {{ 'product-1' | placeholder_svg_tag }}
-      </span>
-    {%- endif -%}
-  {%- endfor -%}
-</pc-parallax-{{ last_part }}>
-
 <style>
   {{ sec_id }} .pc-parallax-container {
     overflow: hidden;
@@ -115,6 +78,43 @@
     }
   }
 </style>
+
+<pc-parallax-{{ last_part }} class="pc-parallax-container {% unless section.settings.full_width %}pc-page-width{% endunless %}">
+  {%- for block in section.blocks -%}
+    {%- if block.settings.image != blank -%}
+      <div class="pc-parallax pc-parallax-{{ forloop.index }} {% if section.settings.enable_overlay %}pc-parallax-overlay-{{ last_part }}{% endif %}"
+        style="
+          background-image: url('{{ block.settings.image | image_url: width: 2000 }}');
+          height: {{ section.settings.height }}px;
+          background-position: center top;
+        ">
+        <div class="pc-text-block-{{ last_part }}" style="text-align: {{ section.settings.text_alignment }};">
+          {%- if block.settings.heading != blank -%}
+            <div class="pc-heading-{{ last_part }}">
+              {{ block.settings.heading }}
+            </div>
+          {%- endif -%}
+          
+          {%- if block.settings.subheading != blank -%}
+            <div class="pc-subheading-{{ last_part }}">
+              {{ block.settings.subheading }}
+            </div>
+          {%- endif -%}
+          
+          {%- if block.settings.show_button -%}
+            <a href="{{ block.settings.button_link }}" class="pc-button-{{ last_part }} pc-btn pc-btn--tertiary pc-btn--small">
+              {{ block.settings.button_label | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- else -%}
+      <span class="pc-placeholder">
+        {{ 'product-1' | placeholder_svg_tag }}
+      </span>
+    {%- endif -%}
+  {%- endfor -%}
+</pc-parallax-{{ last_part }}>
 
 {% schema %}
 {
