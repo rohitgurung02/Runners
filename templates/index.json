@@ -1083,8 +1083,8 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/pexels-photo-991012.jpg",
-            "heading": "Heading",
-            "subheading": "Subheading",
+            "heading": "Why do we use it?",
+            "subheading": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ",
             "show_button": true,
             "button_label": "Shop Now",
             "button_link": ""
