@@ -20,9 +20,9 @@
           {%- endif -%}
           
           {%- if block.settings.subheading != blank -%}
-            <{{ block.settings.subheading_tag }} class="pc-subheading-{{ last_part }}">
+            <div class="pc-subheading-{{ last_part }}">
               {{ block.settings.subheading }}
-            </{{ block.settings.subheading_tag }}>
+            </div>
           {%- endif -%}
           
           {%- if block.settings.show_button -%}
