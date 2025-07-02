@@ -1089,34 +1089,10 @@
             "button_label": "Shop Now",
             "button_link": ""
           }
-        },
-        "image_yCfrpH": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-92733.jpg",
-            "heading": "Heading",
-            "subheading": "Subheading",
-            "show_button": true,
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
-        },
-        "image_GMftm6": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-921294.webp",
-            "heading": "Heading",
-            "subheading": "Subheading",
-            "show_button": true,
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
         }
       },
       "block_order": [
-        "image_VLAzJ6",
-        "image_yCfrpH",
-        "image_GMftm6"
+        "image_VLAzJ6"
       ],
       "name": "RW - Parallax #1",
       "settings": {
