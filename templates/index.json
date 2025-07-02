@@ -1075,50 +1075,6 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
-    },
-    "rw_parallax_effect_cNhez8": {
-      "type": "rw-parallax-effect",
-      "blocks": {
-        "parallax_Hb6fkK": {
-          "type": "parallax",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-991012.jpg",
-            "txt1-hd1": "Heading",
-            "par1_hd": "h2",
-            "txt1-hd2": "Subheading",
-            "par1_subhd": "h3",
-            "par1_showbutton": false,
-            "par1_button_label": "Shop Now",
-            "par1_button_link": "",
-            "par1_button_pos": "center"
-          }
-        },
-        "parallax_JybCdd": {
-          "type": "parallax",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-921294.webp",
-            "txt1-hd1": "Heading",
-            "par1_hd": "h2",
-            "txt1-hd2": "Subheading",
-            "par1_subhd": "h3",
-            "par1_showbutton": false,
-            "par1_button_label": "Shop Now",
-            "par1_button_link": "",
-            "par1_button_pos": "center"
-          }
-        }
-      },
-      "block_order": [
-        "parallax_Hb6fkK",
-        "parallax_JybCdd"
-      ],
-      "name": "Parallax Section",
-      "settings": {
-        "paral-full": false,
-        "par-en-over": false,
-        "parallax-h": "h2",
-        "parallax-subh": "h3"
-      }
     }
   },
   "order": [
@@ -1133,7 +1089,6 @@
     "rw_test_aezBCg",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA",
-    "rw_parallax_effect_cNhez8"
+    "rw_video_banner_f88XdA"
   ]
 }
