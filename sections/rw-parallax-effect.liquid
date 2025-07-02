@@ -118,10 +118,12 @@
     {%- if block.settings.image != blank -%}
       <div class="pc-parallax pc-parallax-{{ forloop.index }} {% if section.settings.enable_overlay %}pc-parallax-overlay-{{ last_part }}{% endif %}"
         style="
-          background-image: url('{{ block.settings.image | image_url: width: 2000 }}');
-          height: {{ section.settings.height }}px;
           background-position: center top;
         ">
+        {{- section.settings.image
+        | image_url: width: 2000, height: section.settings.height
+        | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt
+-}}
         <div class="pc-text-block-{{ last_part }}">
           {%- if block.settings.heading != blank -%}
             <div class="pc-heading-{{ last_part }}">
