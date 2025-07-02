@@ -1075,6 +1075,53 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
+    },
+    "rw_parallax_effect_7UKmUn": {
+      "type": "rw-parallax-effect",
+      "blocks": {
+        "parallax_i6aJqD": {
+          "type": "parallax",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg",
+            "height": 100
+          }
+        },
+        "content_UEWJFB": {
+          "type": "content",
+          "settings": {
+            "heading": "Hello Rohit",
+            "heading_size": 48,
+            "heading_color": "#fffbf1",
+            "heading_margin_bottom": 10,
+            "text": "<p>Click play to begin the tale of love and loss.</p>",
+            "text_size": 18,
+            "text_color": "#ddd",
+            "text_line_height": 1.8,
+            "bg_color": "rgba(20, 20, 20, 0.85)",
+            "padding_top": 80,
+            "padding_bottom": 80
+          }
+        }
+      },
+      "block_order": [
+        "parallax_i6aJqD",
+        "content_UEWJFB"
+      ],
+      "name": "PWC - Parallax Story #1",
+      "settings": {
+        "enable_audio": true,
+        "audio_echo": "You're still watching, aren't you?",
+        "initial_text": "Click play to begin the tale of love and loss.",
+        "show_footer": true,
+        "footer_text": "© 2025 Gothic Tales | Inspired by Edgar Allan Poe",
+        "footer_bg_color": "#1a1a1a",
+        "footer_text_color": "#bbb",
+        "footer_padding": 20,
+        "mobile_heading_size": 24,
+        "mobile_text_size": 16,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
+      }
     }
   },
   "order": [
@@ -1089,6 +1136,7 @@
     "rw_test_aezBCg",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA"
+    "rw_video_banner_f88XdA",
+    "rw_parallax_effect_7UKmUn"
   ]
 }
