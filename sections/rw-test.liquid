@@ -8,36 +8,38 @@
     <h2 class="pc-testimonials__heading">{{ section.settings.heading }}</h2>
   {%- endif -%}
   
-  <div class="pc-testimonials__carousel">
-    {%- for block in section.blocks -%}
-      <div class="pc-testimonials__slide" {{ block.shopify_attributes }}>
-        <div class="pc-testimonials__card">
-          {%- if block.settings.image != blank -%}
-            {{- block.settings.image
-              | image_url: width: 300, height: 300
-              | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-testimonials__image'
-            -}}
-          {%- else -%}
-            {{ 'product-1' | placeholder_svg_tag: 'pc-testimonials__image' }}
-          {%- endif -%}
-          
-          <div class="pc-testimonials__content">
-            {%- if block.settings.name != blank -%}
-              <h3 class="pc-testimonials__name">
-                {{ block.settings.name }}
-                {%- if block.settings.position != blank -%}
-                  <span class="pc-testimonials__position">{{ block.settings.position }}</span>
-                {%- endif -%}
-              </h3>
+  <div class="pc-testimonials__carousel-container">
+    <div class="pc-testimonials__carousel">
+      {%- for block in section.blocks -%}
+        <div class="pc-testimonials__slide" {{ block.shopify_attributes }}>
+          <div class="pc-testimonials__card">
+            {%- if block.settings.image != blank -%}
+              {{- block.settings.image
+                | image_url: width: 300, height: 300
+                | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-testimonials__image'
+              -}}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'pc-testimonials__image' }}
             {%- endif -%}
             
-            {%- if block.settings.quote != blank -%}
-              <div class="pc-testimonials__quote">{{ block.settings.quote }}</div>
-            {%- endif -%}
+            <div class="pc-testimonials__content">
+              {%- if block.settings.name != blank -%}
+                <h3 class="pc-testimonials__name">
+                  {{ block.settings.name }}
+                  {%- if block.settings.position != blank -%}
+                    <span class="pc-testimonials__position">{{ block.settings.position }}</span>
+                  {%- endif -%}
+                </h3>
+              {%- endif -%}
+              
+              {%- if block.settings.quote != blank -%}
+                <div class="pc-testimonials__quote">{{ block.settings.quote }}</div>
+              {%- endif -%}
+            </div>
           </div>
         </div>
-      </div>
-    {%- endfor -%}
+      {%- endfor -%}
+    </div>
   </div>
   
   <div class="pc-testimonials__nav">
@@ -65,6 +67,7 @@
     {%- if section.settings.shadow_enabled -%}
       box-shadow: 0 8px 30px -7px {{ section.settings.shadow_color | color_modify: 'alpha', 0.3 }};
     {%- endif -%}
+    overflow: hidden;
   }
 
   {{ sec_id }} .pc-testimonials__heading {
@@ -75,16 +78,29 @@
     margin: 0 0 {{ section.settings.heading_margin_bottom }}px 0;
   }
 
+  {{ sec_id }} .pc-testimonials__carousel-container {
+    position: relative;
+    width: 100%;
+    padding: 30px 0;
+    overflow: hidden;
+  }
+
   {{ sec_id }} .pc-testimonials__carousel {
     display: flex;
-    overflow: hidden;
-    padding: 30px 0;
+    transition: transform 0.5s ease;
+    width: 100%;
   }
 
   {{ sec_id }} .pc-testimonials__slide {
     flex: 0 0 100%;
+    min-width: 100%;
     padding: 0 20px;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease;
+    opacity: 0.5;
+  }
+
+  {{ sec_id }} .pc-testimonials__slide.active {
+    opacity: 1;
   }
 
   {{ sec_id }} .pc-testimonials__card {
@@ -144,6 +160,7 @@
     border: none;
     cursor: pointer;
     color: {{ section.settings.arrow_color }};
+    padding: 5px;
   }
 
   {{ sec_id }} .pc-testimonials__dots {
@@ -164,6 +181,20 @@
     background: {{ section.settings.dot_active_color }};
     width: 12px;
     height: 12px;
+  }
+
+  @media (min-width: 768px) {
+    {{ sec_id }} .pc-testimonials__slide {
+      flex: 0 0 50%;
+      min-width: 50%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    {{ sec_id }} .pc-testimonials__slide {
+      flex: 0 0 33.333%;
+      min-width: 33.333%;
+    }
   }
 
   @media (max-width: 767px) {
@@ -195,6 +226,7 @@
   class PcTestimonials{{ last_part | capitalize }} extends HTMLElement {
     constructor() {
       super();
+      this.carouselContainer = this.querySelector('.pc-testimonials__carousel-container');
       this.carousel = this.querySelector('.pc-testimonials__carousel');
       this.slides = this.querySelectorAll('.pc-testimonials__slide');
       this.prevBtn = this.querySelector('.pc-testimonials__arrow--prev');
@@ -205,11 +237,13 @@
       this.slideCount = this.slides.length;
       this.autoSlideInterval = null;
       this.autoSlideDelay = {{ section.settings.auto_slide_delay | default: 5000 }};
+      this.isAnimating = false;
       
       this.init();
     }
     
     init() {
+      this.setupSlides();
       this.createDots();
       this.setupEventListeners();
       this.goToSlide(this.currentIndex);
@@ -217,16 +251,40 @@
       if ({{ section.settings.auto_rotate }}) {
         this.startAutoSlide();
       }
+
+      this.setupResizeObserver();
+    }
+
+    setupSlides() {
+      // Clone first and last slides for infinite looping
+      const firstClone = this.slides[0].cloneNode(true);
+      const lastClone = this.slides[this.slides.length - 1].cloneNode(true);
+      
+      firstClone.classList.add('clone');
+      lastClone.classList.add('clone');
+      
+      this.carousel.appendChild(firstClone);
+      this.carousel.insertBefore(lastClone, this.carousel.firstChild);
+      
+      // Update slides reference
+      this.slides = this.querySelectorAll('.pc-testimonials__slide');
+      this.slideCount = this.slides.length;
+      
+      // Set initial position
+      this.carousel.style.transform = `translateX(-${100}%)`;
     }
     
     createDots() {
-      this.slides.forEach((_, index) => {
+      // Only create dots for original slides (excluding clones)
+      const originalSlideCount = this.slideCount - 2;
+      
+      for (let i = 0; i < originalSlideCount; i++) {
         const dot = document.createElement('div');
         dot.classList.add('pc-testimonials__dot');
-        dot.dataset.index = index;
+        dot.dataset.index = i;
         this.dotsContainer.appendChild(dot);
         this.dots.push(dot);
-      });
+      }
     }
     
     setupEventListeners() {
@@ -240,39 +298,86 @@
         });
       });
     }
-    
-    goToSlide(index) {
-      this.currentIndex = index;
-      
-      this.slides.forEach((slide, i) => {
-        slide.style.transform = `translateX(${100 * (i - index)}%)`;
-        slide.style.opacity = i === index ? '1' : '0.5';
+
+    setupResizeObserver() {
+      const resizeObserver = new ResizeObserver(entries => {
+        this.updateCarouselPosition();
       });
-      
-      this.updateDots();
+      resizeObserver.observe(this.carouselContainer);
     }
     
-    updateDots() {
+    goToSlide(index) {
+      if (this.isAnimating) return;
+      
+      this.isAnimating = true;
+      this.currentIndex = index + 1; // +1 because of the cloned slide at start
+      
+      this.carousel.style.transition = 'transform 0.5s ease';
+      this.carousel.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+      
+      this.updateActiveState();
+      
+      setTimeout(() => {
+        this.isAnimating = false;
+      }, 500);
+    }
+    
+    updateCarouselPosition() {
+      this.carousel.style.transition = 'none';
+      this.carousel.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+      
+      // Force reflow
+      this.carousel.offsetHeight;
+      
+      this.carousel.style.transition = 'transform 0.5s ease';
+    }
+    
+    updateActiveState() {
+      // Update dots
+      const activeDotIndex = (this.currentIndex - 1 + (this.slideCount - 2)) % (this.slideCount - 2);
       this.dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === this.currentIndex);
+        dot.classList.toggle('active', index === activeDotIndex);
+      });
+      
+      // Update slide opacity
+      this.slides.forEach((slide, index) => {
+        if (index === this.currentIndex) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
       });
     }
     
     prevSlide() {
-      if (this.currentIndex === 0) {
-        this.goToSlide(this.slideCount - 1);
-      } else {
-        this.goToSlide(this.currentIndex - 1);
+      if (this.isAnimating) return;
+      
+      this.currentIndex--;
+      if (this.currentIndex < 0) {
+        this.currentIndex = this.slideCount - 1;
+        this.updateCarouselPosition();
       }
+      
+      this.carousel.style.transition = 'transform 0.5s ease';
+      this.carousel.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+      
+      this.updateActiveState();
       this.resetAutoSlide();
     }
     
     nextSlide() {
-      if (this.currentIndex === this.slideCount - 1) {
-        this.goToSlide(0);
-      } else {
-        this.goToSlide(this.currentIndex + 1);
+      if (this.isAnimating) return;
+      
+      this.currentIndex++;
+      if (this.currentIndex >= this.slideCount) {
+        this.currentIndex = 1;
+        this.updateCarouselPosition();
       }
+      
+      this.carousel.style.transition = 'transform 0.5s ease';
+      this.carousel.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+      
+      this.updateActiveState();
       this.resetAutoSlide();
     }
     
@@ -288,565 +393,18 @@
         this.startAutoSlide();
       }
     }
+
+    handleTransitionEnd() {
+      // Handle infinite loop when reaching cloned slides
+      if (this.currentIndex === 0) {
+        this.currentIndex = this.slideCount - 2;
+        this.updateCarouselPosition();
+      } else if (this.currentIndex === this.slideCount - 1) {
+        this.currentIndex = 1;
+        this.updateCarouselPosition();
+      }
+    }
   }
   
   customElements.define('pc-testimonials-{{ last_part }}', PcTestimonials{{ last_part | capitalize }});
 </script>
-
-{% schema %}
-{
-  "name": "PWC - Testimonials #1",
-  "tag": "section",
-  "class": "section",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Section Settings"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Customer Testimonials"
-    },
-    {
-      "type": "range",
-      "id": "heading_font_size",
-      "label": "Heading Font Size (Desktop)",
-      "min": 12,
-      "max": 72,
-      "step": 1,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "heading_font_size_mobile",
-      "label": "Heading Font Size (Mobile)",
-      "min": 12,
-      "max": 48,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "select",
-      "id": "heading_font_weight",
-      "label": "Heading Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "600"
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
-      "default": "#333333"
-    },
-    {
-      "type": "range",
-      "id": "heading_margin_bottom",
-      "label": "Heading Margin Bottom",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 50
-    },
-    {
-      "type": "range",
-      "id": "heading_margin_bottom_mobile",
-      "label": "Heading Margin Bottom (Mobile)",
-      "min": 0,
-      "max": 50,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#f0f8ff"
-    },
-    {
-      "type": "checkbox",
-      "id": "shadow_enabled",
-      "label": "Enable Section Shadow",
-      "default": false
-    },
-    {
-      "type": "color",
-      "id": "shadow_color",
-      "label": "Shadow Color",
-      "default": "#000000"
-    },
-    {
-      "type": "checkbox",
-      "id": "auto_rotate",
-      "label": "Auto Rotate Slides",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "auto_slide_delay",
-      "label": "Auto Slide Delay (ms)",
-      "min": 1000,
-      "max": 9000,
-      "step": 100,
-      "unit": "ms",
-      "default": 1000
-    },
-    {
-      "type": "header",
-      "content": "Card Settings"
-    },
-    {
-      "type": "color",
-      "id": "card_background",
-      "label": "Card Background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "range",
-      "id": "card_border_radius",
-      "label": "Card Border Radius",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "checkbox",
-      "id": "card_shadow_enabled",
-      "label": "Enable Card Shadow",
-      "default": true
-    },
-    {
-      "type": "color",
-      "id": "card_shadow_color",
-      "label": "Card Shadow Color",
-      "default": "#c9dff0"
-    },
-    {
-      "type": "checkbox",
-      "id": "image_shadow_enabled",
-      "label": "Enable Image Shadow",
-      "default": true
-    },
-    {
-      "type": "color",
-      "id": "image_shadow_color",
-      "label": "Image Shadow Color",
-      "default": "#95abbb"
-    },
-    {
-      "type": "header",
-      "content": "Text Settings"
-    },
-    {
-      "type": "color",
-      "id": "name_color",
-      "label": "Name Color",
-      "default": "#01b0f8"
-    },
-    {
-      "type": "range",
-      "id": "name_font_size",
-      "label": "Name Font Size (Desktop)",
-      "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "default": 21
-    },
-    {
-      "type": "range",
-      "id": "name_font_size_mobile",
-      "label": "Name Font Size (Mobile)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "select",
-      "id": "name_font_weight",
-      "label": "Name Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "600"
-    },
-    {
-      "type": "color",
-      "id": "position_color",
-      "label": "Position Color",
-      "default": "#666666"
-    },
-    {
-      "type": "range",
-      "id": "position_font_size",
-      "label": "Position Font Size (Desktop)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "position_font_size_mobile",
-      "label": "Position Font Size (Mobile)",
-      "min": 12,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "select",
-      "id": "position_font_weight",
-      "label": "Position Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        }
-      ],
-      "default": "400"
-    },
-    {
-      "type": "color",
-      "id": "quote_color",
-      "label": "Quote Color",
-      "default": "#555555"
-    },
-    {
-      "type": "range",
-      "id": "quote_font_size",
-      "label": "Quote Font Size (Desktop)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "quote_font_size_mobile",
-      "label": "Quote Font Size (Mobile)",
-      "min": 12,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "select",
-      "id": "quote_font_style",
-      "label": "Quote Font Style",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
-        },
-        {
-          "value": "italic",
-          "label": "Italic"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "header",
-      "content": "Navigation Settings"
-    },
-    {
-      "type": "color",
-      "id": "arrow_color",
-      "label": "Arrow Color",
-      "default": "#01b0f8"
-    },
-    {
-      "type": "color",
-      "id": "dot_color",
-      "label": "Dot Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "dot_active_color",
-      "label": "Active Dot Color",
-      "default": "#01b0f8"
-    },
-    {
-      "type": "header",
-      "content": "Desktop Spacing"
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_top",
-      "label": "Top Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_right",
-      "label": "Right Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_bottom",
-      "label": "Bottom Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_left",
-      "label": "Left Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "desktop_margin_top",
-      "label": "Top Margin",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_margin_right",
-      "label": "Right Margin",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_margin_bottom",
-      "label": "Bottom Margin",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_margin_left",
-      "label": "Left Margin",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Mobile Spacing"
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_top",
-      "label": "Top Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_right",
-      "label": "Right Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_bottom",
-      "label": "Bottom Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_left",
-      "label": "Left Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "mobile_margin_top",
-      "label": "Top Margin",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_margin_right",
-      "label": "Right Margin",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_margin_bottom",
-      "label": "Bottom Margin",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_margin_left",
-      "label": "Left Margin",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    }
-  ],
-  "blocks": [
-    {
-      "type": "testimonial",
-      "name": "Testimonial",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Name",
-          "default": "John Doe"
-        },
-        {
-          "type": "text",
-          "id": "position",
-          "label": "Position",
-          "default": "Project Manager"
-        },
-        {
-          "type": "richtext",
-          "id": "quote",
-          "label": "Quote",
-          "default": "<p>“Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat”</p>"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "PWC - Testimonials Carousel #5",
-      "blocks": [
-        {
-          "type": "testimonial",
-          "settings": {
-            "name": "Ronne Galle",
-            "position": "Project Manager",
-            "quote": "<p>“Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat”</p>"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "name": "Missy Limana",
-            "position": "Engineer",
-            "quote": "<p>“Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat”</p>"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "name": "Martha Brown",
-            "position": "Project Manager",
-            "quote": "<p>“Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat”</p>"
-          }
-        }
-      ]
-    }
-  ]
-}
-{% endschema %}
