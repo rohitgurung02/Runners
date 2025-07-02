@@ -1075,69 +1075,6 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
-    },
-    "rw_parallax_effect_t8qLaT": {
-      "type": "rw-parallax-effect",
-      "blocks": {
-        "image_yPmymt": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/1040-1200x800.jpg",
-            "heading": "Parallax Heading",
-            "subheading": "Parallax subheading text",
-            "show_button": true,
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_yPmymt"
-      ],
-      "name": "PWC - Parallax #1",
-      "settings": {
-        "custom_container_width": 1200,
-        "height": 500,
-        "text_alignment": "left",
-        "text_position": 50,
-        "section_margin_top": 15,
-        "section_margin_bottom": 15,
-        "heading_size": 55,
-        "heading_color": "#ffffff",
-        "heading_font_weight": "bold",
-        "heading_font_style": "normal",
-        "heading_letter_spacing": 1,
-        "heading_text_decoration": "none",
-        "heading_text_decoration_color": "#ffffff",
-        "heading_margin": 10,
-        "heading_padding_top": 5,
-        "heading_padding_bottom": 5,
-        "subheading_size": 25,
-        "subheading_color": "#ffffff",
-        "subheading_font_weight": "normal",
-        "subheading_font_style": "normal",
-        "subheading_letter_spacing": 0,
-        "subheading_text_decoration": "none",
-        "subheading_text_decoration_color": "#ffffff",
-        "subheading_padding_top": 5,
-        "subheading_padding_bottom": 5,
-        "button_size": 25,
-        "button_font_weight": "normal",
-        "button_text_transform": "uppercase",
-        "button_text_decoration": "underline",
-        "letter_spacing": 1,
-        "button_text_decoration_color": "#ffffff",
-        "button_border_color": "#ffffff",
-        "button_text_color": "#ffffff",
-        "button_padding_vertical": 12,
-        "button_padding_horizontal": 30,
-        "button_min_width": 160,
-        "enable_overlay": true,
-        "overlay_color": "#000000",
-        "overlay_opacity": 50,
-        "mobile_heading_size": 30,
-        "mobile_subheading_size": 18
-      }
     }
   },
   "order": [
@@ -1152,7 +1089,6 @@
     "rw_test_aezBCg",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA",
-    "rw_parallax_effect_t8qLaT"
+    "rw_video_banner_f88XdA"
   ]
 }
