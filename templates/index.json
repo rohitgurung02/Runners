@@ -1002,128 +1002,6 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
-    },
-    "rw_test_gpDPYz": {
-      "type": "rw-test",
-      "name": "PWC - Testimonials Carousel #5",
-      "settings": {
-        "heading": "Customer Testimonials",
-        "caption": "Images used from https://imgur.com/",
-        "max_width": 1200,
-        "heading_font_size": 30,
-        "heading_font_size_mobile": 24,
-        "heading_font_weight": "600",
-        "heading_color": "#333333",
-        "heading_margin_bottom": 50,
-        "heading_margin_bottom_mobile": 30,
-        "caption_font_size": 14,
-        "caption_font_size_mobile": 12,
-        "caption_color": "#666666",
-        "caption_margin_top": 20,
-        "image_border_radius": 10,
-        "image_shadow_enabled": true,
-        "image_shadow_color": "#95abbb",
-        "auto_rotate": true,
-        "auto_slide_delay": 1000,
-        "dot_color": "#ffffff",
-        "dot_active_color": "#01b0f8",
-        "arrow_color": "#01b0f8",
-        "background_color": "#f0f8ff",
-        "shadow_enabled": false,
-        "shadow_color": "#000000",
-        "desktop_padding_top": 30,
-        "desktop_padding_right": 20,
-        "desktop_padding_bottom": 30,
-        "desktop_padding_left": 20,
-        "desktop_margin_top": 0,
-        "desktop_margin_right": 0,
-        "desktop_margin_bottom": 0,
-        "desktop_margin_left": 0,
-        "mobile_padding_top": 20,
-        "mobile_padding_right": 15,
-        "mobile_padding_bottom": 20,
-        "mobile_padding_left": 15,
-        "mobile_margin_top": 0,
-        "mobile_margin_right": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_margin_left": 0
-      }
-    },
-    "rw_test_CVchnq": {
-      "type": "rw-test",
-      "blocks": {
-        "image_ewjTcx": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-991012.jpg"
-          }
-        },
-        "image_78jzDX": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-92733.jpg"
-          }
-        },
-        "image_CWxzKP": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-921294.webp"
-          }
-        },
-        "image_tMVpXg": {
-          "type": "image",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "image_ewjTcx",
-        "image_78jzDX",
-        "image_CWxzKP",
-        "image_tMVpXg"
-      ],
-      "name": "PWC - Gallery Carousel #1",
-      "settings": {
-        "heading": "Gallery",
-        "caption": "Images used from https://imgur.com/",
-        "max_width": 1200,
-        "heading_font_size": 30,
-        "heading_font_size_mobile": 24,
-        "heading_font_weight": "600",
-        "heading_color": "#333333",
-        "heading_margin_bottom": 30,
-        "heading_margin_bottom_mobile": 20,
-        "caption_font_size": 14,
-        "caption_font_size_mobile": 12,
-        "caption_color": "#666666",
-        "caption_margin_top": 20,
-        "image_border_radius": 10,
-        "image_shadow_enabled": true,
-        "image_shadow_color": "#000000",
-        "auto_rotate": true,
-        "auto_slide_delay": 1000,
-        "dot_color": "#ffffff",
-        "dot_active_color": "#0970CF",
-        "arrow_color": "#0970CF",
-        "background_color": "#ffffff",
-        "shadow_enabled": false,
-        "shadow_color": "#000000",
-        "desktop_padding_top": 40,
-        "desktop_padding_right": 20,
-        "desktop_padding_bottom": 40,
-        "desktop_padding_left": 20,
-        "desktop_margin_top": 0,
-        "desktop_margin_right": 0,
-        "desktop_margin_bottom": 0,
-        "desktop_margin_left": 0,
-        "mobile_padding_top": 30,
-        "mobile_padding_right": 15,
-        "mobile_padding_bottom": 30,
-        "mobile_padding_left": 15,
-        "mobile_margin_top": 0,
-        "mobile_margin_right": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_margin_left": 0
-      }
     }
   },
   "order": [
@@ -1138,8 +1016,6 @@
     "rw_test_aezBCg",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA",
-    "rw_test_gpDPYz",
-    "rw_test_CVchnq"
+    "rw_video_banner_f88XdA"
   ]
 }
