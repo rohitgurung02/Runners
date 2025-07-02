@@ -111,7 +111,8 @@
   }
 </style>
 
-<pc-parallax-{{ last_part }} class="pc-parallax-container {% if section.settings.full_width %}pc-full-width{% endif %}">
+<div class="pc-parallax-section-container {% if section.settings.full_width %}pc-full-width{% endif %}">
+<pc-parallax-{{ last_part }} class="pc-parallax">
   {%- for block in section.blocks -%}
     {%- if block.settings.image != blank -%}
       <div class="pc-parallax pc-parallax-{{ forloop.index }} {% if section.settings.enable_overlay %}pc-parallax-overlay-{{ last_part }}{% endif %}"
@@ -147,6 +148,7 @@
     {%- endif -%}
   {%- endfor -%}
 </pc-parallax-{{ last_part }}>
+</div>
 
 {% schema %}
 {
