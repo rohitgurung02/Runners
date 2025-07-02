@@ -1096,7 +1096,7 @@
       ],
       "name": "PWC - Parallax #1",
       "settings": {
-        "container_width": "narrow",
+        "custom_container_width": 1000,
         "height": 400,
         "text_alignment": "left",
         "text_position": 50,
