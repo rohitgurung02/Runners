@@ -4,14 +4,12 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} .pc-parallax-section-container {
+  {{ sec_id }} .pc-parallax-container {
     overflow: hidden;
     {% if section.settings.container_width != 'full' %}
     max-width: {{ section.settings.custom_container_width }}px;
     margin: 0 auto;
     {% endif %}
-    margin-top: {{ section.settings.section_margin_top }}px;
-    margin-bottom: {{ section.settings.section_margin_bottom }}px;
   }
   
   {{ sec_id }} .pc-parallax {
@@ -39,6 +37,7 @@
     font-style: {{ section.settings.heading_font_style }};
     color: {{ section.settings.heading_color }};
     text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.3);
+    margin-bottom: {{ section.settings.heading_margin }}px;
     padding-top: {{ section.settings.heading_padding_top }}px;
     padding-bottom: {{ section.settings.heading_padding_bottom }}px;
     text-decoration: {{ section.settings.heading_text_decoration }};
@@ -90,6 +89,12 @@
     opacity: {{ section.settings.overlay_opacity }}%;
   }
   
+  {{ sec_id }} .pc-parallax-img {
+    display: none; /* Hidden but still loads for parallax effect */
+    width: 100%;
+    height: auto;
+  }
+  
   @media only screen and (max-width: 767px) {
     {{ sec_id }} .pc-parallax {
       background-attachment: scroll;
@@ -108,7 +113,7 @@
       max-width: 100%;
       padding: 0 15px;
       {% endif %}
-    }.
+    }
   }
 </style>
 
