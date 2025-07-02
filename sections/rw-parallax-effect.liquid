@@ -3,327 +3,254 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-parallax-story-{{ last_part }} class="pc-parallax-story">
+<pc-parallax-{{ last_part }} class="pc-parallax-container {% unless section.settings.full_width %}pc-page-width{% endunless %}">
   {%- for block in section.blocks -%}
-    {%- if block.type == 'parallax' -%}
-      <div class="pc-parallax pc-parallax-{{ forloop.index }}" style="
-        {%- if block.settings.image != blank -%}
+    {%- if block.settings.image != blank -%}
+      <div class="pc-parallax pc-parallax-{{ forloop.index }} {% if section.settings.enable_overlay %}pc-parallax-overlay-{{ last_part }}{% endif %}"
+        style="
           background-image: url('{{ block.settings.image | image_url: width: 2000 }}');
-        {%- else -%}
-          background-image: url('{{ 'product-1' | placeholder_svg_tag }}');
-        {%- endif -%}
-        height: {{ block.settings.height }}vh;
-      "></div>
-    {%- elsif block.type == 'content' -%}
-      <div class="pc-content" style="
-        background-color: {{ block.settings.bg_color }};
-        padding-top: {{ block.settings.padding_top }}px;
-        padding-bottom: {{ block.settings.padding_bottom }}px;
-      ">
-        {%- if block.settings.heading != blank -%}
-          <h2 class="pc-heading" style="
-            font-size: {{ block.settings.heading_size }}px;
-            color: {{ block.settings.heading_color }};
-            margin-bottom: {{ block.settings.heading_margin_bottom }}px;
-          ">{{ block.settings.heading }}</h2>
-        {%- endif -%}
-        
-        {%- if block.settings.text != blank -%}
-          <div class="pc-text" style="
-            font-size: {{ block.settings.text_size }}px;
-            color: {{ block.settings.text_color }};
-            line-height: {{ block.settings.text_line_height }};
-          ">{{ block.settings.text }}</div>
-        {%- endif -%}
-        
-        {%- if forloop.first and section.settings.enable_audio -%}
-          <div class="pc-controls" data-echo="{{ section.settings.audio_echo }}">
-            <button id="pc-playPauseButton-{{ last_part }}" class="pc-control-btn" aria-label="Play">
-              <span>▶️</span>
-            </button>
-            <button id="pc-stopButton-{{ last_part }}" class="pc-control-btn" disabled>⏹️</button>
-          </div>
-        {%- endif -%}
+          height: {{ section.settings.height }}px;
+          background-position: center top;
+        ">
+        <div class="pc-text-block-{{ last_part }}" style="text-align: {{ section.settings.text_alignment }};">
+          {%- if block.settings.heading != blank -%}
+            <{{ block.settings.heading_tag }} class="pc-heading-{{ last_part }}">
+              {{ block.settings.heading }}
+            </{{ block.settings.heading_tag }}>
+          {%- endif -%}
+          
+          {%- if block.settings.subheading != blank -%}
+            <{{ block.settings.subheading_tag }} class="pc-subheading-{{ last_part }}">
+              {{ block.settings.subheading }}
+            </{{ block.settings.subheading_tag }}>
+          {%- endif -%}
+          
+          {%- if block.settings.show_button -%}
+            <a href="{{ block.settings.button_link }}" class="pc-button-{{ last_part }} pc-btn pc-btn--tertiary pc-btn--small">
+              {{ block.settings.button_label | escape }}
+            </a>
+          {%- endif -%}
+        </div>
       </div>
+    {%- else -%}
+      <span class="pc-placeholder">
+        {{ 'product-1' | placeholder_svg_tag }}
+      </span>
     {%- endif -%}
   {%- endfor -%}
-  
-  {%- if section.settings.show_footer -%}
-    <footer class="pc-footer" style="
-      padding: {{ section.settings.footer_padding }}px;
-      background-color: {{ section.settings.footer_bg_color }};
-      color: {{ section.settings.footer_text_color }};
-    ">
-      {{ section.settings.footer_text }}
-    </footer>
-  {%- endif -%}
-</pc-parallax-story-{{ last_part }}>
+</pc-parallax-{{ last_part }}>
 
 <style>
-  {{ sec_id }} .pc-parallax-story {
-    font-family: var(--font-body-family);
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-    background-color: #111;
-    color: #f8f8f2;
+  {{ sec_id }} .pc-parallax-container {
+    overflow: hidden;
   }
   
   {{ sec_id }} .pc-parallax {
     position: relative;
-    background-attachment: fixed;
-    background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
     width: 100%;
     overflow: hidden;
   }
   
-  {{ sec_id }} .pc-content {
-    text-align: center;
-    animation: pc-fadeIn-{{ last_part }} 1.5s ease-in-out;
+  {{ sec_id }} .pc-text-block-{{ last_part }} {
+    position: absolute;
+    top: {{ section.settings.text_position }}%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
   }
   
-  @keyframes pc-fadeIn-{{ last_part }} {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  {{ sec_id }} .pc-heading {
+  {{ sec_id }} .pc-heading-{{ last_part }} {
+    font-size: {{ section.settings.heading_size }}px;
+    letter-spacing: {{ section.settings.letter_spacing }}px;
+    font-weight: bold;
+    color: #fff;
     text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.3);
+    margin-bottom: {{ section.settings.heading_margin }}px;
   }
   
-  {{ sec_id }} .pc-controls {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+  {{ sec_id }} .pc-subheading-{{ last_part }} {
+    font-size: {{ section.settings.subheading_size }}px;
+    letter-spacing: {{ section.settings.letter_spacing }}px;
+    color: #fff;
   }
   
-  {{ sec_id }} .pc-control-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.1);
-    color: #f8f8f8;
-    transition: transform 0.2s ease, background 0.3s ease;
+  {{ sec_id }} .pc-button-{{ last_part }} {
+    font-size: {{ section.settings.button_size }}px;
+    letter-spacing: {{ section.settings.letter_spacing }}px;
+    border-color: #fff;
+    background: transparent;
+    color: #fff;
   }
   
-  {{ sec_id }} .pc-control-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.1);
+  {{ sec_id }} .pc-parallax-overlay-{{ last_part }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: {{ section.settings.overlay_color }};
+    opacity: {{ section.settings.overlay_opacity }}%;
   }
   
-  {{ sec_id }} .pc-control-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  {{ sec_id }} .pc-page-width {
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
-  {{ sec_id }} .pc-footer {
-    text-align: center;
-  }
-  
-  @media (max-width: 768px) {
+  @media only screen and (max-width: 767px) {
     {{ sec_id }} .pc-parallax {
       background-attachment: scroll;
     }
     
-    {{ sec_id }} .pc-parallax::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: inherit;
-      background-size: cover;
-      background-position: center;
-      transform: translateY(0px);
-      will-change: transform;
+    {{ sec_id }} .pc-heading-{{ last_part }} {
+      font-size: {{ section.settings.mobile_heading_size }}px;
     }
     
-    {{ sec_id }} .pc-heading {
-      font-size: calc({{ section.settings.mobile_heading_size }}px * 0.8) !important;
-    }
-    
-    {{ sec_id }} .pc-text {
-      font-size: calc({{ section.settings.mobile_text_size }}px * 0.9) !important;
-    }
-    
-    {{ sec_id }} .pc-content {
-      padding-top: {{ section.settings.mobile_padding_top }}px !important;
-      padding-bottom: {{ section.settings.mobile_padding_bottom }}px !important;
+    {{ sec_id }} .pc-subheading-{{ last_part }} {
+      font-size: {{ section.settings.mobile_subheading_size }}px;
     }
   }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const stories = [
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'content' and block.settings.text != blank -%}
-          `{{ block.settings.text | strip_html | escape }}`{% unless forloop.last %},{% endunless %}
-        {%- endif -%}
-      {%- endfor -%}
-    ];
-    
-    const playPauseButton = document.getElementById('pc-playPauseButton-{{ last_part }}');
-    const stopButton = document.getElementById('pc-stopButton-{{ last_part }}');
-    const storyText = document.querySelector('{{ sec_id }} .pc-text');
-    
-    let speech;
-    let currentStoryIndex = 0;
-    let isPlaying = false;
-    
-    if (playPauseButton) {
-      playPauseButton.addEventListener('click', function() {
-        if (!isPlaying) {
-          playStory();
-        } else {
-          pauseStory();
-        }
-      });
-    }
-    
-    if (stopButton) {
-      stopButton.addEventListener('click', function() {
-        stopStory();
-      });
-    }
-    
-    function playStory() {
-      if (!speechSynthesis.speaking || speechSynthesis.paused) {
-        if (speechSynthesis.paused) {
-          speechSynthesis.resume();
-        } else {
-          if (storyText) storyText.innerHTML = stories[currentStoryIndex].replace(/\n/g, "<br>");
-          speech = new SpeechSynthesisUtterance(stories[currentStoryIndex]);
-          speech.lang = "en-US";
-          speech.rate = 0.85;
-          speech.pitch = 0.9;
-          speech.volume = 0.8;
-    
-          speech.onend = function() {
-            currentStoryIndex++;
-            if (currentStoryIndex < stories.length) {
-              setTimeout(playStory, 600);
-            } else {
-              stopStory();
-              currentStoryIndex = 0;
-            }
-          };
-    
-          speechSynthesis.speak(speech);
-        }
-    
-        isPlaying = true;
-        updatePlayPauseButton();
-        if (stopButton) stopButton.disabled = false;
-      }
-    }
-    
-    function pauseStory() {
-      if (speechSynthesis.speaking && !speechSynthesis.paused) {
-        speechSynthesis.pause();
-        isPlaying = false;
-        updatePlayPauseButton();
-      }
-    }
-    
-    function stopStory() {
-      if (speechSynthesis.speaking || speechSynthesis.paused) {
-        speechSynthesis.cancel();
-        resetPlayer();
-      }
-    }
-    
-    function resetPlayer() {
-      isPlaying = false;
-      currentStoryIndex = 0;
-      if (storyText) storyText.textContent = "{{ section.settings.initial_text | default: 'Click play to begin the tale of love and loss.' | strip_html | escape }}";
-      updatePlayPauseButton();
-      if (stopButton) stopButton.disabled = true;
-    }
-    
-    function updatePlayPauseButton() {
-      if (playPauseButton) playPauseButton.innerHTML = isPlaying ? "⏸️" : "▶️";
-    }
-  });
-</script>
-
 {% schema %}
 {
-  "name": "PWC - Parallax Story #1",
+  "name": "PWC - Parallax #1",
   "tag": "section",
   "class": "section",
   "settings": [
     {
       "type": "header",
-      "content": "Audio Settings"
+      "content": "Layout"
     },
     {
       "type": "checkbox",
-      "id": "enable_audio",
-      "label": "Enable Audio Narration",
+      "id": "full_width",
+      "label": "Full width",
       "default": true
-    },
-    {
-      "type": "text",
-      "id": "audio_echo",
-      "label": "Audio Echo Text",
-      "default": "You're still watching, aren't you?"
-    },
-    {
-      "type": "text",
-      "id": "initial_text",
-      "label": "Initial Text",
-      "default": "Click play to begin the tale of love and loss."
-    },
-    {
-      "type": "header",
-      "content": "Footer Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_footer",
-      "label": "Show Footer",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "footer_text",
-      "label": "Footer Text",
-      "default": "© 2025 Gothic Tales | Inspired by Edgar Allan Poe"
-    },
-    {
-      "type": "color",
-      "id": "footer_bg_color",
-      "label": "Footer Background Color",
-      "default": "#1a1a1a"
-    },
-    {
-      "type": "color",
-      "id": "footer_text_color",
-      "label": "Footer Text Color",
-      "default": "#bbb"
     },
     {
       "type": "range",
-      "id": "footer_padding",
-      "label": "Footer Padding",
-      "min": 10,
+      "id": "height",
+      "label": "Section height",
+      "min": 200,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "text_position",
+      "label": "Text vertical position",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button text size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "heading_margin",
+      "label": "Heading margin bottom",
+      "min": 0,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 20
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Overlay Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_overlay",
+      "label": "Enable overlay",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50
     },
     {
       "type": "header",
@@ -332,48 +259,28 @@
     {
       "type": "range",
       "id": "mobile_heading_size",
-      "label": "Heading Size (Mobile)",
-      "min": 14,
+      "label": "Mobile heading size",
+      "min": 12,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 24
+      "default": 30
     },
     {
       "type": "range",
-      "id": "mobile_text_size",
-      "label": "Text Size (Mobile)",
+      "id": "mobile_subheading_size",
+      "label": "Mobile subheading size",
       "min": 12,
-      "max": 24,
+      "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_top",
-      "label": "Top Padding (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_bottom",
-      "label": "Bottom Padding (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 40
+      "default": 18
     }
   ],
   "blocks": [
     {
-      "type": "parallax",
-      "name": "Parallax Section",
+      "type": "image",
+      "name": "Parallax Image",
       "settings": [
         {
           "type": "image_picker",
@@ -381,140 +288,84 @@
           "label": "Image"
         },
         {
-          "type": "range",
-          "id": "height",
-          "label": "Section Height",
-          "min": 50,
-          "max": 150,
-          "step": 5,
-          "unit": "vh",
-          "default": 100
-        }
-      ]
-    },
-    {
-      "type": "content",
-      "name": "Content Section",
-      "settings": [
-        {
           "type": "text",
           "id": "heading",
           "label": "Heading",
-          "default": "Annabel Lee"
+          "default": "Parallax Heading"
         },
         {
-          "type": "range",
-          "id": "heading_size",
-          "label": "Heading Size",
-          "min": 20,
-          "max": 72,
-          "step": 1,
-          "unit": "px",
-          "default": 48
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading tag",
+          "options": [
+            {
+              "value": "h1",
+              "label": "h1"
+            },
+            {
+              "value": "h2",
+              "label": "h2"
+            },
+            {
+              "value": "h3",
+              "label": "h3"
+            }
+          ],
+          "default": "h2"
         },
         {
-          "type": "color",
-          "id": "heading_color",
-          "label": "Heading Color",
-          "default": "#fffbf1"
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "Parallax subheading text"
         },
         {
-          "type": "range",
-          "id": "heading_margin_bottom",
-          "label": "Heading Margin Bottom",
-          "min": 0,
-          "max": 50,
-          "step": 1,
-          "unit": "px",
-          "default": 10
+          "type": "select",
+          "id": "subheading_tag",
+          "label": "Subheading tag",
+          "options": [
+            {
+              "value": "h2",
+              "label": "h2"
+            },
+            {
+              "value": "h3",
+              "label": "h3"
+            },
+            {
+              "value": "h4",
+              "label": "h4"
+            }
+          ],
+          "default": "h3"
         },
         {
-          "type": "richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "<p>Click play to begin the tale of love and loss.</p>"
+          "type": "checkbox",
+          "id": "show_button",
+          "label": "Show button",
+          "default": true
         },
         {
-          "type": "range",
-          "id": "text_size",
-          "label": "Text Size",
-          "min": 12,
-          "max": 24,
-          "step": 1,
-          "unit": "px",
-          "default": 18
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop Now"
         },
         {
-          "type": "color",
-          "id": "text_color",
-          "label": "Text Color",
-          "default": "#ddd"
-        },
-        {
-          "type": "range",
-          "id": "text_line_height",
-          "label": "Text Line Height",
-          "min": 1,
-          "max": 2.5,
-          "step": 0.1,
-          "default": 1.8
-        },
-        {
-          "type": "color",
-          "id": "bg_color",
-          "label": "Background Color",
-          "default": "rgba(20, 20, 20, 0.85)"
-        },
-        {
-          "type": "range",
-          "id": "padding_top",
-          "label": "Padding Top",
-          "min": 0,
-          "max": 200,
-          "step": 5,
-          "unit": "px",
-          "default": 80
-        },
-        {
-          "type": "range",
-          "id": "padding_bottom",
-          "label": "Padding Bottom",
-          "min": 0,
-          "max": 200,
-          "step": 5,
-          "unit": "px",
-          "default": 80
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "PWC - Parallax Story #1",
+      "name": "PWC - Parallax #1",
+      "category": "Image",
       "blocks": [
         {
-          "type": "parallax"
-        },
-        {
-          "type": "content"
-        },
-        {
-          "type": "parallax"
-        },
-        {
-          "type": "content"
-        },
-        {
-          "type": "parallax"
-        },
-        {
-          "type": "content"
-        },
-        {
-          "type": "parallax"
-        },
-        {
-          "type": "content"
+          "type": "image"
         }
       ]
     }
