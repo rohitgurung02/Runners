@@ -114,14 +114,18 @@
 
 <div class="pc-parallax-section-container {% if section.settings.full_width %}pc-full-width{% endif %}">
 <pc-parallax-{{ last_part }} class="pc-parallax">
-  {%- for block in section.blocks -%}
+   {%- for block in section.blocks -%}
     {%- if block.settings.image != blank -%}
       <div class="pc-parallax pc-parallax-{{ forloop.index }} {% if section.settings.enable_overlay %}pc-parallax-overlay-{{ last_part }}{% endif %}"
-        style="
-          background-image: url('{{ block.settings.image | image_url: width: 2000 }}');
-          height: {{ section.settings.height }}px;
-          background-position: center top;
-        ">
+        style="height: {{ section.settings.height }}px;">
+        {{- block.settings.image
+          | image_url: width: block.settings.image.width, height: block.settings.image.height
+          | image_tag: 
+            loading: 'lazy', 
+            preload: true, 
+            alt: block.settings.image.alt,
+            class: 'pc-parallax-img'
+        -}}
         <div class="pc-text-block-{{ last_part }}">
           {%- if block.settings.heading != blank -%}
             <div class="pc-heading-{{ last_part }}">
@@ -133,7 +137,7 @@
             <div class="pc-subheading-{{ last_part }}">
               {{ block.settings.subheading }}
             </div>
-          {%- endif -%}
+          {%- endif --%}
           
           {%- if block.settings.show_button -%}
             <a href="{{ block.settings.button_link }}" class="pc-button-{{ last_part }} pc-btn pc-btn--tertiary pc-btn--small">
