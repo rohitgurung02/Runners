@@ -748,123 +748,9 @@
     },
     "rw_test_aezBCg": {
       "type": "rw-test",
-      "blocks": {
-        "filter_DcM8Yc": {
-          "type": "filter",
-          "settings": {
-            "filter_tag": "Bollywood"
-          }
-        },
-        "filter_GjtQf6": {
-          "type": "filter",
-          "settings": {
-            "filter_tag": "Hollywood"
-          }
-        },
-        "filter_tqBMpX": {
-          "type": "filter",
-          "settings": {
-            "filter_tag": "TV Shows"
-          }
-        },
-        "gallery_item_cCKnX9": {
-          "type": "gallery_item",
-          "settings": {
-            "image": "shopify://shop_images/location_three.webp",
-            "filter_tag": "Bollywood"
-          }
-        },
-        "gallery_item_77cKph": {
-          "type": "gallery_item",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-991012.jpg",
-            "filter_tag": "Bollywood"
-          }
-        },
-        "gallery_item_pT4iqr": {
-          "type": "gallery_item",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-92733.jpg",
-            "filter_tag": "Bollywood"
-          }
-        },
-        "gallery_item_UFDjWh": {
-          "type": "gallery_item",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-921294.webp",
-            "filter_tag": "Bollywood"
-          }
-        },
-        "gallery_item_iJQyrA": {
-          "type": "gallery_item",
-          "settings": {
-            "image": "shopify://shop_images/1024-1200x800.jpg",
-            "filter_tag": "Hollywood"
-          }
-        },
-        "gallery_item_diEAP6": {
-          "type": "gallery_item",
-          "settings": {
-            "image": "shopify://shop_images/1733585348__screenshot2024-12-07at14531am__huge.png",
-            "filter_tag": "Hollywood"
-          }
-        }
-      },
-      "block_order": [
-        "filter_DcM8Yc",
-        "filter_GjtQf6",
-        "filter_tqBMpX",
-        "gallery_item_cCKnX9",
-        "gallery_item_77cKph",
-        "gallery_item_pT4iqr",
-        "gallery_item_UFDjWh",
-        "gallery_item_iJQyrA",
-        "gallery_item_diEAP6"
-      ],
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
-      "settings": {
-        "max_width": 1320,
-        "background_color": "#ffffff",
-        "desktop_padding_top": 80,
-        "desktop_padding_bottom": 80,
-        "tablet_padding_top": 70,
-        "tablet_padding_bottom": 70,
-        "mobile_padding_top": 50,
-        "mobile_padding_bottom": 0,
-        "heading": "Our Products",
-        "heading_size": 46,
-        "mobile_heading_size": 36,
-        "heading_weight": "700",
-        "heading_color": "#f44336",
-        "heading_bottom_margin": 10,
-        "subheading": "Some Random Photos Lorem ipsum, dolor sit.",
-        "subheading_size": 16,
-        "subheading_color": "#4c4c4c",
-        "subheading_max_width": 600,
-        "title_bottom_margin": 20,
-        "filter_font_size": 16,
-        "button_text_decoration": "none",
-        "filter_font_weight": "500",
-        "filter_text_color": "#000033",
-        "filter_bg_color": "#eeeeee",
-        "filter_border_color": "#f44336",
-        "filter_active_text_color": "#ffffff",
-        "filter_active_bg_color": "#f44336",
-        "filter_border_radius": 10,
-        "filter_vertical_padding": 10,
-        "filter_horizontal_padding": 20,
-        "filter_bottom_margin": 25,
-        "gallery_top_margin": 25,
-        "image_width": 200,
-        "image_height": 220,
-        "mobile_image_width": 80,
-        "mobile_image_height": 80,
-        "small_mobile_image_width": 60,
-        "small_mobile_image_height": 180,
-        "image_border_radius": 12,
-        "image_margin": 10
-      }
+      "settings": {}
     },
     "rw_reviews_eNfMNB": {
       "type": "rw-reviews",
@@ -1076,67 +962,10 @@
         "mobile_button_padding_right": 20
       }
     },
-    "rw_parallax_effect_RbzaP3": {
-      "type": "rw-parallax-effect",
-      "blocks": {
-        "image_VLAzJ6": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/pexels-photo-991012.jpg",
-            "heading": "Why do we use it?",
-            "subheading": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ",
-            "show_button": true,
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_VLAzJ6"
-      ],
-      "name": "RW - Parallax #1",
-      "settings": {
-        "custom_container_width": 1200,
-        "height": 500,
-        "text_alignment": "left",
-        "text_position": 50,
-        "section_margin_top": 15,
-        "section_margin_bottom": 15,
-        "heading_size": 50,
-        "heading_color": "#ffffff",
-        "heading_font_weight": "bold",
-        "heading_font_style": "normal",
-        "heading_letter_spacing": 1,
-        "heading_text_decoration": "none",
-        "heading_text_decoration_color": "#ffffff",
-        "heading_padding_top": 0,
-        "heading_padding_bottom": 0,
-        "subheading_size": 22,
-        "subheading_color": "#ffffff",
-        "subheading_font_weight": "normal",
-        "subheading_font_style": "normal",
-        "subheading_letter_spacing": 0,
-        "subheading_text_decoration": "none",
-        "subheading_text_decoration_color": "#ffffff",
-        "subheading_padding_top": 5,
-        "subheading_padding_bottom": 5,
-        "button_size": 18,
-        "button_font_weight": "normal",
-        "button_text_transform": "uppercase",
-        "button_text_decoration": "underline",
-        "letter_spacing": 1,
-        "button_text_decoration_color": "#ffffff",
-        "button_border_color": "#ffffff",
-        "button_text_color": "#ffffff",
-        "button_padding_vertical": 5,
-        "button_padding_horizontal": 5,
-        "button_min_width": 50,
-        "enable_overlay": true,
-        "overlay_color": "#000000",
-        "overlay_opacity": 50,
-        "mobile_heading_size": 30,
-        "mobile_subheading_size": 18
-      }
+    "rw_test_QKW7qK": {
+      "type": "rw-test",
+      "name": "PWC - Testimonials Carousel #5",
+      "settings": {}
     }
   },
   "order": [
@@ -1152,6 +981,6 @@
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
     "rw_video_banner_f88XdA",
-    "rw_parallax_effect_RbzaP3"
+    "rw_test_QKW7qK"
   ]
 }
