@@ -161,28 +161,15 @@
       "content": "Layout"
     },
     {
-      "type": "select",
-      "id": "container_width",
-      "label": "Container width",
-      "options": [
-        {
-          "value": "full",
-          "label": "Full width"
-        },
-        {
-          "value": "standard",
-          "label": "Standard (1200px)"
-        },
-        {
-          "value": "narrow",
-          "label": "Narrow (800px)"
-        },
-        {
-          "value": "custom",
-          "label": "Custom"
-        }
-      ],
-      "default": "full"
+      "type": "range",
+      "id": "custom_container_width",
+      "label": "Custom container width",
+      "min": 500,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "default": 1200,
+      "info": "Only applies when container width is set to Custom"
     },
     {
       "type": "range",
