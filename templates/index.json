@@ -1098,7 +1098,7 @@
       "settings": {
         "custom_container_width": 1200,
         "height": 500,
-        "text_alignment": "center",
+        "text_alignment": "left",
         "text_position": 50,
         "section_margin_top": 15,
         "section_margin_bottom": 15,
