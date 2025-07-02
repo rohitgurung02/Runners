@@ -14,9 +14,9 @@
         ">
         <div class="pc-text-block-{{ last_part }}" style="text-align: {{ section.settings.text_alignment }};">
           {%- if block.settings.heading != blank -%}
-            <{{ block.settings.heading_tag }} class="pc-heading-{{ last_part }}">
+            <div class="pc-heading-{{ last_part }}">
               {{ block.settings.heading }}
-            </{{ block.settings.heading_tag }}>
+            </div>
           {%- endif -%}
           
           {%- if block.settings.subheading != blank -%}
