@@ -5,82 +5,64 @@
 
 <style>
   {{ sec_id }} .pc-testimonials-section {
-    position: relative;
-    width: 100%;
-    padding-top: {{ section.settings.desktop_padding_top }}px;
-    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
-    background-color: {{ section.settings.background_color }};
-    overflow: hidden;
+    padding: 60px 0;
+    background: #f8fafc;
   }
 
   {{ sec_id }} .pc-testimonials__container {
-    max-width: {{ section.settings.max_width }}px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
   {{ sec_id }} .pc-testimonials__heading {
-    font-size: {{ section.settings.heading_font_size }}px;
-    color: {{ section.settings.heading_color }};
     text-align: center;
-    margin-bottom: {{ section.settings.heading_margin_bottom }}px;
-    font-weight: {{ section.settings.heading_font_weight }};
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 50px;
+    font-weight: 600;
   }
 
   {{ sec_id }} .pc-testimonials__carousel-wrapper {
     overflow: hidden;
-    position: relative;
-    width: 100%;
   }
 
   {{ sec_id }} .pc-testimonials__carousel {
     display: flex;
-    position: relative;
-    padding: 30px 0;
     transition: transform 0.5s ease;
   }
 
   {{ sec_id }} .pc-testimonials__slide {
-    flex: 0 0 100%;
-    min-width: 0;
+    flex: 0 0 33.33%;
     padding: 0 15px;
-    transition: all 0.3s ease;
     box-sizing: border-box;
   }
 
   {{ sec_id }} .pc-testimonials__card {
     background: transparent;
-    border-radius: 0;
-    padding: 0;
     text-align: center;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    max-width: 800px;
-    margin: 0 auto;
+    padding: 20px;
   }
 
   {{ sec_id }} .pc-testimonials__image {
-    width: {{ section.settings.image_size }}px;
-    height: {{ section.settings.image_size }}px;
-    object-fit: cover;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    margin: 0 auto 30px;
+    object-fit: cover;
+    margin: 0 auto 20px;
   }
 
   {{ sec_id }} .pc-testimonials__name {
-    font-size: {{ section.settings.name_font_size }}px;
-    color: {{ section.settings.name_color }};
-    margin-bottom: 15px;
-    line-height: 1.3;
+    font-size: 21px;
+    color: #01b0f8;
     font-weight: 600;
+    margin-bottom: 5px;
   }
 
   {{ sec_id }} .pc-testimonials__position {
     display: inline;
-    font-size: {{ section.settings.position_font_size }}px;
-    color: {{ section.settings.position_color }};
-    font-weight: normal;
+    font-size: 18px;
+    color: #666;
   }
 
   {{ sec_id }} .pc-testimonials__position:before {
@@ -88,123 +70,88 @@
   }
 
   {{ sec_id }} .pc-testimonials__quote {
-    font-size: {{ section.settings.quote_font_size }}px;
-    color: {{ section.settings.quote_color }};
-    font-style: {{ section.settings.quote_font_style }};
+    font-size: 18px;
+    color: #555;
     line-height: 1.6;
-    margin: 0 auto;
-    max-width: 700px;
+    margin-top: 20px;
     position: relative;
-    padding: 0 20px;
+    padding: 0 10px;
   }
 
   {{ sec_id }} .pc-testimonials__quote:before,
   {{ sec_id }} .pc-testimonials__quote:after {
     content: '"';
-    font-size: 40px;
-    color: {{ section.settings.quote_color }};
+    font-size: 32px;
+    color: #01b0f8;
     opacity: 0.2;
     position: absolute;
   }
 
   {{ sec_id }} .pc-testimonials__quote:before {
-    top: -20px;
-    left: 0;
+    top: -15px;
+    left: -5px;
   }
 
   {{ sec_id }} .pc-testimonials__quote:after {
-    bottom: -40px;
-    right: 0;
+    bottom: -25px;
+    right: -5px;
   }
 
   {{ sec_id }} .pc-testimonials__nav {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin-top: 50px;
+    margin-top: 40px;
+    gap: 20px;
   }
 
   {{ sec_id }} .pc-testimonials__arrow {
     background: transparent;
     border: none;
-    cursor: pointer;
-    color: {{ section.settings.arrow_color }};
-    padding: 5px;
+    color: #01b0f8;
     font-size: 24px;
-    font-weight: bold;
-  }
-
-  {{ sec_id }} .pc-testimonials__dots {
-    display: flex;
-    gap: 10px;
-  }
-
-  {{ sec_id }} .pc-testimonials__dots span {
-    display: block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: {{ section.settings.dot_color }};
-    border: 2px solid {{ section.settings.dot_active_color }};
     cursor: pointer;
-    transition: all 0.3s ease;
+    padding: 5px 15px;
   }
 
-  {{ sec_id }} .pc-testimonials__dots span.active {
-    background: {{ section.settings.dot_active_color }};
-    width: 12px;
-    height: 12px;
+  @media (max-width: 1024px) {
+    {{ sec_id }} .pc-testimonials__slide {
+      flex: 0 0 50%;
+    }
   }
 
   @media (max-width: 767px) {
     {{ sec_id }} .pc-testimonials-section {
-      padding-top: {{ section.settings.mobile_padding_top }}px;
-      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      padding: 40px 0;
     }
-
+    
     {{ sec_id }} .pc-testimonials__heading {
-      font-size: {{ section.settings.mobile_heading_font_size }}px;
-      margin-bottom: {{ section.settings.mobile_heading_margin_bottom }}px;
+      font-size: 24px;
+      margin-bottom: 30px;
     }
-
+    
+    {{ sec_id }} .pc-testimonials__slide {
+      flex: 0 0 100%;
+    }
+    
     {{ sec_id }} .pc-testimonials__image {
-      width: {{ section.settings.mobile_image_size }}px;
-      height: {{ section.settings.mobile_image_size }}px;
-      margin-bottom: 20px;
+      width: 80px;
+      height: 80px;
     }
-
+    
     {{ sec_id }} .pc-testimonials__name {
-      font-size: {{ section.settings.mobile_name_font_size }}px;
+      font-size: 18px;
     }
-
+    
     {{ sec_id }} .pc-testimonials__position {
-      font-size: {{ section.settings.mobile_position_font_size }}px;
+      font-size: 16px;
     }
-
+    
     {{ sec_id }} .pc-testimonials__quote {
-      font-size: {{ section.settings.mobile_quote_font_size }}px;
-      padding: 0 10px;
-    }
-
-    {{ sec_id }} .pc-testimonials__quote:before,
-    {{ sec_id }} .pc-testimonials__quote:after {
-      font-size: 30px;
-    }
-
-    {{ sec_id }} .pc-testimonials__quote:before {
-      top: -15px;
-    }
-
-    {{ sec_id }} .pc-testimonials__quote:after {
-      bottom: -30px;
-    }
-
-    {{ sec_id }} .pc-testimonials__nav {
-      margin-top: 30px;
+      font-size: 16px;
     }
   }
 </style>
+
 <div class="pc-testimonials-section">
 <pc-testimonials-{{ last_part }} class="pc-testimonials">
   <div class="pc-testimonials__container">
