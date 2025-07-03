@@ -1,6 +1,130 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- liquid
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign parts = sec_id | split: '_'
+  assign last_lower = parts | last
+  assign last_part = last_lower | downcase
+-%}
+
+<pc-animated-sticker-{{ last_part }} class="pc-animated-sticker">
+  {%- if section.settings.image != blank -%}
+    {{- section.settings.image
+      | image_url: width: section.settings.image.width, height: section.settings.image.height
+      | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt, class: 'pc-animated-sticker__image'
+    -}}
+  {%- else -%}
+    {{ 'product-1' | placeholder_svg_tag: 'pc-animated-sticker__placeholder' }}
+  {%- endif -%}
+</pc-animated-sticker-{{ last_part }}>
+
+<style>
+  {{ sec_id }} .pc-animated-sticker {
+    position: relative;
+    width: {{ section.settings.width_desktop }}px;
+    height: {{ section.settings.width_desktop }}px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    {% if section.settings.shadow %}
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    {% endif %}
   }
+
+  {{ sec_id }} .pc-animated-sticker__image,
+  {{ sec_id }} .pc-animated-sticker__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: pc-rotate-{{ last_part }} {{ section.settings.animation_speed }}s linear infinite;
+  }
+
+  @keyframes pc-rotate-{{ last_part }} {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-animated-sticker {
+      width: {{ section.settings.width_mobile }}px;
+      height: {{ section.settings.width_mobile }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "PWC - Animated Sticker #1",
+  "tag": "section",
+  "class": "pc-animated-sticker-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Sticker Image"
+    },
+    {
+      "type": "header",
+      "content": "Animation Settings"
+    },
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "label": "Rotation Speed",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "unit": "s",
+      "default": 5,
+      "info": "Time for one complete rotation"
+    },
+    {
+      "type": "header",
+      "content": "Size Settings (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "width_desktop",
+      "label": "Width",
+      "min": 50,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "checkbox",
+      "id": "shadow",
+      "label": "Enable Shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Size Settings (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "width_mobile",
+      "label": "Width",
+      "min": 30,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - Animated Sticker #1",
+      "category": "Custom"
+    }
+  ]
+}
 {% endschema %}
