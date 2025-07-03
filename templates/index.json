@@ -971,6 +971,65 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
+    },
+    "rw_test_cacTL4": {
+      "type": "rw-test",
+      "blocks": {
+        "testimonial_Ve3Dmp": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg",
+            "name": "Ronne Galle",
+            "position": "Project Manager",
+            "quote": "<p>\"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat\"</p>"
+          }
+        },
+        "testimonial_YdzLEf": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-92733.jpg",
+            "name": "Missy Limana",
+            "position": "Engineer",
+            "quote": "<p>\"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat\"</p>"
+          }
+        },
+        "testimonial_Nj4jGk": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-921294.webp",
+            "name": "John Doe",
+            "position": "Project Manager",
+            "quote": "<p>\"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat\"</p>"
+          }
+        },
+        "testimonial_cyLddJ": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/1024-1200x800.jpg",
+            "name": "John Doe",
+            "position": "Project Manager",
+            "quote": "<p>\"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat\"</p>"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_Ve3Dmp",
+        "testimonial_YdzLEf",
+        "testimonial_Nj4jGk",
+        "testimonial_cyLddJ"
+      ],
+      "name": "PWC - Testimonials Carousel #5",
+      "settings": {
+        "heading": "Testimonials Carousel",
+        "max_width": 1200,
+        "desktop_padding_top": 50,
+        "desktop_padding_bottom": 50,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30,
+        "background_color": "#f0f8ff",
+        "auto_play": true,
+        "auto_play_speed": 3
+      }
     }
   },
   "order": [
@@ -985,6 +1044,7 @@
     "rw_test_aezBCg",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA"
+    "rw_video_banner_f88XdA",
+    "rw_test_cacTL4"
   ]
 }
