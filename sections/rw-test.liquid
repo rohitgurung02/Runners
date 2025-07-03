@@ -64,6 +64,7 @@
     padding-top: {{ section.settings.desktop_padding_top }}px;
     padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
     background-color: {{ section.settings.background_color }};
+    overflow: hidden;
   }
 
   {{ sec_id }} .pc-testimonials__container {
@@ -82,15 +83,17 @@
 
   {{ sec_id }} .pc-testimonials__carousel {
     display: flex;
-    overflow: hidden;
     position: relative;
     padding: 30px 0;
+    transition: transform 0.5s ease;
   }
 
   {{ sec_id }} .pc-testimonials__slide {
     flex: 0 0 100%;
+    min-width: 0;
     padding: 0 15px;
     transition: all 0.3s ease;
+    box-sizing: border-box;
   }
 
   {{ sec_id }} .pc-testimonials__card {
@@ -98,15 +101,18 @@
     border-radius: {{ section.settings.card_border_radius }}px;
     padding: {{ section.settings.card_padding }}px;
     text-align: center;
-    width: 40%;
+    width: 100%;
     height: 100%;
+    margin: 0 auto;
     {% if section.settings.card_shadow %}
       box-shadow: 0 8px 30px -7px {{ section.settings.card_shadow_color }};
     {% endif %}
   }
 
   {{ sec_id }} .pc-testimonials__image {
-    max-width: {{ section.settings.image_size }}px;
+    width: {{ section.settings.image_size }}px;
+    height: {{ section.settings.image_size }}px;
+    object-fit: cover;
     border-radius: 50%;
     margin: 0 auto 15px;
     {% if section.settings.image_shadow %}
@@ -164,12 +170,25 @@
     background: {{ section.settings.dot_color }};
     border: 2px solid {{ section.settings.dot_active_color }};
     cursor: pointer;
+    transition: all 0.3s ease;
   }
 
   {{ sec_id }} .pc-testimonials__dots span.active {
     background: {{ section.settings.dot_active_color }};
     width: 12px;
     height: 12px;
+  }
+
+  @media (min-width: 680px) {
+    {{ sec_id }} .pc-testimonials__slide {
+      flex: 0 0 50%;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    {{ sec_id }} .pc-testimonials__slide {
+      flex: 0 0 33.333%;
+    }
   }
 
   @media (max-width: 767px) {
@@ -208,7 +227,6 @@
       this.dotsContainer = this.querySelector('.pc-testimonials__dots');
       this.dots = [];
       this.currentIndex = 0;
-      this.slidesToShow = 1;
       this.autoPlay = {{ section.settings.auto_play }};
       this.autoPlayInterval = {{ section.settings.auto_play_speed }} * 1000;
       this.autoPlayTimer = null;
@@ -216,84 +234,113 @@
       this.init();
     }
     
+    connectedCallback() {
+      this.handleResize();
+      window.addEventListener('resize', this.handleResize.bind(this));
+    }
+    
+    disconnectedCallback() {
+      window.removeEventListener('resize', this.handleResize.bind(this));
+      if (this.autoPlayTimer) {
+        clearInterval(this.autoPlayTimer);
+      }
+    }
+    
     init() {
       this.createDots();
-      this.updateSlides();
       this.setupEventListeners();
       
       if (this.autoPlay) {
         this.startAutoPlay();
       }
-      
-      window.addEventListener('resize', () => this.handleResize());
-    }
-    
-    handleResize() {
-      if (window.innerWidth >= 1000) {
-        this.slidesToShow = 3;
-      } else if (window.innerWidth >= 680) {
-        this.slidesToShow = 2;
-      } else {
-        this.slidesToShow = 1;
-      }
-      this.updateSlides();
     }
     
     createDots() {
-      this.slides.forEach((_, index) => {
+      // Clear existing dots
+      this.dotsContainer.innerHTML = '';
+      this.dots = [];
+      
+      // Create new dots based on visible slides
+      const dotCount = Math.ceil(this.slides.length / this.getSlidesToShow());
+      for (let i = 0; i < dotCount; i++) {
         const dot = document.createElement('span');
-        dot.addEventListener('click', () => this.goToSlide(index));
+        dot.addEventListener('click', () => this.goToSlide(i * this.getSlidesToShow()));
         this.dotsContainer.appendChild(dot);
         this.dots.push(dot);
-      });
+      }
       this.updateDots();
     }
     
     updateDots() {
+      const activeDotIndex = Math.floor(this.currentIndex / this.getSlidesToShow());
       this.dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === this.currentIndex);
+        dot.classList.toggle('active', index === activeDotIndex);
       });
     }
     
+    getSlidesToShow() {
+      if (window.innerWidth >= 1000) {
+        return 3;
+      } else if (window.innerWidth >= 680) {
+        return 2;
+      }
+      return 1;
+    }
+    
     updateSlides() {
-      const slideWidth = 100 / this.slidesToShow;
-      this.slides.forEach((slide, index) => {
+      const slidesToShow = this.getSlidesToShow();
+      const slideWidth = 100 / slidesToShow;
+      
+      this.slides.forEach(slide => {
         slide.style.flex = `0 0 ${slideWidth}%`;
-        slide.style.display = 'block';
       });
+      
+      // Adjust currentIndex if it's out of bounds
+      const maxIndex = Math.max(0, this.slides.length - slidesToShow);
+      if (this.currentIndex > maxIndex) {
+        this.currentIndex = maxIndex;
+      }
+      
       this.carousel.style.transform = `translateX(-${this.currentIndex * slideWidth}%)`;
+      this.updateDots();
     }
     
     goToSlide(index) {
       this.currentIndex = index;
       this.updateSlides();
-      this.updateDots();
       if (this.autoPlay) {
         this.resetAutoPlay();
       }
     }
     
     nextSlide() {
-      if (this.currentIndex < this.slides.length - this.slidesToShow) {
-        this.currentIndex++;
+      const slidesToShow = this.getSlidesToShow();
+      const maxIndex = Math.max(0, this.slides.length - slidesToShow);
+      
+      if (this.currentIndex < maxIndex) {
+        this.currentIndex += slidesToShow;
       } else {
         this.currentIndex = 0;
       }
+      
       this.updateSlides();
-      this.updateDots();
       if (this.autoPlay) {
         this.resetAutoPlay();
       }
     }
     
     prevSlide() {
+      const slidesToShow = this.getSlidesToShow();
+      
       if (this.currentIndex > 0) {
-        this.currentIndex--;
+        this.currentIndex -= slidesToShow;
+        if (this.currentIndex < 0) this.currentIndex = 0;
       } else {
-        this.currentIndex = this.slides.length - this.slidesToShow;
+        const maxIndex = Math.max(0, this.slides.length - slidesToShow);
+        this.currentIndex = maxIndex;
       }
+      
       this.updateSlides();
-      this.updateDots();
       if (this.autoPlay) {
         this.resetAutoPlay();
       }
@@ -311,6 +358,11 @@
     resetAutoPlay() {
       clearInterval(this.autoPlayTimer);
       this.startAutoPlay();
+    }
+    
+    handleResize() {
+      this.createDots();
+      this.updateSlides();
     }
   }
   
