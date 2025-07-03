@@ -1071,8 +1071,8 @@
       "settings": {
         "max_width": 1400,
         "background_color": "#f0f8ff",
-        "desktop_padding_top": 50,
-        "desktop_padding_bottom": 50,
+        "desktop_padding_top": 20,
+        "desktop_padding_bottom": 20,
         "mobile_padding_top": 30,
         "mobile_padding_bottom": 30,
         "card_background": "#ffffff",
