@@ -998,6 +998,92 @@
         "mobile_button_padding_top": 10,
         "mobile_button_padding_right": 20
       }
+    },
+    "rw_test_PPbnY4": {
+      "type": "rw-test",
+      "blocks": {
+        "testimonial_HtGxEP": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/circular_resized_image.png",
+            "name": "Ronne Galle",
+            "position": "Project Manager",
+            "quote": "<p>\"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat\"</p>"
+          }
+        },
+        "testimonial_QH4DTz": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/LisaLunceford.webp",
+            "name": "Missy Limana",
+            "position": "Engineer",
+            "quote": "<p>\"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat\"</p>"
+          }
+        },
+        "testimonial_PptCLH": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Randy_Moore_Photo_edited.webp",
+            "name": "Martha Brown",
+            "position": "Project Manager",
+            "quote": "<p>\"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat\"</p>"
+          }
+        },
+        "testimonial_P6aqYM": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Lawanda_Franks__edited_1.webp",
+            "name": "John Doe",
+            "position": "Project Manager",
+            "quote": "<p>\"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat\"</p>"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_HtGxEP",
+        "testimonial_QH4DTz",
+        "testimonial_PptCLH",
+        "testimonial_P6aqYM"
+      ],
+      "name": "RW - Testimonials Carousel #5",
+      "settings": {
+        "heading": "Testimonials Carousel",
+        "heading_font_size": 30,
+        "mobile_heading_font_size": 24,
+        "heading_margin_bottom": 50,
+        "mobile_heading_margin_bottom": 30,
+        "heading_font_weight": "600",
+        "heading_color": "#333333",
+        "max_width": 1200,
+        "desktop_padding_top": 50,
+        "desktop_padding_bottom": 50,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30,
+        "background_color": "#f0f8ff",
+        "card_background": "#ffffff",
+        "card_border_radius": 20,
+        "card_padding": 20,
+        "card_shadow": true,
+        "card_shadow_color": "#c9dff0",
+        "image_size": 100,
+        "image_shadow": true,
+        "image_shadow_color": "#95abbb",
+        "name_font_size": 21,
+        "mobile_name_font_size": 18,
+        "name_color": "#01b0f8",
+        "position_font_size": 18,
+        "mobile_position_font_size": 16,
+        "position_color": "#666666",
+        "quote_font_size": 18,
+        "mobile_quote_font_size": 16,
+        "quote_color": "#555555",
+        "quote_font_style": "normal",
+        "arrow_color": "#01b0f8",
+        "dot_color": "#ffffff",
+        "dot_active_color": "#01b0f8",
+        "auto_play": true,
+        "auto_play_speed": 3
+      }
     }
   },
   "order": [
@@ -1012,6 +1098,7 @@
     "rw_test_aezBCg",
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
-    "rw_video_banner_f88XdA"
+    "rw_video_banner_f88XdA",
+    "rw_test_PPbnY4"
   ]
 }
