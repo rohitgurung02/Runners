@@ -4,13 +4,18 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} .pc-testimonials {
+
+  {{ sec_id }} .pc-testimonials-section {
     position: relative;
     width: 100%;
     padding-top: {{ section.settings.desktop_padding_top }}px;
     padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
     background-color: {{ section.settings.background_color }};
     overflow: hidden;
+  }
+  
+  {{ sec_id }} .pc-testimonials {
+    
   }
 
   {{ sec_id }} .pc-testimonials__container {
@@ -165,6 +170,7 @@
   }
 </style>
 
+<div class="pc-testimonials-section">
 <pc-testimonials-{{ last_part }} class="pc-testimonials">
   <div class="pc-testimonials__container">
     {%- if section.settings.heading != blank -%}
@@ -220,7 +226,7 @@
     </div>
   </div>
 </pc-testimonials-{{ last_part }}>
-
+</div>
 <script>
   class PcTestimonials{{ last_part | capitalize }} extends HTMLElement {
     constructor() {
