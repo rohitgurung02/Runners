@@ -1,4 +1,4 @@
-{%- assign parts = sec_id | split: '_' -%}
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
@@ -220,7 +220,7 @@
 
 {% schema %}
 {
-  "name": "PWC - Carousel Slider #1",
+  "name": "PWC - Carousel Slider #8",
   "settings": [
     {
       "type": "header",
