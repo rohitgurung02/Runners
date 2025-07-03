@@ -104,6 +104,7 @@
     width: 100%;
     height: 100%;
     margin: 0 auto;
+    max-width: 600px;
     {% if section.settings.card_shadow %}
       box-shadow: 0 8px 30px -7px {{ section.settings.card_shadow_color }};
     {% endif %}
@@ -179,18 +180,6 @@
     height: 12px;
   }
 
-  @media (min-width: 680px) {
-    {{ sec_id }} .pc-testimonials__slide {
-      flex: 0 0 50%;
-    }
-  }
-
-  @media (min-width: 1000px) {
-    {{ sec_id }} .pc-testimonials__slide {
-      flex: 0 0 33.333%;
-    }
-  }
-
   @media (max-width: 767px) {
     {{ sec_id }} .pc-testimonials {
       padding-top: {{ section.settings.mobile_padding_top }}px;
@@ -230,12 +219,15 @@
       this.autoPlay = {{ section.settings.auto_play }};
       this.autoPlayInterval = {{ section.settings.auto_play_speed }} * 1000;
       this.autoPlayTimer = null;
+      this.isAnimating = false;
       
+      // Clone slides for infinite loop
+      this.cloneSlides();
       this.init();
     }
     
     connectedCallback() {
-      this.handleResize();
+      this.updateSlides();
       window.addEventListener('resize', this.handleResize.bind(this));
     }
     
@@ -246,9 +238,28 @@
       }
     }
     
+    cloneSlides() {
+      // Clone first and last slides for infinite loop
+      const firstClone = this.slides[0].cloneNode(true);
+      const lastClone = this.slides[this.slides.length - 1].cloneNode(true);
+      
+      firstClone.classList.add('clone');
+      lastClone.classList.add('clone');
+      
+      this.carousel.appendChild(firstClone);
+      this.carousel.insertBefore(lastClone, this.carousel.firstChild);
+      
+      // Update slides reference
+      this.slides = this.querySelectorAll('.pc-testimonials__slide');
+    }
+    
     init() {
       this.createDots();
       this.setupEventListeners();
+      
+      // Start at the first original slide (index 1 because we added a clone at the beginning)
+      this.currentIndex = 1;
+      this.updateSlides();
       
       if (this.autoPlay) {
         this.startAutoPlay();
@@ -260,11 +271,11 @@
       this.dotsContainer.innerHTML = '';
       this.dots = [];
       
-      // Create new dots based on visible slides
-      const dotCount = Math.ceil(this.slides.length / this.getSlidesToShow());
-      for (let i = 0; i < dotCount; i++) {
+      // Create dots only for original slides (excluding clones)
+      const originalSlidesCount = this.slides.length - 2; // Subtract 2 for the clones
+      for (let i = 0; i < originalSlidesCount; i++) {
         const dot = document.createElement('span');
-        dot.addEventListener('click', () => this.goToSlide(i * this.getSlidesToShow()));
+        dot.addEventListener('click', () => this.goToSlide(i + 1)); // +1 because index 0 is a clone
         this.dotsContainer.appendChild(dot);
         this.dots.push(dot);
       }
@@ -272,36 +283,40 @@
     }
     
     updateDots() {
-      const activeDotIndex = Math.floor(this.currentIndex / this.getSlidesToShow());
+      const originalIndex = this.currentIndex - 1; // Adjust for clone at beginning
+      const dotIndex = originalIndex % this.dots.length;
       this.dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === activeDotIndex);
+        dot.classList.toggle('active', index === dotIndex);
       });
-    }
-    
-    getSlidesToShow() {
-      if (window.innerWidth >= 1000) {
-        return 3;
-      } else if (window.innerWidth >= 680) {
-        return 2;
-      }
-      return 1;
     }
     
     updateSlides() {
-      const slidesToShow = this.getSlidesToShow();
-      const slideWidth = 100 / slidesToShow;
+      if (this.isAnimating) return;
       
-      this.slides.forEach(slide => {
-        slide.style.flex = `0 0 ${slideWidth}%`;
-      });
+      this.isAnimating = true;
       
-      // Adjust currentIndex if it's out of bounds
-      const maxIndex = Math.max(0, this.slides.length - slidesToShow);
-      if (this.currentIndex > maxIndex) {
-        this.currentIndex = maxIndex;
-      }
-      
+      const slideWidth = 100;
+      this.carousel.style.transition = 'transform 0.5s ease';
       this.carousel.style.transform = `translateX(-${this.currentIndex * slideWidth}%)`;
+      
+      // Reset position after animation completes for infinite loop
+      setTimeout(() => {
+        this.carousel.style.transition = 'none';
+        
+        // If at the first clone (index 0), jump to the last original slide
+        if (this.currentIndex === 0) {
+          this.currentIndex = this.slides.length - 2;
+          this.carousel.style.transform = `translateX(-${this.currentIndex * slideWidth}%)`;
+        } 
+        // If at the last clone (index length-1), jump to the first original slide
+        else if (this.currentIndex === this.slides.length - 1) {
+          this.currentIndex = 1;
+          this.carousel.style.transform = `translateX(-${this.currentIndex * slideWidth}%)`;
+        }
+        
+        this.isAnimating = false;
+      }, 500);
+      
       this.updateDots();
     }
     
@@ -314,15 +329,8 @@
     }
     
     nextSlide() {
-      const slidesToShow = this.getSlidesToShow();
-      const maxIndex = Math.max(0, this.slides.length - slidesToShow);
-      
-      if (this.currentIndex < maxIndex) {
-        this.currentIndex += slidesToShow;
-      } else {
-        this.currentIndex = 0;
-      }
-      
+      if (this.isAnimating) return;
+      this.currentIndex++;
       this.updateSlides();
       if (this.autoPlay) {
         this.resetAutoPlay();
@@ -330,16 +338,8 @@
     }
     
     prevSlide() {
-      const slidesToShow = this.getSlidesToShow();
-      
-      if (this.currentIndex > 0) {
-        this.currentIndex -= slidesToShow;
-        if (this.currentIndex < 0) this.currentIndex = 0;
-      } else {
-        const maxIndex = Math.max(0, this.slides.length - slidesToShow);
-        this.currentIndex = maxIndex;
-      }
-      
+      if (this.isAnimating) return;
+      this.currentIndex--;
       this.updateSlides();
       if (this.autoPlay) {
         this.resetAutoPlay();
@@ -361,7 +361,7 @@
     }
     
     handleResize() {
-      this.createDots();
+      // Update slides to ensure proper positioning after resize
       this.updateSlides();
     }
   }
