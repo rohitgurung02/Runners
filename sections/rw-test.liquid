@@ -9,27 +9,38 @@
       <h2 class="pc-testimonials__heading">{{ section.settings.heading }}</h2>
     {%- endif -%}
     
-    <div class="pc-testimonials__carousel">
-      {%- for block in section.blocks -%}
-        <div class="pc-testimonials__slide">
-          <div class="pc-testimonials__card">
-            <div class="pc-testimonials__content">
-              {%- if block.settings.name != blank -%}
-                <h3 class="pc-testimonials__name">
-                  {{ block.settings.name }}
-                  {%- if block.settings.position != blank -%}
-                    <span class="pc-testimonials__position">{{ block.settings.position }}</span>
-                  {%- endif -%}
-                </h3>
+    <div class="pc-testimonials__carousel-wrapper">
+      <div class="pc-testimonials__carousel">
+        {%- for block in section.blocks -%}
+          <div class="pc-testimonials__slide">
+            <div class="pc-testimonials__card">
+              {%- if block.settings.image != blank -%}
+                {{- block.settings.image
+                  | image_url: width: block.settings.image.width, height: block.settings.image.height
+                  | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-testimonials__image'
+                -}}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'pc-testimonials__image' }}
               {%- endif -%}
               
-              {%- if block.settings.quote != blank -%}
-                <div class="pc-testimonials__quote">{{ block.settings.quote }}</div>
-              {%- endif -%}
+              <div class="pc-testimonials__content">
+                {%- if block.settings.name != blank -%}
+                  <h3 class="pc-testimonials__name">
+                    {{ block.settings.name }}
+                    {%- if block.settings.position != blank -%}
+                      <span class="pc-testimonials__position">{{ block.settings.position }}</span>
+                    {%- endif -%}
+                  </h3>
+                {%- endif -%}
+                
+                {%- if block.settings.quote != blank -%}
+                  <div class="pc-testimonials__quote">{{ block.settings.quote }}</div>
+                {%- endif -%}
+              </div>
             </div>
           </div>
-        </div>
-      {%- endfor -%}
+        {%- endfor -%}
+      </div>
     </div>
     
     <div class="pc-testimonials__nav">
@@ -56,7 +67,6 @@
     padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
     background-color: {{ section.settings.background_color }};
     overflow: hidden;
-    font-family: sans-serif;
   }
 
   {{ sec_id }} .pc-testimonials__container {
@@ -73,6 +83,12 @@
     font-weight: {{ section.settings.heading_font_weight }};
   }
 
+  {{ sec_id }} .pc-testimonials__carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
   {{ sec_id }} .pc-testimonials__carousel {
     display: flex;
     position: relative;
@@ -81,7 +97,7 @@
   }
 
   {{ sec_id }} .pc-testimonials__slide {
-    flex: 0 0 100%;
+    flex: 0 0 calc(100% / 3);
     min-width: 0;
     padding: 0 15px;
     transition: all 0.3s ease;
@@ -89,61 +105,48 @@
   }
 
   {{ sec_id }} .pc-testimonials__card {
-    background: transparent;
-    border-radius: 0;
-    padding: 0;
+    background: {{ section.settings.card_background }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: {{ section.settings.card_padding }}px;
     text-align: center;
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    max-width: 800px;
+    {% if section.settings.card_shadow %}
+      box-shadow: 0 8px 30px -7px {{ section.settings.card_shadow_color }};
+    {% endif %}
+  }
+
+  {{ sec_id }} .pc-testimonials__image {
+    width: {{ section.settings.image_size }}px;
+    height: {{ section.settings.image_size }}px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    {% if section.settings.image_shadow %}
+      box-shadow: 0 8px 20px -4px {{ section.settings.image_shadow_color }};
+    {% endif %}
   }
 
   {{ sec_id }} .pc-testimonials__name {
-    font-size: 18px;
-    color: #333;
+    font-size: {{ section.settings.name_font_size }}px;
+    color: {{ section.settings.name_color }};
     margin-bottom: 5px;
     line-height: 1.3;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
   }
 
   {{ sec_id }} .pc-testimonials__position {
     display: block;
-    font-size: 14px;
-    color: #666;
+    font-size: {{ section.settings.position_font_size }}px;
+    color: {{ section.settings.position_color }};
     font-weight: normal;
-    margin-bottom: 20px;
-    text-transform: none;
-    letter-spacing: normal;
   }
 
   {{ sec_id }} .pc-testimonials__quote {
-    font-size: 18px;
-    color: #555;
-    font-style: italic;
-    line-height: 1.6;
-    position: relative;
-    padding: 0 20px;
-  }
-
-  {{ sec_id }} .pc-testimonials__quote::before,
-  {{ sec_id }} .pc-testimonials__quote::after {
-    content: '"';
-    font-size: 24px;
-    color: #01b0f8;
-    position: absolute;
-  }
-
-  {{ sec_id }} .pc-testimonials__quote::before {
-    left: 0;
-    top: -5px;
-  }
-
-  {{ sec_id }} .pc-testimonials__quote::after {
-    right: 0;
-    bottom: -15px;
+    font-size: {{ section.settings.quote_font_size }}px;
+    color: {{ section.settings.quote_color }};
+    font-style: {{ section.settings.quote_font_style }};
+    line-height: 1.5;
   }
 
   {{ sec_id }} .pc-testimonials__nav {
@@ -151,14 +154,14 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   {{ sec_id }} .pc-testimonials__arrow {
     background: transparent;
     border: none;
     cursor: pointer;
-    color: #01b0f8;
+    color: {{ section.settings.arrow_color }};
     padding: 5px;
   }
 
@@ -172,28 +175,49 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #ddd;
+    background: {{ section.settings.dot_color }};
+    border: 2px solid {{ section.settings.dot_active_color }};
     cursor: pointer;
     transition: all 0.3s ease;
   }
 
   {{ sec_id }} .pc-testimonials__dots span.active {
-    background: #01b0f8;
+    background: {{ section.settings.dot_active_color }};
     width: 12px;
     height: 12px;
   }
 
+  @media (max-width: 1024px) {
+    {{ sec_id }} .pc-testimonials__slide {
+      flex: 0 0 50%;
+    }
+  }
+
   @media (max-width: 767px) {
+    {{ sec_id }} .pc-testimonials {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    {{ sec_id }} .pc-testimonials__heading {
+      font-size: {{ section.settings.mobile_heading_font_size }}px;
+      margin-bottom: {{ section.settings.mobile_heading_margin_bottom }}px;
+    }
+
+    {{ sec_id }} .pc-testimonials__slide {
+      flex: 0 0 100%;
+    }
+
     {{ sec_id }} .pc-testimonials__name {
-      font-size: 16px;
+      font-size: {{ section.settings.mobile_name_font_size }}px;
     }
-    
+
     {{ sec_id }} .pc-testimonials__position {
-      font-size: 13px;
+      font-size: {{ section.settings.mobile_position_font_size }}px;
     }
-    
+
     {{ sec_id }} .pc-testimonials__quote {
-      font-size: 16px;
+      font-size: {{ section.settings.mobile_quote_font_size }}px;
     }
   }
 </style>
@@ -202,6 +226,7 @@
   class PcTestimonials{{ last_part | capitalize }} extends HTMLElement {
     constructor() {
       super();
+      this.carouselWrapper = this.querySelector('.pc-testimonials__carousel-wrapper');
       this.carousel = this.querySelector('.pc-testimonials__carousel');
       this.slides = this.querySelectorAll('.pc-testimonials__slide');
       this.prevBtn = this.querySelector('.pc-testimonials__arrow--prev');
@@ -209,19 +234,19 @@
       this.dotsContainer = this.querySelector('.pc-testimonials__dots');
       this.dots = [];
       this.currentIndex = 0;
+      this.visibleSlides = 3;
       this.autoPlay = {{ section.settings.auto_play }};
       this.autoPlayInterval = {{ section.settings.auto_play_speed }} * 1000;
       this.autoPlayTimer = null;
       this.isAnimating = false;
       
-      // Clone slides for infinite loop
-      this.cloneSlides();
       this.init();
     }
     
     connectedCallback() {
       this.updateSlides();
       window.addEventListener('resize', this.handleResize.bind(this));
+      this.setSlideWidths();
     }
     
     disconnectedCallback() {
@@ -231,32 +256,32 @@
       }
     }
     
-    cloneSlides() {
-      // Clone first and last slides for infinite loop
-      const firstClone = this.slides[0].cloneNode(true);
-      const lastClone = this.slides[this.slides.length - 1].cloneNode(true);
-      
-      firstClone.classList.add('clone');
-      lastClone.classList.add('clone');
-      
-      this.carousel.appendChild(firstClone);
-      this.carousel.insertBefore(lastClone, this.carousel.firstChild);
-      
-      // Update slides reference
-      this.slides = this.querySelectorAll('.pc-testimonials__slide');
-    }
-    
     init() {
+      this.setVisibleSlides();
       this.createDots();
       this.setupEventListeners();
-      
-      // Start at the first original slide (index 1 because we added a clone at the beginning)
-      this.currentIndex = 1;
-      this.updateSlides();
       
       if (this.autoPlay) {
         this.startAutoPlay();
       }
+    }
+    
+    setVisibleSlides() {
+      // Adjust visible slides based on screen size
+      if (window.innerWidth <= 1024 && window.innerWidth > 767) {
+        this.visibleSlides = 2;
+      } else if (window.innerWidth <= 767) {
+        this.visibleSlides = 1;
+      } else {
+        this.visibleSlides = 3;
+      }
+    }
+    
+    setSlideWidths() {
+      const slideWidth = 100 / this.visibleSlides;
+      this.slides.forEach(slide => {
+        slide.style.flex = `0 0 ${slideWidth}%`;
+      });
     }
     
     createDots() {
@@ -264,11 +289,11 @@
       this.dotsContainer.innerHTML = '';
       this.dots = [];
       
-      // Create dots only for original slides (excluding clones)
-      const originalSlidesCount = this.slides.length - 2; // Subtract 2 for the clones
-      for (let i = 0; i < originalSlidesCount; i++) {
+      // Create dots based on number of slides and visible slides
+      const dotCount = Math.max(this.slides.length - this.visibleSlides + 1, 1);
+      for (let i = 0; i < dotCount; i++) {
         const dot = document.createElement('span');
-        dot.addEventListener('click', () => this.goToSlide(i + 1)); // +1 because index 0 is a clone
+        dot.addEventListener('click', () => this.goToSlide(i));
         this.dotsContainer.appendChild(dot);
         this.dots.push(dot);
       }
@@ -276,10 +301,8 @@
     }
     
     updateDots() {
-      const originalIndex = this.currentIndex - 1; // Adjust for clone at beginning
-      const dotIndex = originalIndex % this.dots.length;
       this.dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === dotIndex);
+        dot.classList.toggle('active', index === this.currentIndex);
       });
     }
     
@@ -288,25 +311,11 @@
       
       this.isAnimating = true;
       
-      const slideWidth = 100;
+      const slideWidth = 100 / this.visibleSlides;
       this.carousel.style.transition = 'transform 0.5s ease';
       this.carousel.style.transform = `translateX(-${this.currentIndex * slideWidth}%)`;
       
-      // Reset position after animation completes for infinite loop
       setTimeout(() => {
-        this.carousel.style.transition = 'none';
-        
-        // If at the first clone (index 0), jump to the last original slide
-        if (this.currentIndex === 0) {
-          this.currentIndex = this.slides.length - 2;
-          this.carousel.style.transform = `translateX(-${this.currentIndex * slideWidth}%)`;
-        } 
-        // If at the last clone (index length-1), jump to the first original slide
-        else if (this.currentIndex === this.slides.length - 1) {
-          this.currentIndex = 1;
-          this.carousel.style.transform = `translateX(-${this.currentIndex * slideWidth}%)`;
-        }
-        
         this.isAnimating = false;
       }, 500);
       
@@ -314,7 +323,9 @@
     }
     
     goToSlide(index) {
-      this.currentIndex = index;
+      // Ensure index is within bounds
+      const maxIndex = Math.max(this.slides.length - this.visibleSlides, 0);
+      this.currentIndex = Math.min(Math.max(index, 0), maxIndex);
       this.updateSlides();
       if (this.autoPlay) {
         this.resetAutoPlay();
@@ -323,7 +334,8 @@
     
     nextSlide() {
       if (this.isAnimating) return;
-      this.currentIndex++;
+      const maxIndex = Math.max(this.slides.length - this.visibleSlides, 0);
+      this.currentIndex = (this.currentIndex + 1) % (maxIndex + 1);
       this.updateSlides();
       if (this.autoPlay) {
         this.resetAutoPlay();
@@ -332,7 +344,8 @@
     
     prevSlide() {
       if (this.isAnimating) return;
-      this.currentIndex--;
+      const maxIndex = Math.max(this.slides.length - this.visibleSlides, 0);
+      this.currentIndex = (this.currentIndex - 1 + (maxIndex + 1)) % (maxIndex + 1);
       this.updateSlides();
       if (this.autoPlay) {
         this.resetAutoPlay();
@@ -354,8 +367,16 @@
     }
     
     handleResize() {
-      // Update slides to ensure proper positioning after resize
-      this.updateSlides();
+      const prevVisibleSlides = this.visibleSlides;
+      this.setVisibleSlides();
+      
+      // Only update if visible slides count changed
+      if (prevVisibleSlides !== this.visibleSlides) {
+        this.setSlideWidths();
+        this.createDots();
+        this.currentIndex = Math.min(this.currentIndex, Math.max(this.slides.length - this.visibleSlides, 0));
+        this.updateSlides();
+      }
     }
   }
   
@@ -364,14 +385,14 @@
 
 {% schema %}
 {
-  "name": "Testimonials Carousel",
+  "name": "RW - Testimonials #5",
   "class": "shopify-section",
   "settings": [
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Testimonials"
+      "default": "Testimonials Carousel"
     },
     {
       "type": "range",
@@ -485,7 +506,189 @@
       "type": "color",
       "id": "background_color",
       "label": "Background Color",
+      "default": "#f0f8ff"
+    },
+    {
+      "type": "header",
+      "content": "Card Settings"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card Background",
       "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card Padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "card_shadow",
+      "label": "Enable Card Shadow",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "card_shadow_color",
+      "label": "Card Shadow Color",
+      "default": "#c9dff0"
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "label": "Image Size",
+      "min": 50,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "checkbox",
+      "id": "image_shadow",
+      "label": "Enable Image Shadow",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "image_shadow_color",
+      "label": "Image Shadow Color",
+      "default": "#95abbb"
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "range",
+      "id": "name_font_size",
+      "label": "Name Font Size (Desktop)",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 21
+    },
+    {
+      "type": "range",
+      "id": "mobile_name_font_size",
+      "label": "Name Font Size (Mobile)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "Name Color",
+      "default": "#01b0f8"
+    },
+    {
+      "type": "range",
+      "id": "position_font_size",
+      "label": "Position Font Size (Desktop)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_position_font_size",
+      "label": "Position Font Size (Mobile)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "position_color",
+      "label": "Position Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "quote_font_size",
+      "label": "Quote Font Size (Desktop)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_quote_font_size",
+      "label": "Quote Font Size (Mobile)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Quote Color",
+      "default": "#555555"
+    },
+    {
+      "type": "select",
+      "id": "quote_font_style",
+      "label": "Quote Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Settings"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow Color",
+      "default": "#01b0f8"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "dot_active_color",
+      "label": "Active Dot Color",
+      "default": "#01b0f8"
     },
     {
       "type": "header",
@@ -513,6 +716,11 @@
       "name": "Testimonial",
       "settings": [
         {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
           "type": "text",
           "id": "name",
           "label": "Name",
@@ -535,9 +743,17 @@
   ],
   "presets": [
     {
-      "name": "Testimonials Carousel #5",
+      "name": "RW - Testimonials Carousel #5",
       "category": "Custom",
       "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Ronne Galle",
+            "position": "Project Manager",
+            "quote": "<p>\"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat\"</p>"
+          }
+        },
         {
           "type": "testimonial",
           "settings": {
@@ -550,14 +766,6 @@
           "type": "testimonial",
           "settings": {
             "name": "Martha Brown",
-            "position": "Project Manager",
-            "quote": "<p>\"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat\"</p>"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "name": "Hanna Lisem",
             "position": "Project Manager",
             "quote": "<p>\"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat\"</p>"
           }
