@@ -229,6 +229,7 @@
   </div>
 </pc-testimonials-{{ last_part }}>
 </div>
+            
 <script>
   class PcTestimonials{{ last_part | capitalize }} extends HTMLElement {
     constructor() {
@@ -429,6 +430,26 @@
       "type": "range",
       "id": "desktop_padding_bottom",
       "label": "Bottom Padding (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_margin_top",
+      "label": "Margin Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_margin_bottom",
+      "label": "Margin Bottom (Desktop)",
       "min": 0,
       "max": 200,
       "step": 5,
