@@ -81,8 +81,10 @@
 
   {{ sec_id }} .pc-testimonials__position {
     display: block;
-    font-size: {{ section.settings.position_font_size }}px;
     color: {{ section.settings.position_color }};
+    font-size: {{ section.settings.position_font_size }}px;
+    margin-top: {{ section.settings.position_margin_top }}px;
+    margin-bottom: {{ section.settings.position_margin_top }}px;
     font-weight: normal;
   }
 
@@ -657,7 +659,7 @@
     {
       "type": "range",
       "id": "position_margin_bottom",
-      "label": "Padding Bottom (px)",
+      "label": "Margin Bottom (px)",
       "default": 5,
       "min": 0,
       "max": 150,
