@@ -4,7 +4,6 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-
   {{ sec_id }} .pc-testimonials-section {
     position: relative;
     width: 100%;
@@ -17,6 +16,7 @@
   {{ sec_id }} .pc-testimonials__container {
     max-width: {{ section.settings.max_width }}px;
     margin: 0 auto;
+    padding: 0 20px;
   }
 
   {{ sec_id }} .pc-testimonials__heading {
@@ -41,7 +41,7 @@
   }
 
   {{ sec_id }} .pc-testimonials__slide {
-    flex: 0 0 calc(100% / 3);
+    flex: 0 0 100%;
     min-width: 0;
     padding: 0 15px;
     transition: all 0.3s ease;
@@ -49,16 +49,15 @@
   }
 
   {{ sec_id }} .pc-testimonials__card {
-    background: {{ section.settings.card_background }};
-    border-radius: {{ section.settings.card_border_radius }}px;
-    padding: {{ section.settings.card_padding }}px;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
     text-align: center;
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    {% if section.settings.card_shadow %}
-      box-shadow: 0 8px 30px -7px {{ section.settings.card_shadow_color }};
-    {% endif %}
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   {{ sec_id }} .pc-testimonials__image {
@@ -66,39 +65,64 @@
     height: {{ section.settings.image_size }}px;
     object-fit: cover;
     border-radius: 50%;
-    margin: 0 auto 15px;
-    {% if section.settings.image_shadow %}
-      box-shadow: 0 8px 20px -4px {{ section.settings.image_shadow_color }};
-    {% endif %}
+    margin: 0 auto 30px;
   }
 
   {{ sec_id }} .pc-testimonials__name {
     font-size: {{ section.settings.name_font_size }}px;
     color: {{ section.settings.name_color }};
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     line-height: 1.3;
+    font-weight: 600;
   }
 
   {{ sec_id }} .pc-testimonials__position {
-    display: block;
+    display: inline;
     font-size: {{ section.settings.position_font_size }}px;
     color: {{ section.settings.position_color }};
     font-weight: normal;
+  }
+
+  {{ sec_id }} .pc-testimonials__position:before {
+    content: ", ";
   }
 
   {{ sec_id }} .pc-testimonials__quote {
     font-size: {{ section.settings.quote_font_size }}px;
     color: {{ section.settings.quote_color }};
     font-style: {{ section.settings.quote_font_style }};
-    line-height: 1.5;
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 700px;
+    position: relative;
+    padding: 0 20px;
+  }
+
+  {{ sec_id }} .pc-testimonials__quote:before,
+  {{ sec_id }} .pc-testimonials__quote:after {
+    content: '"';
+    font-size: 40px;
+    color: {{ section.settings.quote_color }};
+    opacity: 0.2;
+    position: absolute;
+  }
+
+  {{ sec_id }} .pc-testimonials__quote:before {
+    top: -20px;
+    left: 0;
+  }
+
+  {{ sec_id }} .pc-testimonials__quote:after {
+    bottom: -40px;
+    right: 0;
   }
 
   {{ sec_id }} .pc-testimonials__nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    margin-top: 20px;
+    gap: 30px;
+    margin-top: 50px;
   }
 
   {{ sec_id }} .pc-testimonials__arrow {
@@ -107,6 +131,8 @@
     cursor: pointer;
     color: {{ section.settings.arrow_color }};
     padding: 5px;
+    font-size: 24px;
+    font-weight: bold;
   }
 
   {{ sec_id }} .pc-testimonials__dots {
@@ -131,14 +157,8 @@
     height: 12px;
   }
 
-  @media (max-width: 1024px) {
-    {{ sec_id }} .pc-testimonials__slide {
-      flex: 0 0 50%;
-    }
-  }
-
   @media (max-width: 767px) {
-    {{ sec_id }} .pc-testimonials {
+    {{ sec_id }} .pc-testimonials-section {
       padding-top: {{ section.settings.mobile_padding_top }}px;
       padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
     }
@@ -148,8 +168,10 @@
       margin-bottom: {{ section.settings.mobile_heading_margin_bottom }}px;
     }
 
-    {{ sec_id }} .pc-testimonials__slide {
-      flex: 0 0 100%;
+    {{ sec_id }} .pc-testimonials__image {
+      width: {{ section.settings.mobile_image_size }}px;
+      height: {{ section.settings.mobile_image_size }}px;
+      margin-bottom: 20px;
     }
 
     {{ sec_id }} .pc-testimonials__name {
@@ -162,10 +184,27 @@
 
     {{ sec_id }} .pc-testimonials__quote {
       font-size: {{ section.settings.mobile_quote_font_size }}px;
+      padding: 0 10px;
+    }
+
+    {{ sec_id }} .pc-testimonials__quote:before,
+    {{ sec_id }} .pc-testimonials__quote:after {
+      font-size: 30px;
+    }
+
+    {{ sec_id }} .pc-testimonials__quote:before {
+      top: -15px;
+    }
+
+    {{ sec_id }} .pc-testimonials__quote:after {
+      bottom: -30px;
+    }
+
+    {{ sec_id }} .pc-testimonials__nav {
+      margin-top: 30px;
     }
   }
 </style>
-
 <div class="pc-testimonials-section">
 <pc-testimonials-{{ last_part }} class="pc-testimonials">
   <div class="pc-testimonials__container">
