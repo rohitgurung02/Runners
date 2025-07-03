@@ -1105,7 +1105,7 @@
         "arrow_color": "#01b0f8",
         "dot_color": "#ffffff",
         "dot_active_color": "#01b0f8",
-        "auto_play": true,
+        "auto_play": false,
         "auto_play_speed": 3
       }
     }
