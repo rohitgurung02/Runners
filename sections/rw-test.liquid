@@ -3,6 +3,12 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
+  
+  {{ sec_id }} .pc-carousel-section {
+    padding-top: {{ section.settings.section_padding_top }}px;
+    padding-bottom: {{ section.settings.section_padding_bottom }}px;
+  }
+  
   {{ sec_id }} .pc-carousel-container-{{last_part}} {
     position: relative;
     width: 100%;
@@ -319,7 +325,7 @@
     },
     {
       "type": "range",
-      "id": "section_items_padding_bottom",
+      "id": "section_padding_bottom",
       "label": "Padding Bottom (px)",
       "default": 5,
       "min": 0,
