@@ -10,7 +10,6 @@
     position: relative;
     width: 100%;
     max-width: {{ section.settings.max_width }}px;
-    padding: 0 auto;
     background: {{ section.settings.background_color }};
     box-shadow: {% if section.settings.shadow_enabled %}0 30px 50px {{ section.settings.shadow_color | color_modify: 'alpha', 0.3 }}{% else %}none{% endif %};
     border-radius: {{ section.settings.border_radius }}px;
