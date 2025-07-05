@@ -86,7 +86,7 @@
     letter-spacing: {{ section.settings.text_letter_spacing }}px;
     text-decoration: {{ section.settings.text_text_decoration }};
     text-decoration-color: {{ section.settings.text_text_decoration_color }};
-    text-transform: uppercase;
+    text-transform: {{ section.settings.text_text_transform }};
     opacity: 0;
     animation: pc-carousel-animate-{{last_part}} 1s ease-in-out 1 forwards;
   }
@@ -103,6 +103,7 @@
     padding-bottom: {{ section.settings.description_padding_bottom }}px;
     text-decoration: {{ section.settings.description_text_decoration }};
     text-decoration-color: {{ section.settings.description_text_decoration_color }};
+    text-transform: {{ section.settings.description_text_transform }};
     opacity: 0;
     animation: pc-carousel-animate-{{last_part}} 1s ease-in-out 0.3s 1 forwards;
   }
@@ -115,6 +116,7 @@
     color: {{ section.settings.button_text_color }};
     border-radius: {{ section.settings.button_border_radius }}px;
     font-size: {{ section.settings.button_text_size }}px;
+     text-transform: {{ section.settings.button_text_transform }};
     opacity: 0;
     animation: pc-carousel-animate-{{last_part}} 1s ease-in-out 0.6s 1 forwards;
   }
@@ -359,6 +361,30 @@
       "unit": "px",
       "default": 28
     },
+     {
+      "type": "select",
+      "id": "text_text_transform",
+      "label": "Text text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None (default)"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "none"
+    },
     {
       "type": "select",
       "id": "title_weight",
@@ -461,6 +487,30 @@
       "step": 1,
       "unit": "px",
       "default": 14
+    },
+     {
+      "type": "select",
+      "id": "description_text_transform",
+      "label": "description text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None (default)"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "none"
     },
         {
           "type": "select",
@@ -665,6 +715,30 @@
       "id": "button_text_color",
       "label": "Button Text Color",
       "default": "#ffffff"
+    },
+     {
+      "type": "select",
+      "id": "button_text_transform",
+      "label": "Button text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None (default)"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "color",
