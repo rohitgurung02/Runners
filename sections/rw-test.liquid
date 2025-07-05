@@ -5,8 +5,8 @@
 <style>
   
   {{ sec_id }} .pc-carousel-section {
-    padding-top: {{ section.settings.section_padding_top }}px;
-    padding-bottom: {{ section.settings.section_padding_bottom }}px;
+    margin-top: {{ section.settings.section_margin_top }}px;
+    margin-bottom: {{ section.settings.section_margin_bottom }}px;
     position: relative;
     width: 100%;
     max-width: {{ section.settings.max_width }}px;
@@ -15,10 +15,6 @@
     box-shadow: {% if section.settings.shadow_enabled %}0 30px 50px {{ section.settings.shadow_color | color_modify: 'alpha', 0.3 }}{% else %}none{% endif %};
     border-radius: {{ section.settings.border_radius }}px;
     overflow: hidden;
-  }
-  
-  {{ sec_id }} .pc-carousel-container-{{last_part}} {
-    
   }
 
   {{ sec_id }} .pc-carousel-slide-{{last_part}} {
@@ -311,7 +307,7 @@
     },
     {
       "type": "range",
-      "id": "section_padding_top",
+      "id": "section_margin_top",
       "label": "Padding Top (px)",
       "default": 15,
       "min": 0,
@@ -320,7 +316,7 @@
     },
     {
       "type": "range",
-      "id": "section_padding_bottom",
+      "id": "section_margin_bottom",
       "label": "Padding Bottom (px)",
       "default": 15,
       "min": 0,
