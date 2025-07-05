@@ -88,6 +88,7 @@
   }
 
   {{ sec_id }} .pc-carousel-description-{{last_part}} {
+    color: {{ section.settings.description_spacing }};
     margin-top: {{ section.settings.description_spacing }}px;
     margin-bottom: {{ section.settings.button_spacing }}px;
     font-size: {{ section.settings.description_size }}px;
@@ -363,6 +364,12 @@
     {
       "type": "header",
       "content": "Description Settings"
+    },
+    {
+      "type": "color",
+      "id": "description_text_color",
+      "label": "Description Text Color",
+      "default": "#ffffff"
     },
     {
       "type": "range",
