@@ -1095,7 +1095,7 @@
         "button_text_color": "#ffffff",
         "button_text_transform": "none",
         "button_hover_background": "#333333",
-        "button_hover_text_color": "#121212",
+        "button_hover_text_color": "#fefefe",
         "nav_button_background": "#121212",
         "nav_button_text_color": "#ffffff",
         "nav_button_border_color": "#000000",
