@@ -249,7 +249,7 @@
       "type": "header",
       "content": "Layout Settings"
     },
-    {
+     {
       "type": "checkbox",
       "id": "shadow_enabled",
       "label": "Enable Container Shadow",
@@ -365,7 +365,7 @@
       "unit": "px",
       "default": 28
     },
-    {
+     {
       "type": "select",
       "id": "text_text_transform",
       "label": "Title text transform",
@@ -402,66 +402,66 @@
       ],
       "default": "700"
     },
-    {
-      "type": "select",
-      "id": "text_font_style",
-      "label": "Title Font style",
-      "options": [
         {
-          "value": "normal",
-          "label": "Normal"
+          "type": "select",
+          "id": "text_font_style",
+          "label": "Title Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
         },
         {
-          "value": "italic",
-          "label": "Italic"
+          "type": "range",
+          "id": "text_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Title Letter spacing",
+          "default": 0
         },
         {
-          "value": "oblique",
-          "label": "Oblique"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "range",
-      "id": "text_letter_spacing",
-      "min": 0,
-      "max": 10,
-      "step": 0.5,
-      "unit": "px",
-      "label": "Title Letter spacing",
-      "default": 0
-    },
-    {
-      "type": "select",
-      "id": "text_text_decoration",
-      "label": "Title Decoration",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
+          "type": "select",
+          "id": "text_text_decoration",
+          "label": "Title Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
         },
         {
-          "value": "underline",
-          "label": "Underline"
+          "type": "color",
+          "id": "text_text_decoration_color",
+          "label": "Title Decoration Color",
+          "default": "#000"
         },
-        {
-          "value": "overline",
-          "label": "Overline"
-        },
-        {
-          "value": "line-through",
-          "label": "Line Through"
-        }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "color",
-      "id": "text_text_decoration_color",
-      "label": "Title Decoration Color",
-      "default": "#000"
-    },
     {
       "type": "header",
       "content": "Description Settings"
@@ -492,7 +492,7 @@
       "unit": "px",
       "default": 14
     },
-    {
+     {
       "type": "select",
       "id": "description_text_transform",
       "label": "Description text transform",
@@ -516,144 +516,144 @@
       ],
       "default": "none"
     },
-    {
-      "type": "select",
-      "id": "description_font_weight",
-      "label": "Description Font weight",
-      "options": [
         {
-          "value": "normal",
-          "label": "Normal"
+          "type": "select",
+          "id": "description_font_weight",
+          "label": "Description Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
         },
         {
-          "value": "bold",
-          "label": "Bold"
+          "type": "select",
+          "id": "description_font_style",
+          "label": "Description Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
         },
         {
-          "value": "bolder",
-          "label": "Bolder"
+          "type": "range",
+          "id": "description_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Description Letter spacing",
+          "default": 0
         },
         {
-          "value": "lighter",
-          "label": "Lighter"
+          "type": "select",
+          "id": "description_text_decoration",
+          "label": "Description Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
         },
         {
-          "value": "100",
-          "label": "100"
+          "type": "color",
+          "id": "description_text_decoration_color",
+          "label": "Description Decoration Color",
+          "default": "#000"
         },
         {
-          "value": "200",
-          "label": "200"
+          "type": "range",
+          "id": "description_padding_top",
+          "label": "Description Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
         {
-          "value": "300",
-          "label": "300"
+          "type": "range",
+          "id": "description_padding_bottom",
+          "label": "Description Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
-        {
-          "value": "400",
-          "label": "400"
-        },
-        {
-          "value": "500",
-          "label": "500"
-        },
-        {
-          "value": "600",
-          "label": "600"
-        },
-        {
-          "value": "700",
-          "label": "700"
-        },
-        {
-          "value": "800",
-          "label": "800"
-        },
-        {
-          "value": "900",
-          "label": "900"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "select",
-      "id": "description_font_style",
-      "label": "Description Font style",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
-        },
-        {
-          "value": "italic",
-          "label": "Italic"
-        },
-        {
-          "value": "oblique",
-          "label": "Oblique"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "range",
-      "id": "description_letter_spacing",
-      "min": 0,
-      "max": 10,
-      "step": 0.5,
-      "unit": "px",
-      "label": "Description Letter spacing",
-      "default": 0
-    },
-    {
-      "type": "select",
-      "id": "description_text_decoration",
-      "label": "Description Text Decoration",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "underline",
-          "label": "Underline"
-        },
-        {
-          "value": "overline",
-          "label": "Overline"
-        },
-        {
-          "value": "line-through",
-          "label": "Line Through"
-        }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "color",
-      "id": "description_text_decoration_color",
-      "label": "Description Decoration Color",
-      "default": "#000"
-    },
-    {
-      "type": "range",
-      "id": "description_padding_top",
-      "label": "Description Padding Top (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
-    {
-      "type": "range",
-      "id": "description_padding_bottom",
-      "label": "Description Padding Bottom (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
     {
       "type": "header",
       "content": "Button Settings"
@@ -720,7 +720,7 @@
       "label": "Button Text Color",
       "default": "#ffffff"
     },
-    {
+     {
       "type": "select",
       "id": "button_text_transform",
       "label": "Button text transform",
@@ -767,16 +767,16 @@
       "default": "#121212"
     },
     {
-      "type": "color",
-      "id": "nav_button_text_color",
-      "label": "Navigation Button Arrow Color",
-      "default": "#ffffff"
-    },
+          "type": "color",
+          "id": "nav_button_text_color",
+          "label": "Navigation Button Arrow Color",
+          "default": "#ffffff"
+        },
     {
       "type": "color",
       "id": "nav_button_border_color",
       "label": "Navigation Button Border Color",
-      "default": "#121212"
+      "default":"#121212"
     },
     {
       "type": "color",
@@ -851,7 +851,7 @@
             "button_text": "See More"
           }
         },
-        {
+         {
           "type": "slide",
           "settings": {
             "title": "Title-4",
