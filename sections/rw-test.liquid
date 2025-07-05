@@ -186,6 +186,17 @@
    4px 4px 5px 0px rgba(0,0,0,.1);
   transition: all 0.3s ease;
 }
+   {{ sec_id }} .pc-carousel-nav-button-{{last_part}}:hover {
+  color: #000;
+}
+ {{ sec_id }} .pc-carousel-nav-button-{{last_part}}:hover:after {
+  top: auto;
+  bottom: 0;
+  height: 100%;
+}
+ {{ sec_id }} .pc-carousel-nav-button-{{last_part}}:active {
+  top: 2px;
+}
 
   {{ sec_id }} .pc-carousel-nav-button-{{last_part}}:hover {
     background: {{ section.settings.nav_button_hover_background }};
