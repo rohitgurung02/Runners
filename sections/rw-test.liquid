@@ -82,6 +82,10 @@
   {{ sec_id }} .pc-carousel-name-{{last_part}} {
     font-size: {{ section.settings.title_size }}px;
     font-weight: {{ section.settings.title_weight }};
+    font-style: {{ section.settings.text_font_style }};
+    letter-spacing: {{ section.settings.text_letter_spacing }};
+    text-decoration: {{ section.settings.text_text_decoration }};
+    text-decoration-color: {{ section.settings.text_text_decoration_color }};
     text-transform: uppercase;
     opacity: 0;
     animation: pc-carousel-animate-{{last_part}} 1s ease-in-out 1 forwards;
@@ -363,7 +367,7 @@
     },
         {
           "type": "select",
-          "id": "included_items_font_style",
+          "id": "text_font_style",
           "label": "Font style",
           "options": [
             {
@@ -383,7 +387,7 @@
         },
         {
           "type": "range",
-          "id": "included_items_letter_spacing",
+          "id": "text_letter_spacing",
           "min": 0,
           "max": 10,
           "step": 0.5,
@@ -393,7 +397,7 @@
         },
         {
           "type": "select",
-          "id": "included_items_text_decoration",
+          "id": "text_text_decoration",
           "label": "Text Decoration",
           "options": [
             {
@@ -417,7 +421,7 @@
         },
         {
           "type": "color",
-          "id": "included_items_text_decoration_color",
+          "id": "text_text_decoration_color",
           "label": "Text Decoration Color",
           "default": "#000"
         },
