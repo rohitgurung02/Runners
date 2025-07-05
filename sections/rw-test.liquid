@@ -7,9 +7,6 @@
   {{ sec_id }} .pc-carousel-section {
     padding-top: {{ section.settings.section_padding_top }}px;
     padding-bottom: {{ section.settings.section_padding_bottom }}px;
-  }
-  
-  {{ sec_id }} .pc-carousel-container-{{last_part}} {
     position: relative;
     width: 100%;
     max-width: {{ section.settings.max_width }}px;
@@ -18,6 +15,10 @@
     box-shadow: {% if section.settings.shadow_enabled %}0 30px 50px {{ section.settings.shadow_color | color_modify: 'alpha', 0.3 }}{% else %}none{% endif %};
     border-radius: {{ section.settings.border_radius }}px;
     overflow: hidden;
+  }
+  
+  {{ sec_id }} .pc-carousel-container-{{last_part}} {
+    
   }
 
   {{ sec_id }} .pc-carousel-slide-{{last_part}} {
