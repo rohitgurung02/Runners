@@ -1014,6 +1014,7 @@
         "slide_mH6qYm": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg",
             "title": "Title-1",
             "description": "Type your description here..!",
             "button_text": "See More"
@@ -1022,6 +1023,7 @@
         "slide_XNRBCe": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg",
             "title": "Title-2",
             "description": "Type your description here..!",
             "button_text": "See More"
@@ -1030,6 +1032,7 @@
         "slide_VpUKbE": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/pexels-photo-92733.jpg",
             "title": "Title-3",
             "description": "Type your description here..!",
             "button_text": "See More"
@@ -1038,6 +1041,7 @@
         "slide_4x3WBY": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/1011-1200x800.jpg",
             "title": "Title-4",
             "description": "Type your description here..!",
             "button_text": "See More"
