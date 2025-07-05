@@ -1055,7 +1055,7 @@
       ],
       "name": "RW - Carousel Slider #8",
       "settings": {
-        "shadow_enabled": true,
+        "shadow_enabled": false,
         "item_shadow_enabled": true,
         "item_shadow_color": "#505050",
         "max_width": 1200,
