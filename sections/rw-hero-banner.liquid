@@ -3,239 +3,319 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
+<pc-hero-section-{{ last_part }} class="pc-hero-section-{{ last_part }}">
+  <div class="pc-hero-content-{{ last_part }}">
+    <h1 class="pc-hero-title-{{ last_part }}">Welcome <strong class="pc-hero-strong-{{ last_part }}">{{ section.settings.heading_highlight }}</strong></h1>
+    <p class="pc-hero-text-{{ last_part }}">{{ section.settings.description }}</p>
+    <button class="pc-hero-button-{{ last_part }}" aria-label="{{ section.settings.button_label }}">
+      {{ section.settings.button_label }}
+    </button>
+  </div>
+
+  <div class="pc-hero-divider-{{ last_part }}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <defs>
+        <radialGradient id="pc-radial-{{ last_part }}" cx="30%" cy="30%" r="80%">
+          <stop offset="0%" stop-color="{{ section.settings.gradient_color_1 }}" stop-opacity="0.8" />
+          <stop offset="40%" stop-color="{{ section.settings.gradient_color_2 }}" />
+          <stop offset="100%" stop-color="{{ section.settings.gradient_color_3 }}" />
+        </radialGradient>
+      </defs>
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="url(#pc-radial-{{ last_part }})" class="pc-squiggle-{{ last_part }}"></path>
+      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="url(#pc-radial-{{ last_part }})" class="pc-squiggle-alt-{{ last_part }}"></path>
+    </svg>
+  </div>
+</pc-hero-section-{{ last_part }}>
+
 <style>
-  {{ sec_id }} .pc-features-grid-{{ last_part }} {
-    max-width: {{ section.settings.max_width }}px;
-    margin: 0 auto;
-    padding: {{ section.settings.desktop_padding_vertical }}px {{ section.settings.desktop_padding_horizontal }}px;
-  }
-
-  {{ sec_id }} .pc-feature-card-{{ last_part }} {
-    text-align: center;
-    padding: {{ section.settings.card_padding }}px;
-    background-color: {{ section.settings.card_bg_color }};
-    height: 100%;
-    transition: all 0.3s ease;
-    {% if section.settings.card_shadow %}
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    {% endif %}
-  }
-
-  {{ sec_id }} .pc-feature-icon-{{ last_part }} {
-    width: {{ section.settings.icon_size }}px;
-    height: {{ section.settings.icon_size }}px;
-    margin: 0 auto {{ section.settings.icon_spacing }}px;
+  {{ sec_id }} .pc-hero-section-{{ last_part }} {
+    position: relative;
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  {{ sec_id }} .pc-feature-title-{{ last_part }} {
-    font-size: {{ section.settings.title_font_size }}px;
-    font-weight: {{ section.settings.title_font_weight }};
-    color: {{ section.settings.title_color }};
-    margin-bottom: {{ section.settings.title_spacing }}px;
+  {{ sec_id }} .pc-hero-content-{{ last_part }} {
+    padding: {{ section.settings.mobile_padding_top }}px 1rem 8rem 1rem;
+    max-width: 48rem;
+    margin: 0 auto;
+    width: 100%;
   }
 
-  {{ sec_id }} .pc-feature-description-{{ last_part }} {
-    font-size: {{ section.settings.description_font_size }}px;
-    color: {{ section.settings.description_color }};
-    line-height: 1.5;
+  {{ sec_id }} .pc-hero-title-{{ last_part }} {
+    font-family: var(--pc-font-secondary-{{ last_part }});
+    font-size: {{ section.settings.mobile_title_size }}px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    color: {{ section.settings.text_color }};
   }
 
-  {{ sec_id }} .pc-feature-link-{{ last_part }} {
-    display: inline-block;
-    margin-top: {{ section.settings.link_spacing }}px;
-    color: {{ section.settings.link_color }};
-    font-size: {{ section.settings.link_font_size }}px;
-    text-decoration: none;
-    font-weight: 500;
+  {{ sec_id }} .pc-hero-strong-{{ last_part }} {
+    font-size: {{ section.settings.mobile_highlight_size }}px;
+    text-transform: uppercase;
+    margin: -0.7rem 0 1rem 0;
+    color: {{ section.settings.highlight_color }};
   }
 
-  {{ sec_id }} .pc-feature-link-{{ last_part }}:hover {
-    text-decoration: underline;
+  {{ sec_id }} .pc-hero-text-{{ last_part }} {
+    font-size: {{ section.settings.mobile_text_size }}px;
+    margin-bottom: 1rem;
+    color: {{ section.settings.text_color }};
   }
 
-  @media (max-width: 767px) {
-    {{ sec_id }} .pc-features-grid-{{ last_part }} {
-      padding: {{ section.settings.mobile_padding_vertical }}px {{ section.settings.mobile_padding_horizontal }}px;
+  {{ sec_id }} .pc-hero-button-{{ last_part }} {
+    font-family: var(--pc-font-primary-{{ last_part }});
+    font-size: {{ section.settings.mobile_button_size }}px;
+    padding: 0.5rem 1rem;
+    border: 1px solid {{ section.settings.button_border_color }};
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 35px;
+    transition: all 0.2s ease-in-out;
+    color: {{ section.settings.button_text_color }};
+  }
+
+  {{ sec_id }} .pc-hero-button-{{ last_part }}:hover {
+    background-color: {{ section.settings.button_hover_color }};
+    color: {{ section.settings.button_hover_text_color }};
+  }
+
+  {{ sec_id }} .pc-hero-divider-{{ last_part }} {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+  }
+
+  {{ sec_id }} .pc-hero-divider-{{ last_part }} svg {
+    position: relative;
+    display: block;
+    width: calc(147% + 1.3px);
+    height: 200px;
+  }
+
+  {{ sec_id }} .pc-squiggle-alt-{{ last_part }} {
+    visibility: hidden;
+  }
+
+  @media (min-width: 768px) {
+    {{ sec_id }} .pc-hero-content-{{ last_part }} {
+      padding: {{ section.settings.desktop_padding_top }}px 1rem 8rem 1rem;
     }
 
-    {{ sec_id }} .pc-feature-title-{{ last_part }} {
-      font-size: {{ section.settings.mobile_title_font_size }}px;
+    {{ sec_id }} .pc-hero-title-{{ last_part }} {
+      font-size: {{ section.settings.desktop_title_size }}px;
     }
 
-    {{ sec_id }} .pc-feature-description-{{ last_part }} {
-      font-size: {{ section.settings.mobile_description_font_size }}px;
+    {{ sec_id }} .pc-hero-strong-{{ last_part }} {
+      font-size: {{ section.settings.desktop_highlight_size }}px;
     }
 
-    {{ sec_id }} .pc-feature-icon-{{ last_part }} {
-      width: {{ section.settings.mobile_icon_size }}px;
-      height: {{ section.settings.mobile_icon_size }}px;
+    {{ sec_id }} .pc-hero-text-{{ last_part }} {
+      font-size: {{ section.settings.desktop_text_size }}px;
+    }
+
+    {{ sec_id }} .pc-hero-button-{{ last_part }} {
+      font-size: {{ section.settings.desktop_button_size }}px;
     }
   }
 </style>
 
-<div class="pc-features-grid-{{ last_part }}">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-{{ section.settings.grid_gap }}">
-    {% for block in section.blocks %}
-      <div class="pc-feature-card-{{ last_part }}">
-        {%- if block.settings.image != blank -%}
-          <div class="pc-feature-icon-{{ last_part }}">
-            {% assign image_class = 'pc-feature-image-' | append: last_part %}
-            {{ 
-              block.settings.image 
-              | image_url: width: section.settings.icon_size 
-              | image_tag: 
-                  loading: 'lazy', 
-                  class: image_class,
-                  alt: block.settings.title 
-            }}
-          </div>
-        {%- else -%}
-          <div class="pc-feature-icon-{{ last_part }}">
-            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-          </div>
-        {%- endif -%}
-        
-        <h3 class="pc-feature-title-{{ last_part }}">{{ block.settings.title }}</h3>
-        <p class="pc-feature-description-{{ last_part }}">{{ block.settings.description }}</p>
-        {%- if block.settings.link_text != blank -%}
-          <a href="{{ block.settings.link_url }}" class="pc-feature-link-{{ last_part }}">
-            {{ block.settings.link_text }}
-          </a>
-        {%- endif -%}
-      </div>
-    {% endfor %}
-  </div>
-</div>
-
 <script>
-  class PcFeaturesGrid{{ last_part | capitalize }} extends HTMLElement {
-    constructor() {
-      super();
-      // Add any custom JS functionality here if needed
-    }
-  }
+  document.addEventListener("DOMContentLoaded", (event) => {
+    const sectionElement = document.querySelector('pc-hero-section-{{ last_part }}');
+    if (!sectionElement) return;
 
-  customElements.define('pc-features-grid-{{ last_part }}', PcFeaturesGrid{{ last_part | capitalize }});
+    const firstWave = sectionElement.querySelector('.pc-squiggle-{{ last_part }}');
+    if (!firstWave) return;
+
+    if (typeof gsap !== 'undefined' && typeof MorphSVGPlugin !== 'undefined') {
+      gsap.to(firstWave, {
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "power2.inOut",
+        morphSVG: sectionElement.querySelector('.pc-squiggle-alt-{{ last_part }}')
+      });
+    } else {
+      console.warn('GSAP or MorphSVGPlugin not loaded for pc-hero-section-{{ last_part }}');
+    }
+  });
 </script>
 
 {% schema %}
 {
-  "name": "PWC - AI Features Grid #1",
+  "name": "PWC - Hero Banner #1",
+  "class": "shopify-section--pc-hero-squiggles",
   "settings": [
     {
       "type": "header",
-      "content": "Layout Settings"
+      "content": "Content"
     },
     {
-      "type": "range",
-      "id": "max_width",
-      "label": "Max Width",
-      "min": 800,
-      "max": 1600,
-      "step": 50,
-      "unit": "px",
-      "default": 1200
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Heading Highlight Text",
+      "default": "Squiggles"
     },
     {
-      "type": "range",
-      "id": "grid_gap",
-      "label": "Grid Gap",
-      "min": 10,
-      "max": 50,
-      "step": 5,
-      "unit": "px",
-      "default": 30
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales arcu eu libero varius, sed."
     },
     {
-      "type": "range",
-      "id": "card_padding",
-      "label": "Card Padding",
-      "min": 10,
-      "max": 50,
-      "step": 5,
-      "unit": "px",
-      "default": 30
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Learn More"
     },
     {
       "type": "header",
-      "content": "Icon Settings"
+      "content": "Colors"
     },
     {
-      "type": "range",
-      "id": "icon_size",
-      "label": "Icon Size (Desktop)",
-      "min": 40,
-      "max": 120,
-      "step": 5,
-      "unit": "px",
-      "default": 60
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#171716"
     },
     {
-      "type": "range",
-      "id": "mobile_icon_size",
-      "label": "Icon Size (Mobile)",
-      "min": 30,
-      "max": 80,
-      "step": 5,
-      "unit": "px",
-      "default": 50
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#1468E5"
     },
     {
-      "type": "range",
-      "id": "icon_spacing",
-      "label": "Icon Bottom Spacing",
-      "min": 10,
-      "max": 50,
-      "step": 5,
-      "unit": "px",
-      "default": 20
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#171716"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "#171716"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button Hover Background",
+      "default": "#171716"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient Color 1",
+      "default": "#1468E5"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient Color 2",
+      "default": "#14E5CD"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_3",
+      "label": "Gradient Color 3",
+      "default": "#26079C"
     },
     {
       "type": "header",
       "content": "Typography Settings"
     },
     {
-      "type": "range",
-      "id": "title_font_size",
-      "label": "Title Font Size (Desktop)",
-      "min": 14,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "default": 20
+      "type": "select",
+      "id": "font_primary",
+      "label": "Primary Font",
+      "options": [
+        {
+          "value": "Arial, sans-serif",
+          "label": "Arial"
+        },
+        {
+          "value": "'Helvetica Neue', sans-serif",
+          "label": "Helvetica"
+        },
+        {
+          "value": "Georgia, serif",
+          "label": "Georgia"
+        }
+      ],
+      "default": "Arial, sans-serif"
     },
     {
       "type": "select",
-      "id": "title_font_weight",
-      "label": "Title Font Weight",
+      "id": "font_secondary",
+      "label": "Secondary Font",
       "options": [
         {
-          "value": "400",
-          "label": "Normal"
+          "value": "Arial, sans-serif",
+          "label": "Arial"
         },
         {
-          "value": "500",
-          "label": "Medium"
+          "value": "'Helvetica Neue', sans-serif",
+          "label": "Helvetica"
         },
         {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
+          "value": "Georgia, serif",
+          "label": "Georgia"
         }
       ],
-      "default": "600"
+      "default": "Georgia, serif"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
     },
     {
       "type": "range",
-      "id": "description_font_size",
-      "label": "Description Font Size (Desktop)",
+      "id": "desktop_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_title_size",
+      "label": "Title Font Size",
       "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "desktop_highlight_size",
+      "label": "Highlight Font Size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "desktop_text_size",
+      "label": "Text Font Size",
+      "min": 10,
       "max": 24,
       "step": 1,
       "unit": "px",
@@ -243,95 +323,13 @@
     },
     {
       "type": "range",
-      "id": "link_font_size",
-      "label": "Link Font Size (Desktop)",
+      "id": "desktop_button_size",
+      "label": "Button Font Size",
       "min": 12,
-      "max": 20,
+      "max": 36,
       "step": 1,
       "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "header",
-      "content": "Color Settings"
-    },
-    {
-      "type": "color",
-      "id": "card_bg_color",
-      "label": "Card Background Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": "Title Color",
-      "default": "#111827"
-    },
-    {
-      "type": "color",
-      "id": "description_color",
-      "label": "Description Color",
-      "default": "#6b7280"
-    },
-    {
-      "type": "color",
-      "id": "link_color",
-      "label": "Link Color",
-      "default": "#2563eb"
-    },
-    {
-      "type": "checkbox",
-      "id": "card_shadow",
-      "label": "Enable Card Shadow",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "Spacing Settings"
-    },
-    {
-      "type": "range",
-      "id": "title_spacing",
-      "label": "Title Bottom Spacing",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "link_spacing",
-      "label": "Link Top Spacing",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "header",
-      "content": "Desktop Spacing"
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_vertical",
-      "label": "Vertical Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_horizontal",
-      "label": "Horizontal Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
+      "default": 24
     },
     {
       "type": "header",
@@ -339,118 +337,70 @@
     },
     {
       "type": "range",
-      "id": "mobile_title_font_size",
-      "label": "Title Font Size (Mobile)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
+      "id": "mobile_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
       "unit": "px",
-      "default": 18
+      "default": 20
     },
     {
       "type": "range",
-      "id": "mobile_description_font_size",
-      "label": "Description Font Size (Mobile)",
+      "id": "mobile_title_size",
+      "label": "Title Font Size",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_highlight_size",
+      "label": "Highlight Font Size",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "mobile_text_size",
+      "label": "Text Font Size",
       "min": 10,
-      "max": 18,
+      "max": 20,
       "step": 1,
       "unit": "px",
       "default": 14
     },
     {
       "type": "range",
-      "id": "mobile_padding_vertical",
-      "label": "Vertical Padding",
-      "min": 0,
-      "max": 80,
-      "step": 5,
+      "id": "mobile_button_size",
+      "label": "Button Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
       "unit": "px",
-      "default": 40
+      "default": 16
     },
     {
-      "type": "range",
-      "id": "mobile_padding_horizontal",
-      "label": "Horizontal Padding",
-      "min": 0,
-      "max": 80,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    }
-  ],
-  "blocks": [
+      "type": "header",
+      "content": "Advanced"
+    },
     {
-      "type": "feature",
-      "name": "Feature",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Icon/Image"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Feature Title"
-        },
-        {
-          "type": "text",
-          "id": "description",
-          "label": "Description",
-          "default": "Feature description goes here."
-        },
-        {
-          "type": "text",
-          "id": "link_text",
-          "label": "Link Text",
-          "default": "Details -"
-        },
-        {
-          "type": "url",
-          "id": "link_url",
-          "label": "Link URL"
-        }
-      ]
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "Enable SVG Animation",
+      "default": true,
+      "info": "Requires GSAP and MorphSVGPlugin"
     }
   ],
   "presets": [
     {
-      "name": "PWC - AI Features Grid #1",
-      "blocks": [
-        {
-          "type": "feature",
-          "settings": {
-            "title": "AI in Times",
-            "description": "Leverage the power of AI in your most important workflows.",
-            "link_text": "Details -"
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "title": "Build apps",
-            "description": "Build apps and portals for secure information gathering and sharing.",
-            "link_text": "Details -"
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "title": "Monitoring",
-            "description": "Visibility into workflow performance, trends, and impact.",
-            "link_text": "Details -"
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "title": "Formulas",
-            "description": "Hundreds of built-in functions to help you build powerful workflows.",
-            "link_text": "Details -"
-          }
-        }
-      ]
+      "name": "PWC - Hero Banner #1",
+      "category": "Custom"
     }
   ]
 }
