@@ -1102,6 +1102,37 @@
         "nav_button_hover_background": "#ababab",
         "nav_button_hover_text_color": "#ffffff"
       }
+    },
+    "rw_hero_banner_gt6cGT": {
+      "type": "rw-hero-banner",
+      "name": "PWC - Hero Banner #1",
+      "settings": {
+        "heading_highlight": "Squiggles",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales arcu eu libero varius, sed.",
+        "button_label": "Learn More",
+        "text_color": "#171716",
+        "highlight_color": "#1468E5",
+        "button_text_color": "#171716",
+        "button_border_color": "#171716",
+        "button_hover_color": "#171716",
+        "button_hover_text_color": "#FFFFFF",
+        "gradient_color_1": "#1468E5",
+        "gradient_color_2": "#14E5CD",
+        "gradient_color_3": "#26079C",
+        "font_primary": "Arial, sans-serif",
+        "font_secondary": "Georgia, serif",
+        "desktop_padding_top": 40,
+        "desktop_title_size": 32,
+        "desktop_highlight_size": 48,
+        "desktop_text_size": 16,
+        "desktop_button_size": 24,
+        "mobile_padding_top": 20,
+        "mobile_title_size": 24,
+        "mobile_highlight_size": 36,
+        "mobile_text_size": 14,
+        "mobile_button_size": 16,
+        "enable_animation": true
+      }
     }
   },
   "order": [
@@ -1117,6 +1148,7 @@
     "rw_reviews_eNfMNB",
     "rw_timeline_8VAwHz",
     "rw_video_banner_f88XdA",
-    "rw_test_hEiBE4"
+    "rw_test_hEiBE4",
+    "rw_hero_banner_gt6cGT"
   ]
 }
