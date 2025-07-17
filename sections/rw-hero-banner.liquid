@@ -11,14 +11,23 @@
   }
 
   {{ sec_id }} .pc-feature-card-{{ last_part }} {
-    border: 1px solid {{ section.settings.card_border_color }};
-    border-radius: {{ section.settings.card_border_radius }}px;
+    text-align: center;
     padding: {{ section.settings.card_padding }}px;
     background-color: {{ section.settings.card_bg_color }};
     height: 100%;
+    transition: all 0.3s ease;
     {% if section.settings.card_shadow %}
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     {% endif %}
+  }
+
+  {{ sec_id }} .pc-feature-icon-{{ last_part }} {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    margin: 0 auto {{ section.settings.icon_spacing }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   {{ sec_id }} .pc-feature-title-{{ last_part }} {
@@ -28,16 +37,23 @@
     margin-bottom: {{ section.settings.title_spacing }}px;
   }
 
-  {{ sec_id }} .pc-feature-divider-{{ last_part }} {
-    height: 1px;
-    background-color: {{ section.settings.divider_color }};
-    margin: {{ section.settings.divider_spacing }}px 0;
-  }
-
   {{ sec_id }} .pc-feature-description-{{ last_part }} {
     font-size: {{ section.settings.description_font_size }}px;
     color: {{ section.settings.description_color }};
-    margin-top: {{ section.settings.description_spacing }}px;
+    line-height: 1.5;
+  }
+
+  {{ sec_id }} .pc-feature-link-{{ last_part }} {
+    display: inline-block;
+    margin-top: {{ section.settings.link_spacing }}px;
+    color: {{ section.settings.link_color }};
+    font-size: {{ section.settings.link_font_size }}px;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  {{ sec_id }} .pc-feature-link-{{ last_part }}:hover {
+    text-decoration: underline;
   }
 
   @media (max-width: 767px) {
@@ -52,6 +68,11 @@
     {{ sec_id }} .pc-feature-description-{{ last_part }} {
       font-size: {{ section.settings.mobile_description_font_size }}px;
     }
+
+    {{ sec_id }} .pc-feature-icon-{{ last_part }} {
+      width: {{ section.settings.mobile_icon_size }}px;
+      height: {{ section.settings.mobile_icon_size }}px;
+    }
   }
 </style>
 
@@ -59,9 +80,31 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-{{ section.settings.grid_gap }}">
     {% for block in section.blocks %}
       <div class="pc-feature-card-{{ last_part }}">
+        {%- if block.settings.image != blank -%}
+          <div class="pc-feature-icon-{{ last_part }}">
+            {% assign image_class = 'pc-feature-image-' | append: last_part %}
+            {{ 
+              block.settings.image 
+              | image_url: width: section.settings.icon_size 
+              | image_tag: 
+                  loading: 'lazy', 
+                  class: image_class,
+                  alt: block.settings.title 
+            }}
+          </div>
+        {%- else -%}
+          <div class="pc-feature-icon-{{ last_part }}">
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+        
         <h3 class="pc-feature-title-{{ last_part }}">{{ block.settings.title }}</h3>
-        <div class="pc-feature-divider-{{ last_part }}"></div>
         <p class="pc-feature-description-{{ last_part }}">{{ block.settings.description }}</p>
+        {%- if block.settings.link_text != blank -%}
+          <a href="{{ block.settings.link_url }}" class="pc-feature-link-{{ last_part }}">
+            {{ block.settings.link_text }}
+          </a>
+        {%- endif -%}
       </div>
     {% endfor %}
   </div>
@@ -80,7 +123,7 @@
 
 {% schema %}
 {
-  "name": "PWC - Features Grid #1",
+  "name": "PWC - AI Features Grid #1",
   "settings": [
     {
       "type": "header",
@@ -104,33 +147,7 @@
       "max": 50,
       "step": 5,
       "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "header",
-      "content": "Card Settings"
-    },
-    {
-      "type": "color",
-      "id": "card_bg_color",
-      "label": "Card Background Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "card_border_color",
-      "label": "Card Border Color",
-      "default": "#e5e7eb"
-    },
-    {
-      "type": "range",
-      "id": "card_border_radius",
-      "label": "Card Border Radius",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 8
+      "default": 30
     },
     {
       "type": "range",
@@ -140,13 +157,41 @@
       "max": 50,
       "step": 5,
       "unit": "px",
-      "default": 20
+      "default": 30
     },
     {
-      "type": "checkbox",
-      "id": "card_shadow",
-      "label": "Enable Card Shadow",
-      "default": false
+      "type": "header",
+      "content": "Icon Settings"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon Size (Desktop)",
+      "min": 40,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "mobile_icon_size",
+      "label": "Icon Size (Mobile)",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "Icon Bottom Spacing",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
     },
     {
       "type": "header",
@@ -187,10 +232,62 @@
       "default": "600"
     },
     {
+      "type": "range",
+      "id": "description_font_size",
+      "label": "Description Font Size (Desktop)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "link_font_size",
+      "label": "Link Font Size (Desktop)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#ffffff"
+    },
+    {
       "type": "color",
       "id": "title_color",
       "label": "Title Color",
       "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#6b7280"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link Color",
+      "default": "#2563eb"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_shadow",
+      "label": "Enable Card Shadow",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings"
     },
     {
       "type": "range",
@@ -200,49 +297,17 @@
       "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 10
+      "default": 15
     },
     {
       "type": "range",
-      "id": "description_font_size",
-      "label": "Description Font Size (Desktop)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "color",
-      "id": "description_color",
-      "label": "Description Color",
-      "default": "#6b7280"
-    },
-    {
-      "type": "range",
-      "id": "description_spacing",
-      "label": "Description Top Spacing",
+      "id": "link_spacing",
+      "label": "Link Top Spacing",
       "min": 0,
       "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "color",
-      "id": "divider_color",
-      "label": "Divider Color",
-      "default": "#e5e7eb"
-    },
-    {
-      "type": "range",
-      "id": "divider_spacing",
-      "label": "Divider Spacing",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 10
+      "default": 15
     },
     {
       "type": "header",
@@ -256,7 +321,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 40
+      "default": 60
     },
     {
       "type": "range",
@@ -280,7 +345,7 @@
       "max": 24,
       "step": 1,
       "unit": "px",
-      "default": 16
+      "default": 18
     },
     {
       "type": "range",
@@ -290,7 +355,7 @@
       "max": 18,
       "step": 1,
       "unit": "px",
-      "default": 12
+      "default": 14
     },
     {
       "type": "range",
@@ -300,7 +365,7 @@
       "max": 80,
       "step": 5,
       "unit": "px",
-      "default": 30
+      "default": 40
     },
     {
       "type": "range",
@@ -319,6 +384,11 @@
       "name": "Feature",
       "settings": [
         {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon/Image"
+        },
+        {
           "type": "text",
           "id": "title",
           "label": "Title",
@@ -329,40 +399,55 @@
           "id": "description",
           "label": "Description",
           "default": "Feature description goes here."
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Details -"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "PWC-Features Grid #1",
+      "name": "PWC - AI Features Grid #1",
       "blocks": [
         {
           "type": "feature",
           "settings": {
             "title": "AI in Times",
-            "description": "Leverage the power of AI in your most important workflows."
+            "description": "Leverage the power of AI in your most important workflows.",
+            "link_text": "Details -"
           }
         },
         {
           "type": "feature",
           "settings": {
             "title": "Build apps",
-            "description": "Build apps and portals for secure information gathering and sharing."
+            "description": "Build apps and portals for secure information gathering and sharing.",
+            "link_text": "Details -"
           }
         },
         {
           "type": "feature",
           "settings": {
             "title": "Monitoring",
-            "description": "Visibility into workflow performance, trends, and impact."
+            "description": "Visibility into workflow performance, trends, and impact.",
+            "link_text": "Details -"
           }
         },
         {
           "type": "feature",
           "settings": {
             "title": "Formulas",
-            "description": "Hundreds of built-in functions to help you build powerful workflows."
+            "description": "Hundreds of built-in functions to help you build powerful workflows.",
+            "link_text": "Details -"
           }
         }
       ]
