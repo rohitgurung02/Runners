@@ -74,7 +74,7 @@
   {{ sec_id }} .pc-hero-button-{{ last_part }} {
     font-family: var(--pc-font-primary-{{ last_part }});
     font-size: {{ section.settings.mobile_button_size }}px;
-    padding: 0.5rem 1rem;
+    padding: 12px 8px;
     border: 1px solid {{ section.settings.button_border_color }};
     background-color: transparent;
     cursor: pointer;
@@ -136,6 +136,10 @@
   {{ sec_id }} .pc-hero-waves-parallax-{{ last_part }} > use:nth-child(4) {
     animation-delay: -5s;
     animation-duration: 20s;
+  }
+
+  {{ sec_id }} .pc-hero-content-juxxri {
+    margin-left: 67px;
   }
 
   @media (min-width: 768px) {
