@@ -1103,11 +1103,11 @@
         "nav_button_hover_text_color": "#ffffff"
       }
     },
-    "rw_hero_banner_FJJQGh": {
+    "rw_hero_banner_jUXXri": {
       "type": "rw-hero-banner",
       "name": "PWC - Hero Banner #1",
       "settings": {
-        "heading_highlight": "Squiggles",
+        "heading_highlight": "Waves",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales arcu eu libero varius, sed.",
         "button_label": "Learn More",
         "text_color": "#171716",
@@ -1116,9 +1116,14 @@
         "button_border_color": "#171716",
         "button_hover_color": "#171716",
         "button_hover_text_color": "#FFFFFF",
-        "gradient_color_1": "#1468E5",
-        "gradient_color_2": "#14E5CD",
-        "gradient_color_3": "#26079C",
+        "background_color": "#f8f8f8",
+        "background_gradient": "",
+        "wave_color_2": "#8e3636",
+        "wave_color_3": "#ffd700",
+        "wave_color_4": "#c82f2f",
+        "wave_height": 80,
+        "desktop_wave_height": 100,
+        "enable_shadow": true,
         "font_primary": "Arial, sans-serif",
         "font_secondary": "Georgia, serif",
         "desktop_padding_top": 40,
@@ -1130,8 +1135,7 @@
         "mobile_title_size": 24,
         "mobile_highlight_size": 36,
         "mobile_text_size": 14,
-        "mobile_button_size": 16,
-        "enable_animation": true
+        "mobile_button_size": 16
       }
     }
   },
@@ -1149,6 +1153,6 @@
     "rw_timeline_8VAwHz",
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
-    "rw_hero_banner_FJJQGh"
+    "rw_hero_banner_jUXXri"
   ]
 }
