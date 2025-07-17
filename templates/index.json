@@ -1103,58 +1103,81 @@
         "nav_button_hover_text_color": "#ffffff"
       }
     },
-    "rw_hero_banner_d99kVR": {
+    "rw_hero_banner_djXpAX": {
       "type": "rw-hero-banner",
-      "name": "PWC - Hero Banner #1",
+      "blocks": {
+        "feature_nYNiUd": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-991012.jpg",
+            "title": "AI in Times",
+            "description": "Leverage the power of AI in your most important workflows.",
+            "link_text": "Details -",
+            "link_url": ""
+          }
+        },
+        "feature_iTUMwz": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg",
+            "title": "Build apps",
+            "description": "Build apps and portals for secure information gathering and sharing.",
+            "link_text": "Details -",
+            "link_url": ""
+          }
+        },
+        "feature_eaWXzz": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/1025-1200x800.jpg",
+            "title": "Monitoring",
+            "description": "Visibility into workflow performance, trends, and impact.",
+            "link_text": "Details -",
+            "link_url": ""
+          }
+        },
+        "feature_yx3A9t": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/1024-1200x800.jpg",
+            "title": "Formulas",
+            "description": "Hundreds of built-in functions to help you build powerful workflows.",
+            "link_text": "Details -",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_nYNiUd",
+        "feature_iTUMwz",
+        "feature_eaWXzz",
+        "feature_yx3A9t"
+      ],
+      "name": "PWC - AI Features Grid #1",
       "settings": {
-        "image": "shopify://shop_images/3-2-06_RunnersAthletics_Look60005_533x_428740a1-cdf1-497b-9a6e-d640338459e0.webp",
-        "title": "Hero Banner Title",
-        "subtitle": "Tell your brand's story through images",
-        "button_text": "Shop Now",
-        "button_link": "",
-        "desktop_height": 600,
-        "mobile_height": 400,
-        "content_width": 50,
-        "content_vertical_alignment": "center",
-        "text_alignment": "center",
-        "shadow_enable": false,
-        "background_color": "#f5f5f5",
-        "text_color": "#000000",
-        "button_background_color": "#000000",
-        "button_text_color": "#ffffff",
-        "button_border_color": "transparent",
-        "button_hover_background_color": "#333333",
-        "button_hover_text_color": "#ffffff",
-        "overlay_color": "#000000",
-        "overlay_opacity": 30,
-        "title_font_size": 48,
-        "subtitle_font_size": 18,
-        "subtitle_max_width": 60,
-        "button_font_size": 16,
-        "title_font_weight": "700",
-        "subtitle_font_weight": "400",
-        "button_font_weight": "600",
-        "mobile_title_font_size": 32,
-        "mobile_subtitle_font_size": 16,
-        "mobile_button_font_size": 14,
-        "desktop_padding_top": 50,
-        "desktop_padding_bottom": 50,
-        "desktop_padding_left": 50,
-        "desktop_padding_right": 50,
-        "title_margin_bottom": 20,
-        "subtitle_margin_bottom": 30,
-        "button_padding_vertical": 12,
-        "button_padding_horizontal": 30,
-        "button_border_width": 0,
-        "button_border_radius": 0,
-        "mobile_padding_top": 30,
-        "mobile_padding_bottom": 30,
-        "mobile_padding_left": 20,
-        "mobile_padding_right": 20,
-        "mobile_title_margin_bottom": 15,
-        "mobile_subtitle_margin_bottom": 20,
-        "mobile_button_padding_vertical": 10,
-        "mobile_button_padding_horizontal": 20
+        "max_width": 1200,
+        "grid_gap": 30,
+        "card_padding": 30,
+        "icon_size": 60,
+        "mobile_icon_size": 50,
+        "icon_spacing": 20,
+        "title_font_size": 20,
+        "title_font_weight": "600",
+        "description_font_size": 16,
+        "link_font_size": 14,
+        "card_bg_color": "#ffffff",
+        "title_color": "#111827",
+        "description_color": "#6b7280",
+        "link_color": "#2563eb",
+        "card_shadow": false,
+        "title_spacing": 15,
+        "link_spacing": 15,
+        "desktop_padding_vertical": 60,
+        "desktop_padding_horizontal": 20,
+        "mobile_title_font_size": 18,
+        "mobile_description_font_size": 14,
+        "mobile_padding_vertical": 40,
+        "mobile_padding_horizontal": 15
       }
     }
   },
@@ -1172,6 +1195,6 @@
     "rw_timeline_8VAwHz",
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
-    "rw_hero_banner_d99kVR"
+    "rw_hero_banner_djXpAX"
   ]
 }
