@@ -1098,8 +1098,8 @@
         "button_hover_text_color": "#ffffff",
         "nav_button_background": "#2fc8a6",
         "nav_button_text_color": "#ffffff",
-        "nav_button_border_color": "#121212",
-        "nav_button_hover_background": "#ababab",
+        "nav_button_border_color": "rgba(0,0,0,0)",
+        "nav_button_hover_background": "#8edecc",
         "nav_button_hover_text_color": "#ffffff"
       }
     },
