@@ -18,7 +18,7 @@
         <path id="pc-gentle-wave-{{ last_part }}" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
       </defs>
       <g class="pc-hero-waves-parallax-{{ last_part }}">
-        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="0" fill="{{ section.settings.wave_color_1 | default: 'rgba(255,255,255,0.7)' }}" />
         <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="3" fill="{{ section.settings.wave_color_2 | default: '#121212' }}" />
         <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="5" fill="{{ section.settings.wave_color_3 | default: '#FFFFFF' }}" />
         <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="7" fill="{{ section.settings.wave_color_4 | default: '#121212' }}" />
@@ -247,6 +247,12 @@
     {
       "type": "header",
       "content": "Wave Settings"
+    },
+    {
+      "type": "color",
+      "id": "wave_color_1",
+      "label": "Wave Color 1",
+      "default": "rgba(255,255,255,0.7)"
     },
     {
       "type": "color",
