@@ -1,336 +1,152 @@
-{%- liquid
-  assign sec_id = '#shopify-section-' | append: section.id
-  assign parts = sec_id | split: '_'
-  assign last_lower = parts | last
-  assign last_part = last_lower | downcase
--%}
-
-<pc-hero-banner-{{last_part}}>
-  <div class="pc-hero-banner">
-    <div class="pc-hero-banner__content">
-      <h1 class="pc-hero-banner__title">{{ section.settings.title }}</h1>
-      <p class="pc-hero-banner__subtitle">{{ section.settings.subtitle }}</p>
-      <a href="{{ section.settings.button_link }}" class="pc-hero-banner__button">{{ section.settings.button_text }}</a>
-    </div>
-    <div class="pc-hero-banner__secondary">
-      <div class="pc-hero-banner__donation">
-        <span class="pc-hero-banner__donation-label">{{ section.settings.donation_label }}</span>
-        <h3 class="pc-hero-banner__donation-title">{{ section.settings.donation_title }}</h3>
-        <span class="pc-hero-banner__donation-author">{{ section.settings.donation_author }}</span>
-      </div>
-      <div class="pc-hero-banner__brand">
-        <span class="pc-hero-banner__brand-text">{{ section.settings.brand_text }}</span>
-      </div>
-    </div>
-  </div>
-</pc-hero-banner-{{last_part}}>
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} .pc-hero-banner {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: {{ section.settings.gap }}px;
-    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
-    background-color: {{ section.settings.background_color }};
+  {{ sec_id }} .pc-features-grid-{{ last_part }} {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding: {{ section.settings.desktop_padding_vertical }}px {{ section.settings.desktop_padding_horizontal }}px;
   }
 
-  {{ sec_id }} .pc-hero-banner__content {
-    display: flex;
-    flex-direction: column;
-    gap: {{ section.settings.content_gap }}px;
-    max-width: {{ section.settings.content_max_width }}px;
-  }
-
-  {{ sec_id }} .pc-hero-banner__title {
-    font-size: {{ section.settings.title_font_size }}px;
-    font-weight: {{ section.settings.title_font_weight }};
-    color: {{ section.settings.title_color }};
-    margin: 0;
-    line-height: 1.2;
-  }
-
-  {{ sec_id }} .pc-hero-banner__subtitle {
-    font-size: {{ section.settings.subtitle_font_size }}px;
-    font-weight: {{ section.settings.subtitle_font_weight }};
-    color: {{ section.settings.subtitle_color }};
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  {{ sec_id }} .pc-hero-banner__button {
-    display: inline-block;
-    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
-    background-color: {{ section.settings.button_background_color }};
-    color: {{ section.settings.button_text_color }};
-    font-size: {{ section.settings.button_font_size }}px;
-    font-weight: {{ section.settings.button_font_weight }};
-    text-decoration: none;
-    border-radius: {{ section.settings.button_border_radius }}px;
-    margin-top: {{ section.settings.button_margin_top }}px;
-    max-width: max-content;
-    {% if section.settings.button_shadow %}
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  {{ sec_id }} .pc-feature-card-{{ last_part }} {
+    border: 1px solid {{ section.settings.card_border_color }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: {{ section.settings.card_padding }}px;
+    background-color: {{ section.settings.card_bg_color }};
+    height: 100%;
+    {% if section.settings.card_shadow %}
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     {% endif %}
   }
 
-  {{ sec_id }} .pc-hero-banner__secondary {
-    display: flex;
-    flex-direction: column;
-    gap: {{ section.settings.secondary_gap }}px;
-    margin-top: {{ section.settings.secondary_margin_top }}px;
+  {{ sec_id }} .pc-feature-title-{{ last_part }} {
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: {{ section.settings.title_font_weight }};
+    color: {{ section.settings.title_color }};
+    margin-bottom: {{ section.settings.title_spacing }}px;
   }
 
-  {{ sec_id }} .pc-hero-banner__donation {
-    display: flex;
-    flex-direction: column;
-    gap: {{ section.settings.donation_gap }}px;
+  {{ sec_id }} .pc-feature-divider-{{ last_part }} {
+    height: 1px;
+    background-color: {{ section.settings.divider_color }};
+    margin: {{ section.settings.divider_spacing }}px 0;
   }
 
-  {{ sec_id }} .pc-hero-banner__donation-label {
-    font-size: {{ section.settings.donation_label_font_size }}px;
-    font-weight: {{ section.settings.donation_label_font_weight }};
-    color: {{ section.settings.donation_label_color }};
-  }
-
-  {{ sec_id }} .pc-hero-banner__donation-title {
-    font-size: {{ section.settings.donation_title_font_size }}px;
-    font-weight: {{ section.settings.donation_title_font_weight }};
-    color: {{ section.settings.donation_title_color }};
-    margin: 0;
-  }
-
-  {{ sec_id }} .pc-hero-banner__donation-author {
-    font-size: {{ section.settings.donation_author_font_size }}px;
-    font-weight: {{ section.settings.donation_author_font_weight }};
-    color: {{ section.settings.donation_author_color }};
-  }
-
-  {{ sec_id }} .pc-hero-banner__brand-text {
-    font-size: {{ section.settings.brand_text_font_size }}px;
-    font-weight: {{ section.settings.brand_text_font_weight }};
-    color: {{ section.settings.brand_text_color }};
+  {{ sec_id }} .pc-feature-description-{{ last_part }} {
+    font-size: {{ section.settings.description_font_size }}px;
+    color: {{ section.settings.description_color }};
+    margin-top: {{ section.settings.description_spacing }}px;
   }
 
   @media (max-width: 767px) {
-    {{ sec_id }} .pc-hero-banner {
-      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
-      gap: {{ section.settings.mobile_gap }}px;
+    {{ sec_id }} .pc-features-grid-{{ last_part }} {
+      padding: {{ section.settings.mobile_padding_vertical }}px {{ section.settings.mobile_padding_horizontal }}px;
     }
 
-    {{ sec_id }} .pc-hero-banner__title {
+    {{ sec_id }} .pc-feature-title-{{ last_part }} {
       font-size: {{ section.settings.mobile_title_font_size }}px;
     }
 
-    {{ sec_id }} .pc-hero-banner__subtitle {
-      font-size: {{ section.settings.mobile_subtitle_font_size }}px;
-    }
-
-    {{ sec_id }} .pc-hero-banner__button {
-      font-size: {{ section.settings.mobile_button_font_size }}px;
-      padding: {{ section.settings.mobile_button_padding_vertical }}px {{ section.settings.mobile_button_padding_horizontal }}px;
-    }
-
-    {{ sec_id }} .pc-hero-banner__secondary {
-      gap: {{ section.settings.mobile_secondary_gap }}px;
-      margin-top: {{ section.settings.mobile_secondary_margin_top }}px;
-    }
-
-    {{ sec_id }} .pc-hero-banner__donation-label {
-      font-size: {{ section.settings.mobile_donation_label_font_size }}px;
-    }
-
-    {{ sec_id }} .pc-hero-banner__donation-title {
-      font-size: {{ section.settings.mobile_donation_title_font_size }}px;
-    }
-
-    {{ sec_id }} .pc-hero-banner__donation-author {
-      font-size: {{ section.settings.mobile_donation_author_font_size }}px;
-    }
-
-    {{ sec_id }} .pc-hero-banner__brand-text {
-      font-size: {{ section.settings.mobile_brand_text_font_size }}px;
+    {{ sec_id }} .pc-feature-description-{{ last_part }} {
+      font-size: {{ section.settings.mobile_description_font_size }}px;
     }
   }
 </style>
 
+<div class="pc-features-grid-{{ last_part }}">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-{{ section.settings.grid_gap }}">
+    {% for block in section.blocks %}
+      <div class="pc-feature-card-{{ last_part }}">
+        <h3 class="pc-feature-title-{{ last_part }}">{{ block.settings.title }}</h3>
+        <div class="pc-feature-divider-{{ last_part }}"></div>
+        <p class="pc-feature-description-{{ last_part }}">{{ block.settings.description }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  class PcFeaturesGrid{{ last_part | capitalize }} extends HTMLElement {
+    constructor() {
+      super();
+      // Add any custom JS functionality here if needed
+    }
+  }
+
+  customElements.define('pc-features-grid-{{ last_part }}', PcFeaturesGrid{{ last_part | capitalize }});
+</script>
+
 {% schema %}
 {
-  "name": "PWC - Hero Banner #1",
+  "name": "PWC - Features Grid #1",
   "settings": [
-    {
-      "type": "header",
-      "content": "Content"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Title",
-      "default": "Corporate volunteering that employees love."
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Your all-in-one tool for corporate volunteering & sustainability action."
-    },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "Button Text",
-      "default": "Request a demo"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button Link"
-    },
-    {
-      "type": "text",
-      "id": "donation_label",
-      "label": "Donation Label",
-      "default": "DONATION"
-    },
-    {
-      "type": "text",
-      "id": "donation_title",
-      "label": "Donation Title",
-      "default": "GIVE BLOOD. ALL THE LOVE."
-    },
-    {
-      "type": "text",
-      "id": "donation_author",
-      "label": "Donation Author",
-      "default": "Lisa B. MAPP Limited"
-    },
-    {
-      "type": "text",
-      "id": "brand_text",
-      "label": "Brand Text",
-      "default": "FORD DROP NEVER STOPS."
-    },
     {
       "type": "header",
       "content": "Layout Settings"
     },
     {
       "type": "range",
-      "id": "content_max_width",
-      "label": "Content Max Width",
-      "min": 300,
-      "max": 1200,
-      "step": 10,
+      "id": "max_width",
+      "label": "Max Width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
       "unit": "px",
-      "default": 600
+      "default": 1200
     },
     {
       "type": "range",
-      "id": "gap",
-      "label": "Gap",
-      "min": 0,
-      "max": 100,
+      "id": "grid_gap",
+      "label": "Grid Gap",
+      "min": 10,
+      "max": 50,
       "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "content_gap",
-      "label": "Content Gap",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "secondary_gap",
-      "label": "Secondary Content Gap",
-      "min": 0,
-      "max": 50,
-      "step": 1,
       "unit": "px",
       "default": 20
     },
     {
-      "type": "range",
-      "id": "secondary_margin_top",
-      "label": "Secondary Content Margin Top",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 40
+      "type": "header",
+      "content": "Card Settings"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card Border Color",
+      "default": "#e5e7eb"
     },
     {
       "type": "range",
-      "id": "donation_gap",
-      "label": "Donation Content Gap",
+      "id": "card_border_radius",
+      "label": "Card Border Radius",
       "min": 0,
-      "max": 30,
+      "max": 20,
       "step": 1,
       "unit": "px",
-      "default": 5
+      "default": 8
     },
     {
-      "type": "header",
-      "content": "Color Settings"
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card Padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
     },
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": "Title Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "subtitle_color",
-      "label": "Subtitle Color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "button_background_color",
-      "label": "Button Background Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "donation_label_color",
-      "label": "Donation Label Color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "donation_title_color",
-      "label": "Donation Title Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "donation_author_color",
-      "label": "Donation Author Color",
-      "default": "#666666"
-    },
-    {
-      "type": "color",
-      "id": "brand_text_color",
-      "label": "Brand Text Color",
-      "default": "#000000"
+      "type": "checkbox",
+      "id": "card_shadow",
+      "label": "Enable Card Shadow",
+      "default": false
     },
     {
       "type": "header",
@@ -339,12 +155,12 @@
     {
       "type": "range",
       "id": "title_font_size",
-      "label": "Title Font Size",
-      "min": 12,
-      "max": 72,
+      "label": "Title Font Size (Desktop)",
+      "min": 14,
+      "max": 36,
       "step": 1,
       "unit": "px",
-      "default": 42
+      "default": 20
     },
     {
       "type": "select",
@@ -368,302 +184,86 @@
           "label": "Bold"
         }
       ],
-      "default": "700"
-    },
-    {
-      "type": "range",
-      "id": "subtitle_font_size",
-      "label": "Subtitle Font Size",
-      "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "select",
-      "id": "subtitle_font_weight",
-      "label": "Subtitle Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "400"
-    },
-    {
-      "type": "range",
-      "id": "button_font_size",
-      "label": "Button Font Size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "select",
-      "id": "button_font_weight",
-      "label": "Button Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
       "default": "600"
     },
     {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#111827"
+    },
+    {
       "type": "range",
-      "id": "donation_label_font_size",
-      "label": "Donation Label Font Size",
-      "min": 10,
-      "max": 24,
+      "id": "title_spacing",
+      "label": "Title Bottom Spacing",
+      "min": 0,
+      "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "select",
-      "id": "donation_label_font_weight",
-      "label": "Donation Label Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "600"
+      "default": 10
     },
     {
       "type": "range",
-      "id": "donation_title_font_size",
-      "label": "Donation Title Font Size",
+      "id": "description_font_size",
+      "label": "Description Font Size (Desktop)",
       "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "select",
-      "id": "donation_title_font_weight",
-      "label": "Donation Title Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "700"
-    },
-    {
-      "type": "range",
-      "id": "donation_author_font_size",
-      "label": "Donation Author Font Size",
-      "min": 10,
       "max": 24,
       "step": 1,
       "unit": "px",
       "default": 14
     },
     {
-      "type": "select",
-      "id": "donation_author_font_weight",
-      "label": "Donation Author Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "400"
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#6b7280"
     },
     {
       "type": "range",
-      "id": "brand_text_font_size",
-      "label": "Brand Text Font Size",
-      "min": 12,
-      "max": 36,
+      "id": "description_spacing",
+      "label": "Description Top Spacing",
+      "min": 0,
+      "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 24
+      "default": 10
     },
     {
-      "type": "select",
-      "id": "brand_text_font_weight",
-      "label": "Brand Text Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "700"
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider Color",
+      "default": "#e5e7eb"
+    },
+    {
+      "type": "range",
+      "id": "divider_spacing",
+      "label": "Divider Spacing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 10
     },
     {
       "type": "header",
-      "content": "Button Settings"
+      "content": "Desktop Spacing"
     },
     {
       "type": "range",
-      "id": "button_padding_vertical",
-      "label": "Button Padding Vertical",
-      "min": 5,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "button_padding_horizontal",
-      "label": "Button Padding Horizontal",
-      "min": 10,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "button_border_radius",
-      "label": "Button Border Radius",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "button_margin_top",
-      "label": "Button Margin Top",
+      "id": "desktop_padding_vertical",
+      "label": "Vertical Padding",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "checkbox",
-      "id": "button_shadow",
-      "label": "Button Shadow",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "Spacing Settings"
+      "default": 40
     },
     {
       "type": "range",
-      "id": "padding_top",
-      "label": "Top Padding",
+      "id": "desktop_padding_horizontal",
+      "label": "Horizontal Padding",
       "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 50
-    },
-    {
-      "type": "range",
-      "id": "padding_right",
-      "label": "Right Padding",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Bottom Padding",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 50
-    },
-    {
-      "type": "range",
-      "id": "padding_left",
-      "label": "Left Padding",
-      "min": 0,
-      "max": 200,
+      "max": 100,
       "step": 5,
       "unit": "px",
       "default": 20
@@ -674,68 +274,8 @@
     },
     {
       "type": "range",
-      "id": "mobile_padding_top",
-      "label": "Top Padding (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_right",
-      "label": "Right Padding (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_bottom",
-      "label": "Bottom Padding (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_left",
-      "label": "Left Padding (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "mobile_gap",
-      "label": "Gap (Mobile)",
-      "min": 0,
-      "max": 50,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
       "id": "mobile_title_font_size",
       "label": "Title Font Size (Mobile)",
-      "min": 12,
-      "max": 48,
-      "step": 1,
-      "unit": "px",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "mobile_subtitle_font_size",
-      "label": "Subtitle Font Size (Mobile)",
       "min": 12,
       "max": 24,
       "step": 1,
@@ -744,78 +284,8 @@
     },
     {
       "type": "range",
-      "id": "mobile_button_font_size",
-      "label": "Button Font Size (Mobile)",
-      "min": 12,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "mobile_button_padding_vertical",
-      "label": "Button Padding Vertical (Mobile)",
-      "min": 5,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "mobile_button_padding_horizontal",
-      "label": "Button Padding Horizontal (Mobile)",
-      "min": 10,
-      "max": 60,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "mobile_secondary_gap",
-      "label": "Secondary Content Gap (Mobile)",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "mobile_secondary_margin_top",
-      "label": "Secondary Content Margin Top (Mobile)",
-      "min": 0,
-      "max": 50,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "mobile_donation_label_font_size",
-      "label": "Donation Label Font Size (Mobile)",
-      "min": 10,
-      "max": 18,
-      "step": 1,
-      "unit": "px",
-      "default": 11
-    },
-    {
-      "type": "range",
-      "id": "mobile_donation_title_font_size",
-      "label": "Donation Title Font Size (Mobile)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "mobile_donation_author_font_size",
-      "label": "Donation Author Font Size (Mobile)",
+      "id": "mobile_description_font_size",
+      "label": "Description Font Size (Mobile)",
       "min": 10,
       "max": 18,
       "step": 1,
@@ -824,19 +294,78 @@
     },
     {
       "type": "range",
-      "id": "mobile_brand_text_font_size",
-      "label": "Brand Text Font Size (Mobile)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
+      "id": "mobile_padding_vertical",
+      "label": "Vertical Padding",
+      "min": 0,
+      "max": 80,
+      "step": 5,
       "unit": "px",
-      "default": 18
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_horizontal",
+      "label": "Horizontal Padding",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Feature description goes here."
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "PWC - Hero Banner #3",
-      "category": "Custom"
+      "name": "PWC-Features Grid #1",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "AI in Times",
+            "description": "Leverage the power of AI in your most important workflows."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Build apps",
+            "description": "Build apps and portals for secure information gathering and sharing."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Monitoring",
+            "description": "Visibility into workflow performance, trends, and impact."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Formulas",
+            "description": "Hundreds of built-in functions to help you build powerful workflows."
+          }
+        }
+      ]
     }
   ]
 }
