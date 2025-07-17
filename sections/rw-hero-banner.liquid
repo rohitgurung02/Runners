@@ -130,20 +130,46 @@
     const sectionElement = document.querySelector('pc-hero-section-{{ last_part }}');
     if (!sectionElement) return;
 
-    const firstWave = sectionElement.querySelector('.pc-squiggle-{{ last_part }}');
-    if (!firstWave) return;
+    {% if section.settings.enable_animation %}
+    function initWaveAnimation() {
+      const firstWave = sectionElement.querySelector('.pc-squiggle-{{ last_part }}');
+      const secondWave = sectionElement.querySelector('.pc-squiggle-alt-{{ last_part }}');
+      
+      if (!firstWave || !secondWave) return;
 
-    if (typeof gsap !== 'undefined' && typeof MorphSVGPlugin !== 'undefined') {
-      gsap.to(firstWave, {
-        duration: 2,
-        repeat: -1,
-        yoyo: true,
-        ease: "power2.inOut",
-        morphSVG: sectionElement.querySelector('.pc-squiggle-alt-{{ last_part }}')
-      });
-    } else {
-      console.warn('GSAP or MorphSVGPlugin not loaded for pc-hero-section-{{ last_part }}');
+      // Check if GSAP is loaded
+      if (typeof gsap !== 'undefined') {
+        // Check if MorphSVGPlugin is available
+        if (typeof MorphSVGPlugin !== 'undefined') {
+          gsap.to(firstWave, {
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "power2.inOut",
+            morphSVG: secondWave
+          });
+        } else {
+          console.warn('MorphSVGPlugin not loaded for pc-hero-section-{{ last_part }}');
+          // Fallback - just show the first wave
+          secondWave.style.visibility = 'hidden';
+          firstWave.style.visibility = 'visible';
+        }
+      } else {
+        // GSAP not loaded - load it dynamically
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js';
+        script.onload = function() {
+          const morphScript = document.createElement('script');
+          morphScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/MorphSVGPlugin.min.js';
+          morphScript.onload = initWaveAnimation;
+          document.head.appendChild(morphScript);
+        };
+        document.head.appendChild(script);
+      }
     }
+
+    initWaveAnimation();
+    {% endif %}
   });
 </script>
 
