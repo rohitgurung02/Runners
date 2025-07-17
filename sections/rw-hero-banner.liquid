@@ -13,15 +13,16 @@
   </div>
 
   <div class="pc-hero-divider-{{ last_part }}">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <svg class="pc-hero-waves-svg-{{ last_part }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
       <defs>
-        <radialGradient id="pc-radial-{{ last_part }}" cx="30%" cy="30%" r="80%">
-          <stop offset="0%" stop-color="{{ section.settings.gradient_color_1 }}" stop-opacity="0.8" />
-          <stop offset="40%" stop-color="{{ section.settings.gradient_color_2 }}" />
-          <stop offset="100%" stop-color="{{ section.settings.gradient_color_3 }}" />
-        </radialGradient>
+        <path id="pc-gentle-wave-{{ last_part }}" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
       </defs>
-      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="url(#pc-radial-{{ last_part }})" class="pc-squiggle-{{ last_part }}"></path>
+      <g class="pc-hero-waves-parallax-{{ last_part }}">
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="3" fill="{{ section.settings.wave_color_2 | default: '#121212' }}" />
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="5" fill="{{ section.settings.wave_color_3 | default: '#FFFFFF' }}" />
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="7" fill="{{ section.settings.wave_color_4 | default: '#121212' }}" />
+      </g>
     </svg>
   </div>
 </pc-hero-section-{{ last_part }}>
@@ -33,12 +34,19 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background: {{ section.settings.background_gradient }};
+    background-color: {{ section.settings.background_color }};
+    {% if section.settings.enable_shadow %}
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    {% endif %}
+    overflow: hidden;
   }
 
   {{ sec_id }} .pc-hero-content-{{ last_part }} {
     padding: {{ section.settings.mobile_padding_top }}px 1rem 1rem 1rem;
     max-width: 48rem;
     width: 100%;
+    z-index: 2;
   }
 
   {{ sec_id }} .pc-hero-title-{{ last_part }} {
@@ -85,36 +93,49 @@
     bottom: 0;
     left: 0;
     width: 100%;
+    height: {{ section.settings.wave_height }}px;
     overflow: hidden;
     line-height: 0;
-    transform: rotate(180deg);
   }
 
-  {{ sec_id }} .pc-hero-divider-{{ last_part }} svg {
+  {{ sec_id }} .pc-hero-waves-svg-{{ last_part }} {
     position: relative;
     display: block;
-    width: calc(147% + 1.3px);
-    height: 200px;
+    width: 100%;
+    height: 100%;
   }
 
-  {{ sec_id }} .pc-squiggle-{{ last_part }} {
-    animation: pc-wave-animation-{{ last_part }} 8s ease-in-out infinite alternate;
-    transform-origin: center;
+  {{ sec_id }} .pc-hero-waves-parallax-{{ last_part }} > use {
+    animation: pc-wave-move-{{ last_part }} 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
   }
 
-  @keyframes pc-wave-animation-{{ last_part }} {
+  @keyframes pc-wave-move-{{ last_part }} {
     0% {
-      d: path("M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z");
-      transform: scaleY(1);
-    }
-    50% {
-      d: path("M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z");
-      transform: scaleY(0.8);
+      transform: translate3d(-90px, 0, 0);
     }
     100% {
-      d: path("M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z");
-      transform: scaleY(1.1);
+      transform: translate3d(85px, 0, 0);
     }
+  }
+
+  {{ sec_id }} .pc-hero-waves-parallax-{{ last_part }} > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+  }
+
+  {{ sec_id }} .pc-hero-waves-parallax-{{ last_part }} > use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+  }
+
+  {{ sec_id }} .pc-hero-waves-parallax-{{ last_part }} > use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+  }
+
+  {{ sec_id }} .pc-hero-waves-parallax-{{ last_part }} > use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
   }
 
   @media (min-width: 768px) {
@@ -137,23 +158,17 @@
     {{ sec_id }} .pc-hero-button-{{ last_part }} {
       font-size: {{ section.settings.desktop_button_size }}px;
     }
+
+    {{ sec_id }} .pc-hero-divider-{{ last_part }} {
+      height: {{ section.settings.desktop_wave_height }}px;
+    }
   }
 </style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", (event) => {
-    const sectionElement = document.querySelector('pc-hero-section-{{ last_part }}');
-    if (!sectionElement) return;
-
-    // No GSAP needed - pure CSS animation is used
-    // This script can be used for any additional functionality if needed
-  });
-</script>
 
 {% schema %}
 {
   "name": "PWC - Hero Banner #1",
-  "class": "shopify-section--pc-hero-squiggles",
+  "class": "shopify-section--pc-hero-waves",
   "settings": [
     {
       "type": "header",
@@ -163,7 +178,7 @@
       "type": "text",
       "id": "heading_highlight",
       "label": "Heading Highlight Text",
-      "default": "Squiggles"
+      "default": "Waves"
     },
     {
       "type": "textarea",
@@ -219,21 +234,63 @@
     },
     {
       "type": "color",
-      "id": "gradient_color_1",
-      "label": "Gradient Color 1",
-      "default": "#1468E5"
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "text",
+      "id": "background_gradient",
+      "label": "Background Gradient (Optional)",
+      "info": "Example: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%)"
+    },
+    {
+      "type": "header",
+      "content": "Wave Settings"
     },
     {
       "type": "color",
-      "id": "gradient_color_2",
-      "label": "Gradient Color 2",
-      "default": "#14E5CD"
+      "id": "wave_color_2",
+      "label": "Wave Color 2",
+      "default": "#121212"
     },
     {
       "type": "color",
-      "id": "gradient_color_3",
-      "label": "Gradient Color 3",
-      "default": "#26079C"
+      "id": "wave_color_3",
+      "label": "Wave Color 3",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "wave_color_4",
+      "label": "Wave Color 4",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "wave_height",
+      "label": "Wave Height (Mobile)",
+      "min": 30,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "desktop_wave_height",
+      "label": "Wave Height (Desktop)",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Shadow",
+      "default": false
     },
     {
       "type": "header",
@@ -386,17 +443,6 @@
       "step": 1,
       "unit": "px",
       "default": 16
-    },
-    {
-      "type": "header",
-      "content": "Advanced"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_animation",
-      "label": "Enable SVG Animation",
-      "default": true,
-      "info": "Uses CSS animations"
     }
   ],
   "presets": [
