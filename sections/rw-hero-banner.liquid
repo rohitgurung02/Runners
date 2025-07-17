@@ -74,11 +74,11 @@
   {{ sec_id }} .pc-hero-button-{{ last_part }} {
     font-family: var(--pc-font-primary-{{ last_part }});
     font-size: {{ section.settings.mobile_button_size }}px;
-    padding: 12px 8px;
+    padding: 14px 18px;
     border: 1px solid {{ section.settings.button_border_color }};
     background-color: transparent;
     cursor: pointer;
-    border-radius: 35px;
+    border-radius: 3px;
     transition: all 0.2s ease-in-out;
     color: {{ section.settings.button_text_color }};
   }
@@ -143,8 +143,6 @@
   }
 
   @media (min-width: 768px) {
-   
-
     {{ sec_id }} .pc-hero-title-{{ last_part }} {
       font-size: {{ section.settings.desktop_title_size }}px;
     }
