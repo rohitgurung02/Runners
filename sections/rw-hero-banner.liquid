@@ -23,6 +23,8 @@
     overflow: hidden;
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
+    margin-top: {{ section.settings.section_margin_top }}px;
+    margin-bottom: {{ section.settings.section_margin_bottom }}px;
   }
 
   {{ sec_id }} .pc-hero-subheading-{{ last_part }} {
@@ -260,6 +262,24 @@
           "type": "range",
           "id": "padding_bottom",
           "label": "Padding Bottom (px)",
+          "default": 20,
+          "min": 0,
+          "max": 160,
+          "step": 4
+    },
+    {
+          "type": "range",
+          "id":"section_margin_top",
+          "label": "Margin Top (px)",
+          "default": 20,
+          "min": 0,
+          "max": 160,
+          "step": 4
+        },
+        {
+          "type": "range",
+          "id": "section_margin_bottom",
+          "label": "Margin Bottom (px)",
           "default": 20,
           "min": 0,
           "max": 160,
