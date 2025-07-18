@@ -1123,7 +1123,7 @@
         "title_padding_bottom": 5,
         "subheading": "Subheading",
         "subheading_color": "#000",
-        "subheading_title_size": 32,
+        "subheading_title_size": 30,
         "subheading_font_weight": "normal",
         "subheading_font_style": "normal",
         "subheading_letter_spacing": 0,
