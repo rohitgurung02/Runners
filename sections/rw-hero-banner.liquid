@@ -94,14 +94,26 @@
 
   {{ sec_id }} .pc-hero-button-{{ last_part }} {
     font-family: var(--pc-font-primary-{{ last_part }});
-    font-size: {{ section.settings.mobile_button_size }}px;
     padding: 14px 18px;
     border: 1px solid {{ section.settings.button_border_color }};
-    background-color: transparent;
     cursor: pointer;
-    border-radius: 3px;
     transition: all 0.2s ease-in-out;
     color: {{ section.settings.button_text_color }};
+
+    font-size: {{ section.settings.desktop_button_size }}px;
+    background-color: {{ section.settings.button_background_color }};
+    font-weight: {{ section.settings.button_font_weight }};
+    text-transform: {{ section.settings.button_text_transform }};
+    letter-spacing: {{ section.settings.button_letter_spacing }}px;
+    text-decoration: {{ section.settings.button_text_decoration }};
+    {% if section.settings.button_text_decoration != 'none' %}
+      text-decoration-color: {{ section.settings.button_text_decoration_color }};
+    {% endif %}
+    border-radius: {{ section.settings.button_border_radius }}px;
+    border-width: 1px;
+  "
+  onmouseover="this.style.backgroundColor='{{ section.settings.button_hover_color }}'; this.style.color='{{ section.settings.button_hover_text_color }}'"
+  onmouseout="this.style.backgroundColor='{{ section.settings.button_background_color }}'; this.style.color='{{ section.settings.button_text_color }}'"
   }
 
   {{ sec_id }} .pc-hero-button-{{ last_part }}:hover {
@@ -770,13 +782,6 @@
       "label": "Button Text Color",
       "default": "#171716"
     },
-    
-    {
-      "type": "color",
-      "id": "button_border_color",
-      "label": "Button Border Color",
-      "default": "#171716"
-    },
      {
           "type": "select",
           "id": "button_font_weight",
@@ -921,6 +926,22 @@
       "label": "Button Hover Text Color",
       "default": "#FFFFFF"
     },
+     {
+          "type": "color",
+          "id": "button_border_color",
+          "label": "Button Border Color",
+          "default": "#005bb5"
+        },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Input border radius",
+          "default": 4
+        },
     {
       "type": "header",
       "content": "Text Content Setting"
