@@ -13,6 +13,7 @@
   </div>
 
   <div class="pc-hero-divider-{{ last_part }}">
+    <div class="pc-hero-divider-box">
     <svg class="pc-hero-waves-svg-{{ last_part }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
       <defs>
         <path id="pc-gentle-wave-{{ last_part }}" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
@@ -24,6 +25,7 @@
         <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="7" fill="{{ section.settings.wave_color_4 | default: '#121212' }}" />
       </g>
     </svg>
+  </div>
   </div>
 </pc-hero-section-{{ last_part }}>
 
