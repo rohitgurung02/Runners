@@ -21,8 +21,8 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     {% endif %}
     overflow: hidden;
-    margin-top: {{ section.settings.margin_top }}px;
-    margin-bottom: {{ section.settings.margin_bottom }}px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
   {{ sec_id }} .pc-hero-subheading-{{ last_part }} {
@@ -36,6 +36,7 @@
     {% endif %}
     padding-top: {{ section.settings.subheading_padding_top }}px;
     padding-bottom: {{ section.settings.subheading_padding_bottom }}px;
+    margin: 0;
   }
 
   {{ sec_id }} .pc-hero-content-{{ last_part }} {
