@@ -99,7 +99,6 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     color: {{ section.settings.button_text_color }};
-
     font-size: {{ section.settings.desktop_button_size }}px;
     background-color: {{ section.settings.button_background_color }};
     font-weight: {{ section.settings.button_font_weight }};
@@ -111,6 +110,8 @@
     {% endif %}
     border-radius: {{ section.settings.button_border_radius }}px;
     border-width: 1px;
+    margin-top: {{ section.settings.button_margin_top }}px;
+    margin-bottom: {{ section.settings.button_margin_bottom }}px;
   "
   onmouseover="this.style.backgroundColor='{{ section.settings.button_hover_color }}'; this.style.color='{{ section.settings.button_hover_text_color }}'"
   onmouseout="this.style.backgroundColor='{{ section.settings.button_background_color }}'; this.style.color='{{ section.settings.button_text_color }}'"
@@ -945,8 +946,8 @@
         },
      {
           "type": "range",
-          "id": "button_padding_top",
-          "label": "Button Padding Top (px)",
+          "id": "button_margin_top",
+          "label": "Button Margin Top (px)",
           "default": 5,
           "min": 0,
           "max": 150,
@@ -954,8 +955,8 @@
         },
         {
           "type": "range",
-          "id": "button_padding_bottom",
-          "label": "Button Padding Bottom (px)",
+          "id": "button_Margin_bottom",
+          "label": "Button Margin Bottom (px)",
           "default": 5,
           "min": 0,
           "max": 150,
