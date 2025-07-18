@@ -147,7 +147,7 @@
 
 <pc-hero-section-{{ last_part }} class="pc-hero-section-{{ last_part }}">
   <div class="pc-hero-content-{{ last_part }}">
-    <h1 class="pc-hero-title-{{ last_part }}">Welcome <strong class="pc-hero-strong-{{ last_part }}">{{ section.settings.heading_highlight }}</strong></h1>
+    <h1 class="pc-hero-title-{{ last_part }}">{{ section.settings.title }}</h1>
     <p class="pc-hero-text-{{ last_part }}">{{ section.settings.description }}</p>
     <button class="pc-hero-button-{{ last_part }}" aria-label="{{ section.settings.button_label }}">
       {{ section.settings.button_label }}
@@ -208,6 +208,12 @@
       "label": "Heading Highlight Text",
       "default": "Waves"
     },
+     {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Starter"
+        },
     {
       "type": "textarea",
       "id": "description",
