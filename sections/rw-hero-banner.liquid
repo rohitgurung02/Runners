@@ -3,33 +3,11 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-hero-section-{{ last_part }} class="pc-hero-section-{{ last_part }}">
-  <div class="pc-hero-content-{{ last_part }}">
-    <h1 class="pc-hero-title-{{ last_part }}">Welcome <strong class="pc-hero-strong-{{ last_part }}">{{ section.settings.heading_highlight }}</strong></h1>
-    <p class="pc-hero-text-{{ last_part }}">{{ section.settings.description }}</p>
-    <button class="pc-hero-button-{{ last_part }}" aria-label="{{ section.settings.button_label }}">
-      {{ section.settings.button_label }}
-    </button>
-  </div>
-
-  <div class="pc-hero-divider-{{ last_part }}">
-    <div class="pc-hero-divider-box-{{ last_part }}">
-    <svg class="pc-hero-waves-svg-{{ last_part }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-      <defs>
-        <path id="pc-gentle-wave-{{ last_part }}" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-      </defs>
-      <g class="pc-hero-waves-parallax-{{ last_part }}">
-        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="0" fill="{{ section.settings.wave_color_1 | default: 'rgba(255,255,255,0.7)' }}" />
-        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="3" fill="{{ section.settings.wave_color_2 | default: '#121212' }}" />
-        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="5" fill="{{ section.settings.wave_color_3 | default: '#FFFFFF' }}" />
-        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="7" fill="{{ section.settings.wave_color_4 | default: '#121212' }}" />
-      </g>
-    </svg>
-  </div>
-  </div>
-</pc-hero-section-{{ last_part }}>
-
 <style>
+  {{ sec_id }} .pc-hero-divider-box-{{ last_part }} {
+    margin-top: {{  }}
+  }
+  
   {{ sec_id }} .pc-hero-section-{{ last_part }} {
     position: relative;
     min-height: 40vh;
@@ -166,6 +144,32 @@
     }
   }
 </style>
+
+<pc-hero-section-{{ last_part }} class="pc-hero-section-{{ last_part }}">
+  <div class="pc-hero-content-{{ last_part }}">
+    <h1 class="pc-hero-title-{{ last_part }}">Welcome <strong class="pc-hero-strong-{{ last_part }}">{{ section.settings.heading_highlight }}</strong></h1>
+    <p class="pc-hero-text-{{ last_part }}">{{ section.settings.description }}</p>
+    <button class="pc-hero-button-{{ last_part }}" aria-label="{{ section.settings.button_label }}">
+      {{ section.settings.button_label }}
+    </button>
+  </div>
+
+  <div class="pc-hero-divider-{{ last_part }}">
+    <div class="pc-hero-divider-box-{{ last_part }}">
+    <svg class="pc-hero-waves-svg-{{ last_part }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="pc-gentle-wave-{{ last_part }}" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="pc-hero-waves-parallax-{{ last_part }}">
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="0" fill="{{ section.settings.wave_color_1 | default: 'rgba(255,255,255,0.7)' }}" />
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="3" fill="{{ section.settings.wave_color_2 | default: '#121212' }}" />
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="5" fill="{{ section.settings.wave_color_3 | default: '#FFFFFF' }}" />
+        <use xlink:href="#pc-gentle-wave-{{ last_part }}" x="48" y="7" fill="{{ section.settings.wave_color_4 | default: '#121212' }}" />
+      </g>
+    </svg>
+  </div>
+  </div>
+</pc-hero-section-{{ last_part }}>
 
 {% schema %}
 {
@@ -353,6 +357,28 @@
       "step": 1,
       "unit": "px",
       "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Wave Settings"
+    },
+    {
+          "type": "range",
+          "id": "wave_margin_top",
+          "label": "Wave Margin Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "wave_margin_bottom",
+          "label": "Wave Margin Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
     },
     {
       "type": "header",
