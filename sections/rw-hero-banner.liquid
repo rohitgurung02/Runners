@@ -25,6 +25,19 @@
     margin-bottom: {{ section.settings.margin_bottom }}px;
   }
 
+  {{ sec_id }} .pc-hero-subheading-{{ last_part }} {
+    font-size: {{ section.settings.subheading_title_size }}px;
+    font-weight: {{ section.settings.subheading_font_weight }};
+    font-style: {{ section.settings.subheading_font_style }};
+    letter-spacing: {{ section.settings.subheading_letter_spacing }}px;
+    text-decoration: {{ section.settings.subheading_text_decoration }};
+    {% if section.settings.subheading_text_decoration != 'none' %}
+      text-decoration-color: {{ section.settings.subheading_text_decoration_color }};
+    {% endif %}
+    padding-top: {{ section.settings.subheading_padding_top }}px;
+    padding-bottom: {{ section.settings.subheading_padding_bottom }}px;
+  }
+
   {{ sec_id }} .pc-hero-content-{{ last_part }} {
     padding: {{ section.settings.mobile_padding_top }}px;
     margin-left: {{ section.settings.content_margin_left }}px;
@@ -158,7 +171,7 @@
 <pc-hero-section-{{ last_part }} class="pc-hero-section-{{ last_part }}">
   <div class="pc-hero-content-{{ last_part }}">
     <h1 class="pc-hero-title-{{ last_part }}">{{ section.settings.title }}</h1>
-    <h2 class="pc-hero-heading-{{ last_part }}">{{ section.settings.subheading }}</h2>
+    <h2 class="pc-hero-subheading-{{ last_part }}">{{ section.settings.subheading }}</h2>
     <p class="pc-hero-text-{{ last_part }}">{{ section.settings.description }}</p>
     <button class="pc-hero-button-{{ last_part }}" aria-label="{{ section.settings.button_label }}">
       {{ section.settings.button_label }}
@@ -393,15 +406,15 @@
           "label": "Subheading Color",
           "default": "#000"
         },
-       {
+           {
       "type": "range",
-      "id": "subheading_max_font_size",
-      "label": "Subheading Maximum Font Size",
-      "min": 6,
-      "max": 50,
+      "id": "subheading_title_size",
+      "label": "Title Font Size",
+      "min": 12,
+      "max": 72,
       "step": 1,
       "unit": "px",
-      "default": 14
+      "default": 32
     },
         {
           "type": "select",
