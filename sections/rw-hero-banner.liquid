@@ -21,6 +21,8 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     {% endif %}
     overflow: hidden;
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
   }
 
   {{ sec_id }} .pc-hero-content-{{ last_part }} {
@@ -174,6 +176,28 @@
   "name": "PWC - Hero Banner #1",
   "class": "shopify-section--pc-hero-waves",
   "settings": [
+     {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+     {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+    },
     {
       "type": "header",
       "content": "Content"
