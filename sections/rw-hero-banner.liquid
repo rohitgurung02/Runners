@@ -25,6 +25,7 @@
 
   {{ sec_id }} .pc-hero-content-{{ last_part }} {
     padding: {{ section.settings.mobile_padding_top }}px;
+    margin-left: {{ section.settings.content_margin_left }}px;
     max-width: 48rem;
     width: 100%;
     z-index: 2;
@@ -117,10 +118,6 @@
   {{ sec_id }} .pc-hero-waves-parallax-{{ last_part }} > use:nth-child(4) {
     animation-delay: -5s;
     animation-duration: 20s;
-  }
-
-  {{ sec_id }} .pc-hero-content-juxxri {
-    margin-left: 67px;
   }
 
   @media (min-width: 768px) {
@@ -250,6 +247,21 @@
       "id": "background_gradient",
       "label": "Background Gradient (Optional)",
       "info": "Example: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%)"
+    },
+    {
+      "type": "header",
+      "content": "Text Content Setting"
+    },
+    {
+      "type": "range",
+      "id": "content_margin_left",
+      "label": "Left Margin ",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 30,
+      "info": "Adjust the left margin spacing"
     },
     {
       "type": "header",
