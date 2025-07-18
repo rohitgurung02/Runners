@@ -1127,7 +1127,7 @@
         "desktop_wave_height": 100,
         "wave_margin_top": 5,
         "wave_margin_bottom": 5,
-        "enable_shadow": true,
+        "enable_shadow": false,
         "desktop_padding_top": 40,
         "desktop_title_size": 32,
         "desktop_highlight_size": 48,
