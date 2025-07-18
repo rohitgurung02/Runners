@@ -197,10 +197,7 @@
 </style>
 
 <pc-hero-section-{{ last_part }} class="pc-hero-section-{{ last_part }}">
-  <div class="pc-hero-content-{{ last_part }} pc-hero-content-{{ section.settings.content_alignment }}" 
-       style="max-width: {{ section.settings.content_max_width }}px;
-              {% if section.settings.content_alignment == 'left' %}left: {{ section.settings.content_horizontal_position }}%;{% endif %}
-              {% if section.settings.content_alignment == 'right' %}right: {{ section.settings.content_horizontal_position }}%;{% endif %}">
+  <div class="pc-hero-content-{{ last_part }}">
     <h1 class="pc-hero-title-{{ last_part }}">{{ section.settings.title }}</h1>
     <h2 class="pc-hero-subheading-{{ last_part }}">{{ section.settings.subheading }}</h2>
     <p class="pc-hero-description-{{ last_part }}">{{ section.settings.description }}</p>
@@ -241,47 +238,16 @@
       "label": "Background Color",
       "default": "#f8f8f8"
     },
-     {
-      "type": "select",
-      "id": "content_alignment",
-      "label": "Content Alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "center"
-    },
     {
       "type": "range",
-      "id": "content_max_width",
-      "label": "Content Max Width",
-      "min": 400,
-      "max": 1200,
-      "step": 50,
-      "unit": "px",
-      "default": 800,
-      "info": "Maximum width of text content area"
-    },
-    {
-      "type": "range",
-      "id": "content_horizontal_position",
-      "label": "Horizontal Position",
+      "id": "content_margin_left",
+      "label": "Content Left Margin ",
       "min": 0,
-      "max": 100,
+      "max": 200,
       "step": 5,
-      "unit": "%",
-      "default": 50,
-      "info": "Left/right positioning for non-center alignments"
+      "unit": "px",
+      "default": 30,
+      "info": "Adjust the left margin spacing"
     },
      {
           "type": "range",
