@@ -21,8 +21,8 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     {% endif %}
     overflow: hidden;
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
     margin: 0;
   }
 
@@ -250,8 +250,8 @@
     },
      {
           "type": "range",
-          "id": "padding_top",
-          "label": "Padding Top (px)",
+          "id": "margin_top",
+          "label": "Margin Top (px)",
           "default": 20,
           "min": 0,
           "max": 160,
@@ -259,8 +259,8 @@
         },
         {
           "type": "range",
-          "id": "padding_bottom",
-          "label": "Padding Bottom (px)",
+          "id": "margin_bottom",
+          "label": "Margin Bottom (px)",
           "default": 20,
           "min": 0,
           "max": 160,
