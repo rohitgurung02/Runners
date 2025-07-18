@@ -121,6 +121,7 @@
   {{ sec_id }} .pc-hero-button-{{ last_part }}:hover {
     background-color: {{ section.settings.button_hover_color }};
     color: {{ section.settings.button_hover_text_color }};
+    border-color: {{ section.settings.button_border_hover_color }};
   }
 
   {{ sec_id }} .pc-hero-divider-{{ last_part }} {
@@ -963,6 +964,12 @@
           "label": "Button Border Color",
           "default": "#000000"
         },
+    {
+      "type": "color",
+      "id": "button_border_hover_color",
+      "label": "Hover Border Color",
+      "default": "#FF5500"
+    },
         {
           "type": "range",
           "id": "button_border_radius",
