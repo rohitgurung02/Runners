@@ -112,9 +112,6 @@
     border-width: 1px;
     margin-top: {{ section.settings.button_margin_top }}px;
     margin-bottom: {{ section.settings.button_margin_bottom }}px;
-      {% if section.settings.button_width == 'custom' %}
-      --btn-max-width: {{ section.settings.button_max_width }}px;
-    {% endif %}
   "
   onmouseover="this.style.backgroundColor='{{ section.settings.button_hover_color }}'; this.style.color='{{ section.settings.button_hover_text_color }}'"
   onmouseout="this.style.backgroundColor='{{ section.settings.button_background_color }}'; this.style.color='{{ section.settings.button_text_color }}'"
@@ -965,17 +962,6 @@
           "max": 150,
           "step": 5
         },
-    {
-      "type": "range",
-      "id": "button_max_width",
-      "label": "Maximum Button Width (px)",
-      "min": 100,
-      "max": 800,
-      "step": 10,
-      "default": 300,
-      "unit": "px",
-      "info": "Only applies when 'Custom Maximum Width' is selected",
-    },
     {
       "type": "header",
       "content": "Text Content Setting"
