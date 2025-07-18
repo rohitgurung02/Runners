@@ -1133,7 +1133,7 @@
         "subheading_padding_bottom": 5,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales arcu eu libero varius, sed.",
         "description_color": "#000",
-        "description_max_font_size": 16,
+        "description_max_font_size": 18,
         "Description_font_weight": "normal",
         "description_font_style": "normal",
         "description_letter_spacing": 0,
