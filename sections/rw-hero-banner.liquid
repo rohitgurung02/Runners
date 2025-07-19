@@ -171,35 +171,8 @@
     animation-duration: 20s;
   }
 
-  @media (min-width: 768px) {
-    {{ sec_id }} .pc-hero-content-{{ last_part }} {
-      padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
-    }
-
-    {{ sec_id }} .pc-hero-title-{{ last_part }} {
-      font-size: {{ section.settings.desktop_title_size }}px;
-    }
-
-    {{ sec_id }} .pc-hero-strong-{{ last_part }} {
-      font-size: {{ section.settings.desktop_highlight_size }}px;
-    }
-
-    {{ sec_id }} .pc-hero-description-{{ last_part }} {
-      font-size: {{ section.settings.desktop_text_size }}px;
-      
-    }
-
-    {{ sec_id }} .pc-hero-button-{{ last_part }} {
-      font-size: {{ section.settings.desktop_button_size }}px;
-    }
-
-    {{ sec_id }} .pc-hero-divider-{{ last_part }} {
-      height: {{ section.settings.desktop_wave_height }}px;
-    }
-  }
-
   /* Mobile-specific adjustments */
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
    
     {{ sec_id }} .pc-hero-description-{{ last_part }}{
       font-size: {{ section.settings.description_mobile_text_size}}px;
