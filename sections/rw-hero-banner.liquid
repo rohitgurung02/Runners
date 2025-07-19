@@ -200,9 +200,7 @@
 
   /* Mobile-specific adjustments */
   @media (max-width: 480px) {
-    {{ sec_id }} .pc-hero-section-{{ last_part }} {
-      min-height: 34vh;
-    }
+   
     {{ sec_id }} .pc-hero-description-{{ last_part }}{
       font-size: {{ section.settings.description_mobile_text_size}}px;
     }
@@ -212,7 +210,7 @@
      }
     
     {{ sec_id }} .pc-hero-section-{{ last_part }} {
-      min-height: 50vh; 
+      min-height: 34vh; 
     }
     
     {{ sec_id }} .pc-hero-content-{{ last_part }} {
