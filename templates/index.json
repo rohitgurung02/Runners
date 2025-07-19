@@ -1169,7 +1169,7 @@
         "wave_margin_top": 5,
         "wave_margin_bottom": 5,
         "enable_shadow": false,
-        "mobile_padding_top": 25,
+        "mobile_padding_top": 0,
         "mobile_title_size": 29,
         "mobile_highlight_size": 46,
         "mobile_button_size": 16
