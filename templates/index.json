@@ -1171,8 +1171,8 @@
         "enable_shadow": false,
         "mobile_padding_top": 20,
         "mobile_title_size": 24,
+        "subheading_mobile_title_size": 25,
         "description_mobile_text_size": 16,
-        "mobile_highlight_size": 46,
         "mobile_button_size": 16
       }
     }
