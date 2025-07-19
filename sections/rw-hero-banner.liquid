@@ -57,7 +57,6 @@
     display: flex;
     flex-direction: column;
     color: {{ section.settings.title_color }};
-    font-size: {{ section.settings.title_max_font_size }}px;
     font-weight: {{ section.settings.title_font_weight }};
     font-style: {{ section.settings.title_font_style }};
     letter-spacing: {{ section.settings.title_letter_spacing }}px;
@@ -81,7 +80,6 @@
     font-size: {{ section.settings.mobile_text_size }}px;
     margin: 0;
     color: {{ section.settings.description_color }};
-    font-size: {{ section.settings.description_max_font_size }}px;
     font-weight: {{ section.settings.Description_font_weight }};
     font-style: {{ section.settings.description_font_style }};
     letter-spacing: {{ section.settings.description_letter_spacing }}px;
@@ -96,11 +94,13 @@
   {{ sec_id }} .pc-hero-button-{{ last_part }} {
     font-family: var(--pc-font-primary-{{ last_part }});
     padding: 14px 18px;
+    min-width: 120px; /* Better touch target */
+    min-height: 44px; /* Better touch target */
     border: 1px solid {{ section.settings.button_border_color }};
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     color: {{ section.settings.button_text_color }};
-    font-size: {{ section.settings.desktop_button_size }}px;
+    font-size: {{ section.settings.mobile_button_size }}px;
     background-color: {{ section.settings.button_background_color }};
     font-weight: {{ section.settings.button_font_weight }};
     text-transform: {{ section.settings.button_text_transform }};
@@ -113,9 +113,6 @@
     border-width: 1px;
     margin-top: {{ section.settings.button_margin_top }}px;
     margin-bottom: {{ section.settings.button_margin_bottom }}px;
-  "
-  onmouseover="this.style.backgroundColor='{{ section.settings.button_hover_color }}'; this.style.color='{{ section.settings.button_hover_text_color }}'"
-  onmouseout="this.style.backgroundColor='{{ section.settings.button_background_color }}'; this.style.color='{{ section.settings.button_text_color }}'"
   }
 
   {{ sec_id }} .pc-hero-button-{{ last_part }}:hover {
@@ -175,6 +172,10 @@
   }
 
   @media (min-width: 768px) {
+    {{ sec_id }} .pc-hero-content-{{ last_part }} {
+      padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+    }
+
     {{ sec_id }} .pc-hero-title-{{ last_part }} {
       font-size: {{ section.settings.desktop_title_size }}px;
     }
@@ -183,7 +184,7 @@
       font-size: {{ section.settings.desktop_highlight_size }}px;
     }
 
-    {{ sec_id }} pc-hero-description-{{ last_part }} {
+    {{ sec_id }} .pc-hero-description-{{ last_part }} {
       font-size: {{ section.settings.desktop_text_size }}px;
     }
 
@@ -193,6 +194,22 @@
 
     {{ sec_id }} .pc-hero-divider-{{ last_part }} {
       height: {{ section.settings.desktop_wave_height }}px;
+    }
+  }
+
+  /* Mobile-specific adjustments */
+  @media (max-width: 480px) {
+    {{ sec_id }} .pc-hero-section-{{ last_part }} {
+      min-height: 50vh; /* Better mobile viewing */
+    }
+    
+    {{ sec_id }} .pc-hero-content-{{ last_part }} {
+      margin-left: 15px; /* Better spacing on small screens */
+      margin-right: 15px;
+    }
+    
+    {{ sec_id }} .pc-hero-button-{{ last_part }} {
+      width: 100%; /* Full width button on mobile */
     }
   }
 </style>
