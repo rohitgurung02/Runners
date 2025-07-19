@@ -200,6 +200,9 @@
 
   /* Mobile-specific adjustments */
   @media (max-width: 480px) {
+    {{ sec_id }} .pc-hero-section-{{ last_part }} {
+      min-height: 1vh;
+    }
     {{ sec_id }} .pc-hero-description-{{ last_part }}{
       font-size: {{ section.settings.description_mobile_text_size}}px;
     }
