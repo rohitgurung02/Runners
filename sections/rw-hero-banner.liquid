@@ -172,9 +172,6 @@
   }
 
   @media (min-width: 768px) {
-    {{ sec_id }} .pc-hero-subheading-{{ last_part }}{
-       font-size: {{ section.settings.subheading_mobile_title_size }}px;
-    }
     {{ sec_id }} .pc-hero-content-{{ last_part }} {
       padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
     }
@@ -1116,13 +1113,13 @@
     },
     {
       "type": "range",
-      "id": "subheading_mobile_title_size",
-      "label": "Subheading Font Size",
+      "id": "mobile_highlight_size",
+      "label": "Highlight Font Size",
       "min": 12,
       "max": 72,
       "step": 1,
       "unit": "px",
-      "default": 32
+      "default": 36
     },
     {
       "type": "range",
