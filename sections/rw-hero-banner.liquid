@@ -200,9 +200,13 @@
 
   /* Mobile-specific adjustments */
   @media (max-width: 480px) {
-     {{ sec_id }} .pc-hero-description-{{ last_part }}{
+    {{ sec_id }} .pc-hero-description-{{ last_part }}{
       font-size: {{ section.settings.description_mobile_text_size}}px;
     }
+
+     {{ sec_id }} .pc-hero-subheading-{{ last_part }} {
+       font-size: {{ section.settings.subheading_mobile_title_size }}px;
+     }
     
     {{ sec_id }} .pc-hero-section-{{ last_part }} {
       min-height: 50vh; /* Better mobile viewing */
@@ -492,7 +496,7 @@
           "label": "Subheading Color",
           "default": "#000"
         },
-           {
+        {
       "type": "range",
       "id": "subheading_title_size",
       "label": "Subheading Font Size",
@@ -1115,6 +1119,16 @@
       "step": 1,
       "unit": "px",
       "default": 24
+    },
+        {
+      "type": "range",
+      "id": "subheading_mobile_title_size",
+      "label": "Subheading Font Size",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 32
     },
       {
       "type": "range",
