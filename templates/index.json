@@ -1102,6 +1102,7 @@
         "team_member_7ffiQr": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/pexels-anastasiya-gepp-654466-1462637.jpg",
             "name": "Sarah Johnson",
             "role": "Frontend Developer"
           }
@@ -1109,6 +1110,7 @@
         "team_member_wY6Ezi": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/pexels-cottonbro-10679212.jpg",
             "name": "Michael Chen",
             "role": "UX Designer"
           }
@@ -1116,6 +1118,7 @@
         "team_member_ffPP8p": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/pexels-minan1398-675926.jpg",
             "name": "Pavel Dvorak",
             "role": "Backend Developer"
           }
@@ -1123,6 +1126,7 @@
         "team_member_trMBhn": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/pexels-shvets-production-9775883_1.jpg",
             "name": "Amara Williams",
             "role": "Project Manager"
           }
