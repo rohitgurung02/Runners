@@ -314,6 +314,32 @@
       "default": 32
     },
     {
+          "type": "color",
+          "id": "name_size_color",
+          "label": "Name Text Color",
+          "default": "#000"
+        },
+        {
+          "type": "select",
+          "id": "name_size_font_style",
+          "label": "Name Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+    {
       "type": "select",
       "id": "name_weight",
       "label": "Name Font Weight",
@@ -341,6 +367,64 @@
       ],
       "default": "500"
     },
+        {
+          "type": "range",
+          "id": "name_size_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Name Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "name_size_text_decoration",
+          "label": "Name Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "name_size_text_decoration_color",
+          "label": "Name Text Decoration Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "name_size_padding_top",
+          "label": "Name Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "subtitle_padding_bottom",
+          "label": "Name Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
     {
       "type": "range",
       "id": "role_size_desktop",
