@@ -141,7 +141,6 @@
   {{ sec_id }} .pc-panel-role {
     font-size: {{ section.settings.role_size_desktop }}px;
     opacity: 0.9;
-    font-weight: {{ section.settings.role_weight }};
     letter-spacing: 1px;
   }
 
@@ -264,7 +263,7 @@
       "max": 100,
       "step": 5,
       "unit": "%",
-      "default": 60
+      "default": 80
     },
     {
       "type": "range",
@@ -376,26 +375,6 @@
       "step": 2,
       "unit": "px",
       "default": 22
-    },
-    {
-      "type": "select",
-      "id": "role_weight",
-      "label": "Role Font Weight",
-      "options": [
-        {
-          "value": "300",
-          "label": "Light"
-        },
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        }
-      ],
-      "default": "300"
     },
     {
       "type": "header",
