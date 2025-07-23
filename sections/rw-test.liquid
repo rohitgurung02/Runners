@@ -98,7 +98,6 @@
      {%- for block in section.blocks -%}
     color: {{ block.settings.name_dektop_color }};
   font-style: {{ block.settings.name_dektop_font_style }};
-  font-weight: {{ block.settings.name_dektop_font_weight }};
   letter-spacing: {{ block.settings.name_dektop_letter_spacing }}px;
   text-decoration: {{ block.settings.name_dektop_text_decoration }};
   {% if block.settings.name_dektop_text_decoration != 'none' %}
@@ -112,7 +111,6 @@
   {{ sec_id }} .pc-panel-name {
     font-size: {{ section.settings.name_size_desktop }}px;
     font-weight: {{ section.settings.name_weight }};
-    
     margin-bottom: 10px;
     white-space: nowrap;
   }
