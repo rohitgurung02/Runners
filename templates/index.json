@@ -1196,7 +1196,7 @@
         "role_desktop_text_decoration_color": "#000",
         "role_desktop_padding_top": 5,
         "role_desktop_padding_bottom": 5,
-        "divider_width": 35,
+        "divider_width": 40,
         "divider_thickness": 2,
         "divider_color": "#ffffff",
         "divider_desktop_padding_top": 5,
