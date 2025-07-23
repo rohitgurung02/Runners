@@ -1,667 +1,490 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
+<pc-team-accordion-{{ last_part }} class="pc-team-accordion">
+  <div class="pc-accordion-container">
+    {%- for block in section.blocks -%}
+      <div class="pc-panel" data-index="{{ forloop.index0 }}">
+        <div class="pc-panel-bg">
+          {%- if block.settings.image != blank -%}
+            {% assign image_class = 'pc-team-image-' | append: last_part %}
+            {{ 
+              block.settings.image
+              | image_url: width: 1200
+              | image_tag: 
+                  loading: 'lazy', 
+                  class: image_class,
+                  alt: block.settings.name
+            }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-image' }}
+          {%- endif -%}
+        </div>
+        <div class="pc-panel-content">
+          <h2 class="pc-panel-name">{{ block.settings.name }}</h2>
+          <div class="pc-divider"></div>
+          <p class="pc-panel-role">{{ block.settings.role }}</p>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</pc-team-accordion-{{ last_part }}>
+
 <style>
-  
-  {{ sec_id }} .pc-carousel-section {
-    margin-top: {{ section.settings.section_margin_top }}px !important;
-    margin-bottom: {{ section.settings.section_margin_bottom }}px !important;
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
-    max-width: {{ section.settings.max_width }}px;
-    background: {{ section.settings.background_color }};
-    box-shadow: {% if section.settings.shadow_enabled %}0 30px 50px {{ section.settings.shadow_color | color_modify: 'alpha', 0.3 }}{% else %}none{% endif %};
-    border-radius: {{ section.settings.border_radius }}px;
+  {{ sec_id }} .pc-team-accordion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: {{ section.settings.background_color }};
+    font-family: {{ section.settings.font_family }}, sans-serif;
     overflow: hidden;
+    padding: 20px;
   }
 
-  {{ sec_id }} .pc-carousel-slide-{{last_part}} {
+  {{ sec_id }} .pc-accordion-container {
+    display: flex;
+    width: {{ section.settings.container_width_desktop }}%;
+    max-width: {{ section.settings.max_width_desktop }}px;
+    height: {{ section.settings.container_height_desktop }}vh;
     position: relative;
-    width: 100%;
-    height: {{ section.settings.slide_height }}px;
+    margin: 0 auto;
   }
 
-  {{ sec_id }} .pc-carousel-item-{{last_part}} {
-    width: 200px;
-    height: 300px;
+  {{ sec_id }} .pc-panel {
+    position: relative;
+    flex: 1;
+    transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+    margin: 0 {{ section.settings.panel_spacing_desktop }}px;
+    border-radius: {{ section.settings.panel_radius_desktop }}px;
+    overflow: hidden;
+    {% if section.settings.enable_shadow %}
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    {% endif %}
+  }
+
+  {{ sec_id }} .pc-panel.active {
+    flex: {{ section.settings.active_panel_flex }};
+  }
+
+  {{ sec_id }} .pc-panel-bg {
     position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    border-radius: 20px;
-    box-shadow: {% if section.settings.item_shadow_enabled %}0 30px 50px {{ section.settings.item_shadow_color | color_modify: 'alpha', 0.3 }}{% else %}none{% endif %};
-    background-position: 50% 50%;
-    background-size: cover;
-    display: inline-block;
-    transition: 0.5s;
-  }
-
-  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(1),
-  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(2) {
     top: 0;
     left: 0;
-    transform: translate(0, 0);
-    border-radius: 0;
     width: 100%;
     height: 100%;
   }
 
-  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(3) {
-    left: 50%;
-  }
-
-  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(4) {
-    left: calc(50% + 220px);
-  }
-
-  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(5) {
-    left: calc(50% + 440px);
-  }
-
-  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(n + 6) {
-    left: calc(50% + 660px);
-    opacity: 0;
-  }
-
-  {{ sec_id }} .pc-carousel-content-{{last_part}} {
-    position: absolute;
-    top: 50%;
-    left: 100px;
-    width: 300px;
-    text-align: left;
-    color: {{ section.settings.text_color }};
-    transform: translate(0, -50%);
-    display: none;
-  }
-
-  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(2) .pc-carousel-content-{{last_part}} {
-    display: block;
-  }
-
-  {{ sec_id }} .pc-carousel-name-{{last_part}} {
-    font-size: {{ section.settings.title_size }}px;
-    font-weight: {{ section.settings.title_weight }};
-    font-style: {{ section.settings.text_font_style }};
-    letter-spacing: {{ section.settings.text_letter_spacing }}px;
-    text-decoration: {{ section.settings.text_text_decoration }};
-    text-decoration-color: {{ section.settings.text_text_decoration_color }};
-    text-transform: {{ section.settings.text_text_transform }};
-    opacity: 0;
-    animation: pc-carousel-animate-{{last_part}} 1s ease-in-out 1 forwards;
-  }
-
-  {{ sec_id }} .pc-carousel-description-{{last_part}} {
-    color: {{ section.settings.description_text_color }};
-    margin-top: {{ section.settings.description_spacing }}px;
-    margin-bottom: {{ section.settings.button_spacing }}px;
-    font-size: {{ section.settings.description_size }}px;
-    font-style: {{ section.settings.description_font_style }};
-    font-weight: {{ section.settings.description_font_weight }};
-    letter-spacing: {{ section.settings.description_letter_spacing }}px;
-    padding-top: {{ section.settings.description_padding_top }}px;
-    padding-bottom: {{ section.settings.description_padding_bottom }}px;
-    text-decoration: {{ section.settings.description_text_decoration }};
-    text-decoration-color: {{ section.settings.description_text_decoration_color }};
-    text-transform: {{ section.settings.description_text_transform }};
-    opacity: 0;
-    animation: pc-carousel-animate-{{last_part}} 1s ease-in-out 0.3s 1 forwards;
-  }
-
-  {{ sec_id }} .pc-carousel-button-{{last_part}} {
-    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
-    border: none;
-    cursor: pointer;
-    background: {{ section.settings.button_background }};
-    color: {{ section.settings.button_text_color }};
-    border-radius: {{ section.settings.button_border_radius }}px;
-    font-size: {{ section.settings.button_text_size }}px;
-    text-transform: {{ section.settings.button_text_transform }};
-    opacity: 0;
-    animation: pc-carousel-animate-{{last_part}} 1s ease-in-out 0.6s 1 forwards;
-  }
-
-  {{ sec_id }} .pc-carousel-button-{{last_part}}:hover {
-    background: {{ section.settings.button_hover_background }};
-    color: {{ section.settings.button_hover_text_color }};
-  }
-
-  {{ sec_id }} .pc-carousel-nav-{{last_part}} {
+  {{ sec_id }} .pc-panel-bg img {
     width: 100%;
-    text-align: center;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+
+  {{ sec_id }} .pc-panel:hover .pc-panel-bg img {
+    transform: scale(1.05);
+  }
+
+  {{ sec_id }} .pc-panel::before {
+    content: '';
     position: absolute;
-    bottom: 20px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(74, 42, 130, 0.2), rgba(74, 42, 130, 0.7));
+    z-index: 1;
+    opacity: 0.85;
+    transition: opacity 0.5s ease;
   }
 
-  {{ sec_id }} .pc-carousel-nav-button-{{last_part}} {
-    width: 80px;
-    height: 35px;
-    border: 1px solid {{ section.settings.nav_button_border_color }};
-    cursor: pointer;
-    margin: 0 5px;
-    background: {{ section.settings.nav_button_background }};
-    color: {{ section.settings.nav_button_hover_text_color }};
-    transition: 0.3s;
+  {{ sec_id }} .pc-panel:hover::before {
+    opacity: 0.5;
   }
 
-  {{ sec_id }} .pc-carousel-nav-button-{{last_part}}:hover {
-    background: {{ section.settings.nav_button_hover_background }};
-    color: {{ section.settings.nav_button_hover_text_color }};
+  {{ sec_id }} .pc-panel-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: {{ section.settings.content_padding_desktop }}px;
+    color: {{ section.settings.text_color }};
+    z-index: 2;
+    text-align: center;
+    transform: translateY(30%);
+    opacity: 0;
+    transition: all 0.5s ease;
   }
 
-  {{ sec_id }} .pc-carousel-nav-button-{{last_part}}:active {
-  top: 2px;
+  {{ sec_id }} .pc-panel.active .pc-panel-content {
+    transform: translateY(0);
+    opacity: 1;
   }
-  
-  @keyframes pc-carousel-animate-{{last_part}} {
-    from {
-      opacity: 0;
-      transform: translate(0, 100px);
-      filter: blur(33px);
-    }
-    to {
-      opacity: 1;
-      transform: translate(0);
-      filter: blur(0);
-    }
+
+  {{ sec_id }} .pc-panel-name {
+    font-size: {{ section.settings.name_size_desktop }}px;
+    font-weight: {{ section.settings.name_weight }};
+    margin-bottom: 10px;
+    white-space: nowrap;
+  }
+
+  {{ sec_id }} .pc-divider {
+    width: {{ section.settings.divider_width }}%;
+    height: {{ section.settings.divider_thickness }}px;
+    background-color: {{ section.settings.divider_color }};
+    margin: {{ section.settings.divider_margin }}px auto;
+  }
+
+  {{ sec_id }} .pc-panel-role {
+    font-size: {{ section.settings.role_size_desktop }}px;
+    opacity: 0.9;
+    font-weight: {{ section.settings.role_weight }};
+    letter-spacing: 1px;
   }
 
   @media (max-width: 768px) {
-    {{ sec_id }} .pc-carousel-container-{{last_part}} {
-      max-width: 100%;
-      border-radius: {{ section.settings.mobile_border_radius }}px;
+    {{ sec_id }} .pc-accordion-container {
+      height: {{ section.settings.container_height_mobile }}vh;
+      width: {{ section.settings.container_width_mobile }}%;
     }
 
-    {{ sec_id }} .pc-carousel-slide-{{last_part}} {
-      height: {{ section.settings.mobile_slide_height }}px;
+    {{ sec_id }} .pc-panel {
+      margin: 0 {{ section.settings.panel_spacing_mobile }}px;
+      border-radius: {{ section.settings.panel_radius_mobile }}px;
     }
 
-    {{ sec_id }} .pc-carousel-content-{{last_part}} {
-      left: 50px;
-      width: 250px;
+    {{ sec_id }} .pc-panel-name {
+      font-size: {{ section.settings.name_size_mobile }}px;
     }
 
-    {{ sec_id }} .pc-carousel-name-{{last_part}} {
-      font-size: {{ section.settings.mobile_title_size }}px;
+    {{ sec_id }} .pc-panel-role {
+      font-size: {{ section.settings.role_size_mobile }}px;
     }
 
-    {{ sec_id }} .pc-carousel-description-{{last_part}} {
-      font-size: {{ section.settings.mobile_description_size }}px;
+    {{ sec_id }} .pc-panel-content {
+      padding: {{ section.settings.content_padding_mobile }}px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    {{ sec_id }} .pc-accordion-container {
+      height: {{ section.settings.container_height_small_mobile }}vh;
     }
   }
 </style>
 
-<div class="pc-carousel-section">
-<pc-carousel-container-{{last_part}} class="pc-carousel-container-{{last_part}}">
-  <div class="pc-carousel-slide-{{last_part}}">
-    {% for block in section.blocks %}
-      <div class="pc-carousel-item-{{last_part}}" 
-           style="background-image: url('{{ block.settings.image | image_url: width: 1000, height: 500 }}');">
-        <div class="pc-carousel-content-{{last_part}}">
-          <div class="pc-carousel-name-{{last_part}}">{{ block.settings.title }}</div>
-          <div class="pc-carousel-description-{{last_part}}">{{ block.settings.description }}</div>
-          <button class="pc-carousel-button-{{last_part}}">{{ block.settings.button_text }}</button>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-
-  <div class="pc-carousel-nav-{{last_part}}">
-    <button class="pc-carousel-nav-button-{{last_part}} prev-{{last_part}}">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 18l-6-6 6-6"/>
-      </svg>
-    </button>
-    <button class="pc-carousel-nav-button-{{last_part}} next-{{last_part}}">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 18l6-6-6-6"/>
-      </svg>
-    </button>
-  </div>
-</pc-carousel-container-{{last_part}}>
-</div>
-
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const nextBtn = document.querySelector('{{ sec_id }} .next-{{last_part}}');
-    const prevBtn = document.querySelector('{{ sec_id }} .prev-{{last_part}}');
-    const slide = document.querySelector('{{ sec_id }} .pc-carousel-slide-{{last_part}}');
+  class PcTeamAccordion{{ last_part | capitalize }} extends HTMLElement {
+    constructor() {
+      super();
+      this.panels = this.querySelectorAll('.pc-panel');
+      this.init();
+    }
 
-    if (nextBtn && prevBtn && slide) {
-      nextBtn.addEventListener('click', function() {
-        const items = document.querySelectorAll('{{ sec_id }} .pc-carousel-item-{{last_part}}');
-        slide.appendChild(items[0]);
-      });
-
-      prevBtn.addEventListener('click', function() {
-        const items = document.querySelectorAll('{{ sec_id }} .pc-carousel-item-{{last_part}}');
-        slide.prepend(items[items.length - 1]);
+    init() {
+      this.panels.forEach(panel => {
+        panel.addEventListener('mouseenter', () => this.setActive(panel));
+        panel.addEventListener('click', () => this.setActive(panel));
       });
     }
-  });
+
+    setActive(activePanel) {
+      this.panels.forEach(panel => {
+        panel.classList.remove('active');
+      });
+      activePanel.classList.add('active');
+    }
+  }
+
+  customElements.define('pc-team-accordion-{{ last_part }}', PcTeamAccordion{{ last_part | capitalize }});
 </script>
 
 {% schema %}
 {
-  "name": "PWC - Carousel Slider #8",
+  "name": "PWC - Team Accordion #1",
   "settings": [
     {
       "type": "header",
-      "content": "Layout Settings"
-    },
-     {
-      "type": "checkbox",
-      "id": "shadow_enabled",
-      "label": "Enable Container Shadow",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "item_shadow_enabled",
-      "label": "Enable Item Shadow",
-      "default": true
+      "content": "General Settings"
     },
     {
       "type": "color",
-      "id": "item_shadow_color",
-      "label": "Item Shadow Color",
-      "default": "#505050"
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#4a2a82"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font Family",
+      "options": [
+        {
+          "value": "Arial",
+          "label": "Arial"
+        },
+        {
+          "value": "Helvetica",
+          "label": "Helvetica"
+        },
+        {
+          "value": "Georgia",
+          "label": "Georgia"
+        },
+        {
+          "value": "Times New Roman",
+          "label": "Times New Roman"
+        }
+      ],
+      "default": "Arial"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Panel Shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Container Settings - Desktop"
     },
     {
       "type": "range",
-      "id": "max_width",
+      "id": "container_width_desktop",
+      "label": "Container Width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "max_width_desktop",
       "label": "Max Width",
       "min": 800,
-      "max": 1400,
-      "step": 50,
+      "max": 2000,
+      "step": 100,
       "unit": "px",
       "default": 1200
     },
     {
       "type": "range",
-      "id": "slide_height",
-      "label": "Slide Height (Desktop)",
-      "min": 300,
-      "max": 800,
-      "step": 50,
-      "unit": "px",
-      "default": 500
+      "id": "container_height_desktop",
+      "label": "Container Height",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 70
     },
     {
       "type": "range",
-      "id": "border_radius",
-      "label": "Border Radius (Desktop)",
+      "id": "panel_spacing_desktop",
+      "label": "Panel Spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "panel_radius_desktop",
+      "label": "Panel Border Radius",
       "min": 0,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 0
+      "default": 32
     },
     {
       "type": "range",
-      "id": "mobile_slide_height",
-      "label": "Slide Height (Mobile)",
-      "min": 200,
-      "max": 600,
-      "step": 50,
-      "unit": "px",
-      "default": 350
-    },
-    {
-      "type": "range",
-      "id": "mobile_border_radius",
-      "label": "Border Radius (Mobile)",
-      "min": 0,
-      "max": 50,
+      "id": "active_panel_flex",
+      "label": "Active Panel Flex Ratio",
+      "min": 2,
+      "max": 6,
       "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "content_padding_desktop",
+      "label": "Content Padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
       "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "section_margin_top",
-      "label": "Margin Top (px)",
-      "default": 15,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
-    {
-      "type": "range",
-      "id": "section_margin_bottom",
-      "label": "Margin Bottom (px)",
-      "default": 15,
-      "min": 0,
-      "max": 150,
-      "step": 5
+      "default": 25
     },
     {
       "type": "header",
-      "content": "Title Settings"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Title Text Color",
-      "default": "#eeeeee"
+      "content": "Typography Settings - Desktop"
     },
     {
       "type": "range",
-      "id": "title_size",
-      "label": "Title Size (Desktop)",
+      "id": "name_size_desktop",
+      "label": "Name Font Size",
       "min": 16,
-      "max": 72,
+      "max": 60,
       "step": 2,
       "unit": "px",
-      "default": 40
+      "default": 32
     },
     {
-      "type": "range",
-      "id": "mobile_title_size",
-      "label": "Title Size (Mobile)",
-      "min": 14,
-      "max": 48,
-      "step": 2,
-      "unit": "px",
-      "default": 28
-    },
-     {
       "type": "select",
-      "id": "text_text_transform",
-      "label": "Title text transform",
+      "id": "name_weight",
+      "label": "Name Font Weight",
       "options": [
         {
-          "value": "none",
-          "label": "None (default)"
+          "value": "300",
+          "label": "Light"
         },
         {
-          "value": "uppercase",
-          "label": "Uppercase"
+          "value": "400",
+          "label": "Regular"
         },
         {
-          "value": "lowercase",
-          "label": "Lowercase"
+          "value": "500",
+          "label": "Medium"
         },
         {
-          "value": "capitalize",
-          "label": "Capitalize"
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
         }
       ],
-      "default": "none"
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "role_size_desktop",
+      "label": "Role Font Size",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 22
     },
     {
       "type": "select",
-      "id": "title_weight",
-      "label": "Title Font Weight",
+      "id": "role_weight",
+      "label": "Role Font Weight",
       "options": [
-        { "value": "400", "label": "Normal" },
-        { "value": "500", "label": "Medium" },
-        { "value": "600", "label": "Semi Bold" },
-        { "value": "700", "label": "Bold" },
-        { "value": "800", "label": "Extra Bold" }
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        }
       ],
-      "default": "700"
+      "default": "300"
     },
-        {
-          "type": "select",
-          "id": "text_font_style",
-          "label": "Title Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "range",
-          "id": "text_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Title Letter spacing",
-          "default": 0
-        },
-        {
-          "type": "select",
-          "id": "text_text_decoration",
-          "label": "Title Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "text_text_decoration_color",
-          "label": "Title Decoration Color",
-          "default": "#000"
-        },
     {
       "type": "header",
-      "content": "Description Settings"
+      "content": "Divider Settings"
+    },
+    {
+      "type": "range",
+      "id": "divider_width",
+      "label": "Divider Width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "divider_thickness",
+      "label": "Divider Thickness",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 2
     },
     {
       "type": "color",
-      "id": "description_text_color",
-      "label": "Description Text Color",
+      "id": "divider_color",
+      "label": "Divider Color",
       "default": "#ffffff"
     },
     {
       "type": "range",
-      "id": "description_size",
-      "label": "Description Size (Desktop)",
-      "min": 12,
-      "max": 36,
+      "id": "divider_margin",
+      "label": "Divider Margin",
+      "min": 0,
+      "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 16
+      "default": 12
     },
-    {
-      "type": "range",
-      "id": "mobile_description_size",
-      "label": "Description Size (Mobile)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-     {
-      "type": "select",
-      "id": "description_text_transform",
-      "label": "Description text transform",
-      "options": [
-        {
-          "value": "none",
-          "label": "None (default)"
-        },
-        {
-          "value": "uppercase",
-          "label": "Uppercase"
-        },
-        {
-          "value": "lowercase",
-          "label": "Lowercase"
-        },
-        {
-          "value": "capitalize",
-          "label": "Capitalize"
-        }
-      ],
-      "default": "none"
-    },
-        {
-          "type": "select",
-          "id": "description_font_weight",
-          "label": "Description Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "select",
-          "id": "description_font_style",
-          "label": "Description Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "range",
-          "id": "description_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Description Letter spacing",
-          "default": 0
-        },
-        {
-          "type": "select",
-          "id": "description_text_decoration",
-          "label": "Description Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "description_text_decoration_color",
-          "label": "Description Decoration Color",
-          "default": "#000"
-        },
-        {
-          "type": "range",
-          "id": "description_padding_top",
-          "label": "Description Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "description_padding_bottom",
-          "label": "Description Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
     {
       "type": "header",
-      "content": "Button Settings"
+      "content": "Container Settings - Mobile"
     },
     {
       "type": "range",
-      "id": "button_spacing",
-      "label": "Button Top Spacing",
+      "id": "container_width_mobile",
+      "label": "Container Width",
+      "min": 70,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 95
+    },
+    {
+      "type": "range",
+      "id": "container_height_mobile",
+      "label": "Container Height",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "container_height_small_mobile",
+      "label": "Container Height (Small Mobile)",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "panel_spacing_mobile",
+      "label": "Panel Spacing",
+      "min": 0,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "panel_radius_mobile",
+      "label": "Panel Border Radius",
       "min": 0,
       "max": 50,
       "step": 1,
@@ -670,193 +493,95 @@
     },
     {
       "type": "range",
-      "id": "button_padding_vertical",
-      "label": "Button Padding Vertical",
+      "id": "content_padding_mobile",
+      "label": "Content Padding",
       "min": 5,
       "max": 30,
-      "step": 1,
+      "step": 5,
       "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "button_padding_horizontal",
-      "label": "Button Padding Horizontal",
-      "min": 10,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 35
-    },
-    {
-      "type": "range",
-      "id": "button_border_radius",
-      "label": "Button Border Radius",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "button_text_size",
-      "label": "Button Text Size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "color",
-      "id": "button_background",
-      "label": "Button Background",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
-      "default": "#ffffff"
-    },
-     {
-      "type": "select",
-      "id": "button_text_transform",
-      "label": "Button text transform",
-      "options": [
-        {
-          "value": "none",
-          "label": "None (default)"
-        },
-        {
-          "value": "uppercase",
-          "label": "Uppercase"
-        },
-        {
-          "value": "lowercase",
-          "label": "Lowercase"
-        },
-        {
-          "value": "capitalize",
-          "label": "Capitalize"
-        }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "color",
-      "id": "button_hover_background",
-      "label": "Button Hover Background",
-      "default": "#ababab"
-    },
-    {
-      "type": "color",
-      "id": "button_hover_text_color",
-      "label": "Button Hover Text Color",
-      "default": "#ffffff"
+      "default": 15
     },
     {
       "type": "header",
-      "content": "Navigation Button Settings"
+      "content": "Typography Settings - Mobile"
     },
     {
-      "type": "color",
-      "id": "nav_button_background",
-      "label": "Navigation Button Background",
-      "default": "#121212"
+      "type": "range",
+      "id": "name_size_mobile",
+      "label": "Name Font Size",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
     },
     {
-          "type": "color",
-          "id": "nav_button_text_color",
-          "label": "Navigation Button Arrow Color",
-          "default": "#ffffff"
-        },
-    {
-      "type": "color",
-      "id": "nav_button_border_color",
-      "label": "Navigation Button Border Color",
-      "default":"#121212"
-    },
-    {
-      "type": "color",
-      "id": "nav_button_hover_background",
-      "label": "Navigation Button Hover Background",
-      "default": "#ababab"
-    },
-    {
-      "type": "color",
-      "id": "nav_button_hover_text_color",
-      "label": "Navigation Button Hover Text Color",
-      "default": "#ffffff"
+      "type": "range",
+      "id": "role_size_mobile",
+      "label": "Role Font Size",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
     }
   ],
   "blocks": [
     {
-      "type": "slide",
-      "name": "Slide",
+      "type": "team_member",
+      "name": "Team Member",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
+          "label": "Member Image"
         },
         {
           "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Slide Title"
+          "id": "name",
+          "label": "Member Name",
+          "default": "Team Member"
         },
         {
           "type": "text",
-          "id": "description",
-          "label": "Description",
-          "default": "Slide description goes here."
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button Text",
-          "default": "See More"
+          "id": "role",
+          "label": "Member Role",
+          "default": "Team Role"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "RW - Carousel Slider #8",
+      "name": "PWC - Team Accordion #1",
       "category": "Custom",
       "blocks": [
         {
-          "type": "slide",
+          "type": "team_member",
           "settings": {
-            "title": "Title-1",
-            "description": "Type your description here..!",
-            "button_text": "See More"
+            "name": "Sarah Johnson",
+            "role": "Frontend Developer"
           }
         },
         {
-          "type": "slide",
+          "type": "team_member",
           "settings": {
-            "title": "Title-2",
-            "description": "Type your description here..!",
-            "button_text": "See More"
+            "name": "Michael Chen",
+            "role": "UX Designer"
           }
         },
         {
-          "type": "slide",
+          "type": "team_member",
           "settings": {
-            "title": "Title-3",
-            "description": "Type your description here..!",
-            "button_text": "See More"
+            "name": "Pavel Dvorak",
+            "role": "Backend Developer"
           }
         },
-         {
-          "type": "slide",
+        {
+          "type": "team_member",
           "settings": {
-            "title": "Title-4",
-            "description": "Type your description here..!",
-            "button_text": "See More"
+            "name": "Amara Williams",
+            "role": "Project Manager"
           }
         }
       ]
