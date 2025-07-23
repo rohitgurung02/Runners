@@ -39,7 +39,6 @@
     align-items: center;
     min-height: 100vh;
     background-color: {{ section.settings.background_color }};
-    font-family: {{ section.settings.font_family }}, sans-serif;
     overflow: hidden;
     padding: 20px;
   }
@@ -220,30 +219,6 @@
       "id": "text_color",
       "label": "Text Color",
       "default": "#ffffff"
-    },
-    {
-      "type": "select",
-      "id": "font_family",
-      "label": "Font Family",
-      "options": [
-        {
-          "value": "Arial",
-          "label": "Arial"
-        },
-        {
-          "value": "Helvetica",
-          "label": "Helvetica"
-        },
-        {
-          "value": "Georgia",
-          "label": "Georgia"
-        },
-        {
-          "value": "Times New Roman",
-          "label": "Times New Roman"
-        }
-      ],
-      "default": "Arial"
     },
     {
       "type": "checkbox",
