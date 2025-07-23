@@ -98,9 +98,9 @@
      {%- for block in section.blocks -%}
     color: {{ block.settings.name_dektop_color }};
   
-  text-decoration: {{ block.settings.name_dektop_text_decoration }};
+  
   {% if block.settings.name_dektop_text_decoration != 'none' %}
-    text-decoration-color: {{ block.settings.name_dektop_text_decoration_color }};
+   
   {% endif %}
 
   {% endfor %}
@@ -111,6 +111,8 @@
     color: {{ section.settings.name_dektop_color }};
     font-style: {{ section.settings.name_dektop_font_style }};
   letter-spacing: {{ section.settings.name_dektop_letter_spacing }}px;
+    text-decoration: {{ section.settings.name_dektop_text_decoration }};
+     text-decoration-color: {{ section.settings.name_dektop_text_decoration_color }};
     font-weight: {{ section.settings.name_weight }};
       padding-top: {{ section.settings.name_dektop_padding_top }}px;
   padding-bottom: {{ section.settings.name_dektop_padding_bottom }}px;
