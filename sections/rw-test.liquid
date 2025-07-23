@@ -162,10 +162,10 @@
   }
 </style>
 
-<pc-team-accordion-{{ last_part }} class="pc-team-accordion">
+<div class="pc-section-accordion">
   <h1>hello rohit</h1>
+<pc-team-accordion-{{ last_part }} class="pc-team-accordion">
   <div class="pc-accordion-container">
-    
     {%- for block in section.blocks -%}
       <div class="pc-panel" data-index="{{ forloop.index0 }}">
         <div class="pc-panel-bg">
@@ -192,6 +192,7 @@
     {%- endfor -%}
   </div>
 </pc-team-accordion-{{ last_part }}>
+</div>
 
 <script>
   class PcTeamAccordion{{ last_part | capitalize }} extends HTMLElement {
