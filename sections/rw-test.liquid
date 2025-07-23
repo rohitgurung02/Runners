@@ -95,18 +95,6 @@
   }
 
   {{ sec_id }} .pc-panel-name {
-     {%- for block in section.blocks -%}
-    color: {{ block.settings.name_dektop_color }};
-  
-  
-  {% if block.settings.name_dektop_text_decoration != 'none' %}
-   
-  {% endif %}
-
-  {% endfor %}
-  }
-
-  {{ sec_id }} .pc-panel-name {
     font-size: {{ section.settings.name_size_desktop }}px;
     color: {{ section.settings.name_dektop_color }};
     font-style: {{ section.settings.name_dektop_font_style }};
@@ -124,6 +112,8 @@
     width: {{ section.settings.divider_width }}%;
     height: {{ section.settings.divider_thickness }}px;
     background-color: {{ section.settings.divider_color }};
+    padding-top: {{ section.settings.divider_desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.divider_desktop_padding_bottom }}px;
     margin: 0 auto;
   }
 
@@ -341,31 +331,31 @@
       "default": 32
     },
     {
-          "type": "color",
-          "id": "name_dektop_color",
-          "label": "Name Text Color",
-          "default": "#000"
+      "type": "color",
+      "id": "name_dektop_color",
+      "label": "Name Text Color",
+      "default": "#000"
+    },
+    {
+      "type": "select",
+      "id": "name_dektop_font_style",
+      "label": "Name Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
         },
         {
-          "type": "select",
-          "id": "name_dektop_font_style",
-          "label": "Name Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
+          "value": "italic",
+          "label": "Italic"
         },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
     {
       "type": "select",
       "id": "name_dektop_font_weight",
@@ -394,69 +384,68 @@
       ],
       "default": "500"
     },
+    {
+      "type": "range",
+      "id": "name_dektop_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Name Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "name_dektop_text_decoration",
+      "label": "Name Text Decoration",
+      "options": [
         {
-          "type": "range",
-          "id": "name_dektop_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Name Letter spacing",
-          "default": 0
+          "value": "none",
+          "label": "None"
         },
         {
-          "type": "select",
-          "id": "name_dektop_text_decoration",
-          "label": "Name Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
+          "value": "underline",
+          "label": "Underline"
         },
         {
-          "type": "color",
-          "id": "name_dektop_text_decoration_color",
-          "label": "Name Text Decoration Color",
-          "default": "#000"
+          "value": "overline",
+          "label": "Overline"
         },
         {
-          "type": "range",
-          "id": "name_dektop_padding_top",
-          "label": "Name Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "name_dektop_padding_bottom",
-          "label": "Name Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-      {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "name_dektop_text_decoration_color",
+      "label": "Name Text Decoration Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "name_dektop_padding_top",
+      "label": "Name Padding Top (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "name_dektop_padding_bottom",
+      "label": "Name Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
       "type": "header",
       "content": "Role Name Settings"
     },
-   
     {
       "type": "range",
       "id": "role_size_desktop",
@@ -467,32 +456,32 @@
       "unit": "px",
       "default": 22
     },
-      {
-          "type": "color",
-          "id": "role_desktop_color",
-          "label": "Role Text Color",
-          "default": "#000"
+    {
+      "type": "color",
+      "id": "role_desktop_color",
+      "label": "Role Text Color",
+      "default": "#000"
+    },
+    {
+      "type": "select",
+      "id": "role_desktop_font_style",
+      "label": "Role Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
         },
         {
-          "type": "select",
-          "id": "role_desktop_font_style",
-          "label": "Role Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
+          "value": "italic",
+          "label": "Italic"
         },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
     {
       "type": "select",
       "id": "role_desktop_font_weight",
@@ -521,64 +510,64 @@
       ],
       "default": "500"
     },
+    {
+      "type": "range",
+      "id": "role_desktop_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Name Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "role_desktop_text_decoration",
+      "label": "Role Text Decoration",
+      "options": [
         {
-          "type": "range",
-          "id": "role_desktop_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Name Letter spacing",
-          "default": 0
+          "value": "none",
+          "label": "None"
         },
         {
-          "type": "select",
-          "id": "role_desktop_text_decoration",
-          "label": "Role Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
+          "value": "underline",
+          "label": "Underline"
         },
         {
-          "type": "color",
-          "id": "role_desktop_text_decoration_color",
-          "label": "Role Text Decoration Color",
-          "default": "#000"
+          "value": "overline",
+          "label": "Overline"
         },
         {
-          "type": "range",
-          "id": "role_desktop_padding_top",
-          "label": "Role Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "role_desktop_padding_bottom",
-          "label": "Role Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "role_desktop_text_decoration_color",
+      "label": "Role Text Decoration Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "role_desktop_padding_top",
+      "label": "Role Padding Top (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "role_desktop_padding_bottom",
+      "label": "Role Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
     {
       "type": "header",
       "content": "Divider Settings"
@@ -611,13 +600,21 @@
     },
     {
       "type": "range",
-      "id": "divider_margin",
-      "label": "Divider Margin",
+      "id": "divider_desktop_padding_top",
+      "label": "Divider Padding Top (px)",
+      "default": 5,
       "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 12
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "divider_desktop_padding_bottom",
+      "label": "Divider Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
     },
     {
       "type": "header",
