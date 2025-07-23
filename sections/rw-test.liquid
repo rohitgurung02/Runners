@@ -128,7 +128,15 @@
   }
 
   {{ sec_id }} .pc-panel-role {
-    font-size: {{ section.settings.role_size_desktop }}px;
+  font-size: {{ section.settings.role_size_desktop }}px;
+  color: {{ section.settings.role_desktop_color }};
+  font-style: {{ section.settings.role_desktop_font_style }};
+  font-weight: {{ section.settings.role_desktop_font_weight }};
+  letter-spacing: {{ section.settings.role_desktop_letter_spacing }}px;
+  text-decoration: {{ section.settings.role_desktop_text_decoration }};
+  text-decoration-color: {{ section.settings.role_desktop_text_decoration_color }};
+  padding-top: {{ section.settings.role_desktop_padding_top }}px;
+  padding-bottom: {{ section.settings.role_desktop_padding_bottom }}px;
     opacity: 0.9;
     letter-spacing: 1px;
   }
@@ -449,6 +457,12 @@
       "content": "Role Font"
     },
     {
+          "type": "color",
+          "id": "role_dektop_color",
+          "label": "Role Text Color",
+          "default": "#000"
+        },
+    {
       "type": "range",
       "id": "role_size_desktop",
       "label": "Role Font Size",
@@ -458,6 +472,113 @@
       "unit": "px",
       "default": 22
     },
+     
+        {
+          "type": "select",
+          "id": "role_desktop_font_style",
+          "label": "Role Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+    {
+      "type": "select",
+      "id": "role_desktop_font_weight",
+      "label": "Role Font Weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+        {
+          "type": "range",
+          "id": "role_desktop_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Name Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "role_desktop_text_decoration",
+          "label": "Role Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "role_desktop_text_decoration_color",
+          "label": "Role Text Decoration Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "role_desktop_padding_top",
+          "label": "Role Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "role_desktop_padding_bottom",
+          "label": "Role Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
     {
       "type": "header",
       "content": "Divider Settings"
