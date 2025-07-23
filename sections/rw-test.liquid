@@ -112,9 +112,8 @@
     width: {{ section.settings.divider_width }}%;
     height: {{ section.settings.divider_thickness }}px;
     background-color: {{ section.settings.divider_color }};
-    padding-top: {{ section.settings.divider_desktop_padding_top }}px;
-    padding-bottom: {{ section.settings.divider_desktop_padding_bottom }}px;
-    margin: 0 auto;
+    margin-top: {{ section.settings.divider_desktop_margin_top }}px;
+    margin-bottom: {{ section.settings.divider_desktop_margin_bottom }}px;
   }
 
   {{ sec_id }} .pc-panel-role {
@@ -595,7 +594,7 @@
     },
      {
           "type": "range",
-          "id": "divider_desktop_padding_top",
+          "id": "divider_desktop_margin_top",
           "label": "Divider Padding Top (px)",
           "default": 5,
           "min": 0,
@@ -604,7 +603,7 @@
         },
         {
           "type": "range",
-          "id": "divider_desktop_padding_bottom",
+          "id": "divider_desktop_margin_bottom",
           "label": "Divider Padding Bottom (px)",
           "default": 5,
           "min": 0,
