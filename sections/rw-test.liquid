@@ -112,9 +112,7 @@
     width: {{ section.settings.divider_width }}%;
     height: {{ section.settings.divider_thickness }}px;
     background-color: {{ section.settings.divider_color }};
-    margin-top: {{ section.settings.divider_desktop_margin_top }}px;
-    margin-bottom: {{ section.settings.divider_desktop_margin_bottom }}px;
-    text-align: center;
+    margin: 0 auto;
   }
 
   {{ sec_id }} .pc-panel-role {
@@ -593,24 +591,6 @@
       "label": "Divider Color",
       "default": "#000000"
     },
-     {
-          "type": "range",
-          "id": "divider_desktop_margin_top",
-          "label": "Divider Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "divider_desktop_margin_bottom",
-          "label": "Divider Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
     {
       "type": "header",
       "content": "Container Settings - Mobile"
