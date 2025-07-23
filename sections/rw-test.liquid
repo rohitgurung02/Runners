@@ -3,35 +3,6 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-team-accordion-{{ last_part }} class="pc-team-accordion">
-  <div class="pc-accordion-container">
-    {%- for block in section.blocks -%}
-      <div class="pc-panel" data-index="{{ forloop.index0 }}">
-        <div class="pc-panel-bg">
-          {%- if block.settings.image != blank -%}
-            {% assign image_class = 'pc-team-image-' | append: last_part %}
-            {{ 
-              block.settings.image
-              | image_url: width: 1200
-              | image_tag: 
-                  loading: 'lazy', 
-                  class: image_class,
-                  alt: block.settings.name
-            }}
-          {%- else -%}
-            {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-image' }}
-          {%- endif -%}
-        </div>
-        <div class="pc-panel-content">
-          <h2 class="pc-panel-name">{{ block.settings.name }}</h2>
-          <div class="pc-divider"></div>
-          <p class="pc-panel-role">{{ block.settings.role }}</p>
-        </div>
-      </div>
-    {%- endfor -%}
-  </div>
-</pc-team-accordion-{{ last_part }}>
-
 <style>
   {{ sec_id }} .pc-team-accordion {
     display: flex;
@@ -124,8 +95,24 @@
   }
 
   {{ sec_id }} .pc-panel-name {
+     {%- for block in section.blocks -%}
+    color: {{ block.settings.name_dektop_color }};
+  font-style: {{ block.settings.name_dektop_font_style }};
+  font-weight: {{ block.settings.name_dektop_font_weight }};
+  letter-spacing: {{ block.settings.name_dektop_letter_spacing }}px;
+  text-decoration: {{ block.settings.name_dektop_text_decoration }};
+  {% if block.settings.name_dektop_text_decoration != 'none' %}
+    text-decoration-color: {{ block.settings.name_dektop_text_decoration_color }};
+  {% endif %}
+  padding-top: {{ block.settings.name_dektop_padding_top }}px;
+  padding-bottom: {{ block.settings.name_dektop_padding_bottom }}px;
+  {% endfor %}
+  }
+
+  {{ sec_id }} .pc-panel-name {
     font-size: {{ section.settings.name_size_desktop }}px;
     font-weight: {{ section.settings.name_weight }};
+    
     margin-bottom: 10px;
     white-space: nowrap;
   }
@@ -173,6 +160,35 @@
     }
   }
 </style>
+
+<pc-team-accordion-{{ last_part }} class="pc-team-accordion">
+  <div class="pc-accordion-container">
+    {%- for block in section.blocks -%}
+      <div class="pc-panel" data-index="{{ forloop.index0 }}">
+        <div class="pc-panel-bg">
+          {%- if block.settings.image != blank -%}
+            {% assign image_class = 'pc-team-image-' | append: last_part %}
+            {{ 
+              block.settings.image
+              | image_url: width: 1200
+              | image_tag: 
+                  loading: 'lazy', 
+                  class: image_class,
+                  alt: block.settings.name
+            }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-image' }}
+          {%- endif -%}
+        </div>
+        <div class="pc-panel-content">
+          <h2 class="pc-panel-name">{{ block.settings.name }}</h2>
+          <div class="pc-divider"></div>
+          <p class="pc-panel-role">{{ block.settings.role }}</p>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</pc-team-accordion-{{ last_part }}>
 
 <script>
   class PcTeamAccordion{{ last_part | capitalize }} extends HTMLElement {
@@ -425,6 +441,10 @@
           "max": 150,
           "step": 5
         },
+      {
+      "type": "header",
+      "content": "Role Font"
+    },
     {
       "type": "range",
       "id": "role_size_desktop",
