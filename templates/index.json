@@ -1170,7 +1170,7 @@
       "settings": {
         "background_color": "#b4a2d3",
         "enable_shadow": true,
-        "container_width_desktop": 80,
+        "container_width_desktop": 60,
         "max_width_desktop": 1200,
         "container_height_desktop": 70,
         "panel_spacing_desktop": 5,
