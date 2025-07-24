@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: {{ section.settings.desktop_min_height }}px !important;
+    height: {{ section.settings.desktop_height }}px;
     background-color: {{ section.settings.background_color }};
     overflow: hidden;
     padding: 20px;
@@ -262,7 +262,7 @@
     },
     {
   "type": "range",
-  "id": "desktop_min_height",
+  "id": "desktop_height",
   "label": "Desktop Height",
   "min": 300,
   "max": 1200,
