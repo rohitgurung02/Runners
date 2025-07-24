@@ -1207,7 +1207,7 @@
         "content_padding_mobile": 15,
         "name_size_mobile": 18,
         "role_size_mobile": 16,
-        "divider_width_mobile": 100,
+        "divider_width_mobile": 80,
         "divider_thickness_mobile": 2
       }
     }
