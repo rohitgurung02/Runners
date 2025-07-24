@@ -159,7 +159,10 @@
 
   {{ sec_id }} .pc-divider {
     height: {{ section.settings.divider_thickness_mobile }}px;
+    width: {{ section.settings.divider_width_mobile }}%;
   }
+
+  
 
   @media (max-width: 480px) {
     {{ sec_id }} .pc-accordion-container {
@@ -698,6 +701,17 @@
       "unit": "px",
       "default": 16
     },
+    {
+  "type": "range",
+  "id": "divider_width_mobile",
+  "label": "Divider Width (Mobile)",
+  "min": 10,
+  "max": 100,
+  "step": 5,
+  "unit": "%",
+  "default": 60,
+  "info": "Width of the divider on mobile devices"
+},
     {
   "type": "range",
   "id": "divider_thickness_mobile",
