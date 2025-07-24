@@ -1194,7 +1194,7 @@
         "divider_thickness": 2,
         "divider_color": "#000000",
         "container_width_mobile": 95,
-        "container_height_small_mobile": 30,
+        "container_height_small_mobile": 40,
         "mobile_min_height": 50,
         "panel_spacing_mobile": 3,
         "panel_radius_mobile": 20,
