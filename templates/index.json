@@ -1204,7 +1204,7 @@
         "container_width_mobile": 90,
         "container_height_mobile": 30,
         "mobile_min_height": 200,
-        "container_height_small_mobile": 45,
+        "container_height_small_mobile": 35,
         "panel_spacing_mobile": 4,
         "panel_radius_mobile": 20,
         "content_padding_mobile": 15,
