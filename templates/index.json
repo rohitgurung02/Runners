@@ -1192,7 +1192,7 @@
         "divider_width": 40,
         "divider_thickness": 2,
         "divider_color": "#ffffff",
-        "container_width_mobile": 100,
+        "container_width_mobile": 90,
         "container_height_mobile": 95,
         "container_height_small_mobile": 55,
         "panel_spacing_mobile": 4,
