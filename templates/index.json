@@ -789,7 +789,9 @@
         "panel_radius_mobile": 20,
         "content_padding_mobile": 15,
         "name_size_mobile": 24,
-        "role_size_mobile": 16
+        "role_size_mobile": 16,
+        "divider_width_mobile": 60,
+        "divider_thickness_mobile": 1
       }
     },
     "rw_reviews_eNfMNB": {
@@ -1045,7 +1047,9 @@
         "panel_radius_mobile": 20,
         "content_padding_mobile": 15,
         "name_size_mobile": 24,
-        "role_size_mobile": 16
+        "role_size_mobile": 16,
+        "divider_width_mobile": 60,
+        "divider_thickness_mobile": 1
       }
     },
     "rw_hero_banner_4dJjqa": {
@@ -1202,7 +1206,9 @@
         "panel_radius_mobile": 20,
         "content_padding_mobile": 15,
         "name_size_mobile": 18,
-        "role_size_mobile": 20
+        "role_size_mobile": 16,
+        "divider_width_mobile": 100,
+        "divider_thickness_mobile": 2
       }
     }
   },
