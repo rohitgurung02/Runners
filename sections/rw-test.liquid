@@ -157,6 +157,10 @@
     min-height: {{ section.settings.mobile_min_height }}px;
   }
 
+  {{ sec_id }} .pc-divider {
+    height: {{ section.settings.divider_thickness_mobile }}px;
+  }
+
   @media (max-width: 480px) {
     {{ sec_id }} .pc-accordion-container {
       height: {{ section.settings.container_height_small_mobile }}vh;
