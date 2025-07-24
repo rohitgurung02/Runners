@@ -1121,92 +1121,6 @@
         "description_mobile_text_size": 14,
         "mobile_button_size": 16
       }
-    },
-    "rw_test_7aYwtc": {
-      "type": "rw-test",
-      "blocks": {
-        "team_member_TdbwBK": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-anastasiya-gepp-654466-1462637.jpg",
-            "name": "Sarah Johnson",
-            "role": "Frontend Developer"
-          }
-        },
-        "team_member_NthYEJ": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-cottonbro-10679212.jpg",
-            "name": "Michael Chen",
-            "role": "UX Designer"
-          }
-        },
-        "team_member_RdV38H": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-minan1398-675926.jpg",
-            "name": "Pavel Dvorak",
-            "role": "Backend Developer"
-          }
-        },
-        "team_member_xPtciE": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-shvets-production-9775883_1.jpg",
-            "name": "Amara Williams",
-            "role": "Project Manager"
-          }
-        }
-      },
-      "block_order": [
-        "team_member_TdbwBK",
-        "team_member_NthYEJ",
-        "team_member_RdV38H",
-        "team_member_xPtciE"
-      ],
-      "name": "RW - Team Accordion #6",
-      "settings": {
-        "background_color": "#b4a2d3",
-        "enable_shadow": true,
-        "container_width_desktop": 60,
-        "desktop_height": 450,
-        "max_width_desktop": 1200,
-        "container_height_desktop": 70,
-        "panel_spacing_desktop": 5,
-        "panel_radius_desktop": 32,
-        "active_panel_flex": 4,
-        "content_padding_desktop": 25,
-        "name_size_desktop": 32,
-        "name_dektop_color": "#ffffff",
-        "name_dektop_font_style": "normal",
-        "name_dektop_font_weight": "500",
-        "name_dektop_letter_spacing": 0,
-        "name_dektop_text_decoration": "none",
-        "name_dektop_text_decoration_color": "#000000",
-        "name_dektop_padding_top": 5,
-        "name_dektop_padding_bottom": 5,
-        "role_size_desktop": 22,
-        "role_desktop_color": "#ffffff",
-        "role_desktop_font_style": "normal",
-        "role_desktop_font_weight": "500",
-        "role_desktop_letter_spacing": 0,
-        "role_desktop_text_decoration": "none",
-        "role_desktop_text_decoration_color": "#000000",
-        "role_desktop_padding_top": 5,
-        "role_desktop_padding_bottom": 5,
-        "divider_width": 40,
-        "divider_thickness": 2,
-        "divider_color": "#ffffff",
-        "container_width_mobile": 90,
-        "container_height_small_mobile": 35,
-        "mobile_min_height": 50,
-        "panel_spacing_mobile": 4,
-        "panel_radius_mobile": 20,
-        "name_size_mobile": 18,
-        "role_size_mobile": 16,
-        "divider_width_mobile": 80,
-        "divider_thickness_mobile": 2
-      }
     }
   },
   "order": [
@@ -1223,7 +1137,6 @@
     "rw_timeline_8VAwHz",
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
-    "rw_hero_banner_4dJjqa",
-    "rw_test_7aYwtc"
+    "rw_hero_banner_4dJjqa"
   ]
 }
