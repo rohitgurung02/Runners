@@ -1199,7 +1199,7 @@
         "divider_color": "#ffffff",
         "container_width_mobile": 95,
         "container_height_small_mobile": 30,
-        "mobile_min_height": 100,
+        "mobile_min_height": 50,
         "panel_spacing_mobile": 3,
         "panel_radius_mobile": 20,
         "name_size_mobile": 24,
