@@ -1201,7 +1201,7 @@
         "panel_spacing_mobile": 4,
         "panel_radius_mobile": 20,
         "content_padding_mobile": 15,
-        "name_size_mobile": 14,
+        "name_size_mobile": 18,
         "role_size_mobile": 16
       }
     }
