@@ -62,7 +62,6 @@
     white-space: nowrap;
     color: {{ section.settings.title_color }};
     font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
-    font-style: {{ section.settings.title_font_style }};
     letter-spacing: {{ section.settings.title_letter_spacing }}em;
     line-height: {{ section.settings.title_line_height }};
   }
@@ -687,12 +686,6 @@
     {
       "type": "header",
       "content": "Header Settings"
-    },
-    {
-      "type": "font_picker",
-      "id": "title_font",
-      "label": "Title Font",
-      "default": "helvetica_n4"
     },
     {
       "type": "range",
