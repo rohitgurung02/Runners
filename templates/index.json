@@ -1365,10 +1365,30 @@
             "initial_score": 37,
             "button_link": ""
           }
+        },
+        "score_card_bWyR8e": {
+          "type": "score_card",
+          "settings": {
+            "title": "Financial Health Score",
+            "description": "Get an instant assessment of your financial health with our comprehensive scoring system.",
+            "initial_score": 58,
+            "button_link": ""
+          }
+        },
+        "score_card_kPGjKb": {
+          "type": "score_card",
+          "settings": {
+            "title": "Financial Health Score",
+            "description": "Get an instant assessment of your financial health with our comprehensive scoring system.",
+            "initial_score": 85,
+            "button_link": ""
+          }
         }
       },
       "block_order": [
-        "score_card_byTPh3"
+        "score_card_byTPh3",
+        "score_card_bWyR8e",
+        "score_card_kPGjKb"
       ],
       "name": "Financial Score Card",
       "settings": {
