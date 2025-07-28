@@ -126,7 +126,6 @@
     font-size: {{ section.settings.description_font_size }}px;
     font-weight: {{ section.settings.description_font_weight }};
     line-height: {{ section.settings.description_line_height }};
-    font-family: {{ section.settings.description_font.family }}, {{ section.settings.description_font.fallback_families }};
     padding: 0 {{ section.settings.description_padding_horizontal }}px;
   }
   
@@ -246,10 +245,6 @@
     
     {{ sec_id }} .pc-card-title-{{ last_part }} {
       font-size: {{ section.settings.title_font_size_mobile }}px;
-    }
-    
-    {{ sec_id }} .pc-card-description-{{ last_part }} {
-      font-size: {{ section.settings.description_font_size_mobile }}px;
     }
     
     {{ sec_id }} .pc-card-score-button-{{ last_part }} {
@@ -1214,12 +1209,6 @@
     {
       "type": "header",
       "content": "Description Settings"
-    },
-    {
-      "type": "font_picker",
-      "id": "description_font",
-      "label": "Description Font",
-      "default": "helvetica_n4"
     },
     {
       "type": "range",
