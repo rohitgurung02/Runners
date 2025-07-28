@@ -1393,7 +1393,7 @@
         "card_shadow_opacity": 10,
         "card_padding_vertical": 24,
         "card_padding_horizontal": 24,
-        "card_padding_vertical_mobile": 20,
+        "card_padding_vertical_mobile": 12,
         "card_padding_horizontal_mobile": 20,
         "title_font": "helvetica_n4",
         "title_font_size": 20,
