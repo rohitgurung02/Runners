@@ -1359,7 +1359,7 @@
           "settings": {
             "title": "Financial Health Score",
             "description": "Get an instant assessment of your financial health with our comprehensive scoring system.",
-            "initial_score": 40,
+            "initial_score": 37,
             "button_link": ""
           }
         }
