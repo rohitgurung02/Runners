@@ -9,25 +9,31 @@
     width: 100%;
     overflow: hidden;
     display: flex;
-    justify-content: center;
+    justify-content: {{ section.settings.cards_alignment }};
     flex-wrap: wrap;
-    gap: 10px;
+    gap: {{ section.settings.cards_gap }}px;
+    padding-top: {{ section.settings.section_padding_top }}px;
+    padding-bottom: {{ section.settings.section_padding_bottom }}px;
+    background-color: {{ section.settings.section_bg_color }};
   }
   
   {{ sec_id }} .pc-card-{{ last_part }} {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 25em;
+    max-width: {{ section.settings.card_max_width }}px;
   }
   
   {{ sec_id }} .pc-card-surface-{{ last_part }} {
     animation: pc-fade-in-{{ last_part }} 1s cubic-bezier(0.33, 1, 0.68, 1);
-    background: var(--pc-white);
-    border-radius: 1em;
-    box-shadow: 0 0.25em 0.625em hsla(0, 0%, 0%, 0.05);
+    background: {{ section.settings.card_bg_color }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    {% if section.settings.card_shadow %}
+    box-shadow: 0 {{ section.settings.card_shadow_offset }}px {{ section.settings.card_shadow_blur }}px rgba(0,0,0,{{ section.settings.card_shadow_opacity }});
+    {% endif %}
     min-width: 0;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
   }
   
   {{ sec_id }} .pc-card-header-{{ last_part }},
@@ -41,53 +47,58 @@
   
   {{ sec_id }} .pc-card-header-{{ last_part }} {
     display: flex;
-    gap: 1.5em;
+    gap: {{ section.settings.header_gap }}px;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2.5em;
+    margin-bottom: {{ section.settings.header_margin_bottom }}px;
   }
   
   {{ sec_id }} .pc-card-title-{{ last_part }} {
-    font-size: 1.375em;
-    font-weight: 500;
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: {{ section.settings.title_font_weight }};
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: {{ section.settings.title_color }};
+    font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
+    font-style: {{ section.settings.title_font_style }};
+    letter-spacing: {{ section.settings.title_letter_spacing }}em;
+    line-height: {{ section.settings.title_line_height }};
   }
   
   {{ sec_id }} .pc-card-badge-{{ last_part }} {
     animation-delay: 0.8s;
-    border-radius: 0.25rem;
+    border-radius: {{ section.settings.badge_border_radius }}px;
     flex-shrink: 0;
-    font-size: 0.75em;
-    font-weight: 600;
-    line-height: 2;
+    font-size: {{ section.settings.badge_font_size }}px;
+    font-weight: {{ section.settings.badge_font_weight }};
+    line-height: {{ section.settings.badge_line_height }};
     opacity: 0;
-    padding: 0.25rem 0.625rem;
-    text-transform: uppercase;
+    padding: {{ section.settings.badge_padding_vertical }}px {{ section.settings.badge_padding_horizontal }}px;
+    text-transform: {{ section.settings.badge_text_transform }};
     transform: translateY(67%);
-    transition: background-color 0.3s, color 0.3s;
+    transition: all 0.3s ease;
   }
   
   {{ sec_id }} .pc-card-badge-weak-{{ last_part }} {
-    background-color: var(--pc-danger100);
-    color: var(--pc-danger700);
+    background-color: {{ section.settings.weak_badge_bg_color }};
+    color: {{ section.settings.weak_badge_text_color }};
   }
   
   {{ sec_id }} .pc-card-badge-moderate-{{ last_part }} {
-    background-color: var(--pc-warning100);
-    color: var(--pc-warning700);
+    background-color: {{ section.settings.moderate_badge_bg_color }};
+    color: {{ section.settings.moderate_badge_text_color }};
   }
   
   {{ sec_id }} .pc-card-badge-strong-{{ last_part }} {
-    background-color: var(--pc-success100);
-    color: var(--pc-success700);
+    background-color: {{ section.settings.strong_badge_bg_color }};
+    color: {{ section.settings.strong_badge_text_color }};
   }
   
   {{ sec_id }} .pc-card-graph-container-{{ last_part }} {
     animation-delay: 0.1s;
     position: relative;
-    margin-bottom: 2em;
+    margin-bottom: {{ section.settings.graph_margin_bottom }}px;
   }
   
   {{ sec_id }} .pc-card-half-circle-{{ last_part }} {
@@ -95,29 +106,37 @@
     margin: auto;
     width: auto;
     max-width: 100%;
-    height: 8.5em;
+    height: {{ section.settings.graph_height }}px;
   }
   
   {{ sec_id }} .pc-card-half-circle-track-{{ last_part }} {
-    stroke: var(--pc-gray50);
+    stroke: {{ section.settings.graph_track_color }};
+    stroke-width: {{ section.settings.graph_stroke_width }}px;
     transition: stroke 0.3s;
   }
   
   {{ sec_id }} .pc-card-description-{{ last_part }} {
     animation-delay: 0.2s;
-    color: var(--pc-gray600);
-    margin-bottom: 2.25em;
-    min-height: 4.5em;
+    color: {{ section.settings.description_color }};
+    margin-bottom: {{ section.settings.description_margin_bottom }}px;
+    min-height: {{ section.settings.description_min_height }}px;
     text-align: center;
     transition: color 0.3s;
+    font-size: {{ section.settings.description_font_size }}px;
+    font-weight: {{ section.settings.description_font_weight }};
+    line-height: {{ section.settings.description_line_height }};
+    font-family: {{ section.settings.description_font.family }}, {{ section.settings.description_font.fallback_families }};
+    padding: 0 {{ section.settings.description_padding_horizontal }}px;
   }
   
   {{ sec_id }} .pc-card-score-{{ last_part }} {
-    font-size: 2.5em;
-    font-weight: 500;
-    height: 3.75rem;
+    font-size: {{ section.settings.score_font_size }}px;
+    font-weight: {{ section.settings.score_font_weight }};
+    height: {{ section.settings.score_height }}px;
     overflow: hidden;
     position: relative;
+    color: {{ section.settings.score_color }};
+    font-family: {{ section.settings.score_font.family }}, {{ section.settings.score_font.fallback_families }};
   }
   
   {{ sec_id }} .pc-card-score-digit-{{ last_part }} {
@@ -130,7 +149,7 @@
   }
   
   {{ sec_id }} .pc-card-score-digits-dimmed-{{ last_part }} {
-    color: var(--pc-gray400);
+    color: {{ section.settings.dimmed_score_color }};
   }
   
   {{ sec_id }} .pc-card-score-digits-{{ last_part }} + .pc-card-score-digits-{{ last_part }} {
@@ -143,36 +162,43 @@
   
   {{ sec_id }} .pc-card-score-display-{{ last_part }} {
     position: absolute;
-    bottom: 0;
+    bottom: {{ section.settings.score_display_bottom }}px;
     width: 100%;
     text-align: center;
   }
   
   {{ sec_id }} .pc-card-score-label-{{ last_part }} {
-    color: var(--pc-gray700);
-    text-transform: uppercase;
+    color: {{ section.settings.score_label_color }};
+    text-transform: {{ section.settings.score_label_text_transform }};
     transition: color 0.3s;
+    font-size: {{ section.settings.score_label_font_size }}px;
+    font-weight: {{ section.settings.score_label_font_weight }};
+    margin-top: {{ section.settings.score_label_margin_top }}px;
   }
   
   {{ sec_id }} .pc-card-score-button-{{ last_part }} {
     animation-delay: 0.3s;
-    background-color: var(--pc-primary500);
-    border: 2px solid var(--pc-primary500);
-    border-radius: 0.5rem;
+    background-color: {{ section.settings.button_bg_color }};
+    border: {{ section.settings.button_border_width }}px solid {{ section.settings.button_border_color }};
+    border-radius: {{ section.settings.button_border_radius }}px;
     box-shadow: 0 0 0 3px transparent;
-    color: var(--pc-white);
+    color: {{ section.settings.button_text_color }};
     cursor: pointer;
-    font-size: 1.25em;
+    font-size: {{ section.settings.button_font_size }}px;
     outline: transparent;
-    padding: 0.625rem 0.75rem;
+    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
     width: 100%;
-    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s, color 0.3s;
+    transition: all 0.3s ease;
+    font-family: {{ section.settings.button_font.family }}, {{ section.settings.button_font.fallback_families }};
+    font-weight: {{ section.settings.button_font_weight }};
+    text-transform: {{ section.settings.button_text_transform }};
+    letter-spacing: {{ section.settings.button_letter_spacing }}em;
   }
   
   {{ sec_id }} .pc-card-score-button-outlined-{{ last_part }} {
     background: transparent;
-    border: 2px solid var(--pc-gray100);
-    color: var(--pc-gray900);
+    border: {{ section.settings.button_outline_border_width }}px solid {{ section.settings.button_outline_border_color }};
+    color: {{ section.settings.button_outline_text_color }};
   }
   
   {{ sec_id }} .pc-card-container-{{ last_part }} {
@@ -180,7 +206,7 @@
   }
   
   {{ sec_id }} .pc-card-content-{{ last_part }} {
-    padding: 2.25em;
+    padding: {{ section.settings.card_padding_vertical }}px {{ section.settings.card_padding_horizontal }}px;
   }
   
   @keyframes pc-fade-in-{{ last_part }} {
@@ -203,23 +229,56 @@
     from { transform: translateY(0); }
     to { transform: translateY(-100%); }
   }
+
+  /* Responsive styles */
+  @media (max-width: 749px) {
+    {{ sec_id }} .pc-financial-score-{{ last_part }} {
+      gap: {{ section.settings.cards_gap_mobile }}px;
+      padding-top: {{ section.settings.section_padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.section_padding_bottom_mobile }}px;
+      justify-content: {{ section.settings.cards_alignment_mobile }};
+    }
+    
+    {{ sec_id }} .pc-card-{{ last_part }} {
+      max-width: {{ section.settings.card_max_width_mobile }}px;
+    }
+    
+    {{ sec_id }} .pc-card-title-{{ last_part }} {
+      font-size: {{ section.settings.title_font_size_mobile }}px;
+    }
+    
+    {{ sec_id }} .pc-card-description-{{ last_part }} {
+      font-size: {{ section.settings.description_font_size_mobile }}px;
+    }
+    
+    {{ sec_id }} .pc-card-score-{{ last_part }} {
+      font-size: {{ section.settings.score_font_size_mobile }}px;
+    }
+    
+    {{ sec_id }} .pc-card-score-button-{{ last_part }} {
+      font-size: {{ section.settings.button_font_size_mobile }}px;
+    }
+    
+    {{ sec_id }} .pc-card-content-{{ last_part }} {
+      padding: {{ section.settings.card_padding_vertical_mobile }}px {{ section.settings.card_padding_horizontal_mobile }}px;
+    }
+  }
 </style>
 
 <div class="pc-financial-score-{{ last_part }}">
   {% for block in section.blocks %}
     {% assign score = block.settings.initial_score | default: nil %}
-{% assign max_score = 100 %}
-{% assign has_score = false %}
-{% if score != blank %}
-  {% assign has_score = true %}
-{% endif %}
-
+    {% assign max_score = section.settings.max_score %}
+    {% assign has_score = false %}
+    {% if score != blank %}
+      {% assign has_score = true %}
+    {% endif %}
     
     {% if has_score %}
       {% assign score_value = score | times: 1 %}
-      {% if score_value >= 80 %}
+      {% if score_value >= section.settings.strong_threshold %}
         {% assign strength = 'strong' %}
-      {% elsif score_value >= 40 %}
+      {% elsif score_value >= section.settings.moderate_threshold %}
         {% assign strength = 'moderate' %}
       {% else %}
         {% assign strength = 'weak' %}
@@ -244,24 +303,24 @@
                 <defs>
                   <linearGradient id="grad-{{ last_part }}-{{ forloop.index }}" x1="0" y1="0" x2="1" y2="0">
                     {% if strength == 'none' %}
-                      <stop offset="0%" stop-color="var(--pc-gray50)" />
-                      <stop offset="100%" stop-color="var(--pc-gray400)" />
+                      <stop offset="0%" stop-color="{{ section.settings.graph_track_color }}" />
+                      <stop offset="100%" stop-color="{{ section.settings.graph_track_color }}" />
                     {% elsif strength == 'weak' %}
-                      <stop offset="0%" stop-color="var(--pc-danger200)" />
-                      <stop offset="50%" stop-color="var(--pc-danger500)" />
-                      <stop offset="100%" stop-color="var(--pc-danger700)" />
+                      <stop offset="0%" stop-color="{{ section.settings.weak_graph_start_color }}" />
+                      <stop offset="50%" stop-color="{{ section.settings.weak_graph_mid_color }}" />
+                      <stop offset="100%" stop-color="{{ section.settings.weak_graph_end_color }}" />
                     {% elsif strength == 'moderate' %}
-                      <stop offset="0%" stop-color="var(--pc-warning200)" />
-                      <stop offset="50%" stop-color="var(--pc-warning500)" />
-                      <stop offset="100%" stop-color="var(--pc-warning600)" />
+                      <stop offset="0%" stop-color="{{ section.settings.moderate_graph_start_color }}" />
+                      <stop offset="50%" stop-color="{{ section.settings.moderate_graph_mid_color }}" />
+                      <stop offset="100%" stop-color="{{ section.settings.moderate_graph_end_color }}" />
                     {% elsif strength == 'strong' %}
-                      <stop offset="0%" stop-color="var(--pc-success200)" />
-                      <stop offset="50%" stop-color="var(--pc-success500)" />
-                      <stop offset="100%" stop-color="var(--pc-success700)" />
+                      <stop offset="0%" stop-color="{{ section.settings.strong_graph_start_color }}" />
+                      <stop offset="50%" stop-color="{{ section.settings.strong_graph_mid_color }}" />
+                      <stop offset="100%" stop-color="{{ section.settings.strong_graph_end_color }}" />
                     {% endif %}
                   </linearGradient>
                 </defs>
-                <g fill="none" stroke-width="10" transform="translate(50, 50.5)">
+                <g fill="none" stroke-width="{{ section.settings.graph_stroke_width }}" transform="translate(50, 50.5)">
                   <circle class="pc-card-half-circle-track-{{ last_part }}" r="45" />
                   <circle stroke="url(#grad-{{ last_part }}-{{ forloop.index }})" 
                           stroke-dasharray="141.37 141.37" 
@@ -295,7 +354,7 @@
             <button class="pc-card-score-button-{{ last_part }} {% if has_score %}pc-card-score-button-outlined-{{ last_part }}{% endif %}" 
                     type="button" 
                     data-button-link="{{ block.settings.button_link | default: '#' }}">
-              {% if has_score %}Learn more{% else %}Calculate your score{% endif %}
+              {% if has_score %}{{ section.settings.button_text }}{% else %}{{ section.settings.calculate_button_text }}{% endif %}
             </button>
           </div>
         </div>
@@ -325,12 +384,12 @@
         const hasScore = card.dataset.hasScore === 'true';
         const buttonLink = this.dataset.buttonLink;
 
-        if (hasScore && buttonLink) {
+        if (hasScore && buttonLink && buttonLink !== '#') {
           window.location.href = buttonLink;
-        } else {
+        } else if (!hasScore) {
           // Generate random score
           const initialScore = parseInt(card.dataset.initialScore) || 0;
-          const randomScore = Math.floor(Math.random() * 100) + 1;
+          const randomScore = Math.floor(Math.random() * {{ section.settings.max_score }}) + 1;
           
           // Update the score display
           const digitsContainer = card.querySelector('.pc-card-score-digits-{{ last_part }}:last-child');
@@ -344,8 +403,8 @@
           const badgeContainer = card.querySelector('.pc-card-badge-{{ last_part }}');
           if (badgeContainer) {
             let strength = 'none';
-            if (randomScore >= 80) strength = 'strong';
-            else if (randomScore >= 40) strength = 'moderate';
+            if (randomScore >= {{ section.settings.strong_threshold }}) strength = 'strong';
+            else if (randomScore >= {{ section.settings.moderate_threshold }}) strength = 'moderate';
             else strength = 'weak';
             
             badgeContainer.className = `pc-card-badge-{{ last_part }} pc-card-badge-${strength}-{{ last_part }}`;
@@ -354,7 +413,7 @@
 
           // Update the button
           this.classList.add('pc-card-score-button-outlined-{{ last_part }}');
-          this.textContent = 'Learn more';
+          this.textContent = '{{ section.settings.button_text }}';
           card.dataset.hasScore = 'true';
         }
       });
@@ -363,22 +422,1093 @@
 </script>
 
 {% schema %}
-{
-  "name": "PWC-Score Cards #1",
+  {
+  "name": "Financial Score Card",
+  "class": "financial-score-card",
   "settings": [
     {
       "type": "header",
-      "content": "General Settings"
+      "content": "Section Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "cards_gap",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Cards Gap",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "cards_alignment",
+      "label": "Cards Alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        },
+        {
+          "value": "space-between",
+          "label": "Space Between"
+        },
+        {
+          "value": "space-around",
+          "label": "Space Around"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "card_max_width",
+      "min": 300,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "label": "Card Max Width",
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Section Padding Top",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Section Padding Bottom",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "cards_gap_mobile",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Cards Gap",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "cards_alignment_mobile",
+      "label": "Mobile Cards Alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "card_max_width_mobile",
+      "min": 280,
+      "max": 400,
+      "step": 20,
+      "unit": "px",
+      "label": "Mobile Card Max Width",
+      "default": 320
+    },
+    {
+      "type": "header",
+      "content": "Card Styling"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Border Radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Border Width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card Border Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_shadow",
+      "label": "Enable Card Shadow",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_offset",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Shadow Offset",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_blur",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Shadow Blur",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Card Shadow Opacity",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "card_padding_vertical",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Card Padding Vertical",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_padding_horizontal",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Card Padding Horizontal",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_padding_vertical_mobile",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Card Padding Vertical",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_padding_horizontal_mobile",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Card Padding Horizontal",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Header Settings"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Title Font",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Title Font Size",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "title_font_style",
+      "label": "Title Font Style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Letter Spacing",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "title_line_height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "Title Line Height",
+      "default": 1.3
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "header_gap",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Header Elements Gap",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "header_margin_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Header Margin Bottom",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Badge Settings"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Font Size",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "badge_font_weight",
+      "label": "Badge Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "badge_line_height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "Badge Line Height",
+      "default": 1.2
+    },
+    {
+      "type": "select",
+      "id": "badge_text_transform",
+      "label": "Badge Text Transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "badge_padding_vertical",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Padding Vertical",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "badge_padding_horizontal",
+      "min": 6,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Padding Horizontal",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Border Radius",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Badge Colors - Weak"
+    },
+    {
+      "type": "color",
+      "id": "weak_badge_bg_color",
+      "label": "Weak Badge Background",
+      "default": "#FFEBEE"
+    },
+    {
+      "type": "color",
+      "id": "weak_badge_text_color",
+      "label": "Weak Badge Text",
+      "default": "#C62828"
+    },
+    {
+      "type": "header",
+      "content": "Badge Colors - Moderate"
+    },
+    {
+      "type": "color",
+      "id": "moderate_badge_bg_color",
+      "label": "Moderate Badge Background",
+      "default": "#FFF8E1"
+    },
+    {
+      "type": "color",
+      "id": "moderate_badge_text_color",
+      "label": "Moderate Badge Text",
+      "default": "#FF8F00"
+    },
+    {
+      "type": "header",
+      "content": "Badge Colors - Strong"
+    },
+    {
+      "type": "color",
+      "id": "strong_badge_bg_color",
+      "label": "Strong Badge Background",
+      "default": "#E8F5E9"
+    },
+    {
+      "type": "color",
+      "id": "strong_badge_text_color",
+      "label": "Strong Badge Text",
+      "default": "#2E7D32"
+    },
+    {
+      "type": "header",
+      "content": "Graph Settings"
+    },
+    {
+      "type": "range",
+      "id": "graph_height",
+      "min": 80,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Graph Height",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "graph_stroke_width",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "label": "Graph Stroke Width",
+      "default": 6
+    },
+    {
+      "type": "color",
+      "id": "graph_track_color",
+      "label": "Graph Track Color",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "range",
+      "id": "graph_margin_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Graph Margin Bottom",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Graph Colors - Weak"
+    },
+    {
+      "type": "color",
+      "id": "weak_graph_start_color",
+      "label": "Weak Start Color",
+      "default": "#FF5252"
+    },
+    {
+      "type": "color",
+      "id": "weak_graph_mid_color",
+      "label": "Weak Mid Color",
+      "default": "#FF4081"
+    },
+    {
+      "type": "color",
+      "id": "weak_graph_end_color",
+      "label": "Weak End Color",
+      "default": "#FF80AB"
+    },
+    {
+      "type": "header",
+      "content": "Graph Colors - Moderate"
+    },
+    {
+      "type": "color",
+      "id": "moderate_graph_start_color",
+      "label": "Moderate Start Color",
+      "default": "#FFC107"
+    },
+    {
+      "type": "color",
+      "id": "moderate_graph_mid_color",
+      "label": "Moderate Mid Color",
+      "default": "#FF9800"
+    },
+    {
+      "type": "color",
+      "id": "moderate_graph_end_color",
+      "label": "Moderate End Color",
+      "default": "#FFA726"
+    },
+    {
+      "type": "header",
+      "content": "Graph Colors - Strong"
+    },
+    {
+      "type": "color",
+      "id": "strong_graph_start_color",
+      "label": "Strong Start Color",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "color",
+      "id": "strong_graph_mid_color",
+      "label": "Strong Mid Color",
+      "default": "#66BB6A"
+    },
+    {
+      "type": "color",
+      "id": "strong_graph_end_color",
+      "label": "Strong End Color",
+      "default": "#81C784"
+    },
+    {
+      "type": "header",
+      "content": "Score Settings"
     },
     {
       "type": "range",
       "id": "max_score",
+      "min": 10,
+      "max": 1000,
+      "step": 10,
       "label": "Maximum Score Value",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "strong_threshold",
       "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Strong Threshold (% of max)",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "moderate_threshold",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Moderate Threshold (% of max)",
+      "default": 50
+    },
+    {
+      "type": "font_picker",
+      "id": "score_font",
+      "label": "Score Font",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "range",
+      "id": "score_font_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Score Font Size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "score_font_size_mobile",
+      "min": 20,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Score Font Size",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "score_font_weight",
+      "label": "Score Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "score_height",
+      "min": 30,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Score Height",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "score_color",
+      "label": "Score Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "dimmed_score_color",
+      "label": "Dimmed Score Color",
+      "default": "#E0E0E0"
+    },
+    {
+      "type": "range",
+      "id": "score_display_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Score Display Bottom Position",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Score Label Settings"
+    },
+    {
+      "type": "range",
+      "id": "score_label_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Label Font Size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "score_label_font_weight",
+      "label": "Label Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "score_label_color",
+      "label": "Label Color",
+      "default": "#666666"
+    },
+    {
+      "type": "select",
+      "id": "score_label_text_transform",
+      "label": "Label Text Transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "score_label_margin_top",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Label Margin Top",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Description Settings"
+    },
+    {
+      "type": "font_picker",
+      "id": "description_font",
+      "label": "Description Font",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_font_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Description Font Size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "description_font_weight",
+      "label": "Description Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "min": 1.2,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "Description Line Height",
+      "default": 1.5
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "description_margin_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Description Margin Bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "description_min_height",
+      "min": 0,
       "max": 200,
       "step": 10,
-      "default": 100,
-      "unit": "pts"
+      "unit": "px",
+      "label": "Description Min Height",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "description_padding_horizontal",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Description Horizontal Padding",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "View Details"
+    },
+    {
+      "type": "text",
+      "id": "calculate_button_text",
+      "label": "Calculate Button Text",
+      "default": "Calculate Score"
+    },
+    {
+      "type": "font_picker",
+      "id": "button_font",
+      "label": "Button Font",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_font_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Button Font Size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Button Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "button_text_transform",
+      "label": "Button Text Transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "button_letter_spacing",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Letter Spacing",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Padding Vertical",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Padding Horizontal",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Outline Button Settings"
+    },
+    {
+      "type": "color",
+      "id": "button_outline_text_color",
+      "label": "Outline Button Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_outline_border_color",
+      "label": "Outline Button Border Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "button_outline_border_width",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Outline Button Border Width",
+      "default": 1
     }
   ],
   "blocks": [
@@ -390,65 +1520,42 @@
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Financial Score"
+          "default": "Financial Health Score"
         },
         {
           "type": "textarea",
           "id": "description",
           "label": "Description",
-          "default": "This score measures your financial health. Higher score means better financial status."
+          "default": "Get an instant assessment of your financial health with our comprehensive scoring system."
         },
         {
           "type": "range",
           "id": "initial_score",
-          "label": "Initial Score",
           "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "pts",
+          "max": 1000,
+          "step": 10,
+          "label": "Initial Score (0 for no score)",
           "default": 0,
-          "info": "Leave empty to show 'Calculate your score' button"
+          "info": "Set to 0 to show 'Calculate Score' button"
         },
         {
           "type": "url",
           "id": "button_link",
           "label": "Button Link",
-          "info": "Link for 'Learn more' button"
+          "info": "Optional link when score is shown"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "PWC-Score Cards #1",
+      "name": "Financial Score Card",
       "category": "Custom",
-   "blocks": [
-  {
-    "type": "score_card",
-    "settings": {
-      "title": "Protection Score",
-      "description": "This score measures your overall security strength. Higher score means better protection.",
-      "initial_score": 42
-    }
-  },
-  {
-    "type": "score_card",
-    "settings": {
-      "title": "Investment Score",
-      "description": "This score measures portfolio alignment with your goals and strategy.",
-      "initial_score": 83
-    }
-  },
-  {
-    "type": "score_card",
-    "settings": {
-      "title": "Financial Fitness",
-      "description": "Boost financial control in 10 minutes. Get your fitness score.",
-      "initial_score": 0
-    }
-  }
-]
-
+      "blocks": [
+        {
+          "type": "score_card"
+        }
+      ]
     }
   ]
 }
