@@ -188,7 +188,6 @@
     padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
     width: 100%;
     transition: all 0.3s ease;
-    font-family: {{ section.settings.button_font.family }}, {{ section.settings.button_font.fallback_families }};
     font-weight: {{ section.settings.button_font_weight }};
     text-transform: {{ section.settings.button_text_transform }};
     letter-spacing: {{ section.settings.button_letter_spacing }}em;
@@ -245,10 +244,6 @@
     
     {{ sec_id }} .pc-card-title-{{ last_part }} {
       font-size: {{ section.settings.title_font_size_mobile }}px;
-    }
-    
-    {{ sec_id }} .pc-card-score-button-{{ last_part }} {
-      font-size: {{ section.settings.button_font_size_mobile }}px;
     }
     
     {{ sec_id }} .pc-card-content-{{ last_part }} {
@@ -1314,12 +1309,6 @@
       "id": "calculate_button_text",
       "label": "Calculate Button Text",
       "default": "Calculate Score"
-    },
-    {
-      "type": "font_picker",
-      "id": "button_font",
-      "label": "Button Font",
-      "default": "helvetica_n4"
     },
     {
       "type": "range",
