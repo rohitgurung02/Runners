@@ -1,6 +1,770 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} .pc-team-accordion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: {{ section.settings.desktop_height }}px;
+    background-color: {{ section.settings.background_color }};
+    overflow: hidden;
+    padding: 20px;
   }
+
+  {{ sec_id }} .pc-accordion-container {
+    display: flex;
+    width: {{ section.settings.container_width_desktop }}%;
+    max-width: {{ section.settings.max_width_desktop }}px;
+    height: {{ section.settings.container_height_desktop }}vh;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  {{ sec_id }} .pc-panel {
+    position: relative;
+    flex: 1;
+    transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+    margin: 0 {{ section.settings.panel_spacing_desktop }}px;
+    border-radius: {{ section.settings.panel_radius_desktop }}px;
+    overflow: hidden;
+    {% if section.settings.enable_shadow %}
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    {% endif %}
+  }
+
+  {{ sec_id }} .pc-panel.active {
+    flex: {{ section.settings.active_panel_flex }};
+  }
+
+  {{ sec_id }} .pc-panel-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  {{ sec_id }} .pc-panel-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+
+  {{ sec_id }} .pc-panel:hover .pc-panel-bg img {
+    transform: scale(1.05);
+  }
+
+  {{ sec_id }} .pc-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(74, 42, 130, 0.2), rgba(74, 42, 130, 0.7));
+    z-index: 1;
+    opacity: 0.85;
+    transition: opacity 0.5s ease;
+  }
+
+  {{ sec_id }} .pc-panel:hover::before {
+    opacity: 0.5;
+  }
+
+  {{ sec_id }} .pc-panel-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: {{ section.settings.content_padding_desktop }}px;
+    color: {{ section.settings.text_color }};
+    z-index: 2;
+    text-align: center;
+    transform: translateY(30%);
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+
+  {{ sec_id }} .pc-panel.active .pc-panel-content {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  {{ sec_id }} .pc-panel-name {
+    font-size: {{ section.settings.name_size_desktop }}px;
+    color: {{ section.settings.name_dektop_color }};
+    font-style: {{ section.settings.name_dektop_font_style }};
+    letter-spacing: {{ section.settings.name_dektop_letter_spacing }}px;
+    text-decoration: {{ section.settings.name_dektop_text_decoration }};
+    text-decoration-color: {{ section.settings.name_dektop_text_decoration_color }};
+    font-weight: {{ section.settings.name_dektop_font_weight }};
+    padding-top: {{ section.settings.name_dektop_padding_top }}px;
+    padding-bottom: {{ section.settings.name_dektop_padding_bottom }}px;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  {{ sec_id }} .pc-divider {
+    width: {{ section.settings.divider_width }}%;
+    height: {{ section.settings.divider_thickness }}px;
+    background-color: {{ section.settings.divider_color }};
+    margin: 0 auto;
+  }
+
+  {{ sec_id }} .pc-panel-role {
+  font-size: {{ section.settings.role_size_desktop }}px;
+  color: {{ section.settings.role_desktop_color }};
+  font-style: {{ section.settings.role_desktop_font_style }};
+  font-weight: {{ section.settings.role_desktop_font_weight }};
+  letter-spacing: {{ section.settings.role_desktop_letter_spacing }}px;
+  text-decoration: {{ section.settings.role_desktop_text_decoration }};
+  text-decoration-color: {{ section.settings.role_desktop_text_decoration_color }};
+  padding-top: {{ section.settings.role_desktop_padding_top }}px;
+  padding-bottom: {{ section.settings.role_desktop_padding_bottom }}px;
+  opacity: 0.9;
+  margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} .pc-accordion-container {
+      height: {{ section.settings.container_height_mobile }}vh;
+      width: {{ section.settings.container_width_mobile }}%;
+    }
+
+    {{ sec_id }} .pc-panel {
+      margin: 0 {{ section.settings.panel_spacing_mobile }}px;
+      border-radius: {{ section.settings.panel_radius_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-panel-name {
+      font-size: {{ section.settings.name_size_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-panel-role {
+      font-size: {{ section.settings.role_size_mobile }}px;
+    }
+    {{ sec_id }} .pc-divider {
+    height: {{ section.settings.divider_thickness_mobile }}px;
+    width: {{ section.settings.divider_width_mobile }}%;
+  }
+    {{ sec_id }} .pc-team-accordion {
+    min-height: {{ section.settings.mobile_min_height }}px;
+  }
+  }
+
+  
+
+  @media (max-width: 480px) {
+    {{ sec_id }} .pc-accordion-container {
+      height: {{ section.settings.container_height_small_mobile }}vh;
+    }
+  }
+</style>
+
+<pc-team-accordion-{{ last_part }} class="pc-team-accordion">
+  <div class="pc-accordion-container">
+    {%- for block in section.blocks -%}
+      <div class="pc-panel" data-index="{{ forloop.index0 }}">
+        <div class="pc-panel-bg">
+          {%- if block.settings.image != blank -%}
+            {% assign image_class = 'pc-team-image-' | append: last_part %}
+            {{ 
+              block.settings.image
+              | image_url: width: 1200
+              | image_tag: 
+                  loading: 'lazy', 
+                  class: image_class,
+                  alt: block.settings.name
+            }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-image' }}
+          {%- endif -%}
+        </div>
+        <div class="pc-panel-content">
+          <h2 class="pc-panel-name">{{ block.settings.name }}</h2>
+          <div class="pc-divider"></div>
+          <p class="pc-panel-role">{{ block.settings.role }}</p>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</pc-team-accordion-{{ last_part }}>
+
+<script>
+  class PcTeamAccordion{{ last_part | capitalize }} extends HTMLElement {
+    constructor() {
+      super();
+      this.panels = this.querySelectorAll('.pc-panel');
+      this.init();
+    }
+
+    init() {
+      this.panels.forEach(panel => {
+        panel.addEventListener('mouseenter', () => this.setActive(panel));
+        panel.addEventListener('click', () => this.setActive(panel));
+      });
+    }
+
+    setActive(activePanel) {
+      this.panels.forEach(panel => {
+        panel.classList.remove('active');
+      });
+      activePanel.classList.add('active');
+    }
+  }
+
+  customElements.define('pc-team-accordion-{{ last_part }}', PcTeamAccordion{{ last_part | capitalize }});
+</script>
+
+{% schema %}
+{
+  "name": "RW - Team Accordion #6",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#B4A2D3"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Panel Shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Container Settings - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "container_width_desktop",
+      "label": "Container Width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 80
+    },
+    {
+  "type": "range",
+  "id": "desktop_height",
+  "label": "Desktop Height",
+  "min": 300,
+  "max": 1200,
+  "step": 50,
+  "unit": "px",
+  "default": 500,
+},
+    {
+      "type": "range",
+      "id": "max_width_desktop",
+      "label": "Max Width",
+      "min": 800,
+      "max": 2000,
+      "step": 100,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "container_height_desktop",
+      "label": "Container Height",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "panel_spacing_desktop",
+      "label": "Panel Spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "panel_radius_desktop",
+      "label": "Panel Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "active_panel_flex",
+      "label": "Active Panel Flex Ratio",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "content_padding_desktop",
+      "label": "Content Padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Name Settings"
+    },
+    {
+      "type": "range",
+      "id": "name_size_desktop",
+      "label": "Name Font Size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+          "type": "color",
+          "id": "name_dektop_color",
+          "label": "Name Text Color",
+          "default": "#000"
+        },
+        {
+          "type": "select",
+          "id": "name_dektop_font_style",
+          "label": "Name Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+    {
+      "type": "select",
+      "id": "name_dektop_font_weight",
+      "label": "Name Font Weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+        {
+          "type": "range",
+          "id": "name_dektop_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Name Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "name_dektop_text_decoration",
+          "label": "Name Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "name_dektop_text_decoration_color",
+          "label": "Name Text Decoration Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "name_dektop_padding_top",
+          "label": "Name Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "name_dektop_padding_bottom",
+          "label": "Name Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+      {
+      "type": "header",
+      "content": "Role Name Settings"
+    },
+   
+    {
+      "type": "range",
+      "id": "role_size_desktop",
+      "label": "Role Font Size",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 22
+    },
+      {
+          "type": "color",
+          "id": "role_desktop_color",
+          "label": "Role Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "select",
+          "id": "role_desktop_font_style",
+          "label": "Role Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+    {
+      "type": "select",
+      "id": "role_desktop_font_weight",
+      "label": "Role Font Weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+        {
+          "type": "range",
+          "id": "role_desktop_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Name Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "role_desktop_text_decoration",
+          "label": "Role Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "role_desktop_text_decoration_color",
+          "label": "Role Text Decoration Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "role_desktop_padding_top",
+          "label": "Role Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "role_desktop_padding_bottom",
+          "label": "Role Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+    {
+      "type": "header",
+      "content": "Divider Settings"
+    },
+    {
+      "type": "range",
+      "id": "divider_width",
+      "label": "Divider Width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "divider_thickness",
+      "label": "Divider Thickness",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Container Settings - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "container_width_mobile",
+      "label": "Container Width",
+      "min": 70,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 95
+    },
+     {
+      "type": "range",
+      "id": "container_height_small_mobile",
+      "label": "Container Height",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 50
+    },
+    {
+  "type": "range",
+  "id": "mobile_min_height",
+  "label": "Mobile Height",
+  "min": 50,
+  "max": 1000,
+  "step": 25,
+  "unit": "px",
+  "default": 100,
+},
+    {
+      "type": "range",
+      "id": "panel_spacing_mobile",
+      "label": "Panel Spacing",
+      "min": 0,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "panel_radius_mobile",
+      "label": "Panel Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "name_size_mobile",
+      "label": "Name Font Size",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "role_size_mobile",
+      "label": "Role Font Size",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+  "type": "range",
+  "id": "divider_width_mobile",
+  "label": "Divider Width",
+  "min": 10,
+  "max": 100,
+  "step": 5,
+  "unit": "%",
+  "default": 80,
+},
+    {
+  "type": "range",
+  "id": "divider_thickness_mobile",
+  "label": "Divider Thickness",
+  "min": 1,
+  "max": 10,
+  "step": 1,
+  "unit": "px",
+  "default": 2,
+}
+  ],
+  "blocks": [
+    {
+      "type": "team_member",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Member Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Member Name",
+          "default": "Team Member"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Member Role",
+          "default": "Team Role"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RW - Team Accordion #6",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "team_member",
+          "settings": {
+            "name": "Sarah Johnson",
+            "role": "Frontend Developer"
+          }
+        },
+        {
+          "type": "team_member",
+          "settings": {
+            "name": "Michael Chen",
+            "role": "UX Designer"
+          }
+        },
+        {
+          "type": "team_member",
+          "settings": {
+            "name": "Pavel Dvorak",
+            "role": "Backend Developer"
+          }
+        },
+        {
+          "type": "team_member",
+          "settings": {
+            "name": "Amara Williams",
+            "role": "Project Manager"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
