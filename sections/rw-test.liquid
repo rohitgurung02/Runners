@@ -4,30 +4,28 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} .pc-financial-score-widget-{{ last_part }} {
+  {{ sec_id }} .pc-financial-score-{{ last_part }} {
     position: relative;
     width: 100%;
     overflow: hidden;
   }
-
+  
   {{ sec_id }} .pc-card-{{ last_part }} {
     display: flex;
     align-items: center;
     width: 100%;
     max-width: 25em;
   }
-
+  
   {{ sec_id }} .pc-card-surface-{{ last_part }} {
     animation: pc-fade-in-{{ last_part }} 1s cubic-bezier(0.33, 1, 0.68, 1);
-    background: {% if section.settings.card_bg_color != blank %}{{ section.settings.card_bg_color }}{% else %}var(--color-background){% endif %};
+    background: var(--pc-white);
     border-radius: 1em;
-    box-shadow: {% if section.settings.enable_shadow %}0 0.25em 0.625em hsla(0, 0%, 0%, 0.05){% else %}none{% endif %};
+    box-shadow: 0 0.25em 0.625em hsla(0, 0%, 0%, 0.05);
     min-width: 0;
     transition: background-color 0.3s;
-    margin: {{ section.settings.desktop_margin_top }}px {{ section.settings.desktop_margin_right }}px {{ section.settings.desktop_margin_bottom }}px {{ section.settings.desktop_margin_left }}px;
-    padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
   }
-
+  
   {{ sec_id }} .pc-card-header-{{ last_part }},
   {{ sec_id }} .pc-card-badge-{{ last_part }},
   {{ sec_id }} .pc-card-graph-container-{{ last_part }},
@@ -36,7 +34,7 @@
     animation: pc-fade-slide-up-{{ last_part }} 0.8s cubic-bezier(0.33, 1, 0.68, 1) forwards;
     opacity: 0;
   }
-
+  
   {{ sec_id }} .pc-card-header-{{ last_part }} {
     display: flex;
     gap: 1.5em;
@@ -44,16 +42,15 @@
     align-items: center;
     margin-bottom: 2.5em;
   }
-
+  
   {{ sec_id }} .pc-card-title-{{ last_part }} {
-    font-size: {{ section.settings.title_font_size }}px;
-    font-weight: {{ section.settings.title_font_weight }};
+    font-size: 1.375em;
+    font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: {% if section.settings.title_color != blank %}{{ section.settings.title_color }}{% else %}inherit{% endif %};
   }
-
+  
   {{ sec_id }} .pc-card-badge-{{ last_part }} {
     animation-delay: 0.8s;
     border-radius: 0.25rem;
@@ -67,28 +64,28 @@
     transform: translateY(67%);
     transition: background-color 0.3s, color 0.3s;
   }
-
+  
   {{ sec_id }} .pc-card-badge-weak-{{ last_part }} {
-    background-color: var(--danger100);
-    color: var(--danger700);
+    background-color: var(--pc-danger100);
+    color: var(--pc-danger700);
   }
-
+  
   {{ sec_id }} .pc-card-badge-moderate-{{ last_part }} {
-    background-color: var(--warning100);
-    color: var(--warning700);
+    background-color: var(--pc-warning100);
+    color: var(--pc-warning700);
   }
-
+  
   {{ sec_id }} .pc-card-badge-strong-{{ last_part }} {
-    background-color: var(--success100);
-    color: var(--success700);
+    background-color: var(--pc-success100);
+    color: var(--pc-success700);
   }
-
+  
   {{ sec_id }} .pc-card-graph-container-{{ last_part }} {
     animation-delay: 0.1s;
     position: relative;
     margin-bottom: 2em;
   }
-
+  
   {{ sec_id }} .pc-card-half-circle-{{ last_part }} {
     display: block;
     margin: auto;
@@ -96,22 +93,21 @@
     max-width: 100%;
     height: 8.5em;
   }
-
+  
   {{ sec_id }} .pc-card-half-circle-track-{{ last_part }} {
-    stroke: var(--gray50);
+    stroke: var(--pc-gray50);
     transition: stroke 0.3s;
   }
-
+  
   {{ sec_id }} .pc-card-description-{{ last_part }} {
     animation-delay: 0.2s;
-    color: var(--gray600);
+    color: var(--pc-gray600);
     margin-bottom: 2.25em;
     min-height: 4.5em;
     text-align: center;
     transition: color 0.3s;
-    font-size: {{ section.settings.description_font_size }}px;
   }
-
+  
   {{ sec_id }} .pc-card-score-{{ last_part }} {
     font-size: 2.5em;
     font-weight: 500;
@@ -119,40 +115,48 @@
     overflow: hidden;
     position: relative;
   }
-
+  
   {{ sec_id }} .pc-card-score-digit-{{ last_part }} {
     display: inline-block;
   }
-
+  
   {{ sec_id }} .pc-card-score-digits-{{ last_part }} {
     position: absolute;
     inset: 0;
   }
-
+  
   {{ sec_id }} .pc-card-score-digits-dimmed-{{ last_part }} {
-    color: var(--gray400);
+    color: var(--pc-gray400);
   }
-
+  
+  {{ sec_id }} .pc-card-score-digits-{{ last_part }} + .pc-card-score-digits-{{ last_part }} {
+    transform: translateY(100%);
+  }
+  
+  {{ sec_id }} .pc-card-score-animated-{{ last_part }} .pc-card-score-digit-{{ last_part }} {
+    animation: pc-slide-to-top-{{ last_part }} 0.8s 0.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+  
   {{ sec_id }} .pc-card-score-display-{{ last_part }} {
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
   }
-
+  
   {{ sec_id }} .pc-card-score-label-{{ last_part }} {
-    color: var(--gray700);
+    color: var(--pc-gray700);
     text-transform: uppercase;
     transition: color 0.3s;
   }
-
+  
   {{ sec_id }} .pc-card-score-button-{{ last_part }} {
     animation-delay: 0.3s;
-    background-color: var(--primary500);
-    border: 2px solid var(--primary500);
+    background-color: var(--pc-primary500);
+    border: 2px solid var(--pc-primary500);
     border-radius: 0.5rem;
     box-shadow: 0 0 0 3px transparent;
-    color: var(--white);
+    color: var(--pc-white);
     cursor: pointer;
     font-size: 1.25em;
     outline: transparent;
@@ -160,26 +164,26 @@
     width: 100%;
     transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s, color 0.3s;
   }
-
+  
   {{ sec_id }} .pc-card-score-button-outlined-{{ last_part }} {
     background: transparent;
-    border: 2px solid var(--gray100);
-    color: var(--gray900);
+    border: 2px solid var(--pc-gray100);
+    color: var(--pc-gray900);
   }
-
+  
   {{ sec_id }} .pc-card-container-{{ last_part }} {
     overflow: hidden;
   }
-
+  
   {{ sec_id }} .pc-card-content-{{ last_part }} {
     padding: 2.25em;
   }
-
+  
   @keyframes pc-fade-in-{{ last_part }} {
     from { opacity: 0; }
     to { opacity: 1; }
   }
-
+  
   @keyframes pc-fade-slide-up-{{ last_part }} {
     from {
       opacity: 0;
@@ -190,485 +194,257 @@
       transform: translateY(0);
     }
   }
-
+  
   @keyframes pc-slide-to-top-{{ last_part }} {
     from { transform: translateY(0); }
     to { transform: translateY(-100%); }
   }
-
-  @media (max-width: 749px) {
-    {{ sec_id }} .pc-card-surface-{{ last_part }} {
-      margin: {{ section.settings.mobile_margin_top }}px {{ section.settings.mobile_margin_right }}px {{ section.settings.mobile_margin_bottom }}px {{ section.settings.mobile_margin_left }}px;
-      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
-    }
-    
-    {{ sec_id }} .pc-card-title-{{ last_part }} {
-      font-size: {{ section.settings.mobile_title_font_size }}px;
-    }
-    
-    {{ sec_id }} .pc-card-description-{{ last_part }} {
-      font-size: {{ section.settings.mobile_description_font_size }}px;
-    }
-  }
 </style>
 
-<pc-financial-score-widget-{{ last_part }} class="pc-financial-score-widget-{{ last_part }}">
-  {%- for block in section.blocks -%}
-    {%- assign score_value = block.settings.initial_score | default: nil -%}
-    {%- assign has_score = false -%}
-{%- if score_value != blank -%}
-  {%- assign has_score = true -%}
-{%- endif -%}
-    {%- assign max_score = 100 -%}
-    {%- assign strength = 'none' -%}
+<div class="pc-financial-score-{{ last_part }}">
+  {% for block in section.blocks %}
+    {% assign score = block.settings.initial_score | default: nil %}
+{% assign max_score = 100 %}
+{% assign has_score = false %}
+{% if score != blank %}
+  {% assign has_score = true %}
+{% endif %}
+
     
-    {%- if has_score -%}
-      {%- assign percent = score_value | divided_by: max_score -%}
-      {%- if percent >= 0.8 -%}
-        {%- assign strength = 'strong' -%}
-      {%- elsif percent >= 0.4 -%}
-        {%- assign strength = 'moderate' -%}
-      {%- else -%}
-        {%- assign strength = 'weak' -%}
-      {%- endif -%}
-    {%- endif -%}
+    {% if has_score %}
+      {% assign score_value = score | times: 1 %}
+      {% if score_value >= 80 %}
+        {% assign strength = 'strong' %}
+      {% elsif score_value >= 40 %}
+        {% assign strength = 'moderate' %}
+      {% else %}
+        {% assign strength = 'weak' %}
+      {% endif %}
+    {% else %}
+      {% assign strength = 'none' %}
+    {% endif %}
     
-    <div class="pc-card-{{ last_part }}">
+    <div class="pc-card-{{ last_part }}" data-has-score="{{ has_score }}" data-initial-score="{{ score_value | default: 0 }}" data-block-id="{{ block.id }}">
       <div class="pc-card-surface-{{ last_part }}">
         <div class="pc-card-container-{{ last_part }}">
           <div class="pc-card-content-{{ last_part }}">
             <div class="pc-card-header-{{ last_part }}">
               <h2 class="pc-card-title-{{ last_part }}">{{ block.settings.title }}</h2>
-              {%- if strength != 'none' -%}
+              {% if strength != 'none' %}
                 <span class="pc-card-badge-{{ last_part }} pc-card-badge-{{ strength }}-{{ last_part }}">{{ strength }}</span>
-              {%- endif -%}
+              {% endif %}
             </div>
             
             <div class="pc-card-graph-container-{{ last_part }}">
               <svg class="pc-card-half-circle-{{ last_part }}" viewBox="0 0 100 50" aria-hidden="true">
                 <defs>
-                  <linearGradient id="grad-{{ block.id }}" x1="0" y1="0" x2="1" y2="0">
-                    {%- if strength == 'none' -%}
-                      <stop offset="0%" stop-color="var(--gray50)" />
-                      <stop offset="100%" stop-color="var(--gray400)" />
-                    {%- elsif strength == 'weak' -%}
-                      <stop offset="0%" stop-color="var(--danger200)" />
-                      <stop offset="50%" stop-color="var(--danger500)" />
-                      <stop offset="100%" stop-color="var(--danger700)" />
-                    {%- elsif strength == 'moderate' -%}
-                      <stop offset="0%" stop-color="var(--warning200)" />
-                      <stop offset="50%" stop-color="var(--warning500)" />
-                      <stop offset="100%" stop-color="var(--warning600)" />
-                    {%- elsif strength == 'strong' -%}
-                      <stop offset="0%" stop-color="var(--success200)" />
-                      <stop offset="50%" stop-color="var(--success500)" />
-                      <stop offset="100%" stop-color="var(--success700)" />
-                    {%- endif -%}
+                  <linearGradient id="grad-{{ last_part }}-{{ forloop.index }}" x1="0" y1="0" x2="1" y2="0">
+                    {% if strength == 'none' %}
+                      <stop offset="0%" stop-color="var(--pc-gray50)" />
+                      <stop offset="100%" stop-color="var(--pc-gray400)" />
+                    {% elsif strength == 'weak' %}
+                      <stop offset="0%" stop-color="var(--pc-danger200)" />
+                      <stop offset="50%" stop-color="var(--pc-danger500)" />
+                      <stop offset="100%" stop-color="var(--pc-danger700)" />
+                    {% elsif strength == 'moderate' %}
+                      <stop offset="0%" stop-color="var(--pc-warning200)" />
+                      <stop offset="50%" stop-color="var(--pc-warning500)" />
+                      <stop offset="100%" stop-color="var(--pc-warning600)" />
+                    {% elsif strength == 'strong' %}
+                      <stop offset="0%" stop-color="var(--pc-success200)" />
+                      <stop offset="50%" stop-color="var(--pc-success500)" />
+                      <stop offset="100%" stop-color="var(--pc-success700)" />
+                    {% endif %}
                   </linearGradient>
                 </defs>
                 <g fill="none" stroke-width="10" transform="translate(50, 50.5)">
                   <circle class="pc-card-half-circle-track-{{ last_part }}" r="45" />
-                  <circle stroke="url(#grad-{{ block.id }})" stroke-dasharray="141.3716694115407 141.3716694115407" r="45" 
-                    {% if has_score %}
-                      stroke-dashoffset="{{ score_value | divided_by: max_score | times: -141.3716694115407 }}"
-                    {% else %}
-                      stroke-dashoffset="-70.68583470577035"
-                    {% endif %} />
+                  <circle stroke="url(#grad-{{ last_part }}-{{ forloop.index }})" 
+                          stroke-dasharray="141.37 141.37" 
+                          r="45" 
+                          stroke-dashoffset="{% if has_score %}{{ score_value | times: -1.4137 }}{% else %}-35.3425{% endif %}" />
                 </g>
               </svg>
               
               <div class="pc-card-score-display-{{ last_part }}">
-                <div class="pc-card-score-{{ last_part }}{% if has_score %} pc-card-score-animated-{{ last_part }}{% endif %}">
+                <div class="pc-card-score-{{ last_part }} {% if has_score %}pc-card-score-animated-{{ last_part }}{% endif %}">
                   <div class="pc-card-score-digits-{{ last_part }} pc-card-score-digits-dimmed-{{ last_part }}">
                     <div class="pc-card-score-digit-{{ last_part }}">0</div>
                   </div>
                   <div class="pc-card-score-digits-{{ last_part }}">
-                    {%- if has_score -%}
-                      {%- assign digits = score_value | floor | split: '' -%}
-                      {%- for digit in digits -%}
+                    {% if has_score %}
+                      {% assign digits = score | split: '' %}
+                      {% for digit in digits %}
                         <span class="pc-card-score-digit-{{ last_part }}">{{ digit }}</span>
-                      {%- endfor -%}
-                    {%- endif -%}
+                      {% endfor %}
+                    {% endif %}
                   </div>
                 </div>
                 <div class="pc-card-score-label-{{ last_part }}">
-                  {%- if has_score -%}out of {{ max_score }}{%- else -%}No score{%- endif -%}
+                  {% if has_score %}out of {{ max_score }}{% else %}No score{% endif %}
                 </div>
               </div>
             </div>
             
             <p class="pc-card-description-{{ last_part }}">{{ block.settings.description }}</p>
             
-            <button type="button" class="pc-card-score-button-{{ last_part }}{% if has_score %} pc-card-score-button-outlined-{{ last_part }}{% endif %}" 
-              onclick="handleGenerateScore{{ block.id }}()">
-              {%- if has_score -%}Learn more{%- else -%}Calculate your score{%- endif -%}
+            <button class="pc-card-score-button-{{ last_part }} {% if has_score %}pc-card-score-button-outlined-{{ last_part }}{% endif %}" 
+                    type="button" 
+                    data-button-link="{{ block.settings.button_link | default: '#' }}">
+              {% if has_score %}Learn more{% else %}Calculate your score{% endif %}
             </button>
-            
-            <script>
-              function handleGenerateScore{{ block.id }}() {
-                const container = document.currentScript.closest('pc-financial-score-widget-{{ last_part }}');
-                const scoreElement = container.querySelector('.pc-card-score-digits-{{ last_part }}:not(.pc-card-score-digits-dimmed-{{ last_part }})');
-                
-                if (!scoreElement || scoreElement.textContent.trim() !== '') return;
-                
-                const randomScore = Math.floor(Math.random() * 100);
-                const digits = String(randomScore).split('');
-                
-                scoreElement.innerHTML = digits.map(d => `<span class="pc-card-score-digit-{{ last_part }}">${d}</span>`).join('');
-                
-                const circle = container.querySelector('.pc-card-half-circle-{{ last_part }} circle[stroke-dashoffset]');
-                if (circle) {
-                  circle.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(0.65, 0, 0.35, 1)';
-                  circle.setAttribute('stroke-dashoffset', -(randomScore / 100 * 141.3716694115407));
-                }
-                
-                const button = container.querySelector('.pc-card-score-button-{{ last_part }}');
-                if (button) {
-                  button.textContent = 'Learn more';
-                  button.classList.add('pc-card-score-button-outlined-{{ last_part }}');
-                }
-                
-                // Update badge
-                const header = container.querySelector('.pc-card-header-{{ last_part }}');
-                if (header) {
-                  let badge = header.querySelector('.pc-card-badge-{{ last_part }}');
-                  if (!badge) {
-                    badge = document.createElement('span');
-                    header.appendChild(badge);
-                  }
-                  
-                  let strength = 'weak';
-                  if (randomScore >= 80) strength = 'strong';
-                  else if (randomScore >= 40) strength = 'moderate';
-                  
-                  badge.className = `pc-card-badge-{{ last_part }} pc-card-badge-${strength}-{{ last_part }}`;
-                  badge.textContent = strength;
-                  badge.style.animation = 'none';
-                  setTimeout(() => {
-                    badge.style.animation = 'pc-fade-slide-up-{{ last_part }} 0.8s cubic-bezier(0.33, 1, 0.68, 1) forwards';
-                  }, 10);
-                }
-              }
-            </script>
           </div>
         </div>
       </div>
     </div>
-  {%- endfor -%}
-</pc-financial-score-widget-{{ last_part }}>
+  {% endfor %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('{{ sec_id }} .pc-card-{{ last_part }}');
+    
+    // Initialize animations
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        const container = card.querySelector('.pc-card-container-{{ last_part }}');
+        if (container) {
+          container.style.height = container.scrollHeight + 'px';
+        }
+      }, 300 + (index * 200));
+    });
+
+    // Handle button clicks
+    document.querySelectorAll('{{ sec_id }} .pc-card-score-button-{{ last_part }}').forEach(button => {
+      button.addEventListener('click', function() {
+        const card = this.closest('.pc-card-{{ last_part }}');
+        const hasScore = card.dataset.hasScore === 'true';
+        const buttonLink = this.dataset.buttonLink;
+
+        if (hasScore && buttonLink) {
+          window.location.href = buttonLink;
+        } else {
+          // Generate random score
+          const initialScore = parseInt(card.dataset.initialScore) || 0;
+          const randomScore = Math.floor(Math.random() * 100) + 1;
+          
+          // Update the score display
+          const digitsContainer = card.querySelector('.pc-card-score-digits-{{ last_part }}:last-child');
+          digitsContainer.innerHTML = '';
+          
+          String(randomScore).split('').forEach(digit => {
+            digitsContainer.innerHTML += `<span class="pc-card-score-digit-{{ last_part }}">${digit}</span>`;
+          });
+
+          // Update the badge
+          const badgeContainer = card.querySelector('.pc-card-badge-{{ last_part }}');
+          if (badgeContainer) {
+            let strength = 'none';
+            if (randomScore >= 80) strength = 'strong';
+            else if (randomScore >= 40) strength = 'moderate';
+            else strength = 'weak';
+            
+            badgeContainer.className = `pc-card-badge-{{ last_part }} pc-card-badge-${strength}-{{ last_part }}`;
+            badgeContainer.textContent = strength;
+          }
+
+          // Update the button
+          this.classList.add('pc-card-score-button-outlined-{{ last_part }}');
+          this.textContent = 'Learn more';
+          card.dataset.hasScore = 'true';
+        }
+      });
+    });
+  });
+</script>
 
 {% schema %}
 {
-  "name": "PWC-Score Widget #1",
-  "tag": "section",
-  "class": "section",
+  "name": "PWC-Score Cards #1",
   "settings": [
     {
       "type": "header",
       "content": "General Settings"
     },
     {
-      "type": "checkbox",
-      "id": "enable_shadow",
-      "label": "Enable Shadow",
-      "default": true
-    },
-    {
-      "type": "color",
-      "id": "card_bg_color",
-      "label": "Card Background Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "header",
-      "content": "Typography Settings"
-    },
-    {
       "type": "range",
-      "id": "title_font_size",
-      "label": "Title Font Size (Desktop)",
-      "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "default": 22
-    },
-    {
-      "type": "range",
-      "id": "mobile_title_font_size",
-      "label": "Title Font Size (Mobile)",
-      "min": 12,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "select",
-      "id": "title_font_weight",
-      "label": "Title Font Weight",
-      "options": [
-        { "value": "400", "label": "Normal" },
-        { "value": "500", "label": "Medium" },
-        { "value": "600", "label": "Semi Bold" },
-        { "value": "700", "label": "Bold" }
-      ],
-      "default": "500"
-    },
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": "Title Color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "description_font_size",
-      "label": "Description Font Size (Desktop)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "mobile_description_font_size",
-      "label": "Description Font Size (Mobile)",
-      "min": 12,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "header",
-      "content": "Desktop Settings"
-    },
-    {
-      "type": "range",
-      "id": "desktop_margin_top",
-      "label": "Margin Top (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_margin_right",
-      "label": "Margin Right (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_margin_bottom",
-      "label": "Margin Bottom (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_margin_left",
-      "label": "Margin Left (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_top",
-      "label": "Padding Top (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_right",
-      "label": "Padding Right (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_bottom",
-      "label": "Padding Bottom (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_left",
-      "label": "Padding Left (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
-    },
-    {
-      "type": "range",
-      "id": "mobile_margin_top",
-      "label": "Margin Top (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_margin_right",
-      "label": "Margin Right (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_margin_bottom",
-      "label": "Margin Bottom (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_margin_left",
-      "label": "Margin Left (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_top",
-      "label": "Padding Top (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_right",
-      "label": "Padding Right (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_bottom",
-      "label": "Padding Bottom (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_left",
-      "label": "Padding Left (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 0
+      "id": "max_score",
+      "label": "Maximum Score Value",
+      "min": 50,
+      "max": 200,
+      "step": 10,
+      "default": 100,
+      "unit": "pts"
     }
   ],
- "blocks": [
-  {
-    "type": "score_card",
-    "name": "Score Card",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title",
-        "default": "Financial Score"
-      },
-      {
-        "type": "textarea",
-        "id": "description",
-        "label": "Description",
-        "default": "This score measures your overall financial health. Higher score means better financial fitness."
-      },
-      {
-        "type": "range",
-        "id": "initial_score",
-        "label": "Initial Score",
-        "info": "Leave at 0 to show 'Calculate your score' button",
-        "min": 0,
-        "max": 100,
-        "step": 1,
-        "unit": "10",
-        "default": 0
-      }
-    ]
-  }
-],
-  "presets": [
+  "blocks": [
     {
-      "name": "PWC-Score Widget #1",
-      "blocks": [
+      "type": "score_card",
+      "name": "Score Card",
+      "settings": [
         {
-          "type": "score_card",
-          "settings": {
-            "title": "Protection Score",
-            "description": "This score measures your overall security strength. Higher score means better protection.",
-            "initial_score": 10
-          }
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Financial Score"
         },
         {
-          "type": "score_card",
-          "settings": {
-            "title": "Investment Score",
-            "description": "This score measures portfolio alignment with your goals and strategy.",
-            "initial_score": 83
-          }
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "This score measures your financial health. Higher score means better financial status."
         },
         {
-          "type": "score_card",
-          "settings": {
-            "title": "Financial Fitness",
-            "description": "Boost financial control in 10 minutes. Get your fitness score—quick, free, no impact on credit."
-          }
+          "type": "range",
+          "id": "initial_score",
+          "label": "Initial Score",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "pts",
+          "default": 0,
+          "info": "Leave empty to show 'Calculate your score' button"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link",
+          "info": "Link for 'Learn more' button"
         }
       ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC-Score Cards #1",
+      "category": "Custom",
+   "blocks": [
+  {
+    "type": "score_card",
+    "settings": {
+      "title": "Protection Score",
+      "description": "This score measures your overall security strength. Higher score means better protection.",
+      "initial_score": 42
+    }
+  },
+  {
+    "type": "score_card",
+    "settings": {
+      "title": "Investment Score",
+      "description": "This score measures portfolio alignment with your goals and strategy.",
+      "initial_score": 83
+    }
+  },
+  {
+    "type": "score_card",
+    "settings": {
+      "title": "Financial Fitness",
+      "description": "Boost financial control in 10 minutes. Get your fitness score.",
+      "initial_score": 0
+    }
+  }
+]
+
     }
   ]
 }
