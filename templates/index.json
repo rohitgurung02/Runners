@@ -835,7 +835,6 @@
         "description_margin_bottom": 20,
         "description_min_height": 60,
         "description_padding_horizontal": 0,
-        "button_text": "View Details",
         "calculate_button_text": "Calculate Score",
         "button_font": "helvetica_n4",
         "button_font_size": 16,
@@ -1154,7 +1153,6 @@
         "description_margin_bottom": 20,
         "description_min_height": 60,
         "description_padding_horizontal": 0,
-        "button_text": "View Details",
         "calculate_button_text": "Calculate Score",
         "button_font": "helvetica_n4",
         "button_font_size": 16,
@@ -1334,7 +1332,6 @@
         "description_margin_bottom": 20,
         "description_min_height": 60,
         "description_padding_horizontal": 0,
-        "button_text": "View Details",
         "calculate_button_text": "Calculate Score",
         "button_font": "helvetica_n4",
         "button_font_size": 16,
@@ -1363,6 +1360,7 @@
             "title": "Financial Health Score",
             "description": "Get an instant assessment of your financial health with our comprehensive scoring system.",
             "initial_score": 37,
+            "button_text": "Learn More",
             "button_link": ""
           }
         },
@@ -1372,6 +1370,7 @@
             "title": "Financial Health Score",
             "description": "Get an instant assessment of your financial health with our comprehensive scoring system.",
             "initial_score": 58,
+            "button_text": "View Details",
             "button_link": ""
           }
         },
@@ -1381,6 +1380,7 @@
             "title": "Financial Health Score",
             "description": "Get an instant assessment of your financial health with our comprehensive scoring system.",
             "initial_score": 85,
+            "button_text": "View Details",
             "button_link": ""
           }
         }
@@ -1476,7 +1476,6 @@
         "description_margin_bottom": 24,
         "description_min_height": 60,
         "description_padding_horizontal": 0,
-        "button_text": "View Details",
         "calculate_button_text": "Calculate Score",
         "button_font": "helvetica_n4",
         "button_font_size": 16,
