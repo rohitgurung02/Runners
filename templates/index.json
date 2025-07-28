@@ -1453,7 +1453,7 @@
         "description_line_height": 1.5,
         "description_color": "#666666",
         "description_margin_top": 28,
-        "description_margin_bottom": 20,
+        "description_margin_bottom": 24,
         "description_min_height": 60,
         "description_padding_horizontal": 0,
         "button_text": "View Details",
