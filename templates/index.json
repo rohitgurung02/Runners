@@ -1050,47 +1050,6 @@
       "settings": {
         "max_score": 100
       }
-    },
-    "rw_test_kkWTaK": {
-      "type": "rw-test",
-      "blocks": {
-        "score_card_k6GYHX": {
-          "type": "score_card",
-          "settings": {
-            "title": "Protection Score",
-            "description": "This score measures your overall security strength. Higher score means better protection.",
-            "initial_score": 42,
-            "button_link": ""
-          }
-        },
-        "score_card_J3jK4B": {
-          "type": "score_card",
-          "settings": {
-            "title": "Investment Score",
-            "description": "This score measures portfolio alignment with your goals and strategy.",
-            "initial_score": 83,
-            "button_link": ""
-          }
-        },
-        "score_card_fNN4UF": {
-          "type": "score_card",
-          "settings": {
-            "title": "Financial Fitness",
-            "description": "Boost financial control in 10 minutes. Get your fitness score.",
-            "initial_score": 0,
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "score_card_k6GYHX",
-        "score_card_J3jK4B",
-        "score_card_fNN4UF"
-      ],
-      "name": "PWC-Score Cards #1",
-      "settings": {
-        "max_score": 100
-      }
     }
   },
   "order": [
@@ -1108,7 +1067,6 @@
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
     "rw_hero_banner_4dJjqa",
-    "rw_test_AEPJEH",
-    "rw_test_kkWTaK"
+    "rw_test_AEPJEH"
   ]
 }
