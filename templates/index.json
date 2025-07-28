@@ -1410,7 +1410,7 @@
       ],
       "name": "Financial Score Card",
       "settings": {
-        "container_width": 1100,
+        "container_width": 1200,
         "container_width_mobile": 400,
         "container_min_height": 400,
         "container_min_height_mobile": 300,
