@@ -1442,7 +1442,7 @@
         "score_label_font_weight": "400",
         "score_label_color": "#666666",
         "score_label_text_transform": "none",
-        "score_label_margin_top": 4,
+        "score_label_margin_top": 3,
         "description_font": "helvetica_n4",
         "description_font_size": 16,
         "description_font_size_mobile": 14,
