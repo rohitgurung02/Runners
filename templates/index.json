@@ -751,30 +751,7 @@
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
       "settings": {
-        "enable_shadow": true,
-        "card_bg_color": "#ffffff",
-        "title_font_size": 22,
-        "mobile_title_font_size": 18,
-        "title_font_weight": "500",
-        "title_color": "#000000",
-        "description_font_size": 16,
-        "mobile_description_font_size": 14,
-        "desktop_margin_top": 0,
-        "desktop_margin_right": 0,
-        "desktop_margin_bottom": 0,
-        "desktop_margin_left": 0,
-        "desktop_padding_top": 0,
-        "desktop_padding_right": 0,
-        "desktop_padding_bottom": 0,
-        "desktop_padding_left": 0,
-        "mobile_margin_top": 0,
-        "mobile_margin_right": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_margin_left": 0,
-        "mobile_padding_top": 0,
-        "mobile_padding_right": 0,
-        "mobile_padding_bottom": 0,
-        "mobile_padding_left": 0
+        "max_score": 100
       }
     },
     "rw_reviews_eNfMNB": {
@@ -992,30 +969,7 @@
       "disabled": true,
       "name": "RW - Carousel Slider #8",
       "settings": {
-        "enable_shadow": true,
-        "card_bg_color": "#ffffff",
-        "title_font_size": 22,
-        "mobile_title_font_size": 18,
-        "title_font_weight": "500",
-        "title_color": "#000000",
-        "description_font_size": 16,
-        "mobile_description_font_size": 14,
-        "desktop_margin_top": 0,
-        "desktop_margin_right": 0,
-        "desktop_margin_bottom": 0,
-        "desktop_margin_left": 0,
-        "desktop_padding_top": 0,
-        "desktop_padding_right": 0,
-        "desktop_padding_bottom": 0,
-        "desktop_padding_left": 0,
-        "mobile_margin_top": 0,
-        "mobile_margin_right": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_margin_left": 0,
-        "mobile_padding_top": 0,
-        "mobile_padding_right": 0,
-        "mobile_padding_bottom": 0,
-        "mobile_padding_left": 0
+        "max_score": 100
       }
     },
     "rw_hero_banner_4dJjqa": {
@@ -1094,91 +1048,7 @@
       "type": "rw-test",
       "name": "RW - Team Accordion #6",
       "settings": {
-        "enable_shadow": true,
-        "card_bg_color": "#ffffff",
-        "title_font_size": 22,
-        "mobile_title_font_size": 18,
-        "title_font_weight": "500",
-        "title_color": "#000000",
-        "description_font_size": 16,
-        "mobile_description_font_size": 14,
-        "desktop_margin_top": 0,
-        "desktop_margin_right": 0,
-        "desktop_margin_bottom": 0,
-        "desktop_margin_left": 0,
-        "desktop_padding_top": 0,
-        "desktop_padding_right": 0,
-        "desktop_padding_bottom": 0,
-        "desktop_padding_left": 0,
-        "mobile_margin_top": 0,
-        "mobile_margin_right": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_margin_left": 0,
-        "mobile_padding_top": 0,
-        "mobile_padding_right": 0,
-        "mobile_padding_bottom": 0,
-        "mobile_padding_left": 0
-      }
-    },
-    "rw_test_VwiyXG": {
-      "type": "rw-test",
-      "blocks": {
-        "score_card_TRzLzL": {
-          "type": "score_card",
-          "settings": {
-            "title": "Protection Score",
-            "description": "This score measures your overall security strength. Higher score means better protection.",
-            "initial_score": 68
-          }
-        },
-        "score_card_Hqamnn": {
-          "type": "score_card",
-          "settings": {
-            "title": "Investment Score",
-            "description": "This score measures portfolio alignment with your goals and strategy.",
-            "initial_score": 83
-          }
-        },
-        "score_card_c8j3Dd": {
-          "type": "score_card",
-          "settings": {
-            "title": "Financial Fitness",
-            "description": "Boost financial control in 10 minutes. Get your fitness score—quick, free, no impact on credit.",
-            "initial_score": 0
-          }
-        }
-      },
-      "block_order": [
-        "score_card_TRzLzL",
-        "score_card_Hqamnn",
-        "score_card_c8j3Dd"
-      ],
-      "name": "PWC-Score Widget #1",
-      "settings": {
-        "enable_shadow": true,
-        "card_bg_color": "#FFFFFF",
-        "title_font_size": 22,
-        "mobile_title_font_size": 18,
-        "title_font_weight": "500",
-        "title_color": "#000000",
-        "description_font_size": 16,
-        "mobile_description_font_size": 14,
-        "desktop_margin_top": 0,
-        "desktop_margin_right": 0,
-        "desktop_margin_bottom": 0,
-        "desktop_margin_left": 0,
-        "desktop_padding_top": 0,
-        "desktop_padding_right": 0,
-        "desktop_padding_bottom": 0,
-        "desktop_padding_left": 0,
-        "mobile_margin_top": 0,
-        "mobile_margin_right": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_margin_left": 0,
-        "mobile_padding_top": 0,
-        "mobile_padding_right": 0,
-        "mobile_padding_bottom": 0,
-        "mobile_padding_left": 0
+        "max_score": 100
       }
     }
   },
@@ -1197,7 +1067,6 @@
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
     "rw_hero_banner_4dJjqa",
-    "rw_test_AEPJEH",
-    "rw_test_VwiyXG"
+    "rw_test_AEPJEH"
   ]
 }
