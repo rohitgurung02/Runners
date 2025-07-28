@@ -162,7 +162,7 @@
   
   {{ sec_id }} .pc-card-score-display-{{ last_part }} {
     position: absolute;
-    bottom: {{ section.settings.score_display_bottom }}px;
+    top: 20px;
     width: 100%;
     text-align: center;
   }
@@ -1150,16 +1150,6 @@
       "id": "dimmed_score_color",
       "label": "Dimmed Score Color",
       "default": "#E0E0E0"
-    },
-    {
-      "type": "range",
-      "id": "score_display_bottom",
-      "min": 0,
-      "max": 60,
-      "step": 4,
-      "unit": "px",
-      "label": "Score Display Bottom Position",
-      "default": 20
     },
     {
       "type": "header",
