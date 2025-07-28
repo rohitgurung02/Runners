@@ -118,6 +118,7 @@
   {{ sec_id }} .pc-card-description-{{ last_part }} {
     animation-delay: 0.2s;
     color: {{ section.settings.description_color }};
+    margin-top: {{ section.settings.description_margin_top }}px;
     margin-bottom: {{ section.settings.description_margin_bottom }}px;
     min-height: {{ section.settings.description_min_height }}px;
     text-align: center;
@@ -1289,6 +1290,16 @@
       "id": "description_color",
       "label": "Description Color",
       "default": "#666666"
+    },
+     {
+      "type": "range",
+      "id": "description_margin_top",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Description Margin Top",
+      "default": 20
     },
     {
       "type": "range",
