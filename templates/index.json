@@ -1438,7 +1438,7 @@
         "score_height": 60,
         "score_color": "#e32e2e",
         "dimmed_score_color": "#e0e0e0",
-        "score_label_font_size": 17,
+        "score_label_font_size": 16,
         "score_label_font_weight": "400",
         "score_label_color": "#666666",
         "score_label_text_transform": "none",
