@@ -4,13 +4,6 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} {
-    {% if section.settings.constrain_container %}
-    max-width: {{ section.settings.container_width }}px;
-    {% endif %}
-    margin: 0 auto;
-    min-height: {{ section.settings.container_min_height }}px;
-  }
   
   {{ sec_id }} .pc-financial-score-{{ last_part }} {
     position: relative;
@@ -241,15 +234,6 @@
 
   /* Responsive styles */
   @media (max-width: 749px) {
-
-    {{ sec_id }} {
-    {% if section.settings.full_width_mobile %}
-    max-width: 100%;
-    {% else %}
-    max-width: {{ section.settings.container_width_mobile }}px;
-    {% endif %}
-    min-height: {{ section.settings.container_min_height_mobile }}px;
-    }
     
     {{ sec_id }} .pc-financial-score-{{ last_part }} {
       gap: {{ section.settings.cards_gap_mobile }}px;
@@ -449,64 +433,6 @@
     {
       "type": "header",
       "content": "Section Layout"
-    },
-     {
-      "type": "range",
-      "id": "container_width",
-      "min": 800,
-      "max": 1800,
-      "step": 20,
-      "unit": "px",
-      "label": "Container Max Width",
-      "default": 1200,
-      "info": "Maximum width of the entire section container"
-    },
-    {
-      "type": "range",
-      "id": "container_width_mobile",
-      "min": 300,
-      "max": 800,
-      "step": 20,
-      "unit": "px",
-      "label": "Mobile Container Max Width",
-      "default": 400,
-      "info": "Maximum width on mobile devices"
-    },
-    {
-      "type": "range",
-      "id": "container_min_height",
-      "min": 200,
-      "max": 1000,
-      "step": 20,
-      "unit": "px",
-      "label": "Container Min Height",
-      "default": 400,
-      "info": "Minimum height of the container"
-    },
-    {
-      "type": "range",
-      "id": "container_min_height_mobile",
-      "min": 200,
-      "max": 600,
-      "step": 20,
-      "unit": "px",
-      "label": "Mobile Container Min Height",
-      "default": 300,
-      "info": "Minimum height on mobile devices"
-    },
-    {
-      "type": "checkbox",
-      "id": "constrain_container",
-      "label": "Constrain Container Width",
-      "default": true,
-      "info": "When enabled, limits the container to the max width"
-    },
-    {
-      "type": "checkbox",
-      "id": "full_width_mobile",
-      "label": "Full Width on Mobile",
-      "default": true,
-      "info": "When enabled, container will span full width on mobile"
     },
     {
       "type": "range",
