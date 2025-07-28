@@ -355,7 +355,7 @@
             <button class="pc-card-score-button-{{ last_part }} {% if has_score %}pc-card-score-button-outlined-{{ last_part }}{% endif %}" 
                     type="button" 
                     data-button-link="{{ block.settings.button_link | default: '#' }}">
-              {% if has_score %}{{ section.settings.button_text }}{% else %}{{ section.settings.calculate_button_text }}{% endif %}
+              {% if has_score %}{{ block.settings.button_text }}{% else %}{{ section.settings.calculate_button_text }}{% endif %}
             </button>
           
           </div>
