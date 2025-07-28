@@ -137,7 +137,6 @@
     overflow: hidden;
     position: relative;
     color: {{ section.settings.score_color }};
-    font-family: {{ section.settings.score_font.family }}, {{ section.settings.score_font.fallback_families }};
   }
   
   {{ sec_id }} .pc-card-score-digit-{{ last_part }} {
@@ -251,10 +250,6 @@
     
     {{ sec_id }} .pc-card-description-{{ last_part }} {
       font-size: {{ section.settings.description_font_size_mobile }}px;
-    }
-    
-    {{ sec_id }} .pc-card-score-{{ last_part }} {
-      font-size: {{ section.settings.score_font_size_mobile }}px;
     }
     
     {{ sec_id }} .pc-card-score-button-{{ last_part }} {
@@ -1075,12 +1070,6 @@
       "unit": "%",
       "label": "Moderate Threshold (% of max)",
       "default": 50
-    },
-    {
-      "type": "font_picker",
-      "id": "score_font",
-      "label": "Score Font",
-      "default": "helvetica_n4"
     },
     {
       "type": "range",
