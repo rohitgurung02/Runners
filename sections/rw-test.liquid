@@ -98,10 +98,6 @@
     text-transform: uppercase;
   }
 
-  {{ sec_id }} .pc-main-title-{{ last_part }} h1 {
-    margin: 0;
-  }
-
   {{ sec_id }} .pc-main-title-{{ last_part }} {
     color: {{ section.settings.title_color }};
     font-size: {{ section.settings.title_size }}px;
@@ -110,6 +106,7 @@
     text-decoration-color: {{ section.settings.title_text_decoration_color }};
     padding-top: {{ section.settings.title_padding_top }}px;
     padding-bottom: {{ section.settings.title_padding_bottom }}px;
+    margin: 0;
   }
 
   {{ sec_id }} .pc-subtitle-{{ last_part }} {
