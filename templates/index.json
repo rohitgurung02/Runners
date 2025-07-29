@@ -1201,7 +1201,7 @@
         "label_padding_top": 5,
         "label_padding_bottom": 5,
         "mobile_label_size": 14,
-        "title_size": 61,
+        "title_size": 59,
         "title_color": "#FFFFFF",
         "title_font_weight": "bold",
         "title_text_decoration": "none",
