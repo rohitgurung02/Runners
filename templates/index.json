@@ -1092,79 +1092,6 @@
         "mobile_padding": 5,
         "mobile_grid_gap": 5
       }
-    },
-    "rw_test_C6MTn9": {
-      "type": "rw-test",
-      "blocks": {
-        "feature_TfFd3g": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Precision Optics",
-            "feature_description": "Advanced CSS transforms create pixel-perfect magnification with realistic glass distortion effects"
-          }
-        },
-        "feature_QFwHfC": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Real-time Rendering",
-            "feature_description": "Dynamic content capture and 2x magnification powered by modern browser capabilities"
-          }
-        },
-        "feature_LNBc7K": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Glass Morphism",
-            "feature_description": "Authentic glass appearance with backdrop blur, reflections, and subtle light refraction"
-          }
-        },
-        "feature_UzpFQM": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Smooth Performance",
-            "feature_description": "Optimized rendering pipeline maintains 60fps during continuous cursor movement and updates"
-          }
-        },
-        "feature_dAPjc4": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Interactive Focus",
-            "feature_description": "Precise focal point tracking ensures the magnified content matches cursor position exactly"
-          }
-        },
-        "feature_M8kmbL": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Visual Feedback",
-            "feature_description": "Subtle glow effects and smooth transitions provide intuitive user experience and engagement"
-          }
-        }
-      },
-      "block_order": [
-        "feature_TfFd3g",
-        "feature_QFwHfC",
-        "feature_LNBc7K",
-        "feature_UzpFQM",
-        "feature_dAPjc4",
-        "feature_M8kmbL"
-      ],
-      "name": "PWC - Glass Magnifier #1",
-      "settings": {
-        "effect_label": "Glass Magnifier Effect",
-        "main_title": "Interactive Design",
-        "subtitle": "Experience the power of CSS magnification",
-        "gradient_start": "#667eea",
-        "gradient_end": "#764ba2",
-        "title_size": 64,
-        "mobile_title_size": 40,
-        "subtitle_size": 24,
-        "feature_title_size": 19,
-        "feature_text_size": 14,
-        "desktop_padding": 10,
-        "grid_columns": 3,
-        "grid_gap": 10,
-        "mobile_padding": 5,
-        "mobile_grid_gap": 5
-      }
     }
   },
   "order": [
@@ -1182,7 +1109,6 @@
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
     "rw_hero_banner_4dJjqa",
-    "rw_test_AEPJEH",
-    "rw_test_C6MTn9"
+    "rw_test_AEPJEH"
   ]
 }
