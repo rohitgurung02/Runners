@@ -200,6 +200,10 @@
       font-size: {{ section.settings.feature_title_mobile }}px;
     }
 
+     {{ sec_id }} .pc-feature-item-{{ last_part }} p {
+       font-size: {{ section.settings.feature_description_mobile }}px;
+     }
+
     {{ sec_id }} .pc-feature-grid-{{ last_part }} {
       grid-template-columns: 1fr;
       gap: {{ section.settings.mobile_grid_gap }}px;
@@ -817,7 +821,7 @@
     },
      {
       "type": "header",
-      "content": "Feature Text"
+      "content": "Feature Description"
     },
     {
       "type": "range",
@@ -834,6 +838,16 @@
       "id": "feature_text_color",
       "label": "Text Color",
       "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "feature_description_mobile",
+      "label": "Subtitle Size (Mobile)",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 24
     },
     {
       "type": "header",
