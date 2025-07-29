@@ -3,18 +3,12 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-glass-magnifier-{{ last_part }}>
+<pc-feature-grid-{{ last_part }}>
   <div class="pc-grid-pattern-{{ last_part }}"></div>
   <div class="pc-floating-elements-{{ last_part }}">
     <div class="pc-floating-element-{{ last_part }}"></div>
     <div class="pc-floating-element-{{ last_part }}"></div>
     <div class="pc-floating-element-{{ last_part }}"></div>
-  </div>
-
-  <div class="pc-cursor-glow-{{ last_part }}"></div>
-  <div class="pc-glass-magnifier-{{ last_part }}">
-    <div class="pc-magnified-content-{{ last_part }}"></div>
-    <div class="pc-glass-reflection-{{ last_part }}"></div>
   </div>
 
   <div class="pc-page-content-{{ last_part }}">
@@ -33,20 +27,19 @@
       {% endfor %}
     </div>
   </div>
-</pc-glass-magnifier-{{ last_part }}>
+</pc-feature-grid-{{ last_part }}>
 
 <style>
-  {{ sec_id }} pc-glass-magnifier-{{ last_part }} * {
+  {{ sec_id }} pc-feature-grid-{{ last_part }} * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  {{ sec_id }} pc-glass-magnifier-{{ last_part }} {
+  {{ sec_id }} pc-feature-grid-{{ last_part }} {
     min-height: 100vh;
     background: linear-gradient(135deg, {{ section.settings.gradient_start }} 0%, {{ section.settings.gradient_end }} 100%);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    cursor: none;
     overflow-x: hidden;
     position: relative;
   }
@@ -185,92 +178,6 @@
     line-height: 1.4;
   }
 
-  {{ sec_id }} .pc-glass-magnifier-{{ last_part }} {
-    position: fixed;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
-    z-index: 1000;
-    pointer-events: none;
-    transition: all 0.1s ease-out;
-    opacity: 0;
-    overflow: hidden;
-  }
-
-  {{ sec_id }} .pc-glass-magnifier-{{ last_part }}::before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-radius: 50%;
-    background: linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.3) 0%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0.3) 100%
-    );
-    z-index: -1;
-  }
-
-  {{ sec_id }} .pc-magnified-content-{{ last_part }} {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    overflow: hidden;
-  }
-
-  {{ sec_id }} .pc-glass-reflection-{{ last_part }} {
-    position: absolute;
-    top: 15%;
-    left: 15%;
-    width: 35%;
-    height: 35%;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.6) 0%,
-      rgba(255, 255, 255, 0.2) 50%,
-      transparent 100%
-    );
-    border-radius: 50%;
-    filter: blur(1px);
-    z-index: 10;
-  }
-
-  {{ sec_id }} .pc-cursor-glow-{{ last_part }} {
-    position: fixed;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(255, 255, 255, 0.04) 40%,
-      transparent 70%
-    );
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 999;
-    transition: all 0.2s ease-out;
-    opacity: 0;
-  }
-
-  {{ sec_id }} .pc-magnifier-active-{{ last_part }} .pc-glass-magnifier-{{ last_part }} {
-    opacity: 1;
-  }
-
-  {{ sec_id }} .pc-magnifier-active-{{ last_part }} .pc-cursor-glow-{{ last_part }} {
-    opacity: 1;
-  }
-
   @keyframes pc-gridMove-{{ last_part }} {
     0% {
       transform: translate(0, 0);
@@ -301,115 +208,15 @@
       gap: {{ section.settings.mobile_grid_gap }}px;
     }
 
-    {{ sec_id }} .pc-glass-magnifier-{{ last_part }} {
-      width: 120px;
-      height: 120px;
-    }
-
     {{ sec_id }} .pc-page-content-{{ last_part }} {
       padding: {{ section.settings.mobile_padding }}px;
     }
   }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const glassMagnifier = document.querySelector('{{ sec_id }} .pc-glass-magnifier-{{ last_part }}');
-    const magnifiedContent = document.querySelector('{{ sec_id }} .pc-magnified-content-{{ last_part }}');
-    const cursorGlow = document.querySelector('{{ sec_id }} .pc-cursor-glow-{{ last_part }}');
-    const body = document.querySelector('{{ sec_id }} pc-glass-magnifier-{{ last_part }}');
-    let mouseX = 0;
-    let mouseY = 0;
-    let isActive = false;
-
-    function updateMagnifiedContent() {
-      magnifiedContent.innerHTML = "";
-
-      const viewport = document.createElement("div");
-      viewport.style.position = "absolute";
-      viewport.style.top = "0";
-      viewport.style.left = "0";
-      viewport.style.width = "100%";
-      viewport.style.height = "100%";
-      viewport.style.overflow = "hidden";
-      viewport.style.borderRadius = "50%";
-
-      const magnifiedView = document.createElement("div");
-      magnifiedView.style.position = "absolute";
-      magnifiedView.style.width = "100vw";
-      magnifiedView.style.height = "100vh";
-
-      const centerX = 75;
-      const centerY = 75;
-      const magnification = 2;
-      magnifiedView.style.left = `${centerX - mouseX * magnification}px`;
-      magnifiedView.style.top = `${centerY - mouseY * magnification}px`;
-      magnifiedView.style.transform = `scale(${magnification})`;
-      magnifiedView.style.transformOrigin = "0 0";
-
-      magnifiedView.innerHTML = `
-        <div style="
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(135deg, {{ section.settings.gradient_start }} 0%, {{ section.settings.gradient_end }} 100%);
-        "></div>
-        
-        <div style="
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-image: 
-            radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px),
-            radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 1px, transparent 1px);
-          background-size: 80px 80px, 40px 40px;
-        "></div>
-        
-        ${document.querySelector('{{ sec_id }} .pc-floating-elements-{{ last_part }}').outerHTML}
-        ${document.querySelector('{{ sec_id }} .pc-page-content-{{ last_part }}').outerHTML}
-      `;
-      viewport.appendChild(magnifiedView);
-      magnifiedContent.appendChild(viewport);
-    }
-
-    document.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-
-      glassMagnifier.style.left = mouseX - 75 + "px";
-      glassMagnifier.style.top = mouseY - 75 + "px";
-
-      cursorGlow.style.left = mouseX - 100 + "px";
-      cursorGlow.style.top = mouseY - 100 + "px";
-
-      updateMagnifiedContent();
-      if (!isActive) {
-        body.classList.add("pc-magnifier-active-{{ last_part }}");
-        isActive = true;
-      }
-    });
-
-    document.addEventListener("mouseleave", () => {
-      body.classList.remove("pc-magnifier-active-{{ last_part }}");
-      isActive = false;
-    });
-    
-    document.addEventListener("mouseenter", () => {
-      if (mouseX !== 0 || mouseY !== 0) {
-        body.classList.add("pc-magnifier-active-{{ last_part }}");
-        isActive = true;
-      }
-    });
-  });
-</script>
-
 {% schema %}
 {
-  "name": "PWC - Glass Magnifier #1",
+  "name": "PWC - Feature Grid #1",
   "settings": [
     {
       "type": "header",
@@ -419,7 +226,7 @@
       "type": "text",
       "id": "effect_label",
       "label": "Effect Label",
-      "default": "Glass Magnifier Effect"
+      "default": "Feature Grid"
     },
     {
       "type": "text",
@@ -431,7 +238,7 @@
       "type": "text",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "Experience the power of CSS magnification"
+      "default": "Experience our premium features"
     },
     {
       "type": "color",
@@ -507,11 +314,11 @@
       "type": "range",
       "id": "desktop_padding",
       "label": "Desktop Padding",
-      "min": 10,
+      "min": 5,
       "max": 100,
-      "step": 5,
+      "step": 1,
       "unit": "px",
-      "default": 10
+      "default": 5
     },
     {
       "type": "range",
@@ -526,11 +333,11 @@
       "type": "range",
       "id": "grid_gap",
       "label": "Grid Gap",
-      "min": 10,
+      "min": 5,
       "max": 50,
-      "step": 5,
+      "step": 1,
       "unit": "px",
-      "default": 10
+      "default": 5
     },
     {
       "type": "header",
@@ -579,49 +386,49 @@
   ],
   "presets": [
     {
-      "name": "PWC - Glass Magnifier #1",
-      "category": "Interactive",
+      "name": "PWC - Feature Grid #1",
+      "category": "Content",
       "blocks": [
         {
           "type": "feature",
           "settings": {
-            "feature_title": "Precision Optics",
-            "feature_description": "Advanced CSS transforms create pixel-perfect magnification with realistic glass distortion effects"
+            "feature_title": "Precision Design",
+            "feature_description": "Carefully crafted components with attention to detail"
           }
         },
         {
           "type": "feature",
           "settings": {
-            "feature_title": "Real-time Rendering",
-            "feature_description": "Dynamic content capture and 2x magnification powered by modern browser capabilities"
+            "feature_title": "Responsive Layout",
+            "feature_description": "Adapts perfectly to all screen sizes and devices"
           }
         },
         {
           "type": "feature",
           "settings": {
-            "feature_title": "Glass Morphism",
-            "feature_description": "Authentic glass appearance with backdrop blur, reflections, and subtle light refraction"
+            "feature_title": "Smooth Animations",
+            "feature_description": "Subtle animations that enhance user experience"
           }
         },
         {
           "type": "feature",
           "settings": {
-            "feature_title": "Smooth Performance",
-            "feature_description": "Optimized rendering pipeline maintains 60fps during continuous cursor movement and updates"
+            "feature_title": "Modern Aesthetics",
+            "feature_description": "Clean design with glass morphism effects"
           }
         },
         {
           "type": "feature",
           "settings": {
-            "feature_title": "Interactive Focus",
-            "feature_description": "Precise focal point tracking ensures the magnified content matches cursor position exactly"
+            "feature_title": "Easy Customization",
+            "feature_description": "Fully customizable through theme settings"
           }
         },
         {
           "type": "feature",
           "settings": {
-            "feature_title": "Visual Feedback",
-            "feature_description": "Subtle glow effects and smooth transitions provide intuitive user experience and engagement"
+            "feature_title": "Performance Optimized",
+            "feature_description": "Lightweight code for fast loading times"
           }
         }
       ]
