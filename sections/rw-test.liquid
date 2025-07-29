@@ -196,6 +196,10 @@
       font-size: {{ section.settings.subtitle_size_mobile }}px;
     }
 
+    {{ sec_id }} .pc-feature-item-{{ last_part }} h3 {
+      font-size: {{ section.settings.feature_title_mobile }}px;
+    }
+
     {{ sec_id }} .pc-feature-grid-{{ last_part }} {
       grid-template-columns: 1fr;
       gap: {{ section.settings.mobile_grid_gap }}px;
@@ -801,6 +805,16 @@
           "label": "Text Decoration Color",
           "default": "#000"
         },
+    {
+      "type": "range",
+      "id": "feature_title_mobile",
+      "label": "Feature Title (Mobile)",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
      {
       "type": "header",
       "content": "Feature Text"
