@@ -1223,7 +1223,7 @@
         "feature_title_text_decoration": "none",
         "feature_title_text_decoration_color": "#000",
         "feature_title_mobile": 24,
-        "feature_text_size": 14,
+        "feature_text_size": 15,
         "feature_text_color": "#FFFFFF",
         "feature_description_mobile": 24,
         "desktop_padding": 32,
