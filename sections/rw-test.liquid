@@ -103,8 +103,14 @@
 
   {{ sec_id }} .pc-effect-label-{{ last_part }} {
     font-size: {{ section.settings.label_size }}px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
+    color: {{ section.settings.label_color }};
+    font-weight: {{ section.settings.label_font_weight }};
+    text-decoration: {{ section.settings.label_text_decoration }};
+    text-decoration-color: {{ section.settings.label_text_decoration_color }};
+    padding-top: {{ section.settings.label_padding_top }}px;
+    padding-bottom: {{ section.settings.label_padding_bottom }}px;
+  
+
     margin-bottom: 1rem;
     letter-spacing: 2px;
     text-transform: uppercase;
