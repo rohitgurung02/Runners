@@ -1075,29 +1075,6 @@
         "description_mobile_text_size": 14,
         "mobile_button_size": 16
       }
-    },
-    "rw_test_AEPJEH": {
-      "type": "rw-test",
-      "name": "RW - Team Accordion #6",
-      "settings": {
-        "effect_label": "Glass Magnifier Effect",
-        "main_title": "Interactive Design",
-        "subtitle": "Experience the power of CSS magnification",
-        "gradient_start": "#667eea",
-        "gradient_end": "#764ba2",
-        "label_size": 16,
-        "mobile_label_size": 14,
-        "title_size": 64,
-        "mobile_title_size": 40,
-        "subtitle_size": 24,
-        "feature_title_size": 19,
-        "feature_text_size": 14,
-        "desktop_padding": 10,
-        "grid_columns": 3,
-        "grid_gap": 10,
-        "mobile_padding": 5,
-        "mobile_grid_gap": 5
-      }
     }
   },
   "order": [
@@ -1114,7 +1091,6 @@
     "rw_timeline_8VAwHz",
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
-    "rw_hero_banner_4dJjqa",
-    "rw_test_AEPJEH"
+    "rw_hero_banner_4dJjqa"
   ]
 }
