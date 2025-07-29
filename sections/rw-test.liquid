@@ -18,15 +18,12 @@
     position: relative;
   }
 
-  {{ sec_id }} .pc-grid-pattern-{{ last_part }} {
-    margin-top: {{ section.settings.margin_top_desktop }}px;
-    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
-  }
-
   {{ sec_id }} .pc-page-content-{{ last_part }} {
     position: relative;
     z-index: 1;
     padding: {{ section.settings.desktop_padding }}px;
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
   }
 
   {{ sec_id }} .pc-grid-pattern-{{ last_part }} {
@@ -227,9 +224,6 @@
     }
   }
 </style>
-
-<div class="pc-grid-pattern-{{ last_part }}"></div>
-
 
 <div class="pc-page-content-{{ last_part }}">
   <div class="pc-text-content-{{ last_part }}">
