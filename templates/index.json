@@ -1092,79 +1092,6 @@
         "mobile_padding": 5,
         "mobile_grid_gap": 5
       }
-    },
-    "rw_test_pMARbj": {
-      "type": "rw-test",
-      "blocks": {
-        "feature_6V9tnG": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Precision Design",
-            "feature_description": "Carefully crafted components with attention to detail"
-          }
-        },
-        "feature_JGWtM4": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Responsive Layout",
-            "feature_description": "Adapts perfectly to all screen sizes and devices"
-          }
-        },
-        "feature_dNDx6t": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Smooth Animations",
-            "feature_description": "Subtle animations that enhance user experience"
-          }
-        },
-        "feature_rQmHAg": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Modern Aesthetics",
-            "feature_description": "Clean design with glass morphism effects"
-          }
-        },
-        "feature_QEUzbj": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Easy Customization",
-            "feature_description": "Fully customizable through theme settings"
-          }
-        },
-        "feature_AzngDL": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Performance Optimized",
-            "feature_description": "Lightweight code for fast loading times"
-          }
-        }
-      },
-      "block_order": [
-        "feature_6V9tnG",
-        "feature_JGWtM4",
-        "feature_dNDx6t",
-        "feature_rQmHAg",
-        "feature_QEUzbj",
-        "feature_AzngDL"
-      ],
-      "name": "PWC - Feature Grid #1",
-      "settings": {
-        "effect_label": "Feature Grid",
-        "main_title": "Interactive Design",
-        "subtitle": "Experience our premium features",
-        "gradient_start": "#667eea",
-        "gradient_end": "#764ba2",
-        "title_size": 64,
-        "mobile_title_size": 40,
-        "subtitle_size": 24,
-        "feature_title_size": 19,
-        "feature_text_size": 14,
-        "desktop_padding": 5,
-        "grid_columns": 3,
-        "grid_gap": 5,
-        "mobile_padding": 5,
-        "mobile_grid_gap": 5
-      }
     }
   },
   "order": [
@@ -1182,7 +1109,6 @@
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
     "rw_hero_banner_4dJjqa",
-    "rw_test_AEPJEH",
-    "rw_test_pMARbj"
+    "rw_test_AEPJEH"
   ]
 }
