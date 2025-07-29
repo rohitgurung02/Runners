@@ -12,10 +12,6 @@
     position: relative;
   }
 
-  {{ sec_id }} .pc-box-content-{{ last_part }} {
-   
-  }
-
   {{ sec_id }} .pc-page-content-{{ last_part }} {
     position: relative;
     z-index: 1;
@@ -221,10 +217,7 @@
   }
 </style>
 
-<div class="pc-box-content-{{ last_part }}" style="
-   margin-top: {{ section.settings.margin_top_desktop }}px;
-   margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
-  ">
+<div class="pc-box-content-{{ last_part }}">
 <div class="pc-page-content-{{ last_part }}">
   <div class="pc-text-content-{{ last_part }}">
     <div class="pc-effect-label-{{ last_part }}">{{ section.settings.effect_label }}</div>
@@ -891,26 +884,6 @@
       "step": 1,
       "unit": "px",
       "default": 20
-    },
-    {
-      "type": "range",
-      "id": "margin_top_desktop",
-      "label": "Margin top",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "margin_bottom_desktop",
-      "label": "Margin Bottom",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "default": 48
     },
     {
       "type": "header",
