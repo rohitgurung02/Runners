@@ -1131,109 +1131,6 @@
         "description_mobile_text_size": 14,
         "mobile_button_size": 16
       }
-    },
-    "rw_test_zRnCJR": {
-      "type": "rw-test",
-      "blocks": {
-        "feature_ep4UDR": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Precision Design",
-            "feature_description": "Carefully crafted components with attention to detail"
-          }
-        },
-        "feature_R4WRXb": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Responsive Layout",
-            "feature_description": "Adapts perfectly to all screen sizes and devices"
-          }
-        },
-        "feature_XhmCJi": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Smooth Animations",
-            "feature_description": "Subtle animations that enhance user experience"
-          }
-        },
-        "feature_HFCUhg": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Modern Aesthetics",
-            "feature_description": "Clean design with glass morphism effects"
-          }
-        },
-        "feature_zYGpat": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Easy Customization",
-            "feature_description": "Fully customizable through theme settings"
-          }
-        },
-        "feature_tEAz6T": {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Performance Optimized",
-            "feature_description": "Lightweight code for fast loading times"
-          }
-        }
-      },
-      "block_order": [
-        "feature_ep4UDR",
-        "feature_R4WRXb",
-        "feature_XhmCJi",
-        "feature_HFCUhg",
-        "feature_zYGpat",
-        "feature_tEAz6T"
-      ],
-      "name": "PWC - Feature Grid #1",
-      "settings": {
-        "effect_label": "Feature Grid",
-        "main_title": "Interactive Design",
-        "subtitle": "Experience our premium features",
-        "gradient_start": "#667eea",
-        "gradient_end": "#764ba2",
-        "label_size": 16,
-        "label_color": "#000000",
-        "label_font_weight": "normal",
-        "label_text_decoration": "none",
-        "label_text_decoration_color": "#000000",
-        "label_padding_top": 5,
-        "label_padding_bottom": 5,
-        "mobile_label_size": 14,
-        "title_size": 64,
-        "title_color": "#000000",
-        "title_font_weight": "normal",
-        "title_text_decoration": "none",
-        "title_text_decoration_color": "#000000",
-        "title_padding_top": 5,
-        "title_padding_bottom": 5,
-        "mobile_title_size": 40,
-        "subtitle_size": 24,
-        "subtitle_color": "#000000",
-        "subtitle_font_weight": "normal",
-        "subtitle_text_decoration": "none",
-        "subtitle_text_decoration_color": "#000000",
-        "subtitle_padding_top": 5,
-        "subtitle_padding_bottom": 5,
-        "subtitle_size_mobile": 24,
-        "feature_title_size": 19,
-        "feature_title_color": "#000000",
-        "feature_title_font_weight": "normal",
-        "feature_title_text_decoration": "none",
-        "feature_title_text_decoration_color": "#000000",
-        "feature_title_mobile": 24,
-        "feature_text_size": 14,
-        "feature_text_color": "#000000",
-        "feature_description_mobile": 24,
-        "desktop_padding": 36,
-        "feature_padding_desktop": 24,
-        "grid_columns": 4,
-        "grid_gap": 20,
-        "mobile_padding": 16,
-        "feature_padding_mobile": 16,
-        "mobile_grid_gap": 10
-      }
     }
   },
   "order": [
@@ -1250,7 +1147,6 @@
     "rw_timeline_8VAwHz",
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
-    "rw_hero_banner_4dJjqa",
-    "rw_test_zRnCJR"
+    "rw_hero_banner_4dJjqa"
   ]
 }
