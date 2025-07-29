@@ -91,6 +91,19 @@
     margin-bottom: 3rem;
   }
 
+  {{ sec_id }} .pc-effect-label-{{ last_part }} {
+    font-size: {{ section.settings.label_size }}px;
+    color: {{ section.settings.label_color }};
+    font-weight: {{ section.settings.label_font_weight }};
+    text-decoration: {{ section.settings.label_text_decoration }};
+    text-decoration-color: {{ section.settings.label_text_decoration_color }};
+    padding-top: {{ section.settings.label_padding_top }}px;
+    padding-bottom: {{ section.settings.label_padding_bottom }}px;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
   {{ sec_id }} .pc-main-title-{{ last_part }} {
     font-size: {{ section.settings.title_size }}px;
     color: {{ section.settings.title_color }} !important;
@@ -106,21 +119,14 @@
     background-clip: text;
   }
 
-  {{ sec_id }} .pc-effect-label-{{ last_part }} {
-    font-size: {{ section.settings.label_size }}px;
-    color: {{ section.settings.label_color }};
-    font-weight: {{ section.settings.label_font_weight }};
-    text-decoration: {{ section.settings.label_text_decoration }};
-    text-decoration-color: {{ section.settings.label_text_decoration_color }};
-    padding-top: {{ section.settings.label_padding_top }}px;
-    padding-bottom: {{ section.settings.label_padding_bottom }}px;
-    margin-bottom: 1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
   {{ sec_id }} .pc-subtitle-{{ last_part }} {
     font-size: {{ section.settings.subtitle_size }}px;
+    color: {{ section.settings.subtitle_color }};
+    font-weight: {{ section.settings.subtitle_font_weight }};
+    text-decoration: {{ section.settings.subtitle_text_decoration }};
+    text-decoration-color: {{ section.settings.subtitle_text_decoration_color }};
+    padding-top: {{ section.settings.subtitle_padding_top }}px;
+    padding-bottom: {{ section.settings.subtitle_padding_bottom }}px;
     font-weight: 300;
     opacity: 0.8;
     margin-bottom: 2rem;
