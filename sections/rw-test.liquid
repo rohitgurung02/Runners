@@ -105,8 +105,8 @@
   }
 
   {{ sec_id }} .pc-main-title-{{ last_part }} {
+    color: {{ section.settings.title_color }};
     font-size: {{ section.settings.title_size }}px;
-    color: {{ section.settings.title_size_color }};
     font-weight: {{ section.settings.title_font_weight }};
     text-decoration: {{ section.settings.title_text_decoration }};
     text-decoration-color: {{ section.settings.title_text_decoration_color }};
@@ -433,7 +433,7 @@
     },
     {
       "type": "color",
-      "id": "title_size_color",
+      "id": "title_color",
       "label": " Title Text Color",
       "default": "#000"
     },
