@@ -3,494 +3,534 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
+<pc-glass-magnifier-{{ last_part }}>
+  <div class="pc-grid-pattern-{{ last_part }}"></div>
+  <div class="pc-floating-elements-{{ last_part }}">
+    <div class="pc-floating-element-{{ last_part }}"></div>
+    <div class="pc-floating-element-{{ last_part }}"></div>
+    <div class="pc-floating-element-{{ last_part }}"></div>
+  </div>
+
+  <div class="pc-cursor-glow-{{ last_part }}"></div>
+  <div class="pc-glass-magnifier-{{ last_part }}">
+    <div class="pc-magnified-content-{{ last_part }}"></div>
+    <div class="pc-glass-reflection-{{ last_part }}"></div>
+  </div>
+
+  <div class="pc-page-content-{{ last_part }}">
+    <div class="pc-text-content-{{ last_part }}">
+      <div class="pc-effect-label-{{ last_part }}">{{ section.settings.effect_label }}</div>
+      <h1 class="pc-main-title-{{ last_part }}">{{ section.settings.main_title }}</h1>
+      <p class="pc-subtitle-{{ last_part }}">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="pc-feature-grid-{{ last_part }}">
+      {% for block in section.blocks %}
+        <div class="pc-feature-item-{{ last_part }}">
+          <h3>{{ block.settings.feature_title }}</h3>
+          <p>{{ block.settings.feature_description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</pc-glass-magnifier-{{ last_part }}>
+
 <style>
-  
-  {{ sec_id }} .pc-financial-score-{{ last_part }} {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    justify-content: {{ section.settings.cards_alignment }};
-    flex-wrap: wrap;
-    gap: {{ section.settings.cards_gap }}px;
-    padding-top: {{ section.settings.section_padding_top }}px;
-    padding-bottom: {{ section.settings.section_padding_bottom }}px;
-    background-color: {{ section.settings.section_bg_color }};
-  }
-  
-  {{ sec_id }} .pc-card-{{ last_part }} {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: {{ section.settings.card_max_width }}px;
-  }
-  
-  {{ sec_id }} .pc-card-surface-{{ last_part }} {
-    animation: pc-fade-in-{{ last_part }} 1s cubic-bezier(0.33, 1, 0.68, 1);
-    background: {{ section.settings.card_bg_color }};
-    border-radius: {{ section.settings.card_border_radius }}px;
-    {% if section.settings.card_shadow %}
-    box-shadow: 0 {{ section.settings.card_shadow_offset }}px {{ section.settings.card_shadow_blur }}px rgba(0,0,0,{{ section.settings.card_shadow_opacity }});
-    {% endif %}
-    min-width: 0;
-    transition: all 0.3s ease;
-    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
-  }
-  
-  {{ sec_id }} .pc-card-header-{{ last_part }},
-  {{ sec_id }} .pc-card-badge-{{ last_part }},
-  {{ sec_id }} .pc-card-graph-container-{{ last_part }},
-  {{ sec_id }} .pc-card-description-{{ last_part }},
-  {{ sec_id }} .pc-card-score-button-{{ last_part }} {
-    animation: pc-fade-slide-up-{{ last_part }} 0.8s cubic-bezier(0.33, 1, 0.68, 1) forwards;
-    opacity: 0;
-  }
-  
-  {{ sec_id }} .pc-card-header-{{ last_part }} {
-    display: flex;
-    gap: {{ section.settings.header_gap }}px;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: {{ section.settings.header_margin_bottom }}px;
-  }
-  
-  {{ sec_id }} .pc-card-title-{{ last_part }} {
-    font-size: {{ section.settings.title_font_size }}px;
-    font-weight: {{ section.settings.title_font_weight }};
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: {{ section.settings.title_color }};
-    font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
-    letter-spacing: {{ section.settings.title_letter_spacing }}em;
-    line-height: {{ section.settings.title_line_height }};
-  }
-  
-  {{ sec_id }} .pc-card-badge-{{ last_part }} {
-    animation-delay: 0.8s;
-    border-radius: {{ section.settings.badge_border_radius }}px;
-    flex-shrink: 0;
-    font-size: {{ section.settings.badge_font_size }}px;
-    font-weight: {{ section.settings.badge_font_weight }};
-    line-height: {{ section.settings.badge_line_height }};
-    opacity: 0;
-    padding: {{ section.settings.badge_padding_vertical }}px {{ section.settings.badge_padding_horizontal }}px;
-    text-transform: {{ section.settings.badge_text_transform }};
-    transform: translateY(67%);
-    transition: all 0.3s ease;
-  }
-  
-  {{ sec_id }} .pc-card-badge-weak-{{ last_part }} {
-    background-color: {{ section.settings.weak_badge_bg_color }};
-    color: {{ section.settings.weak_badge_text_color }};
-  }
-  
-  {{ sec_id }} .pc-card-badge-moderate-{{ last_part }} {
-    background-color: {{ section.settings.moderate_badge_bg_color }};
-    color: {{ section.settings.moderate_badge_text_color }};
-  }
-  
-  {{ sec_id }} .pc-card-badge-strong-{{ last_part }} {
-    background-color: {{ section.settings.strong_badge_bg_color }};
-    color: {{ section.settings.strong_badge_text_color }};
-  }
-  
-  {{ sec_id }} .pc-card-graph-container-{{ last_part }} {
-    animation-delay: 0.1s;
-    position: relative;
-    margin-bottom: {{ section.settings.graph_margin_bottom }}px;
-  }
-  
-  {{ sec_id }} .pc-card-half-circle-{{ last_part }} {
-    display: block;
-    margin: auto;
-    width: auto;
-    max-width: 100%;
-    height: {{ section.settings.graph_height }}px;
-  }
-  
-  {{ sec_id }} .pc-card-half-circle-track-{{ last_part }} {
-    stroke: {{ section.settings.graph_track_color }};
-    stroke-width: {{ section.settings.graph_stroke_width }}px;
-    transition: stroke 0.3s;
-  }
-  
-  {{ sec_id }} .pc-card-description-{{ last_part }} {
-    animation-delay: 0.2s;
-    color: {{ section.settings.description_color }};
-    margin-top: {{ section.settings.description_margin_top }}px;
-    margin-bottom: {{ section.settings.description_margin_bottom }}px;
-    min-height: {{ section.settings.description_min_height }}px;
-    text-align: center;
-    transition: color 0.3s;
-    font-size: {{ section.settings.description_font_size }}px;
-    font-weight: {{ section.settings.description_font_weight }};
-    line-height: {{ section.settings.description_line_height }};
-    padding: 0 {{ section.settings.description_padding_horizontal }}px;
-  }
-  
-  {{ sec_id }} .pc-card-score-{{ last_part }} {
-    font-size: {{ section.settings.score_font_size }}px;
-    font-weight: {{ section.settings.score_font_weight }};
-    height: {{ section.settings.score_height }}px;
-    overflow: hidden;
-    position: relative;
-    color: {{ section.settings.score_color }};
-  }
-  
-  {{ sec_id }} .pc-card-score-digit-{{ last_part }} {
-    display: inline-block;
-  }
-  
-  {{ sec_id }} .pc-card-score-digits-{{ last_part }} {
-    position: absolute;
-    inset: 0;
-  }
-  
-  {{ sec_id }} .pc-card-score-digits-dimmed-{{ last_part }} {
-    color: {{ section.settings.dimmed_score_color }};
-  }
-  
-  {{ sec_id }} .pc-card-score-digits-{{ last_part }} + .pc-card-score-digits-{{ last_part }} {
-    transform: translateY(100%);
-  }
-  
-  {{ sec_id }} .pc-card-score-animated-{{ last_part }} .pc-card-score-digit-{{ last_part }} {
-    animation: pc-slide-to-top-{{ last_part }} 0.8s 0.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-  }
-  
-  {{ sec_id }} .pc-card-score-display-{{ last_part }} {
-    position: absolute;
-    top: 43px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  {{ sec_id }} .pc-card-score-label-{{ last_part }} {
-    color: {{ section.settings.score_label_color }};
-    text-transform: {{ section.settings.score_label_text_transform }};
-    transition: color 0.3s;
-    font-size: {{ section.settings.score_label_font_size }}px;
-    font-weight: {{ section.settings.score_label_font_weight }};
-    margin-top: {{ section.settings.score_label_margin_top }}px;
-  }
-  
-  {{ sec_id }} .pc-card-score-button-{{ last_part }} {
-    animation-delay: 0.3s;
-    background-color: {{ section.settings.button_bg_color }};
-    border: {{ section.settings.button_border_width }}px solid {{ section.settings.button_border_color }};
-    border-radius: {{ section.settings.button_border_radius }}px;
-    box-shadow: 0 0 0 3px transparent;
-    color: {{ section.settings.button_text_color }};
-    cursor: pointer;
-    font-size: {{ section.settings.button_font_size }}px;
-    outline: transparent;
-    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
-    width: 100%;
-    transition: all 0.3s ease;
-    font-weight: {{ section.settings.button_font_weight }};
-    text-transform: {{ section.settings.button_text_transform }};
-    letter-spacing: {{ section.settings.button_letter_spacing }}em;
-  }
-  
-  {{ sec_id }} .pc-card-score-button-outlined-{{ last_part }} {
-    background: transparent;
-    border: {{ section.settings.button_outline_border_width }}px solid {{ section.settings.button_outline_border_color }};
-    color: {{ section.settings.button_outline_text_color }};
-  }
-  
-  {{ sec_id }} .pc-card-container-{{ last_part }} {
-    overflow: hidden;
-  }
-  
-  {{ sec_id }} .pc-card-content-{{ last_part }} {
-    padding: {{ section.settings.card_padding_vertical }}px {{ section.settings.card_padding_horizontal }}px;
-  }
-  
-  @keyframes pc-fade-in-{{ last_part }} {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes pc-fade-slide-up-{{ last_part }} {
-    from {
-      opacity: 0;
-      transform: translateY(3em);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes pc-slide-to-top-{{ last_part }} {
-    from { transform: translateY(0); }
-    to { transform: translateY(-100%); }
+  {{ sec_id }} pc-glass-magnifier-{{ last_part }} * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
-  /* Responsive styles */
-  @media (max-width: 749px) {
-    
-    {{ sec_id }} .pc-financial-score-{{ last_part }} {
-      gap: {{ section.settings.cards_gap_mobile }}px;
-      padding-top: {{ section.settings.section_padding_top_mobile }}px;
-      padding-bottom: {{ section.settings.section_padding_bottom_mobile }}px;
-      justify-content: {{ section.settings.cards_alignment_mobile }};
+  {{ sec_id }} pc-glass-magnifier-{{ last_part }} {
+    min-height: 100vh;
+    background: linear-gradient(135deg, {{ section.settings.gradient_start }} 0%, {{ section.settings.gradient_end }} 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    cursor: none;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  {{ sec_id }} .pc-page-content-{{ last_part }} {
+    position: relative;
+    z-index: 1;
+    padding: {{ section.settings.desktop_padding }}px;
+  }
+
+  {{ sec_id }} .pc-grid-pattern-{{ last_part }} {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(
+        circle at 25% 25%,
+        rgba(255, 255, 255, 0.1) 2px,
+        transparent 2px
+      ),
+      radial-gradient(
+        circle at 75% 75%,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px
+      );
+    background-size: 80px 80px, 40px 40px;
+    animation: pc-gridMove-{{ last_part }} 20s linear infinite;
+    z-index: 0;
+  }
+
+  {{ sec_id }} .pc-floating-elements-{{ last_part }} {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  {{ sec_id }} .pc-floating-element-{{ last_part }} {
+    position: absolute;
+    border-radius: 50%;
+    animation: pc-float-{{ last_part }} 8s ease-in-out infinite;
+  }
+
+  {{ sec_id }} .pc-floating-element-{{ last_part }}:nth-child(1) {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    left: 5%;
+    background: rgba(255, 107, 107, 0.15);
+    animation-delay: 0s;
+  }
+
+  {{ sec_id }} .pc-floating-element-{{ last_part }}:nth-child(2) {
+    width: 80px;
+    height: 80px;
+    top: 70%;
+    right: 10%;
+    background: rgba(78, 205, 196, 0.15);
+    animation-delay: 2s;
+  }
+
+  {{ sec_id }} .pc-floating-element-{{ last_part }}:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 70%;
+    background: rgba(69, 183, 209, 0.15);
+    animation-delay: 4s;
+  }
+
+  {{ sec_id }} .pc-text-content-{{ last_part }} {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 3rem;
+  }
+
+  {{ sec_id }} .pc-main-title-{{ last_part }} {
+    font-size: {{ section.settings.title_size }}px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #fff, #e0e0e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  {{ sec_id }} .pc-effect-label-{{ last_part }} {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  {{ sec_id }} .pc-subtitle-{{ last_part }} {
+    font-size: {{ section.settings.subtitle_size }}px;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+
+  {{ sec_id }} .pc-feature-grid-{{ last_part }} {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.grid_columns }}, 1fr);
+    gap: {{ section.settings.grid_gap }}px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  {{ sec_id }} .pc-feature-item-{{ last_part }} {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  {{ sec_id }} .pc-feature-item-{{ last_part }}:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  {{ sec_id }} .pc-feature-item-{{ last_part }} h3 {
+    font-size: {{ section.settings.feature_title_size }}px;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+
+  {{ sec_id }} .pc-feature-item-{{ last_part }} p {
+    font-size: {{ section.settings.feature_text_size }}px;
+    opacity: 0.8;
+    line-height: 1.4;
+  }
+
+  {{ sec_id }} .pc-glass-magnifier-{{ last_part }} {
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    pointer-events: none;
+    transition: all 0.1s ease-out;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  {{ sec_id }} .pc-glass-magnifier-{{ last_part }}::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.3) 100%
+    );
+    z-index: -1;
+  }
+
+  {{ sec_id }} .pc-magnified-content-{{ last_part }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  {{ sec_id }} .pc-glass-reflection-{{ last_part }} {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 35%;
+    height: 35%;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      transparent 100%
+    );
+    border-radius: 50%;
+    filter: blur(1px);
+    z-index: 10;
+  }
+
+  {{ sec_id }} .pc-cursor-glow-{{ last_part }} {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.04) 40%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+    transition: all 0.2s ease-out;
+    opacity: 0;
+  }
+
+  {{ sec_id }} .pc-magnifier-active-{{ last_part }} .pc-glass-magnifier-{{ last_part }} {
+    opacity: 1;
+  }
+
+  {{ sec_id }} .pc-magnifier-active-{{ last_part }} .pc-cursor-glow-{{ last_part }} {
+    opacity: 1;
+  }
+
+  @keyframes pc-gridMove-{{ last_part }} {
+    0% {
+      transform: translate(0, 0);
     }
-    
-    {{ sec_id }} .pc-card-{{ last_part }} {
-      max-width: {{ section.settings.card_max_width_mobile }}px;
+    100% {
+      transform: translate(80px, 80px);
     }
-    
-    {{ sec_id }} .pc-card-title-{{ last_part }} {
-      font-size: {{ section.settings.title_font_size_mobile }}px;
+  }
+
+  @keyframes pc-float-{{ last_part }} {
+    0%, 100% {
+      transform: translateY(0px) scale(1);
+      opacity: 0.7;
     }
-    
-    {{ sec_id }} .pc-card-content-{{ last_part }} {
-      padding: {{ section.settings.card_padding_vertical_mobile }}px {{ section.settings.card_padding_horizontal_mobile }}px;
+    50% {
+      transform: translateY(-20px) scale(1.1);
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} .pc-main-title-{{ last_part }} {
+      font-size: {{ section.settings.mobile_title_size }}px;
+    }
+
+    {{ sec_id }} .pc-feature-grid-{{ last_part }} {
+      grid-template-columns: 1fr;
+      gap: {{ section.settings.mobile_grid_gap }}px;
+    }
+
+    {{ sec_id }} .pc-glass-magnifier-{{ last_part }} {
+      width: 120px;
+      height: 120px;
+    }
+
+    {{ sec_id }} .pc-page-content-{{ last_part }} {
+      padding: {{ section.settings.mobile_padding }}px;
     }
   }
 </style>
 
-<div class="pc-financial-score-{{ last_part }}">
-  {% for block in section.blocks %}
-    {% assign score = block.settings.initial_score | default: nil %}
-    {% assign max_score = section.settings.max_score %}
-    {% assign has_score = false %}
-    {% if score != blank %}
-      {% assign has_score = true %}
-    {% endif %}
-    
-    {% if has_score %}
-      {% assign score_value = score | times: 1 %}
-      {% if score_value >= section.settings.strong_threshold %}
-        {% assign strength = 'strong' %}
-      {% elsif score_value >= section.settings.moderate_threshold %}
-        {% assign strength = 'moderate' %}
-      {% else %}
-        {% assign strength = 'weak' %}
-      {% endif %}
-    {% else %}
-      {% assign strength = 'none' %}
-    {% endif %}
-    
-    <div class="pc-card-{{ last_part }}" data-has-score="{{ has_score }}" data-initial-score="{{ score_value | default: 0 }}" data-block-id="{{ block.id }}">
-      <div class="pc-card-surface-{{ last_part }}">
-        <div class="pc-card-container-{{ last_part }}">
-          <div class="pc-card-content-{{ last_part }}">
-            <div class="pc-card-header-{{ last_part }}">
-              <h2 class="pc-card-title-{{ last_part }}">{{ block.settings.title }}</h2>
-              {% if strength != 'none' %}
-                <span class="pc-card-badge-{{ last_part }} pc-card-badge-{{ strength }}-{{ last_part }}">{{ strength }}</span>
-              {% endif %}
-            </div>
-            
-            <div class="pc-card-graph-container-{{ last_part }}">
-              <svg class="pc-card-half-circle-{{ last_part }}" viewBox="0 0 100 50" aria-hidden="true">
-                <defs>
-                  <linearGradient id="grad-{{ last_part }}-{{ forloop.index }}" x1="0" y1="0" x2="1" y2="0">
-                    {% if strength == 'none' %}
-                      <stop offset="0%" stop-color="{{ section.settings.graph_track_color }}" />
-                      <stop offset="100%" stop-color="{{ section.settings.graph_track_color }}" />
-                    {% elsif strength == 'weak' %}
-                      <stop offset="0%" stop-color="{{ section.settings.weak_graph_start_color }}" />
-                      <stop offset="50%" stop-color="{{ section.settings.weak_graph_mid_color }}" />
-                      <stop offset="100%" stop-color="{{ section.settings.weak_graph_end_color }}" />
-                    {% elsif strength == 'moderate' %}
-                      <stop offset="0%" stop-color="{{ section.settings.moderate_graph_start_color }}" />
-                      <stop offset="50%" stop-color="{{ section.settings.moderate_graph_mid_color }}" />
-                      <stop offset="100%" stop-color="{{ section.settings.moderate_graph_end_color }}" />
-                    {% elsif strength == 'strong' %}
-                      <stop offset="0%" stop-color="{{ section.settings.strong_graph_start_color }}" />
-                      <stop offset="50%" stop-color="{{ section.settings.strong_graph_mid_color }}" />
-                      <stop offset="100%" stop-color="{{ section.settings.strong_graph_end_color }}" />
-                    {% endif %}
-                  </linearGradient>
-                </defs>
-                <g fill="none" stroke-width="{{ section.settings.graph_stroke_width }}" transform="translate(50, 50.5)">
-                  <circle class="pc-card-half-circle-track-{{ last_part }}" r="45" />
-                  <circle stroke="url(#grad-{{ last_part }}-{{ forloop.index }})" 
-                          stroke-dasharray="141.37 141.37" 
-                          r="45" 
-                          stroke-dashoffset="{% if has_score %}{{ score_value | times: -1.4137 }}{% else %}-35.3425{% endif %}" />
-                </g>
-              </svg>
-              
-              <div class="pc-card-score-display-{{ last_part }}">
-                <div class="pc-card-score-{{ last_part }} {% if has_score %}pc-card-score-animated-{{ last_part }}{% endif %}">
-                  <div class="pc-card-score-digits-{{ last_part }} pc-card-score-digits-dimmed-{{ last_part }}">
-                    <div class="pc-card-score-digit-{{ last_part }}">0</div>
-                  </div>
-                  <div class="pc-card-score-digits-{{ last_part }}">
-                    {% if has_score %}
-                      {% assign digits = score | split: '' %}
-                      {% for digit in digits %}
-                        <span class="pc-card-score-digit-{{ last_part }}">{{ digit }}</span>
-                      {% endfor %}
-                    {% endif %}
-                  </div>
-                </div>
-                <div class="pc-card-score-label-{{ last_part }}">
-                  {% if has_score %}out of {{ max_score }}{% else %}No score{% endif %}
-                </div>
-              </div>
-            </div>
-            
-            <p class="pc-card-description-{{ last_part }}">{{ block.settings.description }}</p>
-        
-            <button class="pc-card-score-button-{{ last_part }} {% if has_score %}pc-card-score-button-outlined-{{ last_part }}{% endif %}" 
-                    type="button" 
-                    data-button-link="{{ block.settings.button_link | default: '#' }}">
-              {% if has_score %}{{ block.settings.button_text }}{% else %}{{ section.settings.calculate_button_text }}{% endif %}
-            </button>
-          
-          </div>
-        </div>
-      </div>
-    </div>
-  {% endfor %}
-</div>
-
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('{{ sec_id }} .pc-card-{{ last_part }}');
-    
-    // Initialize animations
-    cards.forEach((card, index) => {
-      setTimeout(() => {
-        const container = card.querySelector('.pc-card-container-{{ last_part }}');
-        if (container) {
-          container.style.height = container.scrollHeight + 'px';
-        }
-      }, 300 + (index * 200));
+    const glassMagnifier = document.querySelector('{{ sec_id }} .pc-glass-magnifier-{{ last_part }}');
+    const magnifiedContent = document.querySelector('{{ sec_id }} .pc-magnified-content-{{ last_part }}');
+    const cursorGlow = document.querySelector('{{ sec_id }} .pc-cursor-glow-{{ last_part }}');
+    const body = document.querySelector('{{ sec_id }} pc-glass-magnifier-{{ last_part }}');
+    let mouseX = 0;
+    let mouseY = 0;
+    let isActive = false;
+
+    function updateMagnifiedContent() {
+      magnifiedContent.innerHTML = "";
+
+      const viewport = document.createElement("div");
+      viewport.style.position = "absolute";
+      viewport.style.top = "0";
+      viewport.style.left = "0";
+      viewport.style.width = "100%";
+      viewport.style.height = "100%";
+      viewport.style.overflow = "hidden";
+      viewport.style.borderRadius = "50%";
+
+      const magnifiedView = document.createElement("div");
+      magnifiedView.style.position = "absolute";
+      magnifiedView.style.width = "100vw";
+      magnifiedView.style.height = "100vh";
+
+      const centerX = 75;
+      const centerY = 75;
+      const magnification = 2;
+      magnifiedView.style.left = `${centerX - mouseX * magnification}px`;
+      magnifiedView.style.top = `${centerY - mouseY * magnification}px`;
+      magnifiedView.style.transform = `scale(${magnification})`;
+      magnifiedView.style.transformOrigin = "0 0";
+
+      magnifiedView.innerHTML = `
+        <div style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, {{ section.settings.gradient_start }} 0%, {{ section.settings.gradient_end }} 100%);
+        "></div>
+        
+        <div style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: 
+            radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px),
+            radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 1px, transparent 1px);
+          background-size: 80px 80px, 40px 40px;
+        "></div>
+        
+        ${document.querySelector('{{ sec_id }} .pc-floating-elements-{{ last_part }}').outerHTML}
+        ${document.querySelector('{{ sec_id }} .pc-page-content-{{ last_part }}').outerHTML}
+      `;
+      viewport.appendChild(magnifiedView);
+      magnifiedContent.appendChild(viewport);
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      glassMagnifier.style.left = mouseX - 75 + "px";
+      glassMagnifier.style.top = mouseY - 75 + "px";
+
+      cursorGlow.style.left = mouseX - 100 + "px";
+      cursorGlow.style.top = mouseY - 100 + "px";
+
+      updateMagnifiedContent();
+      if (!isActive) {
+        body.classList.add("pc-magnifier-active-{{ last_part }}");
+        isActive = true;
+      }
     });
 
-    // Handle button clicks
-    document.querySelectorAll('{{ sec_id }} .pc-card-score-button-{{ last_part }}').forEach(button => {
-      button.addEventListener('click', function() {
-        const card = this.closest('.pc-card-{{ last_part }}');
-        const hasScore = card.dataset.hasScore === 'true';
-        const buttonLink = this.dataset.buttonLink;
-
-        if (hasScore && buttonLink && buttonLink !== '#') {
-          window.location.href = buttonLink;
-        } else if (!hasScore) {
-          // Generate random score
-          const initialScore = parseInt(card.dataset.initialScore) || 0;
-          const randomScore = Math.floor(Math.random() * {{ section.settings.max_score }}) + 1;
-          
-          // Update the score display
-          const digitsContainer = card.querySelector('.pc-card-score-digits-{{ last_part }}:last-child');
-          digitsContainer.innerHTML = '';
-          
-          String(randomScore).split('').forEach(digit => {
-            digitsContainer.innerHTML += `<span class="pc-card-score-digit-{{ last_part }}">${digit}</span>`;
-          });
-
-          // Update the badge
-          const badgeContainer = card.querySelector('.pc-card-badge-{{ last_part }}');
-          if (badgeContainer) {
-            let strength = 'none';
-            if (randomScore >= {{ section.settings.strong_threshold }}) strength = 'strong';
-            else if (randomScore >= {{ section.settings.moderate_threshold }}) strength = 'moderate';
-            else strength = 'weak';
-            
-            badgeContainer.className = `pc-card-badge-{{ last_part }} pc-card-badge-${strength}-{{ last_part }}`;
-            badgeContainer.textContent = strength;
-          }
-
-          // Update the button
-          this.classList.add('pc-card-score-button-outlined-{{ last_part }}');
-          this.textContent = '{{ section.settings.button_text }}';
-          card.dataset.hasScore = 'true';
-        }
-      });
+    document.addEventListener("mouseleave", () => {
+      body.classList.remove("pc-magnifier-active-{{ last_part }}");
+      isActive = false;
+    });
+    
+    document.addEventListener("mouseenter", () => {
+      if (mouseX !== 0 || mouseY !== 0) {
+        body.classList.add("pc-magnifier-active-{{ last_part }}");
+        isActive = true;
+      }
     });
   });
 </script>
 
 {% schema %}
-  {
-  "name": "Financial Score Card",
-  "class": "financial-score-card",
+{
+  "name": "PWC - Glass Magnifier #1",
   "settings": [
     {
       "type": "header",
-      "content": "Section Layout"
+      "content": "General Settings"
     },
     {
-      "type": "range",
-      "id": "section_padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Section Padding Top",
-      "default": 40
+      "type": "text",
+      "id": "effect_label",
+      "label": "Effect Label",
+      "default": "Glass Magnifier Effect"
     },
     {
-      "type": "range",
-      "id": "section_padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Section Padding Bottom",
-      "default": 40
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "Interactive Design"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Experience the power of CSS magnification"
     },
     {
       "type": "color",
-      "id": "section_bg_color",
-      "label": "Section Background Color",
-      "default": "#ffffff"
+      "id": "gradient_start",
+      "label": "Gradient Start Color",
+      "default": "#667eea"
+    },
+    {
+      "type": "color",
+      "id": "gradient_end",
+      "label": "Gradient End Color",
+      "default": "#764ba2"
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
     },
     {
       "type": "range",
-      "id": "cards_gap",
-      "min": 0,
-      "max": 60,
-      "step": 4,
+      "id": "title_size",
+      "label": "Title Size (Desktop)",
+      "min": 20,
+      "max": 80,
+      "step": 1,
       "unit": "px",
-      "label": "Cards Gap",
-      "default": 20
-    },
-    {
-      "type": "select",
-      "id": "cards_alignment",
-      "label": "Cards Alignment",
-      "options": [
-        {
-          "value": "flex-start",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "flex-end",
-          "label": "Right"
-        },
-        {
-          "value": "space-between",
-          "label": "Space Between"
-        },
-        {
-          "value": "space-around",
-          "label": "Space Around"
-        }
-      ],
-      "default": "center"
+      "default": 64
     },
     {
       "type": "range",
-      "id": "card_max_width",
-      "min": 300,
-      "max": 600,
-      "step": 20,
+      "id": "mobile_title_size",
+      "label": "Title Size (Mobile)",
+      "min": 16,
+      "max": 50,
+      "step": 1,
       "unit": "px",
-      "label": "Card Max Width",
-      "default": 400
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "label": "Subtitle Size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "feature_title_size",
+      "label": "Feature Title Size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "range",
+      "id": "feature_text_size",
+      "label": "Feature Text Size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding",
+      "label": "Desktop Padding",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "grid_columns",
+      "label": "Grid Columns",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid Gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 10
     },
     {
       "type": "header",
@@ -498,1033 +538,92 @@
     },
     {
       "type": "range",
-      "id": "section_padding_top_mobile",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Mobile Section Padding Top",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "section_padding_bottom_mobile",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Mobile Section Padding Bottom",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "cards_gap_mobile",
-      "min": 0,
-      "max": 40,
-      "step": 4,
-      "unit": "px",
-      "label": "Mobile Cards Gap",
-      "default": 16
-    },
-    {
-      "type": "select",
-      "id": "cards_alignment_mobile",
-      "label": "Mobile Cards Alignment",
-      "options": [
-        {
-          "value": "flex-start",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "flex-end",
-          "label": "Right"
-        }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "range",
-      "id": "card_max_width_mobile",
-      "min": 280,
-      "max": 400,
-      "step": 20,
-      "unit": "px",
-      "label": "Mobile Card Max Width",
-      "default": 320
-    },
-    {
-      "type": "header",
-      "content": "Card Styling"
-    },
-    {
-      "type": "color",
-      "id": "card_bg_color",
-      "label": "Card Background Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "range",
-      "id": "card_border_radius",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Card Border Radius",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "card_border_width",
-      "min": 0,
-      "max": 5,
-      "step": 1,
-      "unit": "px",
-      "label": "Card Border Width",
-      "default": 1
-    },
-    {
-      "type": "color",
-      "id": "card_border_color",
-      "label": "Card Border Color",
-      "default": "#e0e0e0"
-    },
-    {
-      "type": "checkbox",
-      "id": "card_shadow",
-      "label": "Enable Card Shadow",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "card_shadow_offset",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Card Shadow Offset",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "card_shadow_blur",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Card Shadow Blur",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "card_shadow_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "label": "Card Shadow Opacity",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "card_padding_vertical",
-      "min": 0,
-      "max": 60,
-      "step": 4,
-      "unit": "px",
-      "label": "Card Padding Vertical",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "card_padding_horizontal",
-      "min": 0,
-      "max": 60,
-      "step": 4,
-      "unit": "px",
-      "label": "Card Padding Horizontal",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "card_padding_vertical_mobile",
-      "min": 0,
-      "max": 40,
-      "step": 4,
-      "unit": "px",
-      "label": "Mobile Card Padding Vertical",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "card_padding_horizontal_mobile",
-      "min": 0,
-      "max": 40,
-      "step": 4,
-      "unit": "px",
-      "label": "Mobile Card Padding Horizontal",
-      "default": 20
-    },
-    {
-      "type": "header",
-      "content": "Header Settings"
-    },
-    {
-      "type": "range",
-      "id": "title_font_size",
-      "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "label": "Title Font Size",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "title_font_size_mobile",
-      "min": 12,
-      "max": 28,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile Title Font Size",
-      "default": 18
-    },
-    {
-      "type": "select",
-      "id": "title_font_weight",
-      "label": "Title Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "600"
-    },
-    {
-      "type": "select",
-      "id": "title_font_style",
-      "label": "Title Font Style",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
-        },
-        {
-          "value": "italic",
-          "label": "Italic"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "range",
-      "id": "title_letter_spacing",
-      "min": 0.1,
-      "max": 10,
-      "step": 0.1,
-      "unit": "px",
-      "label": "Title Letter Spacing",
-      "default": 0.1
-    },
-    {
-      "type": "range",
-      "id": "title_line_height",
-      "min": 1.0,
-      "max": 2.0,
-      "step": 0.1,
-      "label": "Title Line Height",
-      "default": 1.3
-    },
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": "Title Color",
-      "default": "#333333"
-    },
-    {
-      "type": "range",
-      "id": "header_gap",
-      "min": 0,
-      "max": 40,
-      "step": 4,
-      "unit": "px",
-      "label": "Header Elements Gap",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "header_margin_bottom",
-      "min": 0,
-      "max": 40,
-      "step": 4,
-      "unit": "px",
-      "label": "Header Margin Bottom",
-      "default": 16
-    },
-    {
-      "type": "header",
-      "content": "Badge Settings"
-    },
-    {
-      "type": "range",
-      "id": "badge_font_size",
-      "min": 10,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Badge Font Size",
-      "default": 12
-    },
-    {
-      "type": "select",
-      "id": "badge_font_weight",
-      "label": "Badge Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "600"
-    },
-    {
-      "type": "range",
-      "id": "badge_line_height",
-      "min": 1.0,
-      "max": 2.0,
-      "step": 0.1,
-      "label": "Badge Line Height",
-      "default": 1.2
-    },
-    {
-      "type": "select",
-      "id": "badge_text_transform",
-      "label": "Badge Text Transform",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "uppercase",
-          "label": "Uppercase"
-        },
-        {
-          "value": "capitalize",
-          "label": "Capitalize"
-        }
-      ],
-      "default": "uppercase"
-    },
-    {
-      "type": "range",
-      "id": "badge_padding_vertical",
-      "min": 2,
-      "max": 12,
-      "step": 1,
-      "unit": "px",
-      "label": "Badge Padding Vertical",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "badge_padding_horizontal",
-      "min": 6,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Badge Padding Horizontal",
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "badge_border_radius",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Badge Border Radius",
-      "default": 4
-    },
-    {
-      "type": "header",
-      "content": "Badge Colors - Weak"
-    },
-    {
-      "type": "color",
-      "id": "weak_badge_bg_color",
-      "label": "Weak Badge Background",
-      "default": "#FFEBEE"
-    },
-    {
-      "type": "color",
-      "id": "weak_badge_text_color",
-      "label": "Weak Badge Text",
-      "default": "#C62828"
-    },
-    {
-      "type": "header",
-      "content": "Badge Colors - Moderate"
-    },
-    {
-      "type": "color",
-      "id": "moderate_badge_bg_color",
-      "label": "Moderate Badge Background",
-      "default": "#FFF8E1"
-    },
-    {
-      "type": "color",
-      "id": "moderate_badge_text_color",
-      "label": "Moderate Badge Text",
-      "default": "#FF8F00"
-    },
-    {
-      "type": "header",
-      "content": "Badge Colors - Strong"
-    },
-    {
-      "type": "color",
-      "id": "strong_badge_bg_color",
-      "label": "Strong Badge Background",
-      "default": "#E8F5E9"
-    },
-    {
-      "type": "color",
-      "id": "strong_badge_text_color",
-      "label": "Strong Badge Text",
-      "default": "#2E7D32"
-    },
-    {
-      "type": "header",
-      "content": "Graph Settings"
-    },
-    {
-      "type": "range",
-      "id": "graph_height",
-      "min": 80,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "label": "Graph Height",
-      "default": 120
-    },
-    {
-      "type": "range",
-      "id": "graph_stroke_width",
-      "min": 2,
-      "max": 12,
-      "step": 1,
-      "unit": "px",
-      "label": "Graph Stroke Width",
-      "default": 6
-    },
-    {
-      "type": "color",
-      "id": "graph_track_color",
-      "label": "Graph Track Color",
-      "default": "#F5F5F5"
-    },
-    {
-      "type": "range",
-      "id": "graph_margin_bottom",
-      "min": 0,
-      "max": 40,
-      "step": 4,
-      "unit": "px",
-      "label": "Graph Margin Bottom",
-      "default": 16
-    },
-    {
-      "type": "header",
-      "content": "Graph Colors - Weak"
-    },
-    {
-      "type": "color",
-      "id": "weak_graph_start_color",
-      "label": "Weak Start Color",
-      "default": "#FF5252"
-    },
-    {
-      "type": "color",
-      "id": "weak_graph_mid_color",
-      "label": "Weak Mid Color",
-      "default": "#FF4081"
-    },
-    {
-      "type": "color",
-      "id": "weak_graph_end_color",
-      "label": "Weak End Color",
-      "default": "#FF80AB"
-    },
-    {
-      "type": "header",
-      "content": "Graph Colors - Moderate"
-    },
-    {
-      "type": "color",
-      "id": "moderate_graph_start_color",
-      "label": "Moderate Start Color",
-      "default": "#FFC107"
-    },
-    {
-      "type": "color",
-      "id": "moderate_graph_mid_color",
-      "label": "Moderate Mid Color",
-      "default": "#FF9800"
-    },
-    {
-      "type": "color",
-      "id": "moderate_graph_end_color",
-      "label": "Moderate End Color",
-      "default": "#FFA726"
-    },
-    {
-      "type": "header",
-      "content": "Graph Colors - Strong"
-    },
-    {
-      "type": "color",
-      "id": "strong_graph_start_color",
-      "label": "Strong Start Color",
-      "default": "#4CAF50"
-    },
-    {
-      "type": "color",
-      "id": "strong_graph_mid_color",
-      "label": "Strong Mid Color",
-      "default": "#66BB6A"
-    },
-    {
-      "type": "color",
-      "id": "strong_graph_end_color",
-      "label": "Strong End Color",
-      "default": "#81C784"
-    },
-    {
-      "type": "header",
-      "content": "Score Settings"
-    },
-    {
-      "type": "range",
-      "id": "max_score",
-      "min": 10,
-      "max": 1000,
-      "step": 10,
-      "label": "Maximum Score Value",
-      "default": 100
-    },
-    {
-      "type": "range",
-      "id": "strong_threshold",
-      "min": 50,
-      "max": 100,
+      "id": "mobile_padding",
+      "label": "Mobile Padding",
+      "min": 5,
+      "max": 50,
       "step": 5,
-      "unit": "%",
-      "label": "Strong Threshold (% of max)",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "moderate_threshold",
-      "min": 20,
-      "max": 80,
-      "step": 5,
-      "unit": "%",
-      "label": "Moderate Threshold (% of max)",
-      "default": 50
-    },
-    {
-      "type": "range",
-      "id": "score_font_size",
-      "min": 24,
-      "max": 72,
-      "step": 2,
       "unit": "px",
-      "label": "Score Font Size",
-      "default": 44
+      "default": 5
     },
     {
       "type": "range",
-      "id": "score_font_size_mobile",
-      "min": 20,
-      "max": 56,
-      "step": 2,
-      "unit": "px",
-      "label": "Mobile Score Font Size",
-      "default": 40
-    },
-    {
-      "type": "select",
-      "id": "score_font_weight",
-      "label": "Score Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "600"
-    },
-    {
-      "type": "range",
-      "id": "score_height",
-      "min": 30,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Score Height",
-      "default": 60
-    },
-    {
-      "type": "color",
-      "id": "score_color",
-      "label": "Score Color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "dimmed_score_color",
-      "label": "Dimmed Score Color",
-      "default": "#E0E0E0"
-    },
-    {
-      "type": "header",
-      "content": "Score Label Settings"
-    },
-    {
-      "type": "range",
-      "id": "score_label_font_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Label Font Size",
-      "default": 16
-    },
-    {
-      "type": "select",
-      "id": "score_label_font_weight",
-      "label": "Label Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "400"
-    },
-    {
-      "type": "color",
-      "id": "score_label_color",
-      "label": "Label Color",
-      "default": "#666666"
-    },
-    {
-      "type": "select",
-      "id": "score_label_text_transform",
-      "label": "Label Text Transform",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "uppercase",
-          "label": "Uppercase"
-        },
-        {
-          "value": "capitalize",
-          "label": "Capitalize"
-        }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "range",
-      "id": "score_label_margin_top",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Label Margin Top",
-      "default": 4
-    },
-    {
-      "type": "header",
-      "content": "Description Settings"
-    },
-    {
-      "type": "range",
-      "id": "description_font_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Description Font Size",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "description_font_size_mobile",
-      "min": 12,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile Description Font Size",
-      "default": 14
-    },
-    {
-      "type": "select",
-      "id": "description_font_weight",
-      "label": "Description Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        }
-      ],
-      "default": "400"
-    },
-    {
-      "type": "range",
-      "id": "description_line_height",
-      "min": 1.2,
-      "max": 2.0,
-      "step": 0.1,
-      "label": "Description Line Height",
-      "default": 1.5
-    },
-    {
-      "type": "color",
-      "id": "description_color",
-      "label": "Description Color",
-      "default": "#666666"
-    },
-     {
-      "type": "range",
-      "id": "description_margin_top",
-      "min": 0,
-      "max": 40,
-      "step": 4,
-      "unit": "px",
-      "label": "Description Margin Top",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "description_margin_bottom",
-      "min": 0,
-      "max": 40,
-      "step": 4,
-      "unit": "px",
-      "label": "Description Margin Bottom",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "description_min_height",
-      "min": 0,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "label": "Description Min Height",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "description_padding_horizontal",
-      "min": 0,
-      "max": 40,
-      "step": 4,
-      "unit": "px",
-      "label": "Description Horizontal Padding",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Button Settings"
-    },
-    {
-      "type": "text",
-      "id": "calculate_button_text",
-      "label": "Calculate Button Text",
-      "default": "Calculate Score"
-    },
-    {
-      "type": "range",
-      "id": "button_font_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Button Font Size",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "button_font_size_mobile",
-      "min": 12,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile Button Font Size",
-      "default": 14
-    },
-    {
-      "type": "select",
-      "id": "button_font_weight",
-      "label": "Button Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "600"
-    },
-    {
-      "type": "select",
-      "id": "button_text_transform",
-      "label": "Button Text Transform",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "uppercase",
-          "label": "Uppercase"
-        },
-        {
-          "value": "capitalize",
-          "label": "Capitalize"
-        }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "range",
-      "id": "button_letter_spacing",
-      "min": 0.1,
-      "max": 10,
-      "step": 0.1,
-      "unit": "px",
-      "label": "Button Letter Spacing",
-      "default": 0.1
-    },
-    {
-      "type": "color",
-      "id": "button_bg_color",
-      "label": "Button Background Color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "button_border_color",
-      "label": "Button Border Color",
-      "default": "#333333"
-    },
-    {
-      "type": "range",
-      "id": "button_border_width",
-      "min": 0,
-      "max": 3,
-      "step": 1,
-      "unit": "px",
-      "label": "Button Border Width",
-      "default": 1
-    },
-    {
-      "type": "range",
-      "id": "button_border_radius",
-      "min": 0,
+      "id": "mobile_grid_gap",
+      "label": "Mobile Grid Gap",
+      "min": 5,
       "max": 30,
-      "step": 1,
+      "step": 5,
       "unit": "px",
-      "label": "Button Border Radius",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "button_padding_vertical",
-      "min": 8,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Button Padding Vertical",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "button_padding_horizontal",
-      "min": 16,
-      "max": 40,
-      "step": 2,
-      "unit": "px",
-      "label": "Button Padding Horizontal",
-      "default": 24
-    },
-    {
-      "type": "header",
-      "content": "Outline Button Settings"
-    },
-    {
-      "type": "color",
-      "id": "button_outline_text_color",
-      "label": "Outline Button Text Color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "button_outline_border_color",
-      "label": "Outline Button Border Color",
-      "default": "#333333"
-    },
-    {
-      "type": "range",
-      "id": "button_outline_border_width",
-      "min": 1,
-      "max": 3,
-      "step": 1,
-      "unit": "px",
-      "label": "Outline Button Border Width",
-      "default": 1
+      "default": 5
     }
   ],
   "blocks": [
     {
-      "type": "score_card",
-      "name": "Score Card",
+      "type": "feature",
+      "name": "Feature Item",
       "settings": [
         {
           "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Financial Health Score"
+          "id": "feature_title",
+          "label": "Feature Title",
+          "default": "Feature Title"
         },
         {
           "type": "textarea",
-          "id": "description",
-          "label": "Description",
-          "default": "Get an instant assessment of your financial health with our comprehensive scoring system."
-        },
-        {
-          "type": "range",
-          "id": "initial_score",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "label": "Initial Score (0 for no score)",
-          "default": 0,
-          "info": "Set to 0 to show 'Calculate Score' button"
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button Text",
-          "default": "View Details"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button Link",
-          "info": "Optional link when score is shown"
+          "id": "feature_description",
+          "label": "Feature Description",
+          "default": "Feature description text goes here"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Financial Score Card",
-      "category": "Custom",
+      "name": "PWC - Glass Magnifier #1",
+      "category": "Interactive",
       "blocks": [
         {
-          "type": "score_card"
+          "type": "feature",
+          "settings": {
+            "feature_title": "Precision Optics",
+            "feature_description": "Advanced CSS transforms create pixel-perfect magnification with realistic glass distortion effects"
+          }
         },
         {
-          "type": "score_card"
+          "type": "feature",
+          "settings": {
+            "feature_title": "Real-time Rendering",
+            "feature_description": "Dynamic content capture and 2x magnification powered by modern browser capabilities"
+          }
         },
         {
-          "type": "score_card"
+          "type": "feature",
+          "settings": {
+            "feature_title": "Glass Morphism",
+            "feature_description": "Authentic glass appearance with backdrop blur, reflections, and subtle light refraction"
+          }
         },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Smooth Performance",
+            "feature_description": "Optimized rendering pipeline maintains 60fps during continuous cursor movement and updates"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Interactive Focus",
+            "feature_description": "Precise focal point tracking ensures the magnified content matches cursor position exactly"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Visual Feedback",
+            "feature_description": "Subtle glow effects and smooth transitions provide intuitive user experience and engagement"
+          }
+        }
       ]
     }
   ]
