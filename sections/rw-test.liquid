@@ -192,6 +192,10 @@
       font-size: {{ section.settings.mobile_title_size }}px;
     }
 
+    {{ sec_id }} .pc-subtitle-{{ last_part }} {
+      font-size: {{ section.settings.subtitle_mobile }}px;
+    }
+
     {{ sec_id }} .pc-feature-grid-{{ last_part }} {
       grid-template-columns: 1fr;
       gap: {{ section.settings.mobile_grid_gap }}px;
@@ -677,6 +681,12 @@
           "max": 150,
           "step": 5
         },
+    {
+      "type": "text",
+      "id": "subtitle_mobile",
+      "label": "Subtitle (Mobile)",
+      "default": "Experience our premium features"
+    },
      {
       "type": "header",
       "content": "Feature Title"
