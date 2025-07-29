@@ -1203,7 +1203,7 @@
         "mobile_label_size": 14,
         "title_size": 64,
         "title_color": "#FFFFFF",
-        "title_font_weight": "normal",
+        "title_font_weight": "bold",
         "title_text_decoration": "none",
         "title_text_decoration_color": "#000",
         "title_padding_top": 5,
