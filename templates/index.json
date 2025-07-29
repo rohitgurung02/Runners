@@ -1227,7 +1227,7 @@
         "feature_text_color": "#000",
         "feature_description_mobile": 24,
         "desktop_padding": 32,
-        "feature_padding_desktop": 24,
+        "feature_padding_desktop": 22,
         "grid_columns": 3,
         "grid_gap": 20,
         "mobile_padding": 16,
