@@ -19,8 +19,7 @@
   }
 
   {{ sec_id }} .pc-box-content-{{ last_part }} {
-    margin-top: {{ section.settings.margin_top_desktop }}px;
-    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+   
   }
 
   {{ sec_id }} .pc-page-content-{{ last_part }} {
@@ -228,7 +227,10 @@
   }
 </style>
 
-<div class="pc-box-content-{{ last_part }}">
+<div class="pc-box-content-{{ last_part }}" style="
+   margin-top: {{ section.settings.margin_top_desktop }}px;
+   margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  ">
 <div class="pc-pagepc-page-content-{{ last_part }}-content-{{ last_part }}">
   <div class="pc-text-content-{{ last_part }}">
     <div class="pc-effect-label-{{ last_part }}">{{ section.settings.effect_label }}</div>
