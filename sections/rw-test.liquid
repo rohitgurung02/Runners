@@ -3,7 +3,7 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<div class="pc-feature-grid-{{ last_part }}">
+<pc-feature-grid-{{ last_part }} class="pc-feature-grid-{{ last_part }}">
   <div class="pc-grid-pattern-{{ last_part }}"></div>
   <div class="pc-floating-elements-{{ last_part }}">
     <div class="pc-floating-element-{{ last_part }}"></div>
@@ -27,7 +27,7 @@
       {% endfor %}
     </div>
   </div>
-</div>
+</pc-feature-grid-{{ last_part }}>
 
 <style>
   {{ sec_id }} pc-feature-grid-{{ last_part }} * {
