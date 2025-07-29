@@ -191,6 +191,10 @@
     {{ sec_id }} .pc-effect-label-{{ last_part }} {
       font-size: {{ section.settings.mobile_label_size }}px;
     }
+
+    {{ sec_id }} .pc-feature-item-{{ last_part }} {
+      padding: {{ section.settings.feature_padding_mobile }}px;
+    }
   }
 </style>
 
@@ -343,7 +347,7 @@
     {
       "type": "range",
       "id": "feature_padding_desktop",
-      "label": "Padding (Desktop)",
+      "label": "Card Padding (Desktop)",
       "min": 0,
       "max": 100,
       "step": 1,
@@ -379,6 +383,16 @@
       "label": "Mobile Padding",
       "min": 5,
       "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "feature_padding_mobile",
+      "label": "Padding (Mobile)",
+      "min": 0,
+      "max": 60,
       "step": 1,
       "unit": "px",
       "default": 16
