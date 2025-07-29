@@ -4,13 +4,13 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} .pc-feature-grid-{{ last_part }} {
+  {{ sec_id }} pc-feature-grid-{{ last_part }} {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  {{ sec_id }} .pc-feature-grid-{{ last_part }} {
+  {{ sec_id }} pc-feature-grid-{{ last_part }} {
     min-height: 100vh;
     background: linear-gradient(135deg, {{ section.settings.gradient_start }} 0%, {{ section.settings.gradient_end }} 100%);
     overflow-x: hidden;
@@ -187,7 +187,7 @@
   }
 </style>
 
-<pc-feature-grid-{{ last_part }} class="pc-feature-grid-{{ last_part }}">
+<pc-feature-grid-{{ last_part }}>
   <div class="pc-grid-pattern-{{ last_part }}"></div>
   <div class="pc-floating-elements-{{ last_part }}">
     <div class="pc-floating-element-{{ last_part }}"></div>
