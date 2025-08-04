@@ -1220,7 +1220,7 @@
         "text_color": "#ffffff",
         "card_background": "#bfa8a8",
         "card_text": "#bfa8a8",
-        "card_hover_background": "#303030",
+        "card_hover_background": "#ded1d1",
         "desktop_padding": 20,
         "mobile_padding": 10
       }
