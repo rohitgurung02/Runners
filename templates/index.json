@@ -1212,7 +1212,7 @@
       "name": "RW - Text Animation #1",
       "settings": {
         "background_color": "#ffffff",
-        "card_background": "#2A2A2A",
+        "card_background": "#c7c8aa",
         "card_text": "#D0D0D0",
         "card_hover_background": "#d1cbcb",
         "desktop_padding": 20,
