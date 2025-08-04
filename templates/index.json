@@ -1159,19 +1159,6 @@
         "feature_padding_mobile": 15,
         "mobile_grid_gap": 10
       }
-    },
-    "rw_test_ifLQjJ": {
-      "type": "rw-test",
-      "name": "PWC - Text Animation #1",
-      "settings": {
-        "background_color": "#ffffff",
-        "text_color": "#333333",
-        "card_background": "#2A2A2A",
-        "card_text": "#D0D0D0",
-        "card_hover_background": "#303030",
-        "desktop_padding": 20,
-        "mobile_padding": 10
-      }
     }
   },
   "order": [
@@ -1189,7 +1176,6 @@
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
     "rw_hero_banner_4dJjqa",
-    "rw_service_grid_Dq4iqf",
-    "rw_test_ifLQjJ"
+    "rw_service_grid_Dq4iqf"
   ]
 }
