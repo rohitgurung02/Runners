@@ -99,24 +99,13 @@
 </style>
 
 <div class="pc-animation-grid-{{ last_part }}">
-  <div class="pc-animation-item-{{ last_part }}" id="pc-horizontal-split-{{ last_part }}">
-    <h2>Horizontal split</h2>
-  </div>
-  <div class="pc-animation-item-{{ last_part }}" id="pc-wavy-text-effect-{{ last_part }}">
-    <h2>Waaaaavvvvy</h2>
-  </div>
-  <div class="pc-animation-item-{{ last_part }}" id="pc-raining-letters-{{ last_part }}">
-    <h2>Raining letters</h2>
-  </div>
-  <div class="pc-animation-item-{{ last_part }}" id="pc-subtle-highlight-{{ last_part }}">
-    <h2>Subtle text highlight</h2>
-  </div>
-  <div class="pc-animation-item-{{ last_part }}" id="pc-words-3d-jp-{{ last_part }}">
-    <h2>3Dで単語を回転させる</h2>
-  </div>
-  <div class="pc-animation-item-{{ last_part }}" id="pc-exploding-characters-{{ last_part }}">
-    <h2>Exploding characters</h2>
-  </div>
+  {% for block in section.blocks %}
+    <div class="pc-animation-item-{{ last_part }}" 
+         id="pc-{{ block.settings.animation_type | handleize }}-{{ last_part }}" 
+         {{ block.shopify_attributes }}>
+      <h2>{{ block.settings.title }}</h2>
+    </div>
+  {% endfor %}
 </div>
 
 <script>
@@ -124,249 +113,228 @@
     const sectionId = '{{ sec_id }}';
     const lastPart = '{{ last_part }}';
     
-    // Horizontal Split Animation
-    function initHorizontalSplit() {
-      const root = document.querySelector(`${sectionId} #pc-horizontal-split-${lastPart}`);
-      const heading = root.querySelector('h2');
-      
-      // Split text into spans for animation
-      const text = heading.textContent;
-      heading.innerHTML = '';
-      
-      text.split('').forEach((char, i) => {
-        const span = document.createElement('span');
-        span.className = `pc-char-${lastPart}`;
-        span.style.display = 'inline-block';
-        span.style.overflow = 'hidden';
+    // Animation initialization functions
+    const animationHandlers = {
+      horizontal_split: function(root, heading) {
+        const text = heading.textContent;
+        heading.innerHTML = '';
         
-        const innerSpan = document.createElement('span');
-        innerSpan.textContent = char;
-        innerSpan.style.display = 'inline-block';
-        innerSpan.style.transform = 'translateX(0)';
-        innerSpan.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-        
-        span.appendChild(innerSpan);
-        heading.appendChild(span);
-        
-        span.addEventListener('mouseenter', () => {
-          innerSpan.style.transform = 'translateX(100%)';
-        });
-        
-        span.addEventListener('mouseleave', () => {
+        text.split('').forEach((char, i) => {
+          const span = document.createElement('span');
+          span.className = `pc-char-${lastPart}`;
+          span.style.display = 'inline-block';
+          span.style.overflow = 'hidden';
+          
+          const innerSpan = document.createElement('span');
+          innerSpan.textContent = char;
+          innerSpan.style.display = 'inline-block';
           innerSpan.style.transform = 'translateX(0)';
+          innerSpan.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+          
+          span.appendChild(innerSpan);
+          heading.appendChild(span);
+          
+          span.addEventListener('mouseenter', () => {
+            innerSpan.style.transform = 'translateX(100%)';
+          });
+          
+          span.addEventListener('mouseleave', () => {
+            innerSpan.style.transform = 'translateX(0)';
+          });
         });
-      });
-    }
-    
-    // Wavy Text Effect
-    function initWavyText() {
-      const root = document.querySelector(`${sectionId} #pc-wavy-text-effect-${lastPart}`);
-      const heading = root.querySelector('h2');
+      },
       
-      // Split text into spans for animation
-      const text = heading.textContent;
-      heading.innerHTML = '';
-      
-      text.split('').forEach((char, i) => {
-        const span = document.createElement('span');
-        span.className = `pc-wavy-char-${lastPart}`;
-        span.textContent = char;
-        span.style.display = 'inline-block';
-        span.style.transform = 'translateY(0)';
-        span.style.transition = 'transform 0.5s cubic-bezier(0.5, 0, 0.5, 1)';
+      wavy_text: function(root, heading) {
+        const text = heading.textContent;
+        heading.innerHTML = '';
         
-        heading.appendChild(span);
-        
-        root.addEventListener('mouseenter', () => {
-          const delay = i * 50;
-          setTimeout(() => {
-            span.style.transform = 'translateY(-50%)';
+        text.split('').forEach((char, i) => {
+          const span = document.createElement('span');
+          span.className = `pc-wavy-char-${lastPart}`;
+          span.textContent = char;
+          span.style.display = 'inline-block';
+          span.style.transform = 'translateY(0)';
+          span.style.transition = 'transform 0.5s cubic-bezier(0.5, 0, 0.5, 1)';
+          
+          heading.appendChild(span);
+          
+          root.addEventListener('mouseenter', () => {
+            const delay = i * 50;
             setTimeout(() => {
-              span.style.transform = 'translateY(50%)';
+              span.style.transform = 'translateY(-50%)';
               setTimeout(() => {
-                span.style.transform = 'translateY(0)';
+                span.style.transform = 'translateY(50%)';
+                setTimeout(() => {
+                  span.style.transform = 'translateY(0)';
+                }, 250);
               }, 250);
-            }, 250);
-          }, delay);
+            }, delay);
+          });
         });
-      });
-    }
+      },
+      
+      raining_letters: function(root, heading) {
+        const text = heading.textContent;
+        heading.innerHTML = '';
+        
+        text.split('').forEach((char, i) => {
+          const span = document.createElement('span');
+          span.className = `pc-rain-char-${lastPart}`;
+          span.style.display = 'inline-block';
+          span.style.overflow = 'hidden';
+          
+          const innerSpan = document.createElement('span');
+          innerSpan.textContent = char;
+          innerSpan.style.display = 'inline-block';
+          innerSpan.style.transform = 'translateY(0)';
+          innerSpan.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          
+          span.appendChild(innerSpan);
+          heading.appendChild(span);
+          
+          root.addEventListener('mouseenter', () => {
+            setTimeout(() => {
+              innerSpan.style.transform = 'translateY(100%)';
+            }, Math.random() * 300);
+          });
+          
+          root.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+              innerSpan.style.transform = 'translateY(0)';
+            }, Math.random() * 300);
+          });
+        });
+      },
+      
+      subtle_highlight: function(root, heading) {
+        const text = heading.textContent;
+        heading.innerHTML = '';
+        
+        text.split('').forEach((char, i) => {
+          const span = document.createElement('span');
+          span.className = `pc-highlight-char-${lastPart}`;
+          span.textContent = char;
+          span.style.opacity = '0.25';
+          span.style.transition = 'opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), text-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          
+          heading.appendChild(span);
+          
+          root.addEventListener('mouseenter', () => {
+            setTimeout(() => {
+              span.style.opacity = '1';
+              span.style.textShadow = '0 0 30px rgba(255,255,255,0.9)';
+            }, i * 12);
+          });
+          
+          root.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+              span.style.opacity = '0.25';
+              span.style.textShadow = 'none';
+            }, i * 12);
+          });
+        });
+      },
+      
+      words_3d: function(root, heading) {
+        const text = heading.textContent;
+        heading.innerHTML = '';
+        
+        text.split('').forEach((char, i) => {
+          const wordWrapper = document.createElement('span');
+          wordWrapper.className = `pc-word-3d-${lastPart} pc-word-${i}-${lastPart}`;
+          
+          const faceTop = document.createElement('em');
+          faceTop.className = `pc-face-${lastPart} pc-face-top-${lastPart}`;
+          faceTop.textContent = char;
+          
+          const faceFront = document.createElement('em');
+          faceFront.className = `pc-face-${lastPart} pc-face-front-${lastPart}`;
+          faceFront.textContent = char;
+          
+          const faceBottom = document.createElement('em');
+          faceBottom.className = `pc-face-${lastPart} pc-face-bottom-${lastPart}`;
+          faceBottom.textContent = char;
+          
+          const faceBack = document.createElement('em');
+          faceBack.className = `pc-face-${lastPart} pc-face-back-${lastPart}`;
+          faceBack.textContent = char;
+          
+          wordWrapper.appendChild(faceTop);
+          wordWrapper.appendChild(faceFront);
+          wordWrapper.appendChild(faceBottom);
+          wordWrapper.appendChild(faceBack);
+          
+          heading.appendChild(wordWrapper);
+          
+          wordWrapper.addEventListener('mouseenter', () => {
+            wordWrapper.style.transform = 'rotateX(-180deg)';
+            faceTop.style.opacity = '0';
+            faceFront.style.opacity = '0';
+            faceBottom.style.opacity = '1';
+            faceBack.style.opacity = '1';
+          });
+          
+          wordWrapper.addEventListener('mouseleave', () => {
+            wordWrapper.style.transform = 'rotateX(0)';
+            faceTop.style.opacity = '0';
+            faceFront.style.opacity = '1';
+            faceBottom.style.opacity = '0';
+            faceBack.style.opacity = '0';
+          });
+        });
+      },
+      
+      exploding_characters: function(root, heading) {
+        const text = heading.textContent;
+        heading.innerHTML = '';
+        
+        text.split('').forEach((char, i) => {
+          const span = document.createElement('span');
+          span.className = `pc-explode-char-${lastPart}`;
+          span.textContent = char;
+          span.style.display = 'inline-block';
+          span.style.transform = 'translate(0, 0) rotate(0)';
+          span.style.transition = 'transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          
+          heading.appendChild(span);
+          
+          root.addEventListener('mouseenter', () => {
+            const x = (Math.random() * 6 - 3) + 'rem';
+            const y = (Math.random() * 10 - 5) + 'rem';
+            const rotate = (Math.random() * 360 - 180) + 'deg';
+            setTimeout(() => {
+              span.style.transform = `translate(${x}, ${y}) rotate(${rotate})`;
+            }, Math.random() * 300);
+          });
+          
+          root.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+              span.style.transform = 'translate(0, 0) rotate(0)';
+            }, Math.random() * 300);
+          });
+        });
+      }
+    };
     
-    // Raining Letters Effect
-    function initRainingLetters() {
-      const root = document.querySelector(`${sectionId} #pc-raining-letters-${lastPart}`);
-      const heading = root.querySelector('h2');
-      
-      // Split text into spans for animation
-      const text = heading.textContent;
-      heading.innerHTML = '';
-      
-      text.split('').forEach((char, i) => {
-        const span = document.createElement('span');
-        span.className = `pc-rain-char-${lastPart}`;
-        span.style.display = 'inline-block';
-        span.style.overflow = 'hidden';
-        
-        const innerSpan = document.createElement('span');
-        innerSpan.textContent = char;
-        innerSpan.style.display = 'inline-block';
-        innerSpan.style.transform = 'translateY(0)';
-        innerSpan.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
-        
-        span.appendChild(innerSpan);
-        heading.appendChild(span);
-        
-        root.addEventListener('mouseenter', () => {
-          setTimeout(() => {
-            innerSpan.style.transform = 'translateY(100%)';
-          }, Math.random() * 300);
-        });
-        
-        root.addEventListener('mouseleave', () => {
-          setTimeout(() => {
-            innerSpan.style.transform = 'translateY(0)';
-          }, Math.random() * 300);
-        });
-      });
-    }
-    
-    // Subtle Highlight Effect
-    function initSubtleHighlight() {
-      const root = document.querySelector(`${sectionId} #pc-subtle-highlight-${lastPart}`);
-      const heading = root.querySelector('h2');
-      
-      // Split text into spans for animation
-      const text = heading.textContent;
-      heading.innerHTML = '';
-      
-      text.split('').forEach((char, i) => {
-        const span = document.createElement('span');
-        span.className = `pc-highlight-char-${lastPart}`;
-        span.textContent = char;
-        span.style.opacity = '0.25';
-        span.style.transition = 'opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), text-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
-        
-        heading.appendChild(span);
-        
-        root.addEventListener('mouseenter', () => {
-          setTimeout(() => {
-            span.style.opacity = '1';
-            span.style.textShadow = '0 0 30px rgba(255,255,255,0.9)';
-          }, i * 12);
-        });
-        
-        root.addEventListener('mouseleave', () => {
-          setTimeout(() => {
-            span.style.opacity = '0.25';
-            span.style.textShadow = 'none';
-          }, i * 12);
-        });
-      });
-    }
-    
-    // 3D Word Rotation Effect
-    function init3DWords() {
-      const root = document.querySelector(`${sectionId} #pc-words-3d-jp-${lastPart}`);
-      const heading = root.querySelector('h2');
-      
-      // Split text into words for animation
-      const text = heading.textContent;
-      heading.innerHTML = '';
-      
-      text.split('').forEach((char, i) => {
-        const wordWrapper = document.createElement('span');
-        wordWrapper.className = `pc-word-3d-${lastPart} pc-word-${i}-${lastPart}`;
-        
-        const faceTop = document.createElement('em');
-        faceTop.className = `pc-face-${lastPart} pc-face-top-${lastPart}`;
-        faceTop.textContent = char;
-        
-        const faceFront = document.createElement('em');
-        faceFront.className = `pc-face-${lastPart} pc-face-front-${lastPart}`;
-        faceFront.textContent = char;
-        
-        const faceBottom = document.createElement('em');
-        faceBottom.className = `pc-face-${lastPart} pc-face-bottom-${lastPart}`;
-        faceBottom.textContent = char;
-        
-        const faceBack = document.createElement('em');
-        faceBack.className = `pc-face-${lastPart} pc-face-back-${lastPart}`;
-        faceBack.textContent = char;
-        
-        wordWrapper.appendChild(faceTop);
-        wordWrapper.appendChild(faceFront);
-        wordWrapper.appendChild(faceBottom);
-        wordWrapper.appendChild(faceBack);
-        
-        heading.appendChild(wordWrapper);
-        
-        wordWrapper.addEventListener('mouseenter', () => {
-          wordWrapper.style.transform = 'rotateX(-180deg)';
-          faceTop.style.opacity = '0';
-          faceFront.style.opacity = '0';
-          faceBottom.style.opacity = '1';
-          faceBack.style.opacity = '1';
-        });
-        
-        wordWrapper.addEventListener('mouseleave', () => {
-          wordWrapper.style.transform = 'rotateX(0)';
-          faceTop.style.opacity = '0';
-          faceFront.style.opacity = '1';
-          faceBottom.style.opacity = '0';
-          faceBack.style.opacity = '0';
-        });
-      });
-    }
-    
-    // Exploding Characters Effect
-    function initExplodingCharacters() {
-      const root = document.querySelector(`${sectionId} #pc-exploding-characters-${lastPart}`);
-      const heading = root.querySelector('h2');
-      
-      // Split text into spans for animation
-      const text = heading.textContent;
-      heading.innerHTML = '';
-      
-      text.split('').forEach((char, i) => {
-        const span = document.createElement('span');
-        span.className = `pc-explode-char-${lastPart}`;
-        span.textContent = char;
-        span.style.display = 'inline-block';
-        span.style.transform = 'translate(0, 0) rotate(0)';
-        span.style.transition = 'transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1)';
-        
-        heading.appendChild(span);
-        
-        root.addEventListener('mouseenter', () => {
-          const x = (Math.random() * 6 - 3) + 'rem';
-          const y = (Math.random() * 10 - 5) + 'rem';
-          const rotate = (Math.random() * 360 - 180) + 'deg';
-          setTimeout(() => {
-            span.style.transform = `translate(${x}, ${y}) rotate(${rotate})`;
-          }, Math.random() * 300);
-        });
-        
-        root.addEventListener('mouseleave', () => {
-          setTimeout(() => {
-            span.style.transform = 'translate(0, 0) rotate(0)';
-          }, Math.random() * 300);
-        });
-      });
-    }
-    
-    // Initialize all animations
-    initHorizontalSplit();
-    initWavyText();
-    initRainingLetters();
-    initSubtleHighlight();
-    init3DWords();
-    initExplodingCharacters();
+    // Initialize animations based on block types
+    {% for block in section.blocks %}
+      const block{{ forloop.index }} = document.querySelector(`${sectionId} #pc-{{ block.settings.animation_type | handleize }}-${lastPart}`);
+      if (block{{ forloop.index }}) {
+        const heading = block{{ forloop.index }}.querySelector('h2');
+        if (heading) {
+          const animationType = '{{ block.settings.animation_type | handleize }}';
+          if (animationHandlers[animationType]) {
+            animationHandlers[animationType](block{{ forloop.index }}, heading);
+          }
+        }
+      }
+    {% endfor %}
   });
 </script>
 
 {% schema %}
 {
-  "name": "PWC - Text Animation #1",
+  "name": "RW - Text Animation #1",
   "settings": [
     {
       "type": "header",
@@ -427,10 +395,100 @@
       "default": 10
     }
   ],
+  "blocks": [
+    {
+      "type": "animation",
+      "name": "Animation Card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "animation_type",
+          "label": "Animation Type",
+          "options": [
+            {
+              "value": "horizontal_split",
+              "label": "Horizontal Split"
+            },
+            {
+              "value": "wavy_text",
+              "label": "Wavy Text"
+            },
+            {
+              "value": "raining_letters",
+              "label": "Raining Letters"
+            },
+            {
+              "value": "subtle_highlight",
+              "label": "Subtle Highlight"
+            },
+            {
+              "value": "words_3d",
+              "label": "3D Word Rotation"
+            },
+            {
+              "value": "exploding_characters",
+              "label": "Exploding Characters"
+            }
+          ],
+          "default": "horizontal_split"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Animation Title"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "PWC - Text Animation #1",
-      "category": "Custom"
+      "name": "RW - Text Animation #1",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "animation",
+          "settings": {
+            "animation_type": "horizontal_split",
+            "title": "Horizontal split"
+          }
+        },
+        {
+          "type": "animation",
+          "settings": {
+            "animation_type": "wavy_text",
+            "title": "Waaaaavvvvy"
+          }
+        },
+        {
+          "type": "animation",
+          "settings": {
+            "animation_type": "raining_letters",
+            "title": "Raining letters"
+          }
+        },
+        {
+          "type": "animation",
+          "settings": {
+            "animation_type": "subtle_highlight",
+            "title": "Subtle text highlight"
+          }
+        },
+        {
+          "type": "animation",
+          "settings": {
+            "animation_type": "words_3d",
+            "title": "3Dで単語を回転させる"
+          }
+        },
+        {
+          "type": "animation",
+          "settings": {
+            "animation_type": "exploding_characters",
+            "title": "Exploding characters"
+          }
+        }
+      ]
     }
   ]
 }
