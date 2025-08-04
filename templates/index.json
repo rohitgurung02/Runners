@@ -1197,7 +1197,7 @@
           "type": "animation",
           "settings": {
             "animation_type": "words_3d",
-            "title": "3Dで単語を回転させる",
+            "title": "3D Text Characters",
             "title_color": "#333333"
           }
         },
@@ -1222,7 +1222,7 @@
       "settings": {
         "background_color": "#ffffff",
         "card_background": "#d6cccc",
-        "card_text": "#D0D0D0",
+        "card_text": "#d0d0d0",
         "card_hover_background": "#d6cccc",
         "desktop_padding": 20,
         "mobile_padding": 10
