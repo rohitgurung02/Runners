@@ -48,8 +48,16 @@
   {{ sec_id }} .pc-animation-item-{{ last_part }}:hover {
     cursor: default;
     background: {{ section.settings.card_hover_background }};
-    color: #fff;
     z-index: 99;
+  }
+
+  {{ sec_id }} #pc-raining_letters-{{ last_part }}:hover h2 {
+    color: {{ section.settings.card_text }} !important;
+  }
+
+  /* General hover text color for other cards */
+  {{ sec_id }} .pc-animation-item-{{ last_part }}:hover h2 {
+    color: #fff;
   }
 
   {{ sec_id }} .pc-animation-item-{{ last_part }} h2 {
