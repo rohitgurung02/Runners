@@ -1157,6 +1157,67 @@
         "feature_padding_mobile": 15,
         "mobile_grid_gap": 10
       }
+    },
+    "rw_test_yV7PWr": {
+      "type": "rw-test",
+      "blocks": {
+        "animation_83YXdF": {
+          "type": "animation",
+          "settings": {
+            "animation_type": "horizontal_split",
+            "title": "Horizontal split",
+            "title_color": "#FFFFFF"
+          }
+        },
+        "animation_Nx34Th": {
+          "type": "animation",
+          "settings": {
+            "animation_type": "wavy_text",
+            "title": "Waaaaavvvvy",
+            "title_color": "#FFFFFF"
+          }
+        },
+        "animation_7nfxBm": {
+          "type": "animation",
+          "settings": {
+            "animation_type": "raining_letters",
+            "title": "Raining letters",
+            "title_color": "#FFFFFF"
+          }
+        },
+        "animation_xfR3Fd": {
+          "type": "animation",
+          "settings": {
+            "animation_type": "subtle_highlight",
+            "title": "Subtle text highlight",
+            "title_color": "#FFFFFF"
+          }
+        },
+        "animation_LnQceA": {
+          "type": "animation",
+          "settings": {
+            "animation_type": "exploding_characters",
+            "title": "Exploding characters",
+            "title_color": "#FFFFFF"
+          }
+        }
+      },
+      "block_order": [
+        "animation_83YXdF",
+        "animation_Nx34Th",
+        "animation_7nfxBm",
+        "animation_xfR3Fd",
+        "animation_LnQceA"
+      ],
+      "name": "RW - Text Animation #1",
+      "settings": {
+        "background_color": "#ffffff",
+        "card_background": "#5E3653",
+        "card_text": "#D0D0D0",
+        "card_hover_background": "#D777BB",
+        "desktop_padding": 20,
+        "mobile_padding": 10
+      }
     }
   },
   "order": [
@@ -1174,6 +1235,7 @@
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
     "rw_hero_banner_4dJjqa",
-    "rw_service_grid_Dq4iqf"
+    "rw_service_grid_Dq4iqf",
+    "rw_test_yV7PWr"
   ]
 }
