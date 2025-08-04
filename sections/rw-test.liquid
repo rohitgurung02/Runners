@@ -5,168 +5,186 @@
 
 <style>
   {{ sec_id }} {
-    display: block;
-    background: #111;
-    padding: 16px;
-  }
-
-  {{ sec_id }} .pc-flip-text-container-{{ last_part }} {
-    display: grid;
-    place-content: center;
-    min-height: 100svh;
-    grid-template-rows: 1fr auto;
-  }
-
-  {{ sec_id }} .pc-flip-text-wrapper-{{ last_part }} {
-    align-content: center;
-    font-family: monospace;
-  }
-
-  {{ sec_id }} .pc-flip-text-{{ last_part }} {
-    --clr-1: {{ section.settings.color_1 }};
-    --clr-2: {{ section.settings.color_2 }};
-    --clr-3: {{ section.settings.color_3 }};
-    --translate-distance: 1lh;
-    --duration: {{ section.settings.animation_duration }}s;
-    overflow-y: hidden;
-    width: min(100%, 1200px);
-    margin-inline: auto;
-    display: grid;
-    grid-auto-columns: 1fr;
-    grid-auto-flow: column;
-    gap: 0;
-    font-size: clamp(1rem, 4.5vw + 0.05rem, 5rem);
-    font-weight: 700;
-    color: var(--clr-1);
-    line-height: 1;
-  }
-
-  {{ sec_id }} .pc-flip-text-{{ last_part }}:nth-child(2) {
-    font-size: clamp(1rem, 3.5vw + 0.05rem, 3rem);
-    font-weight: 300;
-    color: var(--clr-2);
-    --delay-factor: 300ms;
-  }
-
-  {{ sec_id }} .pc-flip-text-{{ last_part }} > * {
-    --delay: calc(var(--i) * 100ms + var(--delay-factor, 0ms));
-    --translate: calc(var(--translate-distance) * 2);
-    display: grid;
-    place-content: center;
-  }
-
-  @media not (prefers-reduced-motion) {
-    {{ sec_id }} .pc-flip-text-{{ last_part }} > * {
-      animation-name: pc-flip-transform-{{ last_part }}, pc-flip-translate-{{ last_part }};
-      animation-duration: var(--duration);
-      animation-timing-function: cubic-bezier(0.66, 0, 0.34, 1);
-      animation-iteration-count: infinite;
-      animation-delay: var(--delay);
-    }
-  }
-
-  {{ sec_id }} .pc-flip-footer-{{ last_part }} {
     display: flex;
+    overflow: hidden;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    font-size: 0.7rem;
-    color: #aaa;
+    min-height: 100vh;
+    background-color: {{ section.settings.body_color }};
+    padding: {{ section.settings.desktop_padding }}px;
   }
 
-  {{ sec_id }} .pc-flip-footer-{{ last_part }} > a {
-    color: dodgerblue;
-    text-decoration: none;
-    transition: color 150ms ease-in-out;
+  {{ sec_id }} .pc-orbit-container-{{ last_part }} {
+    --size: {{ section.settings.image_size }}px;
+    --offset: {{ section.settings.orbit_offset }}px;
+    --duration: {{ section.settings.animation_duration }}s;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    pointer-events: none;
+    display: inline-grid;
+    border-radius: 9999px;
+    width: calc(var(--size) * 3);
+    border: {{ section.settings.border_width }}px solid {{ section.settings.primary_color }};
+    transition: box-shadow 0.3s ease-in-out;
+    animation: pc-spin-out-{{ last_part }} var(--duration) linear infinite;
   }
 
-  {{ sec_id }} .pc-flip-footer-{{ last_part }} > a:hover {
-    color: hotpink;
+  {{ sec_id }} .pc-orbit-item-{{ last_part }} {
+    z-index: 1;
+    display: flex;
+    grid-area: 1 / 1;
+    width: var(--size);
+    aspect-ratio: 1 / 1;
+    pointer-events: auto;
+    border-radius: 9999px;
+    animation: pc-spin-in-{{ last_part }} var(--duration) linear infinite reverse;
+    offset: circle(
+        calc(var(--size) / (2 * sin(0.5turn / sibling-count())) + var(--offset))
+      calc(100% * sibling-index() / sibling-count()) 0deg;
   }
 
-  @keyframes pc-flip-transform-{{ last_part }} {
-    25% {
-      /*scale: 1 -1;*/
+  {{ sec_id }} .pc-orbit-item-{{ last_part }} img {
+    width: inherit;
+    height: inherit;
+    pointer-events: auto;
+    border-radius: 9999px;
+    border: {{ section.settings.image_border_width }}px solid {{ section.settings.primary_color }};
+    transition: box-shadow 0.3s ease-in-out, scale 0.3s ease-in-out, border 0.3s ease-in-out;
+    object-fit: cover;
+  }
+
+  {{ sec_id }} .pc-orbit-item-{{ last_part }}:hover {
+    z-index: 2;
+  }
+
+  {{ sec_id }} .pc-orbit-item-{{ last_part }}:hover img {
+    scale: 1.5;
+    border-color: {{ section.settings.secondary_color }};
+    box-shadow: 0 0 {{ section.settings.hover_glow }}px {{ section.settings.secondary_color }};
+  }
+
+  {{ sec_id }} .pc-orbit-item-{{ last_part }}:hover ~ .pc-orbit-item-{{ last_part }} img {
+    scale: 0.6;
+  }
+
+  {{ sec_id }} .pc-orbit-item-{{ last_part }}:has(~ .pc-orbit-item-{{ last_part }}:hover) img {
+    scale: 0.6;
+  }
+
+  {{ sec_id }} .pc-orbit-container-{{ last_part }}::before {
+    content: "";
+    z-index: -1;
+    border: inherit;
+    position: absolute;
+    width: var(--size);
+    aspect-ratio: 1 / 1;
+    border-radius: 0.25rem;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease-in-out, border-radius 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+
+  {{ sec_id }} .pc-orbit-container-{{ last_part }}::after {
+    content: "";
+    z-index: -1;
+    inset: -{{ section.settings.border_width }}px;
+    width: inherit;
+    height: inherit;
+    border: inherit;
+    position: absolute;
+    border-radius: inherit;
+    animation: pc-spin-in-{{ last_part }} var(--duration) linear infinite reverse;
+    transition: scale 0.3s ease-in-out, border-radius 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+
+  {{ sec_id }} .pc-orbit-container-{{ last_part }}:has(.pc-orbit-item-{{ last_part }}:hover) {
+    animation-play-state: paused;
+    box-shadow: 0 0 {{ section.settings.hover_glow }}px {{ section.settings.hover_glow | divided_by: 5 }}px {{ section.settings.primary_color }} inset,
+      0 0 {{ section.settings.hover_glow | divided_by: 3 }}px {{ section.settings.hover_glow | divided_by: 4 }}px {{ section.settings.body_color }};
+  }
+
+  {{ sec_id }} .pc-orbit-container-{{ last_part }}:has(.pc-orbit-item-{{ last_part }}:hover) .pc-orbit-item-{{ last_part }} {
+    animation-play-state: paused;
+  }
+
+  {{ sec_id }} .pc-orbit-container-{{ last_part }}:has(.pc-orbit-item-{{ last_part }}:hover)::before {
+    --scale: 4;
+    --translate: calc(-50% / var(--scale));
+    border-width: 2px;
+    border-radius: inherit;
+    border-color: {{ section.settings.secondary_color }};
+    transform: scale(var(--scale)) translate(var(--translate), var(--translate));
+    box-shadow: 0 0 {{ section.settings.hover_glow | divided_by: 4 }}px {{ section.settings.secondary_color }},
+      0 0 {{ section.settings.hover_glow | divided_by: 4 }}px {{ section.settings.primary_color }} inset;
+  }
+
+  {{ sec_id }} .pc-orbit-container-{{ last_part }}:has(.pc-orbit-item-{{ last_part }}:hover)::after {
+    scale: 0.3;
+    border-width: {{ section.settings.border_width | times: 3 }}px;
+    border-radius: 3rem;
+    border-color: {{ section.settings.secondary_color }};
+    box-shadow: 0 0 var(--size) {{ section.settings.secondary_color }} inset;
+  }
+
+  @keyframes pc-spin-out-{{ last_part }} {
+    from {
+      rotate: 0;
     }
-    50%,
-    100% {
-      transform: translateY(calc(var(--translate) * -1));
+    to {
+      rotate: 360deg;
     }
   }
 
-  @keyframes pc-flip-translate-{{ last_part }} {
-    24.999999% {
-      opacity: 1;
-      translate: 0 0;
+  @keyframes pc-spin-in-{{ last_part }} {
+    from {
+      transform: rotate(0);
     }
-    25% {
-      opacity: 0;
+    to {
+      transform: rotate(360deg);
     }
-    25.000001%,
-    100% {
-      opacity: 1;
-      translate: 0 calc(var(--translate) * 1);
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} {
+      padding: {{ section.settings.mobile_padding }}px;
+    }
+    {{ sec_id }} .pc-orbit-container-{{ last_part }} {
+      --size: {{ section.settings.image_size_mobile }}px;
     }
   }
 </style>
 
-<div class="pc-flip-text-container-{{ last_part }}">
-  <div class="pc-flip-text-wrapper-{{ last_part }}">
-    <div class="pc-flip-text-{{ last_part }}">
-      <span>1</span>
-      <span>0</span>
-      <span>0</span>
-      <span>0</span>
-      <span></span>
-      <span>F</span>
-      <span>O</span>
-      <span>L</span>
-      <span>L</span>
-      <span>O</span>
-      <span>W</span>
-      <span>E</span>
-      <span>R</span>
-      <span>S</span>
+<div class="pc-orbit-container-{{ last_part }}">
+  {% for block in section.blocks %}
+    <div class="pc-orbit-item-{{ last_part }}" {{ block.shopify_attributes }}>
+      {%- if block.settings.image != blank -%}
+        {% assign image_class = 'pc-orbit-image-' | append: last_part %}
+        {{ 
+          block.settings.image 
+          | image_url: width: 600 
+          | image_tag: 
+              loading: 'lazy', 
+              class: image_class,
+              alt: block.settings.image.alt 
+        }}
+      {%- else -%}
+        {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
     </div>
-    <div class="pc-flip-text-{{ last_part }}">
-      <span>♥</span>
-      <span>♥</span>
-      <span>♥</span>
-      <span>♥</span>
-      <span></span>
-      <span>T</span>
-      <span>H</span>
-      <span>A</span>
-      <span>N</span>
-      <span>K</span>
-      <span>Y</span>
-      <span>O</span>
-      <span>U</span>
-      <span></span>
-      <span>♥</span>
-      <span>♥</span>
-      <span>♥</span>
-      <span>♥</span>
-    </div>
-  </div>
-  <div class="pc-flip-footer-{{ last_part }}">
-    Previous celebratory pens:
-    <a href="https://codepen.io/cbolson/pen/raBBgeG" target="_blank" title="See my pen celebrating 500 followers">500</a>
-    <a href="https://codepen.io/cbolson/pen/gOVoqvy" target="_blank" title="See my pen celebrating 404 followers">404</a>
-    <a href="https://codepen.io/cbolson/pen/rNgKxVQ" target="_blank" title="See my pen celebrating 200 followers">200</a>
-    <a href="https://codepen.io/cbolson/pen/WNBepzq" target="_blank" title="See my pen celebrating 100 followers">100</a>
-  </div>
+  {% endfor %}
 </div>
 
 <script>
-  document.querySelectorAll('{{ sec_id }} .pc-flip-text-{{ last_part }} > *').forEach((span, index) => {
-    span.style.setProperty('--i', index + 1);
+  document.querySelectorAll('{{ sec_id }} .pc-orbit-item-{{ last_part }}').forEach((item, index) => {
+    item.style.setProperty('--i', index + 1);
   });
 </script>
 
 {% schema %}
 {
-  "name": "PWC - Flip Animation #1",
+  "name": "PWC - Image Animation #1",
+  "max_blocks": 12,
   "settings": [
     {
       "type": "header",
@@ -174,21 +192,21 @@
     },
     {
       "type": "color",
-      "id": "color_1",
+      "id": "body_color",
+      "label": "Background Color",
+      "default": "#010c15"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
       "label": "Primary Color",
-      "default": "#1E90FF"
+      "default": "#20c863"
     },
     {
       "type": "color",
-      "id": "color_2",
+      "id": "secondary_color",
       "label": "Secondary Color",
-      "default": "#FF69B4"
-    },
-    {
-      "type": "color",
-      "id": "color_3",
-      "label": "Accent Color",
-      "default": "#5EA500"
+      "default": "#d4ff00"
     },
     {
       "type": "header",
@@ -198,20 +216,80 @@
       "type": "range",
       "id": "animation_duration",
       "label": "Animation Duration",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "unit": "s",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "label": "Image Size (Desktop)",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "image_size_mobile",
+      "label": "Image Size (Mobile)",
+      "min": 30,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "orbit_offset",
+      "label": "Orbit Offset",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border Width",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "image_border_width",
+      "label": "Image Border Width",
       "min": 1,
       "max": 10,
-      "step": 0.5,
-      "unit": "s",
+      "step": 1,
+      "unit": "px",
       "default": 3
     },
     {
+      "type": "range",
+      "id": "hover_glow",
+      "label": "Hover Glow Intensity",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
       "type": "header",
-      "content": "Desktop Spacing"
+      "content": "Spacing Settings"
     },
     {
       "type": "range",
-      "id": "desktop_padding_top",
-      "label": "Top Padding",
+      "id": "desktop_padding",
+      "label": "Desktop Padding",
       "min": 0,
       "max": 100,
       "step": 5,
@@ -220,32 +298,8 @@
     },
     {
       "type": "range",
-      "id": "desktop_padding_bottom",
-      "label": "Bottom Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "header",
-      "content": "Mobile Spacing"
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_top",
-      "label": "Top Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_bottom",
-      "label": "Bottom Padding",
+      "id": "mobile_padding",
+      "label": "Mobile Padding",
       "min": 0,
       "max": 100,
       "step": 5,
@@ -253,10 +307,43 @@
       "default": 10
     }
   ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Orbit Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "PWC - Flip Animation #1",
-      "category": "Custom"
+      "name": "PWC - Image Animation #1",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
     }
   ]
 }
