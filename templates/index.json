@@ -1157,6 +1157,76 @@
         "feature_padding_mobile": 15,
         "mobile_grid_gap": 10
       }
+    },
+    "rw_test_dFkRQq": {
+      "type": "rw-test",
+      "blocks": {
+        "animation_UxUktX": {
+          "type": "animation",
+          "settings": {
+            "animation_type": "horizontal_split",
+            "title": "Horizontal split",
+            "title_color": "#333333"
+          }
+        },
+        "animation_bitUcc": {
+          "type": "animation",
+          "settings": {
+            "animation_type": "wavy_text",
+            "title": "Waaaaavvvvy",
+            "title_color": "#333333"
+          }
+        },
+        "animation_iRR7hC": {
+          "type": "animation",
+          "settings": {
+            "animation_type": "raining_letters",
+            "title": "Raining letters",
+            "title_color": "#333333"
+          }
+        },
+        "animation_g89KgF": {
+          "type": "animation",
+          "settings": {
+            "animation_type": "subtle_highlight",
+            "title": "Subtle text highlight",
+            "title_color": "#333333"
+          }
+        },
+        "animation_FUQncg": {
+          "type": "animation",
+          "settings": {
+            "animation_type": "words_3d",
+            "title": "3Dで単語を回転させる",
+            "title_color": "#333333"
+          }
+        },
+        "animation_iAENg9": {
+          "type": "animation",
+          "settings": {
+            "animation_type": "exploding_characters",
+            "title": "Exploding characters",
+            "title_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "animation_UxUktX",
+        "animation_bitUcc",
+        "animation_iRR7hC",
+        "animation_g89KgF",
+        "animation_FUQncg",
+        "animation_iAENg9"
+      ],
+      "name": "RW - Text Animation #1",
+      "settings": {
+        "background_color": "#ffffff",
+        "card_background": "#d6cccc",
+        "card_text": "#D0D0D0",
+        "card_hover_background": "#d6cccc",
+        "desktop_padding": 20,
+        "mobile_padding": 10
+      }
     }
   },
   "order": [
@@ -1174,6 +1244,7 @@
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
     "rw_hero_banner_4dJjqa",
-    "rw_service_grid_Dq4iqf"
+    "rw_service_grid_Dq4iqf",
+    "rw_test_dFkRQq"
   ]
 }
