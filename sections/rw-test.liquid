@@ -195,11 +195,11 @@
           root.addEventListener('mouseenter', () => {
             const delay = i * 50;
             setTimeout(() => {
-              span.style.transform = 'translateY(-50%)';
+              span.style.transform = 'translateX(-50%)';
               setTimeout(() => {
-                span.style.transform = 'translateY(50%)';
+                span.style.transform = 'translateX(50%)';
                 setTimeout(() => {
-                  span.style.transform = 'translateY(0)';
+                  span.style.transform = 'translateX(0)';
                 }, 250);
               }, 250);
             }, delay);
