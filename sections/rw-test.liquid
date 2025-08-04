@@ -53,7 +53,7 @@
   {{ sec_id }} .pc-animation-item-{{ last_part }} h2 {
     text-align: center;
     font-size: clamp(20px, 8cqw, 30px);
-    color: {{ section.settings.text_color }}
+    color: {{ block.settings.text_color }};
     will-change: transform;
   }
 
@@ -349,12 +349,6 @@
     },
     {
       "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
       "id": "card_background",
       "label": "Card Background",
       "default": "#2A2A2A"
@@ -438,7 +432,13 @@
           "id": "title",
           "label": "Title",
           "default": "Animation Title"
-        }
+        },
+         {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#333333"
+        },
       ]
     }
   ],
