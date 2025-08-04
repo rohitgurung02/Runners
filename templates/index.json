@@ -751,6 +751,7 @@
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
       "settings": {
+        "heading": "Text Animation",
         "background_color": "#ffffff",
         "card_background": "#2a2a2a",
         "card_text": "#d0d0d0",
@@ -974,6 +975,7 @@
       "disabled": true,
       "name": "RW - Carousel Slider #8",
       "settings": {
+        "heading": "Text Animation",
         "background_color": "#ffffff",
         "card_background": "#2a2a2a",
         "card_text": "#d0d0d0",
@@ -1166,7 +1168,7 @@
           "settings": {
             "animation_type": "horizontal_split",
             "title": "Horizontal split",
-            "title_color": "#FFFFFF"
+            "title_color": "#ffffff"
           }
         },
         "animation_Nx34Th": {
@@ -1174,7 +1176,7 @@
           "settings": {
             "animation_type": "wavy_text",
             "title": "Waaaaavvvvy",
-            "title_color": "#FFFFFF"
+            "title_color": "#ffffff"
           }
         },
         "animation_7nfxBm": {
@@ -1182,15 +1184,15 @@
           "settings": {
             "animation_type": "raining_letters",
             "title": "Raining letters",
-            "title_color": "#FFFFFF"
+            "title_color": "#ffffff"
           }
         },
         "animation_xfR3Fd": {
           "type": "animation",
           "settings": {
             "animation_type": "subtle_highlight",
-            "title": "Subtle text highlight",
-            "title_color": "#FFFFFF"
+            "title": "Subtitle text highlight",
+            "title_color": "#ffffff"
           }
         },
         "animation_LnQceA": {
@@ -1198,7 +1200,7 @@
           "settings": {
             "animation_type": "exploding_characters",
             "title": "Exploding characters",
-            "title_color": "#FFFFFF"
+            "title_color": "#ffffff"
           }
         }
       },
@@ -1211,10 +1213,11 @@
       ],
       "name": "RW - Text Animation #1",
       "settings": {
+        "heading": "Text Animation",
         "background_color": "#ffffff",
-        "card_background": "#5E3653",
-        "card_text": "#D0D0D0",
-        "card_hover_background": "#D777BB",
+        "card_background": "#5e3653",
+        "card_text": "#d0d0d0",
+        "card_hover_background": "#d777bb",
         "desktop_padding": 20,
         "mobile_padding": 10
       }
