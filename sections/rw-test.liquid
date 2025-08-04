@@ -182,26 +182,33 @@
           span.className = `pc-rain-char-${lastPart}`;
           span.style.display = 'inline-block';
           span.style.overflow = 'hidden';
+          span.style.position = 'relative';
           
           const innerSpan = document.createElement('span');
           innerSpan.textContent = char;
           innerSpan.style.display = 'inline-block';
+          innerSpan.style.position = 'relative';
           innerSpan.style.transform = 'translateY(0)';
           innerSpan.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
           
           span.appendChild(innerSpan);
           heading.appendChild(span);
           
+          // Store original position
+          let isRaining = false;
+          
           root.addEventListener('mouseenter', () => {
-            setTimeout(() => {
+            if (!isRaining) {
+              isRaining = true;
               innerSpan.style.transform = 'translateY(100%)';
-            }, Math.random() * 300);
+            }
           });
           
           root.addEventListener('mouseleave', () => {
-            setTimeout(() => {
+            if (isRaining) {
+              isRaining = false;
               innerSpan.style.transform = 'translateY(0)';
-            }, Math.random() * 300);
+            }
           });
         });
       },
