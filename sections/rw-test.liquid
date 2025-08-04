@@ -1,0 +1,263 @@
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} {
+    display: block;
+    background: #111;
+    padding: 16px;
+  }
+
+  {{ sec_id }} .pc-flip-text-container-{{ last_part }} {
+    display: grid;
+    place-content: center;
+    min-height: 100svh;
+    grid-template-rows: 1fr auto;
+  }
+
+  {{ sec_id }} .pc-flip-text-wrapper-{{ last_part }} {
+    align-content: center;
+    font-family: monospace;
+  }
+
+  {{ sec_id }} .pc-flip-text-{{ last_part }} {
+    --clr-1: {{ section.settings.color_1 }};
+    --clr-2: {{ section.settings.color_2 }};
+    --clr-3: {{ section.settings.color_3 }};
+    --translate-distance: 1lh;
+    --duration: {{ section.settings.animation_duration }}s;
+    overflow-y: hidden;
+    width: min(100%, 1200px);
+    margin-inline: auto;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    gap: 0;
+    font-size: clamp(1rem, 4.5vw + 0.05rem, 5rem);
+    font-weight: 700;
+    color: var(--clr-1);
+    line-height: 1;
+  }
+
+  {{ sec_id }} .pc-flip-text-{{ last_part }}:nth-child(2) {
+    font-size: clamp(1rem, 3.5vw + 0.05rem, 3rem);
+    font-weight: 300;
+    color: var(--clr-2);
+    --delay-factor: 300ms;
+  }
+
+  {{ sec_id }} .pc-flip-text-{{ last_part }} > * {
+    --delay: calc(var(--i) * 100ms + var(--delay-factor, 0ms));
+    --translate: calc(var(--translate-distance) * 2);
+    display: grid;
+    place-content: center;
+  }
+
+  @media not (prefers-reduced-motion) {
+    {{ sec_id }} .pc-flip-text-{{ last_part }} > * {
+      animation-name: pc-flip-transform-{{ last_part }}, pc-flip-translate-{{ last_part }};
+      animation-duration: var(--duration);
+      animation-timing-function: cubic-bezier(0.66, 0, 0.34, 1);
+      animation-iteration-count: infinite;
+      animation-delay: var(--delay);
+    }
+  }
+
+  {{ sec_id }} .pc-flip-footer-{{ last_part }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.7rem;
+    color: #aaa;
+  }
+
+  {{ sec_id }} .pc-flip-footer-{{ last_part }} > a {
+    color: dodgerblue;
+    text-decoration: none;
+    transition: color 150ms ease-in-out;
+  }
+
+  {{ sec_id }} .pc-flip-footer-{{ last_part }} > a:hover {
+    color: hotpink;
+  }
+
+  @keyframes pc-flip-transform-{{ last_part }} {
+    25% {
+      /*scale: 1 -1;*/
+    }
+    50%,
+    100% {
+      transform: translateY(calc(var(--translate) * -1));
+    }
+  }
+
+  @keyframes pc-flip-translate-{{ last_part }} {
+    24.999999% {
+      opacity: 1;
+      translate: 0 0;
+    }
+    25% {
+      opacity: 0;
+    }
+    25.000001%,
+    100% {
+      opacity: 1;
+      translate: 0 calc(var(--translate) * 1);
+    }
+  }
+</style>
+
+<div class="pc-flip-text-container-{{ last_part }}">
+  <div class="pc-flip-text-wrapper-{{ last_part }}">
+    <div class="pc-flip-text-{{ last_part }}">
+      <span>1</span>
+      <span>0</span>
+      <span>0</span>
+      <span>0</span>
+      <span></span>
+      <span>F</span>
+      <span>O</span>
+      <span>L</span>
+      <span>L</span>
+      <span>O</span>
+      <span>W</span>
+      <span>E</span>
+      <span>R</span>
+      <span>S</span>
+    </div>
+    <div class="pc-flip-text-{{ last_part }}">
+      <span>♥</span>
+      <span>♥</span>
+      <span>♥</span>
+      <span>♥</span>
+      <span></span>
+      <span>T</span>
+      <span>H</span>
+      <span>A</span>
+      <span>N</span>
+      <span>K</span>
+      <span>Y</span>
+      <span>O</span>
+      <span>U</span>
+      <span></span>
+      <span>♥</span>
+      <span>♥</span>
+      <span>♥</span>
+      <span>♥</span>
+    </div>
+  </div>
+  <div class="pc-flip-footer-{{ last_part }}">
+    Previous celebratory pens:
+    <a href="https://codepen.io/cbolson/pen/raBBgeG" target="_blank" title="See my pen celebrating 500 followers">500</a>
+    <a href="https://codepen.io/cbolson/pen/gOVoqvy" target="_blank" title="See my pen celebrating 404 followers">404</a>
+    <a href="https://codepen.io/cbolson/pen/rNgKxVQ" target="_blank" title="See my pen celebrating 200 followers">200</a>
+    <a href="https://codepen.io/cbolson/pen/WNBepzq" target="_blank" title="See my pen celebrating 100 followers">100</a>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('{{ sec_id }} .pc-flip-text-{{ last_part }} > *').forEach((span, index) => {
+    span.style.setProperty('--i', index + 1);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "PWC - Flip Animation #1",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "color_1",
+      "label": "Primary Color",
+      "default": "#1E90FF"
+    },
+    {
+      "type": "color",
+      "id": "color_2",
+      "label": "Secondary Color",
+      "default": "#FF69B4"
+    },
+    {
+      "type": "color",
+      "id": "color_3",
+      "label": "Accent Color",
+      "default": "#5EA500"
+    },
+    {
+      "type": "header",
+      "content": "Animation Settings"
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "label": "Animation Duration",
+      "min": 1,
+      "max": 10,
+      "step": 0.5,
+      "unit": "s",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - Flip Animation #1",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
