@@ -115,153 +115,212 @@
     
     // Animation initialization functions
     const animationHandlers = {
-      // ... (keep other animation handlers the same)
-      
-      raining_letters: function(root, heading) {
-        // Split the text into characters
+      horizontal_split: function(root, heading) {
         const text = heading.textContent;
         heading.innerHTML = '';
         
         text.split('').forEach((char, i) => {
-          const charWrapper = document.createElement('span');
-          charWrapper.className = `pc-rain-char-${lastPart}`;
-          charWrapper.style.display = 'inline-block';
-          charWrapper.style.overflow = 'hidden';
-          charWrapper.style.position = 'relative';
-          charWrapper.setAttribute('data-char', i);
+          const span = document.createElement('span');
+          span.className = `pc-char-${lastPart}`;
+          span.style.display = 'inline-block';
+          span.style.overflow = 'hidden';
           
-          const charSpan = document.createElement('span');
-          charSpan.textContent = char;
-          charSpan.style.display = 'inline-block';
-          charSpan.style.position = 'relative';
-          charSpan.style.transform = 'translateY(0)';
-          charSpan.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          const innerSpan = document.createElement('span');
+          innerSpan.textContent = char;
+          innerSpan.style.display = 'inline-block';
+          innerSpan.style.transform = 'translateX(0)';
+          innerSpan.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
           
-          charWrapper.appendChild(charSpan);
-          heading.appendChild(charWrapper);
+          span.appendChild(innerSpan);
+          heading.appendChild(span);
+          
+          span.addEventListener('mouseenter', () => {
+            innerSpan.style.transform = 'translateX(100%)';
+          });
+          
+          span.addEventListener('mouseleave', () => {
+            innerSpan.style.transform = 'translateX(0)';
+          });
         });
-
-        // Spring animation function
-        function springAnimation(value, stiffness = 90, damping = 11) {
-          let velocity = 0;
-          let position = 0;
-          const mass = 1;
-          
-          return function(target) {
-            const springForce = -stiffness * (position - target);
-            const dampingForce = -damping * velocity;
-            const acceleration = (springForce + dampingForce) / mass;
-            
-            velocity += acceleration * 0.016; // assuming 60fps
-            position += velocity * 0.016;
-            
-            return position;
-          };
-        }
-
-        // Stagger function
-        function stagger(delay, options = {}) {
-          const from = options.from || 'start';
-          const use = options.use || 'index';
-          
-          return function(i, total) {
-            let index = i;
-            if (use === 'data-char') {
-              index = parseInt(this.getAttribute('data-char'));
-            }
-            
-            let delayTime;
-            if (from === 'random') {
-              delayTime = Math.random() * delay;
-            } else {
-              delayTime = index * delay;
-            }
-            
-            return delayTime;
-          };
-        }
-
-        // Animation functions
-        function animateRaining() {
-          const chars = heading.querySelectorAll(`.pc-rain-char-${lastPart} > span`);
-          const spring = springAnimation(0, 90, 11);
-          let targets = Array.from(chars).map(() => ({ y: 0 }));
-          
-          function update() {
-            let allDone = true;
-            
-            chars.forEach((char, i) => {
-              if (targets[i].y !== undefined) {
-                const currentY = parseFloat(char.style.transform.replace('translateY(', '').replace('%)', '')) || 0;
-                const newY = spring(targets[i].y);
-                
-                if (Math.abs(newY - targets[i].y) > 0.1) {
-                  allDone = false;
-                }
-                
-                char.style.transform = `translateY(${newY}%)`;
-              }
-            });
-            
-            if (!allDone) {
-              requestAnimationFrame(update);
-            }
-          }
-          
-          // Set targets with stagger
-          chars.forEach((char, i) => {
-            const delay = stagger(10, { use: 'data-char', from: 'random' })(i, chars.length);
-            
-            setTimeout(() => {
-              targets[i].y = 100;
-              update();
-            }, delay);
-          });
-        }
-        
-        function animateReset() {
-          const chars = heading.querySelectorAll(`.pc-rain-char-${lastPart} > span`);
-          const spring = springAnimation(0, 90, 11);
-          let targets = Array.from(chars).map(() => ({ y: 0 }));
-          
-          function update() {
-            let allDone = true;
-            
-            chars.forEach((char, i) => {
-              if (targets[i].y !== undefined) {
-                const currentY = parseFloat(char.style.transform.replace('translateY(', '').replace('%)', '')) || 100;
-                const newY = spring(targets[i].y);
-                
-                if (Math.abs(newY - targets[i].y) > 0.1) {
-                  allDone = false;
-                }
-                
-                char.style.transform = `translateY(${newY}%)`;
-              }
-            });
-            
-            if (!allDone) {
-              requestAnimationFrame(update);
-            }
-          }
-          
-          // Set targets with stagger
-          chars.forEach((char, i) => {
-            const delay = stagger(10, { use: 'data-char', from: 'random' })(i, chars.length);
-            
-            setTimeout(() => {
-              targets[i].y = 0;
-              update();
-            }, delay);
-          });
-        }
-
-        // Event listeners
-        root.addEventListener('mouseenter', animateRaining);
-        root.addEventListener('mouseleave', animateReset);
       },
       
-      // ... (rest of your animation handlers)
+      wavy_text: function(root, heading) {
+        const text = heading.textContent;
+        heading.innerHTML = '';
+        
+        text.split('').forEach((char, i) => {
+          const span = document.createElement('span');
+          span.className = `pc-wavy-char-${lastPart}`;
+          span.textContent = char;
+          span.style.display = 'inline-block';
+          span.style.transform = 'translateY(0)';
+          span.style.transition = 'transform 0.5s cubic-bezier(0.5, 0, 0.5, 1)';
+          
+          heading.appendChild(span);
+          
+          root.addEventListener('mouseenter', () => {
+            const delay = i * 50;
+            setTimeout(() => {
+              span.style.transform = 'translateY(-50%)';
+              setTimeout(() => {
+                span.style.transform = 'translateY(50%)';
+                setTimeout(() => {
+                  span.style.transform = 'translateY(0)';
+                }, 250);
+              }, 250);
+            }, delay);
+          });
+        });
+      },
+      
+      raining_letters: function(root, heading) {
+        const text = heading.textContent;
+        heading.innerHTML = '';
+        
+        text.split('').forEach((char, i) => {
+          const span = document.createElement('span');
+          span.className = `pc-rain-char-${lastPart}`;
+          span.style.display = 'inline-block';
+          span.style.overflow = 'hidden';
+          span.style.position = 'relative';
+          
+          const innerSpan = document.createElement('span');
+          innerSpan.textContent = char;
+          innerSpan.style.display = 'inline-block';
+          innerSpan.style.position = 'relative';
+          innerSpan.style.transform = 'translateY(0)';
+          innerSpan.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          
+          span.appendChild(innerSpan);
+          heading.appendChild(span);
+          
+          // Store original position
+          let isRaining = false;
+          
+          root.addEventListener('mouseenter', () => {
+            if (!isRaining) {
+              isRaining = true;
+              innerSpan.style.transform = 'translateY(100%)';
+            }
+          });
+          
+          root.addEventListener('mouseleave', () => {
+            if (isRaining) {
+              isRaining = false;
+              innerSpan.style.transform = 'translateY(0)';
+            }
+          });
+        });
+      },
+      
+      subtle_highlight: function(root, heading) {
+        const text = heading.textContent;
+        heading.innerHTML = '';
+        
+        text.split('').forEach((char, i) => {
+          const span = document.createElement('span');
+          span.className = `pc-highlight-char-${lastPart}`;
+          span.textContent = char;
+          span.style.opacity = '0.25';
+          span.style.transition = 'opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), text-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          
+          heading.appendChild(span);
+          
+          root.addEventListener('mouseenter', () => {
+            setTimeout(() => {
+              span.style.opacity = '1';
+              span.style.textShadow = '0 0 30px rgba(255,255,255,0.9)';
+            }, i * 12);
+          });
+          
+          root.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+              span.style.opacity = '0.25';
+              span.style.textShadow = 'none';
+            }, i * 12);
+          });
+        });
+      },
+      
+      words_3d: function(root, heading) {
+        const text = heading.textContent;
+        heading.innerHTML = '';
+        
+        text.split('').forEach((char, i) => {
+          const wordWrapper = document.createElement('span');
+          wordWrapper.className = `pc-word-3d-${lastPart} pc-word-${i}-${lastPart}`;
+          
+          const faceTop = document.createElement('em');
+          faceTop.className = `pc-face-${lastPart} pc-face-top-${lastPart}`;
+          faceTop.textContent = char;
+          
+          const faceFront = document.createElement('em');
+          faceFront.className = `pc-face-${lastPart} pc-face-front-${lastPart}`;
+          faceFront.textContent = char;
+          
+          const faceBottom = document.createElement('em');
+          faceBottom.className = `pc-face-${lastPart} pc-face-bottom-${lastPart}`;
+          faceBottom.textContent = char;
+          
+          const faceBack = document.createElement('em');
+          faceBack.className = `pc-face-${lastPart} pc-face-back-${lastPart}`;
+          faceBack.textContent = char;
+          
+          wordWrapper.appendChild(faceTop);
+          wordWrapper.appendChild(faceFront);
+          wordWrapper.appendChild(faceBottom);
+          wordWrapper.appendChild(faceBack);
+          
+          heading.appendChild(wordWrapper);
+          
+          wordWrapper.addEventListener('mouseenter', () => {
+            wordWrapper.style.transform = 'rotateX(-180deg)';
+            faceTop.style.opacity = '0';
+            faceFront.style.opacity = '0';
+            faceBottom.style.opacity = '1';
+            faceBack.style.opacity = '1';
+          });
+          
+          wordWrapper.addEventListener('mouseleave', () => {
+            wordWrapper.style.transform = 'rotateX(0)';
+            faceTop.style.opacity = '0';
+            faceFront.style.opacity = '1';
+            faceBottom.style.opacity = '0';
+            faceBack.style.opacity = '0';
+          });
+        });
+      },
+      
+      exploding_characters: function(root, heading) {
+        const text = heading.textContent;
+        heading.innerHTML = '';
+        
+        text.split('').forEach((char, i) => {
+          const span = document.createElement('span');
+          span.className = `pc-explode-char-${lastPart}`;
+          span.textContent = char;
+          span.style.display = 'inline-block';
+          span.style.transform = 'translate(0, 0) rotate(0)';
+          span.style.transition = 'transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          
+          heading.appendChild(span);
+          
+          root.addEventListener('mouseenter', () => {
+            const x = (Math.random() * 6 - 3) + 'rem';
+            const y = (Math.random() * 10 - 5) + 'rem';
+            const rotate = (Math.random() * 360 - 180) + 'deg';
+            setTimeout(() => {
+              span.style.transform = `translate(${x}, ${y}) rotate(${rotate})`;
+            }, Math.random() * 300);
+          });
+          
+          root.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+              span.style.transform = 'translate(0, 0) rotate(0)';
+            }, Math.random() * 300);
+          });
+        });
+      }
     };
     
     // Initialize animations based on block types
