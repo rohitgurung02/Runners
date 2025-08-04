@@ -752,7 +752,6 @@
       "name": "PWC - Filter Gallery #1",
       "settings": {
         "background_color": "#ffffff",
-        "text_color": "#333333",
         "card_background": "#2a2a2a",
         "card_text": "#d0d0d0",
         "card_hover_background": "#303030",
@@ -976,7 +975,6 @@
       "name": "RW - Carousel Slider #8",
       "settings": {
         "background_color": "#ffffff",
-        "text_color": "#333333",
         "card_background": "#2a2a2a",
         "card_text": "#d0d0d0",
         "card_hover_background": "#303030",
@@ -1217,7 +1215,6 @@
       "name": "RW - Text Animation #1",
       "settings": {
         "background_color": "#ffffff",
-        "text_color": "#ffffff",
         "card_background": "#bfa8a8",
         "card_text": "#bfa8a8",
         "card_hover_background": "#ded1d1",
