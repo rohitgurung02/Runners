@@ -175,7 +175,7 @@
         });
       },
       
-      raining_letters: function(root, heading) {
+    raining_letters: function(root, heading) {
         const text = heading.textContent;
         heading.innerHTML = '';
         
@@ -192,6 +192,7 @@
           innerSpan.style.position = 'relative';
           innerSpan.style.transform = 'translateY(0)';
           innerSpan.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          innerSpan.style.color = 'inherit'; // Ensure text color inheritance
           
           span.appendChild(innerSpan);
           heading.appendChild(span);
@@ -212,6 +213,15 @@
               innerSpan.style.transform = 'translateY(0)';
             }
           });
+        });
+        
+        // Force the text color to stay visible on hover
+        root.addEventListener('mouseenter', () => {
+          heading.style.color = '{{ section.settings.card_text }}';
+        });
+        
+        root.addEventListener('mouseleave', () => {
+          heading.style.color = '';
         });
       },
       
