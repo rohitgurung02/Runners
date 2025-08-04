@@ -6,185 +6,367 @@
 <style>
   {{ sec_id }} {
     display: flex;
-    overflow: hidden;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    background-color: {{ section.settings.body_color }};
+    flex-direction: column;
+    align-items: center;
+    min-height: 100svh;
+    font-family: system-ui, sans-serif;
+    font-kerning: none;
+    font-variant-ligatures: none;
+    text-rendering: optimizeSpeed;
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
     padding: {{ section.settings.desktop_padding }}px;
   }
 
-  {{ sec_id }} .pc-orbit-container-{{ last_part }} {
-    --size: {{ section.settings.image_size }}px;
-    --offset: {{ section.settings.orbit_offset }}px;
-    --duration: {{ section.settings.animation_duration }}s;
-    position: relative;
-    aspect-ratio: 1 / 1;
-    pointer-events: none;
-    display: inline-grid;
-    border-radius: 9999px;
-    width: calc(var(--size) * 3);
-    border: {{ section.settings.border_width }}px solid {{ section.settings.primary_color }};
-    transition: box-shadow 0.3s ease-in-out;
-    animation: pc-spin-out-{{ last_part }} var(--duration) linear infinite;
+  {{ sec_id }} .pc-animation-grid-{{ last_part }} {
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    container-type: inline-size;
   }
 
-  {{ sec_id }} .pc-orbit-item-{{ last_part }} {
-    z-index: 1;
+  {{ sec_id }} .pc-animation-item-{{ last_part }} {
     display: flex;
-    grid-area: 1 / 1;
-    width: var(--size);
-    aspect-ratio: 1 / 1;
-    pointer-events: auto;
-    border-radius: 9999px;
-    animation: pc-spin-in-{{ last_part }} var(--duration) linear infinite reverse;
-    offset: circle(
-        calc(var(--size) / (2 * sin(0.5turn / sibling-count())) + var(--offset))
-      calc(100% * sibling-index() / sibling-count()) 0deg;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    padding: 20px;
+    container-type: inline-size;
+    border-radius: 1cqw;
+    background: {{ section.settings.card_background }};
+    color: {{ section.settings.card_text }};
+    transition: background-color .25s ease-out;
   }
 
-  {{ sec_id }} .pc-orbit-item-{{ last_part }} img {
-    width: inherit;
-    height: inherit;
-    pointer-events: auto;
-    border-radius: 9999px;
-    border: {{ section.settings.image_border_width }}px solid {{ section.settings.primary_color }};
-    transition: box-shadow 0.3s ease-in-out, scale 0.3s ease-in-out, border 0.3s ease-in-out;
-    object-fit: cover;
+  {{ sec_id }} .pc-animation-item-{{ last_part }}:hover {
+    cursor: default;
+    background: {{ section.settings.card_hover_background }};
   }
 
-  {{ sec_id }} .pc-orbit-item-{{ last_part }}:hover {
-    z-index: 2;
+  {{ sec_id }} .pc-animation-item-{{ last_part }} h2 {
+    text-align: center;
+    font-size: clamp(20px, 8cqw, 30px);
+    will-change: transform;
   }
 
-  {{ sec_id }} .pc-orbit-item-{{ last_part }}:hover img {
-    scale: 1.5;
-    border-color: {{ section.settings.secondary_color }};
-    box-shadow: 0 0 {{ section.settings.hover_glow }}px {{ section.settings.secondary_color }};
+  {{ sec_id }} .pc-word-3d-{{ last_part }} {
+    perspective: 1000px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50% 1rem;
   }
 
-  {{ sec_id }} .pc-orbit-item-{{ last_part }}:hover ~ .pc-orbit-item-{{ last_part }} img {
-    scale: 0.6;
-  }
-
-  {{ sec_id }} .pc-orbit-item-{{ last_part }}:has(~ .pc-orbit-item-{{ last_part }}:hover) img {
-    scale: 0.6;
-  }
-
-  {{ sec_id }} .pc-orbit-container-{{ last_part }}::before {
-    content: "";
-    z-index: -1;
-    border: inherit;
+  {{ sec_id }} .pc-face-{{ last_part }} {
     position: absolute;
-    width: var(--size);
-    aspect-ratio: 1 / 1;
-    border-radius: 0.25rem;
-    inset-block-start: 50%;
-    inset-inline-start: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.3s ease-in-out, border-radius 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    left: 0;
+    opacity: 0;
   }
 
-  {{ sec_id }} .pc-orbit-container-{{ last_part }}::after {
-    content: "";
-    z-index: -1;
-    inset: -{{ section.settings.border_width }}px;
-    width: inherit;
-    height: inherit;
-    border: inherit;
-    position: absolute;
-    border-radius: inherit;
-    animation: pc-spin-in-{{ last_part }} var(--duration) linear infinite reverse;
-    transition: scale 0.3s ease-in-out, border-radius 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  {{ sec_id }} .pc-face-front-{{ last_part }} {
+    opacity: 1;
   }
 
-  {{ sec_id }} .pc-orbit-container-{{ last_part }}:has(.pc-orbit-item-{{ last_part }}:hover) {
-    animation-play-state: paused;
-    box-shadow: 0 0 {{ section.settings.hover_glow }}px {{ section.settings.hover_glow | divided_by: 5 }}px {{ section.settings.primary_color }} inset,
-      0 0 {{ section.settings.hover_glow | divided_by: 3 }}px {{ section.settings.hover_glow | divided_by: 4 }}px {{ section.settings.body_color }};
+  {{ sec_id }} .pc-face-bottom-{{ last_part }} {
+    top: 100%;
+    transform-origin: 50% 0%;
+    transform: rotateX(90deg);
   }
 
-  {{ sec_id }} .pc-orbit-container-{{ last_part }}:has(.pc-orbit-item-{{ last_part }}:hover) .pc-orbit-item-{{ last_part }} {
-    animation-play-state: paused;
+  {{ sec_id }} .pc-face-top-{{ last_part }} {
+    bottom: 100%;
+    transform-origin: 50% 100%;
+    transform: rotateX(-90deg);
   }
 
-  {{ sec_id }} .pc-orbit-container-{{ last_part }}:has(.pc-orbit-item-{{ last_part }}:hover)::before {
-    --scale: 4;
-    --translate: calc(-50% / var(--scale));
-    border-width: 2px;
-    border-radius: inherit;
-    border-color: {{ section.settings.secondary_color }};
-    transform: scale(var(--scale)) translate(var(--translate), var(--translate));
-    box-shadow: 0 0 {{ section.settings.hover_glow | divided_by: 4 }}px {{ section.settings.secondary_color }},
-      0 0 {{ section.settings.hover_glow | divided_by: 4 }}px {{ section.settings.primary_color }} inset;
-  }
-
-  {{ sec_id }} .pc-orbit-container-{{ last_part }}:has(.pc-orbit-item-{{ last_part }}:hover)::after {
-    scale: 0.3;
-    border-width: {{ section.settings.border_width | times: 3 }}px;
-    border-radius: 3rem;
-    border-color: {{ section.settings.secondary_color }};
-    box-shadow: 0 0 var(--size) {{ section.settings.secondary_color }} inset;
-  }
-
-  @keyframes pc-spin-out-{{ last_part }} {
-    from {
-      rotate: 0;
-    }
-    to {
-      rotate: 360deg;
-    }
-  }
-
-  @keyframes pc-spin-in-{{ last_part }} {
-    from {
-      transform: rotate(0);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  {{ sec_id }} .pc-face-back-{{ last_part }} {
+    top: 0;
+    transform-origin: 50% 50%;
+    transform: translateZ(2.5rem) rotateX(-180deg);
   }
 
   @media (max-width: 768px) {
     {{ sec_id }} {
       padding: {{ section.settings.mobile_padding }}px;
     }
-    {{ sec_id }} .pc-orbit-container-{{ last_part }} {
-      --size: {{ section.settings.image_size_mobile }}px;
-    }
   }
 </style>
 
-<div class="pc-orbit-container-{{ last_part }}">
-  {% for block in section.blocks %}
-    <div class="pc-orbit-item-{{ last_part }}" {{ block.shopify_attributes }}>
-      {%- if block.settings.image != blank -%}
-        {% assign image_class = 'pc-orbit-image-' | append: last_part %}
-        {{ 
-          block.settings.image 
-          | image_url: width: 600 
-          | image_tag: 
-              loading: 'lazy', 
-              class: image_class,
-              alt: block.settings.image.alt 
-        }}
-      {%- else -%}
-        {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
-      {%- endif -%}
-    </div>
-  {% endfor %}
+<div class="pc-animation-grid-{{ last_part }}">
+  <div class="pc-animation-item-{{ last_part }}" id="pc-horizontal-split-{{ last_part }}">
+    <h2>Horizontal split</h2>
+  </div>
+  <div class="pc-animation-item-{{ last_part }}" id="pc-wavy-text-effect-{{ last_part }}">
+    <h2>Waaaaavvvvy</h2>
+  </div>
+  <div class="pc-animation-item-{{ last_part }}" id="pc-raining-letters-{{ last_part }}">
+    <h2>Raining letters</h2>
+  </div>
+  <div class="pc-animation-item-{{ last_part }}" id="pc-subtle-highlight-{{ last_part }}">
+    <h2>Subtle text highlight</h2>
+  </div>
+  <div class="pc-animation-item-{{ last_part }}" id="pc-words-3d-jp-{{ last_part }}">
+    <h2>3Dで単語を回転させる</h2>
+  </div>
+  <div class="pc-animation-item-{{ last_part }}" id="pc-exploding-characters-{{ last_part }}">
+    <h2>Exploding characters</h2>
+  </div>
 </div>
 
 <script>
-  document.querySelectorAll('{{ sec_id }} .pc-orbit-item-{{ last_part }}').forEach((item, index) => {
-    item.style.setProperty('--i', index + 1);
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionId = '{{ sec_id }}';
+    const lastPart = '{{ last_part }}';
+    
+    // Horizontal Split Animation
+    function initHorizontalSplit() {
+      const root = document.querySelector(`${sectionId} #pc-horizontal-split-${lastPart}`);
+      const heading = root.querySelector('h2');
+      
+      // Split text into spans for animation
+      const text = heading.textContent;
+      heading.innerHTML = '';
+      
+      text.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.className = `pc-char-${lastPart}`;
+        span.style.display = 'inline-block';
+        span.style.overflow = 'hidden';
+        
+        const innerSpan = document.createElement('span');
+        innerSpan.textContent = char;
+        innerSpan.style.display = 'inline-block';
+        innerSpan.style.transform = 'translateX(0)';
+        innerSpan.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        
+        span.appendChild(innerSpan);
+        heading.appendChild(span);
+        
+        span.addEventListener('mouseenter', () => {
+          innerSpan.style.transform = 'translateX(100%)';
+        });
+        
+        span.addEventListener('mouseleave', () => {
+          innerSpan.style.transform = 'translateX(0)';
+        });
+      });
+    }
+    
+    // Wavy Text Effect
+    function initWavyText() {
+      const root = document.querySelector(`${sectionId} #pc-wavy-text-effect-${lastPart}`);
+      const heading = root.querySelector('h2');
+      
+      // Split text into spans for animation
+      const text = heading.textContent;
+      heading.innerHTML = '';
+      
+      text.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.className = `pc-wavy-char-${lastPart}`;
+        span.textContent = char;
+        span.style.display = 'inline-block';
+        span.style.transform = 'translateY(0)';
+        span.style.transition = 'transform 0.5s cubic-bezier(0.5, 0, 0.5, 1)';
+        
+        heading.appendChild(span);
+        
+        root.addEventListener('mouseenter', () => {
+          const delay = i * 50;
+          setTimeout(() => {
+            span.style.transform = 'translateY(-50%)';
+            setTimeout(() => {
+              span.style.transform = 'translateY(50%)';
+              setTimeout(() => {
+                span.style.transform = 'translateY(0)';
+              }, 250);
+            }, 250);
+          }, delay);
+        });
+      });
+    }
+    
+    // Raining Letters Effect
+    function initRainingLetters() {
+      const root = document.querySelector(`${sectionId} #pc-raining-letters-${lastPart}`);
+      const heading = root.querySelector('h2');
+      
+      // Split text into spans for animation
+      const text = heading.textContent;
+      heading.innerHTML = '';
+      
+      text.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.className = `pc-rain-char-${lastPart}`;
+        span.style.display = 'inline-block';
+        span.style.overflow = 'hidden';
+        
+        const innerSpan = document.createElement('span');
+        innerSpan.textContent = char;
+        innerSpan.style.display = 'inline-block';
+        innerSpan.style.transform = 'translateY(0)';
+        innerSpan.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        
+        span.appendChild(innerSpan);
+        heading.appendChild(span);
+        
+        root.addEventListener('mouseenter', () => {
+          setTimeout(() => {
+            innerSpan.style.transform = 'translateY(100%)';
+          }, Math.random() * 300);
+        });
+        
+        root.addEventListener('mouseleave', () => {
+          setTimeout(() => {
+            innerSpan.style.transform = 'translateY(0)';
+          }, Math.random() * 300);
+        });
+      });
+    }
+    
+    // Subtle Highlight Effect
+    function initSubtleHighlight() {
+      const root = document.querySelector(`${sectionId} #pc-subtle-highlight-${lastPart}`);
+      const heading = root.querySelector('h2');
+      
+      // Split text into spans for animation
+      const text = heading.textContent;
+      heading.innerHTML = '';
+      
+      text.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.className = `pc-highlight-char-${lastPart}`;
+        span.textContent = char;
+        span.style.opacity = '0.25';
+        span.style.transition = 'opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), text-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        
+        heading.appendChild(span);
+        
+        root.addEventListener('mouseenter', () => {
+          setTimeout(() => {
+            span.style.opacity = '1';
+            span.style.textShadow = '0 0 30px rgba(255,255,255,0.9)';
+          }, i * 12);
+        });
+        
+        root.addEventListener('mouseleave', () => {
+          setTimeout(() => {
+            span.style.opacity = '0.25';
+            span.style.textShadow = 'none';
+          }, i * 12);
+        });
+      });
+    }
+    
+    // 3D Word Rotation Effect
+    function init3DWords() {
+      const root = document.querySelector(`${sectionId} #pc-words-3d-jp-${lastPart}`);
+      const heading = root.querySelector('h2');
+      
+      // Split text into words for animation
+      const text = heading.textContent;
+      heading.innerHTML = '';
+      
+      text.split('').forEach((char, i) => {
+        const wordWrapper = document.createElement('span');
+        wordWrapper.className = `pc-word-3d-${lastPart} pc-word-${i}-${lastPart}`;
+        
+        const faceTop = document.createElement('em');
+        faceTop.className = `pc-face-${lastPart} pc-face-top-${lastPart}`;
+        faceTop.textContent = char;
+        
+        const faceFront = document.createElement('em');
+        faceFront.className = `pc-face-${lastPart} pc-face-front-${lastPart}`;
+        faceFront.textContent = char;
+        
+        const faceBottom = document.createElement('em');
+        faceBottom.className = `pc-face-${lastPart} pc-face-bottom-${lastPart}`;
+        faceBottom.textContent = char;
+        
+        const faceBack = document.createElement('em');
+        faceBack.className = `pc-face-${lastPart} pc-face-back-${lastPart}`;
+        faceBack.textContent = char;
+        
+        wordWrapper.appendChild(faceTop);
+        wordWrapper.appendChild(faceFront);
+        wordWrapper.appendChild(faceBottom);
+        wordWrapper.appendChild(faceBack);
+        
+        heading.appendChild(wordWrapper);
+        
+        wordWrapper.addEventListener('mouseenter', () => {
+          wordWrapper.style.transform = 'rotateX(-180deg)';
+          faceTop.style.opacity = '0';
+          faceFront.style.opacity = '0';
+          faceBottom.style.opacity = '1';
+          faceBack.style.opacity = '1';
+        });
+        
+        wordWrapper.addEventListener('mouseleave', () => {
+          wordWrapper.style.transform = 'rotateX(0)';
+          faceTop.style.opacity = '0';
+          faceFront.style.opacity = '1';
+          faceBottom.style.opacity = '0';
+          faceBack.style.opacity = '0';
+        });
+      });
+    }
+    
+    // Exploding Characters Effect
+    function initExplodingCharacters() {
+      const root = document.querySelector(`${sectionId} #pc-exploding-characters-${lastPart}`);
+      const heading = root.querySelector('h2');
+      
+      // Split text into spans for animation
+      const text = heading.textContent;
+      heading.innerHTML = '';
+      
+      text.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.className = `pc-explode-char-${lastPart}`;
+        span.textContent = char;
+        span.style.display = 'inline-block';
+        span.style.transform = 'translate(0, 0) rotate(0)';
+        span.style.transition = 'transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        
+        heading.appendChild(span);
+        
+        root.addEventListener('mouseenter', () => {
+          const x = (Math.random() * 6 - 3) + 'rem';
+          const y = (Math.random() * 10 - 5) + 'rem';
+          const rotate = (Math.random() * 360 - 180) + 'deg';
+          setTimeout(() => {
+            span.style.transform = `translate(${x}, ${y}) rotate(${rotate})`;
+          }, Math.random() * 300);
+        });
+        
+        root.addEventListener('mouseleave', () => {
+          setTimeout(() => {
+            span.style.transform = 'translate(0, 0) rotate(0)';
+          }, Math.random() * 300);
+        });
+      });
+    }
+    
+    // Initialize all animations
+    initHorizontalSplit();
+    initWavyText();
+    initRainingLetters();
+    initSubtleHighlight();
+    init3DWords();
+    initExplodingCharacters();
   });
 </script>
 
 {% schema %}
 {
-  "name": "PWC - Image Animation #1",
-  "max_blocks": 12,
+  "name": "PWC - Text Animation #1",
   "settings": [
     {
       "type": "header",
@@ -192,95 +374,33 @@
     },
     {
       "type": "color",
-      "id": "body_color",
+      "id": "background_color",
       "label": "Background Color",
-      "default": "#010c15"
+      "default": "#ffffff"
     },
     {
       "type": "color",
-      "id": "primary_color",
-      "label": "Primary Color",
-      "default": "#20c863"
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
     },
     {
       "type": "color",
-      "id": "secondary_color",
-      "label": "Secondary Color",
-      "default": "#d4ff00"
+      "id": "card_background",
+      "label": "Card Background",
+      "default": "#2A2A2A"
     },
     {
-      "type": "header",
-      "content": "Animation Settings"
+      "type": "color",
+      "id": "card_text",
+      "label": "Card Text Color",
+      "default": "#D0D0D0"
     },
     {
-      "type": "range",
-      "id": "animation_duration",
-      "label": "Animation Duration",
-      "min": 10,
-      "max": 60,
-      "step": 1,
-      "unit": "s",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "image_size",
-      "label": "Image Size (Desktop)",
-      "min": 50,
-      "max": 300,
-      "step": 10,
-      "unit": "px",
-      "default": 120
-    },
-    {
-      "type": "range",
-      "id": "image_size_mobile",
-      "label": "Image Size (Mobile)",
-      "min": 30,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "orbit_offset",
-      "label": "Orbit Offset",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "border_width",
-      "label": "Border Width",
-      "min": 1,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 6
-    },
-    {
-      "type": "range",
-      "id": "image_border_width",
-      "label": "Image Border Width",
-      "min": 1,
-      "max": 10,
-      "step": 1,
-      "unit": "px",
-      "default": 3
-    },
-    {
-      "type": "range",
-      "id": "hover_glow",
-      "label": "Hover Glow Intensity",
-      "min": 10,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 60
+      "type": "color",
+      "id": "card_hover_background",
+      "label": "Card Hover Background",
+      "default": "#303030"
     },
     {
       "type": "header",
@@ -307,43 +427,10 @@
       "default": 10
     }
   ],
-  "blocks": [
-    {
-      "type": "image",
-      "name": "Orbit Image",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        }
-      ]
-    }
-  ],
   "presets": [
     {
-      "name": "PWC - Image Animation #1",
-      "category": "Custom",
-      "blocks": [
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        }
-      ]
+      "name": "PWC - Text Animation #1",
+      "category": "Custom"
     }
   ]
 }
