@@ -238,758 +238,758 @@
 </div>
 
 {% schema %}
-{
-  "name": "RW - Service Grid #1",
-  "settings": [
-    {
-      "type": "header",
-      "content": "General Settings"
-    },
-    {
-      "type": "text",
-      "id": "effect_label",
-      "label": "Services",
-      "default": "Services"
-    },
-    {
-      "type": "text",
-      "id": "main_title",
-      "label": "Title",
-      "default": "Our Services"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Experience our premium services"
-    },
-    {
-      "type": "color",
-      "id": "gradient_start",
-      "label": "Gradient Start Color",
-      "default": "#667eea"
-    },
-    {
-      "type": "color",
-      "id": "gradient_end",
-      "label": "Gradient End Color",
-      "default": "#764ba2"
-    },
-    {
-      "type": "header",
-      "content": "Typography Settings"
-    },
-    {
-      "type": "header",
-      "content": "Services"
-    },
-    {
-      "type": "range",
-      "id": "label_size",
-      "label": "Service Text (Desktop)",
-      "min": 10,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "mobile_label_size",
-      "label": "Service Text (Mobile)",
-      "min": 10,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "color",
-      "id": "label_color",
-      "label": "Service Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-          "type": "select",
-          "id": "label_font_weight",
-          "label": "Service Text Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-    },
-     {
-          "type": "select",
-          "id": "label_text_decoration",
-          "label": "Service Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "label_text_decoration_color",
-          "label": "Service Text Decoration Color",
-          "default": "#000"
-        },
-        {
-          "type": "range",
-          "id": "label_padding_top",
-          "label": "Service Text Padding Top (px)",
-          "default": 0,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "label_padding_bottom",
-          "label": "Service Text Padding Bottom (px)",
-          "default": 0,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-    {
-      "type": "header",
-      "content": "Title"
-    },
-    {
-      "type": "range",
-      "id": "title_size",
-      "label": "Title Text (Desktop)",
-      "min": 20,
-      "max": 80,
-      "step": 1,
-      "unit": "px",
-      "default": 57
-    },
-    {
-      "type": "range",
-      "id": "mobile_title_size",
-      "label": "Title Text (Mobile)",
-      "min": 16,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 33
-    },
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": " Title Text Color",
-      "default": "#c9f5f6"
-    },
-    {
-          "type": "select",
-          "id": "title_font_weight",
-          "label": "Title Text Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "bold"
-    },
-     {
-          "type": "select",
-          "id": "title_text_decoration",
-          "label": "Title Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "title_text_decoration_color",
-          "label": "Title Text Decoration Color",
-          "default": "#000"
-        },
-        {
-          "type": "range",
-          "id": "title_padding_top",
-          "label": "Title Text Padding Top (px)",
-          "default": 0,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "title_padding_bottom",
-          "label": "Title Text Padding Bottom (px)",
-          "default": 0,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-     {
-      "type": "header",
-      "content": "Subtitle"
-    },
-    {
-      "type": "range",
-      "id": "subtitle_size",
-      "label": "Subtitle Text (Desktop)",
-      "min": 12,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "subtitle_size_mobile",
-      "label": "Subtitle Text (Mobile)",
-      "min": 12,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 21
-    },
-    {
-      "type": "color",
-      "id": "subtitle_color",
-      "label": "Subtitle Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-          "type": "select",
-          "id": "subtitle_font_weight",
-          "label": "Subtitle Text Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-    },
-     {
-          "type": "select",
-          "id": "subtitle_text_decoration",
-          "label": "Subtitle Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "subtitle_text_decoration_color",
-          "label": "Subtitle Text Decoration Color",
-          "default": "#000"
-        },
-        {
-          "type": "range",
-          "id": "subtitle_padding_top",
-          "label": "Subtitle Text Padding Top (px)",
-          "default": 0,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "subtitle_padding_bottom",
-          "label": "Subtitle Text Padding Bottom (px)",
-          "default": 0,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-     {
-      "type": "header",
-      "content": "Feature Title"
-    },
-    {
-      "type": "range",
-      "id": "feature_title_size",
-      "label": "Feature Title Text (Desktop)",
-      "min": 12,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 19
-    },
-    {
-      "type": "range",
-      "id": "feature_title_mobile",
-      "label": "Feature Title Text (Mobile)",
-      "min": 12,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "color",
-      "id": "feature_title_color",
-      "label": "Feature Title Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-          "type": "select",
-          "id": "feature_title_font_weight",
-          "label": "Feature Title Text Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-    },
-     {
-          "type": "select",
-          "id": "feature_title_text_decoration",
-          "label": "Feature Title Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "feature_title_text_decoration_color",
-          "label": "Feature Title Text Decoration Color",
-          "default": "#000"
-        },
-     {
-      "type": "header",
-      "content": "Feature Description"
-    },
-    {
-      "type": "range",
-      "id": "feature_text_size",
-      "label": "Feature Description Text (Desktop)",
-      "min": 10,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 15
-    },
-     {
-      "type": "range",
-      "id": "feature_description_mobile",
-      "label": "Feature Description (Mobile)",
-      "min": 12,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-     {
-      "type": "color",
-      "id": "feature_text_color",
-      "label": "Feature Description Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "header",
-      "content": "Desktop Settings"
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding",
-      "label": "Desktop Padding",
-      "min": 5,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "feature_padding_desktop",
-      "label": "Card Padding (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "grid_columns",
-      "label": "Grid Columns",
-      "min": 1,
-      "max": 4,
-      "step": 1,
-      "default": 3
-    },
-    {
-      "type": "range",
-      "id": "grid_gap",
-      "label": "Grid Gap",
-      "min": 5,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding",
-      "label": "Mobile Padding",
-      "min": 5,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "feature_padding_mobile",
-      "label": "Card Padding (Mobile)",
-      "min": 0,
-      "max": 60,
-      "step": 1,
-      "unit": "px",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "mobile_grid_gap",
-      "label": "Mobile Grid Gap",
-      "min": 5,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 10
-    }
-  ],
-  "blocks": [
-    {
-      "type": "feature",
-      "name": "Feature Item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "feature_title",
-          "label": "Feature Title",
-          "default": "Feature Title"
-        },
-        {
-          "type": "textarea",
-          "id": "feature_description",
-          "label": "Feature Description",
-          "default": "Feature description text goes here"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "RW - Service Grid #1",
-      "category": "Content",
-      "blocks": [
-        {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Precision Design",
-            "feature_description": "Carefully crafted components with attention to detail"
+  {
+    "name": "RW - Service Grid #1",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General Settings"
+      },
+      {
+        "type": "text",
+        "id": "effect_label",
+        "label": "Services",
+        "default": "Services"
+      },
+      {
+        "type": "text",
+        "id": "main_title",
+        "label": "Title",
+        "default": "Our Services"
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle",
+        "default": "Experience our premium services"
+      },
+      {
+        "type": "color",
+        "id": "gradient_start",
+        "label": "Gradient Start Color",
+        "default": "#667eea"
+      },
+      {
+        "type": "color",
+        "id": "gradient_end",
+        "label": "Gradient End Color",
+        "default": "#764ba2"
+      },
+      {
+        "type": "header",
+        "content": "Typography Settings"
+      },
+      {
+        "type": "header",
+        "content": "Services"
+      },
+      {
+        "type": "range",
+        "id": "label_size",
+        "label": "Service Text (Desktop)",
+        "min": 10,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "mobile_label_size",
+        "label": "Service Text (Mobile)",
+        "min": 10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 14
+      },
+      {
+        "type": "color",
+        "id": "label_color",
+        "label": "Service Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "select",
+        "id": "label_font_weight",
+        "label": "Service Text Font weight",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "bold",
+            "label": "Bold"
+          },
+          {
+            "value": "bolder",
+            "label": "Bolder"
+          },
+          {
+            "value": "lighter",
+            "label": "Lighter"
+          },
+          {
+            "value": "100",
+            "label": "100"
+          },
+          {
+            "value": "200",
+            "label": "200"
+          },
+          {
+            "value": "300",
+            "label": "300"
+          },
+          {
+            "value": "400",
+            "label": "400"
+          },
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          },
+          {
+            "value": "800",
+            "label": "800"
+          },
+          {
+            "value": "900",
+            "label": "900"
           }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Responsive Layout",
-            "feature_description": "Adapts perfectly to all screen sizes and devices"
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "select",
+        "id": "label_text_decoration",
+        "label": "Service Text Decoration",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "underline",
+            "label": "Underline"
+          },
+          {
+            "value": "overline",
+            "label": "Overline"
+          },
+          {
+            "value": "line-through",
+            "label": "Line Through"
           }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Smooth Animations",
-            "feature_description": "Subtle animations that enhance user experience"
+        ],
+        "default": "none"
+      },
+      {
+        "type": "color",
+        "id": "label_text_decoration_color",
+        "label": "Service Text Decoration Color",
+        "default": "#000"
+      },
+      {
+        "type": "range",
+        "id": "label_padding_top",
+        "label": "Service Text Padding Top (px)",
+        "default": 0,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "label_padding_bottom",
+        "label": "Service Text Padding Bottom (px)",
+        "default": 0,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "header",
+        "content": "Title"
+      },
+      {
+        "type": "range",
+        "id": "title_size",
+        "label": "Title Text (Desktop)",
+        "min": 20,
+        "max": 80,
+        "step": 1,
+        "unit": "px",
+        "default": 57
+      },
+      {
+        "type": "range",
+        "id": "mobile_title_size",
+        "label": "Title Text (Mobile)",
+        "min": 16,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 33
+      },
+      {
+        "type": "color",
+        "id": "title_color",
+        "label": " Title Text Color",
+        "default": "#c9f5f6"
+      },
+      {
+        "type": "select",
+        "id": "title_font_weight",
+        "label": "Title Text Font weight",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "bold",
+            "label": "Bold"
+          },
+          {
+            "value": "bolder",
+            "label": "Bolder"
+          },
+          {
+            "value": "lighter",
+            "label": "Lighter"
+          },
+          {
+            "value": "100",
+            "label": "100"
+          },
+          {
+            "value": "200",
+            "label": "200"
+          },
+          {
+            "value": "300",
+            "label": "300"
+          },
+          {
+            "value": "400",
+            "label": "400"
+          },
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          },
+          {
+            "value": "800",
+            "label": "800"
+          },
+          {
+            "value": "900",
+            "label": "900"
           }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Modern Aesthetics",
-            "feature_description": "Clean design with glass morphism effects"
+        ],
+        "default": "bold"
+      },
+      {
+        "type": "select",
+        "id": "title_text_decoration",
+        "label": "Title Text Decoration",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "underline",
+            "label": "Underline"
+          },
+          {
+            "value": "overline",
+            "label": "Overline"
+          },
+          {
+            "value": "line-through",
+            "label": "Line Through"
           }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Easy Customization",
-            "feature_description": "Fully customizable through theme settings"
+        ],
+        "default": "none"
+      },
+      {
+        "type": "color",
+        "id": "title_text_decoration_color",
+        "label": "Title Text Decoration Color",
+        "default": "#000"
+      },
+      {
+        "type": "range",
+        "id": "title_padding_top",
+        "label": "Title Text Padding Top (px)",
+        "default": 0,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "title_padding_bottom",
+        "label": "Title Text Padding Bottom (px)",
+        "default": 0,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "header",
+        "content": "Subtitle"
+      },
+      {
+        "type": "range",
+        "id": "subtitle_size",
+        "label": "Subtitle Text (Desktop)",
+        "min": 12,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 24
+      },
+      {
+        "type": "range",
+        "id": "subtitle_size_mobile",
+        "label": "Subtitle Text (Mobile)",
+        "min": 12,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 21
+      },
+      {
+        "type": "color",
+        "id": "subtitle_color",
+        "label": "Subtitle Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "select",
+        "id": "subtitle_font_weight",
+        "label": "Subtitle Text Font weight",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "bold",
+            "label": "Bold"
+          },
+          {
+            "value": "bolder",
+            "label": "Bolder"
+          },
+          {
+            "value": "lighter",
+            "label": "Lighter"
+          },
+          {
+            "value": "100",
+            "label": "100"
+          },
+          {
+            "value": "200",
+            "label": "200"
+          },
+          {
+            "value": "300",
+            "label": "300"
+          },
+          {
+            "value": "400",
+            "label": "400"
+          },
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          },
+          {
+            "value": "800",
+            "label": "800"
+          },
+          {
+            "value": "900",
+            "label": "900"
           }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Performance Optimized",
-            "feature_description": "Lightweight code for fast loading times"
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "select",
+        "id": "subtitle_text_decoration",
+        "label": "Subtitle Text Decoration",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "underline",
+            "label": "Underline"
+          },
+          {
+            "value": "overline",
+            "label": "Overline"
+          },
+          {
+            "value": "line-through",
+            "label": "Line Through"
           }
-        }
-      ]
-    }
-  ]
-}
+        ],
+        "default": "none"
+      },
+      {
+        "type": "color",
+        "id": "subtitle_text_decoration_color",
+        "label": "Subtitle Text Decoration Color",
+        "default": "#000"
+      },
+      {
+        "type": "range",
+        "id": "subtitle_padding_top",
+        "label": "Subtitle Text Padding Top (px)",
+        "default": 0,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "subtitle_padding_bottom",
+        "label": "Subtitle Text Padding Bottom (px)",
+        "default": 0,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "header",
+        "content": "Feature Title"
+      },
+      {
+        "type": "range",
+        "id": "feature_title_size",
+        "label": "Feature Title Text (Desktop)",
+        "min": 12,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 19
+      },
+      {
+        "type": "range",
+        "id": "feature_title_mobile",
+        "label": "Feature Title Text (Mobile)",
+        "min": 12,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 20
+      },
+      {
+        "type": "color",
+        "id": "feature_title_color",
+        "label": "Feature Title Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "select",
+        "id": "feature_title_font_weight",
+        "label": "Feature Title Text Font weight",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "bold",
+            "label": "Bold"
+          },
+          {
+            "value": "bolder",
+            "label": "Bolder"
+          },
+          {
+            "value": "lighter",
+            "label": "Lighter"
+          },
+          {
+            "value": "100",
+            "label": "100"
+          },
+          {
+            "value": "200",
+            "label": "200"
+          },
+          {
+            "value": "300",
+            "label": "300"
+          },
+          {
+            "value": "400",
+            "label": "400"
+          },
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          },
+          {
+            "value": "800",
+            "label": "800"
+          },
+          {
+            "value": "900",
+            "label": "900"
+          }
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "select",
+        "id": "feature_title_text_decoration",
+        "label": "Feature Title Text Decoration",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "underline",
+            "label": "Underline"
+          },
+          {
+            "value": "overline",
+            "label": "Overline"
+          },
+          {
+            "value": "line-through",
+            "label": "Line Through"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "color",
+        "id": "feature_title_text_decoration_color",
+        "label": "Feature Title Text Decoration Color",
+        "default": "#000"
+      },
+      {
+        "type": "header",
+        "content": "Feature Description"
+      },
+      {
+        "type": "range",
+        "id": "feature_text_size",
+        "label": "Feature Description Text (Desktop)",
+        "min": 10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 15
+      },
+      {
+        "type": "range",
+        "id": "feature_description_mobile",
+        "label": "Feature Description (Mobile)",
+        "min": 12,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 18
+      },
+      {
+        "type": "color",
+        "id": "feature_text_color",
+        "label": "Feature Description Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "header",
+        "content": "Desktop Settings"
+      },
+      {
+        "type": "range",
+        "id": "desktop_padding",
+        "label": "Desktop Padding",
+        "min": 5,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 32
+      },
+      {
+        "type": "range",
+        "id": "feature_padding_desktop",
+        "label": "Card Padding (Desktop)",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 24
+      },
+      {
+        "type": "range",
+        "id": "grid_columns",
+        "label": "Grid Columns",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "default": 3
+      },
+      {
+        "type": "range",
+        "id": "grid_gap",
+        "label": "Grid Gap",
+        "min": 5,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 20
+      },
+      {
+        "type": "header",
+        "content": "Mobile Settings"
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding",
+        "label": "Mobile Padding",
+        "min": 5,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "feature_padding_mobile",
+        "label": "Card Padding (Mobile)",
+        "min": 0,
+        "max": 60,
+        "step": 1,
+        "unit": "px",
+        "default": 15
+      },
+      {
+        "type": "range",
+        "id": "mobile_grid_gap",
+        "label": "Mobile Grid Gap",
+        "min": 5,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 10
+      }
+    ],
+    "blocks": [
+      {
+        "type": "feature",
+        "name": "Feature Item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "feature_title",
+            "label": "Feature Title",
+            "default": "Feature Title"
+          },
+          {
+            "type": "textarea",
+            "id": "feature_description",
+            "label": "Feature Description",
+            "default": "Feature description text goes here"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "RW - Service Grid #1",
+        "category": "Content",
+        "blocks": [
+          {
+            "type": "feature",
+            "settings": {
+              "feature_title": "Precision Design",
+              "feature_description": "Carefully crafted components with attention to detail"
+            }
+          },
+          {
+            "type": "feature",
+            "settings": {
+              "feature_title": "Responsive Layout",
+              "feature_description": "Adapts perfectly to all screen sizes and devices"
+            }
+          },
+          {
+            "type": "feature",
+            "settings": {
+              "feature_title": "Smooth Animations",
+              "feature_description": "Subtle animations that enhance user experience"
+            }
+          },
+          {
+            "type": "feature",
+            "settings": {
+              "feature_title": "Modern Aesthetics",
+              "feature_description": "Clean design with glass morphism effects"
+            }
+          },
+          {
+            "type": "feature",
+            "settings": {
+              "feature_title": "Easy Customization",
+              "feature_description": "Fully customizable through theme settings"
+            }
+          },
+          {
+            "type": "feature",
+            "settings": {
+              "feature_title": "Performance Optimized",
+              "feature_description": "Lightweight code for fast loading times"
+            }
+          }
+        ]
+      }
+    ]
+  }
 {% endschema %}
