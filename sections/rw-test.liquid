@@ -27,12 +27,12 @@
   }
 
   {{ sec_id }} .pc-animation-title-{{ last_part }} {
-  font-size: {{ section.settings.title_text }}px !important;
-  font-weight: {{ section.settings.title_font_weight }};
-  text-decoration: {{ section.settings.title_text_decoration }};
-  text-decoration-color: {{ section.settings.title_text_decoration_color }};
-  margin: 0;
-}
+    font-size: {{ section.settings.title_text }}px;
+    font-weight: {{ section.settings.title_font_weight }};
+    text-decoration: {{ section.settings.title_text_decoration }};
+    text-decoration-color: {{ section.settings.title_text_decoration_color }};
+    margin: 0;
+  }
 
   {{ sec_id }} .pc-animation-grid-{{ last_part }} {
     margin: 0 auto;
@@ -69,7 +69,6 @@
 
   {{ sec_id }} .pc-animation-item-{{ last_part }} h2 {
     text-align: center;
-    font-size: clamp(20px, 8cqw, 30px);
     will-change: transform;
   }
 
@@ -111,22 +110,22 @@
     }
 
     {{ sec_id }} .pc-animation-title-{{ last_part }} {
-    font-size: {{ section.settings.title_mobile }}px !important;
-  }
+      font-size: {{ section.settings.title_mobile }}px !important;
+    }
   }
 </style>
 
 <div class="pc-animation-section-{{ last_part }}">
-<h1 class="pc-animation-heading-{{ last_part }}">{{ section.settings.heading }}</h1>
-<div class="pc-animation-grid-{{ last_part }}">
-  {% for block in section.blocks %}
-    <div class="pc-animation-item-{{ last_part }}" 
-         id="pc-{{ block.settings.animation_type | handleize }}-{{ last_part }}" 
-         {{ block.shopify_attributes }}>
-      <h2 class="pc-animation-title-{{ last_part }}" style="color: {{ block.settings.title_color }};">{{ block.settings.title }}</h2>
-    </div>
-  {% endfor %}
-</div>
+  <h1 class="pc-animation-heading-{{ last_part }}">{{ section.settings.heading }}</h1>
+  <div class="pc-animation-grid-{{ last_part }}">
+    {% for block in section.blocks %}
+      <div class="pc-animation-item-{{ last_part }}" 
+           id="pc-{{ block.settings.animation_type | handleize }}-{{ last_part }}" 
+           {{ block.shopify_attributes }}>
+        <h2 class="pc-animation-title-{{ last_part }}" style="color: {{ block.settings.title_color }};">{{ block.settings.title }}</h2>
+      </div>
+    {% endfor %}
+  </div>
 </div>
 
 <script>
@@ -350,56 +349,56 @@
 </script>
 
 {% schema %}
-{
-  "name": "RW - Text Animation #1",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Heading"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Heading"
-    },
-    {
-      "type": "header",
-      "content": "Color Settings"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "card_background",
-      "label": "Card Background",
-      "default": "#5E3653"
-    },
-    {
-      "type": "color",
-      "id": "card_text",
-      "label": "Card Text Color",
-      "default": "#D0D0D0"
-    },
-    {
-      "type": "color",
-      "id": "card_hover_background",
-      "label": "Card Hover Background",
-      "default": "#D777BB"
-    },
-    {
-      "type": "header",
-      "content": "Typography Settings"
-    },
-    {
-      "type": "header",
-      "content": "Heading"
-    },
-    {
+  {
+    "name": "RW - Text Animation #1",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "header",
+        "content": "Color Settings"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "card_background",
+        "label": "Card Background",
+        "default": "#5E3653"
+      },
+      {
+        "type": "color",
+        "id": "card_text",
+        "label": "Card Text Color",
+        "default": "#D0D0D0"
+      },
+      {
+        "type": "color",
+        "id": "card_hover_background",
+        "label": "Card Hover Background",
+        "default": "#D777BB"
+      },
+      {
+        "type": "header",
+        "content": "Typography Settings"
+      },
+      {
+        "type": "header",
+        "content": "Heading"
+      },
+      {
         "type": "range",
         "id": "heading_text",
         "label": "Heading Text (Desktop)",
@@ -528,10 +527,10 @@
         "step": 5
       },
       {
-      "type": "header",
-      "content": "Card Title"
-    },
-     {
+        "type": "header",
+        "content": "Card Title"
+      },
+      {
         "type": "range",
         "id": "title_text",
         "label": "Card Text (Desktop)",
@@ -641,121 +640,121 @@
         "label": "Card Text Decoration Color",
         "default": "#000"
       },
-    {
-      "type": "header",
-      "content": "Spacing Settings"
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding",
-      "label": "Desktop Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding",
-      "label": "Mobile Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 10
-    }
-  ],
-  "blocks": [
-    {
-      "type": "animation",
-      "name": "Animation Card",
-      "settings": [
-        {
-          "type": "select",
-          "id": "animation_type",
-          "label": "Animation Type",
-          "options": [
-            {
-              "value": "horizontal_split",
-              "label": "Horizontal Split"
-            },
-            {
-              "value": "wavy_text",
-              "label": "Wavy Text"
-            },
-            {
-              "value": "raining_letters",
-              "label": "Raining Letters"
-            },
-            {
-              "value": "subtle_highlight",
-              "label": "Subtitle Highlight"
-            },
-            {
-              "value": "exploding_characters",
-              "label": "Exploding Characters"
+      {
+        "type": "header",
+        "content": "Spacing Settings"
+      },
+      {
+        "type": "range",
+        "id": "desktop_padding",
+        "label": "Desktop Padding",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding",
+        "label": "Mobile Padding",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "default": 10
+      }
+    ],
+    "blocks": [
+      {
+        "type": "animation",
+        "name": "Animation Card",
+        "settings": [
+          {
+            "type": "select",
+            "id": "animation_type",
+            "label": "Animation Type",
+            "options": [
+              {
+                "value": "horizontal_split",
+                "label": "Horizontal Split"
+              },
+              {
+                "value": "wavy_text",
+                "label": "Wavy Text"
+              },
+              {
+                "value": "raining_letters",
+                "label": "Raining Letters"
+              },
+              {
+                "value": "subtle_highlight",
+                "label": "Subtitle Highlight"
+              },
+              {
+                "value": "exploding_characters",
+                "label": "Exploding Characters"
+              }
+            ],
+            "default": "horizontal_split"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Animation Title"
+          },
+          {
+            "type": "color",
+            "id": "title_color",
+            "label": "Title Color",
+            "default": "#FFFFFF"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "RW - Text Animation #1",
+        "category": "Custom",
+        "blocks": [
+          {
+            "type": "animation",
+            "settings": {
+              "animation_type": "horizontal_split",
+              "title": "Horizontal split"
             }
-          ],
-          "default": "horizontal_split"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Animation Title"
-        },
-         {
-          "type": "color",
-          "id": "title_color",
-          "label": "Title Color",
-          "default": "#FFFFFF"
-        },
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "RW - Text Animation #1",
-      "category": "Custom",
-      "blocks": [
-        {
-          "type": "animation",
-          "settings": {
-            "animation_type": "horizontal_split",
-            "title": "Horizontal split"
+          },
+          {
+            "type": "animation",
+            "settings": {
+              "animation_type": "wavy_text",
+              "title": "Waaaaavvvvy"
+            }
+          },
+          {
+            "type": "animation",
+            "settings": {
+              "animation_type": "raining_letters",
+              "title": "Raining letters"
+            }
+          },
+          {
+            "type": "animation",
+            "settings": {
+              "animation_type": "subtle_highlight",
+              "title": "Subtle text highlight"
+            }
+          },
+          {
+            "type": "animation",
+            "settings": {
+              "animation_type": "exploding_characters",
+              "title": "Exploding characters"
+            }
           }
-        },
-        {
-          "type": "animation",
-          "settings": {
-            "animation_type": "wavy_text",
-            "title": "Waaaaavvvvy"
-          }
-        },
-        {
-          "type": "animation",
-          "settings": {
-            "animation_type": "raining_letters",
-            "title": "Raining letters"
-          }
-        },
-        {
-          "type": "animation",
-          "settings": {
-            "animation_type": "subtle_highlight",
-            "title": "Subtle text highlight"
-          }
-        },
-        {
-          "type": "animation",
-          "settings": {
-            "animation_type": "exploding_characters",
-            "title": "Exploding characters"
-          }
-        }
-      ]
-    }
-  ]
-}
+        ]
+      }
+    ]
+  }
 {% endschema %}
