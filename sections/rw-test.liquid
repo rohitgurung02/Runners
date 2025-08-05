@@ -115,7 +115,7 @@
          id="pc-{{ block.settings.animation_type | handleize }}-{{ last_part }}" 
          {{ block.shopify_attributes }}>
       <h2 style="color: {{ block.settings.title_color }};
-                 font-size: {{ block.settings.title_text }}px;
+                 font-size: {{ section.settings.title_text }}px;
                  font-weight: {{ block.settings.title_font_weight }};
                  text-decoration: {{ block.settings.title_text_decoration }};
                  text-decoration-color: {{ block.settings.title_text_decoration_color }};
@@ -636,24 +636,6 @@
         "id": "title_text_decoration_color",
         "label": "Card Text Decoration Color",
         "default": "#000"
-      },
-      {
-        "type": "range",
-        "id": "title_padding_top",
-        "label": "Card Text Padding Top (px)",
-        "default": 0,
-        "min": 0,
-        "max": 150,
-        "step": 5
-      },
-      {
-        "type": "range",
-        "id": "title_padding_bottom",
-        "label": "Card Text Padding Bottom (px)",
-        "default": 0,
-        "min": 0,
-        "max": 150,
-        "step": 5
       },
     {
       "type": "header",
