@@ -106,7 +106,7 @@
     }
 
     {{ sec_id }} .pc-animation-title-{{ last_part }} {
-      font-size: {{ block.settings.title_text_mobile }}px;
+      font-size: {{ section.settings.title_mobile }}px;
     }
   }
 </style>
@@ -543,7 +543,7 @@
       },
       {
         "type": "range",
-        "id": "title_text_mobile",
+        "id": "title_mobile",
         "label": "Card Text (Mobile)",
         "min": 10,
         "max": 75,
