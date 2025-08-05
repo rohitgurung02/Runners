@@ -1251,7 +1251,7 @@
         "title_font_weight": "normal",
         "title_text_decoration": "none",
         "title_text_decoration_color": "#000",
-        "desktop_padding": 20,
+        "desktop_padding": 0,
         "mobile_padding": 10
       }
     }
