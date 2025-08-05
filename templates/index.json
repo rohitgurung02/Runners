@@ -750,7 +750,26 @@
       "type": "rw-test",
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
-      "settings": {}
+      "settings": {
+        "slide_duration": 6000,
+        "enable_autoplay": true,
+        "desktop_height": 800,
+        "heading_size_desktop": 39,
+        "text_size_desktop": 21,
+        "content_padding_desktop": 30,
+        "mobile_height": 600,
+        "heading_size_mobile": 28,
+        "text_size_mobile": 16,
+        "content_padding_mobile": 20,
+        "button_bg_color": "#ffffff",
+        "button_text_color": "#000000",
+        "button_hover_bg_color": "#ebebeb",
+        "button_hover_text_color": "#4c4c4c",
+        "button_width": 100,
+        "button_height": 55,
+        "overlay_color": "#000000",
+        "overlay_opacity": 40
+      }
     },
     "rw_reviews_eNfMNB": {
       "type": "rw-reviews",
@@ -966,7 +985,26 @@
       "type": "rw-test",
       "disabled": true,
       "name": "RW - Carousel Slider #8",
-      "settings": {}
+      "settings": {
+        "slide_duration": 6000,
+        "enable_autoplay": true,
+        "desktop_height": 800,
+        "heading_size_desktop": 39,
+        "text_size_desktop": 21,
+        "content_padding_desktop": 30,
+        "mobile_height": 600,
+        "heading_size_mobile": 28,
+        "text_size_mobile": 16,
+        "content_padding_mobile": 20,
+        "button_bg_color": "#ffffff",
+        "button_text_color": "#000000",
+        "button_hover_bg_color": "#ebebeb",
+        "button_hover_text_color": "#4c4c4c",
+        "button_width": 100,
+        "button_height": 55,
+        "overlay_color": "#000000",
+        "overlay_opacity": 40
+      }
     },
     "rw_hero_banner_4dJjqa": {
       "type": "rw-hero-banner",
@@ -1152,7 +1190,7 @@
           "settings": {
             "animation_type": "horizontal_split",
             "title": "Horizontal split",
-            "title_color": "#FFFFFF"
+            "title_color": "#ffffff"
           }
         },
         "animation_KBC8yt": {
@@ -1160,7 +1198,7 @@
           "settings": {
             "animation_type": "wavy_text",
             "title": "Waaaaavvvvy",
-            "title_color": "#FFFFFF"
+            "title_color": "#ffffff"
           }
         },
         "animation_H8L7hk": {
@@ -1168,7 +1206,7 @@
           "settings": {
             "animation_type": "raining_letters",
             "title": "Raining letters",
-            "title_color": "#FFFFFF"
+            "title_color": "#ffffff"
           }
         },
         "animation_rrVFCG": {
@@ -1176,7 +1214,7 @@
           "settings": {
             "animation_type": "subtle_highlight",
             "title": "Subtle text highlight",
-            "title_color": "#FFFFFF"
+            "title_color": "#ffffff"
           }
         },
         "animation_gPQprF": {
@@ -1184,7 +1222,7 @@
           "settings": {
             "animation_type": "exploding_characters",
             "title": "Exploding characters",
-            "title_color": "#FFFFFF"
+            "title_color": "#ffffff"
           }
         }
       },
@@ -1195,24 +1233,25 @@
         "animation_rrVFCG",
         "animation_gPQprF"
       ],
+      "disabled": true,
       "name": "RW - Text Animation #1",
       "settings": {
         "heading": "Heading",
         "background_color": "#ffffff",
-        "card_background": "#5E3653",
-        "card_hover_background": "#D777BB",
+        "card_background": "#5e3653",
+        "card_hover_background": "#d777bb",
         "heading_text": 30,
         "heading_text_mobile": 25,
         "heading_font_weight": "normal",
         "heading_text_decoration": "none",
-        "heading_text_decoration_color": "#000",
+        "heading_text_decoration_color": "#000000",
         "heading_padding_top": 0,
         "heading_padding_bottom": 0,
         "title_text": 30,
         "title_mobile": 23,
         "title_font_weight": "normal",
         "title_text_decoration": "none",
-        "title_text_decoration_color": "#000",
+        "title_text_decoration_color": "#000000",
         "desktop_padding": 20,
         "mobile_padding": 10
       }
