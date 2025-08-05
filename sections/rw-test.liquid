@@ -29,6 +29,15 @@
     margin: 0;
   }
 
+  {{ sec_id }} .pc-animation-title-{{ last_part }} {
+  text-align: center;
+  font-size: {{ section.settings.title_text }}px;
+  font-weight: {{ section.settings.title_font_weight }};
+  text-decoration: {{ section.settings.title_text_decoration }};
+  text-decoration-color: {{ section.settings.title_text_decoration_color }};
+  margin: 0;
+}
+
   {{ sec_id }} .pc-animation-grid-{{ last_part }} {
     margin: 0 auto;
     padding: 20px;
@@ -118,12 +127,7 @@
     <div class="pc-animation-item-{{ last_part }}" 
          id="pc-{{ block.settings.animation_type | handleize }}-{{ last_part }}" 
          {{ block.shopify_attributes }}>
-      <h2 class="pc-animation-title-{{ last_part }}" style="color: {{ block.settings.title_color }};
-                 font-size: {{ section.settings.title_text }}px;
-                 font-weight: {{ section.settings.title_font_weight }};
-                 text-decoration: {{ section.settings.title_text_decoration }};
-                 text-decoration-color: {{ section.settings.title_text_decoration_color }};
-        ">{{ block.settings.title }}</h2>
+      <h2 class="pc-animation-title-{{ last_part }}" style="color: {{ block.settings.title_color }};">{{ block.settings.title }}</h2>
     </div>
   {% endfor %}
 </div>
