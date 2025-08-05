@@ -30,7 +30,6 @@
   }
 
   {{ sec_id }} .pc-animation-title-{{ last_part }} {
-  text-align: center;
   font-size: {{ section.settings.title_text }}px;
   font-weight: {{ section.settings.title_font_weight }};
   text-decoration: {{ section.settings.title_text_decoration }};
@@ -115,8 +114,8 @@
     }
 
     {{ sec_id }} .pc-animation-title-{{ last_part }} {
-      font-size: {{ section.settings.title_mobile }}px;
-    }
+    font-size: {{ section.settings.title_mobile }}px !important;
+  }
   }
 </style>
 
