@@ -1270,7 +1270,7 @@
       "settings": {
         "active_opacity": 100,
         "inactive_opacity": 90,
-        "desktop_width": 450,
+        "desktop_width": 600,
         "thumb_gap_desktop": 4,
         "mobile_width": 350,
         "thumb_gap_mobile": 2
