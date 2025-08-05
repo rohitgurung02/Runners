@@ -756,6 +756,18 @@
         "card_background": "#2a2a2a",
         "card_text": "#d0d0d0",
         "card_hover_background": "#303030",
+        "heading_text": 30,
+        "heading_text_mobile": 25,
+        "heading_font_weight": "normal",
+        "heading_text_decoration": "none",
+        "heading_text_decoration_color": "#000000",
+        "heading_padding_top": 0,
+        "heading_padding_bottom": 0,
+        "title_text": 30,
+        "title_mobile": 25,
+        "title_font_weight": "normal",
+        "title_text_decoration": "none",
+        "title_text_decoration_color": "#000000",
         "desktop_padding": 20,
         "mobile_padding": 10
       }
@@ -980,6 +992,18 @@
         "card_background": "#2a2a2a",
         "card_text": "#d0d0d0",
         "card_hover_background": "#303030",
+        "heading_text": 30,
+        "heading_text_mobile": 25,
+        "heading_font_weight": "normal",
+        "heading_text_decoration": "none",
+        "heading_text_decoration_color": "#000000",
+        "heading_padding_top": 0,
+        "heading_padding_bottom": 0,
+        "title_text": 30,
+        "title_mobile": 25,
+        "title_font_weight": "normal",
+        "title_text_decoration": "none",
+        "title_text_decoration_color": "#000000",
         "desktop_padding": 20,
         "mobile_padding": 10
       }
@@ -1159,68 +1183,6 @@
         "feature_padding_mobile": 15,
         "mobile_grid_gap": 10
       }
-    },
-    "rw_test_yV7PWr": {
-      "type": "rw-test",
-      "blocks": {
-        "animation_83YXdF": {
-          "type": "animation",
-          "settings": {
-            "animation_type": "horizontal_split",
-            "title": "Horizontal split",
-            "title_color": "#ffffff"
-          }
-        },
-        "animation_Nx34Th": {
-          "type": "animation",
-          "settings": {
-            "animation_type": "wavy_text",
-            "title": "Waaaaavvvvy",
-            "title_color": "#ffffff"
-          }
-        },
-        "animation_7nfxBm": {
-          "type": "animation",
-          "settings": {
-            "animation_type": "raining_letters",
-            "title": "Raining letters",
-            "title_color": "#ffffff"
-          }
-        },
-        "animation_xfR3Fd": {
-          "type": "animation",
-          "settings": {
-            "animation_type": "subtle_highlight",
-            "title": "Subtitle text highlight",
-            "title_color": "#ffffff"
-          }
-        },
-        "animation_LnQceA": {
-          "type": "animation",
-          "settings": {
-            "animation_type": "exploding_characters",
-            "title": "Exploding characters",
-            "title_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "animation_83YXdF",
-        "animation_Nx34Th",
-        "animation_7nfxBm",
-        "animation_xfR3Fd",
-        "animation_LnQceA"
-      ],
-      "name": "RW - Text Animation #1",
-      "settings": {
-        "heading": "Text Animation",
-        "background_color": "#ffffff",
-        "card_background": "#5e3653",
-        "card_text": "#d0d0d0",
-        "card_hover_background": "#d777bb",
-        "desktop_padding": 20,
-        "mobile_padding": 10
-      }
     }
   },
   "order": [
@@ -1238,7 +1200,6 @@
     "rw_video_banner_f88XdA",
     "rw_test_hEiBE4",
     "rw_hero_banner_4dJjqa",
-    "rw_service_grid_Dq4iqf",
-    "rw_test_yV7PWr"
+    "rw_service_grid_Dq4iqf"
   ]
 }
