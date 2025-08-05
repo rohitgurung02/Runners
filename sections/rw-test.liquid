@@ -114,7 +114,9 @@
     <div class="pc-animation-item-{{ last_part }}" 
          id="pc-{{ block.settings.animation_type | handleize }}-{{ last_part }}" 
          {{ block.shopify_attributes }}>
-      <h2 style="color: {{ block.settings.title_color }};">{{ block.settings.title }}</h2>
+      <h2 style="color: {{ block.settings.title_color }};
+
+        ">{{ block.settings.title }}</h2>
     </div>
   {% endfor %}
 </div>
@@ -513,6 +515,138 @@
         "type": "range",
         "id": "heading_padding_bottom",
         "label": "Heading Text Padding Bottom (px)",
+        "default": 0,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+      "type": "header",
+      "content": "Card Title"
+    },
+     {
+        "type": "range",
+        "id": "title_text",
+        "label": "Card Text (Desktop)",
+        "min": 10,
+        "max": 80,
+        "step": 1,
+        "unit": "px",
+        "default": 30
+      },
+      {
+        "type": "range",
+        "id": "title_text_mobile",
+        "label": "Card Text (Mobile)",
+        "min": 10,
+        "max": 75,
+        "step": 1,
+        "unit": "px",
+        "default": 25
+      },
+      {
+        "type": "select",
+        "id": "title_font_weight",
+        "label": "Card Text Font weight",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "bold",
+            "label": "Bold"
+          },
+          {
+            "value": "bolder",
+            "label": "Bolder"
+          },
+          {
+            "value": "lighter",
+            "label": "Lighter"
+          },
+          {
+            "value": "100",
+            "label": "100"
+          },
+          {
+            "value": "200",
+            "label": "200"
+          },
+          {
+            "value": "300",
+            "label": "300"
+          },
+          {
+            "value": "400",
+            "label": "400"
+          },
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          },
+          {
+            "value": "800",
+            "label": "800"
+          },
+          {
+            "value": "900",
+            "label": "900"
+          }
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "select",
+        "id": "title_text_decoration",
+        "label": "Card Text Decoration",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "underline",
+            "label": "Underline"
+          },
+          {
+            "value": "overline",
+            "label": "Overline"
+          },
+          {
+            "value": "line-through",
+            "label": "Line Through"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "color",
+        "id": "title_text_decoration_color",
+        "label": "Card Text Decoration Color",
+        "default": "#000"
+      },
+      {
+        "type": "range",
+        "id": "title_padding_top",
+        "label": "Card Text Padding Top (px)",
+        "default": 0,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "title_padding_bottom",
+        "label": "Card Text Padding Bottom (px)",
         "default": 0,
         "min": 0,
         "max": 150,
