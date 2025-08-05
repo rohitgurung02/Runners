@@ -115,7 +115,10 @@
          id="pc-{{ block.settings.animation_type | handleize }}-{{ last_part }}" 
          {{ block.shopify_attributes }}>
       <h2 style="color: {{ block.settings.title_color }};
-
+                 font-size: {{ block.settings.title_text }}px;
+                 font-weight: {{ block.settings.title_font_weight }};
+                 text-decoration: {{ block.settings.title_text_decoration }};
+                 text-decoration-color: {{ block.settings.title_text_decoration_color }};
         ">{{ block.settings.title }}</h2>
     </div>
   {% endfor %}
