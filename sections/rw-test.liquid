@@ -111,8 +111,8 @@
     background-color: {{ section.settings.background_color }};
     color: {{ section.settings.button_text_color }};
     border-radius: {{ section.settings.button_border_radius }}px;
-    padding-top: {{ section.settings.button_padding_top }}px;
-    padding-bottom: {{ section.settings.button_padding_bottom }}px;
+    margin-top: {{ section.settings.button_margin_top }}px;
+    margin-bottom: {{ section.settings.button_margin_bottom }}px;
     width: {% if section.settings.button_full_width %}100%{% else %}{{ section.settings.button_width }}px{% endif %};"
    onmouseover="this.style.backgroundColor='{{ section.settings.button_hover_color }}';this.style.color='{{ section.settings.button_text_hover_color }}'"
    onmouseout="this.style.backgroundColor='{{ section.settings.button_color }}';this.style.color='{{ section.settings.button_text_color }}'
@@ -657,7 +657,7 @@
     },
     {
       "type": "range",
-      "id": "button_padding_top",
+      "id": "button_margin_top",
       "label": "Button Padding Top (px)",
       "default": 5,
       "min": 0,
@@ -666,7 +666,7 @@
     },
     {
       "type": "range",
-      "id": "button_padding_bottom",
+      "id": "button_margin_bottom",
       "label": "Button Padding Bottom (px)",
       "default": 5,
       "min": 0,
