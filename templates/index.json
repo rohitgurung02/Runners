@@ -779,8 +779,6 @@
         "description_text_decoration_color": "#000000",
         "description_padding_top": 5,
         "description_padding_bottom": 5,
-        "highlight_color": "#8b5cf6",
-        "enable_shadow": true,
         "button_font_size": 10,
         "button_font_size_mobile": 10,
         "button_width": 200,
@@ -1048,8 +1046,6 @@
         "description_text_decoration_color": "#000000",
         "description_padding_top": 5,
         "description_padding_bottom": 5,
-        "highlight_color": "#8b5cf6",
-        "enable_shadow": true,
         "button_font_size": 10,
         "button_font_size_mobile": 10,
         "button_width": 200,
@@ -1324,7 +1320,7 @@
         "mobile_padding": 10
       }
     },
-    "rw_test_BXRHwe": {
+    "rw_test_HNLfye": {
       "type": "rw-test",
       "name": "RW - Wavy Background #1",
       "settings": {
@@ -1356,8 +1352,6 @@
         "description_text_decoration_color": "#000",
         "description_padding_top": 5,
         "description_padding_bottom": 5,
-        "highlight_color": "#F54927",
-        "enable_shadow": true,
         "button_font_size": 16,
         "button_font_size_mobile": 14,
         "button_width": 180,
@@ -1400,6 +1394,6 @@
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
-    "rw_test_BXRHwe"
+    "rw_test_HNLfye"
   ]
 }
