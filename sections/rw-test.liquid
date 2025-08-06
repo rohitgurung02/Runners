@@ -1,0 +1,213 @@
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} .pc-jewelry-categories-{{ last_part }} {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  {{ sec_id }} .pc-jewelry-category-{{ last_part }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    background-color: {{ section.settings.category_bg_color }};
+    color: {{ section.settings.category_text_color }};
+    font-size: {{ section.settings.desktop_font_size }}px;
+    font-weight: {{ section.settings.font_weight }};
+    text-transform: uppercase;
+    letter-spacing: {{ section.settings.letter_spacing }}px;
+    transition: all 0.3s ease;
+    {% if section.settings.enable_shadow %}
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    {% endif %}
+  }
+
+  {{ sec_id }} .pc-jewelry-category-{{ last_part }}:hover {
+    background-color: {{ section.settings.category_hover_bg_color }};
+    color: {{ section.settings.category_hover_text_color }};
+    {% if section.settings.enable_shadow %}
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    {% endif %}
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} .pc-jewelry-categories-{{ last_part }} {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    {{ sec_id }} .pc-jewelry-category-{{ last_part }} {
+      font-size: {{ section.settings.mobile_font_size }}px;
+      height: 60px;
+    }
+  }
+</style>
+
+<pc-jewelry-categories-{{ last_part }} class="pc-jewelry-categories-{{ last_part }}">
+  <a href="#" class="pc-jewelry-category-{{ last_part }}">Bracelets</a>
+  <a href="#" class="pc-jewelry-category-{{ last_part }}">Earrings</a>
+  <a href="#" class="pc-jewelry-category-{{ last_part }}">Rings</a>
+  <a href="#" class="pc-jewelry-category-{{ last_part }}">Necklaces</a>
+</pc-jewelry-categories-{{ last_part }}>
+
+{% schema %}
+{
+  "name": "PWC - Jewelry Grid #1",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Shadow",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "range",
+      "id": "desktop_font_size",
+      "label": "Desktop Font Size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "label": "Mobile Font Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter Spacing",
+      "min": 0,
+      "max": 5,
+      "step": 0.1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "category_bg_color",
+      "label": "Category Background Color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "category_text_color",
+      "label": "Category Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "category_hover_bg_color",
+      "label": "Hover Background Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "category_hover_text_color",
+      "label": "Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "desktop_gap",
+      "label": "Desktop Gap Between Items",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Mobile Gap Between Items",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop Item Height",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Mobile Item Height",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - Jewelry Grid #1",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
