@@ -1287,46 +1287,6 @@
         "desktop_padding": 20,
         "mobile_padding": 10
       }
-    },
-    "rw_test_YWhDHC": {
-      "type": "rw-test",
-      "name": "PWC - Gradient Hero #1",
-      "settings": {
-        "title": "Die solide Grundlage für Ihre individuelle Chatbot-Anwendung",
-        "description": "Entwickeln Sie sichere, zuverlässige und erweiterbare Chatbots schneller. Bot Foundation ist ein Framework, das Ihre individuelle Entwicklung beschleunigt – überspringen Sie das Grundgerüst und konzentrieren Sie sich auf das Wesentliche.",
-        "button_text": "Click Here",
-        "button_link": "",
-        "wave_color_1": "#e34d4d",
-        "wave_color_2": "#6cc65a",
-        "wave_color_3": "#66e1db",
-        "wave_opacity": 0.2,
-        "title_size_desktop": 46,
-        "title_size_mobile": 36,
-        "title_color": "#2626e6",
-        "title_font_weight": "normal",
-        "title_font_style": "italic",
-        "title_letter_spacing": 0,
-        "title_text_decoration": "none",
-        "title_text_decoration_color": "#ffffff",
-        "title_padding_top": 5,
-        "title_padding_bottom": 5,
-        "description_size_desktop": 24,
-        "description_size_mobile": 18,
-        "description_color": "#7e22ce",
-        "description_font_weight": "normal",
-        "description_font_style": "normal",
-        "description_letter_spacing": 0,
-        "description_text_decoration": "none",
-        "description_text_decoration_color": "#000000",
-        "description_padding_top": 5,
-        "description_padding_bottom": 5,
-        "highlight_color": "#8b5cf6",
-        "enable_shadow": true,
-        "padding_top_desktop": 5,
-        "padding_bottom_desktop": 5,
-        "padding_top_mobile": 5,
-        "padding_bottom_mobile": 5
-      }
     }
   },
   "order": [
@@ -1345,7 +1305,6 @@
     "rw_test_hEiBE4",
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
-    "rw_text_animation_ETLPy6",
-    "rw_test_YWhDHC"
+    "rw_text_animation_ETLPy6"
   ]
 }
