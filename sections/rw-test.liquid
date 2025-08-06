@@ -103,7 +103,7 @@
   {{ sec_id }} .pc-hero-button {
     display: inline-block;
     font-weight: 700;
-    padding: 0.75rem 2rem;
+    padding: {{ section.settings.button_padding }}px;
     border-radius: 9999px;
     box-shadow: 0 0 32px 4px rgba(167, 139, 250, 0.6);
     transition: background-color 0.3s ease;
@@ -634,6 +634,16 @@
       "step": 10,
       "unit": "px",
       "default": 200
+    },
+    {
+      "type": "range",
+      "id": "button_padding",
+      "label": "Button Padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 12
     },
     {
       "type": "range",
