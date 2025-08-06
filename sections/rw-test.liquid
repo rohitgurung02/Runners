@@ -3,27 +3,6 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-gradient-hero-{{ last_part }} class="pc-gradient-hero">
-  <svg class="pc-hero-deco" xmlns="http://www.w3.org/2000/svg" version="1.1" width="1440" height="560" preserveAspectRatio="none" viewBox="0 0 1440 560">
-    <g mask="url(&quot;#SvgjsMask1059&quot;)" fill="none">
-      <rect width="1440" height="560" x="0" y="0" fill="rgba(126, 34, 206, 1)"></rect>
-      <path d="M 0,37 C 72,79.4 216,235.8 360,249 C 504,262.2 576,103 720,103 C 864,103 936,244.6 1080,249 C 1224,253.4 1368,149.8 1440,125L1440 560L0 560z" fill="rgba(148, 90, 198, 1)"></path>
-      <path d="M 0,356 C 144,384.4 432,513 720,498 C 1008,483 1296,324.4 1440,281L1440 560L0 560z" fill="rgba(177, 134, 215, 1)"></path>
-    </g>
-    <defs>
-      <mask id="SvgjsMask1059">
-        <rect width="1440" height="560" fill="#ffffff"></rect>
-      </mask>
-    </defs>
-  </svg>
-
-  <div class="pc-hero-content">
-    <h1 class="pc-hero-title">{{ section.settings.title }}</h1>
-    <p class="pc-hero-description">{{ section.settings.description | replace: 'Bot Foundation', '<span class="pc-highlight">Bot Foundation</span>' }}</p>
-    <a href="{{ section.settings.button_link }}" class="pc-hero-button">{{ section.settings.button_text }}</a>
-  </div>
-</pc-gradient-hero-{{ last_part }}>
-
 <style>
   {{ sec_id }} .pc-gradient-hero {
     position: relative;
@@ -110,6 +89,29 @@
     }
   }
 </style>
+
+<pc-gradient-hero-{{ last_part }} class="pc-gradient-hero">
+  <svg class="pc-hero-deco" xmlns="http://www.w3.org/2000/svg" version="1.1" width="1440" height="560" preserveAspectRatio="none" viewBox="0 0 1440 560">
+    <g mask="url(&quot;#SvgjsMask1059&quot;)" fill="none">
+      <rect width="1440" height="560" x="0" y="0" fill="rgba(126, 34, 206, 1)"></rect>
+      <path d="M 0,37 C 72,79.4 216,235.8 360,249 C 504,262.2 576,103 720,103 C 864,103 936,244.6 1080,249 C 1224,253.4 1368,149.8 1440,125L1440 560L0 560z" fill="rgba(148, 90, 198, 1)"></path>
+      <path d="M 0,356 C 144,384.4 432,513 720,498 C 1008,483 1296,324.4 1440,281L1440 560L0 560z" fill="rgba(177, 134, 215, 1)"></path>
+    </g>
+    <defs>
+      <mask id="SvgjsMask1059">
+        <rect width="1440" height="560" fill="#ffffff"></rect>
+      </mask>
+    </defs>
+  </svg>
+
+  <div class="pc-hero-content">
+    <h1 class="pc-hero-title">{{ section.settings.title }}</h1>
+    <p class="pc-hero-description">{{ section.settings.description | replace: 'Bot Foundation', '<span class="pc-highlight">Bot Foundation</span>' }}</p>
+    <a href="{{ section.settings.button_link }}" class="pc-hero-button">{{ section.settings.button_text }}</a>
+  </div>
+</pc-gradient-hero-{{ last_part }}>
+
+
 
 {% schema %}
 {
