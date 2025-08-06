@@ -121,7 +121,8 @@
   }
 
   {{ sec_id }} .pc-hero-button:hover {
-    background-color: #7e22ce;
+    background-color: {{ section.settings.button_hover_color }};
+    color: {{ section.settings.button_text_hover_color }};
   }
 
   @media (min-width: 640px) {
