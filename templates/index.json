@@ -1287,6 +1287,46 @@
         "desktop_padding": 20,
         "mobile_padding": 10
       }
+    },
+    "rw_test_N63CRz": {
+      "type": "rw-test",
+      "name": "RW - Wavy Background #1",
+      "settings": {
+        "title": "Die solide Grundlage für Ihre individuelle Chatbot-Anwendung",
+        "description": "Entwickeln Sie sichere, zuverlässige und erweiterbare Chatbots schneller. Bot Foundation ist ein Framework, das Ihre individuelle Entwicklung beschleunigt – überspringen Sie das Grundgerüst und konzentrieren Sie sich auf das Wesentliche.",
+        "button_text": "Termin buchen",
+        "button_link": "",
+        "wave_color_1": "#E34D4D",
+        "wave_color_2": "#6CC65A",
+        "wave_color_3": "#66E1DB",
+        "wave_opacity": 0.2,
+        "title_size_desktop": 48,
+        "title_size_mobile": 36,
+        "title_color": "#4747e0",
+        "title_font_weight": "normal",
+        "title_font_style": "normal",
+        "title_letter_spacing": 0,
+        "title_text_decoration": "none",
+        "title_text_decoration_color": "#000",
+        "title_padding_top": 5,
+        "title_padding_bottom": 5,
+        "description_size_desktop": 24,
+        "description_size_mobile": 18,
+        "description_color": "#c14df2",
+        "description_font_weight": "normal",
+        "description_font_style": "italic",
+        "description_letter_spacing": 0,
+        "description_text_decoration": "none",
+        "description_text_decoration_color": "#000",
+        "description_padding_top": 5,
+        "description_padding_bottom": 5,
+        "highlight_color": "#F54927",
+        "enable_shadow": true,
+        "padding_top_desktop": 5,
+        "padding_bottom_desktop": 5,
+        "padding_top_mobile": 5,
+        "padding_bottom_mobile": 5
+      }
     }
   },
   "order": [
@@ -1305,6 +1345,7 @@
     "rw_test_hEiBE4",
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
-    "rw_text_animation_ETLPy6"
+    "rw_text_animation_ETLPy6",
+    "rw_test_N63CRz"
   ]
 }
