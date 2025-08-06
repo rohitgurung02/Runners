@@ -105,7 +105,6 @@
     font-size: {{ section.settings.button_font_size }}px;
     font-weight: 700;
     padding: {{ section.settings.button_padding }}px;
-    border-radius: 9999px;
     box-shadow: 0 0 32px 4px rgba(167, 139, 250, 0.6);
     transition: background-color 0.3s ease;
     text-decoration: none;
@@ -138,6 +137,12 @@
     {{ sec_id }} .pc-gradient-hero {
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-hero-button {
+      font-size: {{ section.settings.button_font_size_mobile }}px;
+      padding: {{ section.settings.button_padding_mobile }}px;
+      width: {{ section.settings.button_width_mobile }}px;
     }
   }
   
