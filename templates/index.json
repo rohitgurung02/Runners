@@ -1196,6 +1196,7 @@
         "feature_EEYcQr",
         "feature_3aanHQ"
       ],
+      "disabled": true,
       "name": "RW - Service Grid #1",
       "settings": {
         "effect_label": "Services",
@@ -1296,6 +1297,7 @@
         "animation_rrVFCG",
         "animation_gPQprF"
       ],
+      "disabled": true,
       "name": "RW - Text Animation #1",
       "settings": {
         "heading": "Heading",
