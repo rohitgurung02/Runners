@@ -751,12 +751,22 @@
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
       "settings": {
-        "active_opacity": 100,
-        "inactive_opacity": 90,
-        "desktop_width": 450,
-        "thumb_gap_desktop": 4,
-        "mobile_width": 350,
-        "thumb_gap_mobile": 2
+        "title": "Die solide Grundlage für Ihre individuelle Chatbot-Anwendung",
+        "description": "Entwickeln Sie sichere, zuverlässige und erweiterbare Chatbots schneller. Bot Foundation ist ein Framework, das Ihre individuelle Entwicklung beschleunigt – überspringen Sie das Grundgerüst und konzentrieren Sie sich auf das Wesentliche.",
+        "button_text": "Termin buchen",
+        "button_link": "",
+        "title_size_desktop": 48,
+        "title_size_mobile": 36,
+        "description_size_desktop": 24,
+        "description_size_mobile": 18,
+        "padding_top_desktop": 5,
+        "padding_bottom_desktop": 5,
+        "padding_top_mobile": 5,
+        "padding_bottom_mobile": 5,
+        "title_color": "#18181b",
+        "description_color": "#7e22ce",
+        "highlight_color": "#8b5cf6",
+        "enable_shadow": true
       }
     },
     "rw_reviews_eNfMNB": {
@@ -974,12 +984,22 @@
       "disabled": true,
       "name": "RW - Carousel Slider #8",
       "settings": {
-        "active_opacity": 100,
-        "inactive_opacity": 90,
-        "desktop_width": 450,
-        "thumb_gap_desktop": 4,
-        "mobile_width": 350,
-        "thumb_gap_mobile": 2
+        "title": "Die solide Grundlage für Ihre individuelle Chatbot-Anwendung",
+        "description": "Entwickeln Sie sichere, zuverlässige und erweiterbare Chatbots schneller. Bot Foundation ist ein Framework, das Ihre individuelle Entwicklung beschleunigt – überspringen Sie das Grundgerüst und konzentrieren Sie sich auf das Wesentliche.",
+        "button_text": "Termin buchen",
+        "button_link": "",
+        "title_size_desktop": 48,
+        "title_size_mobile": 36,
+        "description_size_desktop": 24,
+        "description_size_mobile": 18,
+        "padding_top_desktop": 5,
+        "padding_bottom_desktop": 5,
+        "padding_top_mobile": 5,
+        "padding_bottom_mobile": 5,
+        "title_color": "#18181b",
+        "description_color": "#7e22ce",
+        "highlight_color": "#8b5cf6",
+        "enable_shadow": true
       }
     },
     "rw_hero_banner_4dJjqa": {
@@ -1231,50 +1251,6 @@
         "desktop_padding": 20,
         "mobile_padding": 10
       }
-    },
-    "rw_test_mqtmjh": {
-      "type": "rw-test",
-      "blocks": {
-        "image_rCa9in": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/pexels-shvets-production-9775883_1.jpg"
-          }
-        },
-        "image_4r7TRA": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/pexels-cottonbro-10679212.jpg"
-          }
-        },
-        "image_fdR9My": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/pexels-minan1398-675926.jpg"
-          }
-        },
-        "image_AG8pN9": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/1040-1200x800.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "image_rCa9in",
-        "image_4r7TRA",
-        "image_fdR9My",
-        "image_AG8pN9"
-      ],
-      "name": "PWC - Lightbox Gallery #1",
-      "settings": {
-        "active_opacity": 100,
-        "inactive_opacity": 90,
-        "desktop_width": 600,
-        "thumb_gap_desktop": 4,
-        "mobile_width": 350,
-        "thumb_gap_mobile": 2
-      }
     }
   },
   "order": [
@@ -1293,7 +1269,6 @@
     "rw_test_hEiBE4",
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
-    "rw_text_animation_ETLPy6",
-    "rw_test_mqtmjh"
+    "rw_text_animation_ETLPy6"
   ]
 }
