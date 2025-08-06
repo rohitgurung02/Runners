@@ -58,7 +58,7 @@
     top: 0;
     height: 100%;
     width: max(200%, 100rem);
-    opacity: 0.2;
+    opacity: {{ section.settings.wave_opacity }};
     animation: pc-move-{{ last_part }} 20s ease alternate infinite;
   }
 
@@ -136,9 +136,9 @@
 <pc-gradient-hero-{{ last_part }} class="pc-gradient-hero">
   <svg class="pc-hero-deco" xmlns="http://www.w3.org/2000/svg" version="1.1" width="1440" height="560" preserveAspectRatio="none" viewBox="0 0 1440 560">
     <g mask="url(&quot;#SvgjsMask1059&quot;)" fill="none">
-      <rect width="1440" height="560" x="0" y="0" fill="rgba(126, 34, 206, 1)"></rect>
-      <path d="M 0,37 C 72,79.4 216,235.8 360,249 C 504,262.2 576,103 720,103 C 864,103 936,244.6 1080,249 C 1224,253.4 1368,149.8 1440,125L1440 560L0 560z" fill="rgba(148, 90, 198, 1)"></path>
-      <path d="M 0,356 C 144,384.4 432,513 720,498 C 1008,483 1296,324.4 1440,281L1440 560L0 560z" fill="rgba(177, 134, 215, 1)"></path>
+      <rect width="1440" height="560" x="0" y="0" fill="{{ section.settings.wave_color_1 }}"></rect>
+      <path d="M 0,37 C 72,79.4 216,235.8 360,249 C 504,262.2 576,103 720,103 C 864,103 936,244.6 1080,249 C 1224,253.4 1368,149.8 1440,125L1440 560L0 560z" fill="{{ section.settings.wave_color_2 }}"></path>
+      <path d="M 0,356 C 144,384.4 432,513 720,498 C 1008,483 1296,324.4 1440,281L1440 560L0 560z" fill="{{ section.settings.wave_color_3 }}"></path>
     </g>
     <defs>
       <mask id="SvgjsMask1059">
@@ -184,6 +184,37 @@
       "type": "url",
       "id": "button_link",
       "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Wave Settings"
+    },
+    {
+      "type": "color",
+      "id": "wave_color_1",
+      "label": "Wave Color 1",
+      "default": "rgba(126, 34, 206, 1)"
+    },
+    {
+      "type": "color",
+      "id": "wave_color_2",
+      "label": "Wave Color 2",
+      "default": "rgba(148, 90, 198, 1)"
+    },
+    {
+      "type": "color",
+      "id": "wave_color_3",
+      "label": "Wave Color 3",
+      "default": "rgba(177, 134, 215, 1)"
+    },
+    {
+      "type": "range",
+      "id": "wave_opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Wave Opacity",
+      "default": 0.2
     },
     {
       "type": "header",
