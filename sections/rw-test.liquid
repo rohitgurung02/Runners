@@ -144,6 +144,11 @@
       padding: {{ section.settings.button_padding_mobile }}px;
       width: {{ section.settings.button_width_mobile }}px;
     }
+
+    {{ sec_id }} .pc-hero-content .pc-hero-description {
+      padding-top: {{ section.settings.description_padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.description_padding_bottom_mobile }}px;
+    }
   }
   
 </style>
@@ -730,6 +735,24 @@
       "step": 5,
       "unit": "px",
       "default": 5
+    },
+    {
+      "type": "range",
+      "id": "description_padding_top_mobile",
+      "label": "Description Padding Top Mobile (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "description_padding_bottom_mobile",
+      "label": "Description Padding Bottom Mobile (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
     },
     {
       "type": "range",
