@@ -3,248 +3,266 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-lightbox-gallery-{{ last_part }}>
-  <div class="pc-lightbox-wrapper-{{ last_part }}">
-    <div class="pc-lightbox-container-{{ last_part }}">
-      <div 
-        class="pc-lightbox-hero-{{ last_part }}"
-        style="background-image: url('{{ section.blocks[0].settings.image | image_url: width: 1200 }}')"
-      ></div>
-      <nav class="pc-lightbox-nav-{{ last_part }}">
-        {%- for block in section.blocks -%}
-          <button 
-            class="pc-lightbox-thumb-btn-{{ last_part }}" 
-            data-index="{{ forloop.index0 }}"
-            {% if forloop.first %}aria-current="true"{% endif %}
-          >
-            {% assign image_class = 'pc-lightbox-thumb-img-' | append: last_part %}
-            {{ 
-              block.settings.image
-              | image_url: width: 200
-              | image_tag: 
-                  loading: 'lazy',
-                  class: image_class,
-                  alt: block.settings.image.alt
-            }}
-          </button>
-        {%- endfor -%}
-      </nav>
-    </div>
+<pc-gradient-hero-{{ last_part }} class="pc-gradient-hero">
+  <svg class="pc-hero-deco" xmlns="http://www.w3.org/2000/svg" version="1.1" width="1440" height="560" preserveAspectRatio="none" viewBox="0 0 1440 560">
+    <g mask="url(&quot;#SvgjsMask1059&quot;)" fill="none">
+      <rect width="1440" height="560" x="0" y="0" fill="rgba(126, 34, 206, 1)"></rect>
+      <path d="M 0,37 C 72,79.4 216,235.8 360,249 C 504,262.2 576,103 720,103 C 864,103 936,244.6 1080,249 C 1224,253.4 1368,149.8 1440,125L1440 560L0 560z" fill="rgba(148, 90, 198, 1)"></path>
+      <path d="M 0,356 C 144,384.4 432,513 720,498 C 1008,483 1296,324.4 1440,281L1440 560L0 560z" fill="rgba(177, 134, 215, 1)"></path>
+    </g>
+    <defs>
+      <mask id="SvgjsMask1059">
+        <rect width="1440" height="560" fill="#ffffff"></rect>
+      </mask>
+    </defs>
+  </svg>
+
+  <div class="pc-hero-content">
+    <h1 class="pc-hero-title">{{ section.settings.title }}</h1>
+    <p class="pc-hero-description">{{ section.settings.description | replace: 'Bot Foundation', '<span class="pc-highlight">Bot Foundation</span>' }}</p>
+    <a href="{{ section.settings.button_link }}" class="pc-hero-button">{{ section.settings.button_text }}</a>
   </div>
-</pc-lightbox-gallery-{{ last_part }}>
+</pc-gradient-hero-{{ last_part }}>
 
 <style>
-  {{ sec_id }} {
-    --pc-active-opacity-{{ last_part }}: 1;
-    --pc-inactive-opacity-{{ last_part }}: 0.9;
-  }
-
-  {{ sec_id }} .pc-lightbox-wrapper-{{ last_part }} {
-    height: 100vh;
-    display: grid;
-    place-items: center;
-    padding: 20px;
-  }
-
-  {{ sec_id }} .pc-lightbox-container-{{ last_part }} {
-    width: min(450px, 90vw);
+  {{ sec_id }} .pc-gradient-hero {
+    position: relative;
+    background: linear-gradient(to bottom right, white, #faf5ff, #f3e8ff);
+    color: #18181b;
+    padding: 6rem 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    overflow: hidden;
   }
 
-  {{ sec_id }} .pc-lightbox-hero-{{ last_part }} {
-    aspect-ratio: 4/3;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  {{ sec_id }} .pc-lightbox-nav-{{ last_part }} {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.25rem;
-  }
-
-  {{ sec_id }} .pc-lightbox-nav-{{ last_part }}:hover .pc-lightbox-thumb-img-{{ last_part }}:not(:hover) {
-    opacity: var(--pc-inactive-opacity-{{ last_part }});
-  }
-
-  {{ sec_id }} .pc-lightbox-thumb-btn-{{ last_part }} {
-    width: 100%;
-    aspect-ratio: 1;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    cursor: pointer;
-    padding: 0;
-  }
-
-  {{ sec_id }} .pc-lightbox-thumb-img-{{ last_part }} {
-    width: inherit;
+  {{ sec_id }} .pc-hero-deco {
+    position: absolute;
+    left: 0;
+    top: 0;
     height: 100%;
-    object-fit: cover;
-    opacity: var(--pc-inactive-opacity-{{ last_part }});
-    transition: opacity 0.3s;
+    width: max(200%, 100rem);
+    opacity: 0.2;
+    animation: pc-move-{{ last_part }} 20s ease alternate infinite;
   }
 
-  {{ sec_id }} .pc-lightbox-thumb-btn-{{ last_part }}:hover .pc-lightbox-thumb-img-{{ last_part }} {
-    opacity: var(--pc-active-opacity-{{ last_part }});
-  }
-
-  {{ sec_id }} .pc-lightbox-thumb-btn-{{ last_part }}[aria-current="true"] .pc-lightbox-thumb-img-{{ last_part }} {
-    opacity: var(--pc-active-opacity-{{ last_part }});
-  }
-
-  @media (max-width: 749px) {
-    {{ sec_id }} .pc-lightbox-container-{{ last_part }} {
-      width: 100%;
+  @keyframes pc-move-{{ last_part }} {
+    100% {
+      transform: translateX(-50%);
     }
-    
-    {{ sec_id }} .pc-lightbox-nav-{{ last_part }} {
-      gap: 0.1rem;
+  }
+
+  {{ sec_id }} .pc-hero-content {
+    max-width: 48rem;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    margin: 5rem auto;
+  }
+
+  {{ sec_id }} .pc-hero-title {
+    font-size: {{ section.settings.title_size_mobile }}px;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03));
+  }
+
+  {{ sec_id }} .pc-hero-description {
+    font-size: {{ section.settings.description_size_mobile }}px;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    color: #7e22ce;
+    opacity: 0.9;
+    line-height: 1.5;
+  }
+
+  {{ sec_id }} .pc-highlight {
+    color: #8b5cf6;
+    font-weight: 600;
+  }
+
+  {{ sec_id }} .pc-hero-button {
+    display: inline-block;
+    background: linear-gradient(to bottom right, #a78bfa, #9333ea, #7e22ce);
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    box-shadow: 0 0 32px 4px rgba(167, 139, 250, 0.6);
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+
+  {{ sec_id }} .pc-hero-button:hover {
+    background-color: #7e22ce;
+  }
+
+  @media (min-width: 640px) {
+    {{ sec_id }} .pc-hero-title {
+      font-size: {{ section.settings.title_size_desktop }}px;
+    }
+
+    {{ sec_id }} .pc-hero-description {
+      font-size: {{ section.settings.description_size_desktop }}px;
     }
   }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const lightboxEl = document.querySelector('{{ sec_id }} .pc-lightbox-container-{{ last_part }}');
-    const heroEl = lightboxEl.querySelector('.pc-lightbox-hero-{{ last_part }}');
-    const thumbButtons = lightboxEl.querySelectorAll('.pc-lightbox-thumb-btn-{{ last_part }}');
-    
-    // Get all image URLs from section blocks
-    const imageUrls = [
-      {%- for block in section.blocks -%}
-        '{{ block.settings.image | image_url: width: 1200 }}'{% unless forloop.last %},{% endunless %}
-      {%- endfor -%}
-    ];
-    
-    // Set up click handlers for thumbnails
-    thumbButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const index = this.dataset.index;
-        
-        // Update hero image
-        heroEl.style.backgroundImage = `url(${imageUrls[index]})`;
-        
-        // Update active state
-        thumbButtons.forEach(btn => btn.removeAttribute('aria-current'));
-        this.setAttribute('aria-current', 'true');
-      });
-    });
-  });
-</script>
-
 {% schema %}
 {
-  "name": "PWC - Lightbox Gallery #1",
-  "tag": "section",
-  "class": "section",
+  "name": "PWC - Gradient Hero #1",
   "settings": [
     {
       "type": "header",
-      "content": "General Settings"
+      "content": "Content Settings"
     },
     {
-      "type": "range",
-      "id": "active_opacity",
-      "label": "Active Thumbnail Opacity",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "default": 100,
-      "unit": "%"
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Die solide Grundlage für Ihre individuelle Chatbot-Anwendung"
     },
     {
-      "type": "range",
-      "id": "inactive_opacity",
-      "label": "Inactive Thumbnail Opacity",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "default": 90,
-      "unit": "%"
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Entwickeln Sie sichere, zuverlässige und erweiterbare Chatbots schneller. Bot Foundation ist ein Framework, das Ihre individuelle Entwicklung beschleunigt – überspringen Sie das Grundgerüst und konzentrieren Sie sich auf das Wesentliche."
     },
     {
-      "type": "header",
-      "content": "Desktop Settings"
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Termin buchen"
     },
     {
-      "type": "range",
-      "id": "desktop_width",
-      "label": "Gallery Width",
-      "min": 300,
-      "max": 800,
-      "step": 10,
-      "default": 450,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "thumb_gap_desktop",
-      "label": "Thumbnail Gap",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "default": 4,
-      "unit": "px"
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
     },
     {
       "type": "header",
-      "content": "Mobile Settings"
+      "content": "Typography Settings"
     },
     {
       "type": "range",
-      "id": "mobile_width",
-      "label": "Gallery Width",
-      "min": 200,
-      "max": 500,
-      "step": 10,
-      "default": 350,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "thumb_gap_mobile",
-      "label": "Thumbnail Gap",
-      "min": 0,
-      "max": 10,
+      "id": "title_size_desktop",
+      "label": "Title Size (Desktop)",
+      "min": 16,
+      "max": 72,
       "step": 1,
-      "default": 2,
-      "unit": "px"
-    }
-  ],
-  "blocks": [
+      "unit": "px",
+      "default": 48
+    },
     {
-      "type": "image",
-      "name": "Image",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        }
-      ]
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title Size (Mobile)",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "description_size_desktop",
+      "label": "Description Size (Desktop)",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "label": "Description Size (Mobile)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Top Padding (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom Padding (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#18181b"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#7e22ce"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#8b5cf6"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Button Shadow",
+      "default": true
     }
   ],
   "presets": [
     {
-      "name": "PWC - Lightbox Gallery #1",
-      "blocks": [
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        }
-      ]
+      "name": "PWC - Gradient Hero #1",
+      "category": "Custom"
     }
   ]
 }
