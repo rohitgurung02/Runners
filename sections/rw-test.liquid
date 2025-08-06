@@ -52,10 +52,6 @@
     margin: 0;
   }
 
-  {{ sec_id }} .pc-highlight {
-    color: {{ section.settings.highlight_color}} !important;
-  }
-
   {{ sec_id }} .pc-hero-deco {
     position: absolute;
     left: 0;
@@ -572,22 +568,6 @@
           "max": 150,
           "step": 5
         },
-        {
-      "type": "header",
-      "content": "Highlight Color"
-    },
-    {
-      "type": "color",
-      "id": "highlight_color",
-      "label": "Highlight Text",
-      "default": "#F54927"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_shadow",
-      "label": "Enable Button Shadow",
-      "default": true
-    },
     {
       "type": "header",
       "content": "Button"
