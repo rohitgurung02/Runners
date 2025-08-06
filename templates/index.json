@@ -797,6 +797,8 @@
         "button_margin_bottom": 5,
         "padding_top_desktop": 5,
         "padding_bottom_desktop": 5,
+        "description_padding_top_mobile": 5,
+        "description_padding_bottom_mobile": 5,
         "padding_top_mobile": 5,
         "padding_bottom_mobile": 5
       }
@@ -1062,6 +1064,8 @@
         "button_margin_bottom": 5,
         "padding_top_desktop": 5,
         "padding_bottom_desktop": 5,
+        "description_padding_top_mobile": 5,
+        "description_padding_bottom_mobile": 5,
         "padding_top_mobile": 5,
         "padding_bottom_mobile": 5
       }
@@ -1366,6 +1370,8 @@
         "button_margin_bottom": 5,
         "padding_top_desktop": 5,
         "padding_bottom_desktop": 5,
+        "description_padding_top_mobile": 10,
+        "description_padding_bottom_mobile": 10,
         "padding_top_mobile": 5,
         "padding_bottom_mobile": 5
       }
