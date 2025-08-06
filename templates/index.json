@@ -1324,7 +1324,7 @@
       "type": "rw-test",
       "name": "RW - Wavy Background #1",
       "settings": {
-        "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
+        "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         "description": "Entwickeln Sie sichere, zuverlässige und erweiterbare Chatbots schneller. Bot Foundation ist ein Framework, das Ihre individuelle Entwicklung beschleunigt – überspringen Sie das Grundgerüst und konzentrieren Sie sich auf das Wesentliche.",
         "button_text": "Termin buchen",
         "button_link": "",
@@ -1332,7 +1332,7 @@
         "wave_color_2": "#6CC65A",
         "wave_color_3": "#66E1DB",
         "wave_opacity": 0.2,
-        "title_size_desktop": 48,
+        "title_size_desktop": 43,
         "title_size_mobile": 28,
         "title_color": "#4747E0",
         "title_font_weight": "normal",
