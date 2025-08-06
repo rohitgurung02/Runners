@@ -752,9 +752,7 @@
       "name": "PWC - Filter Gallery #1",
       "settings": {
         "title": "Die solide Grundlage für Ihre individuelle Chatbot-Anwendung",
-        "title_width": 800,
         "description": "Entwickeln Sie sichere, zuverlässige und erweiterbare Chatbots schneller. Bot Foundation ist ein Framework, das Ihre individuelle Entwicklung beschleunigt – überspringen Sie das Grundgerüst und konzentrieren Sie sich auf das Wesentliche.",
-        "description_width": 700,
         "button_text": "Termin buchen",
         "button_link": "",
         "title_size_desktop": 48,
@@ -987,9 +985,7 @@
       "name": "RW - Carousel Slider #8",
       "settings": {
         "title": "Die solide Grundlage für Ihre individuelle Chatbot-Anwendung",
-        "title_width": 800,
         "description": "Entwickeln Sie sichere, zuverlässige und erweiterbare Chatbots schneller. Bot Foundation ist ein Framework, das Ihre individuelle Entwicklung beschleunigt – überspringen Sie das Grundgerüst und konzentrieren Sie sich auf das Wesentliche.",
-        "description_width": 700,
         "button_text": "Termin buchen",
         "button_link": "",
         "title_size_desktop": 48,
@@ -1261,10 +1257,8 @@
       "name": "PWC - Gradient Hero #1",
       "settings": {
         "title": "Die solide Grundlage für Ihre individuelle Chatbot-Anwendung",
-        "title_width": 1200,
         "description": "Entwickeln Sie sichere, zuverlässige und erweiterbare Chatbots schneller. Bot Foundation ist ein Framework, das Ihre individuelle Entwicklung beschleunigt – überspringen Sie das Grundgerüst und konzentrieren Sie sich auf das Wesentliche.",
-        "description_width": 1000,
-        "button_text": "Termin buchen",
+        "button_text": "Click Here",
         "button_link": "",
         "title_size_desktop": 48,
         "title_size_mobile": 36,
