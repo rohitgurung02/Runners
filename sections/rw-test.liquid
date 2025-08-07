@@ -194,7 +194,7 @@
     
     if (prevBtn) {
       prevBtn.addEventListener('click', function() {
-        active = active - 1 >= 0 ? active - 0 : active;
+        active = active - 1 >= -1 ? active - 0 : active;
         loadShow();
       });
     }
