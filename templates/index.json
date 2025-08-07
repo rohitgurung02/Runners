@@ -751,27 +751,30 @@
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
       "settings": {
-        "slide_width": 200,
-        "slide_height": 370,
-        "slide_padding": 20,
-        "desktop_margin_top": 0,
-        "slide_border_radius": 10,
-        "slide_bg_color": "#ffffff",
+        "section_background_color": "#222222",
         "enable_shadow": false,
-        "heading_font_size": 18,
         "heading_color": "#000000",
-        "text_font_size": 14,
-        "text_color": "#000000",
-        "nav_button_size": 32,
-        "nav_button_color": "#ffffff",
-        "nav_button_opacity": 0.5,
-        "mobile_slide_width": 160,
-        "mobile_slide_height": 300,
-        "mobile_slide_padding": 8,
+        "body_text_color": "#555555",
+        "heading_font_size_desktop": 24,
+        "body_font_size_desktop": 16,
+        "desktop_padding_top": 50,
+        "desktop_padding_bottom": 50,
+        "desktop_padding_left": 0,
+        "desktop_padding_right": 0,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "desktop_item_width": 200,
+        "desktop_item_height": 320,
+        "heading_font_size_mobile": 20,
+        "body_font_size_mobile": 14,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20,
+        "mobile_padding_left": 0,
+        "mobile_padding_right": 0,
         "mobile_margin_top": 0,
-        "mobile_heading_font_size": 16,
-        "mobile_text_font_size": 12,
-        "mobile_nav_button_size": 24
+        "mobile_margin_bottom": 0,
+        "mobile_item_width": 180,
+        "mobile_item_height": 280
       }
     },
     "rw_reviews_eNfMNB": {
@@ -989,27 +992,30 @@
       "disabled": true,
       "name": "RW - Carousel Slider #8",
       "settings": {
-        "slide_width": 200,
-        "slide_height": 370,
-        "slide_padding": 20,
-        "desktop_margin_top": 0,
-        "slide_border_radius": 10,
-        "slide_bg_color": "#ffffff",
+        "section_background_color": "#222222",
         "enable_shadow": false,
-        "heading_font_size": 18,
         "heading_color": "#000000",
-        "text_font_size": 14,
-        "text_color": "#000000",
-        "nav_button_size": 32,
-        "nav_button_color": "#ffffff",
-        "nav_button_opacity": 0.5,
-        "mobile_slide_width": 160,
-        "mobile_slide_height": 300,
-        "mobile_slide_padding": 8,
+        "body_text_color": "#555555",
+        "heading_font_size_desktop": 24,
+        "body_font_size_desktop": 16,
+        "desktop_padding_top": 50,
+        "desktop_padding_bottom": 50,
+        "desktop_padding_left": 0,
+        "desktop_padding_right": 0,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "desktop_item_width": 200,
+        "desktop_item_height": 320,
+        "heading_font_size_mobile": 20,
+        "body_font_size_mobile": 14,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20,
+        "mobile_padding_left": 0,
+        "mobile_padding_right": 0,
         "mobile_margin_top": 0,
-        "mobile_heading_font_size": 16,
-        "mobile_text_font_size": 12,
-        "mobile_nav_button_size": 24
+        "mobile_margin_bottom": 0,
+        "mobile_item_width": 180,
+        "mobile_item_height": 280
       }
     },
     "rw_hero_banner_4dJjqa": {
@@ -1318,86 +1324,6 @@
         "padding_top_mobile": 5,
         "padding_bottom_mobile": 5
       }
-    },
-    "rw_test_fmGnPr": {
-      "type": "rw-test",
-      "blocks": {
-        "space_fact_TXYfCb": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Space Fact",
-            "content": "Interesting fact about space goes here."
-          }
-        },
-        "space_fact_RiwfUC": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Space Fact",
-            "content": "Interesting fact about space goes here."
-          }
-        },
-        "space_fact_qpD4hA": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Space Fact",
-            "content": "Interesting fact about space goes here."
-          }
-        },
-        "space_fact_UwgJN9": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Space Fact",
-            "content": "Interesting fact about space goes here."
-          }
-        },
-        "space_fact_fTWEiN": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Space Fact",
-            "content": "Interesting fact about space goes here."
-          }
-        },
-        "space_fact_YnQfnq": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Space Fact",
-            "content": "Interesting fact about space goes here."
-          }
-        }
-      },
-      "block_order": [
-        "space_fact_TXYfCb",
-        "space_fact_RiwfUC",
-        "space_fact_qpD4hA",
-        "space_fact_UwgJN9",
-        "space_fact_fTWEiN",
-        "space_fact_YnQfnq"
-      ],
-      "name": "PWC - Facts Slider #1",
-      "settings": {
-        "background_image": "shopify://shop_images/pexels-shvets-production-9775883_1.jpg",
-        "slide_width": 200,
-        "slide_height": 370,
-        "slide_padding": 20,
-        "desktop_margin_top": 0,
-        "slide_border_radius": 10,
-        "slide_bg_color": "#ffffff",
-        "enable_shadow": false,
-        "heading_font_size": 18,
-        "heading_color": "#000000",
-        "text_font_size": 14,
-        "text_color": "#000000",
-        "nav_button_size": 32,
-        "nav_button_color": "#ffffff",
-        "nav_button_opacity": 0.5,
-        "mobile_slide_width": 160,
-        "mobile_slide_height": 300,
-        "mobile_slide_padding": 8,
-        "mobile_margin_top": 0,
-        "mobile_heading_font_size": 16,
-        "mobile_text_font_size": 12,
-        "mobile_nav_button_size": 24
-      }
     }
   },
   "order": [
@@ -1417,7 +1343,6 @@
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
-    "rw_wavy_background_1_cFNhmb",
-    "rw_test_fmGnPr"
+    "rw_wavy_background_1_cFNhmb"
   ]
 }
