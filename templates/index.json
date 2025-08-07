@@ -751,33 +751,27 @@
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
       "settings": {
-        "background_color": "#ffffff",
-        "card_background_color": "#ffffff",
-        "enable_shadow": false,
-        "initial_slide": 3,
-        "desktop_font_size": 24,
-        "mobile_font_size": 20,
-        "font_weight": "400",
-        "text_color": "#000000",
-        "desktop_padding_top": 100,
-        "desktop_padding_bottom": 20,
+        "slide_width": 200,
+        "slide_height": 370,
+        "slide_padding": 20,
         "desktop_margin_top": 0,
-        "desktop_margin_bottom": 0,
-        "desktop_max_width": 1200,
-        "desktop_height": 370,
-        "card_width": 200,
-        "card_height": 320,
-        "border_radius": 10,
-        "mobile_padding_top": 50,
-        "mobile_padding_bottom": 20,
+        "slide_border_radius": 10,
+        "slide_bg_color": "#ffffff",
+        "enable_shadow": false,
+        "heading_font_size": 18,
+        "heading_color": "#000000",
+        "text_font_size": 14,
+        "text_color": "#000000",
+        "nav_button_size": 32,
+        "nav_button_color": "#ffffff",
+        "nav_button_opacity": 0.5,
+        "mobile_slide_width": 160,
+        "mobile_slide_height": 300,
+        "mobile_slide_padding": 8,
         "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_max_width": 600,
-        "mobile_height": 300,
-        "mobile_card_width": 180,
-        "mobile_card_height": 280,
-        "arrow_color": "#ffffff",
-        "arrow_spacing": 50
+        "mobile_heading_font_size": 16,
+        "mobile_text_font_size": 12,
+        "mobile_nav_button_size": 24
       }
     },
     "rw_reviews_eNfMNB": {
@@ -995,33 +989,27 @@
       "disabled": true,
       "name": "RW - Carousel Slider #8",
       "settings": {
-        "background_color": "#ffffff",
-        "card_background_color": "#ffffff",
-        "enable_shadow": false,
-        "initial_slide": 3,
-        "desktop_font_size": 24,
-        "mobile_font_size": 20,
-        "font_weight": "400",
-        "text_color": "#000000",
-        "desktop_padding_top": 100,
-        "desktop_padding_bottom": 20,
+        "slide_width": 200,
+        "slide_height": 370,
+        "slide_padding": 20,
         "desktop_margin_top": 0,
-        "desktop_margin_bottom": 0,
-        "desktop_max_width": 1200,
-        "desktop_height": 370,
-        "card_width": 200,
-        "card_height": 320,
-        "border_radius": 10,
-        "mobile_padding_top": 50,
-        "mobile_padding_bottom": 20,
+        "slide_border_radius": 10,
+        "slide_bg_color": "#ffffff",
+        "enable_shadow": false,
+        "heading_font_size": 18,
+        "heading_color": "#000000",
+        "text_font_size": 14,
+        "text_color": "#000000",
+        "nav_button_size": 32,
+        "nav_button_color": "#ffffff",
+        "nav_button_opacity": 0.5,
+        "mobile_slide_width": 160,
+        "mobile_slide_height": 300,
+        "mobile_slide_padding": 8,
         "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_max_width": 600,
-        "mobile_height": 300,
-        "mobile_card_width": 180,
-        "mobile_card_height": 280,
-        "arrow_color": "#ffffff",
-        "arrow_spacing": 50
+        "mobile_heading_font_size": 16,
+        "mobile_text_font_size": 12,
+        "mobile_nav_button_size": 24
       }
     },
     "rw_hero_banner_4dJjqa": {
@@ -1334,112 +1322,81 @@
     "rw_test_fmGnPr": {
       "type": "rw-test",
       "blocks": {
-        "fact_cVNgnQ": {
-          "type": "fact",
+        "space_fact_TXYfCb": {
+          "type": "space_fact",
           "settings": {
-            "image": "shopify://shop_images/pexels-cottonbro-10679212.jpg",
-            "title": "Space Fact 1",
-            "text": "Jupiter protects Earth - its gravity acts like a cosmic shield, deflecting comets and asteroids."
+            "title": "Space Fact",
+            "content": "Interesting fact about space goes here."
           }
         },
-        "fact_tnepHF": {
-          "type": "fact",
+        "space_fact_RiwfUC": {
+          "type": "space_fact",
           "settings": {
-            "image": "shopify://shop_images/pexels-shvets-production-9775883_1.jpg",
-            "title": "Space Fact 2",
-            "text": "Stars 'beat' like hearts - they pulsate, expanding and contracting as they burn fuel."
+            "title": "Space Fact",
+            "content": "Interesting fact about space goes here."
           }
         },
-        "fact_dYNHWH": {
-          "type": "fact",
+        "space_fact_qpD4hA": {
+          "type": "space_fact",
           "settings": {
-            "title": "Space Fact 3",
-            "text": "Galaxies can 'eat' each other - the Milky Way is currently consuming the Sagittarius Dwarf Galaxy."
+            "title": "Space Fact",
+            "content": "Interesting fact about space goes here."
           }
         },
-        "fact_qW4mWK": {
-          "type": "fact",
+        "space_fact_UwgJN9": {
+          "type": "space_fact",
           "settings": {
-            "title": "Space Fact 4",
-            "text": "Space smells like seared steak - astronauts describe a metallic/grilled odor after spacewalks."
+            "title": "Space Fact",
+            "content": "Interesting fact about space goes here."
           }
         },
-        "fact_QWDFdp": {
-          "type": "fact",
+        "space_fact_fTWEiN": {
+          "type": "space_fact",
           "settings": {
-            "title": "Space Fact 5",
-            "text": "Astronauts grow taller in space - spines stretch up to 2 inches without gravity's compression."
+            "title": "Space Fact",
+            "content": "Interesting fact about space goes here."
           }
         },
-        "fact_7k4Vdz": {
-          "type": "fact",
+        "space_fact_YnQfnq": {
+          "type": "space_fact",
           "settings": {
-            "title": "Space Fact 6",
-            "text": "Space has its own 'internet' - neutron stars beam signals like cosmic radio towers."
-          }
-        },
-        "fact_JAE7VY": {
-          "type": "fact",
-          "settings": {
-            "title": "Space Fact 7",
-            "text": "There's an alcohol cloud in space - in Aquila, containing enough ethanol for 400 septillion drinks."
-          }
-        },
-        "fact_kKBcby": {
-          "type": "fact",
-          "settings": {
-            "title": "Space Fact 8",
-            "text": "Your body contains stardust - atoms of heavy elements like calcium were forged in supernovae."
-          }
-        },
-        "fact_dDBjWd": {
-          "type": "fact",
-          "settings": {
-            "title": "Space Fact 9",
-            "text": "Black holes can 'sing' - they create sound waves when consuming matter, but humans can't hear them."
+            "title": "Space Fact",
+            "content": "Interesting fact about space goes here."
           }
         }
       },
       "block_order": [
-        "fact_cVNgnQ",
-        "fact_tnepHF",
-        "fact_dYNHWH",
-        "fact_qW4mWK",
-        "fact_QWDFdp",
-        "fact_7k4Vdz",
-        "fact_JAE7VY",
-        "fact_kKBcby",
-        "fact_dDBjWd"
+        "space_fact_TXYfCb",
+        "space_fact_RiwfUC",
+        "space_fact_qpD4hA",
+        "space_fact_UwgJN9",
+        "space_fact_fTWEiN",
+        "space_fact_YnQfnq"
       ],
       "name": "PWC - Facts Slider #1",
       "settings": {
-        "background_color": "#ffffff",
-        "card_background_color": "#ffffff",
-        "enable_shadow": false,
-        "initial_slide": 3,
-        "desktop_font_size": 24,
-        "mobile_font_size": 20,
-        "font_weight": "400",
-        "text_color": "#000000",
-        "desktop_padding_top": 100,
-        "desktop_padding_bottom": 20,
+        "background_image": "shopify://shop_images/pexels-shvets-production-9775883_1.jpg",
+        "slide_width": 200,
+        "slide_height": 370,
+        "slide_padding": 20,
         "desktop_margin_top": 0,
-        "desktop_margin_bottom": 0,
-        "desktop_max_width": 1200,
-        "desktop_height": 370,
-        "card_width": 200,
-        "card_height": 320,
-        "border_radius": 10,
-        "mobile_padding_top": 50,
-        "mobile_padding_bottom": 20,
+        "slide_border_radius": 10,
+        "slide_bg_color": "#ffffff",
+        "enable_shadow": false,
+        "heading_font_size": 18,
+        "heading_color": "#000000",
+        "text_font_size": 14,
+        "text_color": "#000000",
+        "nav_button_size": 32,
+        "nav_button_color": "#ffffff",
+        "nav_button_opacity": 0.5,
+        "mobile_slide_width": 160,
+        "mobile_slide_height": 300,
+        "mobile_slide_padding": 8,
         "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_max_width": 600,
-        "mobile_height": 300,
-        "mobile_card_width": 180,
-        "mobile_card_height": 280,
-        "arrow_color": "#ffffff",
-        "arrow_spacing": 50
+        "mobile_heading_font_size": 16,
+        "mobile_text_font_size": 12,
+        "mobile_nav_button_size": 24
       }
     }
   },
