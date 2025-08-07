@@ -751,30 +751,27 @@
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
       "settings": {
-        "section_background_color": "#222222",
-        "enable_shadow": false,
-        "heading_color": "#000000",
-        "body_text_color": "#555555",
-        "heading_font_size_desktop": 24,
-        "body_font_size_desktop": 16,
-        "desktop_padding_top": 50,
-        "desktop_padding_bottom": 50,
-        "desktop_padding_left": 0,
-        "desktop_padding_right": 0,
+        "slide_width": 200,
+        "slide_height": 370,
+        "slide_padding": 20,
         "desktop_margin_top": 0,
-        "desktop_margin_bottom": 0,
-        "desktop_item_width": 200,
-        "desktop_item_height": 320,
-        "heading_font_size_mobile": 20,
-        "body_font_size_mobile": 14,
-        "mobile_padding_top": 20,
-        "mobile_padding_bottom": 20,
-        "mobile_padding_left": 0,
-        "mobile_padding_right": 0,
+        "slide_border_radius": 10,
+        "slide_bg_color": "#ffffff",
+        "enable_shadow": false,
+        "heading_font_size": 18,
+        "heading_color": "#000000",
+        "text_font_size": 14,
+        "text_color": "#333333",
+        "nav_button_size": 32,
+        "nav_button_color": "#ffffff",
+        "nav_button_opacity": 0.5,
+        "mobile_slide_width": 160,
+        "mobile_slide_height": 300,
+        "mobile_slide_padding": 8,
         "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_item_width": 180,
-        "mobile_item_height": 280
+        "mobile_heading_font_size": 16,
+        "mobile_text_font_size": 12,
+        "mobile_nav_button_size": 24
       }
     },
     "rw_reviews_eNfMNB": {
@@ -992,30 +989,27 @@
       "disabled": true,
       "name": "RW - Carousel Slider #8",
       "settings": {
-        "section_background_color": "#222222",
-        "enable_shadow": false,
-        "heading_color": "#000000",
-        "body_text_color": "#555555",
-        "heading_font_size_desktop": 24,
-        "body_font_size_desktop": 16,
-        "desktop_padding_top": 50,
-        "desktop_padding_bottom": 50,
-        "desktop_padding_left": 0,
-        "desktop_padding_right": 0,
+        "slide_width": 200,
+        "slide_height": 370,
+        "slide_padding": 20,
         "desktop_margin_top": 0,
-        "desktop_margin_bottom": 0,
-        "desktop_item_width": 200,
-        "desktop_item_height": 320,
-        "heading_font_size_mobile": 20,
-        "body_font_size_mobile": 14,
-        "mobile_padding_top": 20,
-        "mobile_padding_bottom": 20,
-        "mobile_padding_left": 0,
-        "mobile_padding_right": 0,
+        "slide_border_radius": 10,
+        "slide_bg_color": "#ffffff",
+        "enable_shadow": false,
+        "heading_font_size": 18,
+        "heading_color": "#000000",
+        "text_font_size": 14,
+        "text_color": "#333333",
+        "nav_button_size": 32,
+        "nav_button_color": "#ffffff",
+        "nav_button_opacity": 0.5,
+        "mobile_slide_width": 160,
+        "mobile_slide_height": 300,
+        "mobile_slide_padding": 8,
         "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0,
-        "mobile_item_width": 180,
-        "mobile_item_height": 280
+        "mobile_heading_font_size": 16,
+        "mobile_text_font_size": 12,
+        "mobile_nav_button_size": 24
       }
     },
     "rw_hero_banner_4dJjqa": {
@@ -1324,81 +1318,6 @@
         "padding_top_mobile": 5,
         "padding_bottom_mobile": 5
       }
-    },
-    "rw_test_6J4AdJ": {
-      "type": "rw-test",
-      "blocks": {
-        "space_fact_fJPjMQ": {
-          "type": "space_fact",
-          "settings": {
-            "heading": "Space Fact 1",
-            "text": "<p>Jupiter protects Earth - its gravity acts like a cosmic shield, deflecting comets and asteroids.</p>"
-          }
-        },
-        "space_fact_hjKY9M": {
-          "type": "space_fact",
-          "settings": {
-            "heading": "Space Fact 2",
-            "text": "<p>Stars \"beat\" like hearts - they pulsate, expanding and contracting as they burn fuel.</p>"
-          }
-        },
-        "space_fact_FJTDJL": {
-          "type": "space_fact",
-          "settings": {
-            "heading": "Space Fact 3",
-            "text": "<p>Galaxies can \"eat\" each other - the Milky Way is currently consuming the Sagittarius Dwarf Galaxy.</p>"
-          }
-        },
-        "space_fact_g8jXiB": {
-          "type": "space_fact",
-          "settings": {
-            "heading": "Space Fact 4",
-            "text": "<p>Space smells like seared steak - astronauts describe a metallic/grilled odor after spacewalks.</p>"
-          }
-        },
-        "space_fact_q7izWn": {
-          "type": "space_fact",
-          "settings": {
-            "heading": "Space Fact 5",
-            "text": "<p>Astronauts grow taller in space - spines stretch up to 2 inches without gravity's compression.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "space_fact_fJPjMQ",
-        "space_fact_hjKY9M",
-        "space_fact_FJTDJL",
-        "space_fact_g8jXiB",
-        "space_fact_q7izWn"
-      ],
-      "name": "PWC - Fact Slider #1",
-      "settings": {
-        "background_image": "shopify://shop_images/universe.avif",
-        "section_background_color": "#222222",
-        "enable_shadow": true,
-        "heading_color": "#333333",
-        "body_text_color": "#555555",
-        "heading_font_size_desktop": 24,
-        "body_font_size_desktop": 16,
-        "desktop_padding_top": 50,
-        "desktop_padding_bottom": 50,
-        "desktop_padding_left": 0,
-        "desktop_padding_right": 0,
-        "desktop_margin_top": 100,
-        "desktop_margin_bottom": 0,
-        "desktop_item_width": 200,
-        "desktop_item_height": 320,
-        "heading_font_size_mobile": 20,
-        "body_font_size_mobile": 14,
-        "mobile_padding_top": 20,
-        "mobile_padding_bottom": 20,
-        "mobile_padding_left": 0,
-        "mobile_padding_right": 0,
-        "mobile_margin_top": 50,
-        "mobile_margin_bottom": 0,
-        "mobile_item_width": 180,
-        "mobile_item_height": 280
-      }
     }
   },
   "order": [
@@ -1418,7 +1337,6 @@
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
-    "rw_wavy_background_1_cFNhmb",
-    "rw_test_6J4AdJ"
+    "rw_wavy_background_1_cFNhmb"
   ]
 }
