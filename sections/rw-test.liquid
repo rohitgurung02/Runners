@@ -187,14 +187,14 @@
     
     if (nextBtn) {
       nextBtn.addEventListener('click', function() {
-        active = active + 1 < items.length ? active + 1 : active;
+        active = (active + 1) % items.length; // Loops back to 0 if exceeds max
         loadShow();
       });
     }
     
     if (prevBtn) {
       prevBtn.addEventListener('click', function() {
-        active = active - 1 >= 1 ? active - 0 : active;
+        active = (active - 1 + items.length) % items.length; // Loops to last if < 0
         loadShow();
       });
     }
