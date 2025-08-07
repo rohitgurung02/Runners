@@ -1338,79 +1338,6 @@
         "padding_top_mobile": 5,
         "padding_bottom_mobile": 5
       }
-    },
-    "rw_test_hTjN6d": {
-      "type": "rw-test",
-      "blocks": {
-        "space_fact_L4pUM7": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Jupiter's Protection",
-            "content": "<p>Jupiter acts as Earth's cosmic shield, its gravity deflecting dangerous comets and asteroids away from our planet.</p>"
-          }
-        },
-        "space_fact_9Hz4iz": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Pulsating Stars",
-            "content": "<p>Stars actually pulsate like hearts, expanding and contracting as they burn through their nuclear fuel.</p>"
-          }
-        },
-        "space_fact_43mBTf": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Galactic Cannibalism",
-            "content": "<p>The Milky Way is currently consuming the Sagittarius Dwarf Galaxy in a process called galactic cannibalism.</p>"
-          }
-        },
-        "space_fact_mwpBkE": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Space Smell",
-            "content": "<p>Astronauts report that space has a distinct smell - like seared steak or hot metal - noticeable after spacewalks.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "space_fact_L4pUM7",
-        "space_fact_9Hz4iz",
-        "space_fact_43mBTf",
-        "space_fact_mwpBkE"
-      ],
-      "name": "PWC - Facts Carousel #1",
-      "settings": {
-        "max_width": 1200,
-        "background_color": "#000000",
-        "enable_shadow": true,
-        "transition_speed": 0.5,
-        "title_color": "#000000",
-        "content_color": "#333333",
-        "padding_top_desktop": 50,
-        "padding_bottom_desktop": 50,
-        "slider_height_desktop": 400,
-        "card_width_desktop": 300,
-        "card_height_desktop": 400,
-        "card_padding": 20,
-        "title_size_desktop": 24,
-        "content_size_desktop": 16,
-        "title_spacing": 15,
-        "card_border_radius": 10,
-        "card_background": "#ffffff",
-        "arrow_size": 40,
-        "arrow_offset": 30,
-        "arrow_color": "#ffffff",
-        "arrow_background": "rgba(0,0,0,0.5)",
-        "padding_top_mobile": 30,
-        "padding_bottom_mobile": 30,
-        "slider_height_mobile": 300,
-        "card_width_mobile": 250,
-        "card_height_mobile": 350,
-        "card_padding_mobile": 15,
-        "title_size_mobile": 18,
-        "content_size_mobile": 14,
-        "arrow_size_mobile": 30,
-        "arrow_offset_mobile": 15
-      }
     }
   },
   "order": [
@@ -1430,7 +1357,6 @@
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
-    "rw_wavy_background_1_cFNhmb",
-    "rw_test_hTjN6d"
+    "rw_wavy_background_1_cFNhmb"
   ]
 }
