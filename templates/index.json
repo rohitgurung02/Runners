@@ -1330,6 +1330,117 @@
         "padding_top_mobile": 5,
         "padding_bottom_mobile": 5
       }
+    },
+    "rw_test_fmGnPr": {
+      "type": "rw-test",
+      "blocks": {
+        "fact_cVNgnQ": {
+          "type": "fact",
+          "settings": {
+            "image": "shopify://shop_images/pexels-cottonbro-10679212.jpg",
+            "title": "Space Fact 1",
+            "text": "Jupiter protects Earth - its gravity acts like a cosmic shield, deflecting comets and asteroids."
+          }
+        },
+        "fact_tnepHF": {
+          "type": "fact",
+          "settings": {
+            "image": "shopify://shop_images/pexels-shvets-production-9775883_1.jpg",
+            "title": "Space Fact 2",
+            "text": "Stars 'beat' like hearts - they pulsate, expanding and contracting as they burn fuel."
+          }
+        },
+        "fact_dYNHWH": {
+          "type": "fact",
+          "settings": {
+            "title": "Space Fact 3",
+            "text": "Galaxies can 'eat' each other - the Milky Way is currently consuming the Sagittarius Dwarf Galaxy."
+          }
+        },
+        "fact_qW4mWK": {
+          "type": "fact",
+          "settings": {
+            "title": "Space Fact 4",
+            "text": "Space smells like seared steak - astronauts describe a metallic/grilled odor after spacewalks."
+          }
+        },
+        "fact_QWDFdp": {
+          "type": "fact",
+          "settings": {
+            "title": "Space Fact 5",
+            "text": "Astronauts grow taller in space - spines stretch up to 2 inches without gravity's compression."
+          }
+        },
+        "fact_7k4Vdz": {
+          "type": "fact",
+          "settings": {
+            "title": "Space Fact 6",
+            "text": "Space has its own 'internet' - neutron stars beam signals like cosmic radio towers."
+          }
+        },
+        "fact_JAE7VY": {
+          "type": "fact",
+          "settings": {
+            "title": "Space Fact 7",
+            "text": "There's an alcohol cloud in space - in Aquila, containing enough ethanol for 400 septillion drinks."
+          }
+        },
+        "fact_kKBcby": {
+          "type": "fact",
+          "settings": {
+            "title": "Space Fact 8",
+            "text": "Your body contains stardust - atoms of heavy elements like calcium were forged in supernovae."
+          }
+        },
+        "fact_dDBjWd": {
+          "type": "fact",
+          "settings": {
+            "title": "Space Fact 9",
+            "text": "Black holes can 'sing' - they create sound waves when consuming matter, but humans can't hear them."
+          }
+        }
+      },
+      "block_order": [
+        "fact_cVNgnQ",
+        "fact_tnepHF",
+        "fact_dYNHWH",
+        "fact_qW4mWK",
+        "fact_QWDFdp",
+        "fact_7k4Vdz",
+        "fact_JAE7VY",
+        "fact_kKBcby",
+        "fact_dDBjWd"
+      ],
+      "name": "PWC - Facts Slider #1",
+      "settings": {
+        "background_color": "#ffffff",
+        "card_background_color": "#ffffff",
+        "enable_shadow": false,
+        "initial_slide": 3,
+        "desktop_font_size": 24,
+        "mobile_font_size": 20,
+        "font_weight": "400",
+        "text_color": "#000000",
+        "desktop_padding_top": 100,
+        "desktop_padding_bottom": 20,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "desktop_max_width": 1200,
+        "desktop_height": 370,
+        "card_width": 200,
+        "card_height": 320,
+        "border_radius": 10,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 20,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0,
+        "mobile_max_width": 600,
+        "mobile_height": 300,
+        "mobile_card_width": 180,
+        "mobile_card_height": 280,
+        "arrow_color": "#ffffff",
+        "arrow_spacing": 50
+      }
     }
   },
   "order": [
@@ -1349,6 +1460,7 @@
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
-    "rw_wavy_background_1_cFNhmb"
+    "rw_wavy_background_1_cFNhmb",
+    "rw_test_fmGnPr"
   ]
 }
