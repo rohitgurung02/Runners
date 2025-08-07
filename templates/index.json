@@ -1433,7 +1433,7 @@
         "nav_button_color": "#ffffff",
         "nav_button_opacity": 0.7,
         "mobile_slide_width": 210,
-        "mobile_slide_height": 360,
+        "mobile_slide_height": 340,
         "mobile_slide_padding": 8,
         "mobile_margin_top": 50,
         "mobile_heading_font_size": 16,
