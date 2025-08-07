@@ -137,87 +137,66 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    try {
-      const secId = '{{ sec_id }}'.trim();
-      const lastPart = '{{ last_part }}'.trim();
+    const secId = '{{ sec_id }}';
+    const lastPart = '{{ last_part }}';
+    const items = document.querySelectorAll(`${secId} .pc-slide-${lastPart}`);
+    let active = Math.min(3, items.length - 1);
+    
+    function loadShow() {
+      if (items.length === 0) return;
       
-      // Validate selectors to prevent XSS and errors
-      if (!secId || !lastPart || !document.querySelector(secId)) {
-        console.error('Invalid selectors or elements not found');
-        return;
+      // Reset all items first (optional, but helps prevent glitches)
+      items.forEach(item => {
+        item.style.transform = '';
+        item.style.zIndex = '';
+        item.style.filter = '';
+        item.style.opacity = '';
+      });
+      
+      // Active item
+      items[active].style.transform = `none`;
+      items[active].style.zIndex = 1;
+      items[active].style.filter = "none";
+      items[active].style.opacity = 1;
+      
+      // Right-side cards (next items)
+      let stt = 0;
+      for (let i = active + 1; i < items.length; i++) {
+        stt++;
+        items[i].style.transform = `translateX(${120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(-1deg)`;
+        items[i].style.zIndex = 0; // Changed from -1 to 0
+        items[i].style.filter = "blur(5px)";
+        items[i].style.opacity = stt > 2 ? 0 : 0.6;
       }
       
-      const items = document.querySelectorAll(`${secId} .pc-slide-${lastPart}`);
-      if (items.length === 0) {
-        console.warn('No slide items found');
-        return;
+      // Left-side cards (previous items)
+      stt = 0;
+      for (let i = active - 1; i >= 0; i--) {
+        stt++;
+        items[i].style.transform = `translateX(${-120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(1deg)`;
+        items[i].style.zIndex = 1;
+        items[i].style.filter = "blur(5px)";
+        items[i].style.opacity = stt > 2 ? 0 : 0.6;
       }
-      
-      let active = Math.min(3, items.length - 1);
-      
-      function loadShow() {
-        items.forEach(item => {
-          // Reset all items first
-          item.style.transform = '';
-          item.style.zIndex = '';
-          item.style.filter = '';
-          item.style.opacity = '';
-        });
-        
-        if (active >= 0 && active < items.length) {
-          items[active].style.transform = `none`;
-          items[active].style.zIndex = 1;
-          items[active].style.filter = "none";
-          items[active].style.opacity = 1;
-        }
-        
-        let stt = 0;
-        for (let i = active + 1; i < items.length; i++) {
-          stt++;
-          items[i].style.transform = `translateX(${120 * stt}px) scale(${
-            1 - 0.2 * stt
-          }) perspective(16px) rotateY(-1deg)`;
-          items[i].style.zIndex = -1;
-          items[i].style.filter = "blur(5px)";
-          items[i].style.opacity = stt > 2 ? 0 : 0.6;
-        }
-        
-        stt = 0;
-        for (let i = active - 1; i >= 0; i--) {
-          stt++;
-          items[i].style.transform = `translateX(${-120 * stt}px) scale(${
-            1 - 0.2 * stt
-          }) perspective(16px) rotateY(1deg)`;
-          items[i].style.zIndex = 1;
-          items[i].style.filter = "blur(5px)";
-          items[i].style.opacity = stt > 2 ? 0 : 0.6;
-        }
-      }
-      
-      loadShow();
-      
-      const nextBtn = document.getElementById(`pc-next-${lastPart}`);
-      const prevBtn = document.getElementById(`pc-prev-${lastPart}`);
-      
-      if (nextBtn) {
-        nextBtn.addEventListener('click', function() {
-          active = active + 1 < items.length ? active + 1 : active;
-          loadShow();
-        });
-      } else {
-        console.warn(`Next button with ID pc-next-${lastPart} not found`);
-      }
-      
-      if (prevBtn) {
-        prevBtn.addEventListener('click', function() {
-          active = active - 1 >= 0 ? active - 1 : active;
-          loadShow();
-        });
-      } else {
-        console.warn(`Prev button with ID pc-prev-${lastPart} not found`);
-      }
-    } catch (error) {
-      console.error('Error initializing slider:', error);
+    }
+    
+    loadShow();
+    
+    const nextBtn = document.getElementById(`pc-next-${lastPart}`);
+    const prevBtn = document.getElementById(`pc-prev-${lastPart}`);
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        active = active + 1 < items.length ? active + 1 : active;
+        loadShow();
+      });
+    }
+    
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        active = active - 1 >= 0 ? active - 1 : active;
+        loadShow();
+      });
     }
   });
 </script>
