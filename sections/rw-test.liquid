@@ -57,6 +57,15 @@
   {{ sec_id }} .pc-slide-{{ last_part }} p {
     font-size: {{ section.settings.text_font_size }}px;
     color: {{ section.settings.text_color }};
+    font-weight: {{ section.settings.text_font_weight }};
+    font-style: {{ section.settings.text_font_style }};
+    letter-spacing: {{ section.settings.text_letter_spacing }}px;
+    text-decoration: {{ section.settings.text_decoration }};
+    {% if section.settings.text_decoration != 'none' %}
+    text-decoration-color: {{ section.settings.text_decoration_color }};
+    {% endif %}
+    padding-top: {{ section.settings.text_padding_top }}px;
+    padding-bottom: {{ section.settings.text_padding_bottom }}px;
     line-height: 1.4;
   }
 
@@ -556,8 +565,8 @@
         },
         {
           "type": "select",
-          "id": "text_text_decoration",
-          "label": "Text Text Decoration",
+          "id": "text_decoration",
+          "label": "Text Decoration",
           "options": [
             {
               "value": "none",
