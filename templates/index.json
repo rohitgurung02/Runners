@@ -750,7 +750,35 @@
       "type": "rw-test",
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
-      "settings": {}
+      "settings": {
+        "background_color": "#ffffff",
+        "card_background_color": "#ffffff",
+        "enable_shadow": false,
+        "initial_slide": 3,
+        "desktop_font_size": 24,
+        "mobile_font_size": 20,
+        "font_weight": "400",
+        "text_color": "#000000",
+        "desktop_padding_top": 100,
+        "desktop_padding_bottom": 20,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "desktop_max_width": 1200,
+        "desktop_height": 370,
+        "card_width": 200,
+        "card_height": 320,
+        "border_radius": 10,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 20,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0,
+        "mobile_max_width": 600,
+        "mobile_height": 300,
+        "mobile_card_width": 180,
+        "mobile_card_height": 280,
+        "arrow_color": "#ffffff",
+        "arrow_spacing": 50
+      }
     },
     "rw_reviews_eNfMNB": {
       "type": "rw-reviews",
@@ -966,7 +994,35 @@
       "type": "rw-test",
       "disabled": true,
       "name": "RW - Carousel Slider #8",
-      "settings": {}
+      "settings": {
+        "background_color": "#ffffff",
+        "card_background_color": "#ffffff",
+        "enable_shadow": false,
+        "initial_slide": 3,
+        "desktop_font_size": 24,
+        "mobile_font_size": 20,
+        "font_weight": "400",
+        "text_color": "#000000",
+        "desktop_padding_top": 100,
+        "desktop_padding_bottom": 20,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "desktop_max_width": 1200,
+        "desktop_height": 370,
+        "card_width": 200,
+        "card_height": 320,
+        "border_radius": 10,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 20,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0,
+        "mobile_max_width": 600,
+        "mobile_height": 300,
+        "mobile_card_width": 180,
+        "mobile_card_height": 280,
+        "arrow_color": "#ffffff",
+        "arrow_spacing": 50
+      }
     },
     "rw_hero_banner_4dJjqa": {
       "type": "rw-hero-banner",
@@ -1274,41 +1330,6 @@
         "padding_top_mobile": 5,
         "padding_bottom_mobile": 5
       }
-    },
-    "rw_test_qgnkFz": {
-      "type": "rw-test",
-      "blocks": {
-        "slide_LwjYcx": {
-          "type": "slide",
-          "settings": {
-            "heading": "Space Fact",
-            "description": "Interesting fact about space."
-          }
-        },
-        "slide_Nr9zMD": {
-          "type": "slide",
-          "settings": {
-            "heading": "Space Fact",
-            "description": "Interesting fact about space."
-          }
-        },
-        "slide_QEVTYf": {
-          "type": "slide",
-          "settings": {
-            "heading": "Space Fact",
-            "description": "Interesting fact about space."
-          }
-        }
-      },
-      "block_order": [
-        "slide_LwjYcx",
-        "slide_Nr9zMD",
-        "slide_QEVTYf"
-      ],
-      "name": "PWC - Facts Slider #1",
-      "settings": {
-        "bg_image": "shopify://shop_images/pexels-cottonbro-10679212.jpg"
-      }
     }
   },
   "order": [
@@ -1328,7 +1349,6 @@
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
-    "rw_wavy_background_1_cFNhmb",
-    "rw_test_qgnkFz"
+    "rw_wavy_background_1_cFNhmb"
   ]
 }
