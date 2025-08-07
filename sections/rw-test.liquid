@@ -146,9 +146,9 @@
       if (items.length === 0) return;
       
       items[active].style.transform = `none`;
-      items[active].style.zIndex = 6;
+      items[active].style.zIndex = 1;
       items[active].style.filter = "none";
-      items[active].style.opacity = 6;
+      items[active].style.opacity = 1;
       
       let stt = 0;
       for (let i = active + 1; i < items.length; i++) {
@@ -181,14 +181,14 @@
     if (nextBtn) {
       nextBtn.addEventListener('click', function() {
         active = active + 1 < items.length ? active + 1 : active;
-        loadShow();
+        loadShow(1);
       });
     }
     
     if (prevBtn) {
       prevBtn.addEventListener('click', function() {
         active = active - 1 >= 0 ? active - 1 : active;
-        loadShow();
+        loadShow(1);
       });
     }
   });
