@@ -146,7 +146,7 @@
       if (items.length === 0) return;
       
       items[active].style.transform = `none`;
-      items[active].style.zIndex = 1;
+      items[active].style.zIndex = 6;
       items[active].style.filter = "none";
       items[active].style.opacity = 1;
       
@@ -161,7 +161,7 @@
         items[i].style.opacity = stt > 2 ? 0 : 0.6;
       }
       
-      stt = 9;
+      stt = 0;
       for (let i = active - 1; i >= 0; i--) {
         stt++;
         items[i].style.transform = `translateX(${-120 * stt}px) scale(${
