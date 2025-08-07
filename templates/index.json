@@ -1318,78 +1318,6 @@
         "padding_top_mobile": 5,
         "padding_bottom_mobile": 5
       }
-    },
-    "rw_test_tErifN": {
-      "type": "rw-test",
-      "blocks": {
-        "space_fact_C9iwHg": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Space Fact 1",
-            "content": "Jupiter protects Earth - its gravity acts like a cosmic shield, deflecting comets and asteroids."
-          }
-        },
-        "space_fact_fGtc3t": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Space Fact 2",
-            "content": "Stars \"beat\" like hearts - they pulsate, expanding and contracting as they burn fuel."
-          }
-        },
-        "space_fact_AmNVEE": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Space Fact 3",
-            "content": "Galaxies can \"eat\" each other - the Milky Way is currently consuming the Sagittarius Dwarf Galaxy."
-          }
-        },
-        "space_fact_Mar3BW": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Space Fact 4",
-            "content": "Space smells like seared steak - astronauts describe a metallic/grilled odor after spacewalks."
-          }
-        },
-        "space_fact_QcbQ6L": {
-          "type": "space_fact",
-          "settings": {
-            "title": "Space Fact 5",
-            "content": "Astronauts grow taller in space - spines stretch up to 2 inches without gravity's compression."
-          }
-        }
-      },
-      "block_order": [
-        "space_fact_C9iwHg",
-        "space_fact_fGtc3t",
-        "space_fact_AmNVEE",
-        "space_fact_Mar3BW",
-        "space_fact_QcbQ6L"
-      ],
-      "name": "PWC - Facts Carousel #1",
-      "settings": {
-        "background_image": "shopify://shop_images/universe.webp",
-        "slide_width": 280,
-        "slide_height": 430,
-        "slide_padding": 20,
-        "desktop_margin_top": 100,
-        "slide_border_radius": 10,
-        "slide_bg_color": "#ffffff",
-        "enable_shadow": true,
-        "heading_font_size": 18,
-        "heading_color": "#000000",
-        "text_font_size": 14,
-        "text_color": "#333333",
-        "nav_button_size": 32,
-        "nav_button_color": "#ffffff",
-        "nav_button_opacity": 0.5,
-        "mobile_slide_width": 160,
-        "mobile_slide_height": 300,
-        "mobile_slide_padding": 8,
-        "mobile_margin_top": 50,
-        "mobile_heading_font_size": 16,
-        "mobile_text_font_size": 12,
-        "mobile_nav_button_size": 24
-      }
     }
   },
   "order": [
@@ -1409,7 +1337,6 @@
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
-    "rw_wavy_background_1_cFNhmb",
-    "rw_test_tErifN"
+    "rw_wavy_background_1_cFNhmb"
   ]
 }
