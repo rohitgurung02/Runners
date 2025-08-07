@@ -4,203 +4,248 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  {{ sec_id }} {
-    background-image: url({{ section.settings.background_image | image_url: width: 2000 }});
+  {{ sec_id }} .pc-slider-wrapper-{{ last_part }} {
     min-height: 100vh;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: monospace;
-    background-size: cover;
-    background-position: center;
+    background-color: {{ section.settings.section_background_color }};
+    {%- if section.settings.background_image != blank -%}
+      background-image: url({{ section.settings.background_image | image_url: width: section.settings.background_image.width, height: section.settings.background_image.height }});
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {%- endif -%}
   }
 
-  {{ sec_id }} .pc-slider-{{ last_part }} {
+  {{ sec_id }} .pc-slider-container-{{ last_part }} {
     position: relative;
     margin-top: {{ section.settings.desktop_margin_top }}px;
+    margin-bottom: {{ section.settings.desktop_margin_bottom }}px;
     width: 100%;
-    height: {{ section.settings.slide_height }}px;
+    height: {{ section.settings.desktop_item_height | plus: 50 }}px; /* Adjust height based on item height */
     overflow: hidden;
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+    padding-left: {{ section.settings.desktop_padding_left }}px;
+    padding-right: {{ section.settings.desktop_padding_right }}px;
   }
 
-  {{ sec_id }} .pc-slide-{{ last_part }} {
+  {{ sec_id }} .pc-slider-item-{{ last_part }} {
     position: absolute;
-    width: {{ section.settings.slide_width }}px;
-    height: {{ section.settings.slide_height | minus: 50 }}px;
+    width: {{ section.settings.desktop_item_width }}px;
+    height: {{ section.settings.desktop_item_height }}px;
     text-align: justify;
-    background-color: {{ section.settings.slide_bg_color }};
-    border-radius: {{ section.settings.slide_border_radius }}px;
-    padding: {{ section.settings.slide_padding }}px;
+    background-color: #fff; /* Static for now, could be a setting */
+    border-radius: 10px;
+    padding: 20px;
     transition: 0.5s;
-    left: calc(50% - {{ section.settings.slide_width | divided_by: 2 | plus: 10 }}px);
+    left: calc(50% - ({{ section.settings.desktop_item_width }}px / 2 + 10px)); /* Centered based on item width */
     top: 0;
-    {% if section.settings.enable_shadow %}
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    {% endif %}
+    color: {{ section.settings.body_text_color }};
+    font-size: {{ section.settings.body_font_size_desktop }}px;
+    {%- if section.settings.enable_shadow -%}
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    {%- endif -%}
   }
 
-  {{ sec_id }} .pc-slide-{{ last_part }} h1 {
-    font-size: {{ section.settings.heading_font_size }}px;
+  {{ sec_id }} .pc-slider-item-{{ last_part }} h1 {
     color: {{ section.settings.heading_color }};
-    margin-bottom: 15px;
+    font-size: {{ section.settings.heading_font_size_desktop }}px;
+    margin-bottom: 10px;
   }
 
-  {{ sec_id }} .pc-slide-{{ last_part }} p {
-    font-size: {{ section.settings.text_font_size }}px;
-    color: {{ section.settings.text_color }};
-    line-height: 1.4;
-  }
-
-  {{ sec_id }} .pc-nav-button-{{ last_part }} {
+  {{ sec_id }} .pc-slider-nav-button-{{ last_part }} {
     position: absolute;
-    color: {{ section.settings.nav_button_color }};
+    color: #fff;
     background: none;
     border: none;
-    font-size: {{ section.settings.nav_button_size }}px;
+    font-size: xxx-large;
     font-family: monospace;
     font-weight: bold;
-    opacity: {{ section.settings.nav_button_opacity }};
+    opacity: 0.5;
     transition: opacity 0.5s;
     cursor: pointer;
-    z-index: 10;
+    top: 40%; /* Adjust based on item height */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
 
-  {{ sec_id }} .pc-nav-button-{{ last_part }}:hover {
+  {{ sec_id }} .pc-slider-nav-button-{{ last_part }}:hover {
     opacity: 1;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   }
 
-  {{ sec_id }} .pc-next-button-{{ last_part }} {
+  {{ sec_id }} #pc-next-{{ last_part }} {
     right: 50px;
-    top: 40%;
   }
 
-  {{ sec_id }} .pc-prev-button-{{ last_part }} {
+  {{ sec_id }} #pc-prev-{{ last_part }} {
     left: 50px;
-    top: 40%;
   }
 
+  /* Mobile Styles */
   @media (max-width: 768px) {
-    {{ sec_id }} {
-      padding: 20px;
+    {{ sec_id }} .pc-slider-wrapper-{{ last_part }} {
+      min-height: auto;
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      padding-left: {{ section.settings.mobile_padding_left }}px;
+      padding-right: {{ section.settings.mobile_padding_right }}px;
     }
 
-    {{ sec_id }} .pc-slider-{{ last_part }} {
+    {{ sec_id }} .pc-slider-container-{{ last_part }} {
       margin-top: {{ section.settings.mobile_margin_top }}px;
-      height: {{ section.settings.mobile_slide_height }}px;
+      margin-bottom: {{ section.settings.mobile_margin_bottom }}px;
+      height: {{ section.settings.mobile_item_height | plus: 50 }}px;
     }
 
-    {{ sec_id }} .pc-slide-{{ last_part }} {
-      width: {{ section.settings.mobile_slide_width }}px;
-      height: {{ section.settings.mobile_slide_height | minus: 30 }}px;
-      left: calc(50% - {{ section.settings.mobile_slide_width | divided_by: 2 | plus: 10 }}px);
-      padding: {{ section.settings.mobile_slide_padding }}px;
+    {{ sec_id }} .pc-slider-item-{{ last_part }} {
+      width: {{ section.settings.mobile_item_width }}px;
+      height: {{ section.settings.mobile_item_height }}px;
+      font-size: {{ section.settings.body_font_size_mobile }}px;
+      left: calc(50% - ({{ section.settings.mobile_item_width }}px / 2 + 10px));
     }
 
-    {{ sec_id }} .pc-slide-{{ last_part }} h1 {
-      font-size: {{ section.settings.mobile_heading_font_size }}px;
+    {{ sec_id }} .pc-slider-item-{{ last_part }} h1 {
+      font-size: {{ section.settings.heading_font_size_mobile }}px;
     }
 
-    {{ sec_id }} .pc-slide-{{ last_part }} p {
-      font-size: {{ section.settings.mobile_text_font_size }}px;
+    {{ sec_id }} .pc-slider-nav-button-{{ last_part }} {
+      font-size: x-large;
+      top: 45%;
+      padding: 5px;
     }
 
-    {{ sec_id }} .pc-nav-button-{{ last_part }} {
-      font-size: {{ section.settings.mobile_nav_button_size }}px;
+    {{ sec_id }} #pc-next-{{ last_part }} {
+      right: 10px;
     }
 
-    {{ sec_id }} .pc-next-button-{{ last_part }} {
-      right: 20px;
-    }
-
-    {{ sec_id }} .pc-prev-button-{{ last_part }} {
-      left: 20px;
+    {{ sec_id }} #pc-prev-{{ last_part }} {
+      left: 10px;
     }
   }
 </style>
 
-<div class="pc-slider-{{ last_part }}">
-  {% for block in section.blocks %}
-    <div class="pc-slide-{{ last_part }}" id="pc-slide-{{ last_part }}-{{ forloop.index }}">
-      <h1>{{ block.settings.title }}</h1>
-      <p>{{ block.settings.content }}</p>
-    </div>
-  {% endfor %}
-  
-  <button class="pc-nav-button-{{ last_part }} pc-prev-button-{{ last_part }}" id="pc-prev-{{ last_part }}">
-    &lt;
-  </button>
-  <button class="pc-nav-button-{{ last_part }} pc-next-button-{{ last_part }}" id="pc-next-{{ last_part }}">
-    &gt;
-  </button>
-</div>
+<pc-space-fact-slider-{{ last_part }} class="pc-slider-wrapper-{{ last_part }}">
+  <div class="pc-slider-container-{{ last_part }}">
+    {%- for block in section.blocks -%}
+      <div class="pc-slider-item-{{ last_part }}">
+        <h1>{{ block.settings.heading }}</h1>
+        {{ block.settings.text }}
+      </div>
+    {%- endfor -%}
+    <button id="pc-next-{{ last_part }}" class="pc-slider-nav-button-{{ last_part }}">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px">
+        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+      </svg>
+    </button>
+    <button id="pc-prev-{{ last_part }}" class="pc-slider-nav-button-{{ last_part }}">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px">
+        <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/>
+      </svg>
+    </button>
+  </div>
+</pc-space-fact-slider-{{ last_part }}>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const secId = '{{ sec_id }}';
-    const lastPart = '{{ last_part }}';
-    const items = document.querySelectorAll(`${secId} .pc-slide-${lastPart}`);
-    let active = Math.min(3, items.length - 1);
-    
-    function loadShow() {
-      if (items.length === 0) return;
-      
-      items[active].style.transform = `none`;
-      items[active].style.zIndex = 1;
-      items[active].style.filter = "none";
-      items[active].style.opacity = 1;
-      
+  // Define the custom element for the Space Fact Slider
+  class PcSpaceFactSlider extends HTMLElement {
+    constructor() {
+      super();
+      this.items = [];
+      this.active = 0; // Initialize active index
+      this.nextButton = null;
+      this.prevButton = null;
+    }
+
+    // Called when the custom element is connected to the DOM
+    connectedCallback() {
+      this.items = this.querySelectorAll('.pc-slider-item-{{ last_part }}');
+      this.nextButton = this.querySelector('#pc-next-{{ last_part }}');
+      this.prevButton = this.querySelector('#pc-prev-{{ last_part }}');
+
+      // Set initial active item based on total items
+      this.active = Math.floor(this.items.length / 2);
+      if (this.items.length > 0) {
+        this.loadShow();
+      }
+
+      // Add event listeners for navigation buttons
+      if (this.nextButton) {
+        this.nextButton.addEventListener('click', this.handleNext.bind(this));
+      }
+      if (this.prevButton) {
+        this.prevButton.addEventListener('click', this.handlePrev.bind(this));
+      }
+    }
+
+    // Handles the click event for the next button
+    handleNext() {
+      this.active = (this.active + 1) % this.items.length; // Loop back to start
+      this.loadShow();
+    }
+
+    // Handles the click event for the previous button
+    handlePrev() {
+      this.active = (this.active - 1 + this.items.length) % this.items.length; // Loop back to end
+      this.loadShow();
+    }
+
+    // Updates the visual position and style of slider items
+    loadShow() {
+      if (this.items.length === 0) return;
+
+      // Reset all items initially
+      this.items.forEach(item => {
+        item.style.transform = '';
+        item.style.zIndex = '';
+        item.style.filter = '';
+        item.style.opacity = '';
+      });
+
+      // Style the active item
+      this.items[this.active].style.transform = `none`;
+      this.items[this.active].style.zIndex = 1;
+      this.items[this.active].style.filter = "none";
+      this.items[this.active].style.opacity = 1;
+
+      // Style items after the active one
       let stt = 0;
-      for (let i = active + 1; i < items.length; i++) {
+      for (let i = this.active + 1; i < this.items.length; i++) {
         stt++;
-        items[i].style.transform = `translateX(${120 * stt}px) scale(${
-          1 - 0.2 * stt
-        }) perspective(16px) rotateY(-1deg)`;
-        items[i].style.zIndex = -stt;
-        items[i].style.filter = "blur(5px)";
-        items[i].style.opacity = stt > 2 ? 0 : 0.6;
+        this.items[i].style.transform = `translateX(${120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(-1deg)`;
+        this.items[i].style.zIndex = -stt;
+        this.items[i].style.filter = "blur(5px)";
+        this.items[i].style.opacity = stt > 2 ? 0 : 0.6;
       }
-      
+
+      // Style items before the active one
       stt = 0;
-      for (let i = active - 1; i >= 0; i--) {
+      for (let i = this.active - 1; i >= 0; i--) {
         stt++;
-        items[i].style.transform = `translateX(${-120 * stt}px) scale(${
-          1 - 0.2 * stt
-        }) perspective(16px) rotateY(1deg)`;
-        items[i].style.zIndex = -stt;
-        items[i].style.filter = "blur(5px)";
-        items[i].style.opacity = stt > 2 ? 0 : 0.6;
+        this.items[i].style.transform = `translateX(${-120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(1deg)`;
+        this.items[i].style.zIndex = -stt;
+        this.items[i].style.filter = "blur(5px)";
+        this.items[i].style.opacity = stt > 2 ? 0 : 0.6;
       }
     }
-    
-    loadShow();
-    
-    const nextBtn = document.getElementById(`pc-next-${lastPart}`);
-    const prevBtn = document.getElementById(`pc-prev-${lastPart}`);
-    
-    if (nextBtn) {
-      nextBtn.addEventListener('click', function() {
-        active = active + 1 < items.length ? active + 1 : active;
-        loadShow();
-      });
-    }
-    
-    if (prevBtn) {
-      prevBtn.addEventListener('click', function() {
-        active = active - 1 >= 0 ? active - 1 : active;
-        loadShow();
-      });
-    }
-  });
+  }
+
+  // Define the custom element with a unique name using last_part
+  customElements.define('pc-space-fact-slider-{{ last_part }}', PcSpaceFactSlider);
 </script>
 
 {% schema %}
 {
-  "name": "PWC - Facts Carousel #1",
+  "name": "PWC - Fact Slider #1",
   "settings": [
     {
       "type": "header",
-      "content": "Background Settings"
+      "content": "General Settings"
     },
     {
       "type": "image_picker",
@@ -208,13 +253,121 @@
       "label": "Background Image"
     },
     {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section Background Color",
+      "default": "#222222"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Item Shadow",
+      "default": true
+    },
+    {
       "type": "header",
-      "content": "Slide Settings"
+      "content": "Typography Settings"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "body_text_color",
+      "label": "Body Text Color",
+      "default": "#555555"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
     },
     {
       "type": "range",
-      "id": "slide_width",
-      "label": "Slide Width (Desktop)",
+      "id": "heading_font_size_desktop",
+      "label": "Heading Font Size (Desktop)",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "body_font_size_desktop",
+      "label": "Body Font Size (Desktop)",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top Padding (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_left",
+      "label": "Left Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_right",
+      "label": "Right Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "desktop_margin_top",
+      "label": "Top Margin (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "desktop_margin_bottom",
+      "label": "Bottom Margin (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "desktop_item_width",
+      "label": "Item Width (Desktop)",
       "min": 150,
       "max": 400,
       "step": 10,
@@ -223,120 +376,13 @@
     },
     {
       "type": "range",
-      "id": "slide_height",
-      "label": "Slider Height (Desktop)",
+      "id": "desktop_item_height",
+      "label": "Item Height (Desktop)",
       "min": 200,
-      "max": 600,
+      "max": 500,
       "step": 10,
       "unit": "px",
-      "default": 370
-    },
-    {
-      "type": "range",
-      "id": "slide_padding",
-      "label": "Slide Padding (Desktop)",
-      "min": 10,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "desktop_margin_top",
-      "label": "Margin Top (Desktop)",
-      "min": 0,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "default": 100
-    },
-    {
-      "type": "range",
-      "id": "slide_border_radius",
-      "label": "Slide Border Radius",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "color",
-      "id": "slide_bg_color",
-      "label": "Slide Background Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_shadow",
-      "label": "Enable Slide Shadow",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Typography Settings"
-    },
-    {
-      "type": "range",
-      "id": "heading_font_size",
-      "label": "Heading Font Size (Desktop)",
-      "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "text_font_size",
-      "label": "Text Font Size (Desktop)",
-      "min": 10,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#333333"
-    },
-    {
-      "type": "header",
-      "content": "Navigation Settings"
-    },
-    {
-      "type": "range",
-      "id": "nav_button_size",
-      "label": "Button Size (Desktop)",
-      "min": 20,
-      "max": 60,
-      "step": 2,
-      "unit": "px",
-      "default": 32
-    },
-    {
-      "type": "color",
-      "id": "nav_button_color",
-      "label": "Button Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "range",
-      "id": "nav_button_opacity",
-      "label": "Button Opacity",
-      "min": 0.1,
-      "max": 1,
-      "step": 0.1,
-      "default": 0.5
+      "default": 320
     },
     {
       "type": "header",
@@ -344,133 +390,162 @@
     },
     {
       "type": "range",
-      "id": "mobile_slide_width",
-      "label": "Slide Width (Mobile)",
-      "min": 120,
-      "max": 300,
-      "step": 10,
+      "id": "heading_font_size_mobile",
+      "label": "Heading Font Size (Mobile)",
+      "min": 14,
+      "max": 40,
+      "step": 1,
       "unit": "px",
-      "default": 160
+      "default": 20
     },
     {
       "type": "range",
-      "id": "mobile_slide_height",
-      "label": "Slider Height (Mobile)",
-      "min": 150,
-      "max": 500,
-      "step": 10,
+      "id": "body_font_size_mobile",
+      "label": "Body Font Size (Mobile)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
       "unit": "px",
-      "default": 300
+      "default": 14
     },
     {
       "type": "range",
-      "id": "mobile_slide_padding",
-      "label": "Slide Padding (Mobile)",
-      "min": 8,
-      "max": 30,
-      "step": 2,
+      "id": "mobile_padding_top",
+      "label": "Top Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
       "unit": "px",
-      "default": 8
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "label": "Left Padding (Mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_right",
+      "label": "Right Padding (Mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "range",
       "id": "mobile_margin_top",
-      "label": "Margin Top (Mobile)",
+      "label": "Top Margin (Mobile)",
       "min": 0,
-      "max": 150,
-      "step": 10,
+      "max": 100,
+      "step": 5,
       "unit": "px",
       "default": 50
     },
     {
       "type": "range",
-      "id": "mobile_heading_font_size",
-      "label": "Heading Font Size (Mobile)",
-      "min": 10,
-      "max": 24,
-      "step": 1,
+      "id": "mobile_margin_bottom",
+      "label": "Bottom Margin (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
       "unit": "px",
-      "default": 16
+      "default": 0
     },
     {
       "type": "range",
-      "id": "mobile_text_font_size",
-      "label": "Text Font Size (Mobile)",
-      "min": 8,
-      "max": 18,
-      "step": 1,
+      "id": "mobile_item_width",
+      "label": "Item Width (Mobile)",
+      "min": 100,
+      "max": 300,
+      "step": 10,
       "unit": "px",
-      "default": 12
+      "default": 180
     },
     {
       "type": "range",
-      "id": "mobile_nav_button_size",
-      "label": "Button Size (Mobile)",
-      "min": 16,
-      "max": 40,
-      "step": 2,
+      "id": "mobile_item_height",
+      "label": "Item Height (Mobile)",
+      "min": 150,
+      "max": 400,
+      "step": 10,
       "unit": "px",
-      "default": 24
+      "default": 280
     }
   ],
   "blocks": [
     {
       "type": "space_fact",
-      "name": "Space Fact",
+      "name": "Space Fact Item",
       "settings": [
         {
           "type": "text",
-          "id": "title",
-          "label": "Fact Title",
-          "default": "Space Fact"
+          "id": "heading",
+          "label": "Heading",
+          "default": "Space Fact Heading"
         },
         {
-          "type": "textarea",
-          "id": "content",
-          "label": "Fact Content",
-          "default": "Interesting fact about space goes here."
+          "type": "richtext",
+          "id": "text",
+          "label": "Fact Text",
+          "default": "<p>This is a fascinating space fact.</p>"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "PWC - Facts Carousel #1",
-      "category": "Custom",
+      "name": "PWC - Fact Slider #1",
       "blocks": [
         {
           "type": "space_fact",
           "settings": {
-            "title": "Space Fact 1",
-            "content": "Jupiter protects Earth - its gravity acts like a cosmic shield, deflecting comets and asteroids."
+            "heading": "Space Fact 1",
+            "text": "<p>Jupiter protects Earth - its gravity acts like a cosmic shield, deflecting comets and asteroids.</p>"
           }
         },
         {
           "type": "space_fact",
           "settings": {
-            "title": "Space Fact 2",
-            "content": "Stars \"beat\" like hearts - they pulsate, expanding and contracting as they burn fuel."
+            "heading": "Space Fact 2",
+            "text": "<p>Stars \"beat\" like hearts - they pulsate, expanding and contracting as they burn fuel.</p>"
           }
         },
         {
           "type": "space_fact",
           "settings": {
-            "title": "Space Fact 3",
-            "content": "Galaxies can \"eat\" each other - the Milky Way is currently consuming the Sagittarius Dwarf Galaxy."
+            "heading": "Space Fact 3",
+            "text": "<p>Galaxies can \"eat\" each other - the Milky Way is currently consuming the Sagittarius Dwarf Galaxy.</p>"
           }
         },
         {
           "type": "space_fact",
           "settings": {
-            "title": "Space Fact 4",
-            "content": "Space smells like seared steak - astronauts describe a metallic/grilled odor after spacewalks."
+            "heading": "Space Fact 4",
+            "text": "<p>Space smells like seared steak - astronauts describe a metallic/grilled odor after spacewalks.</p>"
           }
         },
         {
           "type": "space_fact",
           "settings": {
-            "title": "Space Fact 5",
-            "content": "Astronauts grow taller in space - spines stretch up to 2 inches without gravity's compression."
+            "heading": "Space Fact 5",
+            "text": "<p>Astronauts grow taller in space - spines stretch up to 2 inches without gravity's compression.</p>"
           }
         }
       ]
