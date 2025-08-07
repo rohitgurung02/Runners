@@ -41,6 +41,7 @@
 
   {{ sec_id }} .pc-slide-{{ last_part }} h1 {
     font-size: {{ section.settings.heading_font_size }}px;
+    text-align: {{ section.settings.heading_alignment }};
     color: {{ section.settings.heading_color }};
     font-weight: {{ section.settings.heading_font_weight }};
     font-style: {{ section.settings.heading_font_style }};
@@ -310,6 +311,17 @@
       "step": 1,
       "unit": "px",
       "default": 21
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
     },
     {
       "type": "color",
