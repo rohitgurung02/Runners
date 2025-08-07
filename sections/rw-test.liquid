@@ -99,6 +99,7 @@
   @media (max-width: 768px) {
     {{ sec_id }} {
       padding: 20px;
+      min-height: {{ section.settings.mobile_min_height }}px;
     }
 
     {{ sec_id }} .pc-slider-{{ last_part }} {
@@ -645,6 +646,17 @@
       "type": "header",
       "content": "Mobile Settings"
     },
+    {
+  "type": "range",
+  "id": "mobile_min_height",
+  "label": "Mobile Minimum Height",
+  "min": 0,
+  "max": 1000,
+  "step": 10,
+  "unit": "px",
+  "default": 300,
+  "info": "Sets minimum height on mobile screens"
+},
     {
       "type": "range",
       "id": "mobile_slide_width",
