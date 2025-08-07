@@ -4,12 +4,14 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <pc-space-facts-carousel-{{ last_part }} class="pc-space-facts-carousel">
-  {%- for block in section.blocks -%}
-    <div class="pc-space-fact-item" {{ block.shopify_attributes }}>
-      <h2 class="pc-space-fact-title">{{ block.settings.title }}</h2>
-      <div class="pc-space-fact-content">{{ block.settings.content }}</div>
-    </div>
-  {%- endfor -%}
+  <div class="pc-carousel-container">
+    {%- for block in section.blocks -%}
+      <div class="pc-space-fact-item" {{ block.shopify_attributes }}>
+        <h2 class="pc-space-fact-title">{{ block.settings.title }}</h2>
+        <div class="pc-space-fact-content">{{ block.settings.content }}</div>
+      </div>
+    {%- endfor -%}
+  </div>
 
   <button class="pc-carousel-button pc-carousel-prev">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
@@ -22,37 +24,46 @@
 <style>
   {{ sec_id }} {
     background-color: {{ section.settings.background_color }};
-    padding-top: {{ section.settings.padding_top_desktop }}px;
-    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    padding: {{ section.settings.padding_top_desktop }}px 0 {{ section.settings.padding_bottom_desktop }}px;
+    position: relative;
   }
 
   {{ sec_id }} .pc-space-facts-carousel {
     position: relative;
     width: 100%;
-    height: {{ section.settings.slider_height_desktop }}px;
-    overflow: hidden;
-    margin: 0 auto;
     max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  {{ sec_id }} .pc-carousel-container {
+    position: relative;
+    width: 100%;
+    height: {{ section.settings.slider_height_desktop }}px;
   }
 
   {{ sec_id }} .pc-space-fact-item {
     position: absolute;
     width: {{ section.settings.card_width_desktop }}px;
     height: {{ section.settings.card_height_desktop }}px;
-    text-align: justify;
+    text-align: center;
     background-color: {{ section.settings.card_background }};
     border-radius: {{ section.settings.card_border_radius }}px;
     padding: {{ section.settings.card_padding }}px;
     transition: all {{ section.settings.transition_speed }}s ease;
-    left: calc(50% - {{ section.settings.card_width_desktop | divided_by: 2 }}px);
-    top: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     box-shadow: {% if section.settings.enable_shadow %}0 4px 12px rgba(0,0,0,0.1){% else %}none{% endif %};
+    opacity: 0;
+    z-index: 0;
   }
 
   {{ sec_id }} .pc-space-fact-title {
     color: {{ section.settings.title_color }};
     font-size: {{ section.settings.title_size_desktop }}px;
     margin-bottom: {{ section.settings.title_spacing }}px;
+    font-weight: bold;
   }
 
   {{ sec_id }} .pc-space-fact-content {
@@ -64,16 +75,27 @@
   {{ sec_id }} .pc-carousel-button {
     position: absolute;
     color: {{ section.settings.arrow_color }};
-    background: none;
+    background: {{ section.settings.arrow_background }};
     border: none;
-    font-size: {{ section.settings.arrow_size }}px;
-    font-weight: bold;
+    border-radius: 50%;
+    width: {{ section.settings.arrow_size }}px;
+    height: {{ section.settings.arrow_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0.7;
     transition: opacity 0.3s;
     cursor: pointer;
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
+    padding: 0;
+  }
+
+  {{ sec_id }} .pc-carousel-button svg {
+    width: 60%;
+    height: 60%;
+    fill: currentColor;
   }
 
   {{ sec_id }} .pc-carousel-button:hover {
@@ -90,18 +112,17 @@
 
   @media (max-width: 768px) {
     {{ sec_id }} {
-      padding-top: {{ section.settings.padding_top_mobile }}px;
-      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+      padding: {{ section.settings.padding_top_mobile }}px 0 {{ section.settings.padding_bottom_mobile }}px;
     }
 
-    {{ sec_id }} .pc-space-facts-carousel {
+    {{ sec_id }} .pc-carousel-container {
       height: {{ section.settings.slider_height_mobile }}px;
     }
 
     {{ sec_id }} .pc-space-fact-item {
       width: {{ section.settings.card_width_mobile }}px;
       height: {{ section.settings.card_height_mobile }}px;
-      left: calc(50% - {{ section.settings.card_width_mobile | divided_by: 2 }}px);
+      padding: {{ section.settings.card_padding_mobile }}px;
     }
 
     {{ sec_id }} .pc-space-fact-title {
@@ -113,7 +134,16 @@
     }
 
     {{ sec_id }} .pc-carousel-button {
-      font-size: {{ section.settings.arrow_size_mobile }}px;
+      width: {{ section.settings.arrow_size_mobile }}px;
+      height: {{ section.settings.arrow_size_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-carousel-prev {
+      left: {{ section.settings.arrow_offset_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-carousel-next {
+      right: {{ section.settings.arrow_offset_mobile }}px;
     }
   }
 </style>
@@ -121,56 +151,89 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const carousel = document.querySelector('pc-space-facts-carousel-{{ last_part }}');
+    if (!carousel) return;
+    
+    const container = carousel.querySelector('.pc-carousel-container');
     const items = carousel.querySelectorAll('.pc-space-fact-item');
     const nextBtn = carousel.querySelector('.pc-carousel-next');
     const prevBtn = carousel.querySelector('.pc-carousel-prev');
     
-    let active = Math.floor(items.length / 2);
+    if (items.length === 0) return;
     
-    function loadShow() {
-      if (!items[active]) return;
-      
-      items[active].style.transform = 'none';
-      items[active].style.zIndex = '1';
-      items[active].style.filter = 'none';
-      items[active].style.opacity = '1';
-      
-      let stt = 0;
-      for (let i = active + 1; i < items.length; i++) {
-        stt++;
-        items[i].style.transform = `translateX(${120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(-1deg)`;
-        items[i].style.zIndex = -stt;
-        items[i].style.filter = 'blur(5px)';
-        items[i].style.opacity = stt > 2 ? '0' : '0.6';
-      }
-      
-      stt = 0;
-      for (let i = active - 1; i >= 0; i--) {
-        stt++;
-        items[i].style.transform = `translateX(${-120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(1deg)`;
-        items[i].style.zIndex = -stt;
-        items[i].style.filter = 'blur(5px)';
-        items[i].style.opacity = stt > 2 ? '0' : '0.6';
-      }
+    let activeIndex = 0;
+    const itemCount = items.length;
+    const itemWidth = items[0].offsetWidth;
+    const visibleCount = 3;
+    
+    function positionItems() {
+      items.forEach((item, index) => {
+        const position = (index - activeIndex) % itemCount;
+        const absPosition = position < 0 ? position + itemCount : position;
+        
+        let transform = '';
+        let zIndex = 0;
+        let opacity = 0;
+        let scale = 1;
+        
+        if (absPosition === 0) {
+          // Center item
+          transform = 'translateX(0)';
+          zIndex = 10;
+          opacity = 1;
+          scale = 1;
+        } else if (absPosition <= visibleCount / 2) {
+          // Right side items
+          transform = `translateX(${absPosition * (itemWidth * 0.8)}px)`;
+          zIndex = 10 - absPosition;
+          opacity = 1 - (absPosition * 0.3);
+          scale = 1 - (absPosition * 0.1);
+        } else if (itemCount - absPosition <= visibleCount / 2) {
+          // Left side items
+          const leftPos = itemCount - absPosition;
+          transform = `translateX(-${leftPos * (itemWidth * 0.8)}px)`;
+          zIndex = 10 - leftPos;
+          opacity = 1 - (leftPos * 0.3);
+          scale = 1 - (leftPos * 0.1);
+        } else {
+          // Hidden items
+          opacity = 0;
+          zIndex = -1;
+        }
+        
+        item.style.transform = `${transform} scale(${scale})`;
+        item.style.zIndex = zIndex;
+        item.style.opacity = opacity;
+      });
     }
     
-    loadShow();
+    function nextSlide() {
+      activeIndex = (activeIndex + 1) % itemCount;
+      positionItems();
+    }
     
-    nextBtn.addEventListener('click', function() {
-      active = active + 1 < items.length ? active + 1 : active;
-      loadShow();
-    });
+    function prevSlide() {
+      activeIndex = (activeIndex - 1 + itemCount) % itemCount;
+      positionItems();
+    }
     
-    prevBtn.addEventListener('click', function() {
-      active = active - 1 >= 0 ? active - 1 : active;
-      loadShow();
+    // Initialize
+    positionItems();
+    
+    // Event listeners
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
     });
   });
 </script>
 
 {% schema %}
 {
-  "name": "PWC - Card Carousel #1",
+  "name": "PWC - Facts Carousel #1",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -264,11 +327,11 @@
       "type": "range",
       "id": "card_width_desktop",
       "label": "Card Width",
-      "min": 150,
-      "max": 400,
+      "min": 200,
+      "max": 500,
       "step": 10,
       "unit": "px",
-      "default": 250
+      "default": 300
     },
     {
       "type": "range",
@@ -278,37 +341,7 @@
       "max": 600,
       "step": 10,
       "unit": "px",
-      "default": 350
-    },
-    {
-      "type": "range",
-      "id": "title_size_desktop",
-      "label": "Title Font Size",
-      "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "content_size_desktop",
-      "label": "Content Font Size",
-      "min": 10,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "title_spacing",
-      "label": "Title Bottom Spacing",
-      "min": 0,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "default": 15
+      "default": 400
     },
     {
       "type": "range",
@@ -319,6 +352,36 @@
       "step": 1,
       "unit": "px",
       "default": 20
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "label": "Title Font Size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "content_size_desktop",
+      "label": "Content Font Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "label": "Title Bottom Spacing",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 15
     },
     {
       "type": "range",
@@ -340,11 +403,11 @@
       "type": "range",
       "id": "arrow_size",
       "label": "Arrow Size",
-      "min": 16,
-      "max": 48,
-      "step": 1,
+      "min": 30,
+      "max": 80,
+      "step": 2,
       "unit": "px",
-      "default": 32
+      "default": 40
     },
     {
       "type": "range",
@@ -361,6 +424,12 @@
       "id": "arrow_color",
       "label": "Arrow Color",
       "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_background",
+      "label": "Arrow Background",
+      "default": "rgba(0,0,0,0.5)"
     },
     {
       "type": "header",
@@ -400,21 +469,31 @@
       "type": "range",
       "id": "card_width_mobile",
       "label": "Card Width",
-      "min": 120,
-      "max": 300,
+      "min": 150,
+      "max": 350,
       "step": 10,
       "unit": "px",
-      "default": 180
+      "default": 250
     },
     {
       "type": "range",
       "id": "card_height_mobile",
       "label": "Card Height",
-      "min": 150,
+      "min": 200,
       "max": 500,
       "step": 10,
       "unit": "px",
-      "default": 250
+      "default": 350
+    },
+    {
+      "type": "range",
+      "id": "card_padding_mobile",
+      "label": "Card Padding (Mobile)",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 15
     },
     {
       "type": "range",
@@ -424,7 +503,7 @@
       "max": 24,
       "step": 1,
       "unit": "px",
-      "default": 16
+      "default": 18
     },
     {
       "type": "range",
@@ -434,17 +513,27 @@
       "max": 18,
       "step": 1,
       "unit": "px",
-      "default": 12
+      "default": 14
     },
     {
       "type": "range",
       "id": "arrow_size_mobile",
       "label": "Arrow Size",
-      "min": 12,
-      "max": 32,
-      "step": 1,
+      "min": 20,
+      "max": 50,
+      "step": 2,
       "unit": "px",
-      "default": 24
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "arrow_offset_mobile",
+      "label": "Arrow Offset (Mobile)",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 15
     }
   ],
   "blocks": [
@@ -469,27 +558,34 @@
   ],
   "presets": [
     {
-      "name": "PWC - Card Carousel #5",
+      "name": "PWC - Facts Carousel #1",
       "blocks": [
         {
           "type": "space_fact",
           "settings": {
-            "title": "Space Fact 1",
-            "content": "<p>Jupiter protects Earth - its gravity acts like a cosmic shield, deflecting comets and asteroids.</p>"
+            "title": "Jupiter's Protection",
+            "content": "<p>Jupiter acts as Earth's cosmic shield, its gravity deflecting dangerous comets and asteroids away from our planet.</p>"
           }
         },
         {
           "type": "space_fact",
           "settings": {
-            "title": "Space Fact 2",
-            "content": "<p>Stars \"beat\" like hearts - they pulsate, expanding and contracting as they burn fuel.</p>"
+            "title": "Pulsating Stars",
+            "content": "<p>Stars actually pulsate like hearts, expanding and contracting as they burn through their nuclear fuel.</p>"
           }
         },
         {
           "type": "space_fact",
           "settings": {
-            "title": "Space Fact 3",
-            "content": "<p>Galaxies can \"eat\" each other - the Milky Way is currently consuming the Sagittarius Dwarf Galaxy.</p>"
+            "title": "Galactic Cannibalism",
+            "content": "<p>The Milky Way is currently consuming the Sagittarius Dwarf Galaxy in a process called galactic cannibalism.</p>"
+          }
+        },
+        {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Smell",
+            "content": "<p>Astronauts report that space has a distinct smell - like seared steak or hot metal - noticeable after spacewalks.</p>"
           }
         }
       ]
