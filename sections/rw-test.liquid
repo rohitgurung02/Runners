@@ -292,20 +292,152 @@
       "default": 18
     },
     {
-      "type": "range",
-      "id": "heading_font_size_mobile",
-      "label": "Heading Font Size (Mobile)",
-      "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
       "type": "color",
       "id": "heading_color",
       "label": "Heading Color",
       "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading Font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        },
+        {
+          "value": "bolder",
+          "label": "Bolder"
+        },
+        {
+          "value": "lighter",
+          "label": "Lighter"
+        },
+        {
+          "value": "100",
+          "label": "100"
+        },
+        {
+          "value": "200",
+          "label": "200"
+        },
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+        ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "heading_font_style",
+          "label": "Heading Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "heading_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Heading Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "heading_text_decoration",
+          "label": "Heading Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "heading_text_decoration_color",
+          "label": "Heading Decoration Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "heading_padding_top",
+          "label": "Heading Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "heading_padding_bottom",
+          "label": "Heading Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+    {
+      "type": "header",
+      "content": "Text"
     },
     {
       "type": "range",
