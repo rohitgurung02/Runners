@@ -1369,7 +1369,7 @@
       "settings": {
         "background_image": "shopify://shop_images/universe.avif",
         "slide_width": 260,
-        "slide_height": 370,
+        "slide_height": 400,
         "slide_padding": 20,
         "desktop_margin_top": 100,
         "slide_border_radius": 10,
