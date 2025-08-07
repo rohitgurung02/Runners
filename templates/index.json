@@ -1274,6 +1274,41 @@
         "padding_top_mobile": 5,
         "padding_bottom_mobile": 5
       }
+    },
+    "rw_test_qgnkFz": {
+      "type": "rw-test",
+      "blocks": {
+        "slide_LwjYcx": {
+          "type": "slide",
+          "settings": {
+            "heading": "Space Fact",
+            "description": "Interesting fact about space."
+          }
+        },
+        "slide_Nr9zMD": {
+          "type": "slide",
+          "settings": {
+            "heading": "Space Fact",
+            "description": "Interesting fact about space."
+          }
+        },
+        "slide_QEVTYf": {
+          "type": "slide",
+          "settings": {
+            "heading": "Space Fact",
+            "description": "Interesting fact about space."
+          }
+        }
+      },
+      "block_order": [
+        "slide_LwjYcx",
+        "slide_Nr9zMD",
+        "slide_QEVTYf"
+      ],
+      "name": "PWC - Facts Slider #1",
+      "settings": {
+        "bg_image": "shopify://shop_images/pexels-minan1398-675926.jpg"
+      }
     }
   },
   "order": [
@@ -1293,6 +1328,7 @@
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
-    "rw_wavy_background_1_cFNhmb"
+    "rw_wavy_background_1_cFNhmb",
+    "rw_test_qgnkFz"
   ]
 }
