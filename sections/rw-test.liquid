@@ -42,6 +42,15 @@
   {{ sec_id }} .pc-slide-{{ last_part }} h1 {
     font-size: {{ section.settings.heading_font_size }}px;
     color: {{ section.settings.heading_color }};
+    font-weight: {{ section.settings.heading_font_weight }};
+    font-style: {{ section.settings.heading_font_style }};
+    letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+    text-decoration: {{ section.settings.heading_text_decoration }};
+    {% if section.settings.heading_text_decoration != 'none' %}
+    text-decoration-color: {{ section.settings.heading_text_decoration_color }};
+    {% endif %}
+    padding-top: {{ section.settings.heading_padding_top }}px;
+    padding-bottom: {{ section.settings.heading_padding_bottom }}px;
     margin-bottom: 15px;
   }
 
