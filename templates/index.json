@@ -1435,7 +1435,7 @@
         "mobile_slide_width": 210,
         "mobile_slide_height": 340,
         "mobile_slide_padding": 12,
-        "mobile_margin_top": 50,
+        "mobile_margin_top": 20,
         "mobile_heading_font_size": 16,
         "mobile_text_font_size": 12,
         "mobile_nav_button_size": 24
