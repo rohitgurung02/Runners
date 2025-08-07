@@ -1368,7 +1368,7 @@
       "name": "PWC - Facts Carousel #1",
       "settings": {
         "background_image": "shopify://shop_images/universe.webp",
-        "slide_width": 300,
+        "slide_width": 280,
         "slide_height": 430,
         "slide_padding": 20,
         "desktop_margin_top": 100,
