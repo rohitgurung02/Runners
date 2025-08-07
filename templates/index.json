@@ -1332,6 +1332,68 @@
         "padding_top_mobile": 5,
         "padding_bottom_mobile": 5
       }
+    },
+    "rw_test_dVkptH": {
+      "type": "rw-test",
+      "blocks": {
+        "space_fact_TkGjAd": {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 1",
+            "content": "<p>Jupiter protects Earth - its gravity acts like a cosmic shield, deflecting comets and asteroids.</p>"
+          }
+        },
+        "space_fact_igp6L6": {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 2",
+            "content": "<p>Stars \"beat\" like hearts - they pulsate, expanding and contracting as they burn fuel.</p>"
+          }
+        },
+        "space_fact_rkU7Jn": {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 3",
+            "content": "<p>Galaxies can \"eat\" each other - the Milky Way is currently consuming the Sagittarius Dwarf Galaxy.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "space_fact_TkGjAd",
+        "space_fact_igp6L6",
+        "space_fact_rkU7Jn"
+      ],
+      "name": "PWC - Card Carousel #5",
+      "settings": {
+        "max_width": 1200,
+        "background_color": "#000000",
+        "enable_shadow": true,
+        "transition_speed": 0.5,
+        "title_color": "#000000",
+        "content_color": "#333333",
+        "padding_top_desktop": 50,
+        "padding_bottom_desktop": 50,
+        "slider_height_desktop": 400,
+        "card_width_desktop": 250,
+        "card_height_desktop": 350,
+        "title_size_desktop": 20,
+        "content_size_desktop": 14,
+        "title_spacing": 15,
+        "card_padding": 20,
+        "card_border_radius": 10,
+        "card_background": "#ffffff",
+        "arrow_size": 32,
+        "arrow_offset": 30,
+        "arrow_color": "#ffffff",
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 30,
+        "slider_height_mobile": 300,
+        "card_width_mobile": 180,
+        "card_height_mobile": 250,
+        "title_size_mobile": 16,
+        "content_size_mobile": 12,
+        "arrow_size_mobile": 24
+      }
     }
   },
   "order": [
@@ -1351,6 +1413,7 @@
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
-    "rw_wavy_background_1_cFNhmb"
+    "rw_wavy_background_1_cFNhmb",
+    "rw_test_dVkptH"
   ]
 }
