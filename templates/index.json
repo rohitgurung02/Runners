@@ -1373,6 +1373,7 @@
       ],
       "name": "PWC - Fact Slider #1",
       "settings": {
+        "background_image": "shopify://shop_images/universe.avif",
         "section_background_color": "#222222",
         "enable_shadow": true,
         "heading_color": "#333333",
