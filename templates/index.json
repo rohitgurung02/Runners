@@ -750,19 +750,7 @@
       "type": "rw-test",
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
-      "settings": {
-        "enable_shadow": false,
-        "desktop_font_size": 18,
-        "mobile_font_size": 16,
-        "font_weight": "600",
-        "letter_spacing": 1,
-        "category_text_color": "#ffffff",
-        "category_hover_text_color": "#f5f5f5",
-        "desktop_gap": 20,
-        "mobile_gap": 15,
-        "desktop_height": 300,
-        "mobile_height": 200
-      }
+      "settings": {}
     },
     "rw_reviews_eNfMNB": {
       "type": "rw-reviews",
@@ -978,19 +966,7 @@
       "type": "rw-test",
       "disabled": true,
       "name": "RW - Carousel Slider #8",
-      "settings": {
-        "enable_shadow": false,
-        "desktop_font_size": 18,
-        "mobile_font_size": 16,
-        "font_weight": "600",
-        "letter_spacing": 1,
-        "category_text_color": "#ffffff",
-        "category_hover_text_color": "#f5f5f5",
-        "desktop_gap": 20,
-        "mobile_gap": 15,
-        "desktop_height": 300,
-        "mobile_height": 200
-      }
+      "settings": {}
     },
     "rw_hero_banner_4dJjqa": {
       "type": "rw-hero-banner",
@@ -1118,6 +1094,7 @@
         "feature_EEYcQr",
         "feature_3aanHQ"
       ],
+      "disabled": true,
       "name": "RW - Service Grid #1",
       "settings": {
         "effect_label": "Services",
@@ -1218,6 +1195,7 @@
         "animation_rrVFCG",
         "animation_gPQprF"
       ],
+      "disabled": true,
       "name": "RW - Text Animation #1",
       "settings": {
         "heading": "Heading",
