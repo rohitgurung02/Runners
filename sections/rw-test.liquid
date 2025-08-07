@@ -161,7 +161,7 @@
         items[i].style.opacity = stt > 2 ? 0 : 0.6;
       }
       
-      stt = 0;
+      stt = 1;
       for (let i = active - 1; i >= 0; i--) {
         stt++;
         items[i].style.transform = `translateX(${-120 * stt}px) scale(${
@@ -173,7 +173,7 @@
       }
     }
     
-    loadShow(0);
+    loadShow();
     
     const nextBtn = document.getElementById(`pc-next-${lastPart}`);
     const prevBtn = document.getElementById(`pc-prev-${lastPart}`);
