@@ -15,8 +15,8 @@
               <div class="pc-carousel-item">
                 <article class="pc-news-teaser">
                   <div class="pc-date">
-                    <div class="pc-day">{{ block.settings.category }}</div>
-                    <div class="pc-year">{{ block.settings.date }}</div>
+                    <div class="pc-day">{{ block.settings.category | default: "Category" }}</div>
+                    <div class="pc-year">{{ block.settings.date | default: "Date" }}</div>
                   </div>
                   <div class="pc-image">
                     {%- if block.settings.image != blank -%}
@@ -27,25 +27,47 @@
                         | image_tag: 
                             loading: 'lazy',
                             class: image_class,
-                            alt: block.settings.title
+                            alt: block.settings.title | escape
                       }}
                     {%- else -%}
-                      {{ 'product-1' | placeholder_svg_tag }}
+                      {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-image' }}
                     {%- endif -%}
                   </div>
                   <div class="pc-title">
-                    <span>{{ block.settings.title }}</span>
+                    <span>{{ block.settings.title | default: "News title" }}</span>
                   </div>
                   <div class="pc-url">
-                    <a href="{{ block.settings.url }}" rel="bookmark" title="{{ block.settings.title | escape }}">> {{ section.settings.read_more_text }}</a>
+                    <a href="{{ block.settings.url | default: '#' }}" rel="bookmark" title="{{ block.settings.title | escape | default: 'Read more' }}">> {{ section.settings.read_more_text | default: "Lire l'article" }}</a>
                   </div>    
                 </article>
               </div>
+            {%- else -%}
+              {%- for i in (1..3) -%}
+                <div class="pc-carousel-item">
+                  <article class="pc-news-teaser">
+                    <div class="pc-date">
+                      <div class="pc-day">Category {{ i }}</div>
+                      <div class="pc-year">{{ "now" | date: "%d %B %Y" }}</div>
+                    </div>
+                    <div class="pc-image">
+                      {{ 'product-' | append: i | placeholder_svg_tag: 'pc-placeholder-image' }}
+                    </div>
+                    <div class="pc-title">
+                      <span>Sample news title {{ i }}</span>
+                    </div>
+                    <div class="pc-url">
+                      <a href="#" rel="bookmark" title="Sample news">> Lire l'article</a>
+                    </div>    
+                  </article>
+                </div>
+              {%- endfor -%}
             {%- endfor -%}
           </div>
-          <div class="pc-link-wrapper">
-            <a href="{{ section.settings.all_articles_url }}" class="pc-button">{{ section.settings.all_articles_text }}</a>
-          </div>
+          {%- if section.settings.all_articles_url != blank -%}
+            <div class="pc-link-wrapper">
+              <a href="{{ section.settings.all_articles_url }}" class="pc-button">{{ section.settings.all_articles_text | default: "Tous les articles" }}</a>
+            </div>
+          {%- endif -%}
         </div>
       </div>
     </div>
@@ -88,68 +110,17 @@
   }
 
   {{ sec_id }} .pc-carousel {
-    display: grid;
-    grid-template-areas: 
-      "carousel carousel" 
-      "btn navigation";
-    grid-template-rows: 1fr 40px;
-    grid-column-gap: 20px;
-    grid-row-gap: 25px;
-    grid-template-columns: 40px 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 40px;
   }
 
-  {{ sec_id }} .pc-carousel .owl-nav {
-    grid-area: btn;
-  }
-
-  {{ sec_id }} .pc-carousel .owl-dots {
-    grid-area: navigation;
-  }
-
-  {{ sec_id }} .pc-carousel .owl-stage-outer {
-    grid-area: carousel;
-  }
-
-  {{ sec_id }} .pc-carousel .owl-dots,
-  {{ sec_id }} .pc-carousel .owl-nav {
-    min-height: 40px;
-    display: flex !important;
-    align-items: center;
-    flex-wrap: nowrap;
-    margin-top: 0;
-    width: 90%;
-  }
-
-  {{ sec_id }} .pc-carousel .owl-item img {
-    margin: 0 auto;
-  }
-
-  {{ sec_id }} .pc-carousel .owl-dots .owl-dot span {
-    margin-bottom: 0;
-  }
-
-  {{ sec_id }} .pc-carousel .owl-dots .owl-dot {
-    width: 100%;
-    padding: 15px 0 !important;
-  }
-
-  {{ sec_id }} .pc-carousel .owl-dots .owl-dot span {
-    width: 100%;
-    height: 2px;
-    margin: 0;
-    margin-left: 20px;
-    background: {{ section.settings.dot_color }};
-    display: block;
-    transition: opacity 0.2s ease;
-  }
-
-  {{ sec_id }} .pc-carousel .owl-dots .owl-dot.active span,
-  {{ sec_id }} .pc-carousel .owl-dots .owl-dot:hover span {
-    background: {{ section.settings.dot_active_color }};
-  }
-
-  {{ sec_id }} .pc-carousel .owl-nav span {
-    padding: 10px;
+  {{ sec_id }} .pc-carousel-item {
+    scroll-snap-align: start;
+    flex: 0 0 300px;
+    margin-right: 15px;
   }
 
   {{ sec_id }} .pc-news-teaser {
@@ -187,12 +158,14 @@
     font-size: {{ section.settings.link_font_size }}px;
   }
 
-  {{ sec_id }} .pc-image .field {
+  {{ sec_id }} .pc-image {
     height: 150px;
     width: 100%;
+    margin-bottom: 15px;
   }
 
-  {{ sec_id }} .pc-image img {
+  {{ sec_id }} .pc-image img,
+  {{ sec_id }} .pc-image svg {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -215,6 +188,7 @@
     text-decoration: none;
     display: inline-block;
     text-align: center;
+    border-radius: 4px;
   }
 
   @media (max-width: 767.98px) {
@@ -227,15 +201,6 @@
       padding-left: 0;
     }
 
-    {{ sec_id }} .pc-carousel {
-      grid-template-columns: 1fr;
-    }
-
-    {{ sec_id }} .pc-carousel .owl-nav,
-    {{ sec_id }} .pc-carousel .owl-dots {
-      grid-area: btn;
-    }
-
     {{ sec_id }} .pc-link-wrapper {
       grid-template-columns: 1fr;
       bottom: -25px;
@@ -246,37 +211,51 @@
       line-height: 2.5rem;
     }
   }
+
+  /* Admin-specific styles */
+  .shopify-design-mode {{ sec_id }} .pc-carousel {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .shopify-design-mode {{ sec_id }} .pc-carousel-item {
+    flex: 0 0 calc(33.333% - 20px);
+  }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.querySelector('{{ sec_id }} .pc-carousel');
-    if (carousel) {
-      $(carousel).owlCarousel({
-        margin: 15,
-        nav: true,
-        dots: true,
-        center: false,
-        navText: [
-          `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="{{ section.settings.arrow_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>`,
-          `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 18L15 12L9 6" stroke="{{ section.settings.arrow_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>`
-        ],
-        responsive: {
-          0: {
-            items: 1
-          },
-          600: {
-            items: 2
-          },
-          1000: {
-            items: 3
+    // Only initialize carousel in live view, not in theme editor
+    if (!document.querySelector('html').classList.contains('shopify-design-mode')) {
+      const carousel = document.querySelector('{{ sec_id }} .pc-carousel');
+      if (carousel && typeof $.fn.owlCarousel === 'function') {
+        $(carousel).owlCarousel({
+          margin: 15,
+          nav: true,
+          dots: true,
+          center: false,
+          navText: [
+            `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="{{ section.settings.arrow_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>`,
+            `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="{{ section.settings.arrow_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>`
+          ],
+          responsive: {
+            0: {
+              items: 1
+            },
+            600: {
+              items: 2
+            },
+            1000: {
+              items: 3
+            }
           }
-        }
-      });
+        });
+      }
     }
   });
 </script>
