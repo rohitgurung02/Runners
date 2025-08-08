@@ -1476,9 +1476,9 @@
         "pause_on_hover": true,
         "section_margin_top": 10,
         "section_margin_bottom": 10,
-        "layer1_font_size_mobile": 14,
-        "layer1_padding_top_mobile": 5,
-        "layer1_padding_bottom_mobile": 5
+        "layer1_font_size_mobile": 15,
+        "layer1_padding_top_mobile": 8,
+        "layer1_padding_bottom_mobile": 8
       }
     }
   },
