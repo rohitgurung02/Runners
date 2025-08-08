@@ -76,6 +76,13 @@
     {{ sec_id }} .pc-marquee-box-2-{{ last_part }} {
       left: 0%;
     }
+
+    {{ sec_id }} .pc-marquee-box-{{ last_part }} {
+      font-size: {{ section.settings.layer1_font_size_mobile }}px;
+      padding-top: {{ section.settings.layer1_padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.layer1_padding_bottom_mobile }}px;
+    }
+
   }
 </style>
 
@@ -92,8 +99,6 @@
     {% if section.settings.layer1_text_decoration != 'none' %}
       text-decoration-color: {{ section.settings.layer1_text_decoration_color }};
     {% endif %}
-    
-    /* Padding settings */
     padding-top: {{ section.settings.layer1_padding_top }}px;
     padding-bottom: {{ section.settings.layer1_padding_bottom }}px;
 
