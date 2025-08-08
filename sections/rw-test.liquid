@@ -1,121 +1,185 @@
-<section id="marquee-section-{{ section.id }}" class="marquee-text-section">
-  <div 
-    class="marquee-box" 
-    style="background-color: {{ section.settings.layer1_bg }}; color: {{ section.settings.layer1_color }};"
-  >
-    <div class="marquee {% if section.settings.pause_on_hover %}pause-on-hover{% endif %} {% if section.settings.layer1_direction == 'right' %}marquee-right{% endif %}">
-      {% for i in (1..3) %}
-        {% for block in section.blocks %}
-          {% if block.type == 'layer1_text' %}
-            <span>{{ block.settings.text }}</span>
-          {% endif %}
-        {% endfor %}
-      {% endfor %}
-    </div>
-  </div>
-  <div 
-    class="marquee-box-2" 
-    style="background-color: {{ section.settings.layer2_bg }}; color: {{ section.settings.layer2_color }};"
-  >
-    <div class="marquee-2 {% if section.settings.pause_on_hover %}pause-on-hover{% endif %} {% if section.settings.layer2_direction == 'left' %}marquee-left{% endif %}">
-      {% for i in (1..3) %}
-        {% for block in section.blocks %}
-          {% if block.type == 'layer2_text' %}
-            <span>{{ block.settings.text }}</span>
-          {% endif %}
-        {% endfor %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
 <style>
-  #marquee-section-{{ section.id }} {
+  {{ sec_id }} {
     width: 100%;
+    padding: 40px 0;
+    margin-top: {{ section.settings.section_margin_top }}px;
+    margin-bottom: {{ section.settings.section_margin_bottom }}px;
+    overflow: hidden;
   }
-  .marquee-box {
+  
+  {{ sec_id }} .pc-marquee-box-{{ last_part }} {
     transform: rotate(3.5deg);
     overflow: hidden;
     position: relative;
     padding: 10px 0;
   }
-  .marquee-box-2 {
+  
+  {{ sec_id }} .pc-marquee-box-2-{{ last_part }} {
     transform: rotate(-2.5deg);
     overflow: hidden;
     position: relative;
     margin-top: 20px;
     padding: 10px 0;
   }
-  #marquee-section-template--24209809703206__marquee_text_b34LQm {
-    padding-bottom: 40px;
-    padding-top: 40px;
-  }
   
-  @media (max-width: 767px) {
-    .marquee-box {
-      left: 0%;
-    }
-    .marquee-box-2 {
-      left: 0%;
-    }
-  }
-  .marquee,
-  .marquee-2 {
+  {{ sec_id }} .pc-marquee-{{ last_part }},
+  {{ sec_id }} .pc-marquee-2-{{ last_part }} {
     display: flex;
     white-space: nowrap;
     width: max-content;
   }
-  .marquee span,
-  .marquee-2 span {
+  
+  {{ sec_id }} .pc-marquee-{{ last_part }} span,
+  {{ sec_id }} .pc-marquee-2-{{ last_part }} span {
     padding: 0 1rem;
     display: inline-block;
   }
-  .marquee {
-    animation: marquee 15s linear infinite;
-  }
-  .marquee-right {
-    animation: marquee-right 15s linear infinite;
-  }
-  .marquee-2 {
-    animation: marquee-2 15s linear infinite;
-  }
-  .marquee-left {
-    animation: marquee 15s linear infinite;
+  
+  {{ sec_id }} .pc-marquee-{{ last_part }} {
+    animation: pc-marquee-anim-{{ last_part }} 15s linear infinite;
   }
   
-  /* Pause on hover */
-  .pause-on-hover:hover {
+  {{ sec_id }} .pc-marquee-right-{{ last_part }} {
+    animation: pc-marquee-right-anim-{{ last_part }} 15s linear infinite;
+  }
+  
+  {{ sec_id }} .pc-marquee-2-{{ last_part }} {
+    animation: pc-marquee-2-anim-{{ last_part }} 15s linear infinite;
+  }
+  
+  {{ sec_id }} .pc-pause-on-hover-{{ last_part }}:hover {
     animation-play-state: paused;
   }
   
-  @keyframes marquee {
+  @keyframes pc-marquee-anim-{{ last_part }} {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
-  @keyframes marquee-right {
+  
+  @keyframes pc-marquee-right-anim-{{ last_part }} {
     0%   { transform: translateX(-50%); }
     100% { transform: translateX(0); }
   }
-  @keyframes marquee-2 {
+  
+  @keyframes pc-marquee-2-anim-{{ last_part }} {
     0%   { transform: translateX(-50%); }
     100% { transform: translateX(0); }
+  }
+  
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-marquee-box-{{ last_part }},
+    {{ sec_id }} .pc-marquee-box-2-{{ last_part }} {
+      left: 0%;
+    }
+
+    {{ sec_id }} {
+      margin-top: {{ section.settings.section_margin_top_mobile}}px  !important;
+      margin-bottom: {{ section.settings.section_margin_bottom_mobile }}px  !important;
+      overflow: hidden;
+    }
+
+    {{ sec_id }} .pc-marquee-box-{{ last_part }} {
+      font-size: {{ section.settings.layer1_font_size_mobile }}px !important;
+      padding-top: {{ section.settings.layer1_padding_top_mobile }}px !important;
+      padding-bottom: {{ section.settings.layer1_padding_bottom_mobile }}px !important;
+    }
+
+    {{ sec_id }} .pc-marquee-box-2-{{ last_part }} {
+      font-size: {{ section.settings.layer2_font_size_mobile }}px !important;
+      padding-top: {{ section.settings.layer2_padding_top_mobile }}px !important;
+      padding-bottom: {{ section.settings.layer2_padding_bottom_mobile }}px !important;
+    }
+
   }
 </style>
+
+<pc-marquee-section-{{ last_part }}>
+  <div 
+    class="pc-marquee-box-{{ last_part }}" 
+    style="background-color: {{ section.settings.layer1_bg }};
+           color: {{ section.settings.layer1_color }};
+           font-size: {{ section.settings.layer1_font_size }}px;
+    font-weight: {{ section.settings.layer1_font_weight }};
+    font-style: {{ section.settings.layer1_font_style }};
+    letter-spacing: {{ section.settings.layer1_letter_spacing }}px;
+    text-decoration: {{ section.settings.layer1_text_decoration }};
+    {% if section.settings.layer1_text_decoration != 'none' %}
+      text-decoration-color: {{ section.settings.layer1_text_decoration_color }};
+    {% endif %}
+    padding-top: {{ section.settings.layer1_padding_top }}px;
+    padding-bottom: {{ section.settings.layer1_padding_bottom }}px;
+    margin: 0;
+    "
+  >
+    <div class="pc-marquee-{{ last_part }} {% if section.settings.pause_on_hover %}pc-pause-on-hover-{{ last_part }}{% endif %} {% if section.settings.layer1_direction == 'right' %}pc-marquee-right-{{ last_part }}{% endif %}">
+     {% for i in (1..2) %}
+  {% for block in section.blocks %}
+    {% if block.type == 'layer1_text' %}
+      <span>{{ block.settings.text }}</span>
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+
+    </div>
+  </div>
+  <div 
+    class="pc-marquee-box-2-{{ last_part }}" 
+    style="background-color: {{ section.settings.layer2_bg }}; 
+    color: {{ section.settings.layer2_color }};
+    font-size: {{ section.settings.layer2_font_size }}px;
+    font-weight: {{ section.settings.layer2_font_weight }};
+    font-style: {{ section.settings.layer2_font_style }};
+    letter-spacing: {{ section.settings.layer2_letter_spacing }}px;
+    text-decoration: {{ section.settings.layer2_text_decoration }};
+    {% if section.settings.layer2_text_decoration != 'none' %}
+      text-decoration-color: {{ section.settings.layer2_text_decoration_color }};
+    {% endif %}
+    
+    /* Padding settings */
+    padding-top: {{ section.settings.layer2_padding_top }}px;
+    padding-bottom: {{ section.settings.layer2_padding_bottom }}px;
+    margin: 0;
+    "
+  >
+    <div class="pc-marquee-2-{{ last_part }} {% if section.settings.pause_on_hover %}pc-pause-on-hover-{{ last_part }}{% endif %} {% if section.settings.layer2_direction == 'left' %}pc-marquee-left-{{ last_part }}{% endif %}">
+      {% for i in (1..2) %}
+  {% for block in section.blocks %}
+    {% if block.type == 'layer2_text' %}
+      <span>{{ block.settings.text }}</span>
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+    </div>
+  </div>
+</pc-marquee-section-{{ last_part }}>
+
 {% schema %}
 {
   "name": "Marquee Text",
   "max_blocks": 2,
   "settings": [
     {
+          "type": "header",
+          "content": "Layer 1 Settings"
+    },
+    {
       "type": "color",
       "id": "layer1_bg",
       "label": "Layer 1 Background Color",
-      "default": "#ffffff"
+      "default": "#F5276C"
     },
     {
       "type": "color",
       "id": "layer1_color",
       "label": "Layer 1 Text Color",
-      "default": "#000000"
+      "default": "#FFFFFF"
     },
     {
       "type": "select",
@@ -133,17 +197,169 @@
       ],
       "default": "left"
     },
+       {
+      "type": "range",
+      "id": "layer1_font_size",
+      "label": "Font Size",
+      "min": 6,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+        {
+          "type": "select",
+          "id": "layer1_font_weight",
+          "label": "Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "layer1_font_style",
+          "label": "Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "layer1_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "layer1_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "layer1_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "layer1_padding_top",
+          "label": "Padding Top (px)",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "type": "range",
+          "id": "layer1_padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+    {
+          "type": "header",
+          "content": "Layer 2 Settings"
+    },
     {
       "type": "color",
       "id": "layer2_bg",
       "label": "Layer 2 Background Color",
-      "default": "#f0f0f0"
+      "default": "#BF40BF"
     },
     {
       "type": "color",
       "id": "layer2_color",
       "label": "Layer 2 Text Color",
-      "default": "#000000"
+      "default": "#FFFFFF"
     },
     {
       "type": "select",
@@ -161,12 +377,256 @@
       ],
       "default": "right"
     },
+     {
+      "type": "range",
+      "id": "layer2_font_size",
+      "label": "Font Size",
+      "min": 6,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+        {
+          "type": "select",
+          "id": "layer2_font_weight",
+          "label": "Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "layer2_font_style",
+          "label": "Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "layer2_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "layer2_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "layer2_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "layer2_padding_top",
+          "label": "Padding Top (px)",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "type": "range",
+          "id": "layer2_padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
     {
       "type": "checkbox",
       "id": "pause_on_hover",
       "label": "Pause on Hover",
       "default": true
-    }
+    },
+     {
+        "type": "range",
+        "id": "section_margin_top",
+        "label": "Margin Top (px)",
+        "default": 10,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "section_margin_bottom",
+        "label": "Margin Bottom (px)",
+        "default": 10,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+          "type": "header",
+          "content": "Mobile Settings"
+      },
+      {
+      "type": "range",
+      "id": "layer1_font_size_mobile",
+      "label": "Layer 1 Font Size",
+      "min": 6,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+          "type": "range",
+          "id": "layer1_padding_top_mobile",
+          "label": "Layer 1 Padding Top (px)",
+          "default": 9,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "type": "range",
+          "id": "layer1_padding_bottom_mobile",
+          "label": "Layer 1 Padding Bottom (px)",
+          "default": 9,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+      "type": "range",
+      "id": "layer2_font_size_mobile",
+      "label": "Layer 2 Font Size",
+      "min": 6,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+          "type": "range",
+          "id": "layer2_padding_top_mobile",
+          "label": "Layer 2 Padding Top (px)",
+          "default": 9,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "type": "range",
+          "id": "layer2_padding_bottom_mobile",
+          "label": "Layer 2 Padding Bottom (px)",
+          "default": 9,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+        "type": "range",
+        "id": "section_margin_top_mobile",
+        "label": "Margin Top (px)",
+        "default": 10,
+        "min": 0,
+        "max": 100,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "section_margin_bottom_mobile",
+        "label": "Margin Bottom (px)",
+        "default": 10,
+        "min": 0,
+        "max": 100,
+        "step": 1
+      },
   ],
   "blocks": [
     {
@@ -176,7 +636,8 @@
         {
           "type": "text",
           "id": "text",
-          "label": "Text"
+          "label": "Text",
+          "default": "<p>10% OFF ON ALL PRODUCTS - LIMITED OFFER</p>"
         }
       ]
     },
@@ -187,7 +648,8 @@
         {
           "type": "text",
           "id": "text",
-          "label": "Text"
+          "label": "Text",
+          "default": "<p>YOU WILL LOVE ALL THE ITEM ON THIS SITE</p>"
         }
       ]
     }
