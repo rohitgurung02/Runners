@@ -750,7 +750,33 @@
       "type": "rw-test",
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
-      "settings": {}
+      "settings": {
+        "background_color": "#ffffff",
+        "desktop_offset": 25,
+        "all_articles_url": "",
+        "all_articles_text": "Tous les articles",
+        "read_more_text": "Lire l'article",
+        "category_font_size": 24,
+        "date_font_size": 16,
+        "title_font_size": 16,
+        "link_font_size": 16,
+        "button_font_size": 16,
+        "date_color": "#234f97",
+        "title_color": "#000000",
+        "link_color": "#000000",
+        "border_color": "#000000",
+        "dot_color": "#e9e9e9",
+        "dot_active_color": "#000000",
+        "arrow_color": "#000000",
+        "button_color": "#234f97",
+        "button_text_color": "#ffffff",
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 40,
+        "button_padding_top": 10,
+        "button_padding_right": 20,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20
+      }
     },
     "rw_reviews_eNfMNB": {
       "type": "rw-reviews",
@@ -966,7 +992,33 @@
       "type": "rw-test",
       "disabled": true,
       "name": "RW - Carousel Slider #8",
-      "settings": {}
+      "settings": {
+        "background_color": "#ffffff",
+        "desktop_offset": 25,
+        "all_articles_url": "",
+        "all_articles_text": "Tous les articles",
+        "read_more_text": "Lire l'article",
+        "category_font_size": 24,
+        "date_font_size": 16,
+        "title_font_size": 16,
+        "link_font_size": 16,
+        "button_font_size": 16,
+        "date_color": "#234f97",
+        "title_color": "#000000",
+        "link_color": "#000000",
+        "border_color": "#000000",
+        "dot_color": "#e9e9e9",
+        "dot_active_color": "#000000",
+        "arrow_color": "#000000",
+        "button_color": "#234f97",
+        "button_text_color": "#ffffff",
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 40,
+        "button_padding_top": 10,
+        "button_padding_right": 20,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20
+      }
     },
     "rw_hero_banner_4dJjqa": {
       "type": "rw-hero-banner",
@@ -1346,7 +1398,7 @@
         "heading_font_style": "normal",
         "heading_letter_spacing": 0,
         "heading_text_decoration": "none",
-        "heading_text_decoration_color": "#000",
+        "heading_text_decoration_color": "#000000",
         "heading_padding_top": 5,
         "heading_padding_bottom": 5,
         "text_font_size": 17,
@@ -1355,7 +1407,7 @@
         "text_font_style": "normal",
         "text_letter_spacing": 0,
         "text_decoration": "none",
-        "text_decoration_color": "#000",
+        "text_decoration_color": "#000000",
         "text_padding_top": 5,
         "text_padding_bottom": 5,
         "nav_button_size": 34,
@@ -1369,6 +1421,71 @@
         "mobile_heading_font_size": 20,
         "mobile_text_font_size": 16,
         "mobile_nav_button_size": 24
+      }
+    },
+    "rw_test_PRCPVh": {
+      "type": "rw-test",
+      "blocks": {
+        "news_item_CfLrCK": {
+          "type": "news_item",
+          "settings": {
+            "category": "Restaurant",
+            "date": "27 novembre 2023",
+            "title": "Praesent gravida enim eget ipsum pharetra",
+            "url": ""
+          }
+        },
+        "news_item_ax9ER6": {
+          "type": "news_item",
+          "settings": {
+            "category": "Tourisme",
+            "date": "15 novembre 2023",
+            "title": "Sed cursus augue in turpis iaculis sagittis",
+            "url": ""
+          }
+        },
+        "news_item_dwLMer": {
+          "type": "news_item",
+          "settings": {
+            "category": "Nature",
+            "date": "23 septembre 2023",
+            "title": "Proin feugiat nec erat ultricies mollis",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "news_item_CfLrCK",
+        "news_item_ax9ER6",
+        "news_item_dwLMer"
+      ],
+      "name": "PWC - News Carousel #1",
+      "settings": {
+        "background_color": "#FFFFFF",
+        "desktop_offset": 25,
+        "all_articles_url": "",
+        "all_articles_text": "Tous les articles",
+        "read_more_text": "Lire l'article",
+        "category_font_size": 24,
+        "date_font_size": 16,
+        "title_font_size": 16,
+        "link_font_size": 16,
+        "button_font_size": 16,
+        "date_color": "#234f97",
+        "title_color": "#000000",
+        "link_color": "#000000",
+        "border_color": "#000000",
+        "dot_color": "#E9E9E9",
+        "dot_active_color": "#000000",
+        "arrow_color": "#000000",
+        "button_color": "#234f97",
+        "button_text_color": "#FFFFFF",
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 40,
+        "button_padding_top": 10,
+        "button_padding_right": 20,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20
       }
     }
   },
@@ -1390,6 +1507,7 @@
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
     "rw_wavy_background_1_cFNhmb",
-    "rw_card_carousel_6_A3yTqa"
+    "rw_card_carousel_6_A3yTqa",
+    "rw_test_PRCPVh"
   ]
 }
