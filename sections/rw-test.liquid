@@ -1,604 +1,201 @@
-{%- liquid
-  assign sec_id = '#shopify-section-' | append: section.id
-  assign parts = sec_id | split: '_'
-  assign last_lower = parts | last
-  assign last_part = last_lower | downcase
--%}
-
-<pc-news-carousel-{{ last_part }} class="pc-news-carousel">
-  <div class="pc-container">
-    <div class="pc-row">
-      <div class="pc-col">
-        <div class="pc-carousel-wrapper">
-          <div class="pc-carousel pc-carousel-{{ last_part }}">
-            {%- for block in section.blocks -%}
-              <div class="pc-carousel-item">
-                <article class="pc-news-teaser">
-                  <div class="pc-date">
-                    <div class="pc-day">{{ block.settings.category | default: "Category" }}</div>
-                    <div class="pc-year">{{ block.settings.date | default: "Date" }}</div>
-                  </div>
-                  <div class="pc-image">
-                    {%- if block.settings.image != blank -%}
-                      {% assign image_class = 'pc-news-image-' | append: last_part %}
-                      {{ 
-                        block.settings.image
-                        | image_url: width: 600
-                        | image_tag: 
-                            loading: 'lazy',
-                            class: image_class,
-                            alt: block.settings.title | escape
-                      }}
-                    {%- else -%}
-                      {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-image' }}
-                    {%- endif -%}
-                  </div>
-                  <div class="pc-title">
-                    <span>{{ block.settings.title | default: "News title" }}</span>
-                  </div>
-                  <div class="pc-url">
-                    <a href="{{ block.settings.url | default: '#' }}" rel="bookmark" title="{{ block.settings.title | escape | default: 'Read more' }}">> {{ section.settings.read_more_text | default: "Lire l'article" }}</a>
-                  </div>    
-                </article>
-              </div>
-            {%- else -%}
-              {%- for i in (1..3) -%}
-                <div class="pc-carousel-item">
-                  <article class="pc-news-teaser">
-                    <div class="pc-date">
-                      <div class="pc-day">Category {{ i }}</div>
-                      <div class="pc-year">{{ "now" | date: "%d %B %Y" }}</div>
-                    </div>
-                    <div class="pc-image">
-                      {{ 'product-' | append: i | placeholder_svg_tag: 'pc-placeholder-image' }}
-                    </div>
-                    <div class="pc-title">
-                      <span>Sample news title {{ i }}</span>
-                    </div>
-                    <div class="pc-url">
-                      <a href="#" rel="bookmark" title="Sample news">> Lire l'article</a>
-                    </div>    
-                  </article>
-                </div>
-              {%- endfor -%}
-            {%- endfor -%}
-          </div>
-          
-          {%- if section.settings.all_articles_url != blank -%}
-            <div class="pc-link-wrapper">
-              <a href="{{ section.settings.all_articles_url }}" class="pc-button">
-                {{ section.settings.all_articles_text | default: "Tous les articles" }}
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="{{ section.settings.button_text_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          {%- endif -%}
-        </div>
-      </div>
+<section id="marquee-section-{{ section.id }}" class="marquee-text-section">
+  <div 
+    class="marquee-box" 
+    style="background-color: {{ section.settings.layer1_bg }}; color: {{ section.settings.layer1_color }};"
+  >
+    <div class="marquee {% if section.settings.pause_on_hover %}pause-on-hover{% endif %} {% if section.settings.layer1_direction == 'right' %}marquee-right{% endif %}">
+      {% for i in (1..3) %}
+        {% for block in section.blocks %}
+          {% if block.type == 'layer1_text' %}
+            <span>{{ block.settings.text }}</span>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
     </div>
   </div>
-</pc-news-carousel-{{ last_part }}>
-
+  <div 
+    class="marquee-box-2" 
+    style="background-color: {{ section.settings.layer2_bg }}; color: {{ section.settings.layer2_color }};"
+  >
+    <div class="marquee-2 {% if section.settings.pause_on_hover %}pause-on-hover{% endif %} {% if section.settings.layer2_direction == 'left' %}marquee-left{% endif %}">
+      {% for i in (1..3) %}
+        {% for block in section.blocks %}
+          {% if block.type == 'layer2_text' %}
+            <span>{{ block.settings.text }}</span>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
 <style>
-  {{ sec_id }} .pc-news-carousel {
-    position: relative;
+  #marquee-section-{{ section.id }} {
     width: 100%;
+  }
+  .marquee-box {
+    transform: rotate(3.5deg);
     overflow: hidden;
-    padding-top: {{ section.settings.desktop_padding_top }}px;
-    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
-    background-color: {{ section.settings.background_color }};
-  }
-
-  {{ sec_id }} .pc-container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-  {{ sec_id }} .pc-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-
-  {{ sec_id }} .pc-col {
-    flex: 0 0 100%;
-    max-width: 100%;
-    padding-left: {{ section.settings.desktop_offset }}%;
-  }
-
-  {{ sec_id }} .pc-carousel-wrapper {
     position: relative;
+    padding: 10px 0;
   }
-
-  {{ sec_id }} .pc-carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 40px;
-  }
-
-  {{ sec_id }} .pc-carousel-item {
-    scroll-snap-align: start;
-    flex: 0 0 300px;
-    margin-right: 15px;
-  }
-
-  {{ sec_id }} .pc-news-teaser {
-    border-left: 1px solid {{ section.settings.border_color }};
-    padding: 0 20px;
-    padding-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 400px;
-    width: 265px;
-  }
-
-  {{ sec_id }} .pc-date {
-    color: {{ section.settings.date_color }};
-    font-size: {{ section.settings.date_font_size }}px;
-    line-height: 2rem;
-  }
-
-  {{ sec_id }} .pc-day {
-    font-size: {{ section.settings.category_font_size }}px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  {{ sec_id }} .pc-title span {
-    font-weight: bold;
-    margin: 15px 0;
-    font-size: {{ section.settings.title_font_size }}px;
-    color: {{ section.settings.title_color }};
-  }
-
-  {{ sec_id }} .pc-url a {
-    color: {{ section.settings.link_color }};
-    font-size: {{ section.settings.link_font_size }}px;
-    text-decoration: none;
-  }
-
-  {{ sec_id }} .pc-image {
-    height: 150px;
-    width: 100%;
-    margin-bottom: 15px;
-  }
-
-  {{ sec_id }} .pc-image img,
-  {{ sec_id }} .pc-image svg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  {{ sec_id }} .pc-link-wrapper {
-    display: flex;
-    justify-content: flex-start;
+  .marquee-box-2 {
+    transform: rotate(-2.5deg);
+    overflow: hidden;
     position: relative;
     margin-top: 20px;
+    padding: 10px 0;
   }
-
-  {{ sec_id }} .pc-button {
-    background-color: {{ section.settings.button_color }};
-    color: {{ section.settings.button_text_color }};
-    padding: {{ section.settings.button_padding_top }}px {{ section.settings.button_padding_right }}px;
-    font-size: {{ section.settings.button_font_size }}px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+  #marquee-section-template--24209809703206__marquee_text_b34LQm {
+    padding-bottom: 40px;
+    padding-top: 40px;
   }
-
-  {{ sec_id }} .pc-button:hover {
-    opacity: 0.9;
+  
+  @media (max-width: 767px) {
+    .marquee-box {
+      left: 0%;
+    }
+    .marquee-box-2 {
+      left: 0%;
+    }
   }
-
-  {{ sec_id }} .pc-button svg {
-    width: {{ section.settings.button_font_size }}px;
-    height: {{ section.settings.button_font_size }}px;
-  }
-
-  /* Carousel Navigation */
-  {{ sec_id }} .owl-nav {
+  .marquee,
+  .marquee-2 {
     display: flex;
-    gap: 10px;
-    position: absolute;
-    right: 0;
-    top: -60px;
+    white-space: nowrap;
+    width: max-content;
   }
-
-  {{ sec_id }} .owl-nav button {
-    background: {{ section.settings.arrow_bg_color }} !important;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  .marquee span,
+  .marquee-2 span {
+    padding: 0 1rem;
+    display: inline-block;
   }
-
-  {{ sec_id }} .owl-nav button:hover {
-    background: {{ section.settings.arrow_bg_hover_color }} !important;
+  .marquee {
+    animation: marquee 15s linear infinite;
   }
-
-  {{ sec_id }} .owl-nav button span {
-    display: none;
+  .marquee-right {
+    animation: marquee-right 15s linear infinite;
   }
-
-  /* Admin-specific styles */
-  .shopify-design-mode {{ sec_id }} .pc-carousel {
-    display: flex !important;
-    flex-wrap: wrap;
-    gap: 20px;
+  .marquee-2 {
+    animation: marquee-2 15s linear infinite;
   }
-
-  .shopify-design-mode {{ sec_id }} .pc-carousel-item {
-    flex: 0 0 calc(33.333% - 20px);
+  .marquee-left {
+    animation: marquee 15s linear infinite;
   }
-
-  @media (max-width: 767.98px) {
-    {{ sec_id }} .pc-news-carousel {
-      padding-top: {{ section.settings.mobile_padding_top }}px;
-      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
-    }
-
-    {{ sec_id }} .pc-col {
-      padding-left: 0;
-    }
-
-    {{ sec_id }} .pc-link-wrapper {
-      justify-content: center;
-    }
-
-    {{ sec_id }} .pc-date {
-      line-height: 2.5rem;
-    }
-
-    {{ sec_id }} .owl-nav {
-      position: static;
-      justify-content: center;
-      margin-top: 20px;
-    }
+  
+  /* Pause on hover */
+  .pause-on-hover:hover {
+    animation-play-state: paused;
+  }
+  
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marquee-right {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  @keyframes marquee-2 {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
   }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Only initialize carousel in live view, not in theme editor
-    if (!document.querySelector('html').classList.contains('shopify-design-mode')) {
-      const carousel = document.querySelector('{{ sec_id }} .pc-carousel');
-      if (carousel && typeof $.fn.owlCarousel === 'function') {
-        $(carousel).owlCarousel({
-          margin: 15,
-          nav: true,
-          dots: true,
-          center: false,
-          navText: [
-            `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 18L9 12L15 6" stroke="{{ section.settings.arrow_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>`,
-            `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="{{ section.settings.arrow_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>`
-          ],
-          responsive: {
-            0: {
-              items: 1
-            },
-            600: {
-              items: 2
-            },
-            1000: {
-              items: 3
-            }
-          }
-        });
-      }
-    }
-  });
-</script>
-
 {% schema %}
 {
-  "name": "PWC - News Carousel #1",
-  "tag": "section",
-  "class": "shopify-section",
+  "name": "Marquee Text",
+  "max_blocks": 2,
   "settings": [
     {
-      "type": "header",
-      "content": "General Settings"
+      "type": "color",
+      "id": "layer1_bg",
+      "label": "Layer 1 Background Color",
+      "default": "#ffffff"
     },
     {
       "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "range",
-      "id": "desktop_offset",
-      "label": "Desktop Offset",
-      "min": 0,
-      "max": 50,
-      "step": 5,
-      "unit": "%",
-      "default": 25
-    },
-    {
-      "type": "url",
-      "id": "all_articles_url",
-      "label": "All Articles Link"
-    },
-    {
-      "type": "text",
-      "id": "all_articles_text",
-      "label": "All Articles Text",
-      "default": "Tous les articles"
-    },
-    {
-      "type": "text",
-      "id": "read_more_text",
-      "label": "Read More Text",
-      "default": "Lire l'article"
-    },
-    {
-      "type": "header",
-      "content": "Typography Settings"
-    },
-    {
-      "type": "range",
-      "id": "category_font_size",
-      "label": "Category Font Size",
-      "min": 12,
-      "max": 48,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "date_font_size",
-      "label": "Date Font Size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "title_font_size",
-      "label": "Title Font Size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "link_font_size",
-      "label": "Link Font Size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "button_font_size",
-      "label": "Button Font Size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "header",
-      "content": "Color Settings"
-    },
-    {
-      "type": "color",
-      "id": "date_color",
-      "label": "Date Color",
-      "default": "#234f97"
-    },
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": "Title Color",
+      "id": "layer1_color",
+      "label": "Layer 1 Text Color",
       "default": "#000000"
     },
     {
+      "type": "select",
+      "id": "layer1_direction",
+      "label": "Layer 1 Direction",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left to Right"
+        },
+        {
+          "value": "right",
+          "label": "Right to Left"
+        }
+      ],
+      "default": "left"
+    },
+    {
       "type": "color",
-      "id": "link_color",
-      "label": "Link Color",
+      "id": "layer2_bg",
+      "label": "Layer 2 Background Color",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "color",
+      "id": "layer2_color",
+      "label": "Layer 2 Text Color",
       "default": "#000000"
     },
     {
-      "type": "color",
-      "id": "border_color",
-      "label": "Border Color",
-      "default": "#000000"
+      "type": "select",
+      "id": "layer2_direction",
+      "label": "Layer 2 Direction",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left to Right"
+        },
+        {
+          "value": "right",
+          "label": "Right to Left"
+        }
+      ],
+      "default": "right"
     },
     {
-      "type": "color",
-      "id": "button_color",
-      "label": "Button Color",
-      "default": "#234f97"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "arrow_color",
-      "label": "Arrow Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "arrow_bg_color",
-      "label": "Arrow Background Color",
-      "default": "#f5f5f5"
-    },
-    {
-      "type": "color",
-      "id": "arrow_bg_hover_color",
-      "label": "Arrow Hover Background",
-      "default": "#e0e0e0"
-    },
-    {
-      "type": "header",
-      "content": "Desktop Settings"
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_top",
-      "label": "Top Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "desktop_padding_bottom",
-      "label": "Bottom Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "button_padding_top",
-      "label": "Button Vertical Padding",
-      "min": 5,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "button_padding_right",
-      "label": "Button Horizontal Padding",
-      "min": 10,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_top",
-      "label": "Top Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_bottom",
-      "label": "Bottom Padding",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on Hover",
+      "default": true
     }
   ],
   "blocks": [
     {
-      "type": "news_item",
-      "name": "News Item",
+      "type": "layer1_text",
+      "name": "Layer 1 Text Item",
       "settings": [
         {
           "type": "text",
-          "id": "category",
-          "label": "Category",
-          "default": "Restaurant"
-        },
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "layer2_text",
+      "name": "Layer 2 Text Item",
+      "settings": [
         {
           "type": "text",
-          "id": "date",
-          "label": "Date",
-          "default": "27 novembre 2023"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Praesent gravida enim eget ipsum pharetra"
-        },
-        {
-          "type": "url",
-          "id": "url",
-          "label": "Link"
+          "id": "text",
+          "label": "Text"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "PWC - News Carousel #1",
-      "blocks": [
-        {
-          "type": "news_item",
-          "settings": {
-            "category": "Restaurant",
-            "date": "27 novembre 2023",
-            "title": "Praesent gravida enim eget ipsum pharetra"
-          }
-        },
-        {
-          "type": "news_item",
-          "settings": {
-            "category": "Tourisme",
-            "date": "15 novembre 2023",
-            "title": "Sed cursus augue in turpis iaculis sagittis"
-          }
-        },
-        {
-          "type": "news_item",
-          "settings": {
-            "category": "Nature",
-            "date": "23 septembre 2023",
-            "title": "Proin feugiat nec erat ultricies mollis"
-          }
-        }
-      ]
+      "name": "Marquee Text",
+      "category": "Custom"
     }
   ]
 }
