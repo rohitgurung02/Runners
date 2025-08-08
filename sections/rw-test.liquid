@@ -1,9 +1,87 @@
-<section id="marquee-section-{{ section.id }}" class="marquee-text-section">
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} {
+    width: 100%;
+    padding: 40px 0;
+  }
+  
+  {{ sec_id }} .pc-marquee-box-{{ last_part }} {
+    transform: rotate(3.5deg);
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0;
+  }
+  
+  {{ sec_id }} .pc-marquee-box-2-{{ last_part }} {
+    transform: rotate(-2.5deg);
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+    padding: 10px 0;
+  }
+  
+  {{ sec_id }} .pc-marquee-{{ last_part }},
+  {{ sec_id }} .pc-marquee-2-{{ last_part }} {
+    display: flex;
+    white-space: nowrap;
+    width: max-content;
+  }
+  
+  {{ sec_id }} .pc-marquee-{{ last_part }} span,
+  {{ sec_id }} .pc-marquee-2-{{ last_part }} span {
+    padding: 0 1rem;
+    display: inline-block;
+  }
+  
+  {{ sec_id }} .pc-marquee-{{ last_part }} {
+    animation: pc-marquee-anim-{{ last_part }} 15s linear infinite;
+  }
+  
+  {{ sec_id }} .pc-marquee-right-{{ last_part }} {
+    animation: pc-marquee-right-anim-{{ last_part }} 15s linear infinite;
+  }
+  
+  {{ sec_id }} .pc-marquee-2-{{ last_part }} {
+    animation: pc-marquee-2-anim-{{ last_part }} 15s linear infinite;
+  }
+  
+  {{ sec_id }} .pc-pause-on-hover-{{ last_part }}:hover {
+    animation-play-state: paused;
+  }
+  
+  @keyframes pc-marquee-anim-{{ last_part }} {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  @keyframes pc-marquee-right-anim-{{ last_part }} {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  
+  @keyframes pc-marquee-2-anim-{{ last_part }} {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-marquee-box-{{ last_part }},
+    {{ sec_id }} .pc-marquee-box-2-{{ last_part }} {
+      left: 0%;
+    }
+  }
+</style>
+
+<pc-marquee-section-{{ last_part }}>
   <div 
-    class="marquee-box" 
+    class="pc-marquee-box-{{ last_part }}" 
     style="background-color: {{ section.settings.layer1_bg }}; color: {{ section.settings.layer1_color }};"
   >
-    <div class="marquee {% if section.settings.pause_on_hover %}pause-on-hover{% endif %} {% if section.settings.layer1_direction == 'right' %}marquee-right{% endif %}">
+    <div class="pc-marquee-{{ last_part }} {% if section.settings.pause_on_hover %}pc-pause-on-hover-{{ last_part }}{% endif %} {% if section.settings.layer1_direction == 'right' %}pc-marquee-right-{{ last_part }}{% endif %}">
       {% for i in (1..3) %}
         {% for block in section.blocks %}
           {% if block.type == 'layer1_text' %}
@@ -14,10 +92,10 @@
     </div>
   </div>
   <div 
-    class="marquee-box-2" 
+    class="pc-marquee-box-2-{{ last_part }}" 
     style="background-color: {{ section.settings.layer2_bg }}; color: {{ section.settings.layer2_color }};"
   >
-    <div class="marquee-2 {% if section.settings.pause_on_hover %}pause-on-hover{% endif %} {% if section.settings.layer2_direction == 'left' %}marquee-left{% endif %}">
+    <div class="pc-marquee-2-{{ last_part }} {% if section.settings.pause_on_hover %}pc-pause-on-hover-{{ last_part }}{% endif %} {% if section.settings.layer2_direction == 'left' %}pc-marquee-left-{{ last_part }}{% endif %}">
       {% for i in (1..3) %}
         {% for block in section.blocks %}
           {% if block.type == 'layer2_text' %}
@@ -27,79 +105,8 @@
       {% endfor %}
     </div>
   </div>
-</section>
-<style>
-  #marquee-section-{{ section.id }} {
-    width: 100%;
-  }
-  .marquee-box {
-    transform: rotate(3.5deg);
-    overflow: hidden;
-    position: relative;
-    padding: 10px 0;
-  }
-  .marquee-box-2 {
-    transform: rotate(-2.5deg);
-    overflow: hidden;
-    position: relative;
-    margin-top: 20px;
-    padding: 10px 0;
-  }
-  #marquee-section-template--24209809703206__marquee_text_b34LQm {
-    padding-bottom: 40px;
-    padding-top: 40px;
-  }
-  
-  @media (max-width: 767px) {
-    .marquee-box {
-      left: 0%;
-    }
-    .marquee-box-2 {
-      left: 0%;
-    }
-  }
-  .marquee,
-  .marquee-2 {
-    display: flex;
-    white-space: nowrap;
-    width: max-content;
-  }
-  .marquee span,
-  .marquee-2 span {
-    padding: 0 1rem;
-    display: inline-block;
-  }
-  .marquee {
-    animation: marquee 15s linear infinite;
-  }
-  .marquee-right {
-    animation: marquee-right 15s linear infinite;
-  }
-  .marquee-2 {
-    animation: marquee-2 15s linear infinite;
-  }
-  .marquee-left {
-    animation: marquee 15s linear infinite;
-  }
-  
-  /* Pause on hover */
-  .pause-on-hover:hover {
-    animation-play-state: paused;
-  }
-  
-  @keyframes marquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @keyframes marquee-right {
-    0%   { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
-  }
-  @keyframes marquee-2 {
-    0%   { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
-  }
-</style>
+</pc-marquee-section-{{ last_part }}>
+
 {% schema %}
 {
   "name": "Marquee Text",
