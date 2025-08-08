@@ -117,13 +117,15 @@
     "
   >
     <div class="pc-marquee-{{ last_part }} {% if section.settings.pause_on_hover %}pc-pause-on-hover-{{ last_part }}{% endif %} {% if section.settings.layer1_direction == 'right' %}pc-marquee-right-{{ last_part }}{% endif %}">
-      {% for i in (1..3) %}
-        {% for block in section.blocks %}
-          {% if block.type == 'layer1_text' %}
-            <span>{{ block.settings.text }}</span>
-          {% endif %}
-        {% endfor %}
-      {% endfor %}
+     {% for i in (1..2) %}
+  {% for block in section.blocks %}
+    {% if block.type == 'layer1_text' %}
+      <span>{{ block.settings.text }}</span>
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+
     </div>
   </div>
   <div 
@@ -146,13 +148,14 @@
     "
   >
     <div class="pc-marquee-2-{{ last_part }} {% if section.settings.pause_on_hover %}pc-pause-on-hover-{{ last_part }}{% endif %} {% if section.settings.layer2_direction == 'left' %}pc-marquee-left-{{ last_part }}{% endif %}">
-      {% for i in (1..3) %}
-        {% for block in section.blocks %}
-          {% if block.type == 'layer2_text' %}
-            <span>{{ block.settings.text }}</span>
-          {% endif %}
-        {% endfor %}
-      {% endfor %}
+      {% for i in (1..2) %}
+  {% for block in section.blocks %}
+    {% if block.type == 'layer2_text' %}
+      <span>{{ block.settings.text }}</span>
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
     </div>
   </div>
 </pc-marquee-section-{{ last_part }}>
