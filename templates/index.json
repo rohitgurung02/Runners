@@ -750,45 +750,7 @@
       "type": "rw-test",
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
-      "settings": {
-        "slide_width": 200,
-        "slide_height": 370,
-        "slide_padding": 20,
-        "desktop_margin_top": 100,
-        "slide_border_radius": 10,
-        "slide_bg_color": "#ffffff",
-        "enable_shadow": false,
-        "heading_font_size": 18,
-        "heading_alignment": "center",
-        "heading_color": "#000000",
-        "heading_font_weight": "normal",
-        "heading_font_style": "normal",
-        "heading_letter_spacing": 0,
-        "heading_text_decoration": "none",
-        "heading_text_decoration_color": "#000000",
-        "heading_padding_top": 5,
-        "heading_padding_bottom": 5,
-        "text_font_size": 14,
-        "text_color": "#333333",
-        "text_font_weight": "normal",
-        "text_font_style": "normal",
-        "text_letter_spacing": 0,
-        "text_decoration": "none",
-        "text_decoration_color": "#000000",
-        "text_padding_top": 5,
-        "text_padding_bottom": 5,
-        "nav_button_size": 32,
-        "nav_button_color": "#ffffff",
-        "nav_button_opacity": 0.5,
-        "mobile_min_height": 300,
-        "mobile_slide_width": 160,
-        "mobile_slide_height": 300,
-        "mobile_slide_padding": 8,
-        "mobile_margin_top": 50,
-        "mobile_heading_font_size": 16,
-        "mobile_text_font_size": 12,
-        "mobile_nav_button_size": 24
-      }
+      "settings": {}
     },
     "rw_reviews_eNfMNB": {
       "type": "rw-reviews",
@@ -1004,45 +966,7 @@
       "type": "rw-test",
       "disabled": true,
       "name": "RW - Carousel Slider #8",
-      "settings": {
-        "slide_width": 200,
-        "slide_height": 370,
-        "slide_padding": 20,
-        "desktop_margin_top": 100,
-        "slide_border_radius": 10,
-        "slide_bg_color": "#ffffff",
-        "enable_shadow": false,
-        "heading_font_size": 18,
-        "heading_alignment": "center",
-        "heading_color": "#000000",
-        "heading_font_weight": "normal",
-        "heading_font_style": "normal",
-        "heading_letter_spacing": 0,
-        "heading_text_decoration": "none",
-        "heading_text_decoration_color": "#000000",
-        "heading_padding_top": 5,
-        "heading_padding_bottom": 5,
-        "text_font_size": 14,
-        "text_color": "#333333",
-        "text_font_weight": "normal",
-        "text_font_style": "normal",
-        "text_letter_spacing": 0,
-        "text_decoration": "none",
-        "text_decoration_color": "#000000",
-        "text_padding_top": 5,
-        "text_padding_bottom": 5,
-        "nav_button_size": 32,
-        "nav_button_color": "#ffffff",
-        "nav_button_opacity": 0.5,
-        "mobile_min_height": 300,
-        "mobile_slide_width": 160,
-        "mobile_slide_height": 300,
-        "mobile_slide_padding": 8,
-        "mobile_margin_top": 50,
-        "mobile_heading_font_size": 16,
-        "mobile_text_font_size": 12,
-        "mobile_nav_button_size": 24
-      }
+      "settings": {}
     },
     "rw_hero_banner_4dJjqa": {
       "type": "rw-hero-banner",
@@ -1350,6 +1274,102 @@
         "padding_top_mobile": 5,
         "padding_bottom_mobile": 5
       }
+    },
+    "rw_card_carousel_6_A3yTqa": {
+      "type": "rw-card-carousel-6",
+      "blocks": {
+        "space_fact_Ln4jKc": {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 1",
+            "content": "Jupiter protects Earth - its gravity acts like a cosmic shield, deflecting comets and asteroids."
+          }
+        },
+        "space_fact_gnn4e4": {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 2",
+            "content": "Stars \"beat\" like hearts - they pulsate, expanding and contracting as they burn fuel."
+          }
+        },
+        "space_fact_ArETBT": {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 3",
+            "content": "Galaxies can \"eat\" each other - the Milky Way is currently consuming the Sagittarius Dwarf Galaxy."
+          }
+        },
+        "space_fact_4t8New": {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 4",
+            "content": "Space smells like seared steak - astronauts describe a metallic/grilled odor after spacewalks."
+          }
+        },
+        "space_fact_LqwWaJ": {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 5",
+            "content": "Astronauts grow taller in space - spines stretch up to 2 inches without gravity's compression."
+          }
+        },
+        "space_fact_NK6Jpn": {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 6",
+            "content": "Space smells like seared steak - astronauts describe a metallic/grilled odor after spacewalks."
+          }
+        }
+      },
+      "block_order": [
+        "space_fact_Ln4jKc",
+        "space_fact_gnn4e4",
+        "space_fact_ArETBT",
+        "space_fact_4t8New",
+        "space_fact_LqwWaJ",
+        "space_fact_NK6Jpn"
+      ],
+      "name": "RW - Card Carousel #6",
+      "settings": {
+        "background_image": "shopify://shop_images/universe.webp",
+        "slide_width": 280,
+        "slide_height": 430,
+        "slide_padding": 20,
+        "desktop_margin_top": 100,
+        "slide_border_radius": 10,
+        "slide_bg_color": "#ffffff",
+        "enable_shadow": true,
+        "heading_font_size": 21,
+        "heading_alignment": "center",
+        "heading_color": "#000000",
+        "heading_font_weight": "normal",
+        "heading_font_style": "normal",
+        "heading_letter_spacing": 0,
+        "heading_text_decoration": "none",
+        "heading_text_decoration_color": "#000",
+        "heading_padding_top": 5,
+        "heading_padding_bottom": 5,
+        "text_font_size": 17,
+        "text_color": "#333333",
+        "text_font_weight": "normal",
+        "text_font_style": "normal",
+        "text_letter_spacing": 0,
+        "text_decoration": "none",
+        "text_decoration_color": "#000",
+        "text_padding_top": 5,
+        "text_padding_bottom": 5,
+        "nav_button_size": 34,
+        "nav_button_color": "#ffffff",
+        "nav_button_opacity": 0.7,
+        "mobile_min_height": 500,
+        "mobile_slide_width": 210,
+        "mobile_slide_height": 340,
+        "mobile_slide_padding": 12,
+        "mobile_margin_top": 50,
+        "mobile_heading_font_size": 20,
+        "mobile_text_font_size": 16,
+        "mobile_nav_button_size": 24
+      }
     }
   },
   "order": [
@@ -1369,6 +1389,7 @@
     "rw_hero_banner_4dJjqa",
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
-    "rw_wavy_background_1_cFNhmb"
+    "rw_wavy_background_1_cFNhmb",
+    "rw_card_carousel_6_A3yTqa"
   ]
 }
