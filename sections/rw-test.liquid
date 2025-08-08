@@ -83,6 +83,18 @@
     class="pc-marquee-box-{{ last_part }}" 
     style="background-color: {{ section.settings.layer1_bg }};
            color: {{ section.settings.layer1_color }};
+           font-size: {{ section.settings.layer1_font_size }}px;
+    font-weight: {{ section.settings.layer1_font_weight }};
+    font-style: {{ section.settings.layer1_font_style }};
+    letter-spacing: {{ section.settings.layer1_letter_spacing }}px;
+    text-decoration: {{ section.settings.layer1_text_decoration }};
+    {% if section.settings.layer1_text_decoration != 'none' %}
+      text-decoration-color: {{ section.settings.layer1_text_decoration_color }};
+    {% endif %}
+    
+    /* Padding settings */
+    padding-top: {{ section.settings.layer1_padding_top }}px;
+    padding-bottom: {{ section.settings.layer1_padding_bottom }}px;
 
     "
   >
