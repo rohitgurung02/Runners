@@ -778,7 +778,12 @@
         "section_margin_bottom": 10,
         "layer1_font_size_mobile": 18,
         "layer1_padding_top_mobile": 5,
-        "layer1_padding_bottom_mobile": 5
+        "layer1_padding_bottom_mobile": 5,
+        "layer2_font_size_mobile": 16,
+        "layer2_padding_top_mobile": 9,
+        "layer2_padding_bottom_mobile": 9,
+        "section_margin_top_mobile": 10,
+        "section_margin_bottom_mobile": 10
       }
     },
     "rw_reviews_eNfMNB": {
@@ -1023,7 +1028,12 @@
         "section_margin_bottom": 10,
         "layer1_font_size_mobile": 18,
         "layer1_padding_top_mobile": 5,
-        "layer1_padding_bottom_mobile": 5
+        "layer1_padding_bottom_mobile": 5,
+        "layer2_font_size_mobile": 16,
+        "layer2_padding_top_mobile": 9,
+        "layer2_padding_bottom_mobile": 9,
+        "section_margin_top_mobile": 10,
+        "section_margin_bottom_mobile": 10
       }
     },
     "rw_hero_banner_4dJjqa": {
@@ -1462,8 +1472,8 @@
         "layer1_text_decoration_color": "#000000",
         "layer1_padding_top": 15,
         "layer1_padding_bottom": 15,
-        "layer2_bg": "#f0f0f0",
-        "layer2_color": "#000000",
+        "layer2_bg": "#e7735c",
+        "layer2_color": "#ffffff",
         "layer2_direction": "right",
         "layer2_font_size": 18,
         "layer2_font_weight": "normal",
@@ -1478,7 +1488,12 @@
         "section_margin_bottom": 10,
         "layer1_font_size_mobile": 16,
         "layer1_padding_top_mobile": 9,
-        "layer1_padding_bottom_mobile": 9
+        "layer1_padding_bottom_mobile": 9,
+        "layer2_font_size_mobile": 16,
+        "layer2_padding_top_mobile": 9,
+        "layer2_padding_bottom_mobile": 9,
+        "section_margin_top_mobile": 10,
+        "section_margin_bottom_mobile": 10
       }
     }
   },
