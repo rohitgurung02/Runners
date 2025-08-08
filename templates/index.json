@@ -1386,6 +1386,37 @@
         "mobile_text_font_size": 16,
         "mobile_nav_button_size": 24
       }
+    },
+    "rw_test_TmF9Vc": {
+      "type": "rw-test",
+      "blocks": {
+        "layer1_text_BypbEj": {
+          "type": "layer1_text",
+          "settings": {
+            "text": "First Content"
+          }
+        },
+        "layer2_text_bbnXPx": {
+          "type": "layer2_text",
+          "settings": {
+            "text": "Second Text"
+          }
+        }
+      },
+      "block_order": [
+        "layer1_text_BypbEj",
+        "layer2_text_bbnXPx"
+      ],
+      "name": "Marquee Text",
+      "settings": {
+        "layer1_bg": "#121212",
+        "layer1_color": "#ffffff",
+        "layer1_direction": "left",
+        "layer2_bg": "#f0f0f0",
+        "layer2_color": "#000000",
+        "layer2_direction": "right",
+        "pause_on_hover": true
+      }
     }
   },
   "order": [
@@ -1406,6 +1437,7 @@
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
     "rw_wavy_background_1_cFNhmb",
-    "rw_card_carousel_6_A3yTqa"
+    "rw_card_carousel_6_A3yTqa",
+    "rw_test_TmF9Vc"
   ]
 }
