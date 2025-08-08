@@ -1,0 +1,823 @@
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} {
+    background-image: url({{ section.settings.background_image | image_url: width: 2000 }});
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+  }
+
+  {{ sec_id }} .pc-slider-{{ last_part }} {
+    position: relative;
+    margin-top: {{ section.settings.desktop_margin_top }}px;
+    width: 100%;
+    height: {{ section.settings.slide_height }}px;
+    overflow: hidden;
+  }
+
+  {{ sec_id }} .pc-slide-{{ last_part }} {
+    position: absolute;
+    width: {{ section.settings.slide_width }}px;
+    height: {{ section.settings.slide_height | minus: 50 }}px;
+    text-align: justify;
+    background-color: {{ section.settings.slide_bg_color }};
+    border-radius: {{ section.settings.slide_border_radius }}px;
+    padding: {{ section.settings.slide_padding }}px;
+    transition: 0.5s;
+    left: calc(50% - {{ section.settings.slide_width | divided_by: 2 | plus: 10 }}px);
+    top: 0;
+    {% if section.settings.enable_shadow %}
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    {% endif %}
+  }
+
+  {{ sec_id }} .pc-slide-{{ last_part }} h1 {
+    font-size: {{ section.settings.heading_font_size }}px;
+    text-align: {{ section.settings.heading_alignment }};
+    color: {{ section.settings.heading_color }};
+    font-weight: {{ section.settings.heading_font_weight }};
+    font-style: {{ section.settings.heading_font_style }};
+    letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+    text-decoration: {{ section.settings.heading_text_decoration }};
+    {% if section.settings.heading_text_decoration != 'none' %}
+    text-decoration-color: {{ section.settings.heading_text_decoration_color }};
+    {% endif %}
+    padding-top: {{ section.settings.heading_padding_top }}px;
+    padding-bottom: {{ section.settings.heading_padding_bottom }}px;
+    margin-bottom: 5px;
+  }
+
+  {{ sec_id }} .pc-slide-{{ last_part }} p {
+    font-size: {{ section.settings.text_font_size }}px;
+    color: {{ section.settings.text_color }};
+    font-weight: {{ section.settings.text_font_weight }};
+    font-style: {{ section.settings.text_font_style }};
+    letter-spacing: {{ section.settings.text_letter_spacing }}px;
+    text-decoration: {{ section.settings.text_decoration }};
+    {% if section.settings.text_decoration != 'none' %}
+    text-decoration-color: {{ section.settings.text_decoration_color }};
+    {% endif %}
+    padding-top: {{ section.settings.text_padding_top }}px;
+    padding-bottom: {{ section.settings.text_padding_bottom }}px;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  {{ sec_id }} .pc-nav-button-{{ last_part }} {
+    position: absolute;
+    color: {{ section.settings.nav_button_color }};
+    background: none;
+    border: none;
+    font-size: {{ section.settings.nav_button_size }}px;
+    opacity: {{ section.settings.nav_button_opacity }};
+    transition: opacity 0.5s;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  {{ sec_id }} .pc-nav-button-{{ last_part }}:hover {
+    opacity: 1;
+  }
+
+  {{ sec_id }} .pc-next-button-{{ last_part }} {
+    right: 50px;
+    top: 40%;
+  }
+
+  {{ sec_id }} .pc-prev-button-{{ last_part }} {
+    left: 50px;
+    top: 40%;
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} {
+      padding: 20px;
+      min-height: {{ section.settings.mobile_min_height }}px;
+    }
+
+    {{ sec_id }} .pc-slider-{{ last_part }} {
+      margin-top: {{ section.settings.mobile_margin_top }}px;
+      height: {{ section.settings.mobile_slide_height }}px;
+    }
+
+    {{ sec_id }} .pc-slide-{{ last_part }} {
+      width: {{ section.settings.mobile_slide_width }}px;
+      height: {{ section.settings.mobile_slide_height | minus: 30 }}px;
+      left: calc(54% - {{ section.settings.mobile_slide_width | divided_by: 2 | plus: 10 }}px);
+      padding: {{ section.settings.mobile_slide_padding }}px;
+    }
+
+    {{ sec_id }} .pc-slide-{{ last_part }} h1 {
+      font-size: {{ section.settings.mobile_heading_font_size }}px;
+    }
+
+    {{ sec_id }} .pc-slide-{{ last_part }} p {
+      font-size: {{ section.settings.mobile_text_font_size }}px;
+    }
+
+    {{ sec_id }} .pc-nav-button-{{ last_part }} {
+      font-size: {{ section.settings.mobile_nav_button_size }}px;
+    }
+
+    {{ sec_id }} .pc-next-button-{{ last_part }} {
+      right: 20px;
+    }
+
+    {{ sec_id }} .pc-prev-button-{{ last_part }} {
+      left: 20px;
+    }
+  }
+</style>
+
+<div class="pc-slider-{{ last_part }}">
+  {% for block in section.blocks %}
+    <div class="pc-slide-{{ last_part }}" id="pc-slide-{{ last_part }}-{{ forloop.index }}">
+      <h1>{{ block.settings.title }}</h1>
+      <p>{{ block.settings.content }}</p>
+    </div>
+  {% endfor %}
+  
+  <button class="pc-nav-button-{{ last_part }} pc-prev-button-{{ last_part }}" id="pc-prev-{{ last_part }}">
+    &lt;
+  </button>
+  <button class="pc-nav-button-{{ last_part }} pc-next-button-{{ last_part }}" id="pc-next-{{ last_part }}">
+    &gt;
+  </button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const secId = '{{ sec_id }}';
+    const lastPart = '{{ last_part }}';
+    const items = document.querySelectorAll(`${secId} .pc-slide-${lastPart}`);
+    let active = 1; // Start with the 2nd card (index 1)
+    
+    function loadShow() {
+      if (items.length === 0) return;
+      
+      // Reset all items first (optional, but helps prevent glitches)
+      items.forEach(item => {
+        item.style.transform = '';
+        item.style.zIndex = '';
+        item.style.filter = '';
+        item.style.opacity = '';
+      });
+      
+      // Active item
+      items[active].style.transform = `none`;
+      items[active].style.zIndex = 1;
+      items[active].style.filter = "none";
+      items[active].style.opacity = 1;
+      
+      // Right-side cards (next items)
+      let stt = 0;
+      for (let i = active + 1; i < items.length; i++) {
+        stt++;
+        items[i].style.transform = `translateX(${120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(-1deg)`;
+        items[i].style.zIndex = 0;
+        items[i].style.filter = "blur(5px)";
+        items[i].style.opacity = stt > 2 ? 0 : 0.6;
+      }
+      
+      // Left-side cards (previous items)
+      stt = 0;
+      for (let i = active - 1; i >= 0; i--) {
+        stt++;
+        items[i].style.transform = `translateX(${-120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(1deg)`;
+        items[i].style.zIndex = 1;
+        items[i].style.filter = "blur(5px)";
+        items[i].style.opacity = stt > 2 ? 0 : 0.6;
+      }
+    }
+    
+    loadShow();
+    
+    const nextBtn = document.getElementById(`pc-next-${lastPart}`);
+    const prevBtn = document.getElementById(`pc-prev-${lastPart}`);
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        active = (active + 1) % items.length; // Loops back to 0 if exceeds max
+        loadShow();
+      });
+    }
+    
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        active = (active - 1 + items.length) % items.length; // Loops to last if < 0
+        loadShow();
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "RW - Card Carousel #6",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Slide Settings"
+    },
+    {
+      "type": "range",
+      "id": "slide_width",
+      "label": "Slide Width (Desktop)",
+      "min": 150,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "slide_height",
+      "label": "Slider Height (Desktop)",
+      "min": 200,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "default": 430
+    },
+    {
+      "type": "range",
+      "id": "slide_padding",
+      "label": "Slide Padding (Desktop)",
+      "min": 10,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_margin_top",
+      "label": "Margin Top (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "slide_border_radius",
+      "label": "Slide Border Radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "slide_bg_color",
+      "label": "Slide Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Slide Shadow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading Font Size (Desktop)",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 21
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        { 
+            "value": "left", 
+            "label": "Left" 
+        },
+        { 
+            "value": "center", 
+            "label": "Center" 
+        },
+        { 
+            "value": "right", 
+            "label": "Right" 
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading Font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        },
+        {
+          "value": "bolder",
+          "label": "Bolder"
+        },
+        {
+          "value": "lighter",
+          "label": "Lighter"
+        },
+        {
+          "value": "100",
+          "label": "100"
+        },
+        {
+          "value": "200",
+          "label": "200"
+        },
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_style",
+      "label": "Heading Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Heading Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "heading_text_decoration",
+      "label": "Heading Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "heading_text_decoration_color",
+      "label": "Heading Decoration Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "heading_padding_top",
+      "label": "Heading Padding Top (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "heading_padding_bottom",
+      "label": "Heading Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size",
+      "label": "Text Font Size (Desktop)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "select",
+      "id": "text_font_weight",
+      "label": "Text Font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        },
+        {
+          "value": "bolder",
+          "label": "Bolder"
+        },
+        {
+          "value": "lighter",
+          "label": "Lighter"
+        },
+        {
+          "value": "100",
+          "label": "100"
+        },
+        {
+          "value": "200",
+          "label": "200"
+        },
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "text_font_style",
+      "label": "Text Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "text_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Text Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "text_decoration",
+      "label": "Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "text_decoration_color",
+      "label": "Text Decoration Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "text_padding_top",
+      "label": "Text Padding Top (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "text_padding_bottom",
+      "label": "Text Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "header",
+      "content": "Navigation Settings"
+    },
+    {
+      "type": "range",
+      "id": "nav_button_size",
+      "label": "Button Size (Desktop)",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "color",
+      "id": "nav_button_color",
+      "label": "Button Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "nav_button_opacity",
+      "label": "Button Opacity",
+      "min": 0.1,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.7
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_min_height",
+      "label": "Mobile Minimum Height",
+      "min": 0,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "default": 500,
+      "info": "Sets minimum height on mobile screens"
+    },
+    {
+      "type": "range",
+      "id": "mobile_slide_width",
+      "label": "Slide Width (Mobile)",
+      "min": 120,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 210
+    },
+    {
+      "type": "range",
+      "id": "mobile_slide_height",
+      "label": "Slider Height (Mobile)",
+      "min": 150,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "default": 340
+    },
+    {
+      "type": "range",
+      "id": "mobile_slide_padding",
+      "label": "Slide Padding (Mobile)",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_margin_top",
+      "label": "Margin Top (Mobile)",
+      "min": 0,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_font_size",
+      "label": "Heading Font Size (Mobile)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_text_font_size",
+      "label": "Text Font Size (Mobile)",
+      "min": 8,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_nav_button_size",
+      "label": "Button Size (Mobile)",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "space_fact",
+      "name": "Space Fact",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Fact Title",
+          "default": "Space Fact"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Fact Content",
+          "default": "Interesting fact about space goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RW - Card Carousel #6",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 1",
+            "content": "Jupiter protects Earth - its gravity acts like a cosmic shield, deflecting comets and asteroids."
+          }
+        },
+        {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 2",
+            "content": "Stars \"beat\" like hearts - they pulsate, expanding and contracting as they burn fuel."
+          }
+        },
+        {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 3",
+            "content": "Galaxies can \"eat\" each other - the Milky Way is currently consuming the Sagittarius Dwarf Galaxy."
+          }
+        },
+        {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 4",
+            "content": "Space smells like seared steak - astronauts describe a metallic/grilled odor after spacewalks."
+          }
+        },
+        {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 5",
+            "content": "Astronauts grow taller in space - spines stretch up to 2 inches without gravity's compression."
+          }
+        },
+        {
+          "type": "space_fact",
+          "settings": {
+            "title": "Space Fact 6",
+            "content": "Space smells like seared steak - astronauts describe a metallic/grilled odor after spacewalks."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
