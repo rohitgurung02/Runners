@@ -1461,7 +1461,7 @@
       ],
       "name": "Marquee Text",
       "settings": {
-        "layer1_bg": "#c8a4a4",
+        "layer1_bg": "#e7735c",
         "layer1_color": "#000000",
         "layer1_direction": "left",
         "layer1_font_size": 18,
