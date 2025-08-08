@@ -1412,8 +1412,8 @@
         "layer1_bg": "#121212",
         "layer1_color": "#ffffff",
         "layer1_direction": "left",
-        "layer2_bg": "#f0f0f0",
-        "layer2_color": "#000000",
+        "layer2_bg": "#d06060",
+        "layer2_color": "#ffffff",
         "layer2_direction": "right",
         "pause_on_hover": true
       }
