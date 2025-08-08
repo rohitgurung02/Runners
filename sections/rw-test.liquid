@@ -77,6 +77,12 @@
       left: 0%;
     }
 
+    {{ sec_id }} {
+      margin-top: {{ section.settings.section_margin_top }}px;
+      margin-bottom: {{ section.settings.section_margin_bottom }}px;
+      overflow: hidden;
+    }
+
     {{ sec_id }} .pc-marquee-box-{{ last_part }} {
       font-size: {{ section.settings.layer1_font_size_mobile }}px !important;
       padding-top: {{ section.settings.layer1_padding_top_mobile }}px !important;
@@ -599,6 +605,24 @@
           "max": 100,
           "step": 1
         },
+        {
+        "type": "range",
+        "id": "section_margin_top_mobile",
+        "label": "Margin Top (px)",
+        "default": 10,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "section_margin_bottom_mobile",
+        "label": "Margin Bottom (px)",
+        "default": 10,
+        "min": 0,
+        "max": 150,
+        "step": 5
+      },
   ],
   "blocks": [
     {
