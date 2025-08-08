@@ -1386,6 +1386,37 @@
         "mobile_text_font_size": 16,
         "mobile_nav_button_size": 24
       }
+    },
+    "rw_test_eTNtK8": {
+      "type": "rw-test",
+      "blocks": {
+        "layer1_text_L9YxPf": {
+          "type": "layer1_text",
+          "settings": {
+            "text": "10% OFF ON ALL PRODUCTS - LIMITED OFFER"
+          }
+        },
+        "layer2_text_QmcFM6": {
+          "type": "layer2_text",
+          "settings": {
+            "text": "YOU WILL LOVE ALL THE ITEM ON THIS SITE"
+          }
+        }
+      },
+      "block_order": [
+        "layer1_text_L9YxPf",
+        "layer2_text_QmcFM6"
+      ],
+      "name": "Marquee Text",
+      "settings": {
+        "layer1_bg": "#d0c1c1",
+        "layer1_color": "#000000",
+        "layer1_direction": "left",
+        "layer2_bg": "#f0f0f0",
+        "layer2_color": "#000000",
+        "layer2_direction": "right",
+        "pause_on_hover": true
+      }
     }
   },
   "order": [
@@ -1406,6 +1437,7 @@
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
     "rw_wavy_background_1_cFNhmb",
-    "rw_card_carousel_6_A3yTqa"
+    "rw_card_carousel_6_A3yTqa",
+    "rw_test_eTNtK8"
   ]
 }
