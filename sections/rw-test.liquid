@@ -113,7 +113,7 @@
     {% endif %}
     padding-top: {{ section.settings.layer1_padding_top }}px;
     padding-bottom: {{ section.settings.layer1_padding_bottom }}px;
-
+    margin: 0;
     "
   >
     <div class="pc-marquee-{{ last_part }} {% if section.settings.pause_on_hover %}pc-pause-on-hover-{{ last_part }}{% endif %} {% if section.settings.layer1_direction == 'right' %}pc-marquee-right-{{ last_part }}{% endif %}">
@@ -142,6 +142,7 @@
     /* Padding settings */
     padding-top: {{ section.settings.layer2_padding_top }}px;
     padding-bottom: {{ section.settings.layer2_padding_bottom }}px;
+    margin: 0;
     "
   >
     <div class="pc-marquee-2-{{ last_part }} {% if section.settings.pause_on_hover %}pc-pause-on-hover-{{ last_part }}{% endif %} {% if section.settings.layer2_direction == 'left' %}pc-marquee-left-{{ last_part }}{% endif %}">
