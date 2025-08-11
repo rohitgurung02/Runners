@@ -1460,7 +1460,7 @@
       "name": "Marquee Text",
       "settings": {
         "speed": 26,
-        "pause_on_hover": false,
+        "pause_on_hover": true,
         "layer1_bg": "#2d27f5",
         "layer1_color": "#ffd700",
         "layer1_font_size": 24,
