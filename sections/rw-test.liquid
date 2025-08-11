@@ -29,55 +29,50 @@
     padding: 10px 0;
   }
   
-  /* Marquee track styles from first snippet */
+  /* Marquee track styles */
   {{ sec_id }} .pc-track {
     display: flex;
     align-items: center;
     white-space: nowrap;
     will-change: transform;
-  }
-  
-  {{ sec_id }} .pc-marquee-{{ last_part }},
-  {{ sec_id }} .pc-marquee-2-{{ last_part }} {
-    display: flex;
-    white-space: nowrap;
     width: max-content;
   }
   
-  {{ sec_id }} .pc-marquee-{{ last_part }} span,
-  {{ sec_id }} .pc-marquee-2-{{ last_part }} span {
-    padding: 0 1rem;
+  /* Left to right animation */
+  {{ sec_id }} .pc-track-left {
+    animation: pc-marquee-left {{ section.settings.speed }}s linear infinite;
+  }
+  
+  /* Right to left animation */
+  {{ sec_id }} .pc-track-right {
+    animation: pc-marquee-right {{ section.settings.speed }}s linear infinite;
+  }
+  
+  {{ sec_id }} .pc-content {
     display: inline-block;
+    margin-left: 40px;
+    font-size: inherit;
   }
   
-  /* Animation styles from first snippet */
-  {{ sec_id }} .pc-marquee-left {
-    animation: pc-marquee-left-anim {{ section.settings.speed }}s linear infinite;
-  }
-  
-  {{ sec_id }} .pc-marquee-right {
-    animation: pc-marquee-right-anim {{ section.settings.speed }}s linear infinite;
-  }
-  
-  @keyframes pc-marquee-left-anim {
-    from {
+  @keyframes pc-marquee-left {
+    0% {
       transform: translateX(0);
     }
-    to {
-      transform: translateX(-20%);
+    100% {
+      transform: translateX(-50%);
     }
   }
   
-  @keyframes pc-marquee-right-anim {
-    from {
-      transform: translateX(-20%);
+  @keyframes pc-marquee-right {
+    0% {
+      transform: translateX(-50%);
     }
-    to {
+    100% {
       transform: translateX(0);
     }
   }
   
-  {{ sec_id }} .pc-pause-on-hover-{{ last_part }}:hover {
+  {{ sec_id }} .pc-pause-on-hover:hover {
     animation-play-state: paused;
   }
   
@@ -88,9 +83,8 @@
     }
 
     {{ sec_id }} {
-      margin-top: {{ section.settings.section_margin_top_mobile}}px  !important;
-      margin-bottom: {{ section.settings.section_margin_bottom_mobile }}px  !important;
-      overflow: hidden;
+      margin-top: {{ section.settings.section_margin_top_mobile}}px !important;
+      margin-bottom: {{ section.settings.section_margin_bottom_mobile }}px !important;
     }
 
     {{ sec_id }} .pc-marquee-box-{{ last_part }} {
@@ -104,32 +98,36 @@
       padding-top: {{ section.settings.layer2_padding_top_mobile }}px !important;
       padding-bottom: {{ section.settings.layer2_padding_bottom_mobile }}px !important;
     }
+    
+    {{ sec_id }} .pc-content {
+      margin-left: 20px;
+    }
   }
 </style>
 
 <pc-marquee-section-{{ last_part }}>
+  <!-- Layer 1 - Default direction (left to right) -->
   <div 
     class="pc-marquee-box-{{ last_part }}" 
     style="background-color: {{ section.settings.layer1_bg }};
            color: {{ section.settings.layer1_color }};
            font-size: {{ section.settings.layer1_font_size }}px;
-    font-weight: {{ section.settings.layer1_font_weight }};
-    font-style: {{ section.settings.layer1_font_style }};
-    letter-spacing: {{ section.settings.layer1_letter_spacing }}px;
-    text-decoration: {{ section.settings.layer1_text_decoration }};
-    {% if section.settings.layer1_text_decoration != 'none' %}
-      text-decoration-color: {{ section.settings.layer1_text_decoration_color }};
-    {% endif %}
-    padding-top: {{ section.settings.layer1_padding_top }}px;
-    padding-bottom: {{ section.settings.layer1_padding_bottom }}px;
-    margin: 0;
-    "
+           font-weight: {{ section.settings.layer1_font_weight }};
+           font-style: {{ section.settings.layer1_font_style }};
+           letter-spacing: {{ section.settings.layer1_letter_spacing }}px;
+           text-decoration: {{ section.settings.layer1_text_decoration }};
+           {% if section.settings.layer1_text_decoration != 'none' %}
+             text-decoration-color: {{ section.settings.layer1_text_decoration_color }};
+           {% endif %}
+           padding-top: {{ section.settings.layer1_padding_top }}px;
+           padding-bottom: {{ section.settings.layer1_padding_bottom }}px;
+           margin: 0;"
   >
-    <div class="pc-track {% if section.settings.pause_on_hover %}pc-pause-on-hover-{{ last_part }}{% endif %}">
+    <div class="pc-track pc-track-left {% if section.settings.pause_on_hover %}pc-pause-on-hover{% endif %}">
       {%- for i in (1..10) -%}
         {%- for block in section.blocks -%}
           {%- if block.type == 'layer1_text' -%}
-            <span class="pc-content pc-text" style="margin-left: 40px; font-size: {{ section.settings.layer1_font_size }}px;">
+            <span class="pc-content">
               {{ block.settings.text | escape }}
             </span>
           {%- endif -%}
@@ -138,28 +136,28 @@
     </div>
   </div>
   
+  <!-- Layer 2 - Opposite direction (right to left) -->
   <div 
     class="pc-marquee-box-2-{{ last_part }}" 
     style="background-color: {{ section.settings.layer2_bg }}; 
-    color: {{ section.settings.layer2_color }};
-    font-size: {{ section.settings.layer2_font_size }}px;
-    font-weight: {{ section.settings.layer2_font_weight }};
-    font-style: {{ section.settings.layer2_font_style }};
-    letter-spacing: {{ section.settings.layer2_letter_spacing }}px;
-    text-decoration: {{ section.settings.layer2_text_decoration }};
-    {% if section.settings.layer2_text_decoration != 'none' %}
-      text-decoration-color: {{ section.settings.layer2_text_decoration_color }};
-    {% endif %}
-    padding-top: {{ section.settings.layer2_padding_top }}px;
-    padding-bottom: {{ section.settings.layer2_padding_bottom }}px;
-    margin: 0;
-    "
+           color: {{ section.settings.layer2_color }};
+           font-size: {{ section.settings.layer2_font_size }}px;
+           font-weight: {{ section.settings.layer2_font_weight }};
+           font-style: {{ section.settings.layer2_font_style }};
+           letter-spacing: {{ section.settings.layer2_letter_spacing }}px;
+           text-decoration: {{ section.settings.layer2_text_decoration }};
+           {% if section.settings.layer2_text_decoration != 'none' %}
+             text-decoration-color: {{ section.settings.layer2_text_decoration_color }};
+           {% endif %}
+           padding-top: {{ section.settings.layer2_padding_top }}px;
+           padding-bottom: {{ section.settings.layer2_padding_bottom }}px;
+           margin: 0;"
   >
-    <div class="pc-track {% if section.settings.pause_on_hover %}pc-pause-on-hover-{{ last_part }}{% endif %}">
+    <div class="pc-track pc-track-right {% if section.settings.pause_on_hover %}pc-pause-on-hover{% endif %}">
       {%- for i in (1..10) -%}
         {%- for block in section.blocks -%}
           {%- if block.type == 'layer2_text' -%}
-            <span class="pc-content pc-text" style="margin-left: 40px; font-size: {{ section.settings.layer2_font_size }}px;">
+            <span class="pc-content">
               {{ block.settings.text | escape }}
             </span>
           {%- endif -%}
