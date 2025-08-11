@@ -1370,62 +1370,6 @@
         "mobile_text_font_size": 16,
         "mobile_nav_button_size": 24
       }
-    },
-    "marquee_text_4_rUqNBL": {
-      "type": "marquee-text-4",
-      "blocks": {
-        "layer1_text_AfjXgd": {
-          "type": "layer1_text",
-          "settings": {
-            "text": "10% OFF ON ALL PRODUCTS - LIMITED OFFER"
-          }
-        },
-        "layer2_text_3R3Qt8": {
-          "type": "layer2_text",
-          "settings": {
-            "text": "YOU WILL LOVE ALL THE ITEM ON THIS SITE"
-          }
-        }
-      },
-      "block_order": [
-        "layer1_text_AfjXgd",
-        "layer2_text_3R3Qt8"
-      ],
-      "name": "Marquee Text - #4",
-      "settings": {
-        "speed": 26,
-        "pause_on_hover": true,
-        "layer1_bg": "#F5276C",
-        "layer1_color": "#FFFFFF",
-        "layer1_font_size": 24,
-        "layer1_font_weight": "normal",
-        "layer1_font_style": "normal",
-        "layer1_letter_spacing": 0,
-        "layer1_text_decoration": "none",
-        "layer1_text_decoration_color": "#000",
-        "layer1_padding_top": 2,
-        "layer1_padding_bottom": 2,
-        "layer2_bg": "#BF40BF",
-        "layer2_color": "#FFFFFF",
-        "layer2_font_size": 24,
-        "layer2_font_weight": "normal",
-        "layer2_font_style": "normal",
-        "layer2_letter_spacing": 0,
-        "layer2_text_decoration": "none",
-        "layer2_text_decoration_color": "#000",
-        "layer2_padding_top": 2,
-        "layer2_padding_bottom": 2,
-        "section_margin_top": 10,
-        "section_margin_bottom": 10,
-        "layer1_font_size_mobile": 18,
-        "layer1_padding_top_mobile": 9,
-        "layer1_padding_bottom_mobile": 9,
-        "layer2_font_size_mobile": 18,
-        "layer2_padding_top_mobile": 9,
-        "layer2_padding_bottom_mobile": 9,
-        "section_margin_top_mobile": 10,
-        "section_margin_bottom_mobile": 10
-      }
     }
   },
   "order": [
@@ -1446,7 +1390,6 @@
     "rw_service_grid_Dq4iqf",
     "rw_text_animation_ETLPy6",
     "rw_wavy_background_1_cFNhmb",
-    "rw_card_carousel_6_A3yTqa",
-    "marquee_text_4_rUqNBL"
+    "rw_card_carousel_6_A3yTqa"
   ]
 }
