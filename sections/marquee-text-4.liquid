@@ -1,0 +1,660 @@
+{%- liquid
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign parts = sec_id | split: '_'
+  assign last_lower = parts | last
+  assign last_part = last_lower | downcase
+-%}
+
+<style>
+  {{ sec_id }} {
+    width: 100%;
+    padding: 40px 0;
+    margin-top: {{ section.settings.section_margin_top }}px;
+    margin-bottom: {{ section.settings.section_margin_bottom }}px;
+    overflow: hidden;
+  }
+  
+  {{ sec_id }} .pc-marquee-box-{{ last_part }} {
+    transform: rotate(3.5deg);
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0;
+  }
+  
+  {{ sec_id }} .pc-marquee-box-2-{{ last_part }} {
+    transform: rotate(-2.5deg);
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+    padding: 10px 0;
+  }
+  
+  /* Marquee track styles */
+  {{ sec_id }} .pc-track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+    width: max-content;
+  }
+  
+  /* Left to right animation */
+  {{ sec_id }} .pc-track-left {
+    animation: pc-marquee-left {{ section.settings.speed }}s linear infinite;
+  }
+  
+  /* Right to left animation */
+  {{ sec_id }} .pc-track-right {
+    animation: pc-marquee-right {{ section.settings.speed }}s linear infinite;
+  }
+  
+  {{ sec_id }} .pc-content {
+    display: inline-block;
+    margin-left: 40px;
+    font-size: inherit;
+  }
+  
+  @keyframes pc-marquee-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  @keyframes pc-marquee-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  {{ sec_id }} .pc-pause-on-hover:hover {
+    animation-play-state: paused;
+  }
+  
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-marquee-box-{{ last_part }},
+    {{ sec_id }} .pc-marquee-box-2-{{ last_part }} {
+      left: 0%;
+    }
+
+    {{ sec_id }} {
+      margin-top: {{ section.settings.section_margin_top_mobile}}px !important;
+      margin-bottom: {{ section.settings.section_margin_bottom_mobile }}px !important;
+    }
+
+    {{ sec_id }} .pc-marquee-box-{{ last_part }} {
+      font-size: {{ section.settings.layer1_font_size_mobile }}px !important;
+      padding-top: {{ section.settings.layer1_padding_top_mobile }}px !important;
+      padding-bottom: {{ section.settings.layer1_padding_bottom_mobile }}px !important;
+    }
+
+    {{ sec_id }} .pc-marquee-box-2-{{ last_part }} {
+      font-size: {{ section.settings.layer2_font_size_mobile }}px !important;
+      padding-top: {{ section.settings.layer2_padding_top_mobile }}px !important;
+      padding-bottom: {{ section.settings.layer2_padding_bottom_mobile }}px !important;
+    }
+    
+    {{ sec_id }} .pc-content {
+      margin-left: 20px;
+    }
+  }
+</style>
+
+<pc-marquee-section-{{ last_part }}>
+  <!-- Layer 1 - Default direction (left to right) -->
+  <div 
+    class="pc-marquee-box-{{ last_part }}" 
+    style="background-color: {{ section.settings.layer1_bg }};
+           color: {{ section.settings.layer1_color }};
+           font-size: {{ section.settings.layer1_font_size }}px;
+           font-weight: {{ section.settings.layer1_font_weight }};
+           font-style: {{ section.settings.layer1_font_style }};
+           letter-spacing: {{ section.settings.layer1_letter_spacing }}px;
+           text-decoration: {{ section.settings.layer1_text_decoration }};
+           {% if section.settings.layer1_text_decoration != 'none' %}
+             text-decoration-color: {{ section.settings.layer1_text_decoration_color }};
+           {% endif %}
+           padding-top: {{ section.settings.layer1_padding_top }}px;
+           padding-bottom: {{ section.settings.layer1_padding_bottom }}px;
+           margin: 0;"
+  >
+    <div class="pc-track pc-track-left {% if section.settings.pause_on_hover %}pc-pause-on-hover{% endif %}">
+      {%- for i in (1..10) -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'layer1_text' -%}
+            <span class="pc-content">
+              {{ block.settings.text | escape }}
+            </span>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+  
+  <!-- Layer 2 - Opposite direction (right to left) -->
+  <div 
+    class="pc-marquee-box-2-{{ last_part }}" 
+    style="background-color: {{ section.settings.layer2_bg }}; 
+           color: {{ section.settings.layer2_color }};
+           font-size: {{ section.settings.layer2_font_size }}px;
+           font-weight: {{ section.settings.layer2_font_weight }};
+           font-style: {{ section.settings.layer2_font_style }};
+           letter-spacing: {{ section.settings.layer2_letter_spacing }}px;
+           text-decoration: {{ section.settings.layer2_text_decoration }};
+           {% if section.settings.layer2_text_decoration != 'none' %}
+             text-decoration-color: {{ section.settings.layer2_text_decoration_color }};
+           {% endif %}
+           padding-top: {{ section.settings.layer2_padding_top }}px;
+           padding-bottom: {{ section.settings.layer2_padding_bottom }}px;
+           margin: 0;"
+  >
+    <div class="pc-track pc-track-right {% if section.settings.pause_on_hover %}pc-pause-on-hover{% endif %}">
+      {%- for i in (1..10) -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'layer2_text' -%}
+            <span class="pc-content">
+              {{ block.settings.text | escape }}
+            </span>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</pc-marquee-section-{{ last_part }}>
+
+{% schema %}
+{
+  "name": "Marquee Text - #4",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Animation Settings"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "default": 26,
+      "label": "Animation speed (seconds)"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on Hover",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layer 1 Settings"
+    },
+    {
+      "type": "color",
+      "id": "layer1_bg",
+      "label": "Layer 1 Background Color",
+      "default": "#F5276C"
+    },
+    {
+      "type": "color",
+      "id": "layer1_color",
+      "label": "Layer 1 Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "layer1_font_size",
+      "label": "Layer 1 Font Size",
+      "min": 6,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "layer1_font_weight",
+      "label": "Layer 1 Font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        },
+        {
+          "value": "bolder",
+          "label": "Bolder"
+        },
+        {
+          "value": "lighter",
+          "label": "Lighter"
+        },
+        {
+          "value": "100",
+          "label": "100"
+        },
+        {
+          "value": "200",
+          "label": "200"
+        },
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "layer1_font_style",
+      "label": "Layer 1 Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "layer1_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Layer 1 Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "layer1_text_decoration",
+      "label": "Layer 1 Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "layer1_text_decoration_color",
+      "label": "Layer 1 Text Decoration Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "layer1_padding_top",
+      "label": "Layer 1 Padding Top (px)",
+      "default": 2,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "layer1_padding_bottom",
+      "label": "Layer 1 Padding Bottom (px)",
+      "default": 2,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "header",
+      "content": "Layer 2 Settings"
+    },
+    {
+      "type": "color",
+      "id": "layer2_bg",
+      "label": "Layer 2 Background Color",
+      "default": "#BF40BF"
+    },
+    {
+      "type": "color",
+      "id": "layer2_color",
+      "label": "Layer 2 Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "layer2_font_size",
+      "label": "Layer 2 Font Size",
+      "min": 6,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "layer2_font_weight",
+      "label": "Layer 2 Font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        },
+        {
+          "value": "bolder",
+          "label": "Bolder"
+        },
+        {
+          "value": "lighter",
+          "label": "Lighter"
+        },
+        {
+          "value": "100",
+          "label": "100"
+        },
+        {
+          "value": "200",
+          "label": "200"
+        },
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "layer2_font_style",
+      "label": "Layer 2 Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "layer2_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Layer 2 Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "layer2_text_decoration",
+      "label": "Layer 2 Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "layer2_text_decoration_color",
+      "label": "Layer 2 Text Decoration Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "layer2_padding_top",
+      "label": "Layer 2 Padding Top (px)",
+      "default": 2,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "layer2_padding_bottom",
+      "label": "Layer 2 Padding Bottom (px)",
+      "default": 2,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "section_margin_top",
+      "label": "Margin Top (px)",
+      "default": 10,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "section_margin_bottom",
+      "label": "Margin Bottom (px)",
+      "default": 10,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "layer1_font_size_mobile",
+      "label": "Layer 1 Font Size",
+      "min": 6,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "layer1_padding_top_mobile",
+      "label": "Layer 1 Padding Top (px)",
+      "default": 9,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "layer1_padding_bottom_mobile",
+      "label": "Layer 1 Padding Bottom (px)",
+      "default": 9,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "layer2_font_size_mobile",
+      "label": "Layer 2 Font Size",
+      "min": 6,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "layer2_padding_top_mobile",
+      "label": "Layer 2 Padding Top (px)",
+      "default": 9,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "layer2_padding_bottom_mobile",
+      "label": "Layer 2 Padding Bottom (px)",
+      "default": 9,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "section_margin_top_mobile",
+      "label": "Margin Top (px)",
+      "default": 10,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "section_margin_bottom_mobile",
+      "label": "Margin Bottom (px)",
+      "default": 10,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "layer1_text",
+      "name": "Layer 1 Text Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "10% OFF ON ALL PRODUCTS - LIMITED OFFER"
+        }
+      ]
+    },
+    {
+      "type": "layer2_text",
+      "name": "Layer 2 Text Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "YOU WILL LOVE ALL THE ITEM ON THIS SITE"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Text - #4",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "layer1_text"
+        },
+        {
+          "type": "layer2_text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
