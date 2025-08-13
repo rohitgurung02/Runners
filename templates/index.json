@@ -1481,6 +1481,52 @@
         "dot_color": "#232323",
         "dot_active_color": "#232323"
       }
+    },
+    "rw_test_gkaMNh": {
+      "type": "rw-test",
+      "blocks": {
+        "testimonial_TXzDVj": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>Enter your testimonial quote here</p>"
+          }
+        },
+        "testimonial_zNEYV7": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>Enter your testimonial quote here</p>"
+          }
+        },
+        "testimonial_jdpzBx": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>Enter your testimonial quote here</p>"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_TXzDVj",
+        "testimonial_zNEYV7",
+        "testimonial_jdpzBx"
+      ],
+      "name": "Testimonial Slider #1",
+      "settings": {
+        "max_width": 700,
+        "background_color": "#e2e2e2",
+        "auto_rotate": false,
+        "rotate_interval": 5,
+        "show_nav_buttons": true,
+        "show_dots": true,
+        "text_background": "rgba(255,255,255,0.57)",
+        "quote_font_size": 20,
+        "mobile_quote_font_size": 16,
+        "quote_color": "#232323",
+        "nav_background": "#232323",
+        "nav_icon_color": "rgba(255,255,255,0.57)",
+        "nav_icon_hover_color": "#ffffff",
+        "dot_color": "#232323",
+        "dot_active_color": "#232323"
+      }
     }
   },
   "order": [
@@ -1503,6 +1549,7 @@
     "rw_wavy_background_1_cFNhmb",
     "rw_card_carousel_6_A3yTqa",
     "marquee_text_4_dwwPnB",
-    "rw_test_QTdBdN"
+    "rw_test_QTdBdN",
+    "rw_test_gkaMNh"
   ]
 }
