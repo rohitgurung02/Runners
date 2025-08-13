@@ -1122,7 +1122,6 @@
         "feature_EEYcQr",
         "feature_3aanHQ"
       ],
-      "disabled": true,
       "name": "RW - Service Grid #1",
       "settings": {
         "effect_label": "Services",
@@ -1223,7 +1222,6 @@
         "animation_rrVFCG",
         "animation_gPQprF"
       ],
-      "disabled": true,
       "name": "RW - Text Animation #1",
       "settings": {
         "heading": "Heading",
@@ -1248,7 +1246,6 @@
     },
     "rw_wavy_background_1_cFNhmb": {
       "type": "rw-wavy-background-1",
-      "disabled": true,
       "name": "RW - Wavy Background #1",
       "settings": {
         "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -1419,7 +1416,6 @@
         "layer1_text_yfXVwr",
         "layer2_text_CQdxbz"
       ],
-      "disabled": true,
       "name": "Marquee Text - #4",
       "settings": {
         "speed": 26,
