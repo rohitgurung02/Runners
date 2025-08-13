@@ -1,319 +1,377 @@
-{%- assign sec_id = '#shopify-section-' | append: section.id -%}
-{%- assign parts = sec_id | split: '_' -%}
-{%- assign last_lower = parts | last -%}
-{%- assign last_part = last_lower | downcase -%}
+{%- liquid
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign parts = sec_id | split: '_'
+  assign last_lower = parts | last
+  assign last_part = last_lower | downcase
+-%}
 
 <style>
-  {{ sec_id }} {
-    background: #111;
+  {{ sec_id }} .pc-slider-container-{{ last_part }} {
+    height: 100vh;
     margin: 0;
-    padding: 1rem;
-    min-height: 100svh;
-    display: grid;
-    place-content: center;
-    grid-template-rows: 1fr auto;
-  }
-
-  {{ sec_id }} * {
-    box-sizing: border-box;
-  }
-
-  {{ sec_id }} .pc-flip-container-{{ last_part }} {
-    align-content: center;
-    font-family: {{ section.settings.font_family }}, monospace;
-  }
-
-  {{ sec_id }} .pc-flip-text-{{ last_part }} {
-    --clr-1: {{ section.settings.primary_color }};
-    --clr-2: {{ section.settings.secondary_color }};
-    --clr-3: {{ section.settings.accent_color }};
-    --translate-distance: 1lh;
-    --duration: {{ section.settings.animation_duration }}s;
-    --timing-function: cubic-bezier(0.66, 0, 0.34, 1);
-
-    overflow-y: hidden;
-    width: min(100%, 1200px);
-    margin-inline: auto;
-    display: grid;
-    grid-auto-columns: 1fr;
-    grid-auto-flow: column;
-    gap: 0;
-    font-size: clamp(1rem, 4.5vw + 0.05rem, 5rem);
-    font-weight: 700;
-    color: var(--clr-1);
-    line-height: 1;
-  }
-
-  {{ sec_id }} .pc-flip-text-{{ last_part }}:nth-child(2) {
-    font-size: clamp(1rem, 3.5vw + 0.05rem, 3rem);
-    font-weight: 300;
-    color: var(--clr-2);
-    --delay-factor: 300ms;
-  }
-
-  {{ sec_id }} .pc-flip-text-{{ last_part }} > * {
-    --delay: calc(var(--i) * 100ms + var(--delay-factor, 0ms));
-    --translate: calc(var(--translate-distance) * 2);
-
-    display: grid;
-    place-content: center;
-  }
-
-  @media not (prefers-reduced-motion) {
-    {{ sec_id }} .pc-flip-text-{{ last_part }} > * {
-      animation-name: pc-flip-transform-{{ last_part }}, pc-flip-translate-{{ last_part }};
-      animation-duration: var(--duration);
-      animation-timing-function: var(--timing-function);
-      animation-iteration-count: infinite;
-      animation-delay: var(--delay);
-    }
-  }
-
-  {{ sec_id }} .pc-flip-footer-{{ last_part }} {
     display: flex;
     align-items: center;
+    background-color: var(--pc-primary-{{ last_part }});
+    overflow: hidden;
+    transition: all 1s ease-in-out;
+  }
+
+  {{ sec_id }} .pc-slider-container-{{ last_part }}::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+  }
+
+  {{ sec_id }} .pc-slider-card-{{ last_part }} {
+    height: 200px;
+    max-width: 80vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: var(--pc-frost-{{ last_part }});
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: {% if section.settings.enable_shadow %}0 8px 32px rgba(0, 0, 0, 0.1){% else %}none{% endif %};
+  }
+
+  {{ sec_id }} .pc-slider-content-{{ last_part }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 1rem;
-    font-size: 0.7rem;
-    color: #aaa;
+    z-index: 50;
+    background-color: var(--pc-primary-{{ last_part }});
   }
 
-  {{ sec_id }} .pc-flip-footer-{{ last_part }} > a {
-    color: {{ section.settings.link_color }};
-    text-decoration: none;
-    transition: color 150ms ease-in-out;
+  {{ sec_id }} .pc-slider-title-{{ last_part }} {
+    font-weight: {{ section.settings.title_weight }};
+    font-family: var(--pc-font-family-{{ last_part }});
+    color: var(--pc-secondary-{{ last_part }});
+    font-size: {{ section.settings.mobile_title_size }}px;
   }
 
-  {{ sec_id }} .pc-flip-footer-{{ last_part }} > a:hover {
-    color: {{ section.settings.link_hover_color }};
+  {{ sec_id }} .pc-slider-image-{{ last_part }} {
+    overflow: hidden;
   }
 
-  @keyframes pc-flip-transform-{{ last_part }} {
-    25% {
-      /*scale: 1 -1;*/
+  {{ sec_id }} .pc-slide-{{ last_part }} {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  {{ sec_id }} .pc-slider-dots-{{ last_part }} {
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  {{ sec_id }} .pc-dot-{{ last_part }} {
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: var(--pc-frost-{{ last_part }});
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  {{ sec_id }} .pc-active-{{ last_part }} {
+    background-color: var(--pc-primary-{{ last_part }});
+  }
+
+  @keyframes pc-slidein-{{ last_part }} {
+    from {
+      transform: translateX(-3000px);
     }
-    50%,
-    100% {
-      transform: translateY(calc(var(--translate) * -1));
+    to {
+      transform: translateX(0);
     }
   }
 
-  @keyframes pc-flip-translate-{{ last_part }} {
-    24.999999% {
-      opacity: 1;
-      translate: 0 0;
+  @media (width >= 48rem) {
+    {{ sec_id }} .pc-slider-title-{{ last_part }} {
+      font-size: {{ section.settings.desktop_title_size }}px;
     }
-    25% {
-      opacity: 0;
-    }
-    25.000001%,
-    100% {
-      opacity: 1;
-      translate: 0 calc(var(--translate) * 1);
+    {{ sec_id }} .pc-slider-card-{{ last_part }} {
+      height: {{ section.settings.desktop_card_height }}px;
     }
   }
-
-  {% for i in (1..22) %}
-    {{ sec_id }} .pc-flip-text-{{ last_part }} > *:nth-child({{ i }}) {
-      --i: {{ i }};
-    }
-  {% endfor %}
 </style>
 
-<section class="pc-flip-container-{{ last_part }}">
-  <div class="pc-flip-text-{{ last_part }}">
-    {%- assign first_text = section.settings.first_text | default: "1000 FOLLOWERS" -%}
-    {%- for char in first_text -%}
-      <span>{{ char }}</span>
+<pc-slider-container-{{ last_part }} class="pc-slider-container-{{ last_part }}">
+  <pc-slider-card-{{ last_part }} class="pc-slider-card-{{ last_part }}">
+    <div class="pc-slider-content-{{ last_part }}">
+      <h1 class="pc-slider-title-{{ last_part }}">{{ section.settings.slides[0].title }}</h1>
+    </div>
+    <div class="pc-slider-image-{{ last_part }}">
+      {%- if section.settings.slides[0].image != blank -%}
+        {% assign image_class = 'pc-slide-' | append: last_part %}
+        {{ 
+          section.settings.slides[0].image 
+          | image_url: width: 1000 
+          | image_tag: 
+              loading: 'lazy', 
+              class: image_class,
+              alt: section.settings.slides[0].image.alt 
+        }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: class: 'pc-slide-' | append: last_part }}
+      {%- endif -%}
+    </div>
+  </pc-slider-card-{{ last_part }}>
+  <div class="pc-slider-dots-{{ last_part }}">
+    {%- for block in section.blocks -%}
+      <span class="pc-dot-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}" data-index="{{ forloop.index0 }}"></span>
     {%- endfor -%}
   </div>
-  
-  <div class="pc-flip-text-{{ last_part }}">
-    {%- assign second_text = section.settings.second_text | default: "♥♥♥♥ THANKYOU ♥♥♥♥" -%}
-    {%- for char in second_text -%}
-      <span>{{ char }}</span>
-    {%- endfor -%}
-  </div>
+</pc-slider-container-{{ last_part }}>
 
-  {%- if section.settings.show_footer -%}
-    <footer class="pc-flip-footer-{{ last_part }}">
-      {{ section.settings.footer_label }}
-      {%- for block in section.blocks -%}
-        <a href="{{ block.settings.link_url }}" target="_blank" title="{{ block.settings.link_title }}">
-          {{ block.settings.link_text }}
-        </a>
-      {%- endfor -%}
-    </footer>
-  {%- endif -%}
-</section>
+<script>
+  class PCSlider{{ last_part | capitalize }} extends HTMLElement {
+    constructor() {
+      super();
+      this.slides = {{ section.settings.slides | json }};
+      this.current = 0;
+      this.autoRotate = {{ section.settings.auto_rotate }};
+      this.rotateSpeed = {{ section.settings.rotate_speed }};
+      this.interval = null;
+      
+      this.querySelectorAll('.pc-dot-{{ last_part }}').forEach(dot => {
+        dot.addEventListener('click', () => {
+          this.current = parseInt(dot.dataset.index);
+          this.updateSlider();
+        });
+      });
+      
+      if (this.autoRotate) {
+        this.startRotation();
+      }
+    }
+    
+    updateSlider() {
+      const slide = this.querySelector('.pc-slide-{{ last_part }}');
+      const title = this.querySelector('.pc-slider-title-{{ last_part }}');
+      const dots = this.querySelectorAll('.pc-dot-{{ last_part }}');
+      
+      if (this.slides[this.current].image) {
+        slide.src = '{{ section.settings.slides[0].image | image_url: width: 1000 }}'.replace('{{ section.settings.slides[0].image | image_url: width: 1000 | split: '/' | last }}', this.slides[this.current].image);
+      }
+      slide.alt = this.slides[this.current].image?.alt || '';
+      title.textContent = this.slides[this.current].title;
+      
+      slide.style.animation = 'none';
+      void slide.offsetWidth;
+      slide.style.animation = `pc-slidein-{{ last_part }} 0.5s ease-in-out forwards`;
+      
+      this.style.background = `url(${this.slides[this.current].image})`;
+      this.style.backgroundPosition = 'center';
+      this.style.backgroundSize = 'cover';
+      
+      dots.forEach((dot, index) => {
+        if (index === this.current) {
+          dot.classList.add('pc-active-{{ last_part }}');
+        } else {
+          dot.classList.remove('pc-active-{{ last_part }}');
+        }
+      });
+    }
+    
+    startRotation() {
+      this.interval = setInterval(() => {
+        this.current = (this.current + 1) % this.slides.length;
+        this.updateSlider();
+      }, this.rotateSpeed * 1000);
+    }
+    
+    disconnectedCallback() {
+      if (this.interval) {
+        clearInterval(this.interval);
+      }
+    }
+  }
+  
+  customElements.define('pc-slider-container-{{ last_part }}', PCSlider{{ last_part | capitalize }});
+</script>
 
 {% schema %}
 {
-  "name": "Flip Text Animation #1",
+  "name": "PWC - Image Slider #1",
   "settings": [
     {
       "type": "header",
-      "content": "Content"
-    },
-    {
-      "type": "text",
-      "id": "first_text",
-      "label": "First Line Text",
-      "default": "1000 FOLLOWERS"
-    },
-    {
-      "type": "text",
-      "id": "second_text",
-      "label": "Second Line Text",
-      "default": "♥♥♥♥ THANKYOU ♥♥♥♥"
-    },
-    {
-      "type": "header",
-      "content": "Footer Settings"
+      "content": "General Settings"
     },
     {
       "type": "checkbox",
-      "id": "show_footer",
-      "label": "Show Footer",
+      "id": "auto_rotate",
+      "label": "Auto Rotate Slides",
       "default": true
     },
     {
-      "type": "text",
-      "id": "footer_label",
-      "label": "Footer Label",
-      "default": "Previous celebratory pens:"
+      "type": "range",
+      "id": "rotate_speed",
+      "label": "Rotation Speed (seconds)",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "unit": "s"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Card Shadow",
+      "default": true
     },
     {
       "type": "header",
-      "content": "Style Settings"
-    },
-    {
-      "type": "select",
-      "id": "font_family",
-      "label": "Font Family",
-      "options": [
-        {
-          "value": "system-ui",
-          "label": "System UI"
-        },
-        {
-          "value": "Arial",
-          "label": "Arial"
-        },
-        {
-          "value": "Courier New",
-          "label": "Courier New"
-        },
-        {
-          "value": "Georgia",
-          "label": "Georgia"
-        },
-        {
-          "value": "Times New Roman",
-          "label": "Times New Roman"
-        }
-      ],
-      "default": "Courier New"
+      "content": "Color Settings"
     },
     {
       "type": "color",
       "id": "primary_color",
       "label": "Primary Color",
-      "default": "#1e90ff"
+      "default": "#ffffff"
     },
     {
       "type": "color",
       "id": "secondary_color",
       "label": "Secondary Color",
-      "default": "#ff69b4"
+      "default": "#2e2d2d"
     },
     {
       "type": "color",
-      "id": "accent_color",
-      "label": "Accent Color",
-      "default": "#5ea500"
-    },
-    {
-      "type": "color",
-      "id": "link_color",
-      "label": "Link Color",
-      "default": "#1e90ff"
-    },
-    {
-      "type": "color",
-      "id": "link_hover_color",
-      "label": "Link Hover Color",
-      "default": "#ff69b4"
+      "id": "frost_color",
+      "label": "Frosted Color",
+      "default": "rgba(255, 255, 255, 0.4)"
     },
     {
       "type": "header",
-      "content": "Animation Settings"
+      "content": "Typography Settings"
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title Font Weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
     },
     {
       "type": "range",
-      "id": "animation_duration",
-      "label": "Animation Duration",
-      "min": 1,
-      "max": 10,
-      "step": 0.5,
-      "unit": "s",
-      "default": 3
+      "id": "desktop_title_size",
+      "label": "Title Font Size (Desktop)",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "desktop_card_height",
+      "label": "Card Height (Desktop)",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_size",
+      "label": "Title Font Size (Mobile)",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
     }
   ],
   "blocks": [
     {
-      "name": "Footer Link",
-      "type": "link",
+      "type": "slide",
+      "name": "Slide",
       "settings": [
         {
-          "type": "text",
-          "id": "link_text",
-          "label": "Link Text"
-        },
-        {
-          "type": "url",
-          "id": "link_url",
-          "label": "Link URL"
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
         },
         {
           "type": "text",
-          "id": "link_title",
-          "label": "Link Title"
+          "id": "title",
+          "label": "Title",
+          "default": "Slide Title"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Flip Text Animation #1",
-      "category": "Text",
+      "name": "PWC - Image Slider #1",
+      "category": "Image",
       "blocks": [
         {
-          "type": "link",
+          "type": "slide",
           "settings": {
-            "link_text": "500",
-            "link_title": "See my pen celebrating 500 followers"
+            "title": "Elegance"
           }
         },
         {
-          "type": "link",
+          "type": "slide",
           "settings": {
-            "link_text": "404",
-            "link_title": "See my pen celebrating 404 followers"
+            "title": "Mechanics"
           }
         },
         {
-          "type": "link",
+          "type": "slide",
           "settings": {
-            "link_text": "200",
-            "link_title": "See my pen celebrating 200 followers"
-          }
-        },
-        {
-          "type": "link",
-          "settings": {
-            "link_text": "100",
-            "link_title": "See my pen celebrating 100 followers"
+            "title": "Adventure"
           }
         }
       ]
