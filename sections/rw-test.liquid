@@ -3,159 +3,103 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-testimonials-{{ last_part }}>
-  <div class="pc-testimonials-container-{{ last_part }}">
-    <h1 class="pc-testimonials-title-{{ last_part }}">{{ section.settings.title }}</h1>
-    
-    <div class="pc-testimonials-cards-{{ last_part }}">
-      {%- for block in section.blocks -%}
-        <div 
-          class="pc-testimonial-card-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}" 
-          data-id="pc-content-{{ last_part }}-{{ forloop.index }}"
-        >
-          {%- if block.settings.image != blank -%}
-            {% assign image_class = 'pc-testimonial-image-' | append: last_part %}
-            {{ 
-              block.settings.image 
-              | image_url: width: 400 
-              | image_tag: 
-                  loading: 'lazy', 
-                  class: image_class,
-                  alt: block.settings.name 
-            }}
-          {%- else -%}
-            {{ 'product-1' | placeholder_svg_tag: class: 'pc-testimonial-placeholder-' | append: last_part }}
-          {%- endif -%}
-          
-          <div class="pc-testimonial-info-{{ last_part }}">
-            <h3 class="pc-testimonial-name-{{ last_part }}">{{ block.settings.name }}</h3>
-            <p class="pc-testimonial-role-{{ last_part }}">{{ block.settings.role }}</p>
-          </div>
-          <div class="pc-testimonial-gradient-{{ last_part }}"></div>
-        </div>
-      {%- endfor -%}
-    </div>
-    
-    <div class="pc-testimonials-content-{{ last_part }}">
-      {%- for block in section.blocks -%}
-        <div 
-          class="pc-testimonial-content-box-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}" 
-          id="pc-content-{{ last_part }}-{{ forloop.index }}"
-        >
-          <div class="pc-testimonial-text-{{ last_part }}">
-            <h2 class="pc-testimonial-heading-{{ last_part }}">{{ block.settings.heading }}</h2>
-            <div class="pc-testimonial-stars-{{ last_part }}">
-              {%- for i in (1..5) -%}
-                {%- if i <= block.settings.rating -%}
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
-                  </svg>
-                {%- endif -%}
-              {%- endfor -%}
-            </div>
-            <p class="pc-testimonial-quote-{{ last_part }}">{{ block.settings.quote }}</p>
-            <p class="pc-testimonial-additional-{{ last_part }}">{{ block.settings.additional_text }}</p>
-          </div>
-        </div>
-      {%- endfor -%}
-    </div>
-  </div>
-</pc-testimonials-{{ last_part }}>
-
 <style>
-  {{ sec_id }} .pc-testimonials-container-{{ last_part }} {
+  {{ sec_id }} {
+    display: grid;
+    place-items: start;
+    padding-block: min(20vh, 3rem);
+  }
+
+  {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     width: calc(min(90rem, 85%));
     margin: 0 auto;
   }
 
-  {{ sec_id }} .pc-testimonials-title-{{ last_part }} {
+  {{ sec_id }} .pc-testimonial-title-{{ last_part }} {
     grid-column: span 12;
     text-transform: capitalize;
-    font-size: {{ section.settings.title_size_mobile }}px;
-    margin-bottom: {{ section.settings.title_spacing_mobile }}px;
-    font-weight: {{ section.settings.title_weight }};
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
     color: {{ section.settings.title_color }};
   }
 
-  {{ sec_id }} .pc-testimonials-cards-{{ last_part }} {
+  {{ sec_id }} .pc-testimonial-cards-{{ last_part }} {
     grid-column: span 12;
     display: grid;
-    gap: {{ section.settings.card_gap_mobile }}px;
+    gap: 2rem;
   }
 
   {{ sec_id }} .pc-testimonial-card-{{ last_part }} {
     cursor: pointer;
-    padding: {{ section.settings.card_padding_mobile }}px;
-    border-radius: {{ section.settings.card_radius }}px;
+    padding: 2em;
+    border-radius: 1rem;
     display: grid;
     grid-template-columns: auto 1fr;
-    column-gap: {{ section.settings.card_content_gap }}px;
+    column-gap: 2.188rem;
     align-items: center;
     transition: 0.3s;
     position: relative;
-    border: {{ section.settings.card_border_width }}px solid transparent;
-    background: {{ section.settings.card_bg }};
+    border: 0.094rem solid transparent;
+    background: {{ section.settings.card_bg_color }};
   }
 
-  {{ sec_id }} .pc-testimonial-card-{{ last_part }} img,
-  {{ sec_id }} .pc-testimonial-placeholder-{{ last_part }} {
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }} img {
     display: block;
-    width: {{ section.settings.image_size_mobile }}px;
-    height: {{ section.settings.image_size_mobile }}px;
+    width: 3.35rem;
+    height: 3.35rem;
     border-radius: 50%;
     filter: grayscale(1);
     transition: 0.5s;
   }
 
-  {{ sec_id }} .pc-testimonial-info-{{ last_part }} h3 {
+  {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} h3 {
     text-transform: capitalize;
-    font-size: {{ section.settings.name_size_mobile }}px;
+    font-size: 1.025rem;
     color: {{ section.settings.name_color }};
-    font-weight: {{ section.settings.name_weight }};
   }
 
-  {{ sec_id }} .pc-testimonial-info-{{ last_part }} p {
+  {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} p {
     text-transform: capitalize;
     color: {{ section.settings.role_color }};
-    font-size: {{ section.settings.role_size_mobile }}px;
+    font-size: 0.9rem;
   }
 
-  {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active-{{ last_part }} {
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active {
     background: {{ section.settings.card_active_bg }};
-    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_active_border }};
+    border: 0.094rem solid {{ section.settings.card_active_border }};
   }
 
-  {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active-{{ last_part }} .pc-testimonial-gradient-{{ last_part }} {
-    background-image: linear-gradient(
-      to right,
-      {{ section.settings.gradient_color_1 }},
-      {{ section.settings.gradient_color_2 }},
-      {{ section.settings.gradient_color_3 }},
-      {{ section.settings.gradient_color_1 }}
-    );
-    width: 50%;
-    height: {{ section.settings.gradient_height }}px;
-    position: absolute;
-    content: "";
-    bottom: -{{ section.settings.gradient_height }}px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0px {{ section.settings.gradient_shadow }}px {{ section.settings.gradient_shadow_blur }}px {{ section.settings.gradient_shadow_color }};
-  }
-
-  {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active-{{ last_part }} img {
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active img {
     filter: grayscale(0);
   }
 
-  {{ sec_id }} .pc-testimonials-content-{{ last_part }} {
+  {{ sec_id }} .pc-testimonial-gradient-{{ last_part }} {
+    background-image: linear-gradient(
+      to right,
+      #4755690a,
+      #9d0cb28a,
+      #4343c899,
+      #4755690a
+    );
+    width: 50%;
+    height: 0.094rem;
+    position: absolute;
+    content: "";
+    bottom: -0.063rem;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0px 0.125rem 0.75rem #4343c84d;
+  }
+
+  {{ sec_id }} .pc-testimonial-content-{{ last_part }} {
     grid-column: span 12;
     position: relative;
     width: 100%;
     overflow: inherit;
-    margin-top: {{ section.settings.content_spacing_mobile }}px;
-    min-height: {{ section.settings.content_min_height_mobile }}px;
+    margin-top: 2rem;
   }
 
   {{ sec_id }} .pc-testimonial-content-box-{{ last_part }} {
@@ -168,304 +112,182 @@
   }
 
   {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
-    padding-bottom: {{ section.settings.text_padding_bottom_mobile }}px;
+    padding-bottom: 2rem;
   }
 
-  {{ sec_id }} .pc-testimonial-heading-{{ last_part }} {
+  {{ sec_id }} .pc-testimonial-text-{{ last_part }} h2 {
     transition: 0.5s;
     opacity: 0;
-    font-size: {{ section.settings.heading_size_mobile }}px;
-    color: {{ section.settings.heading_color }};
-    font-weight: {{ section.settings.heading_weight }};
+    color: {{ section.settings.content_title_color }};
+    font-size: {{ section.settings.content_title_size }}px;
   }
 
-  {{ sec_id }} .pc-testimonial-quote-{{ last_part }},
-  {{ sec_id }} .pc-testimonial-additional-{{ last_part }} {
+  {{ sec_id }} .pc-testimonial-text-{{ last_part }} p {
     transition: 0.5s;
     opacity: 0;
-    margin-top: {{ section.settings.paragraph_spacing }}px;
-    font-size: {{ section.settings.quote_size_mobile }}px;
-    color: {{ section.settings.quote_color }};
-    line-height: {{ section.settings.quote_line_height }};
+    margin-top: 1.25rem;
+    color: {{ section.settings.content_text_color }};
+    font-size: {{ section.settings.content_text_size }}px;
   }
 
-  {{ sec_id }} .pc-testimonial-stars-{{ last_part }} {
+  {{ sec_id }} .pc-testimonial-rating-{{ last_part }} {
     display: inline-block;
     transition: 0.5s;
     opacity: 0;
-    margin-top: {{ section.settings.stars_spacing }}px;
+    margin-top: 0.625rem;
   }
 
-  {{ sec_id }} .pc-testimonial-stars-{{ last_part }} svg {
-    width: {{ section.settings.star_size_mobile }}px;
-    color: {{ section.settings.star_color }};
+  {{ sec_id }} .pc-testimonial-rating-{{ last_part }} svg {
+    width: 1.25rem;
+    color: {{ section.settings.rating_color }};
   }
 
-  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active-{{ last_part }} .pc-testimonial-heading-{{ last_part }} {
+  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active h2 {
     opacity: 1;
     transition-delay: 0.5s;
   }
-  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active-{{ last_part }} .pc-testimonial-stars-{{ last_part }} {
+  
+  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active .pc-testimonial-rating-{{ last_part }} {
     opacity: 1;
     transition-delay: 0.7s;
   }
-  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active-{{ last_part }} .pc-testimonial-quote-{{ last_part }},
-  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active-{{ last_part }} .pc-testimonial-additional-{{ last_part }} {
+  
+  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active p {
     opacity: 1;
     transition-delay: 0.9s;
   }
 
-  @media screen and (min-width: 980px) {
-    {{ sec_id }} .pc-testimonials-container-{{ last_part }} {
-      column-gap: {{ section.settings.section_gap_desktop }}px;
+  @media screen and (min-width: 61.25rem) {
+    {{ sec_id }} {
+      place-items: center;
     }
-
-    {{ sec_id }} .pc-testimonials-title-{{ last_part }} {
-      font-size: {{ section.settings.title_size_desktop }}px;
-      margin-bottom: {{ section.settings.title_spacing_desktop }}px;
+    
+    {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
+      column-gap: 5rem;
     }
-
-    {{ sec_id }} .pc-testimonials-cards-{{ last_part }} {
-      grid-column: span {{ section.settings.cards_columns_desktop }};
+    
+    {{ sec_id }} .pc-testimonial-title-{{ last_part }} {
+      font-size: 4rem;
+      margin-bottom: 4rem;
     }
-
-    {{ sec_id }} .pc-testimonial-card-{{ last_part }} {
-      padding: {{ section.settings.card_padding_desktop }}px;
+    
+    {{ sec_id }} .pc-testimonial-cards-{{ last_part }} {
+      grid-column: span 5;
     }
-
-    {{ sec_id }} .pc-testimonial-card-{{ last_part }} img,
-    {{ sec_id }} .pc-testimonial-placeholder-{{ last_part }} {
-      width: {{ section.settings.image_size_desktop }}px;
-      height: {{ section.settings.image_size_desktop }}px;
-    }
-
-    {{ sec_id }} .pc-testimonial-info-{{ last_part }} h3 {
-      font-size: {{ section.settings.name_size_desktop }}px;
-    }
-
-    {{ sec_id }} .pc-testimonial-info-{{ last_part }} p {
-      font-size: {{ section.settings.role_size_desktop }}px;
-    }
-
-    {{ sec_id }} .pc-testimonials-content-{{ last_part }} {
-      grid-column: span {{ 12 | minus: section.settings.cards_columns_desktop }};
+    
+    {{ sec_id }} .pc-testimonial-content-{{ last_part }} {
+      grid-column: span 7;
       margin-top: 0;
-      min-height: {{ section.settings.content_min_height_desktop }}px;
+      height: auto;
     }
-
+    
     {{ sec_id }} .pc-testimonial-content-box-{{ last_part }} {
       align-items: center;
     }
-
+    
     {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
       padding-bottom: 0;
     }
-
-    {{ sec_id }} .pc-testimonial-heading-{{ last_part }} {
-      font-size: {{ section.settings.heading_size_desktop }}px;
-    }
-
-    {{ sec_id }} .pc-testimonial-quote-{{ last_part }},
-    {{ sec_id }} .pc-testimonial-additional-{{ last_part }} {
-      font-size: {{ section.settings.quote_size_desktop }}px;
-    }
-
-    {{ sec_id }} .pc-testimonial-stars-{{ last_part }} svg {
-      width: {{ section.settings.star_size_desktop }}px;
-    }
   }
+
+  {% if section.settings.enable_shadow %}
+    {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+  {% endif %}
 </style>
 
+<pc-testimonial-section-{{ last_part }} class="pc-testimonial-container-{{ last_part }}">
+  <h1 class="pc-testimonial-title-{{ last_part }}">{{ section.settings.title }}</h1>
+  
+  <div class="pc-testimonial-cards-{{ last_part }}">
+    {% for block in section.blocks %}
+      <div class="pc-testimonial-card-{{ last_part }} {% if forloop.first %}pc-active{% endif %}" 
+           data-id="content{{ forloop.index }}">
+        {%- if block.settings.image != blank -%}
+          {% assign image_class = 'pc-testimonial-image-' | append: last_part %}
+          {{ 
+            block.settings.image 
+            | image_url: width: 400 
+            | image_tag: 
+                loading: 'lazy', 
+                class: image_class,
+                alt: block.settings.name 
+          }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {%- endif -%}
+        <div class="pc-testimonial-card-info-{{ last_part }}">
+          <h3>{{ block.settings.name }}</h3>
+          <p>{{ block.settings.role }}</p>
+        </div>
+        <div class="pc-testimonial-gradient-{{ last_part }}"></div>
+      </div>
+    {% endfor %}
+  </div>
+  
+  <div class="pc-testimonial-content-{{ last_part }}">
+    {% for block in section.blocks %}
+      <div class="pc-testimonial-content-box-{{ last_part }} {% if forloop.first %}pc-active{% endif %}" 
+           id="content{{ forloop.index }}">
+        <div class="pc-testimonial-text-{{ last_part }}">
+          <h2>{{ block.settings.testimonial_title }}</h2>
+          <div class="pc-testimonial-rating-{{ last_part }}">
+            {% for i in (1..5) %}
+              {% if i <= block.settings.rating %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd"/>
+                </svg>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <p>{{ block.settings.testimonial_text_1 }}</p>
+          <p>{{ block.settings.testimonial_text_2 }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</pc-testimonial-section-{{ last_part }}>
+
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const sectionId = '{{ sec_id }}';
-    const cards = document.querySelectorAll(`${sectionId} .pc-testimonial-card-{{ last_part }}`);
-    const contentBoxes = document.querySelectorAll(`${sectionId} .pc-testimonial-content-box-{{ last_part }}`);
-
-    for (let i = 0; i < cards.length; i++) {
-      cards[i].addEventListener('mouseover', function() {
-        for (let j = 0; j < contentBoxes.length; j++) {
-          contentBoxes[j].classList.remove(`pc-active-{{ last_part }}`);
-        }
-        document.getElementById(this.dataset.id).classList.add(`pc-active-{{ last_part }}`);
-
-        for (let k = 0; k < cards.length; k++) {
-          cards[k].classList.remove(`pc-active-{{ last_part }}`);
-        }
-        this.classList.add(`pc-active-{{ last_part }}`);
+  class PcTestimonialSection extends HTMLElement {
+    constructor() {
+      super();
+      this.cards = this.querySelectorAll('.pc-testimonial-card-{{ last_part }}');
+      this.contentBoxes = this.querySelectorAll('.pc-testimonial-content-box-{{ last_part }}');
+      
+      this.cards.forEach(card => {
+        card.addEventListener('mouseover', () => {
+          const targetId = card.dataset.id;
+          
+          this.contentBoxes.forEach(box => {
+            box.classList.remove('pc-active');
+          });
+          
+          document.getElementById(targetId).classList.add('pc-active');
+          
+          this.cards.forEach(c => {
+            c.classList.remove('pc-active');
+          });
+          
+          card.classList.add('pc-active');
+        });
       });
     }
-  });
+  }
+
+  customElements.define('pc-testimonial-section-{{ last_part }}', PcTestimonialSection);
 </script>
 
 {% schema %}
 {
-  "name": "PWC - Testimonials #1",
-  "tag": "section",
-  "class": "shopify-section",
+  "name": "PWC - Testimonials #6",
   "settings": [
-    {
-      "type": "header",
-      "content": "General Settings"
-    },
     {
       "type": "text",
       "id": "title",
-      "label": "Section Title",
+      "label": "Title",
       "default": "Testimonials"
-    },
-    {
-      "type": "range",
-      "id": "cards_columns_desktop",
-      "label": "Cards Columns (Desktop)",
-      "min": 3,
-      "max": 6,
-      "step": 1,
-      "default": 5
-    },
-    {
-      "type": "range",
-      "id": "section_gap_desktop",
-      "label": "Section Gap (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 50
-    },
-    {
-      "type": "range",
-      "id": "card_gap_mobile",
-      "label": "Card Gap (Mobile)",
-      "min": 10,
-      "max": 50,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "card_content_gap",
-      "label": "Card Content Gap",
-      "min": 10,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "card_border_width",
-      "label": "Card Border Width",
-      "min": 0,
-      "max": 5,
-      "step": 1,
-      "unit": "px",
-      "default": 1
-    },
-    {
-      "type": "range",
-      "id": "card_radius",
-      "label": "Card Border Radius",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "gradient_height",
-      "label": "Gradient Height",
-      "min": 1,
-      "max": 10,
-      "step": 1,
-      "unit": "px",
-      "default": 1
-    },
-    {
-      "type": "range",
-      "id": "gradient_shadow",
-      "label": "Gradient Shadow",
-      "min": 0,
-      "max": 10,
-      "step": 1,
-      "unit": "px",
-      "default": 2
-    },
-    {
-      "type": "range",
-      "id": "gradient_shadow_blur",
-      "label": "Gradient Shadow Blur",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "paragraph_spacing",
-      "label": "Paragraph Spacing",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "stars_spacing",
-      "label": "Stars Spacing",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "content_min_height_mobile",
-      "label": "Content Min Height (Mobile)",
-      "min": 200,
-      "max": 800,
-      "step": 50,
-      "unit": "px",
-      "default": 400
-    },
-    {
-      "type": "range",
-      "id": "content_min_height_desktop",
-      "label": "Content Min Height (Desktop)",
-      "min": 200,
-      "max": 1000,
-      "step": 50,
-      "unit": "px",
-      "default": 500
-    },
-    {
-      "type": "range",
-      "id": "text_padding_bottom_mobile",
-      "label": "Text Padding Bottom (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "content_spacing_mobile",
-      "label": "Content Spacing (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "header",
-      "content": "Color Settings"
     },
     {
       "type": "color",
@@ -475,9 +297,9 @@
     },
     {
       "type": "color",
-      "id": "card_bg",
-      "label": "Card Background",
-      "default": "transparent"
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#ffffff"
     },
     {
       "type": "color",
@@ -505,318 +327,47 @@
     },
     {
       "type": "color",
-      "id": "gradient_color_1",
-      "label": "Gradient Color 1",
-      "default": "#4755690a"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_2",
-      "label": "Gradient Color 2",
-      "default": "#9d0cb28a"
-    },
-    {
-      "type": "color",
-      "id": "gradient_color_3",
-      "label": "Gradient Color 3",
-      "default": "#4343c899"
-    },
-    {
-      "type": "color",
-      "id": "gradient_shadow_color",
-      "label": "Gradient Shadow Color",
-      "default": "#4343c84d"
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
+      "id": "content_title_color",
+      "label": "Content Title Color",
       "default": "#26273e"
     },
     {
-      "type": "color",
-      "id": "quote_color",
-      "label": "Quote Color",
-      "default": "#26273e"
-    },
-    {
-      "type": "color",
-      "id": "star_color",
-      "label": "Star Color",
-      "default": "#eca633"
-    },
-    {
-      "type": "header",
-      "content": "Typography Settings"
-    },
-    {
       "type": "range",
-      "id": "title_size_mobile",
-      "label": "Title Size (Mobile)",
-      "min": 16,
-      "max": 60,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "title_size_desktop",
-      "label": "Title Size (Desktop)",
-      "min": 20,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "title_spacing_mobile",
-      "label": "Title Spacing (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "title_spacing_desktop",
-      "label": "Title Spacing (Desktop)",
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "select",
-      "id": "title_weight",
-      "label": "Title Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "700"
-    },
-    {
-      "type": "range",
-      "id": "name_size_mobile",
-      "label": "Name Size (Mobile)",
+      "id": "content_title_size",
+      "label": "Content Title Size (Desktop)",
       "min": 12,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "name_size_desktop",
-      "label": "Name Size (Desktop)",
-      "min": 14,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "select",
-      "id": "name_weight",
-      "label": "Name Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "400"
-    },
-    {
-      "type": "range",
-      "id": "role_size_mobile",
-      "label": "Role Size (Mobile)",
-      "min": 10,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "role_size_desktop",
-      "label": "Role Size (Desktop)",
-      "min": 12,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "heading_size_mobile",
-      "label": "Heading Size (Mobile)",
-      "min": 16,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "heading_size_desktop",
-      "label": "Heading Size (Desktop)",
-      "min": 20,
-      "max": 60,
-      "step": 1,
-      "unit": "px",
-      "default": 32
-    },
-    {
-      "type": "select",
-      "id": "heading_weight",
-      "label": "Heading Font Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "600"
-    },
-    {
-      "type": "range",
-      "id": "quote_size_mobile",
-      "label": "Quote Size (Mobile)",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "quote_size_desktop",
-      "label": "Quote Size (Desktop)",
-      "min": 14,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "quote_line_height",
-      "label": "Quote Line Height",
-      "min": 1,
-      "max": 2.5,
-      "step": 0.1,
-      "default": 1.6
-    },
-    {
-      "type": "range",
-      "id": "star_size_mobile",
-      "label": "Star Size (Mobile)",
-      "min": 12,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "star_size_desktop",
-      "label": "Star Size (Desktop)",
-      "min": 16,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "header",
-      "content": "Image Settings"
-    },
-    {
-      "type": "range",
-      "id": "image_size_mobile",
-      "label": "Image Size (Mobile)",
-      "min": 30,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "default": 50
-    },
-    {
-      "type": "range",
-      "id": "image_size_desktop",
-      "label": "Image Size (Desktop)",
-      "min": 40,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 60
-    },
-    {
-      "type": "header",
-      "content": "Card Spacing"
-    },
-    {
-      "type": "range",
-      "id": "card_padding_mobile",
-      "label": "Card Padding (Mobile)",
-      "min": 10,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 20
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "content_text_color",
+      "label": "Content Text Color",
+      "default": "#26273e"
     },
     {
       "type": "range",
-      "id": "card_padding_desktop",
-      "label": "Card Padding (Desktop)",
-      "min": 10,
-      "max": 60,
+      "id": "content_text_size",
+      "label": "Content Text Size (Desktop)",
+      "min": 12,
+      "max": 24,
       "step": 1,
       "unit": "px",
-      "default": 30
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "rating_color",
+      "label": "Rating Color",
+      "default": "#eca633"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Shadow on Active Card",
+      "default": false
     }
   ],
   "blocks": [
@@ -842,12 +393,6 @@
           "default": "Sales Manager, Company"
         },
         {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Great collaboration"
-        },
-        {
           "type": "range",
           "id": "rating",
           "label": "Rating",
@@ -857,15 +402,21 @@
           "default": 5
         },
         {
-          "type": "textarea",
-          "id": "quote",
-          "label": "Quote",
-          "default": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iure possimus harum quisquam praesentium ipsum accusantium, facilis omnis, blanditiis quas soluta nihil incidunt laboriosam dicta maiores."
+          "type": "text",
+          "id": "testimonial_title",
+          "label": "Testimonial Title",
+          "default": "Great collaboration"
         },
         {
           "type": "textarea",
-          "id": "additional_text",
-          "label": "Additional Text",
+          "id": "testimonial_text_1",
+          "label": "Testimonial Text 1",
+          "default": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iure possimus harum quisquam praesentium ipsum accusantium, facilis omnis, blanditiis quas soluta nihil incidunt laboriosam dicta maiores, modi quaerat consectetur officia accusamus libero aut molestiae fuga eveniet quidem?"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_text_2",
+          "label": "Testimonial Text 2",
           "default": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
         }
       ]
@@ -874,42 +425,7 @@
   "presets": [
     {
       "name": "PWC - Testimonials #6",
-      "category": "Custom",
-      "blocks": [
-        {
-          "type": "testimonial",
-          "settings": {
-            "name": "Milton Austin",
-            "role": "Sales Manager, Slack",
-            "heading": "Great collaboration",
-            "rating": 5,
-            "quote": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iure possimus harum quisquam praesentium ipsum accusantium, facilis omnis, blanditiis quas soluta nihil incidunt laboriosam dicta maiores.",
-            "additional_text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "name": "John Smith",
-            "role": "Marketing Director, Acme",
-            "heading": "It was a great experience!",
-            "rating": 5,
-            "quote": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iure possimus harum quisquam praesentium ipsum accusantium, facilis omnis, blanditiis quas soluta nihil incidunt laboriosam dicta maiores.",
-            "additional_text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "name": "Sarah Johnson",
-            "role": "CEO, TechCorp",
-            "heading": "Quickly and Efficiently",
-            "rating": 4,
-            "quote": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iure possimus harum quisquam praesentium ipsum accusantium, facilis omnis, blanditiis quas soluta nihil incidunt laboriosam dicta maiores.",
-            "additional_text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
-          }
-        }
-      ]
+      "category": "Custom"
     }
   ]
 }
