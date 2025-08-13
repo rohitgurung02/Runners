@@ -109,6 +109,8 @@
     display: flex;
     justify-content: center;
     align-items: start;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
   {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
@@ -116,15 +118,11 @@
   }
 
   {{ sec_id }} .pc-testimonial-text-{{ last_part }} h2 {
-    transition: 0.5s;
-    opacity: 0;
     color: {{ section.settings.content_title_color }};
     font-size: {{ section.settings.content_title_size }}px;
   }
 
   {{ sec_id }} .pc-testimonial-text-{{ last_part }} p {
-    transition: 0.5s;
-    opacity: 0;
     margin-top: 1.25rem;
     color: {{ section.settings.content_text_color }};
     font-size: {{ section.settings.content_text_size }}px;
@@ -132,8 +130,6 @@
 
   {{ sec_id }} .pc-testimonial-rating-{{ last_part }} {
     display: inline-block;
-    transition: 0.5s;
-    opacity: 0;
     margin-top: 0.625rem;
   }
 
@@ -142,19 +138,18 @@
     color: {{ section.settings.rating_color }};
   }
 
-  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active h2 {
+  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active {
     opacity: 1;
-    transition-delay: 0.5s;
   }
-  
-  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active .pc-testimonial-rating-{{ last_part }} {
-    opacity: 1;
-    transition-delay: 0.7s;
+
+  /* New hover styles */
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }}:hover {
+    background: {{ section.settings.card_active_bg }};
+    border: 0.094rem solid {{ section.settings.card_active_border }};
   }
-  
-  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active p {
-    opacity: 1;
-    transition-delay: 0.9s;
+
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }}:hover img {
+    filter: grayscale(0);
   }
 
   @media screen and (min-width: 61.25rem) {
@@ -191,7 +186,8 @@
   }
 
   {% if section.settings.enable_shadow %}
-    {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active {
+    {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active,
+    {{ sec_id }} .pc-testimonial-card-{{ last_part }}:hover {
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
   {% endif %}
@@ -203,7 +199,9 @@
   <div class="pc-testimonial-cards-{{ last_part }}">
     {% for block in section.blocks %}
       <div class="pc-testimonial-card-{{ last_part }} {% if forloop.first %}pc-active{% endif %}" 
-           data-id="content{{ forloop.index }}">
+           data-id="content{{ forloop.index }}"
+           onmouseover="showTestimonialContent('content{{ forloop.index }}')"
+           onmouseout="hideTestimonialContent('content{{ forloop.index }}')">
         {%- if block.settings.image != blank -%}
           {% assign image_class = 'pc-testimonial-image-' | append: last_part %}
           {{ 
@@ -279,6 +277,24 @@
   }
 
   customElements.define('pc-testimonial-section-{{ last_part }}', PcTestimonialSection);
+
+  // New hover functions
+  function showTestimonialContent(contentId) {
+    const contentBox = document.getElementById(contentId);
+    if (contentBox) {
+      contentBox.style.opacity = '1';
+    }
+  }
+
+  function hideTestimonialContent(contentId) {
+    const activeContent = document.querySelector('.pc-testimonial-content-box-{{ last_part }}.pc-active');
+    const contentBox = document.getElementById(contentId);
+    
+    // Only hide if this isn't the currently active content
+    if (contentBox && !contentBox.classList.contains('pc-active')) {
+      contentBox.style.opacity = '0';
+    }
+  }
 </script>
 
 {% schema %}
