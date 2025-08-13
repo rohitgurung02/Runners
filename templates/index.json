@@ -752,9 +752,11 @@
       "name": "PWC - Filter Gallery #1",
       "settings": {
         "heading": "Testimonials Swiper JS",
+        "autorotate": true,
+        "rotation_speed": 100,
         "primary_color": "#ffffff",
-        "bg_color": "#26242e",
-        "card_bg_color": "#ffffff"
+        "text_color": "#111827",
+        "bg_color": "#26242e"
       }
     },
     "rw_reviews_eNfMNB": {
@@ -973,9 +975,11 @@
       "name": "RW - Carousel Slider #8",
       "settings": {
         "heading": "Testimonials Swiper JS",
+        "autorotate": true,
+        "rotation_speed": 100,
         "primary_color": "#ffffff",
-        "bg_color": "#26242e",
-        "card_bg_color": "#ffffff"
+        "text_color": "#111827",
+        "bg_color": "#26242e"
       }
     },
     "rw_hero_banner_4dJjqa": {
@@ -1444,47 +1448,11 @@
       "name": "PWC - Image Slider #1",
       "settings": {
         "heading": "Testimonials Swiper JS",
+        "autorotate": true,
+        "rotation_speed": 100,
         "primary_color": "#ffffff",
-        "bg_color": "#26242e",
-        "card_bg_color": "#ffffff"
-      }
-    },
-    "rw_test_8EdxNL": {
-      "type": "rw-test",
-      "blocks": {
-        "testimonial_yzGkqF": {
-          "type": "testimonial",
-          "settings": {
-            "image": "shopify://shop_images/pexels-shvets-production-9775883_1.jpg",
-            "job_title": "Bass @AmonTheSign",
-            "author": "Zzor",
-            "content": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aliquid ut, explicabo sit fugiat recusandae dolore omnis minus sequi incidunt aut doloribus minima soluta velit, nobis, est eos iste at!</p>",
-            "link_url": "",
-            "link_text": "More on Linkedin"
-          }
-        },
-        "testimonial_FAdNjF": {
-          "type": "testimonial",
-          "settings": {
-            "image": "shopify://shop_images/pexels-cottonbro-10679212.jpg",
-            "job_title": "Bass @AmonTheSign",
-            "author": "Zzor",
-            "content": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aliquid ut, explicabo sit fugiat recusandae dolore omnis minus sequi incidunt aut doloribus minima soluta velit, nobis, est eos iste at!</p>",
-            "link_url": "",
-            "link_text": "More on Linkedin"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_yzGkqF",
-        "testimonial_FAdNjF"
-      ],
-      "name": "Testimonials Swiper",
-      "settings": {
-        "heading": "Testimonials Swiper JS",
-        "primary_color": "#ff3671",
-        "bg_color": "#26242e",
-        "card_bg_color": "#ffffff"
+        "text_color": "#111827",
+        "bg_color": "#26242e"
       }
     }
   },
@@ -1508,7 +1476,6 @@
     "rw_wavy_background_1_cFNhmb",
     "rw_card_carousel_6_A3yTqa",
     "marquee_text_4_dwwPnB",
-    "rw_test_QTdBdN",
-    "rw_test_8EdxNL"
+    "rw_test_QTdBdN"
   ]
 }
