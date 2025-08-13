@@ -1419,6 +1419,7 @@
         "layer1_text_yfXVwr",
         "layer2_text_CQdxbz"
       ],
+      "disabled": true,
       "name": "Marquee Text - #4",
       "settings": {
         "speed": 26,
@@ -1482,6 +1483,7 @@
         "testimonial_mxQF79": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/pexels-shvets-production-9775883_1.jpg",
             "name": "John Doe",
             "role": "Sales Manager, Company",
             "rating": 5,
