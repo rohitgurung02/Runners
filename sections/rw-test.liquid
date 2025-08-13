@@ -256,23 +256,25 @@
       this.cards = this.querySelectorAll('.pc-testimonial-card-{{ last_part }}');
       this.contentBoxes = this.querySelectorAll('.pc-testimonial-content-box-{{ last_part }}');
       
-      this.cards.forEach(card => {
-        card.addEventListener('mouseover', () => {
-          const targetId = card.dataset.id;
-          
-          this.contentBoxes.forEach(box => {
-            box.classList.remove('pc-active');
-          });
-          
-          document.getElementById(targetId).classList.add('pc-active');
-          
-          this.cards.forEach(c => {
-            c.classList.remove('pc-active');
-          });
-          
-          card.classList.add('pc-active');
+      // Initialize with first testimonial active
+      this.activateTestimonial(0);
+      
+      // Add event listeners to all cards
+      this.cards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+          this.activateTestimonial(index);
         });
       });
+    }
+    
+    activateTestimonial(index) {
+      // Remove active classes from all cards and content boxes
+      this.cards.forEach(card => card.classList.remove('pc-active'));
+      this.contentBoxes.forEach(box => box.classList.remove('pc-active'));
+      
+      // Add active class to selected card and corresponding content box
+      this.cards[index].classList.add('pc-active');
+      this.contentBoxes[index].classList.add('pc-active');
     }
   }
 
