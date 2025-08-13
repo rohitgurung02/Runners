@@ -1454,6 +1454,49 @@
         "text_color": "#111827",
         "bg_color": "#26242e"
       }
+    },
+    "rw_test_harCeX": {
+      "type": "rw-test",
+      "blocks": {
+        "testimonial_rjmeti": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The ability to capture responses is a game-changer. If a user gets tired of the sign up and leaves, that data is still persisted.",
+            "name": "Jessie J",
+            "role": "Acme LTD"
+          }
+        },
+        "testimonial_Mb8g9U": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Having the power to capture user feedback is revolutionary. Even if a participant abandons the sign-up process midway, their valuable input remains intact.",
+            "name": "Nick V",
+            "role": "Malika Inc."
+          }
+        },
+        "testimonial_TJJGKK": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The functionality to capture responses is a true game-changer. Even if a user becomes fatigued during sign-up and abandons the process, their information remains stored.",
+            "name": "Amelia W",
+            "role": "Panda AI"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_rjmeti",
+        "testimonial_Mb8g9U",
+        "testimonial_TJJGKK"
+      ],
+      "name": "Fancy Testimonial Slider",
+      "settings": {
+        "heading": "Testimonials",
+        "autorotate": true,
+        "rotation_speed": 100,
+        "primary_color": "#6366f1",
+        "text_color": "#111827",
+        "bg_color": "#f8fafc"
+      }
     }
   },
   "order": [
@@ -1476,6 +1519,7 @@
     "rw_wavy_background_1_cFNhmb",
     "rw_card_carousel_6_A3yTqa",
     "marquee_text_4_dwwPnB",
-    "rw_test_QTdBdN"
+    "rw_test_QTdBdN",
+    "rw_test_harCeX"
   ]
 }
