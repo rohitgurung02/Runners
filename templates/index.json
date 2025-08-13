@@ -751,17 +751,10 @@
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
       "settings": {
-        "auto_rotate": true,
-        "rotate_speed": 4,
-        "enable_shadow": false,
+        "heading": "Testimonials Swiper JS",
         "primary_color": "#ffffff",
-        "secondary_color": "#2e2d2d",
-        "frost_color": "#ffffff66",
-        "title_weight": "400",
-        "desktop_title_size": 32,
-        "desktop_card_height": 300,
-        "mobile_title_size": 20,
-        "mobile_padding_top": 20
+        "bg_color": "#26242e",
+        "card_bg_color": "#ffffff"
       }
     },
     "rw_reviews_eNfMNB": {
@@ -979,17 +972,10 @@
       "disabled": true,
       "name": "RW - Carousel Slider #8",
       "settings": {
-        "auto_rotate": true,
-        "rotate_speed": 4,
-        "enable_shadow": false,
+        "heading": "Testimonials Swiper JS",
         "primary_color": "#ffffff",
-        "secondary_color": "#2e2d2d",
-        "frost_color": "#ffffff66",
-        "title_weight": "400",
-        "desktop_title_size": 32,
-        "desktop_card_height": 300,
-        "mobile_title_size": 20,
-        "mobile_padding_top": 20
+        "bg_color": "#26242e",
+        "card_bg_color": "#ffffff"
       }
     },
     "rw_hero_banner_4dJjqa": {
@@ -1455,44 +1441,50 @@
     },
     "rw_test_QTdBdN": {
       "type": "rw-test",
+      "name": "PWC - Image Slider #1",
+      "settings": {
+        "heading": "Testimonials Swiper JS",
+        "primary_color": "#ffffff",
+        "bg_color": "#26242e",
+        "card_bg_color": "#ffffff"
+      }
+    },
+    "rw_test_8EdxNL": {
+      "type": "rw-test",
       "blocks": {
-        "slide_jrRthe": {
-          "type": "slide",
+        "testimonial_yzGkqF": {
+          "type": "testimonial",
           "settings": {
-            "title": "Elegance"
+            "image": "shopify://shop_images/pexels-shvets-production-9775883_1.jpg",
+            "job_title": "Bass @AmonTheSign",
+            "author": "Zzor",
+            "content": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aliquid ut, explicabo sit fugiat recusandae dolore omnis minus sequi incidunt aut doloribus minima soluta velit, nobis, est eos iste at!</p>",
+            "link_url": "",
+            "link_text": "More on Linkedin"
           }
         },
-        "slide_EjyhWG": {
-          "type": "slide",
+        "testimonial_FAdNjF": {
+          "type": "testimonial",
           "settings": {
-            "title": "Mechanics"
-          }
-        },
-        "slide_ne7DRV": {
-          "type": "slide",
-          "settings": {
-            "title": "Adventure"
+            "image": "shopify://shop_images/pexels-cottonbro-10679212.jpg",
+            "job_title": "Bass @AmonTheSign",
+            "author": "Zzor",
+            "content": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aliquid ut, explicabo sit fugiat recusandae dolore omnis minus sequi incidunt aut doloribus minima soluta velit, nobis, est eos iste at!</p>",
+            "link_url": "",
+            "link_text": "More on Linkedin"
           }
         }
       },
       "block_order": [
-        "slide_jrRthe",
-        "slide_EjyhWG",
-        "slide_ne7DRV"
+        "testimonial_yzGkqF",
+        "testimonial_FAdNjF"
       ],
-      "name": "PWC - Image Slider #1",
+      "name": "Testimonials Swiper",
       "settings": {
-        "auto_rotate": true,
-        "rotate_speed": 4,
-        "enable_shadow": true,
-        "primary_color": "#ffffff",
-        "secondary_color": "#2e2d2d",
-        "frost_color": "rgba(255, 255, 255, 0.4)",
-        "title_weight": "400",
-        "desktop_title_size": 32,
-        "desktop_card_height": 300,
-        "mobile_title_size": 20,
-        "mobile_padding_top": 20
+        "heading": "Testimonials Swiper JS",
+        "primary_color": "#ff3671",
+        "bg_color": "#26242e",
+        "card_bg_color": "#ffffff"
       }
     }
   },
@@ -1516,6 +1508,7 @@
     "rw_wavy_background_1_cFNhmb",
     "rw_card_carousel_6_A3yTqa",
     "marquee_text_4_dwwPnB",
-    "rw_test_QTdBdN"
+    "rw_test_QTdBdN",
+    "rw_test_8EdxNL"
   ]
 }
