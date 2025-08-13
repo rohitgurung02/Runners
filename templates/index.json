@@ -1452,6 +1452,48 @@
         "section_margin_top_mobile": 10,
         "section_margin_bottom_mobile": 10
       }
+    },
+    "rw_test_QTdBdN": {
+      "type": "rw-test",
+      "blocks": {
+        "slide_jrRthe": {
+          "type": "slide",
+          "settings": {
+            "title": "Elegance"
+          }
+        },
+        "slide_EjyhWG": {
+          "type": "slide",
+          "settings": {
+            "title": "Mechanics"
+          }
+        },
+        "slide_ne7DRV": {
+          "type": "slide",
+          "settings": {
+            "title": "Adventure"
+          }
+        }
+      },
+      "block_order": [
+        "slide_jrRthe",
+        "slide_EjyhWG",
+        "slide_ne7DRV"
+      ],
+      "name": "PWC - Image Slider #1",
+      "settings": {
+        "auto_rotate": true,
+        "rotate_speed": 4,
+        "enable_shadow": true,
+        "primary_color": "#ffffff",
+        "secondary_color": "#2e2d2d",
+        "frost_color": "rgba(255, 255, 255, 0.4)",
+        "title_weight": "400",
+        "desktop_title_size": 32,
+        "desktop_card_height": 300,
+        "mobile_title_size": 20,
+        "mobile_padding_top": 20
+      }
     }
   },
   "order": [
@@ -1473,6 +1515,7 @@
     "rw_text_animation_ETLPy6",
     "rw_wavy_background_1_cFNhmb",
     "rw_card_carousel_6_A3yTqa",
-    "marquee_text_4_dwwPnB"
+    "marquee_text_4_dwwPnB",
+    "rw_test_QTdBdN"
   ]
 }
