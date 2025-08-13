@@ -1458,65 +1458,6 @@
         "section_margin_bottom_mobile": 10
       }
     },
-    "rw_test_QTdBdN": {
-      "type": "rw-test",
-      "blocks": {
-        "testimonial_hcDdXP": {
-          "type": "testimonial",
-          "settings": {
-            "name": "John Doe",
-            "role": "Sales Manager, Company",
-            "rating": 5,
-            "testimonial_title": "Great collaboration",
-            "testimonial_text_1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iure possimus harum quisquam praesentium ipsum accusantium, facilis omnis, blanditiis quas soluta nihil incidunt laboriosam dicta maiores, modi quaerat consectetur officia accusamus libero aut molestiae fuga eveniet quidem?",
-            "testimonial_text_2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
-          }
-        },
-        "testimonial_KD334B": {
-          "type": "testimonial",
-          "settings": {
-            "name": "John Doe",
-            "role": "Sales Manager, Company",
-            "rating": 5,
-            "testimonial_title": "Great collaboration",
-            "testimonial_text_1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iure possimus harum quisquam praesentium ipsum accusantium, facilis omnis, blanditiis quas soluta nihil incidunt laboriosam dicta maiores, modi quaerat consectetur officia accusamus libero aut molestiae fuga eveniet quidem?",
-            "testimonial_text_2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
-          }
-        },
-        "testimonial_gBcwFq": {
-          "type": "testimonial",
-          "settings": {
-            "name": "John Doe",
-            "role": "Sales Manager, Company",
-            "rating": 5,
-            "testimonial_title": "Great collaboration",
-            "testimonial_text_1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iure possimus harum quisquam praesentium ipsum accusantium, facilis omnis, blanditiis quas soluta nihil incidunt laboriosam dicta maiores, modi quaerat consectetur officia accusamus libero aut molestiae fuga eveniet quidem?",
-            "testimonial_text_2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_hcDdXP",
-        "testimonial_KD334B",
-        "testimonial_gBcwFq"
-      ],
-      "name": "PWC - Image Slider #1",
-      "settings": {
-        "title": "Testimonials",
-        "title_color": "#26273e",
-        "card_bg_color": "#ffffff",
-        "card_active_bg": "#ffffff",
-        "card_active_border": "#0f172a14",
-        "name_color": "#26273e",
-        "role_color": "#767676",
-        "content_title_color": "#26273e",
-        "content_title_size": 24,
-        "content_text_color": "#26273e",
-        "content_text_size": 16,
-        "rating_color": "#eca633",
-        "enable_shadow": false
-      }
-    },
     "rw_test_rh6NeP": {
       "type": "rw-test",
       "blocks": {
@@ -1560,7 +1501,6 @@
         "testimonial_mgJbpm",
         "testimonial_bT8Tzi"
       ],
-      "disabled": true,
       "name": "PWC - Testimonials #6",
       "settings": {
         "title": "Testimonials",
@@ -1599,7 +1539,6 @@
     "rw_wavy_background_1_cFNhmb",
     "rw_card_carousel_6_A3yTqa",
     "marquee_text_4_dwwPnB",
-    "rw_test_QTdBdN",
     "rw_test_rh6NeP"
   ]
 }
