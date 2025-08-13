@@ -67,12 +67,14 @@
     font-size: 0.9rem;
   }
 
-  {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active {
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active,
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }}:hover {
     background: {{ section.settings.card_active_bg }};
     border: 0.094rem solid {{ section.settings.card_active_border }};
   }
 
-  {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active img {
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active img,
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }}:hover img {
     filter: grayscale(0);
   }
 
@@ -100,6 +102,7 @@
     width: 100%;
     overflow: inherit;
     margin-top: 2rem;
+    min-height: 200px;
   }
 
   {{ sec_id }} .pc-testimonial-content-box-{{ last_part }} {
@@ -111,6 +114,13 @@
     align-items: start;
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active,
+  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-hover {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
@@ -136,20 +146,6 @@
   {{ sec_id }} .pc-testimonial-rating-{{ last_part }} svg {
     width: 1.25rem;
     color: {{ section.settings.rating_color }};
-  }
-
-  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active {
-    opacity: 1;
-  }
-
-  /* New hover styles */
-  {{ sec_id }} .pc-testimonial-card-{{ last_part }}:hover {
-    background: {{ section.settings.card_active_bg }};
-    border: 0.094rem solid {{ section.settings.card_active_border }};
-  }
-
-  {{ sec_id }} .pc-testimonial-card-{{ last_part }}:hover img {
-    filter: grayscale(0);
   }
 
   @media screen and (min-width: 61.25rem) {
@@ -200,8 +196,8 @@
     {% for block in section.blocks %}
       <div class="pc-testimonial-card-{{ last_part }} {% if forloop.first %}pc-active{% endif %}" 
            data-id="content{{ forloop.index }}"
-           onmouseover="showTestimonialContent('content{{ forloop.index }}')"
-           onmouseout="hideTestimonialContent('content{{ forloop.index }}')">
+           onmouseenter="handleCardHover('content{{ forloop.index }}', true)"
+           onmouseleave="handleCardHover('content{{ forloop.index }}', false)">
         {%- if block.settings.image != blank -%}
           {% assign image_class = 'pc-testimonial-image-' | append: last_part %}
           {{ 
@@ -253,6 +249,8 @@
       super();
       this.cards = this.querySelectorAll('.pc-testimonial-card-{{ last_part }}');
       this.contentBoxes = this.querySelectorAll('.pc-testimonial-content-box-{{ last_part }}');
+      this.activeIndex = 0;
+      this.hoverTimeout = null;
       
       // Initialize with first testimonial active
       this.activateTestimonial(0);
@@ -266,6 +264,9 @@
     }
     
     activateTestimonial(index) {
+      // Clear any hover states
+      this.clearHoverStates();
+      
       // Remove active classes from all cards and content boxes
       this.cards.forEach(card => card.classList.remove('pc-active'));
       this.contentBoxes.forEach(box => box.classList.remove('pc-active'));
@@ -273,26 +274,31 @@
       // Add active class to selected card and corresponding content box
       this.cards[index].classList.add('pc-active');
       this.contentBoxes[index].classList.add('pc-active');
+      this.activeIndex = index;
+    }
+    
+    setHoverState(index, isHover) {
+      // Clear any existing hover states
+      this.clearHoverStates();
+      
+      if (isHover && index !== this.activeIndex) {
+        this.contentBoxes[index].classList.add('pc-hover');
+      }
+    }
+    
+    clearHoverStates() {
+      this.contentBoxes.forEach(box => box.classList.remove('pc-hover'));
     }
   }
 
   customElements.define('pc-testimonial-section-{{ last_part }}', PcTestimonialSection);
 
-  // New hover functions
-  function showTestimonialContent(contentId) {
-    const contentBox = document.getElementById(contentId);
-    if (contentBox) {
-      contentBox.style.opacity = '1';
-    }
-  }
-
-  function hideTestimonialContent(contentId) {
-    const activeContent = document.querySelector('.pc-testimonial-content-box-{{ last_part }}.pc-active');
-    const contentBox = document.getElementById(contentId);
-    
-    // Only hide if this isn't the currently active content
-    if (contentBox && !contentBox.classList.contains('pc-active')) {
-      contentBox.style.opacity = '0';
+  // Global hover handler
+  function handleCardHover(contentId, isHover) {
+    const section = document.querySelector('pc-testimonial-section-{{ last_part }}');
+    if (section && section.setHoverState) {
+      const index = parseInt(contentId.replace('content', '')) - 1;
+      section.setHoverState(index, isHover);
     }
   }
 </script>
