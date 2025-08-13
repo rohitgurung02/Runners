@@ -1,0 +1,253 @@
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} {
+    overflow-x: hidden;
+  }
+  
+  {{ sec_id }} .pc-row,
+  {{ sec_id }} .pc-section {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  {{ sec_id }} .pc-section {
+    text-align: center;
+  }
+
+  {{ sec_id }} .pc-container-fluid {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  {{ sec_id }} .pc-horiz-gallery-strip,
+  {{ sec_id }} .pc-horiz-gallery-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    will-change: transform;
+    position: relative;
+  }
+
+  {{ sec_id }} .pc-project-wrap {
+    width: {{ section.settings.item_width_desktop }}vw;
+    padding: {{ section.settings.item_padding_desktop }}rem;
+    box-sizing: content-box;
+  }
+  
+  {{ sec_id }} .pc-project-wrap img {
+    width: 100%;
+    aspect-ratio: {{ section.settings.image_aspect_ratio }};
+    object-fit: cover;
+  }
+
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-project-wrap {
+      width: {{ section.settings.item_width_mobile }}vw;
+      padding: {{ section.settings.item_padding_mobile }}rem;
+    }
+  }
+</style>
+
+<section class="pc-horizontal-gallery-{{ last_part }}">
+  {%- if section.settings.heading != blank -%}
+    <div class="pc-section pc-plain">
+      <h3>{{ section.settings.heading }}</h3>
+    </div>
+  {%- endif -%}
+
+  <div class="pc-container-fluid">
+    <div class="pc-horiz-gallery-wrapper">
+      <div class="pc-horiz-gallery-strip">
+        {%- for block in section.blocks -%}
+          <div class="pc-project-wrap" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              {% assign image_class = 'pc-gallery-image-' | append: last_part %}
+              {{ 
+                block.settings.image
+                | image_url: width: 1000
+                | image_tag: 
+                    loading: 'lazy',
+                    class: image_class,
+                    alt: block.settings.image.alt
+              }}
+            {%- else -%}
+              {{ 'product-' | append: forloop.index | placeholder_svg_tag }}
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  {%- if section.settings.footer_text != blank -%}
+    <div class="pc-section pc-plain">
+      <h3>{{ section.settings.footer_text }}</h3>
+    </div>
+  {%- endif -%}
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionElement = document.querySelector('{{ sec_id }}');
+    
+    if (sectionElement) {
+      const horizGallery = sectionElement.querySelector('.pc-horiz-gallery-wrapper');
+      
+      if (horizGallery) {
+        const pinWrap = horizGallery.querySelector('.pc-horiz-gallery-strip');
+        let pinWrapWidth;
+        let horizontalScrollLength;
+
+        function refresh() {
+          pinWrapWidth = pinWrap.scrollWidth;
+          horizontalScrollLength = pinWrapWidth - window.innerWidth;
+        }
+
+        refresh();
+        
+        ScrollTrigger.create({
+          trigger: horizGallery,
+          pin: true,
+          start: "center center",
+          end: () => `+=${pinWrapWidth}`,
+          scrub: true,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            gsap.to(pinWrap, {
+              x: -horizontalScrollLength * progress,
+              ease: "none"
+            });
+          }
+        });
+
+        window.addEventListener('resize', refresh);
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Horizontal Gallery #1",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Scroll down for the Gallery"
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "That's it!"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "item_width_desktop",
+      "label": "Item Width (Desktop)",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "vw",
+      "default": 33
+    },
+    {
+      "type": "range",
+      "id": "item_width_mobile",
+      "label": "Item Width (Mobile)",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vw",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "item_padding_desktop",
+      "label": "Item Padding (Desktop)",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "unit": "rem",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "item_padding_mobile",
+      "label": "Item Padding (Mobile)",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "unit": "rem",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "min": 0.5,
+      "max": 2,
+      "step": 0.1,
+      "default": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Shadow on Items",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Gallery Item",
+      "type": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Horizontal Gallery #1",
+      "category": "Gallery",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
