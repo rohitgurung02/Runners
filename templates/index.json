@@ -1589,6 +1589,103 @@
         "card_padding_mobile": 20,
         "card_padding_desktop": 30
       }
+    },
+    "rw_test_GgPxKr": {
+      "type": "rw-test",
+      "blocks": {
+        "testimonial_Tfcp76": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Milton Austin",
+            "role": "Sales Manager, Slack",
+            "heading": "Great collaboration",
+            "rating": 5,
+            "quote": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iure possimus harum quisquam praesentium ipsum accusantium, facilis omnis, blanditiis quas soluta nihil incidunt laboriosam dicta maiores.",
+            "additional_text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
+          }
+        },
+        "testimonial_ziFcAJ": {
+          "type": "testimonial",
+          "settings": {
+            "name": "John Smith",
+            "role": "Marketing Director, Acme",
+            "heading": "It was a great experience!",
+            "rating": 5,
+            "quote": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iure possimus harum quisquam praesentium ipsum accusantium, facilis omnis, blanditiis quas soluta nihil incidunt laboriosam dicta maiores.",
+            "additional_text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
+          }
+        },
+        "testimonial_FjG6YH": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Sarah Johnson",
+            "role": "CEO, TechCorp",
+            "heading": "Quickly and Efficiently",
+            "rating": 4,
+            "quote": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iure possimus harum quisquam praesentium ipsum accusantium, facilis omnis, blanditiis quas soluta nihil incidunt laboriosam dicta maiores.",
+            "additional_text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_Tfcp76",
+        "testimonial_ziFcAJ",
+        "testimonial_FjG6YH"
+      ],
+      "name": "PWC - Testimonials #6",
+      "settings": {
+        "title": "Testimonials",
+        "cards_columns_desktop": 5,
+        "section_gap_desktop": 50,
+        "card_gap_mobile": 20,
+        "card_content_gap": 20,
+        "card_border_width": 1,
+        "card_radius": 16,
+        "gradient_height": 1,
+        "gradient_shadow": 2,
+        "gradient_shadow_blur": 12,
+        "paragraph_spacing": 20,
+        "stars_spacing": 10,
+        "content_min_height_mobile": 400,
+        "content_min_height_desktop": 500,
+        "text_padding_bottom_mobile": 20,
+        "content_spacing_mobile": 20,
+        "title_color": "#26273e",
+        "card_bg": "transparent",
+        "card_active_bg": "#ffffff",
+        "card_active_border": "#0f172a14",
+        "name_color": "#26273e",
+        "role_color": "#767676",
+        "gradient_color_1": "#4755690a",
+        "gradient_color_2": "#9d0cb28a",
+        "gradient_color_3": "#4343c899",
+        "gradient_shadow_color": "#4343c84d",
+        "heading_color": "#26273e",
+        "quote_color": "#26273e",
+        "star_color": "#eca633",
+        "title_size_mobile": 24,
+        "title_size_desktop": 40,
+        "title_spacing_mobile": 20,
+        "title_spacing_desktop": 40,
+        "title_weight": "700",
+        "name_size_mobile": 16,
+        "name_size_desktop": 16,
+        "name_weight": "400",
+        "role_size_mobile": 14,
+        "role_size_desktop": 14,
+        "heading_size_mobile": 24,
+        "heading_size_desktop": 32,
+        "heading_weight": "600",
+        "quote_size_mobile": 16,
+        "quote_size_desktop": 18,
+        "quote_line_height": 1.6,
+        "star_size_mobile": 20,
+        "star_size_desktop": 24,
+        "image_size_mobile": 50,
+        "image_size_desktop": 60,
+        "card_padding_mobile": 20,
+        "card_padding_desktop": 30
+      }
     }
   },
   "order": [
@@ -1611,6 +1708,7 @@
     "rw_wavy_background_1_cFNhmb",
     "rw_card_carousel_6_A3yTqa",
     "marquee_text_4_dwwPnB",
-    "rw_test_QTdBdN"
+    "rw_test_QTdBdN",
+    "rw_test_GgPxKr"
   ]
 }
