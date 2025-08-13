@@ -4,7 +4,197 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-  /* [Previous CSS remains exactly the same] */
+  {{ sec_id }} {
+    display: grid;
+    place-items: start;
+    padding-block: min(20vh, 3rem);
+  }
+
+  {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    width: calc(min(90rem, 85%));
+    margin: 0 auto;
+  }
+
+  {{ sec_id }} .pc-testimonial-title-{{ last_part }} {
+    grid-column: span 12;
+    text-transform: capitalize;
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    color: {{ section.settings.title_color }};
+  }
+
+  {{ sec_id }} .pc-testimonial-cards-{{ last_part }} {
+    grid-column: span 12;
+    display: grid;
+    gap: 2rem;
+  }
+
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }} {
+    cursor: pointer;
+    padding: 2em;
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 2.188rem;
+    align-items: center;
+    transition: 0.3s;
+    position: relative;
+    border: 0.094rem solid transparent;
+    background: {{ section.settings.card_bg_color }};
+  }
+
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }} img {
+    display: block;
+    width: 3.35rem;
+    height: 3.35rem;
+    border-radius: 50%;
+    filter: grayscale(1);
+    transition: 0.5s;
+  }
+
+  {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} h3 {
+    text-transform: capitalize;
+    font-size: 1.025rem;
+    color: {{ section.settings.name_color }};
+  }
+
+  {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} p {
+    text-transform: capitalize;
+    color: {{ section.settings.role_color }};
+    font-size: 0.9rem;
+  }
+
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active {
+    background: {{ section.settings.card_active_bg }};
+    border: 0.094rem solid {{ section.settings.card_active_border }};
+  }
+
+  {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active img {
+    filter: grayscale(0);
+  }
+
+  {{ sec_id }} .pc-testimonial-gradient-{{ last_part }} {
+    background-image: linear-gradient(
+      to right,
+      #4755690a,
+      #9d0cb28a,
+      #4343c899,
+      #4755690a
+    );
+    width: 50%;
+    height: 0.094rem;
+    position: absolute;
+    content: "";
+    bottom: -0.063rem;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0px 0.125rem 0.75rem #4343c84d;
+  }
+
+  {{ sec_id }} .pc-testimonial-content-{{ last_part }} {
+    grid-column: span 12;
+    position: relative;
+    width: 100%;
+    overflow: inherit;
+    margin-top: 2rem;
+  }
+
+  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }} {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+  }
+
+  {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
+    padding-bottom: 2rem;
+  }
+
+  {{ sec_id }} .pc-testimonial-text-{{ last_part }} h2 {
+    transition: 0.5s;
+    opacity: 0;
+    color: {{ section.settings.content_title_color }};
+    font-size: {{ section.settings.content_title_size }}px;
+  }
+
+  {{ sec_id }} .pc-testimonial-text-{{ last_part }} p {
+    transition: 0.5s;
+    opacity: 0;
+    margin-top: 1.25rem;
+    color: {{ section.settings.content_text_color }};
+    font-size: {{ section.settings.content_text_size }}px;
+  }
+
+  {{ sec_id }} .pc-testimonial-rating-{{ last_part }} {
+    display: inline-block;
+    transition: 0.5s;
+    opacity: 0;
+    margin-top: 0.625rem;
+  }
+
+  {{ sec_id }} .pc-testimonial-rating-{{ last_part }} svg {
+    width: 1.25rem;
+    color: {{ section.settings.rating_color }};
+  }
+
+  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active h2 {
+    opacity: 1;
+    transition-delay: 0.5s;
+  }
+  
+  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active .pc-testimonial-rating-{{ last_part }} {
+    opacity: 1;
+    transition-delay: 0.7s;
+  }
+  
+  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active p {
+    opacity: 1;
+    transition-delay: 0.9s;
+  }
+
+  @media screen and (min-width: 61.25rem) {
+    {{ sec_id }} {
+      place-items: center;
+    }
+    
+    {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
+      column-gap: 5rem;
+    }
+    
+    {{ sec_id }} .pc-testimonial-title-{{ last_part }} {
+      font-size: 4rem;
+      margin-bottom: 4rem;
+    }
+    
+    {{ sec_id }} .pc-testimonial-cards-{{ last_part }} {
+      grid-column: span 5;
+    }
+    
+    {{ sec_id }} .pc-testimonial-content-{{ last_part }} {
+      grid-column: span 7;
+      margin-top: 0;
+      height: auto;
+    }
+    
+    {{ sec_id }} .pc-testimonial-content-box-{{ last_part }} {
+      align-items: center;
+    }
+    
+    {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
+      padding-bottom: 0;
+    }
+  }
+
+  {% if section.settings.enable_shadow %}
+    {{ sec_id }} .pc-testimonial-card-{{ last_part }}.pc-active {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+  {% endif %}
 </style>
 
 <pc-testimonial-section-{{ last_part }} class="pc-testimonial-container-{{ last_part }}">
@@ -66,25 +256,23 @@
       this.cards = this.querySelectorAll('.pc-testimonial-card-{{ last_part }}');
       this.contentBoxes = this.querySelectorAll('.pc-testimonial-content-box-{{ last_part }}');
       
-      // Initialize with first testimonial active
-      this.activateTestimonial(0);
-      
-      // Add event listeners to all cards
-      this.cards.forEach((card, index) => {
-        card.addEventListener('click', () => {
-          this.activateTestimonial(index);
+      this.cards.forEach(card => {
+        card.addEventListener('mouseover', () => {
+          const targetId = card.dataset.id;
+          
+          this.contentBoxes.forEach(box => {
+            box.classList.remove('pc-active');
+          });
+          
+          document.getElementById(targetId).classList.add('pc-active');
+          
+          this.cards.forEach(c => {
+            c.classList.remove('pc-active');
+          });
+          
+          card.classList.add('pc-active');
         });
       });
-    }
-    
-    activateTestimonial(index) {
-      // Remove active classes from all cards and content boxes
-      this.cards.forEach(card => card.classList.remove('pc-active'));
-      this.contentBoxes.forEach(box => box.classList.remove('pc-active'));
-      
-      // Add active class to selected card and corresponding content box
-      this.cards[index].classList.add('pc-active');
-      this.contentBoxes[index].classList.add('pc-active');
     }
   }
 
