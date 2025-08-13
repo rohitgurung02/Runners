@@ -106,22 +106,21 @@
   }
 
   {{ sec_id }} .pc-testimonial-content-box-{{ last_part }} {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-  }
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
 
-  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active,
-  {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-hover {
-    opacity: 1;
-    pointer-events: auto;
-  }
+ {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active {
+  opacity: 1;
+  pointer-events: auto;
+}
 
   {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
     padding-bottom: 2rem;
@@ -257,6 +256,12 @@
       
       // Add event listeners to all cards
       this.cards.forEach((card, index) => {
+        card.addEventListener('mouseenter', () => {
+          clearTimeout(this.hoverTimeout);
+          this.activateTestimonial(index);
+        });
+        
+        // Optional: Add click event as fallback for mobile/touch devices
         card.addEventListener('click', () => {
           this.activateTestimonial(index);
         });
@@ -264,43 +269,18 @@
     }
     
     activateTestimonial(index) {
-      // Clear any hover states
-      this.clearHoverStates();
-      
       // Remove active classes from all cards and content boxes
       this.cards.forEach(card => card.classList.remove('pc-active'));
-      this.contentBoxes.forEach(box => box.classList.remove('pc-active'));
+      this.contentBoxes.forEach(box => box.classList.remove('pc-active', 'pc-hover'));
       
       // Add active class to selected card and corresponding content box
       this.cards[index].classList.add('pc-active');
       this.contentBoxes[index].classList.add('pc-active');
       this.activeIndex = index;
     }
-    
-    setHoverState(index, isHover) {
-      // Clear any existing hover states
-      this.clearHoverStates();
-      
-      if (isHover && index !== this.activeIndex) {
-        this.contentBoxes[index].classList.add('pc-hover');
-      }
-    }
-    
-    clearHoverStates() {
-      this.contentBoxes.forEach(box => box.classList.remove('pc-hover'));
-    }
   }
 
   customElements.define('pc-testimonial-section-{{ last_part }}', PcTestimonialSection);
-
-  // Global hover handler
-  function handleCardHover(contentId, isHover) {
-    const section = document.querySelector('pc-testimonial-section-{{ last_part }}');
-    if (section && section.setHoverState) {
-      const index = parseInt(contentId.replace('content', '')) - 1;
-      section.setHoverState(index, isHover);
-    }
-  }
 </script>
 
 {% schema %}
