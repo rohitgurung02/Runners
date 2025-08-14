@@ -52,8 +52,10 @@
 
   {{ sec_id }} .pc-testimonial-card-{{ last_part }} img {
     display: block;
-    width: 3.35rem;
-    height: 3.35rem;
+    {% comment %} width: 3.35rem;
+    height: 3.35rem; {% endcomment %}
+    width: {{ section.settings.image_size_desktop }}px;
+    height: {{ section.settings.image_size_desktop }}px;
     border-radius: 50%;
     filter: grayscale(1);
     transition: 0.5s;
