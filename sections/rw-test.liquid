@@ -183,6 +183,7 @@
   {{ sec_id }} .pc-testimonial-rating-{{ last_part }} svg {
     width: 1.25rem;
     color: {{ section.settings.rating_color }};
+    font-size: {{ section.settings.rating_max_font_size }}px;
   }
 
   @media screen and (min-width: 61.25rem) {
@@ -1168,6 +1169,16 @@
       "id": "rating_color",
       "label": "Rating Color",
       "default": "#eca633"
+    },
+    {
+      "type": "range",
+      "id": "rating_max_font_size",
+      "label": "Rating Font Size",
+      "min": 6,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 24
     },
     {
   "type": "range",
