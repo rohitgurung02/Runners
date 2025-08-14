@@ -1527,7 +1527,7 @@
         "name_color": "#26273e",
         "role_color": "#767676",
         "content_title_color": "#26273e",
-        "name_max_font_size": 20,
+        "name_max_font_size": 18,
         "name_font_weight": "normal",
         "name_font_style": "normal",
         "name_letter_spacing": 0,
