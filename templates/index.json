@@ -1548,7 +1548,6 @@
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/LisaLunceford.webp",
-            "image_size_desktop": 54,
             "name": "John Doe",
             "role": "Sales Manager, Company",
             "rating": 5,
@@ -1561,7 +1560,6 @@
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/Randy_Moore_Photo_edited.webp",
-            "image_size_desktop": 54,
             "name": "John Doe",
             "role": "Sales Manager, Company",
             "rating": 5,
@@ -1574,7 +1572,6 @@
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/Lawanda_Franks__edited_1.webp",
-            "image_size_desktop": 20,
             "name": "John Doe",
             "role": "Sales Manager, Company",
             "rating": 4,
@@ -1595,7 +1592,7 @@
         "card_active_bg": "#ffffff",
         "card_active_border": "#0f172a14",
         "padding": 17,
-        "enable_shadow": false,
+        "enable_shadow": true,
         "title": "Testimonials",
         "title_color": "#26273e",
         "title_max_font_size": 24,
