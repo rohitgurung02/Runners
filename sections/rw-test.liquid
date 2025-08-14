@@ -268,7 +268,6 @@
       super();
       this.cards = this.querySelectorAll('.pc-testimonial-card-{{ last_part }}');
       this.contentBoxes = this.querySelectorAll('.pc-testimonial-content-box-{{ last_part }}');
-      this.activeIndex = 0;
       this.hoverTimeout = null;
       
       // Initialize with first testimonial active
@@ -291,16 +290,20 @@
     activateTestimonial(index) {
       // Remove active classes from all cards and content boxes
       this.cards.forEach(card => card.classList.remove('pc-active'));
-      this.contentBoxes.forEach(box => box.classList.remove('pc-active', 'pc-hover'));
+      this.contentBoxes.forEach(box => box.classList.remove('pc-active'));
       
       // Add active class to selected card and corresponding content box
-      this.cards[index].classList.add('pc-active');
-      this.contentBoxes[index].classList.add('pc-active');
-      this.activeIndex = index;
+      if (this.cards[index] && this.contentBoxes[index]) {
+        this.cards[index].classList.add('pc-active');
+        this.contentBoxes[index].classList.add('pc-active');
+      }
     }
   }
 
-  customElements.define('pc-testimonial-section-{{ last_part }}', PcTestimonialSection);
+  // Register the custom element
+  if (!customElements.get('pc-testimonial-section-{{ last_part }}')) {
+    customElements.define('pc-testimonial-section-{{ last_part }}', PcTestimonialSection);
+  }
 </script>
 
 {% schema %}
