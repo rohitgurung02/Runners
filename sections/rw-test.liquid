@@ -344,16 +344,6 @@
       "label": "Card Background Color",
       "default": "#ffffff"
     },
-     {
-  "type": "range",
-  "id": "padding",
-  "label": "Padding (Desktop)",
-  "min": 0,
-  "max": 100,
-  "step": 1,
-  "unit": "px",
-  "default": 17
-},
     {
       "type": "color",
       "id": "card_active_bg",
@@ -366,6 +356,22 @@
       "id": "card_active_border",
       "label": "Active Card Border",
       "default": "#0f172a14"
+    },
+       {
+  "type": "range",
+  "id": "padding",
+  "label": "Padding (Desktop)",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "default": 17
+},
+{
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable Shadow on Active Card",
+      "default": false
     },
     {
           "type": "header",
@@ -1194,12 +1200,7 @@
       "unit": "px",
       "default": 18
     },
-    {
-      "type": "checkbox",
-      "id": "enable_shadow",
-      "label": "Enable Shadow on Active Card",
-      "default": false
-    }
+    
   ],
   "blocks": [
     {
