@@ -1565,7 +1565,7 @@
         "content_text_color": "#26273e",
         "content_text_size": 16,
         "rating_color": "#eca633",
-        "padding": 23,
+        "padding": 20,
         "enable_shadow": false
       }
     }
