@@ -1553,7 +1553,7 @@
         "name_padding_bottom": 5,
         "role_max_font_size": 16,
         "role_font_weight": "normal",
-        "role_font_style": "normal",
+        "role_font_style": "italic",
         "role_letter_spacing": 0,
         "role_text_decoration": "none",
         "role_text_decoration_color": "#000000",
