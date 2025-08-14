@@ -30,6 +30,7 @@
     grid-column: span 12;
     display: grid;
     gap: 2rem;
+    padding: {{  }}
   }
 
   {{ sec_id }} .pc-testimonial-card-{{ last_part }} {
@@ -680,6 +681,16 @@
       "label": "Rating Color",
       "default": "#eca633"
     },
+    {
+  "type": "range",
+  "id": "padding",
+  "label": "Padding (Desktop)",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "default": 20
+},
     {
       "type": "checkbox",
       "id": "enable_shadow",
