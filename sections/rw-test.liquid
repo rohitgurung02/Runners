@@ -153,7 +153,13 @@
   {{ sec_id }} .pc-testimonial-text-{{ last_part }} h2 {
     color: {{ section.settings.content_title_color }};
     font-size: {{ section.settings.content_title_size }}px;
-    
+    font-weight: {{ section.settings.content_title_font_weight }};
+    font-style: {{ section.settings.content_title_font_style }};
+    letter-spacing: {{ section.settings.content_title_letter_spacing }}px;
+    text-decoration: {{ section.settings.content_title_text_decoration }};
+    text-decoration-color: {{ section.settings.content_title_text_decoration_color }};
+    padding-top: {{ section.settings.content_title_padding_top }}px;
+    padding-bottom: {{ section.settings.content_title_padding_bottom }}px;
   }
 
   {{ sec_id }} .pc-testimonial-text-{{ last_part }} p {
