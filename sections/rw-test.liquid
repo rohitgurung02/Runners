@@ -58,6 +58,14 @@
     text-transform: capitalize;
     font-size: 1.025rem;
     color: {{ section.settings.name_color }};
+    font-size: clamp(10px, {{ section.settings.name_max_font_size }}px, 50px);
+    font-weight: {{ section.settings.name_font_weight }};
+    font-style: {{ section.settings.name_font_style }};
+    letter-spacing: {{ section.settings.name_letter_spacing }}px;
+    text-decoration: {{ section.settings.Name_text_decoration }};
+    text-decoration-color: {{ section.settings.name_text_decoration_color }};
+    padding-top: {{ section.settings.name_padding_top }}px;
+    padding-bottom: {{ section.settings.name_padding_bottom }}px;
   }
 
   {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} p {
@@ -211,7 +219,7 @@
           {{ 'product-1' | placeholder_svg_tag }}
         {%- endif -%}
         <div class="pc-testimonial-card-info-{{ last_part }}">
-          <h3 class="" style="
+          <h3 class="pc-testimonial-card-heading" style="
             
           ">{{ block.settings.name }}</h3>
           <p>{{ block.settings.role }}</p>
