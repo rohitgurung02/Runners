@@ -30,7 +30,6 @@
     grid-column: span 12;
     display: grid;
     gap: 2rem;
-    padding: {{section.settings.padding }}
   }
 
   {{ sec_id }} .pc-testimonial-card-{{ last_part }} {
@@ -52,6 +51,10 @@
     border-radius: 50%;
     filter: grayscale(1);
     transition: 0.5s;
+  }
+
+  {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} {
+    padding: {{ section.settings.padding }}px;
   }
 
   {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} h3 {
