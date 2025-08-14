@@ -52,10 +52,8 @@
 
   {{ sec_id }} .pc-testimonial-card-{{ last_part }} img {
     display: block;
-    {% comment %} width: 3.35rem;
-    height: 3.35rem; {% endcomment %}
-    width: {{ section.settings.image_size_desktop }}px;
-    height: {{ section.settings.image_size_desktop }}px;
+    width: 3.35rem;
+    height: 3.35rem;
     border-radius: 50%;
     filter: grayscale(1);
     transition: 0.5s;
@@ -1215,16 +1213,6 @@
           "id": "image",
           "label": "Image"
         },
-        {
-  "type": "range",
-  "id": "image_size_desktop",
-  "label": "Image Size (Desktop)",
-  "min": 20,
-  "max": 200,
-  "step": 2,
-  "unit": "px",
-  "default": 54
-},
         {
           "type": "text",
           "id": "name",
