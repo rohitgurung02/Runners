@@ -19,11 +19,17 @@
 
   {{ sec_id }} .pc-testimonial-title-{{ last_part }} {
     grid-column: span 12;
-    text-transform: capitalize;
-    font-size: 2.4rem;
     margin-bottom: 2rem;
     font-weight: 700;
     color: {{ section.settings.title_color }};
+    font-size: clamp(10px, {{ section.settings.title_max_font_size }}px, 50px);
+    font-weight: {{ section.settings.title_font_weight }};
+    font-style: {{ section.settings.title_font_style }};
+    letter-spacing: {{ section.settings.title_letter_spacing }}px;
+    text-decoration: {{ section.settings.title_text_decoration }};
+    text-decoration-color: {{ section.settings.title_text_decoration_color }};
+    padding-top: {{ section.settings.title_padding_top }}px;
+    padding-bottom: {{ section.settings.title_padding_bottom }}px;
   }
 
   {{ sec_id }} .pc-testimonial-cards-{{ last_part }} {
@@ -147,6 +153,7 @@
   {{ sec_id }} .pc-testimonial-text-{{ last_part }} h2 {
     color: {{ section.settings.content_title_color }};
     font-size: {{ section.settings.content_title_size }}px;
+    
   }
 
   {{ sec_id }} .pc-testimonial-text-{{ last_part }} p {
