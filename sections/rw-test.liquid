@@ -211,7 +211,9 @@
           {{ 'product-1' | placeholder_svg_tag }}
         {%- endif -%}
         <div class="pc-testimonial-card-info-{{ last_part }}">
-          <h3>{{ block.settings.name }}</h3>
+          <h3 class="" style="
+            
+          ">{{ block.settings.name }}</h3>
           <p>{{ block.settings.role }}</p>
         </div>
         <div class="pc-testimonial-gradient-{{ last_part }}"></div>
@@ -335,6 +337,154 @@
       "label": "Content Title Color",
       "default": "#26273e"
     },
+       {
+      "type": "range",
+      "id": "name_max_font_size",
+      "label": "Maximum Font Size",
+      "min": 6,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+        {
+          "type": "select",
+          "id": "name_font_weight",
+          "label": "Name Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "name_font_style",
+          "label": "Name Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "name_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Name Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "Name_text_decoration",
+          "label": "Name Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "name_text_decoration_color",
+          "label": "Name Text Decoration Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "name_padding_top",
+          "label": "Name Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "name_padding_bottom",
+          "label": "Name Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
     {
       "type": "range",
       "id": "content_title_size",
