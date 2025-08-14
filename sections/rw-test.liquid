@@ -183,6 +183,10 @@
   {{ sec_id }} .pc-testimonial-rating-{{ last_part }} svg {
     width: 1.25rem;
     color: {{ section.settings.rating_color }};
+    {% comment %} font-size: {{ section.settings.rating_font_size }}px !important; {% endcomment %}
+  }
+
+  {{ sec_id }} .pc-testimonial-rating-{{ last_part }} svg {
     font-size: {{ section.settings.rating_font_size }}px !important;
   }
 
