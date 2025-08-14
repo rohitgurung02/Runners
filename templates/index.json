@@ -779,6 +779,7 @@
         "content_text_color": "#26273e",
         "content_text_size": 16,
         "rating_color": "#eca633",
+        "padding": 20,
         "enable_shadow": false
       }
     },
@@ -1025,6 +1026,7 @@
         "content_text_color": "#26273e",
         "content_text_size": 16,
         "rating_color": "#eca633",
+        "padding": 20,
         "enable_shadow": false
       }
     },
@@ -1548,7 +1550,7 @@
         "name_font_style": "normal",
         "name_letter_spacing": 0,
         "Name_text_decoration": "none",
-        "name_text_decoration_color": "#000",
+        "name_text_decoration_color": "#000000",
         "name_padding_top": 0,
         "name_padding_bottom": 0,
         "role_max_font_size": 16,
@@ -1556,13 +1558,14 @@
         "role_font_style": "normal",
         "role_letter_spacing": 0,
         "role_text_decoration": "none",
-        "role_text_decoration_color": "#000",
+        "role_text_decoration_color": "#000000",
         "role_padding_top": 5,
         "role_padding_bottom": 5,
         "content_title_size": 24,
         "content_text_color": "#26273e",
         "content_text_size": 16,
         "rating_color": "#eca633",
+        "padding": 62,
         "enable_shadow": false
       }
     }
