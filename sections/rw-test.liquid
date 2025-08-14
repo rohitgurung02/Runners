@@ -71,7 +71,14 @@
   {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} p {
     text-transform: capitalize;
     color: {{ section.settings.role_color }};
-    font-size: 0.9rem;
+    font-size: clamp(10px, {{ section.settings.role_max_font_size }}px, 50px);
+    font-weight: {{ section.settings.role_font_weight }};
+    font-style: {{ section.settings.role_font_style }};
+    letter-spacing: {{ section.settings.role_letter_spacing }}px;
+    text-decoration: {{ section.settings.role_text_decoration }};
+    text-decoration-color: {{ section.settings.role_text_decoration_color }};
+    padding-top: {{ section.settings.role_padding_top }}px;
+    padding-bottom: {{ section.settings.role_padding_bottom }}px;
     margin: 0;
   }
 
