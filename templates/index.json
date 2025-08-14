@@ -1636,7 +1636,7 @@
         "content_text_padding_top": 5,
         "content_text_padding_bottom": 5,
         "rating_color": "#8eec33",
-        "rating_font_size": 50,
+        "rating_font_size": 18,
         "padding": 17,
         "enable_shadow": false
       }
