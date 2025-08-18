@@ -220,6 +220,11 @@
     font-size: {{ section.settings.content_text_size_mobile }}px !important;
     }
 
+     {{ sec_id }} .pc-testimonial-rating-{{ last_part }} svg {
+    width: {{ section.settings.rating_font_size_mobile }}px !important;
+    height: {{ section.settings.rating_font_size_mobile }}px !important;
+  }
+
     {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
       width: 90%;
       grid-template-columns: 1fr;
@@ -1351,14 +1356,23 @@
     {
       "type": "range",
       "id": "rating_font_size",
-      "label": "Rating Font Size",
+      "label": "Rating Font Size (Desktop)",
       "min": 6,
       "max": 50,
       "step": 2,
       "unit": "px",
       "default": 18
     },
-    
+    {
+      "type": "range",
+      "id": "rating_font_size_mobile",
+      "label": "Rating Font Size (Mobile)",
+      "min": 6,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
   ],
   "blocks": [
     {
