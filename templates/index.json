@@ -1554,116 +1554,6 @@
         "section_margin_top_mobile": 10,
         "section_margin_bottom_mobile": 10
       }
-    },
-    "rw_test_hGG6Ck": {
-      "type": "rw-test",
-      "blocks": {
-        "testimonial_9rUTyf": {
-          "type": "testimonial",
-          "settings": {
-            "image": "shopify://shop_images/LisaLunceford.webp",
-            "name": "John Doe",
-            "role": "Sales Manager, Company",
-            "rating": 5,
-            "testimonial_title": "Great collaboration",
-            "testimonial_text_1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo.",
-            "testimonial_text_2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
-          }
-        },
-        "testimonial_E7dMAW": {
-          "type": "testimonial",
-          "settings": {
-            "image": "shopify://shop_images/Randy_Moore_Photo_edited.webp",
-            "name": "John Doe",
-            "role": "Sales Manager, Company",
-            "rating": 5,
-            "testimonial_title": "Great collaboration",
-            "testimonial_text_1": "",
-            "testimonial_text_2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
-          }
-        },
-        "testimonial_zVbdHE": {
-          "type": "testimonial",
-          "settings": {
-            "image": "shopify://shop_images/Lawanda_Franks__edited_1.webp",
-            "name": "John Doe",
-            "role": "Sales Manager, Company",
-            "rating": 4,
-            "testimonial_title": "Great collaboration",
-            "testimonial_text_1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo.",
-            "testimonial_text_2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eius odit at aliquid, reprehenderit repellendus quo vero nam cumque incidunt iusto optio molestias facilis eum corrupti dolorum rem nemo."
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_9rUTyf",
-        "testimonial_E7dMAW",
-        "testimonial_zVbdHE"
-      ],
-      "name": "PWC - Testimonials #6",
-      "settings": {
-        "card_bg_color": "#ffffff",
-        "card_active_bg": "#ffffff",
-        "card_active_border": "#0f172a14",
-        "padding": 14,
-        "padding_mobile": 13,
-        "enable_shadow": true,
-        "title": "Testimonials",
-        "title_color": "#26273e",
-        "title_max_font_size": 24,
-        "title_max_font_size_mobile": 24,
-        "title_alignment": "center",
-        "title_font_weight": "bold",
-        "title_font_style": "normal",
-        "title_letter_spacing": 0,
-        "title_text_decoration": "none",
-        "title_text_decoration_color": "#000000",
-        "title_padding_top": 5,
-        "title_padding_bottom": 5,
-        "name_color": "#26273e",
-        "name_max_font_size": 18,
-        "name_max_font_size_mobile": 18,
-        "name_font_weight": "bold",
-        "name_font_style": "normal",
-        "name_letter_spacing": 0,
-        "Name_text_decoration": "none",
-        "name_text_decoration_color": "#000000",
-        "name_padding_top": 0,
-        "name_padding_bottom": 0,
-        "role_color": "#767676",
-        "role_max_font_size": 16,
-        "role_max_font_size_mobile": 14,
-        "role_font_weight": "normal",
-        "role_font_style": "normal",
-        "role_letter_spacing": 0,
-        "role_text_decoration": "none",
-        "role_text_decoration_color": "#000000",
-        "role_padding_top": 5,
-        "role_padding_bottom": 5,
-        "content_title_color": "#26273e",
-        "content_title_size": 24,
-        "content_title_size_mobile": 25,
-        "content_title_font_weight": "normal",
-        "content_title_font_style": "normal",
-        "content_title_letter_spacing": 0,
-        "content_title_text_decoration": "none",
-        "content_title_text_decoration_color": "#000000",
-        "content_title_padding_top": 5,
-        "content_title_padding_bottom": 5,
-        "content_text_color": "#26273e",
-        "content_text_size": 16,
-        "content_text_size_mobile": 17,
-        "content_text_font_weight": "normal",
-        "content_text_font_style": "normal",
-        "content_text_letter_spacing": 0,
-        "content_text_decoration": "none",
-        "content_text_decoration_color": "#000000",
-        "content_text_padding_top": 5,
-        "content_text_padding_bottom": 5,
-        "rating_color": "#eca633",
-        "rating_font_size": 18,
-        "rating_font_size_mobile": 16
-      }
     }
   },
   "order": [
@@ -1685,7 +1575,6 @@
     "rw_text_animation_ETLPy6",
     "rw_wavy_background_1_cFNhmb",
     "rw_card_carousel_6_A3yTqa",
-    "marquee_text_4_dwwPnB",
-    "rw_test_hGG6Ck"
+    "marquee_text_4_dwwPnB"
   ]
 }
