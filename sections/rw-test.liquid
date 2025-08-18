@@ -207,7 +207,11 @@
     {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} h3 {
     font-size: {{ section.settings.name_max_font_size_mobile }}px !important;
     }
-    
+
+    {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} p {
+    font-size: {{ section.settings.role_max_font_size }}px !important;
+    }
+
     {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
       width: 90%;
       grid-template-columns: 1fr;
@@ -461,7 +465,7 @@
   "max": 100,
   "step": 1,
   "unit": "px",
-  "default": 17
+  "default": 15
 },
 {
       "type": "checkbox",
@@ -832,10 +836,20 @@
       "label": "Role Color",
       "default": "#767676"
     },
-       {
+      {
       "type": "range",
       "id": "role_max_font_size",
-      "label": "Role Font Size",
+      "label": "Role Font Size (Desktop)",
+      "min": 6,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "role_max_font_size_mobile",
+      "label": "Role Font Size (Mobile)",
       "min": 6,
       "max": 50,
       "step": 1,
