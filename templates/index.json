@@ -1638,7 +1638,7 @@
         "role_padding_bottom": 5,
         "content_title_color": "#26273e",
         "content_title_size": 24,
-        "content_title_size_mobile": 23,
+        "content_title_size_mobile": 25,
         "content_title_font_weight": "normal",
         "content_title_font_style": "normal",
         "content_title_letter_spacing": 0,
