@@ -199,6 +199,10 @@
     {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} {
       padding: {{ section.settings.padding_mobile }}px !important;
     }
+
+    {{ sec_id }} .pc-testimonial-title-{{ last_part }} {
+    font-size: {{ section.settings.title_max_font_size_mobile }}px;
+    }
     
     {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
       width: 90%;
@@ -480,7 +484,17 @@
        {
       "type": "range",
       "id": "title_max_font_size",
-      "label": "Title Font Size",
+      "label": "Title Font Size (Desktop)",
+      "min": 6,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+     {
+      "type": "range",
+      "id": "title_max_font_size_mobile",
+      "label": "Title Font Size (Mobile)",
       "min": 6,
       "max": 50,
       "step": 2,
