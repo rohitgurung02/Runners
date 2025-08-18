@@ -203,6 +203,10 @@
     {{ sec_id }} .pc-testimonial-title-{{ last_part }} {
     font-size: {{ section.settings.title_max_font_size_mobile }}px !important;
     }
+
+    {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} h3 {
+    font-size: {{ section.settings.name_max_font_size }}px !important;
+    }
     
     {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
       width: 90%;
@@ -663,7 +667,17 @@
        {
       "type": "range",
       "id": "name_max_font_size",
-      "label": " Name Maximum Font Size",
+      "label": " Name Maximum Font Size (Desktop)",
+      "min": 6,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "name_max_font_size_mobile",
+      "label": " Name Maximum Font Size (Mobile)",
       "min": 6,
       "max": 50,
       "step": 1,
