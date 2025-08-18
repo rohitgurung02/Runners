@@ -810,7 +810,8 @@
         "content_text_padding_top": 5,
         "content_text_padding_bottom": 5,
         "rating_color": "#eca633",
-        "rating_font_size": 24
+        "rating_font_size": 24,
+        "rating_font_size_mobile": 18
       }
     },
     "rw_reviews_eNfMNB": {
@@ -1087,7 +1088,8 @@
         "content_text_padding_top": 5,
         "content_text_padding_bottom": 5,
         "rating_color": "#eca633",
-        "rating_font_size": 24
+        "rating_font_size": 24,
+        "rating_font_size_mobile": 18
       }
     },
     "rw_hero_banner_4dJjqa": {
@@ -1659,7 +1661,8 @@
         "content_text_padding_top": 5,
         "content_text_padding_bottom": 5,
         "rating_color": "#eca633",
-        "rating_font_size": 18
+        "rating_font_size": 18,
+        "rating_font_size_mobile": 16
       }
     }
   },
