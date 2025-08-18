@@ -195,6 +195,10 @@
     {{ sec_id }} {
       padding-block: 2rem;
     }
+
+    {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} {
+      padding: {{ section.settings.padding_mobile }}px;
+    }
     
     {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
       width: 90%;
@@ -268,10 +272,6 @@
   @media screen and (min-width: 1025px) {
     {{ sec_id }} {
       place-items: center;
-    }
-
-    {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} {
-      padding: {{ section.settings.padding_mobile }}px;
     }
     
     {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
