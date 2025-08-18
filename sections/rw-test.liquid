@@ -131,21 +131,21 @@
   }
 
   {{ sec_id }} .pc-testimonial-content-box-{{ last_part }} {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
 
   {{ sec_id }} .pc-testimonial-content-box-{{ last_part }}.pc-active {
-  opacity: 1;
-  pointer-events: auto;
-}
+    opacity: 1;
+    pointer-events: auto;
+  }
 
   {{ sec_id }} .pc-testimonial-text-{{ last_part }} {
     padding-bottom: 2rem;
@@ -190,14 +190,89 @@
     height: {{ section.settings.rating_font_size }}px;
   }
 
-  @media screen and (min-width: 61.25rem) {
+  /* Mobile Responsive Styles (max-width: 768px) */
+  @media screen and (max-width: 768px) {
+    {{ sec_id }} {
+      padding-block: 2rem;
+    }
+    
+    {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
+      width: 90%;
+      grid-template-columns: 1fr;
+    }
+    
+    {{ sec_id }} .pc-testimonial-title-{{ last_part }} {
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    {{ sec_id }} .pc-testimonial-cards-{{ last_part }} {
+      gap: 1rem;
+    }
+    
+    {{ sec_id }} .pc-testimonial-card-{{ last_part }} {
+      grid-template-columns: auto 1fr;
+      column-gap: 1rem;
+      padding: 0.5rem;
+    }
+    
+    {{ sec_id }} .pc-testimonial-card-{{ last_part }} img {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} {
+      padding: 0.5rem;
+    }
+    
+    {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} h3 {
+      font-size: 1rem;
+    }
+    
+    {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} p {
+      font-size: 0.875rem;
+    }
+    
+    {{ sec_id }} .pc-testimonial-content-{{ last_part }} {
+      min-height: 150px;
+      margin-top: 1.5rem;
+    }
+    
+    {{ sec_id }} .pc-testimonial-text-{{ last_part }} h2 {
+      font-size: 1.25rem;
+    }
+    
+    {{ sec_id }} .pc-testimonial-text-{{ last_part }} p {
+      font-size: 0.875rem;
+      margin-top: 0.75rem;
+    }
+    
+    {{ sec_id }} .pc-testimonial-rating-{{ last_part }} svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Tablet styles */
+    {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
+      width: 90%;
+    }
+    
+    {{ sec_id }} .pc-testimonial-title-{{ last_part }} {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media screen and (min-width: 1025px) {
     {{ sec_id }} {
       place-items: center;
     }
 
-   {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} {
-    padding: {{ section.settings.padding_mobile }}px;
-  }
+    {{ sec_id }} .pc-testimonial-card-info-{{ last_part }} {
+      padding: {{ section.settings.padding_mobile }}px;
+    }
     
     {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
       column-gap: 5rem;
@@ -258,9 +333,7 @@
           {{ 'product-1' | placeholder_svg_tag }}
         {%- endif -%}
         <div class="pc-testimonial-card-info-{{ last_part }}">
-          <h3 class="pc-testimonial-card-heading" style="
-            
-          ">{{ block.settings.name }}</h3>
+          <h3 class="pc-testimonial-card-heading">{{ block.settings.name }}</h3>
           <p>{{ block.settings.role }}</p>
         </div>
         <div class="pc-testimonial-gradient-{{ last_part }}"></div>
