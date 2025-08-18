@@ -212,6 +212,10 @@
     font-size: {{ section.settings.role_max_font_size }}px !important;
     }
 
+    {{ sec_id }} .pc-testimonial-text-{{ last_part }} h2 {
+    font-size: {{ section.settings.content_title_size_mobile }}px !important;
+    }
+
     {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
       width: 90%;
       grid-template-columns: 1fr;
@@ -1008,6 +1012,16 @@
       "type": "range",
       "id": "content_title_size",
       "label": "Content Title Size (Desktop)",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+     {
+      "type": "range",
+      "id": "content_title_size_mobile",
+      "label": "Content Title Size (Mobile)",
       "min": 12,
       "max": 50,
       "step": 1,
