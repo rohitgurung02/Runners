@@ -1605,7 +1605,7 @@
         "card_bg_color": "#ffffff",
         "card_active_bg": "#ffffff",
         "card_active_border": "#0f172a14",
-        "padding": 17,
+        "padding": 14,
         "padding_mobile": 13,
         "enable_shadow": true,
         "title": "Testimonials",
