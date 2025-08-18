@@ -220,10 +220,10 @@
     font-size: {{ section.settings.content_text_size_mobile }}px !important;
     }
 
-     {{ sec_id }} .pc-testimonial-rating-{{ last_part }} svg {
+    {{ sec_id }} .pc-testimonial-rating-{{ last_part }} svg {
     width: {{ section.settings.rating_font_size_mobile }}px !important;
     height: {{ section.settings.rating_font_size_mobile }}px !important;
-  }
+    }
 
     {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
       width: 90%;
@@ -438,9 +438,9 @@
   "name": "PWC - Testimonials #6",
   "settings": [
     {
-          "type": "header",
-          "content": "Card Layout"
-        },
+      "type": "header",
+      "content": "Card Layout"
+    },
     {
       "type": "color",
       "id": "card_bg_color",
@@ -453,56 +453,55 @@
       "label": "Active Card Background",
       "default": "#ffffff"
     },
-      
     {
       "type": "color",
       "id": "card_active_border",
       "label": "Active Card Border",
       "default": "#0f172a14"
     },
-       {
-  "type": "range",
-  "id": "padding",
-  "label": "Active Card Padding (Desktop)",
-  "min": 0,
-  "max": 100,
-  "step": 1,
-  "unit": "px",
-  "default": 17
-},
-{
-  "type": "range",
-  "id": "padding_mobile",
-  "label": "Active Card Padding (Mobile)",
-  "min": 0,
-  "max": 100,
-  "step": 1,
-  "unit": "px",
-  "default": 15
-},
-{
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Active Card Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile",
+      "label": "Active Card Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
       "type": "checkbox",
       "id": "enable_shadow",
       "label": "Enable Shadow on Active Card",
       "default": false
     },
     {
-          "type": "header",
-          "content": "Title"
-        },
-        {
+      "type": "header",
+      "content": "Title"
+    },
+    {
       "type": "text",
       "id": "title",
       "label": "Title",
       "default": "Testimonials"
     },
-          {
+    {
       "type": "color",
       "id": "title_color",
       "label": "Title Color",
       "default": "#26273e"
     },
-       {
+    {
       "type": "range",
       "id": "title_max_font_size",
       "label": "Title Font Size (Desktop)",
@@ -512,7 +511,7 @@
       "unit": "px",
       "default": 26
     },
-     {
+    {
       "type": "range",
       "id": "title_max_font_size_mobile",
       "label": "Title Font Size (Mobile)",
@@ -533,155 +532,155 @@
       ],
       "default": "center"
     },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title Font weight",
+      "options": [
         {
-          "type": "select",
-          "id": "title_font_weight",
-          "label": "Title Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "bold"
+          "value": "normal",
+          "label": "Normal"
         },
         {
-          "type": "select",
-          "id": "title_font_style",
-          "label": "Title Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
+          "value": "bold",
+          "label": "Bold"
         },
         {
-          "type": "range",
-          "id": "title_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Title Letter spacing",
-          "default": 0
+          "value": "bolder",
+          "label": "Bolder"
         },
         {
-          "type": "select",
-          "id": "title_text_decoration",
-          "label": "Title Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
+          "value": "lighter",
+          "label": "Lighter"
         },
         {
-          "type": "color",
-          "id": "title_text_decoration_color",
-          "label": "Title Text Decoration Color",
-          "default": "#000"
+          "value": "100",
+          "label": "100"
         },
         {
-          "type": "range",
-          "id": "title_padding_top",
-          "label": "Title Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
+          "value": "200",
+          "label": "200"
         },
         {
-          "type": "range",
-          "id": "title_padding_bottom",
-          "label": "Title Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
+          "value": "300",
+          "label": "300"
         },
         {
-          "type": "header",
-          "content": "Name"
+          "value": "400",
+          "label": "400"
         },
         {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "bold"
+    },
+    {
+      "type": "select",
+      "id": "title_font_style",
+      "label": "Title Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Title Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "title_text_decoration",
+      "label": "Title Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "title_text_decoration_color",
+      "label": "Title Text Decoration Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "title_padding_top",
+      "label": "Title Padding Top (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "title_padding_bottom",
+      "label": "Title Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "header",
+      "content": "Name"
+    },
+    {
       "type": "color",
       "id": "name_color",
       "label": "Name Color",
       "default": "#26273e"
     },
-       {
+    {
       "type": "range",
       "id": "name_max_font_size",
       "label": " Name Maximum Font Size (Desktop)",
@@ -701,155 +700,155 @@
       "unit": "px",
       "default": 18
     },
+    {
+      "type": "select",
+      "id": "name_font_weight",
+      "label": "Name Font weight",
+      "options": [
         {
-          "type": "select",
-          "id": "name_font_weight",
-          "label": "Name Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "bold"
+          "value": "normal",
+          "label": "Normal"
         },
         {
-          "type": "select",
-          "id": "name_font_style",
-          "label": "Name Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
+          "value": "bold",
+          "label": "Bold"
         },
         {
-          "type": "range",
-          "id": "name_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Name Letter spacing",
-          "default": 0
+          "value": "bolder",
+          "label": "Bolder"
         },
         {
-          "type": "select",
-          "id": "Name_text_decoration",
-          "label": "Name Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
+          "value": "lighter",
+          "label": "Lighter"
         },
         {
-          "type": "color",
-          "id": "name_text_decoration_color",
-          "label": "Name Text Decoration Color",
-          "default": "#000"
+          "value": "100",
+          "label": "100"
         },
         {
-          "type": "range",
-          "id": "name_padding_top",
-          "label": "Name Padding Top (px)",
-          "default": 0,
-          "min": 0,
-          "max": 150,
-          "step": 5
+          "value": "200",
+          "label": "200"
         },
         {
-          "type": "range",
-          "id": "name_padding_bottom",
-          "label": "Name Padding Bottom (px)",
-          "default": 0,
-          "min": 0,
-          "max": 150,
-          "step": 5
+          "value": "300",
+          "label": "300"
         },
         {
-          "type": "header",
-          "content": "Role"
+          "value": "400",
+          "label": "400"
         },
-         {
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "bold"
+    },
+    {
+      "type": "select",
+      "id": "name_font_style",
+      "label": "Name Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "name_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Name Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "Name_text_decoration",
+      "label": "Name Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "name_text_decoration_color",
+      "label": "Name Text Decoration Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "name_padding_top",
+      "label": "Name Padding Top (px)",
+      "default": 0,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "name_padding_bottom",
+      "label": "Name Padding Bottom (px)",
+      "default": 0,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "header",
+      "content": "Role"
+    },
+    {
       "type": "color",
       "id": "role_color",
       "label": "Role Color",
       "default": "#767676"
     },
-      {
+    {
       "type": "range",
       "id": "role_max_font_size",
       "label": "Role Font Size (Desktop)",
@@ -869,149 +868,149 @@
       "unit": "px",
       "default": 16
     },
+    {
+      "type": "select",
+      "id": "role_font_weight",
+      "label": "Role Font weight",
+      "options": [
         {
-          "type": "select",
-          "id": "role_font_weight",
-          "label": "Role Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
+          "value": "normal",
+          "label": "Normal"
         },
         {
-          "type": "select",
-          "id": "role_font_style",
-          "label": "Role Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
+          "value": "bold",
+          "label": "Bold"
         },
         {
-          "type": "range",
-          "id": "role_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Role Letter spacing",
-          "default": 0
+          "value": "bolder",
+          "label": "Bolder"
         },
         {
-          "type": "select",
-          "id": "role_text_decoration",
-          "label": "Role Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
+          "value": "lighter",
+          "label": "Lighter"
         },
         {
-          "type": "color",
-          "id": "role_text_decoration_color",
-          "label": "Role Text Decoration Color",
-          "default": "#000"
+          "value": "100",
+          "label": "100"
         },
         {
-          "type": "range",
-          "id": "role_padding_top",
-          "label": "Role Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
+          "value": "200",
+          "label": "200"
         },
         {
-          "type": "range",
-          "id": "role_padding_bottom",
-          "label": "Role Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
+          "value": "300",
+          "label": "300"
         },
         {
-          "type": "header",
-          "content": "Content Title"
+          "value": "400",
+          "label": "400"
         },
         {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "role_font_style",
+      "label": "Role Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "role_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Role Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "role_text_decoration",
+      "label": "Role Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "role_text_decoration_color",
+      "label": "Role Text Decoration Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "role_padding_top",
+      "label": "Role Padding Top (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "role_padding_bottom",
+      "label": "Role Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "header",
+      "content": "Content Title"
+    },
+    {
       "type": "color",
       "id": "content_title_color",
       "label": "Content Title Color",
@@ -1027,7 +1026,7 @@
       "unit": "px",
       "default": 24
     },
-     {
+    {
       "type": "range",
       "id": "content_title_size_mobile",
       "label": "Content Title Size (Mobile)",
@@ -1037,148 +1036,148 @@
       "unit": "px",
       "default": 25
     },
-        {
-          "type": "select",
-          "id": "content_title_font_weight",
-          "label": "Content Title Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "select",
-          "id": "content_title_font_style",
-          "label": "Content Title Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "range",
-          "id": "content_title_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Content Title Letter spacing",
-          "default": 0
-        },
-        {
-          "type": "select",
-          "id": "content_title_text_decoration",
-          "label": "Content Title Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "content_title_text_decoration_color",
-          "label": "Content Title Text Decoration Color",
-          "default": "#000"
-        },
-        {
-          "type": "range",
-          "id": "content_title_padding_top",
-          "label": "Content Title Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "content_title_padding_bottom",
-          "label": "Content Title Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
     {
-          "type": "header",
-          "content": "Content Text"
+      "type": "select",
+      "id": "content_title_font_weight",
+      "label": "Content Title Font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
         },
+        {
+          "value": "bold",
+          "label": "Bold"
+        },
+        {
+          "value": "bolder",
+          "label": "Bolder"
+        },
+        {
+          "value": "lighter",
+          "label": "Lighter"
+        },
+        {
+          "value": "100",
+          "label": "100"
+        },
+        {
+          "value": "200",
+          "label": "200"
+        },
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "content_title_font_style",
+      "label": "Content Title Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "content_title_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Content Title Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "content_title_text_decoration",
+      "label": "Content Title Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "content_title_text_decoration_color",
+      "label": "Content Title Text Decoration Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "content_title_padding_top",
+      "label": "Content Title Padding Top (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "content_title_padding_bottom",
+      "label": "Content Title Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "header",
+      "content": "Content Text"
+    },
     {
       "type": "color",
       "id": "content_text_color",
@@ -1195,7 +1194,7 @@
       "unit": "px",
       "default": 16
     },
-     {
+    {
       "type": "range",
       "id": "content_text_size_mobile",
       "label": "Content Text Size (Mobile)",
@@ -1205,148 +1204,148 @@
       "unit": "px",
       "default": 17
     },
+    {
+      "type": "select",
+      "id": "content_text_font_weight",
+      "label": "Content Text Font weight",
+      "options": [
         {
-          "type": "select",
-          "id": "content_text_font_weight",
-          "label": "Content Text Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
+          "value": "normal",
+          "label": "Normal"
         },
         {
-          "type": "select",
-          "id": "content_text_font_style",
-          "label": "Content Text Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
+          "value": "bold",
+          "label": "Bold"
         },
         {
-          "type": "range",
-          "id": "content_text_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Content Text Letter spacing",
-          "default": 0
+          "value": "bolder",
+          "label": "Bolder"
         },
         {
-          "type": "select",
-          "id": "content_text_decoration",
-          "label": "Content Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
+          "value": "lighter",
+          "label": "Lighter"
         },
         {
-          "type": "color",
-          "id": "content_text_decoration_color",
-          "label": "Content Text Decoration Color",
-          "default": "#000"
+          "value": "100",
+          "label": "100"
         },
         {
-          "type": "range",
-          "id": "content_text_padding_top",
-          "label": "Content Text Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
+          "value": "200",
+          "label": "200"
         },
         {
-          "type": "range",
-          "id": "content_text_padding_bottom",
-          "label": "Content Text Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
+          "value": "300",
+          "label": "300"
         },
         {
-          "type": "header",
-          "content": "Rating"
+          "value": "400",
+          "label": "400"
         },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "content_text_font_style",
+      "label": "Content Text Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "content_text_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Content Text Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "content_text_decoration",
+      "label": "Content Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "content_text_decoration_color",
+      "label": "Content Text Decoration Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "content_text_padding_top",
+      "label": "Content Text Padding Top (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "content_text_padding_bottom",
+      "label": "Content Text Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "header",
+      "content": "Rating"
+    },
     {
       "type": "color",
       "id": "rating_color",
@@ -1372,7 +1371,7 @@
       "step": 2,
       "unit": "px",
       "default": 18
-    },
+    }
   ],
   "blocks": [
     {
