@@ -214,10 +214,6 @@
     {{ sec_id }} .pc-testimonial-text-{{ last_part }} h2 {
     font-size: {{ section.settings.content_title_size_mobile }}px;
     }
-
-    {{ sec_id }} .pc-testimonial-text-{{ last_part }} p {
-    font-size: {{ section.settings.content_text_size }}px;
-    }
     
     {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
       column-gap: 5rem;
@@ -1278,13 +1274,14 @@
     {
       "type": "range",
       "id": "rating_font_size",
-      "label": "Rating Font Size (Desktop)",
+      "label": "Rating Font Size",
       "min": 6,
       "max": 50,
       "step": 2,
       "unit": "px",
       "default": 18
     },
+    
   ],
   "blocks": [
     {
