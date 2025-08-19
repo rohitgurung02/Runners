@@ -21,6 +21,7 @@
     {% endif %}
     padding-top: {{ section.settings.title_padding_top }}px;
     padding-bottom: {{ section.settings.title_padding_bottom }}px;
+    text-align: {{ section.settings.title_alignment }};
     margin:0;
   }
 
@@ -314,6 +315,26 @@
       "step": 2,
       "unit": "px",
       "default": 24
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Alignment (Desktop)",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
     },
         {
           "type": "select",
