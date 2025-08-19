@@ -7,7 +7,6 @@
   {{ sec_id }} {
     --pc-speed: {{ section.settings.animation_speed }}ms;
     --pc-offset: {{ section.settings.underline_offset }};
-    --pc-hover-scale: {{ section.settings.hover_scale }};
     --pc-transition-duration: {{ section.settings.transition_duration }}ms;
   }
 
@@ -347,15 +346,7 @@
       "type": "header",
       "content": "Animation Settings"
     },
-    {
-      "type": "range",
-      "id": "hover_scale",
-      "label": "Hover Scale Amount",
-      "min": 1,
-      "max": 10,
-      "step": 1,
-      "default": 1
-    },
+    
     {
       "type": "range",
       "id": "transition_duration",
