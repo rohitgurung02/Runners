@@ -1633,7 +1633,7 @@
         "hover_scale": 1,
         "transition_duration": 200,
         "animation_speed": 1,
-        "animation_easing": "ease-in-out"
+        "animation_easing": "linear"
       }
     }
   },
