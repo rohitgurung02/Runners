@@ -1600,6 +1600,125 @@
         "rating_font_size": 18,
         "rating_font_size_mobile": 18
       }
+    },
+    "rw_test_7Qb8UD": {
+      "type": "rw-test",
+      "blocks": {
+        "link_7Ri9wg": {
+          "type": "link",
+          "settings": {
+            "link_text": "elegant",
+            "link_url": "/"
+          }
+        },
+        "link_iyFUVC": {
+          "type": "link",
+          "settings": {
+            "link_text": "design",
+            "link_url": "/collections/all"
+          }
+        },
+        "link_wWe7RR": {
+          "type": "link",
+          "settings": {
+            "link_text": "to",
+            "link_url": "/pages/about"
+          }
+        },
+        "link_hwMFXJ": {
+          "type": "link",
+          "settings": {
+            "link_text": "showcase",
+            "link_url": "/pages/"
+          }
+        },
+        "link_aYeWD3": {
+          "type": "link",
+          "settings": {
+            "link_text": "high",
+            "link_url": "/pages/"
+          }
+        },
+        "link_zjBJYX": {
+          "type": "link",
+          "settings": {
+            "link_text": "quality",
+            "link_url": "/pages/"
+          }
+        },
+        "link_cfRMYB": {
+          "type": "link",
+          "settings": {
+            "link_text": "visuals",
+            "link_url": "/pages/"
+          }
+        },
+        "link_zYh8Dp": {
+          "type": "link",
+          "settings": {
+            "link_text": "and",
+            "link_url": "/pages/"
+          }
+        },
+        "link_wYg9tm": {
+          "type": "link",
+          "settings": {
+            "link_text": "boost",
+            "link_url": "/pages/"
+          }
+        },
+        "link_xrUjpk": {
+          "type": "link",
+          "settings": {
+            "link_text": "sales",
+            "link_url": "/pages/"
+          }
+        }
+      },
+      "block_order": [
+        "link_7Ri9wg",
+        "link_iyFUVC",
+        "link_wWe7RR",
+        "link_hwMFXJ",
+        "link_aYeWD3",
+        "link_zjBJYX",
+        "link_cfRMYB",
+        "link_zYh8Dp",
+        "link_wYg9tm",
+        "link_xrUjpk"
+      ],
+      "name": "PWC - Animated Nav #1",
+      "settings": {
+        "max_width": 1200,
+        "link_spacing": 40,
+        "link_spacing_mobile": 20,
+        "nav_alignment": "center",
+        "nav_alignment_mobile": "center",
+        "title": "Hover over the navigation items:",
+        "title_color": "#000",
+        "title_font_size": 24,
+        "title_alignment": "center",
+        "title_font_weight": "bold",
+        "title_font_style": "normal",
+        "title_letter_spacing": 0,
+        "title_text_decoration": "none",
+        "title_text_decoration_color": "#000",
+        "title_padding_top": 5,
+        "title_padding_bottom": 5,
+        "font_size": 24,
+        "font_size_mobile": 18,
+        "font_weight": 500,
+        "font_style": "normal",
+        "letter_spacing": 0,
+        "text_decoration": "none",
+        "text_decoration_color": "#000",
+        "link_color": "#333333",
+        "link_hover_color": "#e55050",
+        "underline_color": "#e55050",
+        "underline_thickness": 10,
+        "underline_offset": 30,
+        "animation_speed": 1
+      }
     }
   },
   "order": [
@@ -1622,6 +1741,7 @@
     "rw_wavy_background_1_cFNhmb",
     "rw_card_carousel_6_A3yTqa",
     "marquee_text_4_dwwPnB",
-    "rw_testimonials_6_UjFK3f"
+    "rw_testimonials_6_UjFK3f",
+    "rw_test_7Qb8UD"
   ]
 }
