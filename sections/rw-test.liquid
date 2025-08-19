@@ -9,6 +9,11 @@
     --pc-offset: {{ section.settings.underline_offset }};
   }
 
+  {{ sec_id }} .pc-symbol-library-{{ last_part }} {
+    margin-top: {{ section.settings.top_margin_top }}px;
+    margin-bottom: {{ section.settings.top_margin_bottom }}px;
+  }
+
    {{ sec_id }} .pc-symbol-heading-{{ last_part }} {
     max-width: {{ section.settings.max_width }}px;
     }
@@ -135,8 +140,7 @@
   }
 </style>
 
-<div class="pc-symbol-library-{{ last_part }}">
-   
+<div class="pc-symbol-library-{{ last_part }}">  
   <svg>
     <symbol id="pc-underline-1-{{ last_part }}" viewBox="0 0 310 40" preserveAspectRatio="none">
       <path fill="none" stroke="{{ section.settings.underline_color }}" stroke-width="10" d="M5 20.9999C26.7762 16.2245 49.5532 11.5572 71.7979 14.6666C84.9553 16.5057 97.0392 21.8432 109.987 24.3888C116.413 25.6523 123.012 25.5143 129.042 22.6388C135.981 19.3303 142.586 15.1422 150.092 13.3333C156.799 11.7168 161.702 14.6225 167.887 16.8333C181.562 21.7212 194.975 22.6234 209.252 21.3888C224.678 20.0548 239.912 17.991 255.42 18.3055C272.027 18.6422 288.409 18.867 305 17.9999" />
@@ -251,6 +255,24 @@
       "unit": "px",
       "default": 20
     },
+     {
+          "type": "range",
+          "id": "top_margin_top",
+          "label": "Margin Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+ {
+          "type": "range",
+          "id": "top_margin_bottom",
+          "label": "Margin Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
     {
       "type": "header",
       "content": "Title"
