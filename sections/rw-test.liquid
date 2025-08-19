@@ -11,6 +11,7 @@
 
    {{ sec_id }} .pc-symbol-heading-{{ last_part }} {
     max-width: {{ section.settings.max_width }}px;
+    text-align: {{ section.settings.nav_alignment }};
     }
 
   {{ sec_id }} .pc-symbol-heading-{{ last_part }} h2 {
@@ -41,7 +42,6 @@
     gap: {{ section.settings.link_spacing }}px;
     flex-wrap: wrap;
     align-content: center;
-    text-align: {{ section.settings.nav_alignment }};
     margin: 0 auto;
   }
 
