@@ -155,10 +155,11 @@
   </svg>
 </div>
 
+<div class="pc-symbol-heading-{{ last_part }}">
+    <h2>{{ section.settings.title }}</h2>
+</div>
+
 <div class="pc-nav-container-{{ last_part }}">
-    <div class="pc-symbol-heading-{{ last_part }}">
-        <h2>{{ section.settings.title }}</h2>
-    </div>
   {%- for block in section.blocks -%}
     {%- if block.settings.link_text != blank -%}
       <a href="{{ block.settings.link_url }}" class="pc-nav-item-{{ last_part }}" data-pc-draw-line-{{ last_part }}>
