@@ -40,7 +40,6 @@
     display: flex;
     gap: {{ section.settings.link_spacing }}px;
     flex-wrap: wrap;
-    text-align: {{ section.settings.nav_alignment }} !important;
     margin: 0 auto;
   }
 
@@ -450,17 +449,6 @@
       "unit": "px",
       "default": 18
     },
-     {
-          "type": "select",
-          "id": "nav_alignment",
-          "label": "subtitle alignment",
-          "options": [
-            { "value": "left", "label": "Left" },
-            { "value": "center", "label": "Center" },
-            { "value": "right", "label": "Right" }
-          ],
-          "default": "center"
-        },
     {
       "type": "range",
       "id": "font_weight",
