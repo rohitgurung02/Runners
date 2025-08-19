@@ -32,7 +32,7 @@
     overflow: hidden;
   }
 
-  {{ sec_id }} .pc-nav-container-{{ last_part }} {
+  {{ sec_id }} .pc-nav-box-{{ last_part }} {
     display: flex;
     gap: {{ section.settings.link_spacing }}px;
     flex-wrap: wrap;
@@ -160,6 +160,7 @@
 
 
 <div class="pc-nav-container-{{ last_part }}">
+    <div class="pc-nav-box-{{ last_part }}">
      <h2>{{ section.settings.title }}</h2>
   {%- for block in section.blocks -%}
     {%- if block.settings.link_text != blank -%}
