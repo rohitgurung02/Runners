@@ -1619,12 +1619,12 @@
         "font_size": 24,
         "font_size_mobile": 18,
         "font_weight": 500,
-        "link_color": "#3bdc22",
+        "link_color": "#333333",
         "link_hover_color": "#e55050",
         "underline_color": "#e55050",
         "underline_thickness": 10,
         "underline_offset": 30,
-        "animation_speed": 53
+        "animation_speed": 1
       }
     }
   },
