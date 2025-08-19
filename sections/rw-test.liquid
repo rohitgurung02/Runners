@@ -9,7 +9,7 @@
     --pc-offset: {{ section.settings.underline_offset }};
   }
 
-  {{ sec_id }} .pc-symbol-heading-{{ last_part }} h2 {
+  {{ sec_id }} .pc-symbol-heading h2 {
     color: {{ section.settings.title_color }};
     font-size: {{ section.settings.title_font_size }}px;
     font-weight: {{ section.settings.title_font_weight }};
@@ -133,8 +133,8 @@
   }
 </style>
 
-<div class="pc-symbol-library">
-    <div class="pc-symbol-heading-{{ last_part }}">
+<div class="pc-symbol-library-{{ last_part }}">
+    <div class="pc-symbol-heading">
    <h2>{{ section.settings.title }}</h2>
 </div>
   <svg>
