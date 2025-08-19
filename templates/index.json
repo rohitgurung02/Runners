@@ -1576,6 +1576,65 @@
         "rating_font_size": 18,
         "rating_font_size_mobile": 18
       }
+    },
+    "rw_test_mEQehe": {
+      "type": "rw-test",
+      "blocks": {
+        "link_W3qYkD": {
+          "type": "link",
+          "settings": {
+            "link_text": "Home",
+            "link_url": "/"
+          }
+        },
+        "link_NQ34jV": {
+          "type": "link",
+          "settings": {
+            "link_text": "Products",
+            "link_url": "/collections/all"
+          }
+        },
+        "link_fjahLz": {
+          "type": "link",
+          "settings": {
+            "link_text": "About",
+            "link_url": "/pages/about"
+          }
+        },
+        "link_LnXJ8h": {
+          "type": "link",
+          "settings": {
+            "link_text": "Contact",
+            "link_url": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "link_W3qYkD",
+        "link_NQ34jV",
+        "link_fjahLz",
+        "link_LnXJ8h"
+      ],
+      "name": "PWC - Animated Nav #1",
+      "settings": {
+        "max_width": 1200,
+        "link_spacing": 40,
+        "link_spacing_mobile": 20,
+        "nav_alignment": "center",
+        "nav_alignment_mobile": "center",
+        "font_size": 24,
+        "font_size_mobile": 18,
+        "font_weight": 600,
+        "link_color": "#333333",
+        "link_hover_color": "#e55050",
+        "underline_color": "#e55050",
+        "underline_thickness": 10,
+        "underline_offset": 12,
+        "hover_scale": 1,
+        "transition_duration": 200,
+        "animation_speed": 1,
+        "animation_easing": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+      }
     }
   },
   "order": [
@@ -1598,6 +1657,7 @@
     "rw_wavy_background_1_cFNhmb",
     "rw_card_carousel_6_A3yTqa",
     "marquee_text_4_dwwPnB",
-    "rw_testimonials_6_UjFK3f"
+    "rw_testimonials_6_UjFK3f",
+    "rw_test_mEQehe"
   ]
 }
