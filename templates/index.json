@@ -1675,7 +1675,7 @@
         "underline_thickness": 10,
         "underline_offset": 12,
         "animation_speed": 5,
-        "animation_easing": "ease-in-out"
+        "animation_easing": "ease-in"
       }
     }
   },
