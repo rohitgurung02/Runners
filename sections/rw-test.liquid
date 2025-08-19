@@ -41,7 +41,6 @@
     gap: {{ section.settings.link_spacing }}px;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: {{ section.settings.nav_alignment }};
     margin: 0 auto;
   }
 
@@ -128,7 +127,6 @@
   @media (max-width: 749px) {
     {{ sec_id }} .pc-nav-container-{{ last_part }} {
       gap: {{ section.settings.link_spacing_mobile }}px;
-      justify-content: {{ section.settings.nav_alignment_mobile }};
     }
     
     {{ sec_id }} .pc-nav-item-{{ last_part }} {
@@ -252,46 +250,6 @@
       "step": 5,
       "unit": "px",
       "default": 20
-    },
-    {
-      "type": "select",
-      "id": "nav_alignment",
-      "label": "Alignment (Desktop)",
-      "options": [
-        {
-          "value": "flex-start",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "flex-end",
-          "label": "Right"
-        }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "select",
-      "id": "nav_alignment_mobile",
-      "label": "Alignment (Mobile)",
-      "options": [
-        {
-          "value": "flex-start",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "flex-end",
-          "label": "Right"
-        }
-      ],
-      "default": "center"
     },
     {
       "type": "header",
