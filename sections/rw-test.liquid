@@ -8,6 +8,8 @@
     --pc-speed: {{ section.settings.animation_speed }}ms;
     --pc-easing: {{ section.settings.animation_easing }};
     --pc-offset: {{ section.settings.underline_offset }};
+    --pc-hover-scale: {{ section.settings.hover_scale }};
+    --pc-transition-duration: {{ section.settings.transition_duration }}ms;
   }
 
   {{ sec_id }} .pc-symbol-library-{{ last_part }} {
@@ -35,11 +37,13 @@
     font-size: {{ section.settings.font_size }}px;
     font-weight: {{ section.settings.font_weight }};
     padding: 10px 0;
-    transition: color var(--pc-speed) ease, transform var(--pc-speed) var(--pc-easing);
+    transition: all var(--pc-transition-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center bottom;
+    will-change: transform, color;
   }
 
   {{ sec_id }} .pc-nav-item-{{ last_part }}:hover {
-    transform: scale(1.05);
+    transform: scale(var(--pc-hover-scale));
     color: {{ section.settings.link_hover_color }};
   }
 
@@ -52,6 +56,7 @@
     height: {{ section.settings.underline_thickness }}px;
     pointer-events: none;
     opacity: 0;
+    transition: opacity calc(var(--pc-transition-duration) / 2) ease;
   }
 
   {{ sec_id }} .pc-underline-svg-{{ last_part }} svg {
@@ -97,8 +102,7 @@
   }
 
   {{ sec_id }} .pc-nav-item-{{ last_part }}:not(:hover) .pc-underline-svg-{{ last_part }} path {
-    animation: pc-draw-out-{{ last_part }} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    animation-delay: 0.1s;
+    animation: pc-draw-out-{{ last_part }} calc(var(--pc-speed) * 1.5) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   }
 
   @media (max-width: 749px) {
@@ -178,14 +182,6 @@
           }
           
           nextIndex = (nextIndex + 1) % totalVariants;
-        });
-        
-        container.addEventListener('mouseleave', () => {
-          setTimeout(() => {
-            if (!container.matches(':hover')) {
-              box.innerHTML = '';
-            }
-          }, 700);
         });
       });
     }
@@ -354,13 +350,32 @@
     },
     {
       "type": "range",
-      "id": "animation_speed",
-      "label": "Animation Speed",
+      "id": "hover_scale",
+      "label": "Hover Scale Amount",
       "min": 1,
-      "max": 50,
+      "max": 10,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "transition_duration",
+      "label": "Transition Duration",
+      "min": 100,
+      "max": 500,
+      "step": 50,
+      "unit": "ms",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "label": "Underline Animation Speed",
+      "min": 1,
+      "max": 100,
       "step": 1,
       "unit": "ms",
-      "default": 5
+      "default": 1
     },
     {
       "type": "select",
@@ -386,9 +401,13 @@
         {
           "value": "linear",
           "label": "Linear"
+        },
+        {
+          "value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+          "label": "Smooth"
         }
       ],
-      "default": "ease-in-out"
+      "default": "cubic-bezier(0.25, 0.1, 0.25, 1)"
     }
   ],
   "blocks": [
@@ -412,7 +431,7 @@
   ],
   "presets": [
     {
-      "name": "PWC - Animated  Nav #1",
+      "name": "PWC - Animated Nav #1",
       "category": "Navigation",
       "blocks": [
         {
