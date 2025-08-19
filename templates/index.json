@@ -766,8 +766,7 @@
         "underline_offset": 12,
         "hover_scale": 1,
         "transition_duration": 200,
-        "animation_speed": 5,
-        "animation_easing": "ease-in-out"
+        "animation_speed": 5
       }
     },
     "rw_reviews_eNfMNB": {
@@ -1000,8 +999,7 @@
         "underline_offset": 12,
         "hover_scale": 1,
         "transition_duration": 200,
-        "animation_speed": 5,
-        "animation_easing": "ease-in-out"
+        "animation_speed": 5
       }
     },
     "rw_hero_banner_4dJjqa": {
@@ -1618,7 +1616,7 @@
       "name": "PWC - Animated Nav #1",
       "settings": {
         "max_width": 1200,
-        "link_spacing": 40,
+        "link_spacing": 30,
         "link_spacing_mobile": 20,
         "nav_alignment": "center",
         "nav_alignment_mobile": "center",
@@ -1629,11 +1627,10 @@
         "link_hover_color": "#e55050",
         "underline_color": "#e55050",
         "underline_thickness": 10,
-        "underline_offset": 12,
+        "underline_offset": 10,
         "hover_scale": 1,
         "transition_duration": 200,
-        "animation_speed": 1,
-        "animation_easing": "linear"
+        "animation_speed": 1
       }
     }
   },
