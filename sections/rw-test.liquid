@@ -5,6 +5,7 @@
 
 <style>
   {{ sec_id }} {
+    --pc-speed: {{ section.settings.animation_speed }}ms;
     --pc-offset: {{ section.settings.underline_offset }};
   }
 
@@ -339,6 +340,21 @@
       "step": 1,
       "unit": "px",
       "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Animation Settings"
+    },
+    
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "label": "Underline Animation Speed",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "ms",
+      "default": 1
     },
   ],
   "blocks": [
