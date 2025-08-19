@@ -1674,8 +1674,8 @@
         "underline_color": "#e55050",
         "underline_thickness": 10,
         "underline_offset": 12,
-        "animation_speed": 3,
-        "animation_easing": "ease-in"
+        "animation_speed": 2,
+        "animation_easing": "ease-in-out"
       }
     }
   },
