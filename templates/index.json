@@ -1541,73 +1541,73 @@
         "rating_font_size_mobile": 18
       }
     },
-    "rw_navigation_banner_1_WdiCWt": {
-      "type": "rw-navigation-banner-1",
+    "rw_navigation_items_1_W4Q7Vp": {
+      "type": "rw-navigation-items-1",
       "blocks": {
-        "link_BNF9jM": {
+        "link_RhxDgP": {
           "type": "link",
           "settings": {
             "link_text": "elegant",
             "link_url": "/"
           }
         },
-        "link_KpYDDp": {
+        "link_BqPVpp": {
           "type": "link",
           "settings": {
             "link_text": "design",
             "link_url": "/collections/all"
           }
         },
-        "link_JYHiMj": {
+        "link_MR6b8b": {
           "type": "link",
           "settings": {
             "link_text": "to",
             "link_url": "/pages/about"
           }
         },
-        "link_4CCijM": {
+        "link_dzkYQR": {
           "type": "link",
           "settings": {
             "link_text": "showcase",
             "link_url": "/pages/"
           }
         },
-        "link_XyLifi": {
+        "link_zpeeM9": {
           "type": "link",
           "settings": {
             "link_text": "high",
             "link_url": "/pages/"
           }
         },
-        "link_qAdWqp": {
+        "link_M3hBHV": {
           "type": "link",
           "settings": {
             "link_text": "quality",
             "link_url": "/pages/"
           }
         },
-        "link_CBHCE4": {
+        "link_nzMBp4": {
           "type": "link",
           "settings": {
             "link_text": "visuals",
             "link_url": "/pages/"
           }
         },
-        "link_zwxdVF": {
+        "link_krDYMx": {
           "type": "link",
           "settings": {
             "link_text": "and",
             "link_url": "/pages/"
           }
         },
-        "link_RCT4Tc": {
+        "link_MzheGn": {
           "type": "link",
           "settings": {
             "link_text": "boost",
             "link_url": "/pages/"
           }
         },
-        "link_MtQNYp": {
+        "link_bkGAgJ": {
           "type": "link",
           "settings": {
             "link_text": "sales",
@@ -1616,16 +1616,16 @@
         }
       },
       "block_order": [
-        "link_BNF9jM",
-        "link_KpYDDp",
-        "link_JYHiMj",
-        "link_4CCijM",
-        "link_XyLifi",
-        "link_qAdWqp",
-        "link_CBHCE4",
-        "link_zwxdVF",
-        "link_RCT4Tc",
-        "link_MtQNYp"
+        "link_RhxDgP",
+        "link_BqPVpp",
+        "link_MR6b8b",
+        "link_dzkYQR",
+        "link_zpeeM9",
+        "link_M3hBHV",
+        "link_nzMBp4",
+        "link_krDYMx",
+        "link_MzheGn",
+        "link_bkGAgJ"
       ],
       "name": "RW - Navigation Items #1",
       "settings": {
@@ -1682,6 +1682,6 @@
     "rw_card_carousel_6_A3yTqa",
     "marquee_text_4_dwwPnB",
     "rw_testimonials_6_UjFK3f",
-    "rw_navigation_banner_1_WdiCWt"
+    "rw_navigation_items_1_W4Q7Vp"
   ]
 }
