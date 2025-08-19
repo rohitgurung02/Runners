@@ -764,8 +764,6 @@
         "underline_color": "#e55050",
         "underline_thickness": 10,
         "underline_offset": 12,
-        "hover_scale": 1,
-        "transition_duration": 200,
         "animation_speed": 5
       }
     },
@@ -997,8 +995,6 @@
         "underline_color": "#e55050",
         "underline_thickness": 10,
         "underline_offset": 12,
-        "hover_scale": 1,
-        "transition_duration": 200,
         "animation_speed": 5
       }
     },
@@ -1626,10 +1622,8 @@
         "link_color": "#333333",
         "link_hover_color": "#e55050",
         "underline_color": "#e55050",
-        "underline_thickness": 10,
+        "underline_thickness": 20,
         "underline_offset": 10,
-        "hover_scale": 1,
-        "transition_duration": 350,
         "animation_speed": 53
       }
     }
