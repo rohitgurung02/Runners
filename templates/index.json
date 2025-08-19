@@ -1579,42 +1579,70 @@
         "link_LtKzbB": {
           "type": "link",
           "settings": {
-            "link_text": "Hover",
+            "link_text": "sharks",
             "link_url": "/"
           }
         },
         "link_tKc9wK": {
           "type": "link",
           "settings": {
-            "link_text": "over",
+            "link_text": "with",
             "link_url": "/collections/all"
           }
         },
         "link_RVViLP": {
           "type": "link",
           "settings": {
-            "link_text": "the",
+            "link_text": "laser",
             "link_url": "/pages/about"
           }
         },
         "link_y8qAWh": {
           "type": "link",
           "settings": {
-            "link_text": "animated",
+            "link_text": "beams",
             "link_url": "/pages/contact"
           }
         },
         "link_EweWbh": {
           "type": "link",
           "settings": {
-            "link_text": "Menu Item",
+            "link_text": "attached",
             "link_url": ""
           }
         },
         "link_tbqKDX": {
           "type": "link",
           "settings": {
+            "link_text": "to",
+            "link_url": ""
+          }
+        },
+        "link_eULPey": {
+          "type": "link",
+          "settings": {
+            "link_text": "their",
+            "link_url": ""
+          }
+        },
+        "link_4kFrbJ": {
+          "type": "link",
+          "settings": {
             "link_text": "Menu Item",
+            "link_url": ""
+          }
+        },
+        "link_fYQBeL": {
+          "type": "link",
+          "settings": {
+            "link_text": "friggin",
+            "link_url": ""
+          }
+        },
+        "link_wc4zYj": {
+          "type": "link",
+          "settings": {
+            "link_text": "heads",
             "link_url": ""
           }
         }
@@ -1625,7 +1653,11 @@
         "link_RVViLP",
         "link_y8qAWh",
         "link_EweWbh",
-        "link_tbqKDX"
+        "link_tbqKDX",
+        "link_eULPey",
+        "link_4kFrbJ",
+        "link_fYQBeL",
+        "link_wc4zYj"
       ],
       "name": "PWC - Animated  Nav #1",
       "settings": {
