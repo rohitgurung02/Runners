@@ -1703,7 +1703,7 @@
         "title_padding_bottom": 5,
         "font_size": 22,
         "font_size_mobile": 18,
-        "nav_alignment": "right",
+        "nav_alignment": "center",
         "font_weight": 500,
         "font_style": "normal",
         "letter_spacing": 0,
