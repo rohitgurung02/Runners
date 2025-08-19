@@ -6,7 +6,6 @@
 <style>
   {{ sec_id }} {
     --pc-speed: {{ section.settings.animation_speed }}ms;
-    --pc-easing: {{ section.settings.animation_easing }};
     --pc-offset: {{ section.settings.underline_offset }};
     --pc-hover-scale: {{ section.settings.hover_scale }};
     --pc-transition-duration: {{ section.settings.transition_duration }}ms;
@@ -377,38 +376,6 @@
       "unit": "ms",
       "default": 1
     },
-    {
-      "type": "select",
-      "id": "animation_easing",
-      "label": "Animation Easing",
-      "options": [
-        {
-          "value": "ease",
-          "label": "Ease"
-        },
-        {
-          "value": "ease-in",
-          "label": "Ease In"
-        },
-        {
-          "value": "ease-out",
-          "label": "Ease Out"
-        },
-        {
-          "value": "ease-in-out",
-          "label": "Ease In Out"
-        },
-        {
-          "value": "linear",
-          "label": "Linear"
-        },
-        {
-          "value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
-          "label": "Smooth"
-        }
-      ],
-      "default": "cubic-bezier(0.25, 0.1, 0.25, 1)"
-    }
   ],
   "blocks": [
     {
