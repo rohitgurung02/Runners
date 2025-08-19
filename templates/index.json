@@ -1710,7 +1710,7 @@
         "link_hover_color": "#e55050",
         "underline_color": "#e55050",
         "underline_thickness": 10,
-        "underline_offset": 33,
+        "underline_offset": 28,
         "animation_speed": 1
       }
     }
