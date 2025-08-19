@@ -1579,29 +1579,43 @@
         "link_LtKzbB": {
           "type": "link",
           "settings": {
-            "link_text": "Home",
+            "link_text": "Hover",
             "link_url": "/"
           }
         },
         "link_tKc9wK": {
           "type": "link",
           "settings": {
-            "link_text": "Products",
+            "link_text": "over",
             "link_url": "/collections/all"
           }
         },
         "link_RVViLP": {
           "type": "link",
           "settings": {
-            "link_text": "About",
+            "link_text": "the",
             "link_url": "/pages/about"
           }
         },
         "link_y8qAWh": {
           "type": "link",
           "settings": {
-            "link_text": "Contact",
+            "link_text": "animated",
             "link_url": "/pages/contact"
+          }
+        },
+        "link_EweWbh": {
+          "type": "link",
+          "settings": {
+            "link_text": "Menu Item",
+            "link_url": ""
+          }
+        },
+        "link_tbqKDX": {
+          "type": "link",
+          "settings": {
+            "link_text": "Menu Item",
+            "link_url": ""
           }
         }
       },
@@ -1609,7 +1623,9 @@
         "link_LtKzbB",
         "link_tKc9wK",
         "link_RVViLP",
-        "link_y8qAWh"
+        "link_y8qAWh",
+        "link_EweWbh",
+        "link_tbqKDX"
       ],
       "name": "PWC - Animated  Nav #1",
       "settings": {
@@ -1620,7 +1636,7 @@
         "nav_alignment_mobile": "center",
         "font_size": 24,
         "font_size_mobile": 18,
-        "font_weight": 600,
+        "font_weight": 400,
         "link_color": "#333333",
         "link_hover_color": "#e55050",
         "underline_color": "#e55050",
