@@ -8,7 +8,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-  }
+  }  
 
   {{ sec_id }} .pc-split-hero-container {
     display: flex;
@@ -381,6 +381,28 @@
       ],
       "default": "2"
     },
+    {
+      "type": "header",
+      "content": "Margin Settings"
+    },
+    {
+          "type": "range",
+          "id": "section_margin_top",
+          "label": "Margin Top (px)",
+          "default": 10,
+          "min": 0,
+          "max": 150,
+          "step": 2
+        },
+        {
+          "type": "range",
+          "id": "section_margin_bottom",
+          "label": "Margin Bottom (px)",
+          "default": 10,
+          "min": 0,
+          "max": 150,
+          "step": 2
+        },
     {
       "type": "header",
       "content": "Mobile Settings"
