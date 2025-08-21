@@ -1756,7 +1756,7 @@
         "desktop_min_height": 100,
         "desktop_content_padding": 40,
         "desktop_heading_size": 46,
-        "desktop_description_size": 18,
+        "desktop_description_size": 19,
         "text_max_width": 80,
         "desktop_text_alignment": "center",
         "desktop_button_padding_y": 12,
