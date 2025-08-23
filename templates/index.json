@@ -784,6 +784,8 @@
         "mobile_button_font_size": 14,
         "mobile_content_order": "1",
         "mobile_image_order": "2",
+        "section_margin_top": 10,
+        "section_margin_bottom": 10,
         "heading_spacing": 16,
         "description_spacing": 24,
         "enable_button_shadow": true,
@@ -1038,6 +1040,8 @@
         "mobile_button_font_size": 14,
         "mobile_content_order": "1",
         "mobile_image_order": "2",
+        "section_margin_top": 10,
+        "section_margin_bottom": 10,
         "heading_spacing": 16,
         "description_spacing": 24,
         "enable_button_shadow": true,
@@ -1735,50 +1739,6 @@
         "underline_offset": 24,
         "animation_speed": 1
       }
-    },
-    "rw_test_VYAYMa": {
-      "type": "rw-test",
-      "name": "PWC - Split Hero #1",
-      "settings": {
-        "heading": "Innovate with Us",
-        "description": "Discover new possibilities and drive success.",
-        "button_text": "Free Tailwind Template",
-        "button_link": "",
-        "image": "shopify://shop_images/pexels-anastasiya-gepp-654466-2036646.jpg",
-        "content_bg_color": "#3b82f6",
-        "heading_color": "#ffffff",
-        "description_color": "#ffffff",
-        "button_bg_color": "#ffffff",
-        "button_text_color": "#3b82f6",
-        "button_hover_bg_color": "#f1f5f9",
-        "heading_weight": 700,
-        "button_font_weight": 500,
-        "desktop_min_height": 100,
-        "desktop_content_padding": 40,
-        "desktop_heading_size": 46,
-        "desktop_description_size": 19,
-        "text_max_width": 80,
-        "desktop_text_alignment": "center",
-        "desktop_button_padding_y": 12,
-        "desktop_button_padding_x": 24,
-        "desktop_button_font_size": 17,
-        "desktop_content_order": "1",
-        "desktop_image_order": "2",
-        "mobile_min_height": 100,
-        "mobile_content_padding": 20,
-        "mobile_heading_size": 32,
-        "mobile_description_size": 15,
-        "mobile_text_alignment": "center",
-        "mobile_button_padding_y": 11,
-        "mobile_button_padding_x": 18,
-        "mobile_button_font_size": 15,
-        "mobile_content_order": "1",
-        "mobile_image_order": "2",
-        "heading_spacing": 18,
-        "description_spacing": 24,
-        "enable_button_shadow": true,
-        "button_border_radius": 4
-      }
     }
   },
   "order": [
@@ -1802,7 +1762,6 @@
     "rw_card_carousel_6_A3yTqa",
     "marquee_text_4_dwwPnB",
     "rw_testimonials_6_UjFK3f",
-    "rw_navigation_items_1_W4Q7Vp",
-    "rw_test_VYAYMa"
+    "rw_navigation_items_1_W4Q7Vp"
   ]
 }
