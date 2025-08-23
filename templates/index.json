@@ -1832,7 +1832,7 @@
       ],
       "name": "Testimonial Slider #8",
       "settings": {
-        "max_width_desktop": 800,
+        "max_width_desktop": 1000,
         "max_width_mobile": 400,
         "rotation_interval": 10,
         "background_color": "#476ce4",
