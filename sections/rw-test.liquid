@@ -177,6 +177,7 @@
     margin: 0;
     font-size: {{ section.settings.name_font_size_desktop }}px;
     font-weight: {{ section.settings.name_font_weight }};
+    color: {{ section.settings.name_text_color }};
   }
   
   {{ sec_id }} .pc-user-role-{{ last_part }} {
@@ -479,6 +480,12 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       "type": "color",
+      "id": "name_text_color",
+      "label": "Name Font Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
       "id": "quote_color",
       "label": "Quote Color",
       "default": "rgba(255, 255, 255, 0.3)"
@@ -683,7 +690,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 50
+      "default": 55
     },
     {
       "type": "range",
@@ -723,7 +730,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 70
+      "default": 60
     },
     {
       "type": "range",
@@ -733,7 +740,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "max": 60,
       "step": 5,
       "unit": "px",
-      "default": 40
+      "default": 35
     },
     {
       "type": "header",
