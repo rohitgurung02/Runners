@@ -1,0 +1,589 @@
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} .pc-split-hero-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }  
+
+  {{ sec_id }} .pc-split-hero-container {
+    margin-top: {{ section.settings.section_margin_top }}px !important;
+    margin-bottom: {{ section.settings.section_margin_bottom }}px !important;
+  }
+
+  {{ sec_id }} .pc-split-hero-container {
+    display: flex;
+    flex-direction: column;
+    min-height: {{ section.settings.mobile_min_height }}vh;
+  }
+
+  {{ sec_id }} .pc-split-hero-content {
+    flex: 1;
+    background-color: {{ section.settings.content_bg_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: {{ section.settings.mobile_content_padding }}px;
+    order: {{ section.settings.mobile_content_order }};
+  }
+
+  {{ sec_id }} .pc-split-hero-text {
+    text-align: {{ section.settings.mobile_text_alignment }};
+    max-width: 100%;
+  }
+
+  {{ sec_id }} .pc-split-hero-heading {
+    font-size: {{ section.settings.mobile_heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    color: {{ section.settings.heading_color }};
+    margin-bottom: {{ section.settings.heading_spacing }}px;
+    line-height: 1.2;
+  }
+
+  {{ sec_id }} .pc-split-hero-description {
+    font-size: {{ section.settings.mobile_description_size }}px;
+    color: {{ section.settings.description_color }};
+    margin-bottom: {{ section.settings.description_spacing }}px;
+    line-height: 1.5;
+  }
+
+  {{ sec_id }} .pc-split-hero-button {
+    display: inline-block;
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    padding: {{ section.settings.mobile_button_padding_y }}px {{ section.settings.mobile_button_padding_x }}px;
+    border-radius: {{ section.settings.button_border_radius }}px;
+    text-decoration: none;
+    font-weight: {{ section.settings.button_font_weight }};
+    font-size: {{ section.settings.mobile_button_font_size }}px;
+    {% if section.settings.enable_button_shadow %}
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    {% endif %}
+    transition: all 0.3s ease;
+  }
+
+  {{ sec_id }} .pc-split-hero-button:hover {
+    background-color: {{ section.settings.button_hover_bg_color }};
+    transform: translateY(-2px);
+    {% if section.settings.enable_button_shadow %}
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    {% endif %}
+  }
+
+  {{ sec_id }} .pc-split-hero-image {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    order: {{ section.settings.mobile_image_order }};
+  }
+
+  {{ sec_id }} .pc-split-hero-img-{{ last_part }},
+  {{ sec_id }} .pc-split-hero-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    {{ sec_id }} .pc-split-hero-container {
+      flex-direction: row;
+      min-height: {{ section.settings.desktop_min_height }}vh;
+    }
+
+    {{ sec_id }} .pc-split-hero-content {
+      padding: {{ section.settings.desktop_content_padding }}px;
+      order: {{ section.settings.desktop_content_order }};
+    }
+
+    {{ sec_id }} .pc-split-hero-text {
+      text-align: {{ section.settings.desktop_text_alignment }};
+      max-width: {{ section.settings.text_max_width }}%;
+    }
+
+    {{ sec_id }} .pc-split-hero-heading {
+      font-size: {{ section.settings.desktop_heading_size }}px;
+    }
+
+    {{ sec_id }} .pc-split-hero-description {
+      font-size: {{ section.settings.desktop_description_size }}px;
+    }
+
+    {{ sec_id }} .pc-split-hero-button {
+      padding: {{ section.settings.desktop_button_padding_y }}px {{ section.settings.desktop_button_padding_x }}px;
+      font-size: {{ section.settings.desktop_button_font_size }}px;
+    }
+
+    {{ sec_id }} .pc-split-hero-image {
+      order: {{ section.settings.desktop_image_order }};
+    }
+  }
+</style>
+
+<pc-split-hero-{{ last_part }} class="pc-split-hero-wrapper">
+  <div class="pc-split-hero-container">
+    <div class="pc-split-hero-content">
+      <div class="pc-split-hero-text">
+        <h2 class="pc-split-hero-heading">{{ section.settings.heading }}</h2>
+        <p class="pc-split-hero-description">{{ section.settings.description }}</p>
+        <a href="{{ section.settings.button_link }}" class="pc-split-hero-button">{{ section.settings.button_text }}</a>
+      </div>
+    </div>
+    <div class="pc-split-hero-image">
+      {%- if section.settings.image != blank -%}
+        {% assign image_class = 'pc-split-hero-img-' | append: last_part %}
+        {{ 
+          section.settings.image
+          | image_url: width: 1200
+          | image_tag: 
+              loading: 'lazy', 
+              class: image_class,
+              alt: section.settings.image.alt
+        }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'pc-split-hero-placeholder' }}
+      {%- endif -%}
+    </div>
+  </div>
+</pc-split-hero-{{ last_part }}>
+
+{% schema %}
+{
+  "name": "PWC - Split Hero #1",
+  "class": "pc-split-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Innovate with Us"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover new possibilities and drive success."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Free Tailwind Template"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content Background Color",
+      "default": "#3B82F6"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#3B82F6"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button Hover Background Color",
+      "default": "#F1F5F9"
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "range",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "button_font_weight",
+      "label": "Button Font Weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 500
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "range",
+      "id": "desktop_min_height",
+      "label": "Minimum Height",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "desktop_content_padding",
+      "label": "Content Padding",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_heading_size",
+      "label": "Heading Font Size",
+      "min": 24,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "desktop_description_size",
+      "label": "Description Font Size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "range",
+      "id": "text_max_width",
+      "label": "Text Max Width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 80
+    },
+    {
+      "type": "select",
+      "id": "desktop_text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "desktop_button_padding_y",
+      "label": "Button Padding Vertical",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "desktop_button_padding_x",
+      "label": "Button Padding Horizontal",
+      "min": 16,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "desktop_button_font_size",
+      "label": "Button Font Size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_order",
+      "label": "Content Order",
+      "options": [
+        {
+          "value": "1",
+          "label": "First"
+        },
+        {
+          "value": "2",
+          "label": "Second"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_order",
+      "label": "Image Order",
+      "options": [
+        {
+          "value": "1",
+          "label": "First"
+        },
+        {
+          "value": "2",
+          "label": "Second"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_min_height",
+      "label": "Minimum Height",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding",
+      "label": "Content Padding",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Heading Font Size",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_size",
+      "label": "Description Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "mobile_text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_padding_y",
+      "label": "Button Padding Vertical",
+      "min": 6,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_padding_x",
+      "label": "Button Padding Horizontal",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_font_size",
+      "label": "Button Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_order",
+      "label": "Content Order",
+      "options": [
+        {
+          "value": "1",
+          "label": "First"
+        },
+        {
+          "value": "2",
+          "label": "Second"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_order",
+      "label": "Image Order",
+      "options": [
+        {
+          "value": "1",
+          "label": "First"
+        },
+        {
+          "value": "2",
+          "label": "Second"
+        }
+      ],
+      "default": "2"
+    },
+     {
+      "type": "header",
+      "content": "Margin Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_margin_top",
+      "label": "Margin Top (px)",
+      "default": 10,
+      "min": 0,
+      "max": 150,
+      "step": 2
+     },
+     {
+      "type": "range",
+      "id": "section_margin_bottom",
+      "label": "Margin Bottom (px)",
+      "default": 10,
+      "min": 0,
+      "max": 150,
+      "step": 2
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Heading Bottom Spacing",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_spacing",
+      "label": "Description Bottom Spacing",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Effects Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_button_shadow",
+      "label": "Enable Button Shadow",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button Border Radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - Split Hero #1",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
