@@ -3,6 +3,52 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
+<pc-testimonial-slider-{{ last_part }} class="pc-testimonial-slider-{{ last_part }}">
+  <div class="pc-testimonial-container-{{ last_part }}">
+    <div class="pc-progress-bar-{{ last_part }}"></div>
+    
+    <svg class="pc-quote-left-{{ last_part }}" width="28" height="28" viewBox="0 0 24 24" fill="none">
+      <path d="M3.692 16.132C2.292 13.72 2.58 10.468 3.12 7.78C3.36 6.6 4.092 5.92 5.268 5.848C6.804 5.92 7.92 7.132 7.92 8.668C7.92 10.468 6.444 11.8 4.644 11.8C4.5 11.8 4.356 11.8 4.284 11.8C4.5 13.24 5.34 14.536 6.588 15.4C7.62 16.12 8.94 16.48 10.26 16.48C10.404 16.48 10.476 16.48 10.62 16.48C10.404 17.848 9.996 19.144 9.348 20.296C8.388 22 7.14 22.936 5.34 22.72C4.14 22.576 3.12 21.928 2.46 20.92C2.1 20.368 1.956 19.744 2.028 19.12C2.1 18.28 2.532 17.512 3.18 16.984C3.324 16.84 3.54 16.48 3.692 16.132Z" fill="currentColor"/>
+      <path d="M15.036 16.132C13.636 13.72 13.924 10.468 14.464 7.78C14.704 6.6 15.436 5.92 16.612 5.848C18.148 5.92 19.264 7.132 19.264 8.668C19.264 10.468 17.788 11.8 15.988 11.8C15.844 11.8 15.7 11.8 15.628 11.8C15.844 13.24 16.684 14.536 17.932 15.4C18.964 16.12 20.284 16.48 21.604 16.48C21.748 16.48 21.82 16.48 21.964 16.48C21.748 17.848 21.34 19.144 20.692 20.296C19.732 22 18.484 22.936 16.684 22.72C15.484 22.576 14.464 21.928 13.804 20.92C13.444 20.368 13.3 19.744 13.372 19.12C13.444 18.28 13.876 17.512 14.524 16.984C14.668 16.84 14.884 16.48 15.036 16.132Z" fill="currentColor"/>
+    </svg>
+    
+    <svg class="pc-quote-right-{{ last_part }}" width="28" height="28" viewBox="0 0 24 24" fill="none">
+      <path d="M20.308 7.868C21.708 10.28 21.42 13.532 20.88 16.22C20.64 17.4 19.908 18.08 18.732 18.152C17.196 18.08 16.08 16.868 16.08 15.332C16.08 13.532 17.556 12.2 19.356 12.2C19.5 12.2 19.644 12.2 19.716 12.2C19.5 10.76 18.66 9.464 17.412 8.6C16.38 7.88 15.06 7.52 13.74 7.52C13.596 7.52 13.524 7.52 13.38 7.52C13.596 6.152 14.004 4.856 14.652 3.704C15.612 2 16.86 1.064 18.66 1.28C19.86 1.424 20.88 2.072 21.54 3.08C21.9 3.632 22.044 4.256 21.972 4.88C21.9 5.72 21.468 6.488 20.82 7.016C20.676 7.16 20.46 7.52 20.308 7.868Z" fill="currentColor"/>
+      <path d="M8.96401 7.868C10.364 10.28 10.076 13.532 9.53601 16.22C9.29601 17.4 8.56401 18.08 7.38801 18.152C5.85201 18.08 4.73601 16.868 4.73601 15.332C4.73601 13.532 6.21201 12.2 8.01201 12.2C8.15601 12.2 8.30001 12.2 8.37201 12.2C8.15601 10.76 7.31601 9.464 6.06801 8.6C5.03601 7.88 3.71601 7.52 2.39601 7.52C2.25201 7.52 2.18001 7.52 2.03601 7.52C2.25201 6.152 2.66001 4.856 3.30801 3.704C4.26801 2 5.51601 1.064 7.31601 1.28C8.51601 1.424 9.53601 2.072 10.196 3.08C10.556 3.632 10.7 4.256 10.628 4.88C10.556 5.72 10.124 6.488 9.47601 7.016C9.33201 7.16 9.11601 7.52 8.96401 7.868Z" fill="currentColor"/>
+    </svg>
+    
+    {% for block in section.blocks %}
+      {% if forloop.first %}
+        <p class="pc-testimonial-text-{{ last_part }}" {{ block.shopify_attributes }}>
+          {{ block.settings.text }}
+        </p>
+        
+        <div class="pc-user-container-{{ last_part }}">
+          {%- if block.settings.image != blank -%}
+            {% assign image_class = 'pc-user-image-' | append: last_part %}
+            {{ 
+              block.settings.image
+              | image_url: width: 150
+              | image_tag: 
+                  loading: 'lazy', 
+                  class: image_class,
+                  alt: block.settings.name
+            }}
+          {%- else -%}
+            {% assign placeholder_class = 'pc-user-image-placeholder-' | append: last_part %}
+            {{ 'product-1' | placeholder_svg_tag: placeholder_class }}
+          {%- endif -%}
+          
+          <div class="pc-user-details-{{ last_part }}">
+            <h4 class="pc-username-{{ last_part }}">{{ block.settings.name }}</h4>
+            <p class="pc-user-role-{{ last_part }}">{{ block.settings.role }}</p>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</pc-testimonial-slider-{{ last_part }}>
+
 <style>
   {{ sec_id }} {
     display: flex;
@@ -138,83 +184,26 @@
   }
 </style>
 
-<pc-testimonial-slider-{{ last_part }} class="pc-testimonial-slider-{{ last_part }}">
-  <div class="pc-testimonial-container-{{ last_part }}">
-    <div class="pc-progress-bar-{{ last_part }}"></div>
-    
-    <svg class="pc-quote-left-{{ last_part }}" width="28" height="28" viewBox="0 0 24 24" fill="none">
-      <path d="M3.692 16.132C2.292 13.72 2.58 10.468 3.12 7.78C3.36 6.6 4.092 5.92 5.268 5.848C6.804 5.92 7.92 7.132 7.92 8.668C7.92 10.468 6.444 11.8 4.644 11.8C4.5 11.8 4.356 11.8 4.284 11.8C4.5 13.24 5.34 14.536 6.588 15.4C7.62 16.12 8.94 16.48 10.26 16.48C10.404 16.48 10.476 16.48 10.62 16.48C10.404 17.848 9.996 19.144 9.348 20.296C8.388 22 7.14 22.936 5.34 22.72C4.14 22.576 3.12 21.928 2.46 20.92C2.1 20.368 1.956 19.744 2.028 19.12C2.1 18.28 2.532 17.512 3.18 16.984C3.324 16.84 3.54 16.48 3.692 16.132Z" fill="currentColor"/>
-      <path d="M15.036 16.132C13.636 13.72 13.924 10.468 14.464 7.78C14.704 6.6 15.436 5.92 16.612 5.848C18.148 5.92 19.264 7.132 19.264 8.668C19.264 10.468 17.788 11.8 15.988 11.8C15.844 11.8 15.7 11.8 15.628 11.8C15.844 13.24 16.684 14.536 17.932 15.4C18.964 16.12 20.284 16.48 21.604 16.48C21.748 16.48 21.82 16.48 21.964 16.48C21.748 17.848 21.34 19.144 20.692 20.296C19.732 22 18.484 22.936 16.684 22.72C15.484 22.576 14.464 21.928 13.804 20.92C13.444 20.368 13.3 19.744 13.372 19.12C13.444 18.28 13.876 17.512 14.524 16.984C14.668 16.84 14.884 16.48 15.036 16.132Z" fill="currentColor"/>
-    </svg>
-    
-    <svg class="pc-quote-right-{{ last_part }}" width="28" height="28" viewBox="0 0 24 24" fill="none">
-      <path d="M20.308 7.868C21.708 10.28 21.42 13.532 20.88 16.22C20.64 17.4 19.908 18.08 18.732 18.152C17.196 18.08 16.08 16.868 16.08 15.332C16.08 13.532 17.556 12.2 19.356 12.2C19.5 12.2 19.644 12.2 19.716 12.2C19.5 10.76 18.66 9.464 17.412 8.6C16.38 7.88 15.06 7.52 13.74 7.52C13.596 7.52 13.524 7.52 13.38 7.52C13.596 6.152 14.004 4.856 14.652 3.704C15.612 2 16.86 1.064 18.66 1.28C19.86 1.424 20.88 2.072 21.54 3.08C21.9 3.632 22.044 4.256 21.972 4.88C21.9 5.72 21.468 6.488 20.82 7.016C20.676 7.16 20.46 7.52 20.308 7.868Z" fill="currentColor"/>
-      <path d="M8.96401 7.868C10.364 10.28 10.076 13.532 9.53601 16.22C9.29601 17.4 8.56401 18.08 7.38801 18.152C5.85201 18.08 4.73601 16.868 4.73601 15.332C4.73601 13.532 6.21201 12.2 8.01201 12.2C8.15601 12.2 8.30001 12.2 8.37201 12.2C8.15601 10.76 7.31601 9.464 6.06801 8.6C5.03601 7.88 3.71601 7.52 2.39601 7.52C2.25201 7.52 2.18001 7.52 2.03601 7.52C2.25201 6.152 2.66001 4.856 3.30801 3.704C4.26801 2 5.51601 1.064 7.31601 1.28C8.51601 1.424 9.53601 2.072 10.196 3.08C10.556 3.632 10.7 4.256 10.628 4.88C10.556 5.72 10.124 6.488 9.47601 7.016C9.33201 7.16 9.11601 7.52 8.96401 7.868Z" fill="currentColor"/>
-    </svg>
-    
-    <p class="pc-testimonial-text-{{ last_part }}">
-      {{ section.settings.testimonial_1_text }}
-    </p>
-    
-    <div class="pc-user-container-{{ last_part }}">
-      {%- if section.settings.testimonial_1_image != blank -%}
-        {% assign image_class = 'pc-user-image-' | append: last_part %}
-        {{ 
-          section.settings.testimonial_1_image
-          | image_url: width: 150
-          | image_tag: 
-              loading: 'lazy', 
-              class: image_class,
-              alt: section.settings.testimonial_1_name
-        }}
-      {%- else -%}
-        {{ 'product-1' | placeholder_svg_tag: 'pc-user-image-placeholder-' | append: last_part }}
-      {%- endif -%}
-      
-      <div class="pc-user-details-{{ last_part }}">
-        <h4 class="pc-username-{{ last_part }}">{{ section.settings.testimonial_1_name }}</h4>
-        <p class="pc-user-role-{{ last_part }}">{{ section.settings.testimonial_1_role }}</p>
-      </div>
-    </div>
-  </div>
-</pc-testimonial-slider-{{ last_part }}>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const testimonialSlider = document.querySelector('pc-testimonial-slider-{{ last_part }}');
   if (!testimonialSlider) return;
   
+  // Create testimonials array from section blocks
   const testimonials = [
-    {
-      text: `{{ section.settings.testimonial_1_text | escape }}`,
-      name: `{{ section.settings.testimonial_1_name | escape }}`,
-      role: `{{ section.settings.testimonial_1_role | escape }}`,
-      {% if section.settings.testimonial_1_image != blank %}
-        image: `{{ section.settings.testimonial_1_image | image_url: width: 150 }}`,
-      {% else %}
-        image: '',
-      {% endif %}
-    },
-    {
-      text: `{{ section.settings.testimonial_2_text | escape }}`,
-      name: `{{ section.settings.testimonial_2_name | escape }}`,
-      role: `{{ section.settings.testimonial_2_role | escape }}`,
-      {% if section.settings.testimonial_2_image != blank %}
-        image: `{{ section.settings.testimonial_2_image | image_url: width: 150 }}`,
-      {% else %}
-        image: '',
-      {% endif %}
-    },
-    {
-      text: `{{ section.settings.testimonial_3_text | escape }}`,
-      name: `{{ section.settings.testimonial_3_name | escape }}`,
-      role: `{{ section.settings.testimonial_3_role | escape }}`,
-      {% if section.settings.testimonial_3_image != blank %}
-        image: `{{ section.settings.testimonial_3_image | image_url: width: 150 }}`,
-      {% else %}
-        image: '',
-      {% endif %}
-    }
+    {% for block in section.blocks %}
+      {
+        text: `{{ block.settings.text | escape }}`,
+        name: `{{ block.settings.name | escape }}`,
+        role: `{{ block.settings.role | escape }}`,
+        {% if block.settings.image != blank %}
+          image: `{{ block.settings.image | image_url: width: 150 }}`,
+        {% else %}
+          image: '',
+        {% endif %}
+        id: `{{ block.id }}`
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
   ].filter(testimonial => testimonial.text && testimonial.name);
   
   if (testimonials.length <= 1) return;
@@ -231,25 +220,34 @@ document.addEventListener('DOMContentLoaded', function() {
     index = (index + 1) % testimonials.length;
     const { text, name, role, image } = testimonials[index];
     
-    textElement.textContent = text;
-    nameElement.textContent = name;
-    roleElement.textContent = role;
+    // Fade out
+    testimonialSlider.style.opacity = 0;
     
-    if (image && imageElement) {
-      if (imageElement.tagName === 'IMG') {
-        imageElement.src = image;
-      } else if (imageElement.tagName === 'svg' && image) {
-        const img = document.createElement('img');
-        img.src = image;
-        img.alt = name;
-        img.classList.add('pc-user-image-{{ last_part }}');
-        img.style.borderRadius = '50%';
-        img.style.height = '{{ section.settings.image_size }}px';
-        img.style.width = '{{ section.settings.image_size }}px';
-        img.style.objectFit = 'cover';
-        imageElement.parentNode.replaceChild(img, imageElement);
+    setTimeout(() => {
+      textElement.textContent = text;
+      nameElement.textContent = name;
+      roleElement.textContent = role;
+      
+      if (image && imageElement) {
+        if (imageElement.tagName === 'IMG') {
+          imageElement.src = image;
+          imageElement.alt = name;
+        } else if (imageElement.tagName === 'svg' && image) {
+          const img = document.createElement('img');
+          img.src = image;
+          img.alt = name;
+          img.classList.add('pc-user-image-{{ last_part }}');
+          img.style.borderRadius = '50%';
+          img.style.height = '{{ section.settings.image_size }}px';
+          img.style.width = '{{ section.settings.image_size }}px';
+          img.style.objectFit = 'cover';
+          imageElement.parentNode.replaceChild(img, imageElement);
+        }
       }
-    }
+      
+      // Fade in
+      testimonialSlider.style.opacity = 1;
+    }, 300);
   }
   
   setInterval(updateTestimonial, {{ section.settings.rotation_interval | times: 1000 }});
@@ -260,6 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
 {
   "name": "Testimonial Slider #8",
   "class": "pc-testimonial-slider",
+  "max_blocks": 6,
   "settings": [
     {
       "type": "header",
@@ -273,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "max": 1200,
       "step": 50,
       "unit": "px",
-      "default": 800
+      "default": 1000
     },
     {
       "type": "range",
@@ -294,87 +293,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "step": 1,
       "unit": "sec",
       "default": 10
-    },
-    {
-      "type": "header",
-      "content": "Testimonial 1"
-    },
-    {
-      "type": "image_picker",
-      "id": "testimonial_1_image",
-      "label": "Testimonial 1 Image"
-    },
-    {
-      "type": "text",
-      "id": "testimonial_1_name",
-      "label": "Testimonial 1 Name",
-      "default": "Miyah Myles"
-    },
-    {
-      "type": "text",
-      "id": "testimonial_1_role",
-      "label": "Testimonial 1 Role",
-      "default": "Marketing"
-    },
-    {
-      "type": "textarea",
-      "id": "testimonial_1_text",
-      "label": "Testimonial 1 Text",
-      "default": "I've worked with literally hundreds of HTML/CSS developers and I have to say the top spot goes to this guy. This guy is an amazing developer. He stresses on good, clean code and pays heed to the details. I love developers who respect each and every aspect of a throughly thought out design and do their best to put it in code. He goes over and beyond and transforms ART into PIXELS - without a glitch, every time."
-    },
-    {
-      "type": "header",
-      "content": "Testimonial 2"
-    },
-    {
-      "type": "image_picker",
-      "id": "testimonial_2_image",
-      "label": "Testimonial 2 Image"
-    },
-    {
-      "type": "text",
-      "id": "testimonial_2_name",
-      "label": "Testimonial 2 Name",
-      "default": "June Cha"
-    },
-    {
-      "type": "text",
-      "id": "testimonial_2_role",
-      "label": "Testimonial 2 Role",
-      "default": "Software Engineer"
-    },
-    {
-      "type": "textarea",
-      "id": "testimonial_2_text",
-      "label": "Testimonial 2 Text",
-      "default": "This guy is an amazing frontend developer that delivered the task exactly how we need it, do your self a favor and hire him, you will not be disappointed by the work delivered. He will go the extra mile to make sure that you are happy with your project. I will surely work again with him!"
-    },
-    {
-      "type": "header",
-      "content": "Testimonial 3"
-    },
-    {
-      "type": "image_picker",
-      "id": "testimonial_3_image",
-      "label": "Testimonial 3 Image"
-    },
-    {
-      "type": "text",
-      "id": "testimonial_3_name",
-      "label": "Testimonial 3 Name",
-      "default": "Iida Niskanen"
-    },
-    {
-      "type": "text",
-      "id": "testimonial_3_role",
-      "label": "Testimonial 3 Role",
-      "default": "Data Entry"
-    },
-    {
-      "type": "textarea",
-      "id": "testimonial_3_text",
-      "label": "Testimonial 3 Text",
-      "default": "This guy is a hard worker. Communication was also very good with him and he was very responsive all the time, something not easy to find in many freelancers. We'll definitely repeat with him."
     },
     {
       "type": "header",
@@ -727,10 +645,67 @@ document.addEventListener('DOMContentLoaded', function() {
       "default": 4
     }
   ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role",
+          "default": "Customer"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Testimonial Text",
+          "default": "I've worked with literally hundreds of HTML/CSS developers and I have to say the top spot goes to this guy. This guy is an amazing developer."
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Testimonial Slider #8",
-      "category": "Custom"
+      "name": "PWC - Testimonial Slider #1",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Miyah Myles",
+            "role": "Marketing",
+            "text": "I've worked with literally hundreds of HTML/CSS developers and I have to say the top spot goes to this guy. This guy is an amazing developer. He stresses on good, clean code and pays heed to the details. I love developers who respect each and every aspect of a throughly thought out design and do their best to put it in code. He goes over and beyond and transforms ART into PIXELS - without a glitch, every time."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "June Cha",
+            "role": "Software Engineer",
+            "text": "This guy is an amazing frontend developer that delivered the task exactly how we need it, do your self a favor and hire him, you will not be disappointed by the work delivered. He will go the extra mile to make sure that you are happy with your project. I will surely work again with him!"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Iida Niskanen",
+            "role": "Data Entry",
+            "text": "This guy is a hard worker. Communication was also very good with him and he was very responsive all the time, something not easy to find in many freelancers. We'll definitely repeat with him."
+          }
+        }
+      ]
     }
   ]
 }
