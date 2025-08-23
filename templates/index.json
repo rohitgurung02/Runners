@@ -756,6 +756,7 @@
         "rotation_interval": 10,
         "background_color": "#476ce4",
         "text_color": "#ffffff",
+        "name_text_color": "#ffffff",
         "quote_color": "#ffffff4d",
         "progress_bar_color": "#ffffff",
         "enable_shadow": false,
@@ -1016,6 +1017,7 @@
         "rotation_interval": 10,
         "background_color": "#476ce4",
         "text_color": "#ffffff",
+        "name_text_color": "#ffffff",
         "quote_color": "#ffffff4d",
         "progress_bar_color": "#ffffff",
         "enable_shadow": false,
@@ -1818,7 +1820,7 @@
         "testimonial_7DnLQF": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/Randy_Moore_Photo_edited.webp",
+            "image": "shopify://shop_images/Lawanda_Franks__edited_1.webp",
             "name": "Iida Niskanen",
             "role": "Data Entry",
             "text": "This guy is a hard worker. Communication was also very good with him and he was very responsive all the time, something not easy to find in many freelancers. We'll definitely repeat with him."
@@ -1837,6 +1839,7 @@
         "rotation_interval": 10,
         "background_color": "#476ce4",
         "text_color": "#ffffff",
+        "name_text_color": "#ffffff",
         "quote_color": "#ffffff4d",
         "progress_bar_color": "#ffffff",
         "enable_shadow": false,
