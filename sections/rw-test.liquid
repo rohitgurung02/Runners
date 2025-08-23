@@ -4,48 +4,74 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <pc-testimonial-slider-{{ last_part }} class="pc-testimonial-slider-{{ last_part }}">
-  <div class="pc-testimonial-container-{{ last_part }}">
-    <div class="pc-progress-bar-{{ last_part }}"></div>
-    
-    <svg class="pc-quote-left-{{ last_part }}" width="28" height="28" viewBox="0 0 24 24" fill="none">
-      <path d="M3.692 16.132C2.292 13.72 2.58 10.468 3.12 7.78C3.36 6.6 4.092 5.92 5.268 5.848C6.804 5.92 7.92 7.132 7.92 8.668C7.92 10.468 6.444 11.8 4.644 11.8C4.5 11.8 4.356 11.8 4.284 11.8C4.5 13.24 5.34 14.536 6.588 15.4C7.62 16.12 8.94 16.48 10.26 16.48C10.404 16.48 10.476 16.48 10.62 16.48C10.404 17.848 9.996 19.144 9.348 20.296C8.388 22 7.14 22.936 5.34 22.72C4.14 22.576 3.12 21.928 2.46 20.92C2.1 20.368 1.956 19.744 2.028 19.12C2.1 18.28 2.532 17.512 3.18 16.984C3.324 16.84 3.54 16.48 3.692 16.132Z" fill="currentColor"/>
-      <path d="M15.036 16.132C13.636 13.72 13.924 10.468 14.464 7.78C14.704 6.6 15.436 5.92 16.612 5.848C18.148 5.92 19.264 7.132 19.264 8.668C19.264 10.468 17.788 11.8 15.988 11.8C15.844 11.8 15.7 11.8 15.628 11.8C15.844 13.24 16.684 14.536 17.932 15.4C18.964 16.12 20.284 16.48 21.604 16.48C21.748 16.48 21.82 16.48 21.964 16.48C21.748 17.848 21.34 19.144 20.692 20.296C19.732 22 18.484 22.936 16.684 22.72C15.484 22.576 14.464 21.928 13.804 20.92C13.444 20.368 13.3 19.744 13.372 19.12C13.444 18.28 13.876 17.512 14.524 16.984C14.668 16.84 14.884 16.48 15.036 16.132Z" fill="currentColor"/>
-    </svg>
-    
-    <svg class="pc-quote-right-{{ last_part }}" width="28" height="28" viewBox="0 0 24 24" fill="none">
-      <path d="M20.308 7.868C21.708 10.28 21.42 13.532 20.88 16.22C20.64 17.4 19.908 18.08 18.732 18.152C17.196 18.08 16.08 16.868 16.08 15.332C16.08 13.532 17.556 12.2 19.356 12.2C19.5 12.2 19.644 12.2 19.716 12.2C19.5 10.76 18.66 9.464 17.412 8.6C16.38 7.88 15.06 7.52 13.74 7.52C13.596 7.52 13.524 7.52 13.38 7.52C13.596 6.152 14.004 4.856 14.652 3.704C15.612 2 16.86 1.064 18.66 1.28C19.86 1.424 20.88 2.072 21.54 3.08C21.9 3.632 22.044 4.256 21.972 4.88C21.9 5.72 21.468 6.488 20.82 7.016C20.676 7.16 20.46 7.52 20.308 7.868Z" fill="currentColor"/>
-      <path d="M8.96401 7.868C10.364 10.28 10.076 13.532 9.53601 16.22C9.29601 17.4 8.56401 18.08 7.38801 18.152C5.85201 18.08 4.73601 16.868 4.73601 15.332C4.73601 13.532 6.21201 12.2 8.01201 12.2C8.15601 12.2 8.30001 12.2 8.37201 12.2C8.15601 10.76 7.31601 9.464 6.06801 8.6C5.03601 7.88 3.71601 7.52 2.39601 7.52C2.25201 7.52 2.18001 7.52 2.03601 7.52C2.25201 6.152 2.66001 4.856 3.30801 3.704C4.26801 2 5.51601 1.064 7.31601 1.28C8.51601 1.424 9.53601 2.072 10.196 3.08C10.556 3.632 10.7 4.256 10.628 4.88C10.556 5.72 10.124 6.488 9.47601 7.016C9.33201 7.16 9.11601 7.52 8.96401 7.868Z" fill="currentColor"/>
-    </svg>
-    
-    {% for block in section.blocks %}
-      {% if forloop.first %}
-        <p class="pc-testimonial-text-{{ last_part }}" {{ block.shopify_attributes }}>
-          {{ block.settings.text }}
-        </p>
-        
-        <div class="pc-user-container-{{ last_part }}">
-          {%- if block.settings.image != blank -%}
-            {% assign image_class = 'pc-user-image-' | append: last_part %}
-            {{ 
-              block.settings.image
-              | image_url: width: 150
-              | image_tag: 
-                  loading: 'lazy', 
-                  class: image_class,
-                  alt: block.settings.name
-            }}
-          {%- else -%}
-            {% assign placeholder_class = 'pc-user-image-placeholder-' | append: last_part %}
-            {{ 'product-1' | placeholder_svg_tag: placeholder_class }}
-          {%- endif -%}
-          
-          <div class="pc-user-details-{{ last_part }}">
-            <h4 class="pc-username-{{ last_part }}">{{ block.settings.name }}</h4>
-            <p class="pc-user-role-{{ last_part }}">{{ block.settings.role }}</p>
+  <div class="pc-testimonial-wrapper-{{ last_part }}">
+    <div class="pc-testimonial-track-{{ last_part }}">
+      {% for block in section.blocks %}
+        <div class="pc-testimonial-slide-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}" {{ block.shopify_attributes }} data-index="{{ forloop.index0 }}">
+          <div class="pc-testimonial-container-{{ last_part }}">
+            <div class="pc-progress-bar-{{ last_part }}"></div>
+            
+            <svg class="pc-quote-left-{{ last_part }}" width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M3.692 16.132C2.292 13.72 2.58 10.468 3.12 7.78C3.36 6.6 4.092 5.92 5.268 5.848C6.804 5.92 7.92 7.132 7.92 8.668C7.92 10.468 6.444 11.8 4.644 11.8C4.5 11.8 4.356 11.8 4.284 11.8C4.5 13.24 5.34 14.536 6.588 15.4C7.62 16.12 8.94 16.48 10.26 16.48C10.404 16.48 10.476 16.48 10.62 16.48C10.404 17.848 9.996 19.144 9.348 20.296C8.388 22 7.14 22.936 5.34 22.72C4.14 22.576 3.12 21.928 2.46 20.92C2.1 20.368 1.956 19.744 2.028 19.12C2.1 18.28 2.532 17.512 3.18 16.984C3.324 16.84 3.54 16.48 3.692 16.132Z" fill="currentColor"/>
+              <path d="M15.036 16.132C13.636 13.72 13.924 10.468 14.464 7.78C14.704 6.6 15.436 5.92 16.612 5.848C18.148 5.92 19.264 7.132 19.264 8.668C19.264 10.468 17.788 11.8 15.988 11.8C15.844 11.8 15.7 11.8 15.628 11.8C15.844 13.24 16.684 14.536 17.932 15.4C18.964 16.12 20.284 16.48 21.604 16.48C21.748 16.48 21.82 16.48 21.964 16.48C21.748 17.848 21.34 19.144 20.692 20.296C19.732 22 18.484 22.936 16.684 22.72C15.484 22.576 14.464 21.928 13.804 20.92C13.444 20.368 13.3 19.744 13.372 19.12C13.444 18.28 13.876 17.512 14.524 16.984C14.668 16.84 14.884 16.48 15.036 16.132Z" fill="currentColor"/>
+            </svg>
+            
+            <svg class="pc-quote-right-{{ last_part }}" width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M20.308 7.868C21.708 10.28 21.42 13.532 20.88 16.22C20.64 17.4 19.908 18.08 18.732 18.152C17.196 18.08 16.08 16.868 16.08 15.332C16.08 13.532 17.556 12.2 19.356 12.2C19.5 12.2 19.644 12.2 19.716 12.2C19.5 10.76 18.66 9.464 17.412 8.6C16.38 7.88 15.06 7.52 13.74 7.52C13.596 7.52 13.524 7.52 13.38 7.52C13.596 6.152 14.004 4.856 14.652 3.704C15.612 2 16.86 1.064 18.66 1.28C19.86 1.424 20.88 2.072 21.54 3.08C21.9 3.632 22.044 4.256 21.972 4.88C21.9 5.72 21.468 6.488 20.82 7.016C20.676 7.16 20.46 7.52 20.308 7.868Z" fill="currentColor"/>
+              <path d="M8.96401 7.868C10.364 10.28 10.076 13.532 9.53601 16.22C9.29601 17.4 8.56401 18.08 7.38801 18.152C5.85201 18.08 4.73601 16.868 4.73601 15.332C4.73601 13.532 6.21201 12.2 8.01201 12.2C8.15601 12.2 8.30001 12.2 8.37201 12.2C8.15601 10.76 7.31601 9.464 6.06801 8.6C5.03601 7.88 3.71601 7.52 2.39601 7.52C2.25201 7.52 2.18001 7.52 2.03601 7.52C2.25201 6.152 2.66001 4.856 3.30801 3.704C4.26801 2 5.51601 1.064 7.31601 1.28C8.51601 1.424 9.53601 2.072 10.196 3.08C10.556 3.632 10.7 4.256 10.628 4.88C10.556 5.72 10.124 6.488 9.47601 7.016C9.33201 7.16 9.11601 7.52 8.96401 7.868Z" fill="currentColor"/>
+            </svg>
+            
+            <p class="pc-testimonial-text-{{ last_part }}">
+              {{ block.settings.text }}
+            </p>
+            
+            <div class="pc-user-container-{{ last_part }}">
+              {%- if block.settings.image != blank -%}
+                {% assign image_class = 'pc-user-image-' | append: last_part %}
+                {{ 
+                  block.settings.image
+                  | image_url: width: 150
+                  | image_tag: 
+                      loading: 'lazy', 
+                      class: image_class,
+                      alt: block.settings.name
+                }}
+              {%- else -%}
+                {% assign placeholder_class = 'pc-user-image-placeholder-' | append: last_part %}
+                {{ 'product-1' | placeholder_svg_tag: placeholder_class }}
+              {%- endif -%}
+              
+              <div class="pc-user-details-{{ last_part }}">
+                <h4 class="pc-username-{{ last_part }}">{{ block.settings.name }}</h4>
+                <p class="pc-user-role-{{ last_part }}">{{ block.settings.role }}</p>
+              </div>
+            </div>
           </div>
         </div>
-      {% endif %}
-    {% endfor %}
+      {% endfor %}
+    </div>
+    
+    {% if section.blocks.size > 1 %}
+      <div class="pc-slider-controls-{{ last_part }}">
+        <button class="pc-slider-prev-{{ last_part }}" aria-label="Previous testimonial">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        
+        <div class="pc-slider-dots-{{ last_part }}">
+          {% for block in section.blocks %}
+            <button class="pc-slider-dot-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Go to testimonial {{ forloop.index }}"></button>
+          {% endfor %}
+        </div>
+        
+        <button class="pc-slider-next-{{ last_part }}" aria-label="Next testimonial">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    {% endif %}
   </div>
 </pc-testimonial-slider-{{ last_part }}>
 
@@ -62,6 +88,28 @@
     width: 100%;
     max-width: {{ section.settings.max_width_desktop }}px;
     margin: 0 auto;
+  }
+  
+  {{ sec_id }} .pc-testimonial-wrapper-{{ last_part }} {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  {{ sec_id }} .pc-testimonial-track-{{ last_part }} {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  {{ sec_id }} .pc-testimonial-slide-{{ last_part }} {
+    flex: 0 0 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  
+  {{ sec_id }} .pc-testimonial-slide-{{ last_part }}.pc-active-{{ last_part }} {
+    opacity: 1;
+    visibility: visible;
   }
   
   {{ sec_id }} .pc-testimonial-container-{{ last_part }} {
@@ -146,6 +194,55 @@
     border-radius: {{ section.settings.progress_bar_height }}px;
   }
   
+  {{ sec_id }} .pc-slider-controls-{{ last_part }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+  }
+  
+  {{ sec_id }} .pc-slider-prev-{{ last_part }},
+  {{ sec_id }} .pc-slider-next-{{ last_part }} {
+    background: {{ section.settings.arrow_background }};
+    border: {{ section.settings.arrow_border_width }}px solid {{ section.settings.arrow_border_color }};
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: {{ section.settings.arrow_color }};
+    transition: all 0.3s ease;
+  }
+  
+  {{ sec_id }} .pc-slider-prev-{{ last_part }}:hover,
+  {{ sec_id }} .pc-slider-next-{{ last_part }}:hover {
+    background: {{ section.settings.arrow_hover_background }};
+    color: {{ section.settings.arrow_hover_color }};
+  }
+  
+  {{ sec_id }} .pc-slider-dots-{{ last_part }} {
+    display: flex;
+    gap: 10px;
+  }
+  
+  {{ sec_id }} .pc-slider-dot-{{ last_part }} {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: {{ section.settings.dot_color }};
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  {{ sec_id }} .pc-slider-dot-{{ last_part }}.pc-active-{{ last_part }} {
+    background: {{ section.settings.dot_active_color }};
+    transform: scale(1.2);
+  }
+  
   @keyframes pc-grow-{{ last_part }} {
     0% {
       transform: scaleX(0);
@@ -181,76 +278,146 @@
     {{ sec_id }} .pc-user-role-{{ last_part }} {
       font-size: {{ section.settings.role_font_size_mobile }}px;
     }
+    
+    {{ sec_id }} .pc-slider-controls-{{ last_part }} {
+      flex-wrap: wrap;
+    }
   }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const testimonialSlider = document.querySelector('pc-testimonial-slider-{{ last_part }}');
-  if (!testimonialSlider) return;
+  const sliderElement = document.querySelector('pc-testimonial-slider-{{ last_part }}');
+  if (!sliderElement) return;
   
-  // Create testimonials array from section blocks
-  const testimonials = [
-    {% for block in section.blocks %}
-      {
-        text: `{{ block.settings.text | escape }}`,
-        name: `{{ block.settings.name | escape }}`,
-        role: `{{ block.settings.role | escape }}`,
-        {% if block.settings.image != blank %}
-          image: `{{ block.settings.image | image_url: width: 150 }}`,
-        {% else %}
-          image: '',
-        {% endif %}
-        id: `{{ block.id }}`
-      }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ].filter(testimonial => testimonial.text && testimonial.name);
+  const track = sliderElement.querySelector('.pc-testimonial-track-{{ last_part }}');
+  const slides = sliderElement.querySelectorAll('.pc-testimonial-slide-{{ last_part }}');
+  const dots = sliderElement.querySelectorAll('.pc-slider-dot-{{ last_part }}');
+  const prevButton = sliderElement.querySelector('.pc-slider-prev-{{ last_part }}');
+  const nextButton = sliderElement.querySelector('.pc-slider-next-{{ last_part }}');
+  const progressBars = sliderElement.querySelectorAll('.pc-progress-bar-{{ last_part }}');
   
-  if (testimonials.length <= 1) return;
+  if (slides.length <= 1) return;
   
-  const textElement = testimonialSlider.querySelector('.pc-testimonial-text-{{ last_part }}');
-  const nameElement = testimonialSlider.querySelector('.pc-username-{{ last_part }}');
-  const roleElement = testimonialSlider.querySelector('.pc-user-role-{{ last_part }}');
-  const imageElement = testimonialSlider.querySelector('.pc-user-image-{{ last_part }}') || 
-                       testimonialSlider.querySelector('.pc-user-image-placeholder-{{ last_part }}');
+  let currentIndex = 0;
+  let autoPlayInterval;
   
-  let index = 0;
-  
-  function updateTestimonial() {
-    index = (index + 1) % testimonials.length;
-    const { text, name, role, image } = testimonials[index];
+  // Function to update slide position
+  function updateSlidePosition() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
     
-    // Fade out
-    testimonialSlider.style.opacity = 0;
-    
-    setTimeout(() => {
-      textElement.textContent = text;
-      nameElement.textContent = name;
-      roleElement.textContent = role;
-      
-      if (image && imageElement) {
-        if (imageElement.tagName === 'IMG') {
-          imageElement.src = image;
-          imageElement.alt = name;
-        } else if (imageElement.tagName === 'svg' && image) {
-          const img = document.createElement('img');
-          img.src = image;
-          img.alt = name;
-          img.classList.add('pc-user-image-{{ last_part }}');
-          img.style.borderRadius = '50%';
-          img.style.height = '{{ section.settings.image_size }}px';
-          img.style.width = '{{ section.settings.image_size }}px';
-          img.style.objectFit = 'cover';
-          imageElement.parentNode.replaceChild(img, imageElement);
-        }
+    // Update active classes
+    slides.forEach((slide, index) => {
+      if (index === currentIndex) {
+        slide.classList.add('pc-active-{{ last_part }}');
+      } else {
+        slide.classList.remove('pc-active-{{ last_part }}');
       }
-      
-      // Fade in
-      testimonialSlider.style.opacity = 1;
-    }, 300);
+    });
+    
+    // Update dots
+    dots.forEach((dot, index) => {
+      if (index === currentIndex) {
+        dot.classList.add('pc-active-{{ last_part }}');
+      } else {
+        dot.classList.remove('pc-active-{{ last_part }}');
+      }
+    });
+    
+    // Reset and restart progress bars
+    progressBars.forEach(bar => {
+      bar.style.animation = 'none';
+      void bar.offsetWidth; // Trigger reflow
+      bar.style.animation = `pc-grow-{{ last_part }} {{ section.settings.animation_duration }}s linear infinite`;
+    });
   }
   
-  setInterval(updateTestimonial, {{ section.settings.rotation_interval | times: 1000 }});
+  // Function to go to a specific slide
+  function goToSlide(index) {
+    if (index < 0) {
+      currentIndex = slides.length - 1;
+    } else if (index >= slides.length) {
+      currentIndex = 0;
+    } else {
+      currentIndex = index;
+    }
+    updateSlidePosition();
+  }
+  
+  // Function to go to next slide
+  function nextSlide() {
+    goToSlide(currentIndex + 1);
+  }
+  
+  // Function to start autoplay
+  function startAutoplay() {
+    if (autoPlayInterval) clearInterval(autoPlayInterval);
+    autoPlayInterval = setInterval(nextSlide, {{ section.settings.rotation_interval | times: 1000 }});
+  }
+  
+  // Initialize the slider
+  updateSlidePosition();
+  startAutoplay();
+  
+  // Event listeners for navigation
+  if (prevButton) {
+    prevButton.addEventListener('click', function() {
+      goToSlide(currentIndex - 1);
+      startAutoplay(); // Reset autoplay timer on manual navigation
+    });
+  }
+  
+  if (nextButton) {
+    nextButton.addEventListener('click', function() {
+      nextSlide();
+      startAutoplay(); // Reset autoplay timer on manual navigation
+    });
+  }
+  
+  // Event listeners for dots
+  dots.forEach(dot => {
+    dot.addEventListener('click', function() {
+      const index = parseInt(this.getAttribute('data-index'));
+      goToSlide(index);
+      startAutoplay(); // Reset autoplay timer on manual navigation
+    });
+  });
+  
+  // Pause autoplay on hover
+  sliderElement.addEventListener('mouseenter', function() {
+    if (autoPlayInterval) clearInterval(autoPlayInterval);
+  });
+  
+  sliderElement.addEventListener('mouseleave', function() {
+    startAutoplay();
+  });
+  
+  // Touch events for mobile swipe
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  sliderElement.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  
+  sliderElement.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+  
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    
+    if (touchEndX < touchStartX - swipeThreshold) {
+      // Swipe left - next slide
+      nextSlide();
+      startAutoplay();
+    } else if (touchEndX > touchStartX + swipeThreshold) {
+      // Swipe right - previous slide
+      goToSlide(currentIndex - 1);
+      startAutoplay();
+    }
+  }
 });
 </script>
 
@@ -272,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "max": 1200,
       "step": 50,
       "unit": "px",
-      "default": 1000
+      "default": 800
     },
     {
       "type": "range",
@@ -337,6 +504,62 @@ document.addEventListener('DOMContentLoaded', function() {
       "step": 1,
       "unit": "px",
       "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Navigation Settings"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow Color",
+      "default": "#476ce4"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_color",
+      "label": "Arrow Hover Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_background",
+      "label": "Arrow Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_background",
+      "label": "Arrow Hover Background",
+      "default": "#476ce4"
+    },
+    {
+      "type": "color",
+      "id": "arrow_border_color",
+      "label": "Arrow Border Color",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "range",
+      "id": "arrow_border_width",
+      "label": "Arrow Border Width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot Color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "dot_active_color",
+      "label": "Dot Active Color",
+      "default": "#476ce4"
     },
     {
       "type": "header",
