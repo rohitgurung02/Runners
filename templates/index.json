@@ -1779,7 +1779,7 @@
         "pressure_iterations": 25,
         "curl_strength": 35,
         "splat_radius": 0.1,
-        "section_height_desktop": 100,
+        "section_height_desktop": 400,
         "title_size_desktop": 5,
         "letter_spacing_desktop": 0.1,
         "margin_top_desktop": 0,
