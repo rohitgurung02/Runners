@@ -540,95 +540,122 @@
 document.addEventListener("DOMContentLoaded", () => {
   const sectionId = "{{ sec_id }}";
   const lastPart = "{{ last_part }}";
-  
+
   const track = document.querySelector(`${sectionId} .pc-carousel-track-${lastPart}`);
   const cards = document.querySelectorAll(`${sectionId} .pc-deconstructed-card-${lastPart}`);
   const prevBtn = document.querySelector(`${sectionId} .pc-prev-${lastPart}`);
   const nextBtn = document.querySelector(`${sectionId} .pc-next-${lastPart}`);
   const dotsContainer = document.querySelector(`${sectionId} .pc-dots-container-${lastPart}`);
 
-  if (!track || !cards.length) return;
+  if (!track || cards.length === 0) return;
 
-  // Clone first and last cards for seamless looping
+  const cardGap = {{ section.settings.card_gap }};
+
+  // Clone first and last card
   const firstCardClone = cards[0].cloneNode(true);
   const lastCardClone = cards[cards.length - 1].cloneNode(true);
-  
-  // Add clones to the track
+
+  // Add clones
   track.appendChild(firstCardClone);
   track.insertBefore(lastCardClone, cards[0]);
-  
-  // Update cards reference after cloning
+
+  // Updated card references after clones
   const allCards = document.querySelectorAll(`${sectionId} .pc-deconstructed-card-${lastPart}`);
   const totalCards = allCards.length;
   const originalCardsCount = cards.length;
-  
-  // Set initial position to show the first actual card (not the clone)
+
+  // Initial state
   let currentIndex = 1;
-  const cardGap = {{ section.settings.card_gap }};
-  
-  function updateTrackPosition() {
+
+  function updateTrackPosition(animate = true) {
     const cardWidth = allCards[0].offsetWidth;
-    const translateX = -currentIndex * (cardWidth + cardGap);
-    track.style.transform = `translateX(${translateX}px)`;
-  }
-  
-  updateTrackPosition();
+    const totalCardWidth = cardWidth + cardGap;
 
-  // Create dots for the original cards only
-  for (let i = 0; i < originalCardsCount; i++) {
-    const dot = document.createElement("div");
-    dot.classList.add(`pc-dot-${lastPart}`);
-    if (i === 0) dot.classList.add(`pc-active-${lastPart}`);
-    dot.addEventListener("click", () => goToCard(i + 1)); // +1 because we added a clone at the beginning
-    dotsContainer.appendChild(dot);
-  }
-
-  const dots = document.querySelectorAll(`${sectionId} .pc-dot-${lastPart}`);
-  
-  // Set up card interactions (same as your original code)
-  // ... [your existing card interaction code] ...
-  
-  function goToCard(index, animate = true) {
     if (animate) {
       track.style.transition = "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
     } else {
       track.style.transition = "none";
     }
-    
-    const cardWidth = allCards[0].offsetWidth;
-    const totalCardWidth = cardWidth + cardGap;
-    const translateX = -index * totalCardWidth;
-    
-    track.style.transform = `translateX(${translateX}px)`;
-    currentIndex = index;
-    
-    // Update dots for the original cards only
+
+    track.style.transform = `translateX(${-currentIndex * totalCardWidth}px)`;
+  }
+
+  updateTrackPosition(false); // Set initial position without animation
+
+  // Create dots
+  for (let i = 0; i < originalCardsCount; i++) {
+    const dot = document.createElement("div");
+    dot.classList.add(`pc-dot-${lastPart}`);
+    if (i === 0) dot.classList.add(`pc-active-${lastPart}`);
+    dot.addEventListener("click", () => goToCard(i + 1)); // +1 to account for first clone
+    dotsContainer.appendChild(dot);
+  }
+
+  const dots = document.querySelectorAll(`${sectionId} .pc-dot-${lastPart}`);
+
+  function updateDots(index) {
     let dotIndex = index - 1;
-    if (dotIndex < 0) dotIndex = originalCardsCount - 1;
-    if (dotIndex >= originalCardsCount) dotIndex = 0;
-    
+    if (index === 0) dotIndex = originalCardsCount - 1;
+    if (index === totalCards - 1) dotIndex = 0;
+
     dots.forEach((dot, i) => {
       dot.classList.toggle(`pc-active-${lastPart}`, i === dotIndex);
     });
   }
 
-  function handleCarouselTransition() {
-  track.style.transition = "none";
-
-  if (currentIndex === 0) {
-    currentIndex = originalCardsCount;
-    updateTrackPosition();
-  } else if (currentIndex === totalCards - 1) {
-    currentIndex = 1;
-    updateTrackPosition();
+  function goToCard(index, animate = true) {
+    currentIndex = index;
+    updateTrackPosition(animate);
+    updateDots(currentIndex);
   }
 
-  setTimeout(() => {
-    track.style.transition = "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
-  }, 50);
-}
+  function handleCarouselTransition() {
+    const cardWidth = allCards[0].offsetWidth;
+    const totalCardWidth = cardWidth + cardGap;
 
+    // If at beginning (clone of last), jump to real last
+    if (currentIndex === 0) {
+      track.style.transition = "none";
+      currentIndex = originalCardsCount;
+      track.style.transform = `translateX(${-currentIndex * totalCardWidth}px)`;
+    }
+
+    // If at end (clone of first), jump to real first
+    if (currentIndex === totalCards - 1) {
+      track.style.transition = "none";
+      currentIndex = 1;
+      track.style.transform = `translateX(${-currentIndex * totalCardWidth}px)`;
+    }
+
+    updateDots(currentIndex);
+  }
+
+  track.addEventListener("transitionend", handleCarouselTransition);
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      goToCard(currentIndex - 1);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      goToCard(currentIndex + 1);
+    });
+  }
+
+  // Update position on resize
+  window.addEventListener("resize", () => {
+    updateTrackPosition(false);
+  });
+
+  // OPTIONAL: Auto-play (comment out if not needed)
+  // setInterval(() => {
+  //   goToCard(currentIndex + 1);
+  // }, 5000);
+});
 </script>
+
 
 {% schema %}
 {
