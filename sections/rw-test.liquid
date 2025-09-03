@@ -3,95 +3,6 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<pc-card-carousel-{{ last_part }} class="pc-card-carousel-{{ last_part }}">
-  <div class="pc-carousel-{{ last_part }}">
-    <div class="pc-carousel-track-{{ last_part }}">
-      {%- for block in section.blocks -%}
-        <article class="pc-deconstructed-card-{{ last_part }} {% if block.settings.card_type == 'text' %}pc-text-card-{{ last_part }}{% endif %}">
-          
-          {%- if block.settings.card_type == 'image' -%}
-            <div class="pc-card-layer-{{ last_part }} pc-card-image-{{ last_part }}">
-              {%- if block.settings.background_image != blank -%}
-                {% assign image_class = 'pc-card-bg-image-' | append: last_part %}
-                {{ 
-                  block.settings.background_image 
-                  | image_url: width: 600 
-                  | image_tag: 
-                      loading: 'lazy', 
-                      class: image_class,
-                      alt: block.settings.heading 
-                }}
-              {%- else -%}
-  {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-svg' }}
-{%- endif -%}
-            </div>
-          {%- else -%}
-            <div class="pc-card-layer-{{ last_part }} pc-card-background-{{ last_part }}">
-              <div class="pc-bg-grid-{{ last_part }}">
-                <div class="pc-grid-line-{{ last_part }} pc-horizontal-{{ last_part }}" style="top: 25%"></div>
-                <div class="pc-grid-line-{{ last_part }} pc-horizontal-{{ last_part }}" style="top: 50%"></div>
-                <div class="pc-grid-line-{{ last_part }} pc-horizontal-{{ last_part }}" style="top: 75%"></div>
-                <div class="pc-grid-line-{{ last_part }} pc-vertical-{{ last_part }}" style="left: 33.33%"></div>
-                <div class="pc-grid-line-{{ last_part }} pc-vertical-{{ last_part }}" style="left: 66.66%"></div>
-              </div>
-              <div class="pc-bg-objects-{{ last_part }}">
-                <div class="pc-bg-object-{{ last_part }} pc-circle-{{ last_part }}"></div>
-                <div class="pc-bg-object-{{ last_part }} pc-square-{{ last_part }}"></div>
-                <div class="pc-bg-object-{{ last_part }} pc-triangle-{{ last_part }}"></div>
-              </div>
-            </div>
-          {%- endif -%}
-          
-          <div class="pc-card-layer-{{ last_part }} pc-card-frame-{{ last_part }}">
-            <svg viewBox="0 0 300 400" preserveAspectRatio="none">
-              <path class="pc-frame-path-{{ last_part }}" d="M 20,20 H 280 V 380 H 20 Z" />
-            </svg>
-          </div>
-          
-          <div class="pc-card-layer-{{ last_part }} pc-card-content-{{ last_part }} {% if block.settings.content_alignment == 'right' %}pc-text-align-right-{{ last_part }}{% endif %}">
-            <div class="pc-content-fragment-{{ last_part }} pc-fragment-heading-{{ last_part }}">
-              <h2 class="pc-content-text-{{ last_part }} {% if block.settings.content_alignment == 'right' %}pc-align-right-{{ last_part }}{% endif %}">{{ block.settings.heading }}</h2>
-              <h3 class="pc-content-subtext-{{ last_part }} {% if block.settings.content_alignment == 'right' %}pc-align-right-{{ last_part }}{% endif %}">{{ block.settings.subheading }}</h3>
-            </div>
-            
-            <div class="pc-content-fragment-{{ last_part }} pc-fragment-meta-{{ last_part }} {% if block.settings.content_alignment == 'right' %}pc-text-align-right-{{ last_part }}{% endif %}">
-              {% if block.settings.content_alignment != 'right' %}<div class="pc-meta-line-{{ last_part }}"></div>{% endif %}
-              <span class="pc-meta-text-{{ last_part }}">{{ block.settings.category }}</span>
-              {% if block.settings.content_alignment == 'right' %}<div class="pc-meta-line-{{ last_part }}"></div>{% endif %}
-            </div>
-            
-            <div class="pc-content-fragment-{{ last_part }} pc-fragment-body-{{ last_part }} {% if block.settings.content_alignment == 'right' %}pc-text-align-right-{{ last_part }}{% endif %}">
-              <p class="pc-content-text-{{ last_part }}">{{ block.settings.description }}</p>
-            </div>
-            
-            <div class="pc-content-fragment-{{ last_part }} pc-fragment-cta-{{ last_part }} {% if block.settings.content_alignment == 'right' %}pc-text-align-right-{{ last_part }}{% endif %}">
-              <a href="{{ block.settings.link_url }}" class="pc-cta-link-{{ last_part }}" target="{{ block.settings.link_target }}">
-                <div class="pc-cta-box-{{ last_part }}"></div>
-                <span class="pc-cta-text-{{ last_part }}">{{ block.settings.link_text }}</span>
-              </a>
-            </div>
-          </div>
-        </article>
-      {%- endfor -%}
-    </div>
-
-    <div class="pc-carousel-controls-{{ last_part }}">
-      <button class="pc-carousel-button-{{ last_part }} pc-prev-{{ last_part }}">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </button>
-      <button class="pc-carousel-button-{{ last_part }} pc-next-{{ last_part }}">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
-    </div>
-
-    <div class="pc-dots-container-{{ last_part }}"></div>
-  </div>
-</pc-card-carousel-{{ last_part }}>
-
 <style>
   {{ sec_id }} {
     --pc-bg-color-{{ last_part }}: {{ section.settings.bg_color }};
@@ -535,6 +446,95 @@
     }
   }
 </style>
+
+<pc-card-carousel-{{ last_part }} class="pc-card-carousel-{{ last_part }}">
+  <div class="pc-carousel-{{ last_part }}">
+    <div class="pc-carousel-track-{{ last_part }}">
+      {%- for block in section.blocks -%}
+        <article class="pc-deconstructed-card-{{ last_part }} {% if block.settings.card_type == 'text' %}pc-text-card-{{ last_part }}{% endif %}">
+          
+          {%- if block.settings.card_type == 'image' -%}
+            <div class="pc-card-layer-{{ last_part }} pc-card-image-{{ last_part }}">
+              {%- if block.settings.background_image != blank -%}
+                {% assign image_class = 'pc-card-bg-image-' | append: last_part %}
+                {{ 
+                  block.settings.background_image 
+                  | image_url: width: 600 
+                  | image_tag: 
+                      loading: 'lazy', 
+                      class: image_class,
+                      alt: block.settings.heading 
+                }}
+              {%- else -%}
+  {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-svg' }}
+{%- endif -%}
+            </div>
+          {%- else -%}
+            <div class="pc-card-layer-{{ last_part }} pc-card-background-{{ last_part }}">
+              <div class="pc-bg-grid-{{ last_part }}">
+                <div class="pc-grid-line-{{ last_part }} pc-horizontal-{{ last_part }}" style="top: 25%"></div>
+                <div class="pc-grid-line-{{ last_part }} pc-horizontal-{{ last_part }}" style="top: 50%"></div>
+                <div class="pc-grid-line-{{ last_part }} pc-horizontal-{{ last_part }}" style="top: 75%"></div>
+                <div class="pc-grid-line-{{ last_part }} pc-vertical-{{ last_part }}" style="left: 33.33%"></div>
+                <div class="pc-grid-line-{{ last_part }} pc-vertical-{{ last_part }}" style="left: 66.66%"></div>
+              </div>
+              <div class="pc-bg-objects-{{ last_part }}">
+                <div class="pc-bg-object-{{ last_part }} pc-circle-{{ last_part }}"></div>
+                <div class="pc-bg-object-{{ last_part }} pc-square-{{ last_part }}"></div>
+                <div class="pc-bg-object-{{ last_part }} pc-triangle-{{ last_part }}"></div>
+              </div>
+            </div>
+          {%- endif -%}
+          
+          <div class="pc-card-layer-{{ last_part }} pc-card-frame-{{ last_part }}">
+            <svg viewBox="0 0 300 400" preserveAspectRatio="none">
+              <path class="pc-frame-path-{{ last_part }}" d="M 20,20 H 280 V 380 H 20 Z" />
+            </svg>
+          </div>
+          
+          <div class="pc-card-layer-{{ last_part }} pc-card-content-{{ last_part }} {% if block.settings.content_alignment == 'right' %}pc-text-align-right-{{ last_part }}{% endif %}">
+            <div class="pc-content-fragment-{{ last_part }} pc-fragment-heading-{{ last_part }}">
+              <h2 class="pc-content-text-{{ last_part }} {% if block.settings.content_alignment == 'right' %}pc-align-right-{{ last_part }}{% endif %}">{{ block.settings.heading }}</h2>
+              <h3 class="pc-content-subtext-{{ last_part }} {% if block.settings.content_alignment == 'right' %}pc-align-right-{{ last_part }}{% endif %}">{{ block.settings.subheading }}</h3>
+            </div>
+            
+            <div class="pc-content-fragment-{{ last_part }} pc-fragment-meta-{{ last_part }} {% if block.settings.content_alignment == 'right' %}pc-text-align-right-{{ last_part }}{% endif %}">
+              {% if block.settings.content_alignment != 'right' %}<div class="pc-meta-line-{{ last_part }}"></div>{% endif %}
+              <span class="pc-meta-text-{{ last_part }}">{{ block.settings.category }}</span>
+              {% if block.settings.content_alignment == 'right' %}<div class="pc-meta-line-{{ last_part }}"></div>{% endif %}
+            </div>
+            
+            <div class="pc-content-fragment-{{ last_part }} pc-fragment-body-{{ last_part }} {% if block.settings.content_alignment == 'right' %}pc-text-align-right-{{ last_part }}{% endif %}">
+              <p class="pc-content-text-{{ last_part }}">{{ block.settings.description }}</p>
+            </div>
+            
+            <div class="pc-content-fragment-{{ last_part }} pc-fragment-cta-{{ last_part }} {% if block.settings.content_alignment == 'right' %}pc-text-align-right-{{ last_part }}{% endif %}">
+              <a href="{{ block.settings.link_url }}" class="pc-cta-link-{{ last_part }}" target="{{ block.settings.link_target }}">
+                <div class="pc-cta-box-{{ last_part }}"></div>
+                <span class="pc-cta-text-{{ last_part }}">{{ block.settings.link_text }}</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    <div class="pc-carousel-controls-{{ last_part }}">
+      <button class="pc-carousel-button-{{ last_part }} pc-prev-{{ last_part }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="pc-carousel-button-{{ last_part }} pc-next-{{ last_part }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div class="pc-dots-container-{{ last_part }}"></div>
+  </div>
+</pc-card-carousel-{{ last_part }}>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
