@@ -1903,6 +1903,92 @@
         "mobile_section_padding_bottom": 20,
         "mobile_section_padding_left": 20
       }
+    },
+    "rw_team_accordion_6_UzR9bk": {
+      "type": "rw-team-accordion-6",
+      "blocks": {
+        "team_member_iATGhX": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-olenagoldman-1021693.jpg",
+            "name": "Sarah Johnson",
+            "role": "Frontend Developer"
+          }
+        },
+        "team_member_DAE8fK": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-anastasiya-gepp-654466-2036646.jpg",
+            "name": "Michael Chen",
+            "role": "UX Designer"
+          }
+        },
+        "team_member_Eb8dWx": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-anastasiya-gepp-654466-1462637.jpg",
+            "name": "Pavel Dvorak",
+            "role": "Backend Developer"
+          }
+        },
+        "team_member_zapnng": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/3_533x_69515238-243a-4929-ad96-53333f2b3615.webp",
+            "name": "Amara Williams",
+            "role": "Project Manager"
+          }
+        }
+      },
+      "block_order": [
+        "team_member_iATGhX",
+        "team_member_DAE8fK",
+        "team_member_Eb8dWx",
+        "team_member_zapnng"
+      ],
+      "name": "RW - Team Accordion #6",
+      "settings": {
+        "background_color": "#B4A2D3",
+        "enable_shadow": true,
+        "container_width_desktop": 80,
+        "desktop_height": 500,
+        "max_width_desktop": 1200,
+        "container_height_desktop": 70,
+        "panel_spacing_desktop": 5,
+        "panel_radius_desktop": 32,
+        "active_panel_flex": 4,
+        "content_padding_desktop": 25,
+        "name_size_desktop": 32,
+        "name_dektop_color": "#ffffff",
+        "name_dektop_font_style": "normal",
+        "name_dektop_font_weight": "500",
+        "name_dektop_letter_spacing": 0,
+        "name_dektop_text_decoration": "none",
+        "name_dektop_text_decoration_color": "#000000",
+        "name_dektop_padding_top": 5,
+        "name_dektop_padding_bottom": 5,
+        "role_size_desktop": 22,
+        "role_desktop_color": "#ffffff",
+        "role_desktop_font_style": "normal",
+        "role_desktop_font_weight": "500",
+        "role_desktop_letter_spacing": 0,
+        "role_desktop_text_decoration": "none",
+        "role_desktop_text_decoration_color": "#000",
+        "role_desktop_padding_top": 5,
+        "role_desktop_padding_bottom": 5,
+        "divider_width": 40,
+        "divider_thickness": 2,
+        "divider_color": "#ffffff",
+        "container_width_mobile": 95,
+        "container_height_small_mobile": 50,
+        "mobile_min_height": 100,
+        "panel_spacing_mobile": 3,
+        "panel_radius_mobile": 20,
+        "name_size_mobile": 24,
+        "role_size_mobile": 16,
+        "divider_width_mobile": 80,
+        "divider_thickness_mobile": 2
+      }
     }
   },
   "order": [
@@ -1928,6 +2014,7 @@
     "rw_testimonials_6_UjFK3f",
     "rw_navigation_items_1_W4Q7Vp",
     "rw_split_hero_1_NjgQVt",
-    "rw_test_zE3GLC"
+    "rw_test_zE3GLC",
+    "rw_team_accordion_6_UzR9bk"
   ]
 }
