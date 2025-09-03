@@ -1775,6 +1775,7 @@
           "type": "card",
           "settings": {
             "card_type": "image",
+            "background_image": "shopify://shop_images/pexels-eliazanrosso-1919208.jpg",
             "heading": "PREGNANCY",
             "subheading": "DUE DATE CALCULATOR",
             "category": "HEALTH",
@@ -1874,8 +1875,8 @@
         "text_color": "#080808",
         "card_bg_color": "#fafafa",
         "accent_color": "#ff2d55",
-        "grid_color": "rgba(0, 0, 0, 0.08)",
-        "frame_color": "rgba(8, 8, 8, 0.8)",
+        "grid_color": "#00000014",
+        "frame_color": "#080808cc",
         "heading_font_size": 32,
         "heading_font_weight": "900",
         "subheading_font_size": 14,
