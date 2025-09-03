@@ -1804,7 +1804,7 @@
         "card_KPDX3k": {
           "type": "card",
           "settings": {
-            "card_type": "text",
+            "card_type": "image",
             "background_image": "shopify://shop_images/pexels-anastasiya-gepp-654466-1462637.jpg",
             "heading": "PERCENTAGE",
             "subheading": "PRECISION CALCULATOR",
