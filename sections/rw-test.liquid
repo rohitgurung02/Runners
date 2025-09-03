@@ -613,47 +613,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function handleCarouselTransition() {
-    // Remove transition to make the jump instant
-    track.style.transition = "none";
-    
-    // If we're at the beginning (clone of last card), jump to the real last card
-    if (currentIndex === 0) {
-      currentIndex = originalCardsCount;
-      updateTrackPosition();
-    }
-    // If we're at the end (clone of first card), jump to the real first card
-    else if (currentIndex === totalCards - 1) {
-      currentIndex = 1;
-      updateTrackPosition();
-    }
-    
-    // Re-enable transition after a small delay
-    setTimeout(() => {
-      track.style.transition = "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
-    }, 50);
-  }
+  track.style.transition = "none";
 
-  // Listen for transition end to handle the seamless looping
-  track.addEventListener('transitionend', handleCarouselTransition);
-
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-      goToCard(currentIndex - 1);
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      goToCard(currentIndex + 1);
-    });
-  }
-
-  // ... [rest of your event listeners] ...
-  
-  window.addEventListener("resize", () => {
+  if (currentIndex === 0) {
+    currentIndex = originalCardsCount;
     updateTrackPosition();
-  });
-});
+  } else if (currentIndex === totalCards - 1) {
+    currentIndex = 1;
+    updateTrackPosition();
+  }
+
+  setTimeout(() => {
+    track.style.transition = "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
+  }, 50);
+}
+
 </script>
 
 {% schema %}
