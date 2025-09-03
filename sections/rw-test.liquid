@@ -23,7 +23,7 @@
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-feature-settings: "salt" 1, "ss01" 1, "ss02" 1;
     color: var(--pc-black-{{ last_part }});
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
   {{ sec_id }} .pc-carousel-{{ last_part }} {
@@ -540,97 +540,148 @@
 document.addEventListener("DOMContentLoaded", () => {
   const sectionId = "{{ sec_id }}";
   const lastPart = "{{ last_part }}";
-
+  
   const track = document.querySelector(`${sectionId} .pc-carousel-track-${lastPart}`);
   const cards = document.querySelectorAll(`${sectionId} .pc-deconstructed-card-${lastPart}`);
   const prevBtn = document.querySelector(`${sectionId} .pc-prev-${lastPart}`);
   const nextBtn = document.querySelector(`${sectionId} .pc-next-${lastPart}`);
   const dotsContainer = document.querySelector(`${sectionId} .pc-dots-container-${lastPart}`);
 
-  if (!track || cards.length === 0) return;
+  if (!track || !cards.length) return;
 
-  const cardGap = {{ section.settings.card_gap }};
-
-  // Clone first and last card
+  // Clone first and last cards for seamless looping
   const firstCardClone = cards[0].cloneNode(true);
   const lastCardClone = cards[cards.length - 1].cloneNode(true);
-
-  // Add clones
+  
   track.appendChild(firstCardClone);
   track.insertBefore(lastCardClone, cards[0]);
-
-  // Updated card references after clones
+  
+  // Update cards reference after cloning
   const allCards = document.querySelectorAll(`${sectionId} .pc-deconstructed-card-${lastPart}`);
   const totalCards = allCards.length;
-  const originalCardsCount = cards.length;
-
-  // Initial state
+  
+  // Set initial position to show the first actual card (not the clone)
   let currentIndex = 1;
+  track.style.transform = `translateX(-${currentIndex * (allCards[0].offsetWidth + {{ section.settings.card_gap }})}px)`;
 
-  function updateTrackPosition(animate = true) {
-    const cardWidth = allCards[0].offsetWidth;
-    const totalCardWidth = cardWidth + cardGap;
+  // Create dots for the original cards only
+  for (let i = 0; i < cards.length; i++) {
+    const dot = document.createElement("div");
+    dot.classList.add(`pc-dot-${lastPart}`);
+    if (i === 0) dot.classList.add(`pc-active-${lastPart}`);
+    dot.addEventListener("click", () => goToCard(i + 1)); // +1 because we added a clone at the beginning
+    dotsContainer.appendChild(dot);
+  }
 
+  const dots = document.querySelectorAll(`${sectionId} .pc-dot-${lastPart}`);
+  
+  // Set up card interactions
+  allCards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const xDeg = (y - 0.5) * 8;
+      const yDeg = (x - 0.5) * -8;
+      card.style.transform = `perspective(1200px) rotateX(${xDeg}deg) rotateY(${yDeg}deg)`;
+      
+      const layers = card.querySelectorAll(`.pc-card-layer-${lastPart}`);
+      layers.forEach((layer, index) => {
+        const depth = 30 * (index + 1);
+        const translateZ = depth;
+        const offsetX = (x - 0.5) * 10 * (index + 1);
+        const offsetY = (y - 0.5) * 10 * (index + 1);
+        layer.style.transform = `translate3d(${offsetX}px, ${offsetY}px, ${translateZ}px)`;
+      });
+      
+      const bgImage = card.querySelector(`.pc-card-bg-image-${lastPart}`);
+      if (bgImage) {
+        const moveX = (x - 0.5) * -20;
+        const moveY = (y - 0.5) * -20;
+        bgImage.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+      }
+      
+      const bgObjects = card.querySelectorAll(`.pc-bg-object-${lastPart}`);
+      bgObjects.forEach((obj, index) => {
+        const factorX = (index + 1) * 10;
+        const factorY = (index + 1) * 8;
+        const moveX = (x - 0.5) * factorX;
+        const moveY = (y - 0.5) * factorY;
+        if (obj.classList.contains(`pc-square-${lastPart}`)) {
+          obj.style.transform = `rotate(45deg) translate(${moveX}px, ${moveY}px)`;
+        } else if (obj.classList.contains(`pc-triangle-${lastPart}`)) {
+          obj.style.transform = `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px)) scale(1)`;
+        } else {
+          obj.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        }
+      });
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "";
+      const layers = card.querySelectorAll(`.pc-card-layer-${lastPart}`);
+      layers.forEach((layer) => {
+        layer.style.transform = "";
+      });
+      
+      const bgImage = card.querySelector(`.pc-card-bg-image-${lastPart}`);
+      if (bgImage) {
+        bgImage.style.transform = "";
+      }
+      
+      const bgObjects = card.querySelectorAll(`.pc-bg-object-${lastPart}`);
+      bgObjects.forEach((obj) => {
+        if (obj.classList.contains(`pc-square-${lastPart}`)) {
+          obj.style.transform = "rotate(45deg) translateY(-20px)";
+        } else if (obj.classList.contains(`pc-triangle-${lastPart}`)) {
+          obj.style.transform = "translate(-50%, -50%) scale(0.5)";
+        } else {
+          obj.style.transform = "translateY(20px)";
+        }
+      });
+    });
+  });
+
+  function goToCard(index, animate = true) {
     if (animate) {
       track.style.transition = "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
     } else {
       track.style.transition = "none";
     }
-
-    track.style.transform = `translateX(${-currentIndex * totalCardWidth}px)`;
-  }
-
-  updateTrackPosition(false); // Set initial position without animation
-
-  // Create dots
-  for (let i = 0; i < originalCardsCount; i++) {
-    const dot = document.createElement("div");
-    dot.classList.add(`pc-dot-${lastPart}`);
-    if (i === 0) dot.classList.add(`pc-active-${lastPart}`);
-    dot.addEventListener("click", () => goToCard(i + 1)); // +1 to account for first clone
-    dotsContainer.appendChild(dot);
-  }
-
-  const dots = document.querySelectorAll(`${sectionId} .pc-dot-${lastPart}`);
-
-  function updateDots(index) {
+    
+    const cardWidth = allCards[0].offsetWidth;
+    const cardMargin = {{ section.settings.card_gap }};
+    const totalCardWidth = cardWidth + cardMargin;
+    const translateX = -index * totalCardWidth;
+    
+    track.style.transform = `translateX(${translateX}px)`;
+    
+    // Update current index
+    currentIndex = index;
+    
+    // Update dots for the original cards only
     let dotIndex = index - 1;
-    if (index === 0) dotIndex = originalCardsCount - 1;
-    if (index === totalCards - 1) dotIndex = 0;
-
+    if (dotIndex < 0) dotIndex = cards.length - 1;
+    if (dotIndex >= cards.length) dotIndex = 0;
+    
     dots.forEach((dot, i) => {
       dot.classList.toggle(`pc-active-${lastPart}`, i === dotIndex);
     });
   }
 
-  function goToCard(index, animate = true) {
-    currentIndex = index;
-    updateTrackPosition(animate);
-    updateDots(currentIndex);
-  }
-
   function handleCarouselTransition() {
-    const cardWidth = allCards[0].offsetWidth;
-    const totalCardWidth = cardWidth + cardGap;
-
-    // If at beginning (clone of last), jump to real last
+    // If we're at the beginning (clone of last card), jump to the real last card
     if (currentIndex === 0) {
-      track.style.transition = "none";
-      currentIndex = originalCardsCount;
-      track.style.transform = `translateX(${-currentIndex * totalCardWidth}px)`;
+      goToCard(cards.length, false);
     }
-
-    // If at end (clone of first), jump to real first
-    if (currentIndex === totalCards - 1) {
-      track.style.transition = "none";
-      currentIndex = 1;
-      track.style.transform = `translateX(${-currentIndex * totalCardWidth}px)`;
+    // If we're at the end (clone of first card), jump to the real first card
+    else if (currentIndex === totalCards - 1) {
+      goToCard(1, false);
     }
-
-    updateDots(currentIndex);
   }
 
-  track.addEventListener("transitionend", handleCarouselTransition);
+  // Listen for transition end to handle the seamless looping
+  track.addEventListener('transitionend', handleCarouselTransition);
 
   if (prevBtn) {
     prevBtn.addEventListener("click", () => {
@@ -644,18 +695,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Update position on resize
-  window.addEventListener("resize", () => {
-    updateTrackPosition(false);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      goToCard(currentIndex - 1);
+    } else if (e.key === "ArrowRight") {
+      goToCard(currentIndex + 1);
+    }
   });
 
-  // OPTIONAL: Auto-play (comment out if not needed)
-  // setInterval(() => {
-  //   goToCard(currentIndex + 1);
-  // }, 5000);
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  track.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  track.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    if (touchStartX - touchEndX > 50) {
+      goToCard(currentIndex + 1);
+    } else if (touchEndX - touchStartX > 50) {
+      goToCard(currentIndex - 1);
+    }
+  }
+
+  window.addEventListener("resize", () => {
+    const newCardWidth = allCards[0].offsetWidth;
+    const newTotalCardWidth = newCardWidth + {{ section.settings.card_gap }};
+
+    const translateX = -currentIndex * newTotalCardWidth;
+    track.style.transition = "none";
+    track.style.transform = `translateX(${translateX}px)`;
+
+    setTimeout(() => {
+      track.style.transition = "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
+    }, 50);
+  });
 });
 </script>
-
 
 {% schema %}
 {
