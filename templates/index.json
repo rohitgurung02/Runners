@@ -1826,13 +1826,43 @@
             "link_target": "_blank",
             "content_alignment": "left"
           }
+        },
+        "card_RTeiTw": {
+          "type": "card",
+          "settings": {
+            "card_type": "image",
+            "heading": "CARD HEADING",
+            "subheading": "Card subheading text",
+            "category": "CATEGORY",
+            "description": "Card description text goes here with more details about this card.",
+            "link_text": "OPEN CALCULATOR",
+            "link_url": "",
+            "link_target": "_blank",
+            "content_alignment": "left"
+          }
+        },
+        "card_BdDh3p": {
+          "type": "card",
+          "settings": {
+            "card_type": "image",
+            "heading": "CARD HEADING",
+            "subheading": "Card subheading text",
+            "category": "CATEGORY",
+            "description": "Card description text goes here with more details about this card.",
+            "link_text": "OPEN CALCULATOR",
+            "link_url": "",
+            "link_target": "_blank",
+            "content_alignment": "left"
+          }
         }
       },
       "block_order": [
         "card_eLahT6",
         "card_m9g3KQ",
         "card_jhEQRU",
-        "card_NPTyed"
+        "card_NPTyed",
+        "card_RTeiTw",
+        "card_BdDh3p"
       ],
       "name": "PWC - Card Carousel #8",
       "settings": {
