@@ -1812,12 +1812,27 @@
             "link_target": "_blank",
             "content_alignment": "right"
           }
+        },
+        "card_NPTyed": {
+          "type": "card",
+          "settings": {
+            "card_type": "image",
+            "heading": "CARD HEADING",
+            "subheading": "Card subheading text",
+            "category": "CATEGORY",
+            "description": "Card description text goes here with more details about this card.",
+            "link_text": "OPEN CALCULATOR",
+            "link_url": "",
+            "link_target": "_blank",
+            "content_alignment": "left"
+          }
         }
       },
       "block_order": [
         "card_eLahT6",
         "card_m9g3KQ",
-        "card_jhEQRU"
+        "card_jhEQRU",
+        "card_NPTyed"
       ],
       "name": "PWC - Card Carousel #8",
       "settings": {
