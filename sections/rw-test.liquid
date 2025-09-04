@@ -3,43 +3,6 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
-<div class="pc-marquee-box-{{ last_part }}">
-<pc-marquee-slider-{{ last_part }} class="pc-marquee-slider-{{ last_part }}">
-  {%- if section.settings.show_header -%}
-  <div class="pc-marquee-header-{{ last_part }}">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="pc-heading-{{ last_part }}">{{ section.settings.heading }}</h2>
-    {%- endif -%}
-    {%- if section.settings.subheading != blank -%}
-      <p class="pc-subheading-{{ last_part }}">{{ section.settings.subheading }}</p>
-    {%- endif -%}
-  </div>
-  {%- endif -%}
-  
-  <div class="pc-marquee-wrapper-{{ last_part }}">
-    <div class="pc-marquee-inner-{{ last_part }}">
-      {%- for block in section.blocks -%}
-        <div class="pc-marquee-item-{{ last_part }}">
-          {%- if block.settings.image != blank -%}
-            {% assign image_class = 'pc-marquee-image-' | append: last_part %}
-            {{ 
-              block.settings.image
-              | image_url: width: 800
-              | image_tag: 
-                  loading: 'lazy', 
-                  class: image_class,
-                  alt: block.settings.image.alt
-            }}
-          {%- else -%}
-            {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-svg-' | append: last_part }}
-          {%- endif -%}
-        </div>
-      {%- endfor -%}
-    </div>
-  </div>
-</pc-marquee-slider-{{ last_part }}>
-</div>
-
 <style>
   {{ sec_id }} .pc-marquee-box-{{ last_part }} {
     position: relative;
@@ -134,6 +97,44 @@
     }
   }
 </style>
+
+
+<div class="pc-marquee-box-{{ last_part }}">
+<pc-marquee-slider-{{ last_part }} class="pc-marquee-slider-{{ last_part }}">
+  {%- if section.settings.show_header -%}
+  <div class="pc-marquee-header-{{ last_part }}">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="pc-heading-{{ last_part }}">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="pc-subheading-{{ last_part }}">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+  </div>
+  {%- endif -%}
+  
+  <div class="pc-marquee-wrapper-{{ last_part }}">
+    <div class="pc-marquee-inner-{{ last_part }}">
+      {%- for block in section.blocks -%}
+        <div class="pc-marquee-item-{{ last_part }}">
+          {%- if block.settings.image != blank -%}
+            {% assign image_class = 'pc-marquee-image-' | append: last_part %}
+            {{ 
+              block.settings.image
+              | image_url: width: 800
+              | image_tag: 
+                  loading: 'lazy', 
+                  class: image_class,
+                  alt: block.settings.image.alt
+            }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-svg-' | append: last_part }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</pc-marquee-slider-{{ last_part }}>
+</div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
