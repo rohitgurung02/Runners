@@ -1910,7 +1910,7 @@
         "item_width": 300,
         "item_height": 300,
         "item_gap": 30,
-        "item_border_radius": 0,
+        "item_border_radius": 4,
         "enable_shadow": false,
         "hover_zoom": 1.1,
         "hover_brightness": 50,
