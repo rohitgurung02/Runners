@@ -1912,7 +1912,7 @@
         "item_gap": 30,
         "item_border_radius": 7,
         "enable_shadow": true,
-        "hover_zoom": 1.1,
+        "hover_zoom": 1.2,
         "hover_brightness": 50,
         "heading_font_size": 32,
         "heading_font_weight": "700",
