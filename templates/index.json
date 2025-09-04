@@ -750,7 +750,41 @@
       "type": "rw-test",
       "disabled": true,
       "name": "PWC - Filter Gallery #1",
-      "settings": {}
+      "settings": {
+        "show_header": true,
+        "heading": "Marquee Image Slider",
+        "subheading": "Continuous auto-scrolling images – seamless loop & hover to pause",
+        "header_alignment": "center",
+        "header_spacing": 30,
+        "scroll_speed": 1,
+        "background_color": "#ffffff",
+        "item_width": 300,
+        "item_height": 300,
+        "item_gap": 30,
+        "item_border_radius": 0,
+        "enable_shadow": false,
+        "hover_zoom": 1.1,
+        "hover_brightness": 50,
+        "heading_font_size": 32,
+        "heading_font_weight": "700",
+        "heading_color": "#000000",
+        "subheading_font_size": 18,
+        "subheading_font_weight": "400",
+        "subheading_color": "#666666",
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 40,
+        "desktop_padding_left": 20,
+        "desktop_padding_right": 20,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20,
+        "mobile_padding_left": 15,
+        "mobile_padding_right": 15,
+        "mobile_heading_font_size": 24,
+        "mobile_subheading_font_size": 16,
+        "mobile_item_width": 200,
+        "mobile_item_height": 200,
+        "mobile_item_gap": 15
+      }
     },
     "rw_reviews_eNfMNB": {
       "type": "rw-reviews",
@@ -966,7 +1000,41 @@
       "type": "rw-test",
       "disabled": true,
       "name": "RW - Carousel Slider #8",
-      "settings": {}
+      "settings": {
+        "show_header": true,
+        "heading": "Marquee Image Slider",
+        "subheading": "Continuous auto-scrolling images – seamless loop & hover to pause",
+        "header_alignment": "center",
+        "header_spacing": 30,
+        "scroll_speed": 1,
+        "background_color": "#ffffff",
+        "item_width": 300,
+        "item_height": 300,
+        "item_gap": 30,
+        "item_border_radius": 0,
+        "enable_shadow": false,
+        "hover_zoom": 1.1,
+        "hover_brightness": 50,
+        "heading_font_size": 32,
+        "heading_font_weight": "700",
+        "heading_color": "#000000",
+        "subheading_font_size": 18,
+        "subheading_font_weight": "400",
+        "subheading_color": "#666666",
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 40,
+        "desktop_padding_left": 20,
+        "desktop_padding_right": 20,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20,
+        "mobile_padding_left": 15,
+        "mobile_padding_right": 15,
+        "mobile_heading_font_size": 24,
+        "mobile_subheading_font_size": 16,
+        "mobile_item_width": 200,
+        "mobile_item_height": 200,
+        "mobile_item_gap": 15
+      }
     },
     "rw_hero_banner_4dJjqa": {
       "type": "rw-hero-banner",
@@ -1791,6 +1859,74 @@
         "divider_width_mobile": 80,
         "divider_thickness_mobile": 2
       }
+    },
+    "rw_test_PX3W4T": {
+      "type": "rw-test",
+      "blocks": {
+        "image_DFFhny": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_KrxRKr": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_icxUM4": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_7UENJ7": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_C67hAb": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image_DFFhny",
+        "image_KrxRKr",
+        "image_icxUM4",
+        "image_7UENJ7",
+        "image_C67hAb"
+      ],
+      "name": "PWC - Image Slider #8",
+      "settings": {
+        "show_header": true,
+        "heading": "Marquee Image Slider",
+        "subheading": "Continuous auto-scrolling images – seamless loop & hover to pause",
+        "header_alignment": "center",
+        "header_spacing": 30,
+        "scroll_speed": 1,
+        "background_color": "#ffffff",
+        "item_width": 300,
+        "item_height": 300,
+        "item_gap": 30,
+        "item_border_radius": 0,
+        "enable_shadow": false,
+        "hover_zoom": 1.1,
+        "hover_brightness": 50,
+        "heading_font_size": 32,
+        "heading_font_weight": "700",
+        "heading_color": "#000000",
+        "subheading_font_size": 18,
+        "subheading_font_weight": "400",
+        "subheading_color": "#666666",
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 40,
+        "desktop_padding_left": 20,
+        "desktop_padding_right": 20,
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20,
+        "mobile_padding_left": 15,
+        "mobile_padding_right": 15,
+        "mobile_heading_font_size": 24,
+        "mobile_subheading_font_size": 16,
+        "mobile_item_width": 200,
+        "mobile_item_height": 200,
+        "mobile_item_gap": 15
+      }
     }
   },
   "order": [
@@ -1816,6 +1952,7 @@
     "rw_testimonials_6_UjFK3f",
     "rw_navigation_items_1_W4Q7Vp",
     "rw_split_hero_1_NjgQVt",
-    "rw_team_accordion_6_UzR9bk"
+    "rw_team_accordion_6_UzR9bk",
+    "rw_test_PX3W4T"
   ]
 }
