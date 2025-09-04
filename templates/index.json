@@ -1920,7 +1920,7 @@
         "subheading_font_size": 19,
         "subheading_font_weight": "400",
         "subheading_color": "#5e3653",
-        "desktop_padding_top": 100,
+        "desktop_padding_top": 40,
         "desktop_padding_bottom": 40,
         "desktop_padding_left": 20,
         "desktop_padding_right": 20,
