@@ -1865,23 +1865,33 @@
       "blocks": {
         "image_DFFhny": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/pexels-olenagoldman-1021693.jpg"
+          }
         },
         "image_KrxRKr": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/pexels-anastasiya-gepp-654466-1462637.jpg"
+          }
         },
         "image_icxUM4": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/1738323256__kannperformance__huge.jpg"
+          }
         },
         "image_7UENJ7": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/X365_Banner.webp"
+          }
         },
         "image_C67hAb": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/3-03_RunnersAthletics_Look30048_533x_02af8b28-96b4-4f28-b4af-f0e52fe2af16.webp"
+          }
         }
       },
       "block_order": [
