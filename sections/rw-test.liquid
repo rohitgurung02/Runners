@@ -3,6 +3,7 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 
+<div class="pc-marquee-box-{{ last_part }}">
 <pc-marquee-slider-{{ last_part }} class="pc-marquee-slider-{{ last_part }}">
   {%- if section.settings.show_header -%}
   <div class="pc-marquee-header-{{ last_part }}">
@@ -37,9 +38,10 @@
     </div>
   </div>
 </pc-marquee-slider-{{ last_part }}>
+</div>
 
 <style>
-  {{ sec_id }} .pc-marquee-slider-{{ last_part }} {
+  {{ sec_id }} .pc-marquee-box-{{ last_part }} {
     position: relative;
     width: 100%;
     padding-top: {{ section.settings.desktop_padding_top }}px !important;
