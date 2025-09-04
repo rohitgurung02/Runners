@@ -1905,7 +1905,7 @@
         "heading": "Marquee Image Slider",
         "subheading": "Continuous auto-scrolling images – seamless loop & hover to pause",
         "header_alignment": "center",
-        "header_spacing": 40,
+        "header_spacing": 35,
         "scroll_speed": 0.5,
         "item_width": 300,
         "item_height": 300,
