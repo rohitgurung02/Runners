@@ -833,6 +833,7 @@
         "logo_bBPeT7",
         "logo_yyAEL8"
       ],
+      "disabled": true,
       "name": "PWC - Logo Slider #1",
       "settings": {
         "animation_speed": 30,
@@ -997,6 +998,26 @@
     },
     "rw_test_hEiBE4": {
       "type": "rw-test",
+      "blocks": {
+        "image_BUjkw9": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_UqFdJt": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_MRi7Ya": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image_BUjkw9",
+        "image_UqFdJt",
+        "image_MRi7Ya"
+      ],
+      "disabled": true,
       "name": "RW - Carousel Slider #8",
       "settings": {
         "show_header": true,
