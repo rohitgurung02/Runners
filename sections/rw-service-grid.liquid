@@ -86,6 +86,7 @@
 
   {{ sec_id }} .pc-effect-label-{{ last_part }} {
     font-size: {{ section.settings.label_size }}px;
+    font-family: {{ section.settings.type_body_font.family }}, {{ section.settings.type_body_font.fallback_families }};
     color: {{ section.settings.label_color }};
     font-weight: {{ section.settings.label_font_weight }};
     text-decoration: {{ section.settings.label_text_decoration }};
@@ -99,6 +100,7 @@
   {{ sec_id }} .pc-main-title-{{ last_part }} {
     color: {{ section.settings.title_color }};
     font-size: {{ section.settings.title_size }}px;
+    font-family: {{ section.settings.type_header_font.family }}, {{ section.settings.type_header_font.fallback_families }};
     font-weight: {{ section.settings.title_font_weight }};
     text-decoration: {{ section.settings.title_text_decoration }};
     text-decoration-color: {{ section.settings.title_text_decoration_color }};
@@ -109,6 +111,7 @@
 
   {{ sec_id }} .pc-subtitle-{{ last_part }} {
     font-size: {{ section.settings.subtitle_size }}px;
+    font-family: {{ section.settings.type_body_font.family }}, {{ section.settings.type_body_font.fallback_families }};
     color: {{ section.settings.subtitle_color }};
     font-weight: {{ section.settings.subtitle_font_weight }};
     text-decoration: {{ section.settings.subtitle_text_decoration }};
@@ -145,6 +148,7 @@
 
   {{ sec_id }} .pc-feature-item-{{ last_part }} h3 {
     font-size: {{ section.settings.feature_title_size }}px;
+    font-family: {{ section.settings.type_header_font.family }}, {{ section.settings.type_header_font.fallback_families }};
     color: {{ section.settings.feature_title_color }};
     font-weight: {{ section.settings.feature_title_font_weight }};
     text-decoration: {{ section.settings.feature_title_text_decoration }};
@@ -156,6 +160,7 @@
 
   {{ sec_id }} .pc-feature-item-{{ last_part }} p {
     font-size: {{ section.settings.feature_text_size }}px;
+    font-family: {{ section.settings.type_body_font.family }}, {{ section.settings.type_body_font.fallback_families }};
     color: {{ section.settings.feature_text_color }};
     opacity: 0.8;
     line-height: 1.4;
@@ -218,6 +223,24 @@
   }
 </style>
 
+{% style %}
+      {{ section.settings.type_header_font | font_face: font_display: 'swap' }}
+  {{ section.settings.type_body_font | font_face: font_display: 'swap' }}
+  {% endstyle %}
+  {%- unless settings.type_body_font.system? -%}
+      {% comment %}theme-check-disable AssetPreload{% endcomment %}
+      <link rel="preload" as="font" href="{{ section.settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+      {% comment %}theme-check-enable AssetPreload{% endcomment %}
+    {%- endunless -%}
+    {%- unless settings.type_header_font.system? -%}
+      {% comment %}theme-check-disable AssetPreload{% endcomment %}
+      <link rel="preload" as="font" href="{{ section.settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+      {% comment %}theme-check-enable AssetPreload{% endcomment %}
+    {%- endunless -%}
+{%- unless section.settings.type_header_font.system? and section.settings.type_body_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+
 <div class="pc-box-content-{{ last_part }}">
 <div class="pc-page-content-{{ last_part }}">
   <div class="pc-text-content-{{ last_part }}">
@@ -278,6 +301,22 @@
       {
         "type": "header",
         "content": "Typography Settings"
+      },
+      {
+      "type": "header",
+      "content": "Font Family"
+    },
+    {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "default": "assistant_n4",
+        "label": "Headings Font"
+      },
+    {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "default": "assistant_n4",
+        "label": "Text font"
       },
       {
         "type": "header",
