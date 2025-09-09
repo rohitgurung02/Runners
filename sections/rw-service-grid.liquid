@@ -123,7 +123,7 @@
     display: grid;
     grid-template-columns: repeat({{ section.settings.grid_columns }}, 1fr);
     gap: {{ section.settings.grid_gap }}px;
-    max-width: 1000px;
+    max-width: {{ section.settings.grid_width }}px;
     margin: 0 auto;
   }
 
@@ -884,6 +884,16 @@
         "step": 1,
         "unit": "px",
         "default": 20
+      },
+      {
+        "type": "range",
+        "id": "grid_width",
+        "label": "Grid Width",
+        "min": 500,
+        "max": 1500,
+        "step": 10,
+        "unit": "px",
+        "default": 1000
       },
       {
         "type": "header",
