@@ -51,6 +51,7 @@
     display: inline-block;
     margin-left: 40px;
     font-size: inherit;
+    font-family: {{ section.settings.type_body_font.family }}, {{ section.settings.type_body_font.fallback_families }};
   }
   
   @keyframes pc-marquee-left {
@@ -103,6 +104,18 @@
     }
   }
 </style>
+
+{% style %}
+  {{ section.settings.type_body_font | font_face: font_display: 'swap' }}
+  {% endstyle %}
+  {%- unless settings.type_body_font.system? -%}
+      {% comment %}theme-check-disable AssetPreload{% endcomment %}
+      <link rel="preload" as="font" href="{{ section.settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+      {% comment %}theme-check-enable AssetPreload{% endcomment %}
+    {%- endunless -%}
+{%- unless section.settings.type_body_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
 
 <pc-marquee-section-{{ last_part }}>
   <!-- Layer 1 -->
