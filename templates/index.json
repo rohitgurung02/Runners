@@ -1479,8 +1479,10 @@
         "layer1_text_yfXVwr",
         "layer2_text_CQdxbz"
       ],
+      "disabled": true,
       "name": "Marquee Text - #4",
       "settings": {
+        "type_body_font": "assistant_n4",
         "speed": 26,
         "pause_on_hover": true,
         "layer1_direction": "left",
