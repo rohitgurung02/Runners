@@ -1180,6 +1180,7 @@
         "feature_EEYcQr",
         "feature_3aanHQ"
       ],
+      "disabled": true,
       "name": "RW - Service Grid #1",
       "settings": {
         "effect_label": "Services",
@@ -1187,6 +1188,8 @@
         "subtitle": "Experience our premium services",
         "gradient_start": "#667eea",
         "gradient_end": "#764ba2",
+        "type_header_font": "assistant_n4",
+        "type_body_font": "assistant_n4",
         "label_size": 18,
         "mobile_label_size": 14,
         "label_color": "#ffffff",
@@ -1222,8 +1225,10 @@
         "feature_text_color": "#ffffff",
         "desktop_padding": 85,
         "feature_padding_desktop": 42,
+        "text_align": "left",
         "grid_columns": 3,
         "grid_gap": 20,
+        "grid_width": 1000,
         "mobile_padding": 16,
         "feature_padding_mobile": 15,
         "mobile_grid_gap": 10
