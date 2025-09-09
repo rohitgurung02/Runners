@@ -134,6 +134,7 @@
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
+    text-align:  {{ section.settings.text_align }};
   }
 
   {{ sec_id }} .pc-feature-item-{{ last_part }}:hover {
@@ -865,6 +866,26 @@
         "step": 1,
         "unit": "px",
         "default": 24
+      },
+      {
+        "type": "select",
+        "id": "text-align",
+        "label": "Card Text Alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "left"
       },
       {
         "type": "range",
