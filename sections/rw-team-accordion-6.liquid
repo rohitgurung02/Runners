@@ -154,6 +154,9 @@
     {{ sec_id }} .pc-team-accordion {
     min-height: {{ section.settings.mobile_min_height }}px;
   }
+  {{ sec_id }} .pc-panel.active {
+    flex: {{ section.settings.active_panel_flex_mobile }};
+  }
   }
 
   
@@ -312,6 +315,15 @@
       "max": 6,
       "step": 1,
       "default": 4
+    },
+    {
+      "type": "range",
+      "id": "active_panel_flex_mobile",
+      "label": "Active Panel Flex Ratio Mobile",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 10
     },
     {
       "type": "range",
