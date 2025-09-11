@@ -1932,7 +1932,7 @@
         "header_spacing": 35,
         "scroll_speed": 0.5,
         "item_width": 300,
-        "item_height": 300,
+        "item_height": 340,
         "item_gap": 30,
         "item_border_radius": 7,
         "enable_shadow": true,
