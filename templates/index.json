@@ -639,7 +639,6 @@
     },
     "rw_contact_us_wJWXNB": {
       "type": "rw-contact-us",
-      "disabled": true,
       "name": "RW Contact Us",
       "settings": {
         "container_width_desktop": 90,
