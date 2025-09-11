@@ -129,10 +129,7 @@
     animation: pc-draw-out-{{ last_part }} calc(var(--pc-speed) * 1.5) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   }
 
- {{ sec_id }} .pc-testimonial-content-{{ last_part }} {
-    min-height: 500px !important;
-    margin-top: 1.5rem;
-}
+
 
   @media (max-width: 749px) {
     {{ sec_id }} .pc-nav-container-{{ last_part }} {
@@ -145,6 +142,11 @@
 
     {{ sec_id }} .pc-testimonial-content-box-{{ last_part }} {
       position: relative;
+    }
+
+    {{ sec_id }} .pc-testimonial-content-{{ last_part }} {
+        min-height: 500px;
+        margin-top: 1.5rem;
     }
   }
 </style>
