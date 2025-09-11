@@ -1564,7 +1564,6 @@
         "testimonial_TPYqdH",
         "testimonial_L9iqqV"
       ],
-      "disabled": true,
       "name": "PWC - Testimonials #6",
       "settings": {
         "card_bg_color": "#ffffff",
@@ -1838,7 +1837,6 @@
         "team_member_Eb8dWx",
         "team_member_zapnng"
       ],
-      "disabled": true,
       "name": "RW - Team Accordion #6",
       "settings": {
         "background_color": "#b4a2d3",
@@ -1925,7 +1923,6 @@
         "image_7UENJ7",
         "image_C67hAb"
       ],
-      "disabled": true,
       "name": "PWC - Image Slider #8",
       "settings": {
         "show_header": true,
@@ -1935,7 +1932,7 @@
         "header_spacing": 35,
         "scroll_speed": 0.5,
         "item_width": 300,
-        "item_height": 340,
+        "item_height": 300,
         "item_gap": 30,
         "item_border_radius": 7,
         "enable_shadow": true,
