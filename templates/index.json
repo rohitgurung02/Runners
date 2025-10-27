@@ -726,6 +726,7 @@
         "logo_bBPeT7",
         "logo_yyAEL8"
       ],
+      "disabled": true,
       "name": "PWC - Logo Slider #1",
       "settings": {
         "animation_speed": 30,
@@ -1180,7 +1181,6 @@
         "animation_rrVFCG",
         "animation_gPQprF"
       ],
-      "disabled": true,
       "name": "RW - Text Animation #1",
       "settings": {
         "heading": "Heading",
