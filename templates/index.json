@@ -1206,6 +1206,7 @@
     },
     "rw_wavy_background_1_cFNhmb": {
       "type": "rw-wavy-background-1",
+      "disabled": true,
       "name": "RW - Wavy Background #1",
       "settings": {
         "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -1314,7 +1315,6 @@
         "space_fact_LqwWaJ",
         "space_fact_NK6Jpn"
       ],
-      "disabled": true,
       "name": "RW - Card Carousel #6",
       "settings": {
         "background_image": "shopify://shop_images/universe.webp",
