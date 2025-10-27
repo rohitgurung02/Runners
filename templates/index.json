@@ -94,6 +94,7 @@
         "column_ypxftU",
         "column_V6UUki"
       ],
+      "disabled": true,
       "settings": {
         "title": "Featured columns",
         "heading_size": "h1",
@@ -302,6 +303,7 @@
     },
     "rw_interactive_text_NLRF3G": {
       "type": "rw-interactive-text",
+      "disabled": true,
       "settings": {
         "prefix": "you are",
         "word_1": "awesome",
@@ -405,7 +407,6 @@
         "testimonial_nkmUaa",
         "testimonial_3yJcgF"
       ],
-      "disabled": true,
       "settings": {
         "max_width": 1100,
         "grid_gap": 50,
@@ -912,6 +913,7 @@
         "item_YXDVK9",
         "item_RQhRbL"
       ],
+      "disabled": true,
       "name": "PWC - Timeline #1",
       "settings": {
         "margin_top": 36,
@@ -954,6 +956,7 @@
     },
     "rw_video_banner_f88XdA": {
       "type": "rw-video-banner",
+      "disabled": true,
       "name": "RW - Video Banner #1",
       "settings": {
         "video": "shopify://files/videos/9218c4836a5c40429127819258a50242.HD-1080p-4.8Mbps-25897980.mp4",
@@ -1056,6 +1059,7 @@
     },
     "rw_hero_banner_4dJjqa": {
       "type": "rw-hero-banner",
+      "disabled": true,
       "name": "RW - Hero Banner #4",
       "settings": {
         "background_color": "#f8f8f8",
@@ -1285,6 +1289,7 @@
         "animation_rrVFCG",
         "animation_gPQprF"
       ],
+      "disabled": true,
       "name": "RW - Text Animation #1",
       "settings": {
         "heading": "Heading",
@@ -1309,6 +1314,7 @@
     },
     "rw_wavy_background_1_cFNhmb": {
       "type": "rw-wavy-background-1",
+      "disabled": true,
       "name": "RW - Wavy Background #1",
       "settings": {
         "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -1417,6 +1423,7 @@
         "space_fact_LqwWaJ",
         "space_fact_NK6Jpn"
       ],
+      "disabled": true,
       "name": "RW - Card Carousel #6",
       "settings": {
         "background_image": "shopify://shop_images/universe.webp",
@@ -1564,6 +1571,7 @@
         "testimonial_TPYqdH",
         "testimonial_L9iqqV"
       ],
+      "disabled": true,
       "name": "PWC - Testimonials #6",
       "settings": {
         "card_bg_color": "#ffffff",
@@ -1751,6 +1759,7 @@
     },
     "rw_split_hero_1_NjgQVt": {
       "type": "rw-split-hero-1",
+      "disabled": true,
       "name": "PWC - Split Hero #1",
       "settings": {
         "heading": "Innovate with Us",
@@ -1837,6 +1846,7 @@
         "team_member_Eb8dWx",
         "team_member_zapnng"
       ],
+      "disabled": true,
       "name": "RW - Team Accordion #6",
       "settings": {
         "background_color": "#b4a2d3",
@@ -1923,6 +1933,7 @@
         "image_7UENJ7",
         "image_C67hAb"
       ],
+      "disabled": true,
       "name": "PWC - Image Slider #8",
       "settings": {
         "show_header": true,
