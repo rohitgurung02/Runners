@@ -1315,6 +1315,7 @@
         "space_fact_LqwWaJ",
         "space_fact_NK6Jpn"
       ],
+      "disabled": true,
       "name": "RW - Card Carousel #6",
       "settings": {
         "background_image": "shopify://shop_images/universe.webp",
@@ -1462,7 +1463,6 @@
         "testimonial_TPYqdH",
         "testimonial_L9iqqV"
       ],
-      "disabled": true,
       "name": "PWC - Testimonials #6",
       "settings": {
         "card_bg_color": "#ffffff",
