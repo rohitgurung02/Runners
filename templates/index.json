@@ -1651,6 +1651,7 @@
     },
     "rw_split_hero_1_NjgQVt": {
       "type": "rw-split-hero-1",
+      "disabled": true,
       "name": "PWC - Split Hero #1",
       "settings": {
         "heading": "Innovate with Us",
@@ -1737,7 +1738,6 @@
         "team_member_Eb8dWx",
         "team_member_zapnng"
       ],
-      "disabled": true,
       "name": "RW - Team Accordion #6",
       "settings": {
         "background_color": "#b4a2d3",
