@@ -1738,6 +1738,7 @@
         "team_member_Eb8dWx",
         "team_member_zapnng"
       ],
+      "disabled": true,
       "name": "RW - Team Accordion #6",
       "settings": {
         "background_color": "#b4a2d3",
@@ -1824,7 +1825,6 @@
         "image_7UENJ7",
         "image_C67hAb"
       ],
-      "disabled": true,
       "name": "PWC - Image Slider #8",
       "settings": {
         "show_header": true,
