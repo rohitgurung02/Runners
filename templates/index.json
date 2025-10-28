@@ -1615,6 +1615,7 @@
         "link_MzheGn",
         "link_bkGAgJ"
       ],
+      "disabled": true,
       "name": "RW - Navigation Items #1",
       "settings": {
         "max_width": 1200,
@@ -1650,7 +1651,6 @@
     },
     "rw_split_hero_1_NjgQVt": {
       "type": "rw-split-hero-1",
-      "disabled": true,
       "name": "PWC - Split Hero #1",
       "settings": {
         "heading": "Innovate with Us",
