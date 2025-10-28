@@ -1463,6 +1463,7 @@
         "testimonial_TPYqdH",
         "testimonial_L9iqqV"
       ],
+      "disabled": true,
       "name": "PWC - Testimonials #6",
       "settings": {
         "card_bg_color": "#ffffff",
@@ -1614,7 +1615,6 @@
         "link_MzheGn",
         "link_bkGAgJ"
       ],
-      "disabled": true,
       "name": "RW - Navigation Items #1",
       "settings": {
         "max_width": 1200,
