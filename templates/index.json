@@ -22,6 +22,7 @@
         "column_xjJNnV": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/pexels-brettjordan-7909183.jpg",
             "title": "CLICK AND COLLECT",
             "title_font_size": 18,
             "title_font_weight": "bold",
@@ -45,6 +46,7 @@
         "column_ypxftU": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/5952766.png",
             "title": "WE SHIP WORLDWIDE",
             "title_font_size": 18,
             "title_font_weight": "bold",
@@ -68,6 +70,7 @@
         "column_V6UUki": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/pexels-winson5293-2701434.jpg",
             "title": "OVER 20,000 PRODUCTS",
             "title_font_size": 18,
             "title_font_weight": "bold",
@@ -94,7 +97,6 @@
         "column_ypxftU",
         "column_V6UUki"
       ],
-      "disabled": true,
       "settings": {
         "title": "Featured columns",
         "heading_size": "h1",
@@ -1825,6 +1827,7 @@
         "image_7UENJ7",
         "image_C67hAb"
       ],
+      "disabled": true,
       "name": "PWC - Image Slider #8",
       "settings": {
         "show_header": true,
